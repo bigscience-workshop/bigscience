@@ -1,2 +1,3 @@
-# code
-Codebase for the project
+# bigscience
+
+WIP
