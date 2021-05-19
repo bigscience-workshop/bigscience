@@ -18,6 +18,14 @@ Constants:
 According to Megatron-LM paper the highest degree of TP we can use is 4 for 4-gpu nodes - crossing nodes would slow things down a lot. So max `TP_SIZE=4`.
 
 
+### Summary
+
+| GPUs | Size | Micro-BS | Chunks |  DP | TP | PP | Speed  |
+| ---- | ---- | -------- |  ----- | --- | -- | -- | ----   |
+|   16 | 7.5B |        1 |      4 |   1 |  4 |  4 | 430ms  |
+|   64 | 30B  |        1 |      4 |   1 |  4 | 16 | 1439ms |
+
+
 
 ### Nodes=4 DP=1 TP=4 PP=4
 
