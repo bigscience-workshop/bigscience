@@ -14,22 +14,25 @@ Constants:
 - `TP_SIZE` = tensor parallel
 - `PP_SIZE` = pipeline parallel
 - `DP_SIZE` = data parallel is derived automatically from `WORLD_SIZE / (TP_SIZE * PP_SIZE)`
+- `WORLD_SIZE` = total number of GPUs
 
-According to Megatron-LM paper the highest degree of TP we can use is 4 for 4-gpu nodes - crossing nodes would slow things down a lot. So max `TP_SIZE=4`.
+According to Megatron-LM paper the highest degree of TP we can use is 4 for 4-gpu nodes - crossing nodes would slow things down a lot. So max `TP_SIZE=4`. So the full 4 gpu node is used only for tensor parallel dimension.
 
 
 ### Summary
 
 This section summarizes the numbers from the experiment sections below:
 
-| GPUs | Size | Micro-BS | PP Chunks |  DP | TP | PP | Throughput |
-| ---- | ---- | -------- | --------- | --- | -- | -- | ---------- |
-|   16 | 7.5B |        1 |         4 |   1 |  4 |  4 | 430ms      |
-|   64 | 30B  |        1 |         4 |   1 |  4 | 16 | 1439ms     |
 
-- Throughput is time per iteration
+| GPUs | Size | Micro-BS | PP Chunks |  DP | PP | Throughput |
+| ---- | ---- | -------- | --------- | --- | -- | ---------- |
+|   16 | 7.5B |        1 |         4 |   1 |  4 | 430ms      |
+|   64 | 30B  |        1 |         4 |   1 | 16 | 1439ms     |
+
+- `TP=4` in all of entries
+- Throughput is time per iteration - to complete global batch size
 - Global batch size is `micro-batch-size * pp_chunks * dp_size`
--
+- PP chunks is the number of PP stages, so each pipeline handles `micro-batch-size * pp_chunks`
 
 
 
