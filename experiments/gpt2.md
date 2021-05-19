@@ -1,23 +1,23 @@
 # gpt2 experiments
 
-Log experiments here
+Logs of GPT2 experiments on JZ.
 
 ## Megatron-LM
 
-`MP_SIZE` = tensor parallel
+`TP_SIZE` = tensor parallel
 `PP_SIZE` = pipeline parallel
-`DP_SIZE` = data parallel is derived automatically from `WORLD_SIZE / (MP_SIZE * PP_SIZE)`
+`DP_SIZE` = data parallel is derived automatically from `WORLD_SIZE / (TP_SIZE * PP_SIZE)`
 
 
-### 4-Node 4x v100 32GB MP=4 PP=4 DP=1
+### 4-Node 4x v100 32GB TP=4 PP=4 DP=1
 
 ```
 salloc  -C v100-32g --nodes=4 --ntasks=4 --cpus-per-task=32 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
 ```
 
-The biggest model we can fit with micro-batch-size=1: **18B**
+The biggest model we can fit with `micro-batch-size`=1: **18B**
 
-seqlen
+seqlen:
 - 512 works
 - 1024 almost fits - OOMs at times
 - 2048 OOMs
@@ -45,7 +45,7 @@ SEQ_LEN=512
 MICRO_BATCH_SIZE=1
 PP_CHUNKS=4
 
-MP_SIZE=4
+TP_SIZE=4
 PP_SIZE=4
 
 GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS))
@@ -89,7 +89,7 @@ export LAUNCHER="python -u -m torch.distributed.launch \
 
 export CMD=" \
     `pwd`/pretrain_gpt.py \
-    --tensor-model-parallel-size $MP_SIZE \
+    --tensor-model-parallel-size $TP_SIZE \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
