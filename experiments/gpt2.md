@@ -20,10 +20,16 @@ According to Megatron-LM paper the highest degree of TP we can use is 4 for 4-gp
 
 ### Summary
 
-| GPUs | Size | Micro-BS | Chunks |  DP | TP | PP | Speed  |
-| ---- | ---- | -------- |  ----- | --- | -- | -- | ----   |
-|   16 | 7.5B |        1 |      4 |   1 |  4 |  4 | 430ms  |
-|   64 | 30B  |        1 |      4 |   1 |  4 | 16 | 1439ms |
+This section summarizes the numbers from the experiment sections below:
+
+| GPUs | Size | Micro-BS | PP Chunks |  DP | TP | PP | Throughput |
+| ---- | ---- | -------- | --------- | --- | -- | -- | ---------- |
+|   16 | 7.5B |        1 |         4 |   1 |  4 |  4 | 430ms      |
+|   64 | 30B  |        1 |         4 |   1 |  4 | 16 | 1439ms     |
+
+- Throughput is time per iteration
+- Global batch size is `micro-batch-size * pp_chunks * dp_size`
+-
 
 
 
