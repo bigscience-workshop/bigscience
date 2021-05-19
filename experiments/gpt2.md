@@ -25,7 +25,7 @@ This section summarizes the numbers from the experiment sections below:
 
 
 | GPUs | Size | Micro-BS | PP Chunks |  DP | PP | Throughput |
-| ---- | ---- | -------- | --------- | --- | -- | ---------- |
+| ---: | ---: | -------: | --------: | --: | -: | ---------: |
 |   16 | 7.5B |        1 |         4 |   1 |  4 | 430ms      |
 |   64 | 30B  |        1 |         4 |   1 | 16 | 1439ms     |
 
