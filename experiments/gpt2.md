@@ -4,9 +4,9 @@ Logs of GPT2 experiments on JZ.
 
 ## Megatron-LM
 
-`TP_SIZE` = tensor parallel
-`PP_SIZE` = pipeline parallel
-`DP_SIZE` = data parallel is derived automatically from `WORLD_SIZE / (TP_SIZE * PP_SIZE)`
+- `TP_SIZE` = tensor parallel
+- `PP_SIZE` = pipeline parallel
+- `DP_SIZE` = data parallel is derived automatically from `WORLD_SIZE / (TP_SIZE * PP_SIZE)`
 
 
 ### 4-Node 4x v100 32GB TP=4 PP=4 DP=1
