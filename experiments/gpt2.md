@@ -15,7 +15,7 @@ Log experiments here
 salloc  -C v100-32g --nodes=4 --ntasks=4 --cpus-per-task=32 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
 ```
 
-The biggest model we can fit with micro-batch-size=1: 18B
+The biggest model we can fit with micro-batch-size=1: **18B**
 
 seqlen
 - 512 works
@@ -113,7 +113,13 @@ srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 Stats:
 
 ```
- iteration      110/    1000 | consumed samples:          440 | elapsed time per iteration (ms): 974.9 | learning rate: 1.462E-04 | global batch size:     4 | lm loss: 8.111837E+00 | loss scale: 16384.0 | grad norm: 6.753 | number of skipped iterations:   0 | number of nan iterations:   0 |
-time (ms) | forward-compute: 211.64 | forward-recv: 79.05 | backward-compute: 293.57 | backward-send: 0.37 | backward-send-forward-recv: 3.48 | backward-params-all-reduce: 23.43 | backward-embedding-all-reduce: 257.82 | optimizer-copy-to-main-grad: 11.07 | optimizer-unscale-and-check-inf: 14.57 | optimizer-clip-main-grad: 19.51 | optimizer-copy-main-to-model-params: 11.37 | optimizer: 103.82 | batch-generator: 5.14
+iteration 110/ 1000 | consumed samples: 440 | elapsed time per iteration (ms): 974.9 | learning
+rate: 1.462E-04 | global batch size: 4 | lm loss: 8.111837E+00 | loss scale: 16384.0 | grad norm:
+6.753 | number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) | forward-compute:
+211.64 | forward-recv: 79.05 | backward-compute: 293.57 | backward-send: 0.37 |
+backward-send-forward-recv: 3.48 | backward-params-all-reduce: 23.43 |
+backward-embedding-all-reduce: 257.82 | optimizer-copy-to-main-grad: 11.07 |
+optimizer-unscale-and-check-inf: 14.57 | optimizer-clip-main-grad: 19.51 |
+optimizer-copy-main-to-model-params: 11.37 | optimizer: 103.82 | batch-generator: 5.14
 
 ```
