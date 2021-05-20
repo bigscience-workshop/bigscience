@@ -23,16 +23,32 @@ According to Megatron-LM paper the highest degree of TP we can use is 4 for 4-gp
 
 This section summarizes the numbers from the experiment sections below:
 
+**Megatron**:
+
+Not yet optimized with NVIDIA team!
 
 | GPUs | Size | Micro-BS | PP Chunks |  DP | PP | Throughput |
 | ---: | ---: | -------: | --------: | --: | -: | ---------: |
 |   16 | 7.5B |        1 |         4 |   1 |  4 | 430ms      |
 |   64 | 30B  |        1 |         4 |   1 | 16 | 1439ms     |
+|  128 | 50B  |        1 |         4 |   1 | 32 | 2124ms     |
+|      |      |          |           |     |    |            |
+
 
 - `TP=4` in all of entries
 - Throughput is time per iteration - to complete global batch size
 - Global batch size is `micro-batch-size * pp_chunks * dp_size`
 - PP chunks is the number of PP stages, so each pipeline handles `micro-batch-size * pp_chunks`
+
+**Megatron + Deepspeed ZeRO**:
+
+Not yet optimized with Deepspeed team!
+
+| GPUs | Size | Micro-BS | PP Chunks | DP  | PP | Throughput |
+| ---: | ---: | -------: | --------: | --: | -: | ---------: |
+| 64   | 30B  | 1        | 4         | 1   | 16 | 28716ms    |
+|      |      |          |           |     |    |            |
+
 
 
 
@@ -41,7 +57,7 @@ This section summarizes the numbers from the experiment sections below:
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=4 --ntasks=4 --cpus-per-task=32 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=4 --ntasks=4 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-siz`=1`: **7.5B**
@@ -138,19 +154,19 @@ srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 ```
 
 Stats:
-```
-iteration      200/    1000 | consumed samples:          800 | elapsed time per iteration (ms): 430.0 | learning rate: 1.342E-04 | global batch size:     4 | lm loss: 7.399415E+00 | loss scale: 16384.0 | grad norm: 2.918 | number of skipped iterations:   0 | number of nan iterations:   0 |
-time (ms) | forward-compute: 53.79 | forward-recv: 38.38 | backward-compute: 138.84 | backward-send: 0.28 | backward-send-forward-recv: 2.60 | backward-params-all-reduce: 10.17 | backward-embedding-all-reduce: 135.50 | optimizer-copy-to-main-grad: 4.48 | optimizer-unscale-and-check-inf: 12.63 | optimizer-clip-main-grad: 8.62 | optimizer-copy-main-to-model-params: 4.42 | optimizer: 49.42 | batch-generator: 2.35
 
 ```
-gpus:
+iteration 200/ 1000 | consumed samples: 800 | elapsed time per iteration (ms): 430.0 | learning
+rate: 1.342E-04 | global batch size: 4 | lm loss: 7.399415E+00 | loss scale: 16384.0 | grad norm:
+2.918 | number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) | forward-compute:
+53.79 | forward-recv: 38.38 | backward-compute: 138.84 | backward-send: 0.28 |
+backward-send-forward-recv: 2.60 | backward-params-all-reduce: 10.17 |
+backward-embedding-all-reduce: 135.50 | optimizer-copy-to-main-grad: 4.48 |
+optimizer-unscale-and-check-inf: 12.63 | optimizer-clip-main-grad: 8.62 |
+optimizer-copy-main-to-model-params: 4.42 | optimizer: 49.42 | batch-generator: 2.35
+
 ```
-| ============================================================================= |
-| 0   N/A  N/A     59019      C   .../conda/hf-prod/bin/python    14659MiB      |
-| 1   N/A  N/A     59020      C   .../conda/hf-prod/bin/python    14691MiB      |
-| 2   N/A  N/A     59021      C   .../conda/hf-prod/bin/python    14659MiB      |
-| 3   N/A  N/A     59022      C   .../conda/hf-prod/bin/python    14643MiB      |
-```
+
 
 ### Nodes=16 DP=1 TP=4 PP=16
 
@@ -158,7 +174,7 @@ gpus:
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=16 --ntasks=16 --cpus-per-task=32 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1`: barely **30B**
@@ -258,23 +274,35 @@ srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
 Stats:
 
+
+
 ```
- iteration       30/    1000 | consumed samples:          120 | elapsed time per iteration (ms): 1439.3 | learning rate: 1.500E-04 | global batch size:     4 | lm loss: 2.667133E+01 | loss scale: 16384.0 | grad norm: 73.338 | number of skipped iterations:   1 | number of nan iterations:   0 |
-time (ms) | forward-compute: 77.94 | forward-recv: 285.81 | backward-compute: 203.21 | backward-send: 0.91 | backward-send-forward-recv: 5.44 | backward-params-all-reduce: 10.38 | backward-embedding-all-reduce: 811.34 | optimizer-copy-to-main-grad: 4.61 | optimizer-unscale-and-check-inf: 7.90 | optimizer-clip-main-grad: 7.91 | optimizer-copy-main-to-model-params: 3.95 | optimizer: 43.19 | batch-generator: 2.64
+iteration 30/ 1000 | consumed samples: 120 | elapsed time per iteration (ms): 1439.3 | learning
+rate: 1.500E-04 | global batch size: 4 | lm loss: 2.667133E+01 | loss scale: 16384.0 | grad norm:
+73.338 | number of skipped iterations: 1 | number of nan iterations: 0 | time (ms) |
+forward-compute: 77.94 | forward-recv: 285.81 | backward-compute: 203.21 | backward-send: 0.91 |
+backward-send-forward-recv: 5.44 | backward-params-all-reduce: 10.38 |
+backward-embedding-all-reduce: 811.34 | optimizer-copy-to-main-grad: 4.61 |
+optimizer-unscale-and-check-inf: 7.90 | optimizer-clip-main-grad: 7.91 |
+optimizer-copy-main-to-model-params: 3.95 | optimizer: 43.19 | batch-generator: 2.64
 ```
 
 ### Nodes=32 DP=1 TP=4 PP=32
 
-Status: TODO - waiting for allocation
-
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=32 --ntasks=32 --cpus-per-task=32 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=32 --ntasks=32 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
 ```
 
-The biggest model we can fit with `micro-batch-size=1`: 76B maybe?
+The biggest model we can fit with `micro-batch-size=1`: **50B**
 
+(50B is not in paper's table - took 76B model - had to change to nlayer=32 for it to work and reduced NHIDDEN=8192 to overcome OOM) but it still OOM'ed after 60 steps so was a bit too much.
+
+```
+perl -le 'print( (120*402780160+8*514977792)>>20)'
+50023
+```
 
 ```
 
@@ -294,8 +322,8 @@ MASTER_PORT=6000
 NODE_RANK=0
 
 NHEADS=32
-NHIDDEN=10240
-NLAYERS=60
+NHIDDEN=8192
+NLAYERS=64
 SEQ_LEN=1024
 
 MICRO_BATCH_SIZE=1
@@ -370,5 +398,487 @@ srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 Stats:
 
 ```
+iteration 50/ 1000 | consumed samples: 200 | elapsed time per iteration (ms): 2124.0 | learning
+rate: 1.497E-04 | global batch size: 4 | lm loss: 1.038553E+01 | loss scale: 16384.0 | grad norm:
+14.954 | number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) |
+forward-compute: 68.08 | forward-recv: 485.51 | backward-compute: 175.50 | backward-send: 0.85 |
+backward-send-forward-recv: 5.63 | backward-params-all-reduce: 9.54 | backward-embedding-all-reduce:
+1321.49 | optimizer-copy-to-main-grad: 4.19 | optimizer-unscale-and-check-inf: 21.21 |
+optimizer-clip-main-grad: 8.04 | optimizer-copy-main-to-model-params: 3.98 | optimizer: 56.47 |
+batch-generator: 2.72
+
+```
+
+
+## Megatron + Deepspeed ZeRO
+
+**Important**: `DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3` is not in sync with M-LM master - so several config args don't match.
+
+Status: Unoptimized
+
+### Nodes=16
+
+
+```
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+```
+
+
+```
+
+cd ~/base/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
+
+CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
+MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
+DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+
+GPUS_PER_NODE=4
+NNODES=16
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+NODE_RANK=0
+
+NHEADS=32
+NHIDDEN=7168
+NLAYERS=48
+SEQ_LEN=1024
+
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
+
+PP_SIZE=16
+DP_SIZE=1
+TP_SIZE=4
+
+GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
+WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+
+#    --micro-batch-size $MICRO_BATCH_SIZE \
+#    --lr-warmup-fraction .01 \
+#    --global-batch-size $GLOBAL_BATCH_SIZE
+GPT_ARGS=" \
+    --num-layers $NLAYERS \
+    --hidden-size $NHIDDEN \
+    --num-attention-heads $NHEADS \
+    --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
+    --batch-size $MICRO_BATCH_SIZE \
+    --train-iters 1000 \
+    --lr-decay-iters 800 \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --lr 1.5e-4 \
+    --lr-decay-style cosine \
+    --min-lr 1.0e-5 \
+    --weight-decay 1e-2 \
+    --clip-grad 1.0 \
+    --warmup 0.01 \
+    --fp16 \
+    --scattered-embeddings \
+    --split-transformers \
+    "
+
+OUTPUT_ARGS=" \
+    --log-interval 10 \
+    --save-interval 500 \
+    --eval-interval 100 \
+    --eval-iters 10 \
+    "
+
+#ZeRO Configs
+gradient_accumulation_steps=1
+reduce_bucket_size=$(($NHIDDEN*$NHIDDEN))
+stage3_prefetch_bucket_size=$(($NHIDDEN*$NHIDDEN*9/10))
+stage3_param_persistence_threshold=$((10*$NHIDDEN))
+train_batch_size=$(($WORLD_SIZE*$MICRO_BATCH_SIZE*$gradient_accumulation_steps))
+
+config_json="./ds_zero_stage_3_config.json"
+
+cat <<EOT > $config_json
+{
+  "train_batch_size": $train_batch_size,
+  "gradient_accumulation_steps": $gradient_accumulation_steps,
+  "steps_per_print": 10,
+  "zero_optimization": {
+    "stage": 3,
+    "stage3_max_live_parameters": 1e9,
+    "stage3_max_reuse_distance": 1e9,
+    "stage3_prefetch_bucket_size": $stage3_prefetch_bucket_size,
+    "stage3_param_persitence_threshold": $stage3_param_persistence_threshold,
+    "reduce_bucket_size": $reduce_bucket_size,
+    "contiguous_gradients": true
+  },
+  "gradient_clipping": 1.0,
+  "fp16": {
+    "enabled": true,
+    "loss_scale": 0,
+    "initial_scale_power": 16,
+    "loss_scale_window": 1000,
+    "hysteresis": 2,
+    "min_loss_scale": 1
+  },
+  "wall_clock_breakdown": false,
+  "zero_allow_untested_optimizer": false
+}
+EOT
+
+MP_SIZE=$TP_SIZE
+
+stage=3
+reduce_scatter=true
+contigious_gradients=true
+rbs=50000000
+agbs=5000000000
+
+#Activation Checkpointing and Contigious Memory
+chkp_layers=1
+PA=true
+PA_CPU=true
+CC=true
+SYNCHRONIZE=true
+PROFILE=false
+
+# TiledLinear splits, 0 is disable
+TILED_LINEAR="false"
+TILE_DIM=1
+
+
+DEEPSPEED_ARGS=" \
+    --deepspeed \
+    --deepspeed_config ${config_json} \
+    --zero-stage ${stage} \
+    --zero-reduce-bucket-size ${rbs} \
+    --zero-allgather-bucket-size ${agbs} \
+    "
+
+if [ "${contigious_gradients}" = "true" ]; then
+DEEPSPEED_ARGS="${DEEPSPEED_ARGS} \
+    --zero-contigious-gradients"
+fi
+
+if [ "${reduce_scatter}" = "true" ]; then
+DEEPSPEED_ARGS="${DEEPSPEED_ARGS} \
+    --zero-reduce-scatter"
+fi
+
+CHKP_ARGS=" \
+--checkpoint-activations \
+--deepspeed-activation-checkpointing \
+--checkpoint-num-layers ${chkp_layers}"
+
+if [ "${PA}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} --partition-activations"
+fi
+
+if [ "${PA_CPU}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --checkpoint-in-cpu"
+fi
+
+if [ "${SYNCHRONIZE}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --synchronize-each-layer"
+fi
+
+if [ "${CC}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --contigious-checkpointing"
+fi
+
+if [ "${PROFILE}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --profile-backward"
+fi
+
+if [ "${TILED_LINEAR}" = "true" ]; then
+tile_opt="${tile_opt} \
+        --memory-centric-tiled-linear \
+        --tile-factor=${TILE_DIM}"
+fi
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+#    --tensor-model-parallel-size $TP_SIZE \
+#    --pipeline-model-parallel-size $PP_SIZE \
+export CMD=" \
+    `pwd`/pretrain_gpt2.py \
+    --model-parallel-size $TP_SIZE \
+    $GPT_ARGS \
+    $OUTPUT_ARGS \
+    --save $SAVE_CHECKPOINT_PATH \
+    --load $SAVE_CHECKPOINT_PATH \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --split 949,50,1 \
+    --distributed-backend nccl \
+     $DEEPSPEED_ARGS \
+     $CHKP_ARGS \
+    "
+
+rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+
+```
+
+Stats:
+
+```
+iteration 20/ 1000 | elapsed time per iteration (ms): 28716.0 | learning rate: 1.500E-04 | lm loss:
+2.324108E+01 | loss scale: 1024.0 | number of skipped iterations: 0 | number of nan iterations: 0 |
+time (ms) | forward: 5495.35 | backward: 22976.72 | backward-backward: 22976.69 |
+backward-allreduce: 0.00 | optimizer: 243.03 | batch generator: 1.00 Effective Tera Flops per GPU:
+0.21 and total parameters 29.998 B
+```
+
+
+## Megatron + Deepspeed PP
+
+**Important**: `DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism` is not in sync with M-LM master - so several config args don't match.
+
+Status: Unoptimized and can't make it work on multinode (works on a single node)
+
+
+### Nodes=16
+
+
+```
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+```
+
+
+```
+
+cd ~/base/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
+
+CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
+MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
+DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+
+GPUS_PER_NODE=4
+NNODES=16
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+NODE_RANK=0
+
+NHEADS=32
+NHIDDEN=7168
+NLAYERS=48
+SEQ_LEN=1024
+
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
+
+PP_SIZE=16
+DP_SIZE=1
+TP_SIZE=4
+
+GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
+WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+
+GAS=16
+
+#    --micro-batch-size $MICRO_BATCH_SIZE \
+#    --lr-warmup-fraction .01 \
+#    --global-batch-size $GLOBAL_BATCH_SIZE
+GPT_ARGS=" \
+    --num-layers $NLAYERS \
+    --hidden-size $NHIDDEN \
+    --num-attention-heads $NHEADS \
+    --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
+    --batch-size $MICRO_BATCH_SIZE \
+    --gas $GAS \
+    --train-iters 1000 \
+    --lr-decay-iters 800 \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --lr 1.5e-4 \
+    --lr-decay-style cosine \
+    --min-lr 1.0e-5 \
+    --weight-decay 1e-2 \
+    --clip-grad 1.0 \
+    --warmup 0.01 \
+    --fp16 \
+    "
+
+OUTPUT_ARGS=" \
+    --log-interval 10 \
+    --save-interval 500 \
+    --eval-interval 100 \
+    --eval-iters 10 \
+    "
+
+#ZeRO Configs
+gradient_accumulation_steps=1
+reduce_bucket_size=$(($NHIDDEN*$NHIDDEN))
+stage3_prefetch_bucket_size=$(($NHIDDEN*$NHIDDEN*9/10))
+stage3_param_persistence_threshold=$((10*$NHIDDEN))
+train_batch_size=$(($WORLD_SIZE*$MICRO_BATCH_SIZE*$gradient_accumulation_steps))
+
+config_json="./ds_config.json"
+
+cat <<EOT > $config_json
+{
+  "train_batch_size": $train_batch_size,
+  "train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
+  "gradient_accumulation_steps": $gradient_accumulation_steps,
+  "steps_per_print": 10,
+  "gradient_clipping": 1.0,
+  "fp16": {
+    "enabled": true,
+    "loss_scale": 0,
+    "initial_scale_power": 16,
+    "loss_scale_window": 1000,
+    "hysteresis": 2,
+    "min_loss_scale": 1
+  },
+  "wall_clock_breakdown": false,
+  "zero_allow_untested_optimizer": false
+}
+EOT
+
+MP_SIZE=$TP_SIZE
+
+stage=0
+reduce_scatter=true
+contigious_gradients=true
+rbs=50000000
+agbs=5000000000
+
+#Activation Checkpointing and Contigious Memory
+chkp_layers=1
+PA=true
+PA_CPU=false
+CC=true
+SYNCHRONIZE=true
+PROFILE=false
+
+DEEPSPEED_ARGS=" \
+    --deepspeed \
+    --deepspeed_config ${config_json} \
+    --zero-stage ${stage} \
+    --zero-reduce-bucket-size ${rbs} \
+    --zero-allgather-bucket-size ${agbs} \
+    "
+
+DEEPSPEED_ARGS=" \
+    --deepspeed \
+    --deepspeed_config ${config_json} \
+    --zero-stage ${stage} \
+    --zero-reduce-bucket-size ${rbs} \
+    --zero-allgather-bucket-size ${agbs} \
+    "
+
+if [ "${contigious_gradients}" = "true" ]; then
+DEEPSPEED_ARGS="${DEEPSPEED_ARGS} \
+    --zero-contigious-gradients"
+fi
+
+if [ "${reduce_scatter}" = "true" ]; then
+DEEPSPEED_ARGS="${DEEPSPEED_ARGS} \
+    --zero-reduce-scatter"
+fi
+
+CHKP_ARGS=" \
+--checkpoint-activations \
+--checkpoint-num-layers ${chkp_layers}"
+
+if [ "${PA}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --partition-activations"
+fi
+
+if [ "${PA_CPU}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --checkpoint-in-cpu"
+fi
+
+if [ "${SYNCHRONIZE}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --synchronize-each-layer"
+fi
+
+if [ "${CC}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --contigious-checkpointing"
+fi
+
+if [ "${PROFILE}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --profile-backward"
+fi
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+#    --tensor-model-parallel-size $TP_SIZE \
+#    --pipeline-model-parallel-size $PP_SIZE \
+export CMD=" \
+    `pwd`/pretrain_gpt2.py \
+    --model-parallel-size $TP_SIZE \
+    --pipe-parallel-size $PP_SIZE \
+    $GPT_ARGS \
+    $OUTPUT_ARGS \
+    --save $SAVE_CHECKPOINT_PATH \
+    --load $SAVE_CHECKPOINT_PATH \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --split 949,50,1 \
+    --distributed-backend nccl \
+     $DEEPSPEED_ARGS \
+     $CHKP_ARGS \
+    "
+
+rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+
+# can't figure out how to launch from salloc
+#
+# # r10i5n[5-6],r10i6n[4-5,7-8],r10i7n[0,4-5],r11i3n[3-6],r13i1n[2-4]
+# function makehostfile() {
+# perl -e '$slots=split /,/, $ENV{"SLURM_STEP_GPUS"};
+# $slots=4 if $slots==0; # workaround
+# while ($ENV{"SLURM_JOB_NODELIST"} =~ m/(\w+)(?:\[([\d-,]+)\])?,?/msg) {
+# $b=$1; $s=$2||q[""]; $s=~s/-/../g;
+# print map { "$b$_ slots=$slots\n" } eval $s }'
+# }
+# makehostfile > hostfile
+#
+#
+# srun --jobid $SLURM_JOBID deepspeed -H `pwd`/hostfile --num_nodes ${NNODES} --num_gpus ${GPUS_PER_NODE} $CMD
+#
+
+# to kill hanging python processes on all nodes at once
+# srun pkill python
+
+```
+
+Stats:
+```
+
+```
+
+
+```
+
+
+
 
 ```
