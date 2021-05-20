@@ -522,7 +522,6 @@ rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
-
 ```
 
 Stats:
@@ -1107,15 +1106,15 @@ srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
 # can't figure out how to launch from salloc
 #
-# # r10i5n[5-6],r10i6n[4-5,7-8],r10i7n[0,4-5],r11i3n[3-6],r13i1n[2-4]
-# function makehostfile() {
-# perl -e '$slots=split /,/, $ENV{"SLURM_STEP_GPUS"};
-# $slots=4 if $slots==0; # workaround
-# while ($ENV{"SLURM_JOB_NODELIST"} =~ m/(\w+)(?:\[([\d-,]+)\])?,?/msg) {
-# $b=$1; $s=$2||q[""]; $s=~s/-/../g;
-# print map { "$b$_ slots=$slots\n" } eval $s }'
-# }
-# makehostfile > hostfile
+# r10i5n[5-6],r10i6n[4-5,7-8],r10i7n[0,4-5],r11i3n[3-6],r13i1n[2-4]
+function makehostfile() {
+perl -e '$slots=split /,/, $ENV{"SLURM_STEP_GPUS"};
+$slots=4 if $slots==0; # workaround
+while ($ENV{"SLURM_JOB_NODELIST"} =~ m/(\w+)(?:\[([\d-,]+)\])?,?/msg) {
+$b=$1; $s=$2||q[""]; $s=~s/-/../g;
+print map { "$b$_ slots=$slots\n" } eval $s }'
+}
+makehostfile > hostfile
 #
 #
 # srun --jobid $SLURM_JOBID deepspeed -H `pwd`/hostfile --num_nodes ${NNODES} --num_gpus ${GPUS_PER_NODE} $CMD
@@ -1136,5 +1135,202 @@ Stats:
 
 
 
+
+```
+
+
+
+### Nodes=16
+
+
+```
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+```
+
+
+```
+
+cd ~/base/code/transformers/
+
+export HF_DATASETS_CACHE=$eha_ALL_CCFRSCRATCH/datasets
+export HF_MODULES_CACHE=$eha_ALL_CCFRSCRATCH/modules
+export HF_METRICS_CACHE=$eha_ALL_CCFRSCRATCH/metrics
+
+GPUS_PER_NODE=4
+NNODES=16
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+
+MODEL=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
+DATASET="stas/openwebtext-10k"
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+export PYTHONPATH=src
+export HF_DATASETS_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+export USE_TF=0
+
+export CMD=" \
+    examples/pytorch/language-modeling/run_clm.py \
+    --model_name_or_path $MODEL \
+    --dataset_name $DATASET \
+    --output_dir output_dir \
+    --overwrite_output_dir \
+    --do_train \
+    --do_eval \
+    --max_train_samples 1000 \
+    --max_eval_samples 200 \
+    --per_device_train_batch_size 4 \
+    --per_device_eval_batch_size 4 \
+    --num_train_epochs 1 \
+    --warmup_steps 8 \
+    --block_size 64 \
+    --fp16 \
+    --report_to none \
+    --deepspeed tests/deepspeed/ds_config_zero2.json \
+    "
+
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+
+
+
+```
+
+
+```
+
+
+
+[INFO|trainer_pt_utils.py:907] 2021-05-20 20:16:42,987 >> ***** train metrics *****
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,987 >>   epoch                      =        1.0
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,987 >>   init_mem_cpu_alloc_delta   =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,987 >>   init_mem_cpu_peaked_delta  =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,987 >>   init_mem_gpu_alloc_delta   =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,987 >>   init_mem_gpu_peaked_delta  =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,987 >>   train_mem_cpu_alloc_delta  =     2390MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,988 >>   train_mem_cpu_peaked_delta =      471MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,988 >>   train_mem_gpu_alloc_delta  =      798MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,988 >>   train_mem_gpu_peaked_delta =     3955MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,988 >>   train_runtime              = 0:00:02.03
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,988 >>   train_samples              =       1000
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:42,988 >>   train_samples_per_second   =      1.968
+
+
+[INFO|trainer.py:2115] 2021-05-20 20:16:43,050 >> ***** Running Evaluation *****
+[INFO|trainer.py:2117] 2021-05-20 20:16:43,050 >>   Num examples = 200
+[INFO|trainer.py:2120] 2021-05-20 20:16:43,050 >>   Batch size = 4
+[INFO|trainer_pt_utils.py:907] 2021-05-20 20:16:43,156 >> ***** eval metrics *****
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   epoch                     =        1.0
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   eval_loss                 =     7.3242
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   eval_mem_cpu_alloc_delta  =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   eval_mem_cpu_peaked_delta =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   eval_mem_gpu_alloc_delta  =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   eval_mem_gpu_peaked_delta =      110MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   eval_runtime              = 0:00:00.05
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   eval_samples              =        200
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   eval_samples_per_second   =    3884.46
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:16:43,156 >>   perplexity                =  1516.5886
+```
+
+
+## test with just 2 nodes to sort out multi-node
+
+
+```
+
+cd ~/base/code/transformers/
+
+export HF_DATASETS_CACHE=$eha_ALL_CCFRSCRATCH/datasets
+export HF_MODULES_CACHE=$eha_ALL_CCFRSCRATCH/modules
+export HF_METRICS_CACHE=$eha_ALL_CCFRSCRATCH/metrics
+
+GPUS_PER_NODE=4
+NNODES=2
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+
+MODEL=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
+DATASET="stas/openwebtext-10k"
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+export PYTHONPATH=src
+export HF_DATASETS_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+export USE_TF=0
+
+#    deepspeed  -H `pwd`/hostfile-exp2 --num_nodes $NNODES --num_gpus $GPUS_PER_NODE \
+export CMD=" \
+    examples/pytorch/language-modeling/run_clm.py \
+    --model_name_or_path $MODEL \
+    --dataset_name $DATASET \
+    --output_dir output_dir \
+    --overwrite_output_dir \
+    --do_train \
+    --do_eval \
+    --max_train_samples 10000 \
+    --max_eval_samples 1000 \
+    --per_device_train_batch_size 4 \
+    --per_device_eval_batch_size 4 \
+    --num_train_epochs 1 \
+    --warmup_steps 8 \
+    --block_size 64 \
+    --fp16 \
+    --report_to none \
+    --deepspeed tests/deepspeed/ds_config_zero2.json \
+    "
+
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+#srun --jobid $SLURM_JOBID $CMD
+
+
+```
+
+```
+
+
+[INFO|trainer_pt_utils.py:907] 2021-05-20 20:14:52,101 >> ***** train metrics *****
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   epoch                      =        1.0
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   init_mem_cpu_alloc_delta   =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   init_mem_cpu_peaked_delta  =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   init_mem_gpu_alloc_delta   =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   init_mem_gpu_peaked_delta  =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   train_mem_cpu_alloc_delta  =     2946MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   train_mem_cpu_peaked_delta =       82MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   train_mem_gpu_alloc_delta  =      798MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   train_mem_gpu_peaked_delta =     3955MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   train_runtime              = 0:02:38.50
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   train_samples              =      10000
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:52,101 >>   train_samples_per_second   =      1.975
+INFO:__main__:*** Evaluate ***
+[INFO|trainer.py:2115] 2021-05-20 20:14:52,170 >> ***** Running Evaluation *****
+[INFO|trainer.py:2117] 2021-05-20 20:14:52,170 >>   Num examples = 1000
+[INFO|trainer.py:2120] 2021-05-20 20:14:52,170 >>   Batch size = 4
+100%|██████████| 32/32 [00:02<00:00, 12.20it/s]
+100%|██████████| 32/32 [00:01<00:00, 25.40it/s]
+[INFO|trainer_pt_utils.py:907] 2021-05-20 20:14:53,544 >> ***** eval metrics *****
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   epoch                     =        1.0
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   eval_loss                 =     0.7476
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   eval_mem_cpu_alloc_delta  =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   eval_mem_cpu_peaked_delta =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   eval_mem_gpu_alloc_delta  =        0MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   eval_mem_gpu_peaked_delta =      110MB
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   eval_runtime              = 0:00:01.30
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   eval_samples              =       1000
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   eval_samples_per_second   =    767.087
+[INFO|trainer_pt_utils.py:912] 2021-05-20 20:14:53,544 >>   perplexity                =     2.1118
 
 ```
