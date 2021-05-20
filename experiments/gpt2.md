@@ -32,6 +32,7 @@ Not yet optimized with NVIDIA team!
 |   16 | 7.5B |        1 |         4 |   1 |  4 | 430ms      |
 |   64 | 30B  |        1 |         4 |   1 | 16 | 1439ms     |
 |  128 | 50B  |        1 |         4 |   1 | 32 | 2124ms     |
+|  256 | 78B  |        1 |         4 |   1 | 64 | 2953ms     |
 |      |      |          |           |     |    |            |
 
 
@@ -297,7 +298,7 @@ salloc --nodes=32 --ntasks=32 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithre
 
 The biggest model we can fit with `micro-batch-size=1`: **50B**
 
-(50B is not in paper's table - took 76B model - had to change to nlayer=32 for it to work and reduced NHIDDEN=8192 to overcome OOM) but it still OOM'ed after 60 steps so was a bit too much.
+(50B is not in paper's table - took 76B model - had to change to nlayer=64 for it to work and reduced NHIDDEN=8192 to overcome OOM) but it still OOM'ed after 60 steps so was a bit too much.
 
 ```
 perl -le 'print( (120*402780160+8*514977792)>>20)'
@@ -408,6 +409,133 @@ optimizer-clip-main-grad: 8.04 | optimizer-copy-main-to-model-params: 3.98 | opt
 batch-generator: 2.72
 
 ```
+
+
+
+
+
+### Nodes=64 DP=1 TP=4 PP=64
+
+Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
+
+```
+salloc --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+```
+
+The biggest model we can fit with `micro-batch-size=1`: **78B**
+
+(78B is not in paper's table - took 76B model - had to change to nlayers=64 for it to work)
+
+```
+perl -le 'print( (248*314652160+8*454899200)>>20)'
+77889
+```
+
+```
+
+cd ~/base/code/megatron-lm/
+
+CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
+MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
+DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+GPUS_PER_NODE=4
+NNODES=64
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+NODE_RANK=0
+
+NHEADS=32
+NHIDDEN=10240
+NLAYERS=64
+SEQ_LEN=1024
+
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
+
+PP_SIZE=64
+DP_SIZE=1
+TP_SIZE=4
+
+GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
+WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+
+GPT_ARGS=" \
+    --num-layers $NLAYERS \
+    --hidden-size $NHIDDEN \
+    --num-attention-heads $NHEADS \
+    --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
+    --micro-batch-size $MICRO_BATCH_SIZE \
+    --global-batch-size $GLOBAL_BATCH_SIZE
+    --lr 0.00015 \
+    --lr-decay-style cosine \
+    --min-lr 1.0e-5 \
+    --train-iters 1000 \
+    --lr-decay-iters 800 \
+    --lr-warmup-fraction .01 \
+    --weight-decay 1e-2 \
+    --clip-grad 1.0 \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --fp16 \
+    --checkpoint-activations \
+    "
+
+OUTPUT_ARGS=" \
+    --log-interval 10 \
+    --save-interval 500 \
+    --eval-interval 100 \
+    --eval-iters 10 \
+    "
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+export CMD=" \
+    `pwd`/pretrain_gpt.py \
+    --tensor-model-parallel-size $TP_SIZE \
+    --pipeline-model-parallel-size $PP_SIZE \
+    $GPT_ARGS \
+    $OUTPUT_ARGS \
+    --save $SAVE_CHECKPOINT_PATH \
+    --load $SAVE_CHECKPOINT_PATH \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --split 949,50,1 \
+    --distributed-backend nccl \
+    "
+
+# clear old checkpoint as it'd mismatch while we sort things out
+rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+# to debug - add echo (it exits and prints what it would have launched)
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+
+
+```
+
+Stats:
+
+```
+iteration 30/ 1000 | consumed samples: 120 | elapsed time per iteration (ms): 2953.3 | learning
+rate: 1.500E-04 | global batch size: 4 | lm loss: 3.785040E+01 | loss scale: 16384.0 | grad norm:
+47.681 | number of skipped iterations: 1 | number of nan iterations: 0 | time (ms) |
+forward-compute: 53.67 | forward-recv: 746.59 | backward-compute: 134.74 | backward-send: 1.01 |
+backward-send-forward-recv: 6.49 | backward-params-all-reduce: 8.29 | backward-embedding-all-reduce:
+1964.85 | optimizer-copy-to-main-grad: 3.64 | optimizer-unscale-and-check-inf: 8.68 |
+optimizer-clip-main-grad: 6.34 | optimizer-copy-main-to-model-params: 3.10 | optimizer: 36.80 |
+batch-generator: 2.52
+```
+
+
 
 
 ## Megatron + Deepspeed ZeRO
