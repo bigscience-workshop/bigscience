@@ -62,7 +62,9 @@ Pre-allocate so that we can run experiments immediately and not wait for slurm t
 salloc --nodes=4 --ntasks=4 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
 ```
 
-The biggest model we can fit with `micro-batch-siz`=1`: **7.5B**
+XXX: retest with SEQ_LEN=1024 to be the same as others.
+
+The biggest model we can fit with `micro-batch-size=1`: **7.5B**
 
 ```
 
