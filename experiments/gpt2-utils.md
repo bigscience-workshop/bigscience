@@ -34,8 +34,8 @@ layer_norm1 = 2 * h                                   # 2h
 layer_norm2 = 2 * h                                   # 2h
 # Magic Formula:
 total_params = n * (12h^2 + 13h) + (v * h) + (s * h)
-
 ```
+credits: Sidd Karamcheti
 
 
 Can calculate the same on a given `model` object (counts shared params once):
