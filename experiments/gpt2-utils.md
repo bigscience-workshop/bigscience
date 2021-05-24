@@ -11,8 +11,18 @@ Calculate the number of params in the model:
 - v = vocabulary size
 
 ```
-$ python -c 'h=1024; l=24; s=1024; v=50257; print(f"{l * (12*h**2 + 13*h) + (v * h) + (s * h) >> 20}M")'
+$ python -c "h=1024; l=24; s=1024; v=50257; print(f'{l * (12*h**2 + 13*h) + (v * h) + (s * h) >> 20}M')"
 338M
+```
+
+For our scripts where we only care for Billions:
+```
+NHEADS=32
+NHIDDEN=4096
+NLAYERS=36
+SEQ_LEN=512
+VOCAB_SIZE=50257
+python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 ```
 
 Full math for the above final formula: (num_heads is not really part of the calculations)

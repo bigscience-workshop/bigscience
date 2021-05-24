@@ -1,0 +1,1793 @@
++ source /gpfsscratch/rech/eha/commun/start-prod
++++ type -t module
+++ '[' -z function ']'
+++ module purge
+++ unset _mlshdbg
+++ '[' 0 = 1 ']'
+++ unset _mlre _mlIFS
+++ '[' -n x ']'
+++ _mlIFS=' 	
+'
+++ IFS=' '
+++ for _mlv in ${MODULES_RUN_QUARANTINE:-}
+++ '[' LD_LIBRARY_PATH = LD_LIBRARY_PATH -a LD_LIBRARY_PATH = LD_LIBRARY_PATH ']'
++++ eval 'echo ${LD_LIBRARY_PATH+x}'
+++++ echo x
+++ '[' -n x ']'
++++ eval 'echo ${LD_LIBRARY_PATH}'
+++++ echo /gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib
+++ _mlre='LD_LIBRARY_PATH_modquar='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib'\'' '
+++ _mlrv=MODULES_RUNENV_LD_LIBRARY_PATH
++++ eval 'echo ${MODULES_RUNENV_LD_LIBRARY_PATH:-}'
+++++ echo
+++ _mlre='LD_LIBRARY_PATH_modquar='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib'\'' LD_LIBRARY_PATH='\'''\'' '
+++ '[' -n 'LD_LIBRARY_PATH_modquar='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib'\'' LD_LIBRARY_PATH='\'''\'' ' ']'
++++ eval 'LD_LIBRARY_PATH_modquar='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib'\''' 'LD_LIBRARY_PATH='\'''\''' /gpfslocalsup/spack_soft/tcl/8.6.8/gcc-4.8.5-5nqkfcnctewdheju62zvqbsonnzszr6m/bin/tclsh /gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/libexec/modulecmd.tcl bash '"$@"'
+++++ LD_LIBRARY_PATH_modquar=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib
+++++ LD_LIBRARY_PATH=
+++++ /gpfslocalsup/spack_soft/tcl/8.6.8/gcc-4.8.5-5nqkfcnctewdheju62zvqbsonnzszr6m/bin/tclsh /gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/libexec/modulecmd.tcl bash purge
+++ eval unset 'PSM2_GPUDIRECT;
+LD_LIBRARY_PATH=/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib;' export 'LD_LIBRARY_PATH;
+unset' 'MODULES_LMPREREQ;
+unset' 'CPATH;
+unset' 'SLURM_MPI_TYPE;
+unset' 'OMPI_MCA_mtl;
+MANPATH=:/opt/c3/man:/opt/clmgr/man:/opt/sgi/share/man:/opt/clmgr/share/man:/opt/clmgr/lib/cm-cli/man:/gpfslocalsys/slurm/current/share/man:/usr/share/catman:/usr/share/man:/usr/catman:/usr/man;' export 'MANPATH;
+unset' 'LIBRARY_PATH;
+unset' 'MKLROOT_modshare;
+unset' 'MPIF77;
+unset' 'CMAKE_PREFIX_PATH;
+unset' 'LOADEDMODULES;
+unset' '_LMFILES_;
+unset' 'MODULES_LMALTNAME;
+unset' 'PKG_CONFIG_PATH;
+MANPATH_modshare=:1:/opt/sgi/share/man:1:/opt/c3/man:1:/gpfslocalsys/slurm/current/share/man:1:/opt/clmgr/share/man:1:/opt/clmgr/lib/cm-cli/man:1:/usr/catman:2:/usr/man:2:/opt/clmgr/man:1:/usr/share/catman:2:/usr/share/man:2;' export 'MANPATH_modshare;
+unset' 'LIBRARY_PATH_modshare;
+unset' 'MODULES_LMCONFLICT;
+unset' 'NLSPATH_modshare;
+unset' 'MPICC;
+unset' 'INTEL_LICENSE_FILE;
+unset' 'MODULES_LMALTNAME_modshare;
+unset' 'OMPI_MCA_pml;
+unset' 'PKG_CONFIG_PATH_modshare;
+unset' 'MODULES_LMCONFLICT_modshare;
+unset' 'CUDA_INSTALL_PATH;
+unset' 'INTEL_LICENSE_FILE_modshare;
+unset' 'MODULES_LMNOTUASKED;
+unset' 'MKLROOT;
+unset' 'PYTHONUNBUFFERED;
+unset' 'CUDA_PATH;
+unset' 'MODULES_LMNOTUASKED_modshare;
+unset' 'MPICXX;
+unset' 'C_INCLUDE_PATH;
+unset' 'NLSPATH;
+unset' 'PSM2_CUDA_MEMCACHE_SIZE;
+LD_LIBRARY_PATH_modshare=/gpfslocalsys/slurm/current/lib/slurm:1:/gpfslocalsys/slurm/current/lib:1;' export 'LD_LIBRARY_PATH_modshare;
+unset' 'MODULES_LMPREREQ_modshare;
+unset' 'CPATH_modshare;
+unset' 'CMAKE_PREFIX_PATH_modshare;
+unset' 'LOADEDMODULES_modshare;
+unset' '_LMFILES__modshare;
+unset' 'CUDA_HOME;
+unset' 'MPIF90;
+PATH=/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin;' export 'PATH;
+unset' 'PSM2_CUDA;
+PATH_modshare=/usr/bin:1:/gpfslocalsup/bin:1:/usr/local/bin:1:/opt/sgi/bin:1:/gpfslocalsys/slurm/current/bin:1:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:1:/opt/clmgr/bin:1:/linkhome/rech/genhug01/ura81os/bin:1:/linkhome/rech/genhug01/ura81os/.local/bin:1:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:1:/opt/sgi/sbin:1:/bin:1:/opt/clmgr/sbin:1:/gpfslocalsys/bin:1:/sbin:1:/usr/sbin:1:/gpfslocalsys/idrzap/current/bin:1:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:1:/usr/local/sbin:1:/usr/lpp/mmfs/bin:1:/opt/c3/bin:1;' export 'PATH_modshare;
+test' '0;'
++++ unset PSM2_GPUDIRECT
++++ LD_LIBRARY_PATH=/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib
++++ export LD_LIBRARY_PATH
++++ unset MODULES_LMPREREQ
++++ unset CPATH
++++ unset SLURM_MPI_TYPE
++++ unset OMPI_MCA_mtl
++++ MANPATH=:/opt/c3/man:/opt/clmgr/man:/opt/sgi/share/man:/opt/clmgr/share/man:/opt/clmgr/lib/cm-cli/man:/gpfslocalsys/slurm/current/share/man:/usr/share/catman:/usr/share/man:/usr/catman:/usr/man
++++ export MANPATH
++++ unset LIBRARY_PATH
++++ unset MKLROOT_modshare
++++ unset MPIF77
++++ unset CMAKE_PREFIX_PATH
++++ unset LOADEDMODULES
++++ unset _LMFILES_
++++ unset MODULES_LMALTNAME
++++ unset PKG_CONFIG_PATH
++++ MANPATH_modshare=:1:/opt/sgi/share/man:1:/opt/c3/man:1:/gpfslocalsys/slurm/current/share/man:1:/opt/clmgr/share/man:1:/opt/clmgr/lib/cm-cli/man:1:/usr/catman:2:/usr/man:2:/opt/clmgr/man:1:/usr/share/catman:2:/usr/share/man:2
++++ export MANPATH_modshare
++++ unset LIBRARY_PATH_modshare
++++ unset MODULES_LMCONFLICT
++++ unset NLSPATH_modshare
++++ unset MPICC
++++ unset INTEL_LICENSE_FILE
++++ unset MODULES_LMALTNAME_modshare
++++ unset OMPI_MCA_pml
++++ unset PKG_CONFIG_PATH_modshare
++++ unset MODULES_LMCONFLICT_modshare
++++ unset CUDA_INSTALL_PATH
++++ unset INTEL_LICENSE_FILE_modshare
++++ unset MODULES_LMNOTUASKED
++++ unset MKLROOT
++++ unset PYTHONUNBUFFERED
++++ unset CUDA_PATH
++++ unset MODULES_LMNOTUASKED_modshare
++++ unset MPICXX
++++ unset C_INCLUDE_PATH
++++ unset NLSPATH
++++ unset PSM2_CUDA_MEMCACHE_SIZE
++++ LD_LIBRARY_PATH_modshare=/gpfslocalsys/slurm/current/lib/slurm:1:/gpfslocalsys/slurm/current/lib:1
++++ export LD_LIBRARY_PATH_modshare
++++ unset MODULES_LMPREREQ_modshare
++++ unset CPATH_modshare
++++ unset CMAKE_PREFIX_PATH_modshare
++++ unset LOADEDMODULES_modshare
++++ unset _LMFILES__modshare
++++ unset CUDA_HOME
++++ unset MPIF90
++++ PATH=/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ export PATH
++++ unset PSM2_CUDA
++++ PATH_modshare=/usr/bin:1:/gpfslocalsup/bin:1:/usr/local/bin:1:/opt/sgi/bin:1:/gpfslocalsys/slurm/current/bin:1:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:1:/opt/clmgr/bin:1:/linkhome/rech/genhug01/ura81os/bin:1:/linkhome/rech/genhug01/ura81os/.local/bin:1:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:1:/opt/sgi/sbin:1:/bin:1:/opt/clmgr/sbin:1:/gpfslocalsys/bin:1:/sbin:1:/usr/sbin:1:/gpfslocalsys/idrzap/current/bin:1:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:1:/usr/local/sbin:1:/usr/lpp/mmfs/bin:1:/opt/c3/bin:1
++++ export PATH_modshare
++++ test 0
+++ _mlstatus=0
+++ '[' -n x ']'
+++ IFS=' 	
+'
+++ unset _mlre _mlv _mlrv _mlIFS
+++ '[' -n '' ']'
+++ unset _mlshdbg
+++ return 0
+++ module load pytorch-gpu/py3/1.8.0
+++ unset _mlshdbg
+++ '[' 0 = 1 ']'
+++ unset _mlre _mlIFS
+++ '[' -n x ']'
+++ _mlIFS=' 	
+'
+++ IFS=' '
+++ for _mlv in ${MODULES_RUN_QUARANTINE:-}
+++ '[' LD_LIBRARY_PATH = LD_LIBRARY_PATH -a LD_LIBRARY_PATH = LD_LIBRARY_PATH ']'
++++ eval 'echo ${LD_LIBRARY_PATH+x}'
+++++ echo x
+++ '[' -n x ']'
++++ eval 'echo ${LD_LIBRARY_PATH}'
+++++ echo /gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib
+++ _mlre='LD_LIBRARY_PATH_modquar='\''/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib'\'' '
+++ _mlrv=MODULES_RUNENV_LD_LIBRARY_PATH
++++ eval 'echo ${MODULES_RUNENV_LD_LIBRARY_PATH:-}'
+++++ echo
+++ _mlre='LD_LIBRARY_PATH_modquar='\''/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib'\'' LD_LIBRARY_PATH='\'''\'' '
+++ '[' -n 'LD_LIBRARY_PATH_modquar='\''/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib'\'' LD_LIBRARY_PATH='\'''\'' ' ']'
++++ eval 'LD_LIBRARY_PATH_modquar='\''/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib'\''' 'LD_LIBRARY_PATH='\'''\''' /gpfslocalsup/spack_soft/tcl/8.6.8/gcc-4.8.5-5nqkfcnctewdheju62zvqbsonnzszr6m/bin/tclsh /gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/libexec/modulecmd.tcl bash '"$@"'
+++++ LD_LIBRARY_PATH_modquar=/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib
+++++ LD_LIBRARY_PATH=
+++++ /gpfslocalsup/spack_soft/tcl/8.6.8/gcc-4.8.5-5nqkfcnctewdheju62zvqbsonnzszr6m/bin/tclsh /gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/libexec/modulecmd.tcl bash load pytorch-gpu/py3/1.8.0
+Loading pytorch-gpu/py3/1.8.0
+  Loading requirement: gcc/8.3.1 cuda/10.2 nccl/2.8.3-1-cuda
+    cudnn/8.0.4.30-cuda-10.2 intel-mkl/2020.4 magma/2.5.4-cuda
+    openmpi/4.0.5-cuda
+++ eval 'PSM2_GPUDIRECT=1;' export 'PSM2_GPUDIRECT;
+MODULES_LMPREREQ=nccl/2.8.3-1-cuda\&cuda/11.2\|cuda/10.2:magma/2.5.4-cuda\&intel-compilers/19.0.4\|gcc/8.3.1\&cuda/11.2\|cuda/10.2:openmpi/4.0.5-cuda\&nvidia-compilers/21.3\|nvidia-compilers/20.11\|nvidia-compilers/20.7\|pgi/20.4\|gcc/8.3.1\&cuda/11.2\|cuda/10.2:pytorch-gpu/py3/1.8.0\&gcc/8.3.1\&cuda/10.2\&nccl/2.8.3-1-cuda\&cudnn/8.0.4.30-cuda-10.2\&intel-mkl/2020.4\&magma/2.5.4-cuda\&openmpi/4.0.5-cuda;' export 'MODULES_LMPREREQ;
+CPATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/include:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/include:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/include:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/include:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/include;' export 'CPATH;
+LD_LIBRARY_PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib;' export 'LD_LIBRARY_PATH;
+SLURM_MPI_TYPE=pmix;' export 'SLURM_MPI_TYPE;
+OMPI_MCA_mtl=psm2;' export 'OMPI_MCA_mtl;
+MANPATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/share/man:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/man/common:/gpfslocalsys/cuda/10.2/doc/man::/opt/c3/man:/opt/clmgr/man:/opt/sgi/share/man:/opt/clmgr/share/man:/opt/clmgr/lib/cm-cli/man:/gpfslocalsys/slurm/current/share/man:/usr/share/catman:/usr/share/man:/usr/catman:/usr/man;' export 'MANPATH;
+LIBRARY_PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/lib64/stubs:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib;' export 'LIBRARY_PATH;
+MPIF77=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin/mpif77;' export 'MPIF77;
+MKLROOT_modshare=/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl:1;' export 'MKLROOT_modshare;
+CMAKE_PREFIX_PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/;' export 'CMAKE_PREFIX_PATH;
+LOADEDMODULES=gcc/8.3.1:cuda/10.2:nccl/2.8.3-1-cuda:cudnn/8.0.4.30-cuda-10.2:intel-mkl/2020.4:magma/2.5.4-cuda:openmpi/4.0.5-cuda:pytorch-gpu/py3/1.8.0;' export 'LOADEDMODULES;
+_LMFILES_=/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/gcc/8.3.1:/gpfslocalsup/pub/module-rh/modulefiles/cuda/10.2:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/nccl/2.8.3-1-cuda:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/cudnn/8.0.4.30-cuda-10.2:/gpfslocalsup/pub/module-rh/modulefiles/intel-mkl/2020.4:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/magma/2.5.4-cuda:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/openmpi/4.0.5-cuda:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/pytorch-gpu/py3/1.8.0;' export '_LMFILES_;
+MODULES_LMALTNAME=openmpi/4.0.5-cuda\&openmpi/default\&openmpi;' export 'MODULES_LMALTNAME;
+PKG_CONFIG_PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib/pkgconfig:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib/pkgconfig:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/bin/pkgconfig:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib/pkgconfig;' export 'PKG_CONFIG_PATH;
+MANPATH_modshare=:1:/opt/sgi/share/man:1:/opt/c3/man:1:/gpfslocalsys/slurm/current/share/man:1:/opt/clmgr/share/man:1:/opt/clmgr/lib/cm-cli/man:1:/usr/man:3:/usr/catman:3:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/share/man:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/man/common:1:/opt/clmgr/man:1:/gpfslocalsys/cuda/10.2/doc/man:1:/usr/share/man:3:/usr/share/catman:3;' export 'MANPATH_modshare;
+LIBRARY_PATH_modshare=/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:1:/gpfslocalsys/slurm/current/lib:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:1:/gpfslocalsys/cuda/10.2/lib64/stubs:1:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:1:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:1:/gpfslocalsys/cuda/10.2/nvvm/lib64:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:1:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:1:/gpfslocalsys/cuda/10.2/lib64:1:/gpfslocalsys/slurm/current/lib/slurm:1:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:1:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:1;' export 'LIBRARY_PATH_modshare;
+MODULES_LMCONFLICT=gcc/8.3.1\&gcc:cuda/10.2\&cuda:nccl/2.8.3-1-cuda\&nccl:cudnn/8.0.4.30-cuda-10.2\&cudnn:intel-mkl/2020.4\&intel-mkl:magma/2.5.4-cuda\&magma:openmpi/4.0.5-cuda\&openmpi\&intel-mpi:pytorch-gpu/py3/1.8.0\&tensorflow\&pytorch\&caffe\&anaconda-py2\&anaconda-py3;' export 'MODULES_LMCONFLICT;
+MPICC=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin/mpicc;' export 'MPICC;
+NLSPATH_modshare=/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/locale/%l_%t/%N:1;' export 'NLSPATH_modshare;
+MODULES_LMALTNAME_modshare=openmpi/4.0.5-cuda\&openmpi/default\&openmpi:1;' export 'MODULES_LMALTNAME_modshare;
+OMPI_MCA_pml=cm;' export 'OMPI_MCA_pml;
+INTEL_LICENSE_FILE=/gpfslocalsys/intel/licenses/site_license.lic;' export 'INTEL_LICENSE_FILE;
+PKG_CONFIG_PATH_modshare=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib/pkgconfig:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/bin/pkgconfig:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib/pkgconfig:1:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib/pkgconfig:1;' export 'PKG_CONFIG_PATH_modshare;
+MODULES_LMCONFLICT_modshare=cuda/10.2\&cuda:1:magma/2.5.4-cuda\&magma:1:intel-mkl/2020.4\&intel-mkl:1:openmpi/4.0.5-cuda\&openmpi\&intel-mpi:1:nccl/2.8.3-1-cuda\&nccl:1:cudnn/8.0.4.30-cuda-10.2\&cudnn:1:pytorch-gpu/py3/1.8.0\&tensorflow\&pytorch\&caffe\&anaconda-py2\&anaconda-py3:1:gcc/8.3.1\&gcc:1;' export 'MODULES_LMCONFLICT_modshare;
+INTEL_LICENSE_FILE_modshare=/gpfslocalsys/intel/licenses/site_license.lic:1;' export 'INTEL_LICENSE_FILE_modshare;
+CUDA_INSTALL_PATH=/gpfslocalsys/cuda/10.2;' export 'CUDA_INSTALL_PATH;
+MODULES_LMNOTUASKED=gcc/8.3.1:cuda/10.2:nccl/2.8.3-1-cuda:cudnn/8.0.4.30-cuda-10.2:intel-mkl/2020.4:magma/2.5.4-cuda:openmpi/4.0.5-cuda;' export 'MODULES_LMNOTUASKED;
+PYTHONUNBUFFERED=1;' export 'PYTHONUNBUFFERED;
+MKLROOT=/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl;' export 'MKLROOT;
+MPICXX=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin/mpic++;' export 'MPICXX;
+CUDA_PATH=/gpfslocalsys/cuda/10.2;' export 'CUDA_PATH;
+MODULES_LMNOTUASKED_modshare=gcc/8.3.1:1:nccl/2.8.3-1-cuda:1:cudnn/8.0.4.30-cuda-10.2:1:cuda/10.2:1:openmpi/4.0.5-cuda:1:intel-mkl/2020.4:1:magma/2.5.4-cuda:1;' export 'MODULES_LMNOTUASKED_modshare;
+PSM2_CUDA_MEMCACHE_SIZE=1024;' export 'PSM2_CUDA_MEMCACHE_SIZE;
+NLSPATH=/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/locale/%l_%t/%N;' export 'NLSPATH;
+MODULES_LMPREREQ_modshare=openmpi/4.0.5-cuda\&nvidia-compilers/21.3\|nvidia-compilers/20.11\|nvidia-compilers/20.7\|pgi/20.4\|gcc/8.3.1\&cuda/11.2\|cuda/10.2:1:nccl/2.8.3-1-cuda\&cuda/11.2\|cuda/10.2:1:magma/2.5.4-cuda\&intel-compilers/19.0.4\|gcc/8.3.1\&cuda/11.2\|cuda/10.2:1:pytorch-gpu/py3/1.8.0\&gcc/8.3.1\&cuda/10.2\&nccl/2.8.3-1-cuda\&cudnn/8.0.4.30-cuda-10.2\&intel-mkl/2020.4\&magma/2.5.4-cuda\&openmpi/4.0.5-cuda:1;' export 'MODULES_LMPREREQ_modshare;
+CPATH_modshare=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/include:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/include:1:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/include:1:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/include:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/include:1;' export 'CPATH_modshare;
+C_INCLUDE_PATH=/gpfslocalsys/cuda/10.2/include;' export 'C_INCLUDE_PATH;
+LD_LIBRARY_PATH_modshare=/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:1:/gpfslocalsys/slurm/current/lib:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:1:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:1:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:1:/gpfslocalsys/cuda/10.2/nvvm/lib64:1:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:1:/gpfslocalsys/slurm/current/lib/slurm:1:/gpfslocalsys/cuda/10.2/lib64:1:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:1:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:1;' export 'LD_LIBRARY_PATH_modshare;
+CMAKE_PREFIX_PATH_modshare=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/:1:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/:1:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/:1;' export 'CMAKE_PREFIX_PATH_modshare;
+LOADEDMODULES_modshare=gcc/8.3.1:1:nccl/2.8.3-1-cuda:1:cudnn/8.0.4.30-cuda-10.2:1:pytorch-gpu/py3/1.8.0:1:cuda/10.2:1:intel-mkl/2020.4:1:openmpi/4.0.5-cuda:1:magma/2.5.4-cuda:1;' export 'LOADEDMODULES_modshare;
+_LMFILES__modshare=/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/pytorch-gpu/py3/1.8.0:1:/gpfslocalsup/pub/module-rh/modulefiles/cuda/10.2:1:/gpfslocalsup/pub/module-rh/modulefiles/intel-mkl/2020.4:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/openmpi/4.0.5-cuda:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/magma/2.5.4-cuda:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/gcc/8.3.1:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/nccl/2.8.3-1-cuda:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/cudnn/8.0.4.30-cuda-10.2:1;' export '_LMFILES__modshare;
+MPIF90=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin/mpif90;' export 'MPIF90;
+CUDA_HOME=/gpfslocalsys/cuda/10.2;' export 'CUDA_HOME;
+PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin;' export 'PATH;
+PSM2_CUDA=1;' export 'PSM2_CUDA;
+PATH_modshare=/usr/bin:1:/gpfslocalsup/bin:1:/usr/local/bin:1:/gpfslocalsys/cuda/10.2/nvvm/bin:1:/opt/sgi/bin:1:/gpfslocalsys/slurm/current/bin:1:/gpfslocalsys/cuda/10.2/bin:1:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:1:/opt/clmgr/bin:1:/opt/sgi/sbin:1:/linkhome/rech/genhug01/ura81os/bin:1:/linkhome/rech/genhug01/ura81os/.local/bin:1:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:1:/bin:1:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:1:/opt/clmgr/sbin:1:/gpfslocalsys/cuda/10.2/samples:1:/gpfslocalsys/bin:1:/sbin:1:/usr/sbin:1:/gpfslocalsys/idrzap/current/bin:1:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:1:/usr/local/sbin:1:/usr/lpp/mmfs/bin:1:/opt/c3/bin:1;' export 'PATH_modshare;
+.' '/gpfslocalsup/pub/anaconda-py3/2020.02/etc/profile.d/conda.sh;
+conda' 'deactivate;
+conda' activate 'pytorch-gpu-1.8.0;
+test' '0;'
++++ PSM2_GPUDIRECT=1
++++ export PSM2_GPUDIRECT
++++ MODULES_LMPREREQ='nccl/2.8.3-1-cuda&cuda/11.2|cuda/10.2:magma/2.5.4-cuda&intel-compilers/19.0.4|gcc/8.3.1&cuda/11.2|cuda/10.2:openmpi/4.0.5-cuda&nvidia-compilers/21.3|nvidia-compilers/20.11|nvidia-compilers/20.7|pgi/20.4|gcc/8.3.1&cuda/11.2|cuda/10.2:pytorch-gpu/py3/1.8.0&gcc/8.3.1&cuda/10.2&nccl/2.8.3-1-cuda&cudnn/8.0.4.30-cuda-10.2&intel-mkl/2020.4&magma/2.5.4-cuda&openmpi/4.0.5-cuda'
++++ export MODULES_LMPREREQ
++++ CPATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/include:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/include:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/include:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/include:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/include
++++ export CPATH
++++ LD_LIBRARY_PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib
++++ export LD_LIBRARY_PATH
++++ SLURM_MPI_TYPE=pmix
++++ export SLURM_MPI_TYPE
++++ OMPI_MCA_mtl=psm2
++++ export OMPI_MCA_mtl
++++ MANPATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/share/man:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/man/common:/gpfslocalsys/cuda/10.2/doc/man::/opt/c3/man:/opt/clmgr/man:/opt/sgi/share/man:/opt/clmgr/share/man:/opt/clmgr/lib/cm-cli/man:/gpfslocalsys/slurm/current/share/man:/usr/share/catman:/usr/share/man:/usr/catman:/usr/man
++++ export MANPATH
++++ LIBRARY_PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:/gpfslocalsys/cuda/10.2/lib64/stubs:/gpfslocalsys/cuda/10.2/nvvm/lib64:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:/gpfslocalsys/cuda/10.2/lib64:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:/gpfslocalsys/slurm/current/lib/slurm:/gpfslocalsys/slurm/current/lib
++++ export LIBRARY_PATH
++++ MPIF77=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin/mpif77
++++ export MPIF77
++++ MKLROOT_modshare=/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl:1
++++ export MKLROOT_modshare
++++ CMAKE_PREFIX_PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/
++++ export CMAKE_PREFIX_PATH
++++ LOADEDMODULES=gcc/8.3.1:cuda/10.2:nccl/2.8.3-1-cuda:cudnn/8.0.4.30-cuda-10.2:intel-mkl/2020.4:magma/2.5.4-cuda:openmpi/4.0.5-cuda:pytorch-gpu/py3/1.8.0
++++ export LOADEDMODULES
++++ _LMFILES_=/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/gcc/8.3.1:/gpfslocalsup/pub/module-rh/modulefiles/cuda/10.2:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/nccl/2.8.3-1-cuda:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/cudnn/8.0.4.30-cuda-10.2:/gpfslocalsup/pub/module-rh/modulefiles/intel-mkl/2020.4:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/magma/2.5.4-cuda:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/openmpi/4.0.5-cuda:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/pytorch-gpu/py3/1.8.0
++++ export _LMFILES_
++++ MODULES_LMALTNAME='openmpi/4.0.5-cuda&openmpi/default&openmpi'
++++ export MODULES_LMALTNAME
++++ PKG_CONFIG_PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib/pkgconfig:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib/pkgconfig:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/bin/pkgconfig:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib/pkgconfig
++++ export PKG_CONFIG_PATH
++++ MANPATH_modshare=:1:/opt/sgi/share/man:1:/opt/c3/man:1:/gpfslocalsys/slurm/current/share/man:1:/opt/clmgr/share/man:1:/opt/clmgr/lib/cm-cli/man:1:/usr/man:3:/usr/catman:3:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/share/man:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/man/common:1:/opt/clmgr/man:1:/gpfslocalsys/cuda/10.2/doc/man:1:/usr/share/man:3:/usr/share/catman:3
++++ export MANPATH_modshare
++++ LIBRARY_PATH_modshare=/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:1:/gpfslocalsys/slurm/current/lib:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:1:/gpfslocalsys/cuda/10.2/lib64/stubs:1:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:1:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:1:/gpfslocalsys/cuda/10.2/nvvm/lib64:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:1:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:1:/gpfslocalsys/cuda/10.2/lib64:1:/gpfslocalsys/slurm/current/lib/slurm:1:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:1:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:1
++++ export LIBRARY_PATH_modshare
++++ MODULES_LMCONFLICT='gcc/8.3.1&gcc:cuda/10.2&cuda:nccl/2.8.3-1-cuda&nccl:cudnn/8.0.4.30-cuda-10.2&cudnn:intel-mkl/2020.4&intel-mkl:magma/2.5.4-cuda&magma:openmpi/4.0.5-cuda&openmpi&intel-mpi:pytorch-gpu/py3/1.8.0&tensorflow&pytorch&caffe&anaconda-py2&anaconda-py3'
++++ export MODULES_LMCONFLICT
++++ MPICC=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin/mpicc
++++ export MPICC
++++ NLSPATH_modshare=/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/locale/%l_%t/%N:1
++++ export NLSPATH_modshare
++++ MODULES_LMALTNAME_modshare='openmpi/4.0.5-cuda&openmpi/default&openmpi:1'
++++ export MODULES_LMALTNAME_modshare
++++ OMPI_MCA_pml=cm
++++ export OMPI_MCA_pml
++++ INTEL_LICENSE_FILE=/gpfslocalsys/intel/licenses/site_license.lic
++++ export INTEL_LICENSE_FILE
++++ PKG_CONFIG_PATH_modshare=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib/pkgconfig:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/bin/pkgconfig:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib/pkgconfig:1:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib/pkgconfig:1
++++ export PKG_CONFIG_PATH_modshare
++++ MODULES_LMCONFLICT_modshare='cuda/10.2&cuda:1:magma/2.5.4-cuda&magma:1:intel-mkl/2020.4&intel-mkl:1:openmpi/4.0.5-cuda&openmpi&intel-mpi:1:nccl/2.8.3-1-cuda&nccl:1:cudnn/8.0.4.30-cuda-10.2&cudnn:1:pytorch-gpu/py3/1.8.0&tensorflow&pytorch&caffe&anaconda-py2&anaconda-py3:1:gcc/8.3.1&gcc:1'
++++ export MODULES_LMCONFLICT_modshare
++++ INTEL_LICENSE_FILE_modshare=/gpfslocalsys/intel/licenses/site_license.lic:1
++++ export INTEL_LICENSE_FILE_modshare
++++ CUDA_INSTALL_PATH=/gpfslocalsys/cuda/10.2
++++ export CUDA_INSTALL_PATH
++++ MODULES_LMNOTUASKED=gcc/8.3.1:cuda/10.2:nccl/2.8.3-1-cuda:cudnn/8.0.4.30-cuda-10.2:intel-mkl/2020.4:magma/2.5.4-cuda:openmpi/4.0.5-cuda
++++ export MODULES_LMNOTUASKED
++++ PYTHONUNBUFFERED=1
++++ export PYTHONUNBUFFERED
++++ MKLROOT=/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl
++++ export MKLROOT
++++ MPICXX=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin/mpic++
++++ export MPICXX
++++ CUDA_PATH=/gpfslocalsys/cuda/10.2
++++ export CUDA_PATH
++++ MODULES_LMNOTUASKED_modshare=gcc/8.3.1:1:nccl/2.8.3-1-cuda:1:cudnn/8.0.4.30-cuda-10.2:1:cuda/10.2:1:openmpi/4.0.5-cuda:1:intel-mkl/2020.4:1:magma/2.5.4-cuda:1
++++ export MODULES_LMNOTUASKED_modshare
++++ PSM2_CUDA_MEMCACHE_SIZE=1024
++++ export PSM2_CUDA_MEMCACHE_SIZE
++++ NLSPATH=/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin/locale/%l_%t/%N
++++ export NLSPATH
++++ MODULES_LMPREREQ_modshare='openmpi/4.0.5-cuda&nvidia-compilers/21.3|nvidia-compilers/20.11|nvidia-compilers/20.7|pgi/20.4|gcc/8.3.1&cuda/11.2|cuda/10.2:1:nccl/2.8.3-1-cuda&cuda/11.2|cuda/10.2:1:magma/2.5.4-cuda&intel-compilers/19.0.4|gcc/8.3.1&cuda/11.2|cuda/10.2:1:pytorch-gpu/py3/1.8.0&gcc/8.3.1&cuda/10.2&nccl/2.8.3-1-cuda&cudnn/8.0.4.30-cuda-10.2&intel-mkl/2020.4&magma/2.5.4-cuda&openmpi/4.0.5-cuda:1'
++++ export MODULES_LMPREREQ_modshare
++++ CPATH_modshare=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/include:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/include:1:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/include:1:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/include:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/include:1
++++ export CPATH_modshare
++++ C_INCLUDE_PATH=/gpfslocalsys/cuda/10.2/include
++++ export C_INCLUDE_PATH
++++ LD_LIBRARY_PATH_modshare=/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/lib:1:/gpfslocalsys/slurm/current/lib:1:/gpfslocalsys/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl/lib/intel64_lin:1:/gpfslocalsys/cuda/10.2/targets/x86_64-linux/lib:1:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/lib:1:/gpfslocalsys/cuda/10.2/nvvm/lib64:1:/gpfslocalsys/cuda/10.2/samples/common/lib/linux/x86_64:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/lib:1:/gpfslocalsys/slurm/current/lib/slurm:1:/gpfslocalsys/cuda/10.2/lib64:1:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/lib64:1:/gpfslocalsys/cuda/10.2/extras/CUPTI/lib64:1
++++ export LD_LIBRARY_PATH_modshare
++++ CMAKE_PREFIX_PATH_modshare=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/:1:/gpfslocalsup/spack_soft/magma/2.5.4/gcc-8.3.1-kmos2sznxduyph2ycjzwrbygyojzzqa4/:1:/gpfslocalsup/spack_soft/cudnn/8.0.4.30-10.2-linux-x64/gcc-8.3.1-iwlboerqjev5b667qn7b2fxvrjtmtksp/:1:/gpfslocalsup/spack_soft/nccl/2.8.3-1/gcc-8.3.1-k63lvicy45sxedhmivziuwlwt3wy4fws/:1
++++ export CMAKE_PREFIX_PATH_modshare
++++ LOADEDMODULES_modshare=gcc/8.3.1:1:nccl/2.8.3-1-cuda:1:cudnn/8.0.4.30-cuda-10.2:1:pytorch-gpu/py3/1.8.0:1:cuda/10.2:1:intel-mkl/2020.4:1:openmpi/4.0.5-cuda:1:magma/2.5.4-cuda:1
++++ export LOADEDMODULES_modshare
++++ _LMFILES__modshare=/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/pytorch-gpu/py3/1.8.0:1:/gpfslocalsup/pub/module-rh/modulefiles/cuda/10.2:1:/gpfslocalsup/pub/module-rh/modulefiles/intel-mkl/2020.4:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/openmpi/4.0.5-cuda:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/magma/2.5.4-cuda:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/gcc/8.3.1:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/nccl/2.8.3-1-cuda:1:/gpfslocalsup/pub/modules-idris-env4/modulefiles/linux-rhel8-skylake_avx512/cudnn/8.0.4.30-cuda-10.2:1
++++ export _LMFILES__modshare
++++ MPIF90=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin/mpif90
++++ export MPIF90
++++ CUDA_HOME=/gpfslocalsys/cuda/10.2
++++ export CUDA_HOME
++++ PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ export PATH
++++ PSM2_CUDA=1
++++ export PSM2_CUDA
++++ PATH_modshare=/usr/bin:1:/gpfslocalsup/bin:1:/usr/local/bin:1:/gpfslocalsys/cuda/10.2/nvvm/bin:1:/opt/sgi/bin:1:/gpfslocalsys/slurm/current/bin:1:/gpfslocalsys/cuda/10.2/bin:1:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:1:/opt/clmgr/bin:1:/opt/sgi/sbin:1:/linkhome/rech/genhug01/ura81os/bin:1:/linkhome/rech/genhug01/ura81os/.local/bin:1:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:1:/bin:1:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:1:/opt/clmgr/sbin:1:/gpfslocalsys/cuda/10.2/samples:1:/gpfslocalsys/bin:1:/sbin:1:/usr/sbin:1:/gpfslocalsys/idrzap/current/bin:1:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:1:/usr/local/sbin:1:/usr/lpp/mmfs/bin:1:/opt/c3/bin:1
++++ export PATH_modshare
++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/profile.d/conda.sh
+++++ export CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
+++++ CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
+++++ export _CE_M=
+++++ _CE_M=
+++++ export _CE_CONDA=
+++++ _CE_CONDA=
+++++ export CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
+++++ CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
+++++ '[' -z x ']'
++++ conda deactivate
++++ '[' 1 -lt 1 ']'
++++ local cmd=deactivate
++++ shift
++++ case "$cmd" in
++++ __conda_activate deactivate
++++ '[' -n '' ']'
++++ local cmd=deactivate
++++ shift
++++ local ask_conda
++++ CONDA_INTERNAL_OLDPATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ __add_sys_prefix_to_path
++++ '[' -n '' ']'
+++++ dirname /gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
++++ SYSP=/gpfslocalsup/pub/anaconda-py3/2020.02/bin
+++++ dirname /gpfslocalsup/pub/anaconda-py3/2020.02/bin
++++ SYSP=/gpfslocalsup/pub/anaconda-py3/2020.02
++++ '[' -n '' ']'
++++ PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ export PATH
+++++ PS1=
+++++ /gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda shell.posix deactivate
++++ ask_conda='export PATH='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin'\''
+unset CONDA_PREFIX_2
+PS1='\''(base) '\''
+export CONDA_PREFIX='\''/gpfslocalsup/pub/anaconda-py3/2020.02'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/gdal-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/geotiff-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/proj4-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/udunits2-activate.sh"'
++++ rc=0
++++ PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ eval 'export PATH='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin'\''
+unset CONDA_PREFIX_2
+PS1='\''(base) '\''
+export CONDA_PREFIX='\''/gpfslocalsup/pub/anaconda-py3/2020.02'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/gdal-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/geotiff-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/proj4-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/udunits2-activate.sh"'
+++++ export PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
+++++ PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
+++++ unset CONDA_PREFIX_2
+++++ PS1='(base) '
+++++ export CONDA_PREFIX=/gpfslocalsup/pub/anaconda-py3/2020.02
+++++ CONDA_PREFIX=/gpfslocalsup/pub/anaconda-py3/2020.02
+++++ export CONDA_SHLVL=2
+++++ CONDA_SHLVL=2
+++++ export CONDA_DEFAULT_ENV=base
+++++ CONDA_DEFAULT_ENV=base
+++++ export 'CONDA_PROMPT_MODIFIER=(base) '
+++++ CONDA_PROMPT_MODIFIER='(base) '
+++++ export CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
+++++ CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
+++++ export _CE_M=
+++++ _CE_M=
+++++ export _CE_CONDA=
+++++ _CE_CONDA=
+++++ export CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
+++++ CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/gdal-activate.sh
++++++ [[ -n '' ]]
++++++ [[ -n '' ]]
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/share/gdal ']'
++++++ export GDAL_DATA=/gpfslocalsup/pub/anaconda-py3/2020.02/share/gdal
++++++ GDAL_DATA=/gpfslocalsup/pub/anaconda-py3/2020.02/share/gdal
++++++ export GDAL_DRIVER_PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/lib/gdalplugins
++++++ GDAL_DRIVER_PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/lib/gdalplugins
++++++ [[ ! -d /gpfslocalsup/pub/anaconda-py3/2020.02/lib/gdalplugins ]]
++++++ unset GDAL_DRIVER_PATH
++++++ export CPL_ZIP_ENCODING=UTF-8
++++++ CPL_ZIP_ENCODING=UTF-8
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/geotiff-activate.sh
++++++ [[ -n '' ]]
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/share/epsg_csv ']'
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/Library/share/epsg_csv ']'
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/proj4-activate.sh
++++++ '[' -n '' ']'
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/share/proj ']'
++++++ export PROJ_LIB=/gpfslocalsup/pub/anaconda-py3/2020.02/share/proj
++++++ PROJ_LIB=/gpfslocalsup/pub/anaconda-py3/2020.02/share/proj
++++++ '[' -f /gpfslocalsup/pub/anaconda-py3/2020.02/share/proj/copyright_and_licenses.csv ']'
++++++ export PROJ_NETWORK=ON
++++++ PROJ_NETWORK=ON
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/udunits2-activate.sh
++++++ [[ -n '' ]]
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/share/udunits ']'
++++++ export UDUNITS2_XML_PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/share/udunits/udunits2.xml
++++++ UDUNITS2_XML_PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/share/udunits/udunits2.xml
++++ '[' 0 '!=' 0 ']'
++++ __conda_hashr
++++ '[' -n '' ']'
++++ '[' -n '' ']'
++++ hash -r
++++ conda activate pytorch-gpu-1.8.0
++++ '[' 2 -lt 1 ']'
++++ local cmd=activate
++++ shift
++++ case "$cmd" in
++++ __conda_activate activate pytorch-gpu-1.8.0
++++ '[' -n '' ']'
++++ local cmd=activate
++++ shift
++++ local ask_conda
++++ CONDA_INTERNAL_OLDPATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ __add_sys_prefix_to_path
++++ '[' -n '' ']'
+++++ dirname /gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
++++ SYSP=/gpfslocalsup/pub/anaconda-py3/2020.02/bin
+++++ dirname /gpfslocalsup/pub/anaconda-py3/2020.02/bin
++++ SYSP=/gpfslocalsup/pub/anaconda-py3/2020.02
++++ '[' -n '' ']'
++++ PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ export PATH
+++++ PS1='(base) '
+++++ /gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda shell.posix activate pytorch-gpu-1.8.0
++++ ask_conda='export PATH='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin'\''
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/proj4-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/geotiff-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/gdal-deactivate.sh"
+unset CONDA_PREFIX_1
+PS1='\''(pytorch-gpu-1.8.0) '\''
+export CONDA_PREFIX='\''/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''pytorch-gpu-1.8.0'\''
+export CONDA_PROMPT_MODIFIER='\''(pytorch-gpu-1.8.0) '\''
+export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/etc/conda/activate.d/proj4-activate.sh"'
++++ rc=0
++++ PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ eval 'export PATH='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin'\''
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/proj4-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/geotiff-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/gdal-deactivate.sh"
+unset CONDA_PREFIX_1
+PS1='\''(pytorch-gpu-1.8.0) '\''
+export CONDA_PREFIX='\''/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0'\''
+export CONDA_SHLVL='\''1'\''
+export CONDA_DEFAULT_ENV='\''pytorch-gpu-1.8.0'\''
+export CONDA_PROMPT_MODIFIER='\''(pytorch-gpu-1.8.0) '\''
+export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/etc/conda/activate.d/proj4-activate.sh"'
+++++ export PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
+++++ PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/udunits2-deactivate.sh
++++++ unset UDUNITS2_XML_PATH
++++++ [[ -n '' ]]
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/proj4-deactivate.sh
++++++ unset PROJ_LIB
++++++ unset PROJ_NETWORK
++++++ '[' -n '' ']'
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/geotiff-deactivate.sh
++++++ unset GEOTIFF_CSV
++++++ [[ -n '' ]]
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/gdal-deactivate.sh
++++++ unset GDAL_DATA
++++++ [[ -n '' ]]
++++++ unset GDAL_DRIVER_PATH
++++++ [[ -n '' ]]
++++++ unset CPL_ZIP_ENCODING
+++++ unset CONDA_PREFIX_1
+++++ PS1='(pytorch-gpu-1.8.0) '
+++++ export CONDA_PREFIX=/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0
+++++ CONDA_PREFIX=/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0
+++++ export CONDA_SHLVL=1
+++++ CONDA_SHLVL=1
+++++ export CONDA_DEFAULT_ENV=pytorch-gpu-1.8.0
+++++ CONDA_DEFAULT_ENV=pytorch-gpu-1.8.0
+++++ export 'CONDA_PROMPT_MODIFIER=(pytorch-gpu-1.8.0) '
+++++ CONDA_PROMPT_MODIFIER='(pytorch-gpu-1.8.0) '
+++++ export CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
+++++ CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
+++++ export _CE_M=
+++++ _CE_M=
+++++ export _CE_CONDA=
+++++ _CE_CONDA=
+++++ export CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
+++++ CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/etc/conda/activate.d/proj4-activate.sh
++++++ '[' -n '' ']'
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/share/proj ']'
++++++ export PROJ_LIB=/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/share/proj
++++++ PROJ_LIB=/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/share/proj
++++++ '[' -f /gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/share/proj/copyright_and_licenses.csv ']'
++++++ export PROJ_NETWORK=ON
++++++ PROJ_NETWORK=ON
++++ '[' 0 '!=' 0 ']'
++++ __conda_hashr
++++ '[' -n '' ']'
++++ '[' -n '' ']'
++++ hash -r
++++ test 0
+++ _mlstatus=0
+++ '[' -n x ']'
+++ IFS=' 	
+'
+++ unset _mlre _mlv _mlrv _mlIFS
+++ '[' -n '' ']'
+++ unset _mlshdbg
+++ return 0
+++ export GIT_PROMPT_ONLY_IN_REPO=0
+++ GIT_PROMPT_ONLY_IN_REPO=0
+++ export GIT_PROMPT_THEME=JZPRod
+++ GIT_PROMPT_THEME=JZPRod
+++ source /gpfsscratch/rech/eha/commun/envs/.bash-git-prompt/gitprompt.sh
++++ _have_find_mmin=1
++++ gp_install_prompt
++++ '[' -z '' ']'
++++ OLD_GITPROMPT='(pytorch-gpu-1.8.0) '
++++ '[' -z '' ']'
+++++ we_are_on_repo
++++++ git rev-parse --git-dir
+++++ [[ -e '' ]]
+++++ echo 0
++++ GIT_PROMPT_OLD_DIR_WAS_GIT=0
++++ '[' -z '' ']'
++++ PROMPT_COMMAND=setGitPrompt
++++ local setLastCommandStateEntry=setLastCommandState
++++ case ";$PROMPT_COMMAND;" in
++++ PROMPT_COMMAND='setLastCommandState;setGitPrompt'
++++ git_prompt_dir
++++ '[' -z '' ']'
++++ local SOURCE=/gpfsscratch/rech/eha/commun/envs/.bash-git-prompt/gitprompt.sh
++++ '[' -h /gpfsscratch/rech/eha/commun/envs/.bash-git-prompt/gitprompt.sh ']'
++++++ dirname /gpfsscratch/rech/eha/commun/envs/.bash-git-prompt/gitprompt.sh
+++++ command cd -P /gpfsscratch/rech/eha/commun/envs/.bash-git-prompt
+++++ cd -P /gpfsscratch/rech/eha/commun/envs/.bash-git-prompt
+++++ pwd
++++ __GIT_PROMPT_DIR=/gpfsssd/scratch/rech/eha/commun/envs/.bash-git-prompt
++++ source /gpfsssd/scratch/rech/eha/commun/envs/.bash-git-prompt/git-prompt-help.sh
+++ export SBATCH_ACCOUNT=eha@gpu
+++ SBATCH_ACCOUNT=eha@gpu
+++ export SLURM_ACCOUNT=eha@gpu
+++ SLURM_ACCOUNT=eha@gpu
+++ export TRANSFORMERS_CACHE=/gpfsscratch/rech/eha/commun/models
+++ TRANSFORMERS_CACHE=/gpfsscratch/rech/eha/commun/models
+++ export HF_DATASETS_CACHE=/gpfsscratch/rech/eha/commun/datasets
+++ HF_DATASETS_CACHE=/gpfsscratch/rech/eha/commun/datasets
+++ export HF_MODULES_CACHE=/gpfsscratch/rech/eha/commun/modules
+++ HF_MODULES_CACHE=/gpfsscratch/rech/eha/commun/modules
+++ export HF_METRICS_CACHE=/gpfsscratch/rech/eha/commun/metrics
+++ HF_METRICS_CACHE=/gpfsscratch/rech/eha/commun/metrics
+++ export DATASETS_CUSTOM=/gpfsscratch/rech/eha/commun/datasets-custom
+++ DATASETS_CUSTOM=/gpfsscratch/rech/eha/commun/datasets-custom
++++ /gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda shell.bash hook
+++ __conda_setup='export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+
+# Copyright (C) 2012 Anaconda, Inc
+# SPDX-License-Identifier: BSD-3-Clause
+
+__add_sys_prefix_to_path() {
+    # In dev-mode CONDA_EXE is python.exe and on Windows
+    # it is in a different relative location to condabin.
+    if [ -n "${_CE_CONDA}" ] && [ -n "${WINDIR+x}" ]; then
+        SYSP=$(\dirname "${CONDA_EXE}")
+    else
+        SYSP=$(\dirname "${CONDA_EXE}")
+        SYSP=$(\dirname "${SYSP}")
+    fi
+
+    if [ -n "${WINDIR+x}" ]; then
+        PATH="${SYSP}/bin:${PATH}"
+        PATH="${SYSP}/Scripts:${PATH}"
+        PATH="${SYSP}/Library/bin:${PATH}"
+        PATH="${SYSP}/Library/usr/bin:${PATH}"
+        PATH="${SYSP}/Library/mingw-w64/bin:${PATH}"
+        PATH="${SYSP}:${PATH}"
+    else
+        PATH="${SYSP}/bin:${PATH}"
+    fi
+    \export PATH
+}
+
+__conda_hashr() {
+    if [ -n "${ZSH_VERSION:+x}" ]; then
+        \rehash
+    elif [ -n "${POSH_VERSION:+x}" ]; then
+        :  # pass
+    else
+        \hash -r
+    fi
+}
+
+__conda_activate() {
+    if [ -n "${CONDA_PS1_BACKUP:+x}" ]; then
+        # Handle transition from shell activated with conda <= 4.3 to a subsequent activation
+        # after conda updated to >= 4.4. See issue #6173.
+        PS1="$CONDA_PS1_BACKUP"
+        \unset CONDA_PS1_BACKUP
+    fi
+
+    \local cmd="$1"
+    shift
+    \local ask_conda
+    CONDA_INTERNAL_OLDPATH="${PATH}"
+    __add_sys_prefix_to_path
+    ask_conda="$(PS1="$PS1" "$CONDA_EXE" $_CE_M $_CE_CONDA shell.posix "$cmd" "$@")" || \return $?
+    rc=$?
+    PATH="${CONDA_INTERNAL_OLDPATH}"
+    \eval "$ask_conda"
+    if [ $rc != 0 ]; then
+        \export PATH
+    fi
+    __conda_hashr
+}
+
+__conda_reactivate() {
+    \local ask_conda
+    CONDA_INTERNAL_OLDPATH="${PATH}"
+    __add_sys_prefix_to_path
+    ask_conda="$(PS1="$PS1" "$CONDA_EXE" $_CE_M $_CE_CONDA shell.posix reactivate)" || \return $?
+    PATH="${CONDA_INTERNAL_OLDPATH}"
+    \eval "$ask_conda"
+    __conda_hashr
+}
+
+conda() {
+    if [ "$#" -lt 1 ]; then
+        "$CONDA_EXE" $_CE_M $_CE_CONDA
+    else
+        \local cmd="$1"
+        shift
+        case "$cmd" in
+            activate|deactivate)
+                __conda_activate "$cmd" "$@"
+                ;;
+            install|update|upgrade|remove|uninstall)
+                CONDA_INTERNAL_OLDPATH="${PATH}"
+                __add_sys_prefix_to_path
+                "$CONDA_EXE" $_CE_M $_CE_CONDA "$cmd" "$@"
+                \local t1=$?
+                PATH="${CONDA_INTERNAL_OLDPATH}"
+                if [ $t1 = 0 ]; then
+                    __conda_reactivate
+                else
+                    return $t1
+                fi
+                ;;
+            *)
+                CONDA_INTERNAL_OLDPATH="${PATH}"
+                __add_sys_prefix_to_path
+                "$CONDA_EXE" $_CE_M $_CE_CONDA "$cmd" "$@"
+                \local t1=$?
+                PATH="${CONDA_INTERNAL_OLDPATH}"
+                return $t1
+                ;;
+        esac
+    fi
+}
+
+if [ -z "${CONDA_SHLVL+x}" ]; then
+    \export CONDA_SHLVL=0
+    # In dev-mode CONDA_EXE is python.exe and on Windows
+    # it is in a different relative location to condabin.
+    if [ -n "${_CE_CONDA:+x}" ] && [ -n "${WINDIR+x}" ]; then
+        PATH="$(\dirname "$CONDA_EXE")/condabin${PATH:+":${PATH}"}"
+    else
+        PATH="$(\dirname "$(\dirname "$CONDA_EXE")")/condabin${PATH:+":${PATH}"}"
+    fi
+    \export PATH
+
+    # We'\''re not allowing PS1 to be unbound. It must at least be set.
+    # However, we'\''re not exporting it, which can cause problems when starting a second shell
+    # via a first shell (i.e. starting zsh from bash).
+    if [ -z "${PS1+x}" ]; then
+        PS1=
+    fi
+fi
+
+conda activate base'
+++ '[' 0 -eq 0 ']'
+++ eval 'export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+
+# Copyright (C) 2012 Anaconda, Inc
+# SPDX-License-Identifier: BSD-3-Clause
+
+__add_sys_prefix_to_path() {
+    # In dev-mode CONDA_EXE is python.exe and on Windows
+    # it is in a different relative location to condabin.
+    if [ -n "${_CE_CONDA}" ] && [ -n "${WINDIR+x}" ]; then
+        SYSP=$(\dirname "${CONDA_EXE}")
+    else
+        SYSP=$(\dirname "${CONDA_EXE}")
+        SYSP=$(\dirname "${SYSP}")
+    fi
+
+    if [ -n "${WINDIR+x}" ]; then
+        PATH="${SYSP}/bin:${PATH}"
+        PATH="${SYSP}/Scripts:${PATH}"
+        PATH="${SYSP}/Library/bin:${PATH}"
+        PATH="${SYSP}/Library/usr/bin:${PATH}"
+        PATH="${SYSP}/Library/mingw-w64/bin:${PATH}"
+        PATH="${SYSP}:${PATH}"
+    else
+        PATH="${SYSP}/bin:${PATH}"
+    fi
+    \export PATH
+}
+
+__conda_hashr() {
+    if [ -n "${ZSH_VERSION:+x}" ]; then
+        \rehash
+    elif [ -n "${POSH_VERSION:+x}" ]; then
+        :  # pass
+    else
+        \hash -r
+    fi
+}
+
+__conda_activate() {
+    if [ -n "${CONDA_PS1_BACKUP:+x}" ]; then
+        # Handle transition from shell activated with conda <= 4.3 to a subsequent activation
+        # after conda updated to >= 4.4. See issue #6173.
+        PS1="$CONDA_PS1_BACKUP"
+        \unset CONDA_PS1_BACKUP
+    fi
+
+    \local cmd="$1"
+    shift
+    \local ask_conda
+    CONDA_INTERNAL_OLDPATH="${PATH}"
+    __add_sys_prefix_to_path
+    ask_conda="$(PS1="$PS1" "$CONDA_EXE" $_CE_M $_CE_CONDA shell.posix "$cmd" "$@")" || \return $?
+    rc=$?
+    PATH="${CONDA_INTERNAL_OLDPATH}"
+    \eval "$ask_conda"
+    if [ $rc != 0 ]; then
+        \export PATH
+    fi
+    __conda_hashr
+}
+
+__conda_reactivate() {
+    \local ask_conda
+    CONDA_INTERNAL_OLDPATH="${PATH}"
+    __add_sys_prefix_to_path
+    ask_conda="$(PS1="$PS1" "$CONDA_EXE" $_CE_M $_CE_CONDA shell.posix reactivate)" || \return $?
+    PATH="${CONDA_INTERNAL_OLDPATH}"
+    \eval "$ask_conda"
+    __conda_hashr
+}
+
+conda() {
+    if [ "$#" -lt 1 ]; then
+        "$CONDA_EXE" $_CE_M $_CE_CONDA
+    else
+        \local cmd="$1"
+        shift
+        case "$cmd" in
+            activate|deactivate)
+                __conda_activate "$cmd" "$@"
+                ;;
+            install|update|upgrade|remove|uninstall)
+                CONDA_INTERNAL_OLDPATH="${PATH}"
+                __add_sys_prefix_to_path
+                "$CONDA_EXE" $_CE_M $_CE_CONDA "$cmd" "$@"
+                \local t1=$?
+                PATH="${CONDA_INTERNAL_OLDPATH}"
+                if [ $t1 = 0 ]; then
+                    __conda_reactivate
+                else
+                    return $t1
+                fi
+                ;;
+            *)
+                CONDA_INTERNAL_OLDPATH="${PATH}"
+                __add_sys_prefix_to_path
+                "$CONDA_EXE" $_CE_M $_CE_CONDA "$cmd" "$@"
+                \local t1=$?
+                PATH="${CONDA_INTERNAL_OLDPATH}"
+                return $t1
+                ;;
+        esac
+    fi
+}
+
+if [ -z "${CONDA_SHLVL+x}" ]; then
+    \export CONDA_SHLVL=0
+    # In dev-mode CONDA_EXE is python.exe and on Windows
+    # it is in a different relative location to condabin.
+    if [ -n "${_CE_CONDA:+x}" ] && [ -n "${WINDIR+x}" ]; then
+        PATH="$(\dirname "$CONDA_EXE")/condabin${PATH:+":${PATH}"}"
+    else
+        PATH="$(\dirname "$(\dirname "$CONDA_EXE")")/condabin${PATH:+":${PATH}"}"
+    fi
+    \export PATH
+
+    # We'\''re not allowing PS1 to be unbound. It must at least be set.
+    # However, we'\''re not exporting it, which can cause problems when starting a second shell
+    # via a first shell (i.e. starting zsh from bash).
+    if [ -z "${PS1+x}" ]; then
+        PS1=
+    fi
+fi
+
+conda activate base'
++++ export CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
++++ CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
++++ CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
++++ '[' -z x ']'
++++ conda activate base
++++ '[' 2 -lt 1 ']'
++++ local cmd=activate
++++ shift
++++ case "$cmd" in
++++ __conda_activate activate base
++++ '[' -n '' ']'
++++ local cmd=activate
++++ shift
++++ local ask_conda
++++ CONDA_INTERNAL_OLDPATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ __add_sys_prefix_to_path
++++ '[' -n '' ']'
+++++ dirname /gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
++++ SYSP=/gpfslocalsup/pub/anaconda-py3/2020.02/bin
+++++ dirname /gpfslocalsup/pub/anaconda-py3/2020.02/bin
++++ SYSP=/gpfslocalsup/pub/anaconda-py3/2020.02
++++ '[' -n '' ']'
++++ PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ export PATH
+++++ PS1='(pytorch-gpu-1.8.0) '
+++++ /gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda shell.posix activate base
++++ ask_conda='. "/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(base) '\''
+export PATH='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin'\''
+export CONDA_PREFIX='\''/gpfslocalsup/pub/anaconda-py3/2020.02'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+export CONDA_PREFIX_1='\''/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0'\''
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/gdal-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/geotiff-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/proj4-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/udunits2-activate.sh"'
++++ rc=0
++++ PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ eval '. "/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/etc/conda/deactivate.d/proj4-deactivate.sh"
+PS1='\''(base) '\''
+export PATH='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin'\''
+export CONDA_PREFIX='\''/gpfslocalsup/pub/anaconda-py3/2020.02'\''
+export CONDA_SHLVL='\''2'\''
+export CONDA_DEFAULT_ENV='\''base'\''
+export CONDA_PROMPT_MODIFIER='\''(base) '\''
+export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+export CONDA_PREFIX_1='\''/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0'\''
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/gdal-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/geotiff-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/proj4-activate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/udunits2-activate.sh"'
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0/etc/conda/deactivate.d/proj4-deactivate.sh
++++++ unset PROJ_LIB
++++++ unset PROJ_NETWORK
++++++ '[' -n '' ']'
+++++ PS1='(base) '
+++++ export PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
+++++ PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
+++++ export CONDA_PREFIX=/gpfslocalsup/pub/anaconda-py3/2020.02
+++++ CONDA_PREFIX=/gpfslocalsup/pub/anaconda-py3/2020.02
+++++ export CONDA_SHLVL=2
+++++ CONDA_SHLVL=2
+++++ export CONDA_DEFAULT_ENV=base
+++++ CONDA_DEFAULT_ENV=base
+++++ export 'CONDA_PROMPT_MODIFIER=(base) '
+++++ CONDA_PROMPT_MODIFIER='(base) '
+++++ export CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
+++++ CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
+++++ export _CE_M=
+++++ _CE_M=
+++++ export _CE_CONDA=
+++++ _CE_CONDA=
+++++ export CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
+++++ CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
+++++ export CONDA_PREFIX_1=/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0
+++++ CONDA_PREFIX_1=/gpfslocalsup/pub/anaconda-py3/2020.02/envs/pytorch-gpu-1.8.0
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/gdal-activate.sh
++++++ [[ -n '' ]]
++++++ [[ -n '' ]]
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/share/gdal ']'
++++++ export GDAL_DATA=/gpfslocalsup/pub/anaconda-py3/2020.02/share/gdal
++++++ GDAL_DATA=/gpfslocalsup/pub/anaconda-py3/2020.02/share/gdal
++++++ export GDAL_DRIVER_PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/lib/gdalplugins
++++++ GDAL_DRIVER_PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/lib/gdalplugins
++++++ [[ ! -d /gpfslocalsup/pub/anaconda-py3/2020.02/lib/gdalplugins ]]
++++++ unset GDAL_DRIVER_PATH
++++++ export CPL_ZIP_ENCODING=UTF-8
++++++ CPL_ZIP_ENCODING=UTF-8
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/geotiff-activate.sh
++++++ [[ -n '' ]]
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/share/epsg_csv ']'
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/Library/share/epsg_csv ']'
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/proj4-activate.sh
++++++ '[' -n '' ']'
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/share/proj ']'
++++++ export PROJ_LIB=/gpfslocalsup/pub/anaconda-py3/2020.02/share/proj
++++++ PROJ_LIB=/gpfslocalsup/pub/anaconda-py3/2020.02/share/proj
++++++ '[' -f /gpfslocalsup/pub/anaconda-py3/2020.02/share/proj/copyright_and_licenses.csv ']'
++++++ export PROJ_NETWORK=ON
++++++ PROJ_NETWORK=ON
+++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/activate.d/udunits2-activate.sh
++++++ [[ -n '' ]]
++++++ '[' -d /gpfslocalsup/pub/anaconda-py3/2020.02/share/udunits ']'
++++++ export UDUNITS2_XML_PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/share/udunits/udunits2.xml
++++++ UDUNITS2_XML_PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/share/udunits/udunits2.xml
++++ '[' 0 '!=' 0 ']'
++++ __conda_hashr
++++ '[' -n '' ']'
++++ '[' -n '' ']'
++++ hash -r
+++ unset __conda_setup
+++ export CONDA_ENVS_PATH=/gpfsscratch/rech/eha/commun/conda
+++ CONDA_ENVS_PATH=/gpfsscratch/rech/eha/commun/conda
+++ conda activate hf-prod
+++ '[' 2 -lt 1 ']'
+++ local cmd=activate
+++ shift
+++ case "$cmd" in
+++ __conda_activate activate hf-prod
+++ '[' -n '' ']'
+++ local cmd=activate
+++ shift
+++ local ask_conda
+++ CONDA_INTERNAL_OLDPATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
+++ __add_sys_prefix_to_path
+++ '[' -n '' ']'
++++ dirname /gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
+++ SYSP=/gpfslocalsup/pub/anaconda-py3/2020.02/bin
++++ dirname /gpfslocalsup/pub/anaconda-py3/2020.02/bin
+++ SYSP=/gpfslocalsup/pub/anaconda-py3/2020.02
+++ '[' -n '' ']'
+++ PATH=/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
+++ export PATH
++++ PS1='(base) '
++++ /gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda shell.posix activate hf-prod
+++ ask_conda='. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/proj4-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/geotiff-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/gdal-deactivate.sh"
+PS1='\''(/gpfsscratch/rech/eha/commun/conda/hf-prod) '\''
+export PATH='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin'\''
+export CONDA_PREFIX='\''/gpfsscratch/rech/eha/commun/conda/hf-prod'\''
+export CONDA_SHLVL='\''3'\''
+export CONDA_DEFAULT_ENV='\''/gpfsscratch/rech/eha/commun/conda/hf-prod'\''
+export CONDA_PROMPT_MODIFIER='\''(/gpfsscratch/rech/eha/commun/conda/hf-prod) '\''
+export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+export CONDA_PREFIX_2='\''/gpfslocalsup/pub/anaconda-py3/2020.02'\'''
+++ rc=0
+++ PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
+++ eval '. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/udunits2-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/proj4-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/geotiff-deactivate.sh"
+. "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/gdal-deactivate.sh"
+PS1='\''(/gpfsscratch/rech/eha/commun/conda/hf-prod) '\''
+export PATH='\''/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin'\''
+export CONDA_PREFIX='\''/gpfsscratch/rech/eha/commun/conda/hf-prod'\''
+export CONDA_SHLVL='\''3'\''
+export CONDA_DEFAULT_ENV='\''/gpfsscratch/rech/eha/commun/conda/hf-prod'\''
+export CONDA_PROMPT_MODIFIER='\''(/gpfsscratch/rech/eha/commun/conda/hf-prod) '\''
+export CONDA_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda'\''
+export _CE_M='\'''\''
+export _CE_CONDA='\'''\''
+export CONDA_PYTHON_EXE='\''/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python'\''
+export CONDA_PREFIX_2='\''/gpfslocalsup/pub/anaconda-py3/2020.02'\'''
++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/udunits2-deactivate.sh
+++++ unset UDUNITS2_XML_PATH
+++++ [[ -n '' ]]
++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/proj4-deactivate.sh
+++++ unset PROJ_LIB
+++++ unset PROJ_NETWORK
+++++ '[' -n '' ']'
++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/geotiff-deactivate.sh
+++++ unset GEOTIFF_CSV
+++++ [[ -n '' ]]
++++ . /gpfslocalsup/pub/anaconda-py3/2020.02/etc/conda/deactivate.d/gdal-deactivate.sh
+++++ unset GDAL_DATA
+++++ [[ -n '' ]]
+++++ unset GDAL_DRIVER_PATH
+++++ [[ -n '' ]]
+++++ unset CPL_ZIP_ENCODING
++++ PS1='(/gpfsscratch/rech/eha/commun/conda/hf-prod) '
++++ export PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ PATH=/gpfslocalsup/spack_soft/openmpi/4.0.5/gcc-8.3.1-h2g75yiqzwc5uct75ifhx5wz7uautdpr/bin:/gpfslocalsys/cuda/10.2/samples:/gpfslocalsys/cuda/10.2/nvvm/bin:/gpfslocalsys/cuda/10.2/bin:/linkhome/rech/genhug01/ura81os/bin:/linkhome/rech/genhug01/ura81os/.local/bin:/linkhome/rech/genhug01/ura81os/bin:/gpfsscratch/rech/eha/commun/conda/hf-prod/bin:/gpfslocalsup/pub/anaconda-py3/2020.02/condabin:/gpfslocalsup/spack_soft/environment-modules/4.3.1/gcc-4.8.5-ism7cdy4xverxywj27jvjstqwk5oxe2v/bin:/opt/clmgr/sbin:/opt/clmgr/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/c3/bin:/usr/lpp/mmfs/bin:/sbin:/bin:/gpfslocalsys/slurm/current/bin:/gpfslocalsup/bin:/gpfslocalsys/bin:/gpfslocalsys/idrzap/current/bin
++++ export CONDA_PREFIX=/gpfsscratch/rech/eha/commun/conda/hf-prod
++++ CONDA_PREFIX=/gpfsscratch/rech/eha/commun/conda/hf-prod
++++ export CONDA_SHLVL=3
++++ CONDA_SHLVL=3
++++ export CONDA_DEFAULT_ENV=/gpfsscratch/rech/eha/commun/conda/hf-prod
++++ CONDA_DEFAULT_ENV=/gpfsscratch/rech/eha/commun/conda/hf-prod
++++ export 'CONDA_PROMPT_MODIFIER=(/gpfsscratch/rech/eha/commun/conda/hf-prod) '
++++ CONDA_PROMPT_MODIFIER='(/gpfsscratch/rech/eha/commun/conda/hf-prod) '
++++ export CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
++++ CONDA_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda
++++ export _CE_M=
++++ _CE_M=
++++ export _CE_CONDA=
++++ _CE_CONDA=
++++ export CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
++++ CONDA_PYTHON_EXE=/gpfslocalsup/pub/anaconda-py3/2020.02/bin/python
++++ export CONDA_PREFIX_2=/gpfslocalsup/pub/anaconda-py3/2020.02
++++ CONDA_PREFIX_2=/gpfslocalsup/pub/anaconda-py3/2020.02
+++ '[' 0 '!=' 0 ']'
+++ __conda_hashr
+++ '[' -n '' ']'
+++ '[' -n '' ']'
+++ hash -r
++ nvidia-smi
+Sun May 23 08:40:52 2021       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 460.32.03    Driver Version: 460.32.03    CUDA Version: 11.2     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  Tesla V100-SXM2...  On   | 00000000:1A:00.0 Off |                    0 |
+| N/A   44C    P0    46W / 300W |      0MiB / 32510MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   1  Tesla V100-SXM2...  On   | 00000000:1C:00.0 Off |                    0 |
+| N/A   44C    P0    46W / 300W |      0MiB / 32510MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   2  Tesla V100-SXM2...  On   | 00000000:88:00.0 Off |                    0 |
+| N/A   45C    P0    46W / 300W |      0MiB / 32510MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+|   3  Tesla V100-SXM2...  On   | 00000000:8A:00.0 Off |                    0 |
+| N/A   45C    P0    44W / 300W |      0MiB / 32510MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
++ cd /linkhome/rech/genhug01/ura81os/base/code/megatron-lm/
++ CHECKPOINT_PATH=/gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
++ VOCAB_FILE=/gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-vocab.json
++ MERGE_FILE=/gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-merges.txt
++ DATA_PATH=/gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document
++ SAVE_CHECKPOINT_PATH=/gpfsscratch/rech/eha/commun/checkpoints/gpt2-1-node
+++ perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'
++ MASTER_ADDR=r6i5n1
++ MASTER_PORT=6000
++ NODE_RANK=0
++ NNODES=16
++ PP_SIZE=16
++ MSIZE=61
++ [[ 61 == 7 ]]
++ [[ 61 == 14 ]]
++ [[ 61 == 18 ]]
++ [[ 61 == 23 ]]
++ [[ 61 == 28 ]]
++ [[ 61 == 39 ]]
++ [[ 61 == 48 ]]
++ [[ 61 == 61 ]]
++ NHIDDEN=9216
++ NLAYERS=64
++ GPUS_PER_NODE=4
++ NHEADS=32
++ SEQ_LEN=1024
++ VOCAB_SIZE=50257
++ MICRO_BATCH_SIZE=1
++ PP_CHUNKS=4
++ DP_SIZE=1
++ TP_SIZE=4
++ GLOBAL_BATCH_SIZE=4
++ WORLD_SIZE=64
++ GPT_ARGS='     --num-layers 64     --hidden-size 9216     --num-attention-heads 32     --seq-length 1024     --max-position-embeddings 1024     --micro-batch-size 1     --global-batch-size 4
+    --lr 0.00015     --lr-decay-style cosine     --min-lr 1.0e-5     --train-iters 1000     --lr-decay-iters 800     --lr-warmup-fraction .01     --weight-decay 1e-2     --clip-grad 1.0     --vocab-file /gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-vocab.json     --merge-file /gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-merges.txt     --fp16     --checkpoint-activations     '
++ OUTPUT_ARGS='     --log-interval 10     --save-interval 500     --eval-interval 100     --eval-iters 10     '
++ export 'LAUNCHER=python -u -m torch.distributed.launch     --nproc_per_node 4     --nnodes 16     --master_addr r6i5n1     --master_port 6000     '
++ LAUNCHER='python -u -m torch.distributed.launch     --nproc_per_node 4     --nnodes 16     --master_addr r6i5n1     --master_port 6000     '
+++ pwd
++ export 'CMD=     /linkhome/rech/genhug01/ura81os/base/code/megatron-lm/pretrain_gpt.py     --tensor-model-parallel-size 4     --pipeline-model-parallel-size 16          --num-layers 64     --hidden-size 9216     --num-attention-heads 32     --seq-length 1024     --max-position-embeddings 1024     --micro-batch-size 1     --global-batch-size 4
+    --lr 0.00015     --lr-decay-style cosine     --min-lr 1.0e-5     --train-iters 1000     --lr-decay-iters 800     --lr-warmup-fraction .01     --weight-decay 1e-2     --clip-grad 1.0     --vocab-file /gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-vocab.json     --merge-file /gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-merges.txt     --fp16     --checkpoint-activations               --log-interval 10     --save-interval 500     --eval-interval 100     --eval-iters 10          --save /gpfsscratch/rech/eha/commun/checkpoints/gpt2-1-node     --load /gpfsscratch/rech/eha/commun/checkpoints/gpt2-1-node     --data-path /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document     --data-impl mmap     --split 949,50,1     --distributed-backend nccl     '
++ CMD='     /linkhome/rech/genhug01/ura81os/base/code/megatron-lm/pretrain_gpt.py     --tensor-model-parallel-size 4     --pipeline-model-parallel-size 16          --num-layers 64     --hidden-size 9216     --num-attention-heads 32     --seq-length 1024     --max-position-embeddings 1024     --micro-batch-size 1     --global-batch-size 4
+    --lr 0.00015     --lr-decay-style cosine     --min-lr 1.0e-5     --train-iters 1000     --lr-decay-iters 800     --lr-warmup-fraction .01     --weight-decay 1e-2     --clip-grad 1.0     --vocab-file /gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-vocab.json     --merge-file /gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-merges.txt     --fp16     --checkpoint-activations               --log-interval 10     --save-interval 500     --eval-interval 100     --eval-iters 10          --save /gpfsscratch/rech/eha/commun/checkpoints/gpt2-1-node     --load /gpfsscratch/rech/eha/commun/checkpoints/gpt2-1-node     --data-path /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document     --data-impl mmap     --split 949,50,1     --distributed-backend nccl     '
++ rm -rf /gpfsscratch/rech/eha/commun/checkpoints/gpt2-1-node
++ python -c 'h=9216; l=64; s=1024; v=50257; print(f'\''Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B'\'')'
+Model size: 61B
++ srun --jobid 1809577 bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+using world size: 64, data-parallel-size: 1, tensor-model-parallel size: 4, pipeline-model-parallel size: 16 
+using torch.float16 for parameters ...
+------------------------ arguments ------------------------
+  accumulate_allreduce_grads_in_fp32 .............. False
+  adam_beta1 ...................................... 0.9
+  adam_beta2 ...................................... 0.999
+  adam_eps ........................................ 1e-08
+  adlr_autoresume ................................. False
+  adlr_autoresume_interval ........................ 1000
+  apply_query_key_layer_scaling ................... True
+  apply_residual_connection_post_layernorm ........ False
+  attention_dropout ............................... 0.1
+  attention_softmax_in_fp32 ....................... False
+  bert_binary_head ................................ True
+  bert_load ....................................... None
+  bf16 ............................................ False
+  bias_dropout_fusion ............................. True
+  bias_gelu_fusion ................................ True
+  biencoder_projection_dim ........................ 0
+  biencoder_shared_query_context_model ............ False
+  block_data_path ................................. None
+  checkpoint_activations .......................... True
+  checkpoint_num_layers ........................... 1
+  clip_grad ....................................... 1.0
+  consumed_train_samples .......................... 0
+  consumed_valid_samples .......................... 0
+  data_impl ....................................... mmap
+  data_parallel_size .............................. 1
+  data_path ....................................... ['/gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document']
+  dataloader_type ................................. single
+  DDP_impl ........................................ local
+  decoder_seq_length .............................. None
+  distribute_checkpointed_activations ............. False
+  distributed_backend ............................. nccl
+  embedding_path .................................. None
+  encoder_seq_length .............................. 1024
+  eod_mask_loss ................................... False
+  eval_interval ................................... 100
+  eval_iters ...................................... 10
+  evidence_data_path .............................. None
+  exit_duration_in_mins ........................... None
+  exit_interval ................................... None
+  ffn_hidden_size ................................. 36864
+  finetune ........................................ False
+  fp16 ............................................ True
+  fp16_lm_cross_entropy ........................... False
+  fp32_residual_connection ........................ False
+  global_batch_size ............................... 4
+  hidden_dropout .................................. 0.1
+  hidden_size ..................................... 9216
+  hysteresis ...................................... 2
+  ict_head_size ................................... None
+  ict_load ........................................ None
+  img_dim ......................................... 224
+  indexer_batch_size .............................. 128
+  indexer_log_interval ............................ 1000
+  init_method_std ................................. 0.02
+  init_method_xavier_uniform ...................... False
+  initial_loss_scale .............................. 4294967296
+  kv_channels ..................................... 288
+  layernorm_epsilon ............................... 1e-05
+  lazy_mpu_init ................................... None
+  load ............................................ /gpfsscratch/rech/eha/commun/checkpoints/gpt2-1-node
+  local_rank ...................................... 0
+  log_batch_size_to_tensorboard ................... False
+  log_interval .................................... 10
+  log_learning_rate_to_tensorboard ................ True
+  log_loss_scale_to_tensorboard ................... True
+  log_num_zeros_in_grad ........................... False
+  log_params_norm ................................. False
+  log_timers_to_tensorboard ....................... False
+  log_validation_ppl_to_tensorboard ............... False
+  loss_scale ...................................... None
+  loss_scale_window ............................... 1000
+  lr .............................................. 0.00015
+  lr_decay_iters .................................. 800
+  lr_decay_samples ................................ None
+  lr_decay_style .................................. cosine
+  lr_warmup_fraction .............................. 0.01
+  lr_warmup_iters ................................. 0
+  lr_warmup_samples ............................... 0
+  make_vocab_size_divisible_by .................... 128
+  mask_prob ....................................... 0.15
+  masked_softmax_fusion ........................... True
+  max_position_embeddings ......................... 1024
+  merge_file ...................................... /gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-merges.txt
+  micro_batch_size ................................ 1
+  min_loss_scale .................................. 1.0
+  min_lr .......................................... 1e-05
+  mmap_warmup ..................................... False
+  no_load_optim ................................... None
+  no_load_rng ..................................... None
+  no_save_optim ................................... None
+  no_save_rng ..................................... None
+  num_attention_heads ............................. 32
+  num_channels .................................... 3
+  num_classes ..................................... 1000
+  num_layers ...................................... 64
+  num_layers_per_virtual_pipeline_stage ........... None
+  num_workers ..................................... 2
+  onnx_safe ....................................... None
+  openai_gelu ..................................... False
+  optimizer ....................................... adam
+  override_lr_scheduler ........................... False
+  params_dtype .................................... torch.float16
+  patch_dim ....................................... 16
+  pipeline_model_parallel_size .................... 16
+  query_in_block_prob ............................. 0.1
+  rampup_batch_size ............................... None
+  rank ............................................ 0
+  reset_attention_mask ............................ False
+  reset_position_ids .............................. False
+  retriever_report_topk_accuracies ................ []
+  retriever_score_scaling ......................... False
+  retriever_seq_length ............................ 256
+  sample_rate ..................................... 1.0
+  save ............................................ /gpfsscratch/rech/eha/commun/checkpoints/gpt2-1-node
+  save_interval ................................... 500
+  scatter_gather_tensors_in_pipeline .............. True
+  seed ............................................ 1234
+  seq_length ...................................... 1024
+  sgd_momentum .................................... 0.9
+  short_seq_prob .................................. 0.1
+  split ........................................... 949,50,1
+  tensor_model_parallel_size ...................... 4
+  tensorboard_dir ................................. None
+  tensorboard_log_interval ........................ 1
+  tensorboard_queue_size .......................... 1000
+  titles_data_path ................................ None
+  tokenizer_type .................................. GPT2BPETokenizer
+  train_iters ..................................... 1000
+  train_samples ................................... None
+  use_checkpoint_lr_scheduler ..................... False
+  use_contiguous_buffers_in_ddp ................... False
+  use_cpu_initialization .......................... None
+  use_one_sent_docs ............................... False
+  virtual_pipeline_model_parallel_size ............ None
+  vocab_extra_ids ................................. 0
+  vocab_file ...................................... /gpfsscratch/rech/eha/commun/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release/gpt2-vocab.json
+  weight_decay .................................... 0.01
+  world_size ...................................... 64
+-------------------- end of arguments ---------------------
+setting number of micro-batches to constant 4
+> building GPT2BPETokenizer tokenizer ...
+ > padded vocab (size: 50257) with 431 dummy tokens (new size: 50688)
+> initializing torch distributed ...
+> initializing tensor model parallel with size 4
+> initializing pipeline model parallel with size 16
+> setting random seeds to 1234 ...
+> initializing model parallel cuda seeds on global rank 0, model parallel rank 0, and data parallel rank 0 with model parallel seed: 3952 and data parallel seed: 1234
+> compiling dataset index builder ...
+make: Entering directory '/gpfsdswork/projects/rech/eha/commun/code/megatron-lm/megatron/data'
+make: Nothing to be done for 'default'.
+make: Leaving directory '/gpfsdswork/projects/rech/eha/commun/code/megatron-lm/megatron/data'
+>>> done with dataset index builder. Compilation time: 0.109 seconds
+> compiling and loading fused kernels ...
+Loading extension module scaled_upper_triang_masked_softmax_cuda...
+/gpfsscratch/rech/eha/commun/conda/hf-prod/lib/python3.8/site-packages/torch/utils/cpp_extension.py:283: UserWarning: 
+
+                               !! WARNING !!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Your compiler (c++) is not compatible with the compiler Pytorch was
+built with for this platform, which is g++ on linux. Please
+use g++ to to compile your extension. Alternatively, you may
+compile PyTorch from source using c++, and then you can also use
+c++ to compile your extension.
+
+See https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md for help
+with compiling PyTorch from source.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                              !! WARNING !!
+
+  warnings.warn(WRONG_COMPILER_WARNING.format(
+Detected CUDA files, patching ldflags
+Emitting ninja build file /gpfsdswork/projects/rech/eha/commun/code/megatron-lm/megatron/fused_kernels/build/build.ninja...
+Building extension module scaled_masked_softmax_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module scaled_masked_softmax_cuda...
+/gpfsscratch/rech/eha/commun/conda/hf-prod/lib/python3.8/site-packages/torch/utils/cpp_extension.py:283: UserWarning: 
+
+                               !! WARNING !!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Your compiler (c++) is not compatible with the compiler Pytorch was
+built with for this platform, which is g++ on linux. Please
+use g++ to to compile your extension. Alternatively, you may
+compile PyTorch from source using c++, and then you can also use
+c++ to compile your extension.
+
+See https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md for help
+with compiling PyTorch from source.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                              !! WARNING !!
+
+  warnings.warn(WRONG_COMPILER_WARNING.format(
+Detected CUDA files, patching ldflags
+Emitting ninja build file /gpfsdswork/projects/rech/eha/commun/code/megatron-lm/megatron/fused_kernels/build/build.ninja...
+Building extension module fused_mix_prec_layer_norm_cuda...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module fused_mix_prec_layer_norm_cuda...
+/gpfsscratch/rech/eha/commun/conda/hf-prod/lib/python3.8/site-packages/torch/utils/cpp_extension.py:283: UserWarning: 
+
+                               !! WARNING !!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Your compiler (c++) is not compatible with the compiler Pytorch was
+built with for this platform, which is g++ on linux. Please
+use g++ to to compile your extension. Alternatively, you may
+compile PyTorch from source using c++, and then you can also use
+c++ to compile your extension.
+
+See https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md for help
+with compiling PyTorch from source.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                              !! WARNING !!
+
+  warnings.warn(WRONG_COMPILER_WARNING.format(
+/gpfsscratch/rech/eha/commun/conda/hf-prod/lib/python3.8/site-packages/torch/utils/cpp_extension.py:283: UserWarning: 
+
+                               !! WARNING !!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Your compiler (c++) is not compatible with the compiler Pytorch was
+built with for this platform, which is g++ on linux. Please
+use g++ to to compile your extension. Alternatively, you may
+compile PyTorch from source using c++, and then you can also use
+c++ to compile your extension.
+
+See https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md for help
+with compiling PyTorch from source.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                              !! WARNING !!
+
+  warnings.warn(WRONG_COMPILER_WARNING.format(
+/gpfsscratch/rech/eha/commun/conda/hf-prod/lib/python3.8/site-packages/torch/utils/cpp_extension.py:283: UserWarning: 
+
+                               !! WARNING !!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Your compiler (c++) is not compatible with the compiler Pytorch was
+built with for this platform, which is g++ on linux. Please
+use g++ to to compile your extension. Alternatively, you may
+compile PyTorch from source using c++, and then you can also use
+c++ to compile your extension.
+
+See https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md for help
+with compiling PyTorch from source.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                              !! WARNING !!
+
+  warnings.warn(WRONG_COMPILER_WARNING.format(
+/gpfsscratch/rech/eha/commun/conda/hf-prod/lib/python3.8/site-packages/torch/utils/cpp_extension.py:283: UserWarning: 
+
+                               !! WARNING !!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Your compiler (c++) is not compatible with the compiler Pytorch was
+built with for this platform, which is g++ on linux. Please
+use g++ to to compile your extension. Alternatively, you may
+compile PyTorch from source using c++, and then you can also use
+c++ to compile your extension.
+
+See https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md for help
+with compiling PyTorch from source.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                              !! WARNING !!
+
+  warnings.warn(WRONG_COMPILER_WARNING.format(
+/gpfsscratch/rech/eha/commun/conda/hf-prod/lib/python3.8/site-packages/torch/utils/cpp_extension.py:283: UserWarning: 
+
+                               !! WARNING !!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Your compiler (c++) is not compatible with the compiler Pytorch was
+built with for this platform, which is g++ on linux. Please
+use g++ to to compile your extension. Alternatively, you may
+compile PyTorch from source using c++, and then you can also use
+c++ to compile your extension.
+
+See https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md for help
+with compiling PyTorch from source.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                              !! WARNING !!
+
+  warnings.warn(WRONG_COMPILER_WARNING.format(
+/gpfsscratch/rech/eha/commun/conda/hf-prod/lib/python3.8/site-packages/torch/utils/cpp_extension.py:283: UserWarning: 
+
+                               !! WARNING !!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Your compiler (c++) is not compatible with the compiler Pytorch was
+built with for this platform, which is g++ on linux. Please
+use g++ to to compile your extension. Alternatively, you may
+compile PyTorch from source using c++, and then you can also use
+c++ to compile your extension.
+
+See https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md for help
+with compiling PyTorch from source.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+                              !! WARNING !!
+
+  warnings.warn(WRONG_COMPILER_WARNING.format(
+>>> done with compiling and loading fused kernels. Compilation time: 7.795 seconds
+time to initialize megatron (seconds): 0.899
+[after megatron is initialized] datetime: 2021-05-23 08:41:04 
+building GPT model ...
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 8): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 11): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 11): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 11): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 11): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 8): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 8): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 8): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 1): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 5): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 13): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 5): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 13): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 1): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 2): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 1): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 5): 1019501568 > number of parameters on (tensor, pipeline) model parallel rank (0, 5): 1019501568
+
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 1): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 13): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 6): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 6): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 2): 1019501568 > number of parameters on (tensor, pipeline) model parallel rank (3, 2): 1019501568
+
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 6): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 13): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 4): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 2): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 4): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 6): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 4): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 4): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 14): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 14): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 14): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 14): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 3): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 7): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 12): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 7): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 12): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 7): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 3): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 3): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 12): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 3): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 9): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 7): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 12): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 9): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 9): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 9): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 10): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 10): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 10): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 10): 1019501568
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 0): 1145723904
+ > number of parameters on (tensor, pipeline) model parallel rank (3, 15): 1136305152
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 0): 1145723904
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 0): 1145723904
+ > number of parameters on (tensor, pipeline) model parallel rank (1, 15): 1136305152
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 15): 1136305152
+ > number of parameters on (tensor, pipeline) model parallel rank (2, 0): 1145723904
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 15): 1136305152
+> learning rate decay style: cosine
+WARNING: could not find the metadata file /gpfsscratch/rech/eha/commun/checkpoints/gpt2-1-node/latest_checkpointed_iteration.txt 
+    will not load any checkpoints and will start from random
+time (ms) | load-checkpoint: 0.46
+[after model, optimizer, and learning rate scheduler are built] datetime: 2021-05-23 08:41:05 
+> building train, validation, and test datasets ...
+ > datasets target sizes (minimum size):
+    train:      4000
+    validation: 440
+    test:       40
+> building train, validation, and test datasets for GPT ...
+ > building dataset index ...
+    reading sizes...
+    reading pointers...
+    reading document index...
+    creating numpy buffer of mmap...
+    creating memory view of numpy buffer...
+ > finished creating indexed dataset in 0.002979 seconds
+    number of documents: 10000
+ > dataset split:
+    train:
+     document indices in [0, 9490) total of 9490 documents
+    validation:
+     document indices in [9490, 9990) total of 500 documents
+    test:
+     document indices in [9990, 10000) total of 10 documents
+ > loading doc-idx mapping from /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document_train_indexmap_4000ns_1024sl_1234s_doc_idx.npy
+ > loading sample-idx mapping from /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document_train_indexmap_4000ns_1024sl_1234s_sample_idx.npy
+ > loading shuffle-idx mapping from /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document_train_indexmap_4000ns_1024sl_1234s_shuffle_idx.npy
+    loaded indexed file in 0.005 seconds
+    total number of samples: 10353
+    total number of epochs: 1
+ > loading doc-idx mapping from /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document_valid_indexmap_440ns_1024sl_1234s_doc_idx.npy
+ > loading sample-idx mapping from /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document_valid_indexmap_440ns_1024sl_1234s_sample_idx.npy
+ > loading shuffle-idx mapping from /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document_valid_indexmap_440ns_1024sl_1234s_shuffle_idx.npy
+    loaded indexed file in 0.002 seconds
+    total number of samples: 622
+    total number of epochs: 1
+ > loading doc-idx mapping from /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document_test_indexmap_40ns_1024sl_1234s_doc_idx.npy
+ > loading sample-idx mapping from /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document_test_indexmap_40ns_1024sl_1234s_sample_idx.npy
+ > loading shuffle-idx mapping from /gpfsscratch/rech/eha/commun/datasets-custom/openwebtext-10k/meg-gpt2_text_document_test_indexmap_40ns_1024sl_1234s_shuffle_idx.npy
+    loaded indexed file in 0.002 seconds
+    total number of samples: 46
+    total number of epochs: 3
+> finished creating GPT datasets ...
+[after dataloaders are built] datetime: 2021-05-23 08:41:06 
+done with setup ...
+training ...
+time (ms) | model-and-optimizer-setup: 370.49 | train/valid/test-data-iterators-setup: 486.35
+[before the start of training step] datetime: 2021-05-23 08:41:06 
+ iteration       10/    1000 | consumed samples:           40 | elapsed time per iteration (ms): 5837.9 | learning rate: 0.000E+00 | global batch size:     4 | loss scale: 8388608.0 | number of skipped iterations:  10 | number of nan iterations:   0 |
+time (ms) | forward-compute: 264.79 | forward-recv: 2365.31 | backward-compute: 481.96 | backward-send: 63.98 | backward-send-forward-recv: 152.47 | backward-params-all-reduce: 24.39 | backward-embedding-all-reduce: 2398.39 | optimizer-copy-to-main-grad: 10.11 | optimizer-unscale-and-check-inf: 75.24 | optimizer: 85.49 | batch-generator: 3.05
+ iteration       20/    1000 | consumed samples:           80 | elapsed time per iteration (ms): 2711.1 | learning rate: 3.750E-05 | global batch size:     4 | lm loss: 1.249319E+01 | loss scale: 32768.0 | number of skipped iterations:   8 | number of nan iterations:   0 |
+[Rank 51] (after 20 iterations) memory (MB) | allocated: 19494.453125 | max allocated: 22106.013671875 | reserved: 26716.0 | max reserved: 26716.0[Rank 49] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0
+
+[Rank 47] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0
+[Rank 44] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 63] (after 20 iterations) memory (MB) | allocated: 21722.3056640625 | max allocated: 24357.15478515625 | reserved: 29424.0 | max reserved: 29424.0
+[Rank 42] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26558.0 | max reserved: 26558.0
+[Rank 6] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26716.0 | max reserved: 26716.0
+[Rank 5] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26716.0 | max reserved: 26716.0[Rank 7] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26622.0 | max reserved: 26622.0
+
+[Rank 57] (after 20 iterations) memory (MB) | allocated: 19492.953125 | max allocated: 22015.013671875 | reserved: 26360.0 | max reserved: 26360.0[Rank 58] (after 20 iterations) memory (MB) | allocated: 19495.453125 | max allocated: 22015.513671875 | reserved: 26494.0 | max reserved: 26494.0
+
+[Rank 39] (after 20 iterations) memory (MB) | allocated: 19496.453125 | max allocated: 22106.513671875 | reserved: 26766.0 | max reserved: 26766.0[Rank 38] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26716.0 | max reserved: 26716.0
+
+[Rank 1] (after 20 iterations) memory (MB) | allocated: 21864.953125 | max allocated: 24762.8134765625 | reserved: 30202.0 | max reserved: 30202.0
+[Rank 15] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0
+[Rank 13] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26716.0 | max reserved: 26716.0
+[Rank 54] (after 20 iterations) memory (MB) | allocated: 19495.453125 | max allocated: 22105.013671875 | reserved: 26574.0 | max reserved: 26574.0
+[Rank 33] (after 20 iterations) memory (MB) | allocated: 19494.453125 | max allocated: 22106.013671875 | reserved: 26734.0 | max reserved: 26734.0[Rank 34] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0[Rank 35] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26716.0 | max reserved: 26716.0
+
+
+[Rank 22] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0[Rank 23] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26716.0 | max reserved: 26716.0
+
+[Rank 10] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0[Rank 11] (after 20 iterations) memory (MB) | allocated: 19494.453125 | max allocated: 22105.513671875 | reserved: 26734.0 | max reserved: 26734.0
+
+[Rank 25] (after 20 iterations) memory (MB) | allocated: 19495.953125 | max allocated: 22107.013671875 | reserved: 26746.0 | max reserved: 26746.0
+[Rank 30] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26624.0 | max reserved: 26624.0
+[Rank 17] (after 20 iterations) memory (MB) | allocated: 19494.453125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0[Rank 19] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26622.0 | max reserved: 26622.0
+[Rank 18] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26718.0 | max reserved: 26718.0
+
+[Rank 48] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 50] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 46] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 62] (after 20 iterations) memory (MB) | allocated: 21723.8056640625 | max allocated: 24358.65478515625 | reserved: 29528.0 | max reserved: 29528.0[Rank 61] (after 20 iterations) memory (MB) | allocated: 21721.3056640625 | max allocated: 24356.65478515625 | reserved: 29424.0 | max reserved: 29424.0
+
+time (ms) | forward-compute: 148.22 | forward-recv: 508.65 | backward-compute: 416.86 | backward-send: 1.18 | backward-send-forward-recv: 6.66 | backward-params-all-reduce: 28.64 | backward-embedding-all-reduce: 1549.08 | optimizer-copy-to-main-grad: 10.11 | optimizer-unscale-and-check-inf: 23.14 | optimizer-clip-main-grad: 3.61 | optimizer-copy-main-to-model-params: 2.05 | optimizer: 50.82 | batch-generator: 2.59
+[Rank 41] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0
+[Rank 4] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 59] (after 20 iterations) memory (MB) | allocated: 19495.453125 | max allocated: 22015.513671875 | reserved: 26440.0 | max reserved: 26440.0
+[Rank 37] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0
+[Rank 3] (after 20 iterations) memory (MB) | allocated: 21864.953125 | max allocated: 24762.3134765625 | reserved: 30346.0 | max reserved: 30346.0
+[Rank 12] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26628.0 | max reserved: 26628.0
+[Rank 55] (after 20 iterations) memory (MB) | allocated: 19495.453125 | max allocated: 22106.013671875 | reserved: 26588.0 | max reserved: 26588.0[Rank 53] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.513671875 | reserved: 26534.0 | max reserved: 26534.0
+
+[Rank 32] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 21] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 9] (after 20 iterations) memory (MB) | allocated: 19495.453125 | max allocated: 22106.513671875 | reserved: 26680.0 | max reserved: 26680.0
+[Rank 8] (after 20 iterations) memory (MB) | allocated: 19494.453125 | max allocated: 22106.013671875 | reserved: 26734.0 | max reserved: 26734.0
+[Rank 27] (after 20 iterations) memory (MB) | allocated: 19494.453125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0
+[Rank 26] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26716.0 | max reserved: 26716.0
+[Rank 31] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26716.0 | max reserved: 26716.0[Rank 29] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0
+
+[Rank 16] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 45] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 60] (after 20 iterations) memory (MB) | allocated: 21724.3056640625 | max allocated: 24358.65478515625 | reserved: 29438.0 | max reserved: 29438.0
+[Rank 43] (after 20 iterations) memory (MB) | allocated: 19494.453125 | max allocated: 22106.013671875 | reserved: 26734.0 | max reserved: 26734.0
+[Rank 56] (after 20 iterations) memory (MB) | allocated: 19495.953125 | max allocated: 22016.513671875 | reserved: 26494.0 | max reserved: 26494.0
+[Rank 36] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26628.0 | max reserved: 26628.0
+[Rank 2] (after 20 iterations) memory (MB) | allocated: 21864.953125 | max allocated: 24762.3134765625 | reserved: 30342.0 | max reserved: 30342.0[Rank 0] (after 20 iterations) memory (MB) | allocated: 21864.953125 | max allocated: 24761.8134765625 | reserved: 30164.0 | max reserved: 30164.0
+
+[Rank 14] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26718.0 | max reserved: 26718.0
+[Rank 52] (after 20 iterations) memory (MB) | allocated: 19495.953125 | max allocated: 22107.513671875 | reserved: 26570.0 | max reserved: 26570.0
+[Rank 20] (after 20 iterations) memory (MB) | allocated: 19495.953125 | max allocated: 22107.013671875 | reserved: 26744.0 | max reserved: 26744.0
+[Rank 24] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 28] (after 20 iterations) memory (MB) | allocated: 19494.453125 | max allocated: 22106.013671875 | reserved: 26722.0 | max reserved: 26722.0
+[Rank 40] (after 20 iterations) memory (MB) | allocated: 19494.953125 | max allocated: 22106.013671875 | reserved: 26720.0 | max reserved: 26720.0
+ iteration       30/    1000 | consumed samples:          120 | elapsed time per iteration (ms): 2767.3 | learning rate: 1.500E-04 | global batch size:     4 | lm loss: 3.282511E+01 | loss scale: 16384.0 | grad norm: 9.804 | number of skipped iterations:   1 | number of nan iterations:   0 |
+time (ms) | forward-compute: 148.03 | forward-recv: 508.17 | backward-compute: 415.50 | backward-send: 1.14 | backward-send-forward-recv: 6.60 | backward-params-all-reduce: 21.50 | backward-embedding-all-reduce: 1577.68 | optimizer-copy-to-main-grad: 10.11 | optimizer-unscale-and-check-inf: 12.34 | optimizer-clip-main-grad: 16.23 | optimizer-copy-main-to-model-params: 9.25 | optimizer: 87.67 | batch-generator: 2.59
+ iteration       40/    1000 | consumed samples:          160 | elapsed time per iteration (ms): 2770.8 | learning rate: 1.499E-04 | global batch size:     4 | lm loss: 1.516996E+01 | loss scale: 16384.0 | grad norm: 63.032 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms) | forward-compute: 148.26 | forward-recv: 508.72 | backward-compute: 415.72 | backward-send: 1.07 | backward-send-forward-recv: 6.70 | backward-params-all-reduce: 21.42 | backward-embedding-all-reduce: 1573.14 | optimizer-copy-to-main-grad: 10.11 | optimizer-unscale-and-check-inf: 12.33 | optimizer-clip-main-grad: 18.02 | optimizer-copy-main-to-model-params: 10.27 | optimizer: 94.87 | batch-generator: 2.59
+ iteration       50/    1000 | consumed samples:          200 | elapsed time per iteration (ms): 2759.1 | learning rate: 1.497E-04 | global batch size:     4 | lm loss: 1.097588E+01 | loss scale: 16384.0 | grad norm: 11.060 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms) | forward-compute: 147.97 | forward-recv: 508.43 | backward-compute: 413.84 | backward-send: 1.10 | backward-send-forward-recv: 6.82 | backward-params-all-reduce: 21.45 | backward-embedding-all-reduce: 1563.46 | optimizer-copy-to-main-grad: 10.12 | optimizer-unscale-and-check-inf: 12.54 | optimizer-clip-main-grad: 18.00 | optimizer-copy-main-to-model-params: 10.27 | optimizer: 95.05 | batch-generator: 2.59
+ iteration       60/    1000 | consumed samples:          240 | elapsed time per iteration (ms): 2741.1 | learning rate: 1.494E-04 | global batch size:     4 | lm loss: 8.841090E+00 | loss scale: 16384.0 | grad norm: 8.198 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms) | forward-compute: 147.88 | forward-recv: 508.88 | backward-compute: 413.52 | backward-send: 1.16 | backward-send-forward-recv: 6.62 | backward-params-all-reduce: 21.39 | backward-embedding-all-reduce: 1544.55 | optimizer-copy-to-main-grad: 10.13 | optimizer-unscale-and-check-inf: 13.63 | optimizer-clip-main-grad: 17.98 | optimizer-copy-main-to-model-params: 10.27 | optimizer: 96.17 | batch-generator: 2.60
+ iteration       70/    1000 | consumed samples:          280 | elapsed time per iteration (ms): 2738.6 | learning rate: 1.490E-04 | global batch size:     4 | lm loss: 8.434969E+00 | loss scale: 16384.0 | grad norm: 5.795 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms) | forward-compute: 147.77 | forward-recv: 508.89 | backward-compute: 413.19 | backward-send: 1.21 | backward-send-forward-recv: 6.61 | backward-params-all-reduce: 21.45 | backward-embedding-all-reduce: 1543.07 | optimizer-copy-to-main-grad: 10.12 | optimizer-unscale-and-check-inf: 12.93 | optimizer-clip-main-grad: 17.95 | optimizer-copy-main-to-model-params: 10.27 | optimizer: 95.43 | batch-generator: 2.59
+ iteration       80/    1000 | consumed samples:          320 | elapsed time per iteration (ms): 2738.3 | learning rate: 1.485E-04 | global batch size:     4 | lm loss: 8.398872E+00 | loss scale: 16384.0 | grad norm: 4.869 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms) | forward-compute: 147.76 | forward-recv: 509.14 | backward-compute: 412.68 | backward-send: 1.20 | backward-send-forward-recv: 6.64 | backward-params-all-reduce: 21.46 | backward-embedding-all-reduce: 1542.95 | optimizer-copy-to-main-grad: 10.12 | optimizer-unscale-and-check-inf: 13.04 | optimizer-clip-main-grad: 17.97 | optimizer-copy-main-to-model-params: 10.28 | optimizer: 95.54 | batch-generator: 2.59
+ iteration       90/    1000 | consumed samples:          360 | elapsed time per iteration (ms): 2739.0 | learning rate: 1.478E-04 | global batch size:     4 | lm loss: 8.306568E+00 | loss scale: 16384.0 | grad norm: 6.069 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms) | forward-compute: 147.78 | forward-recv: 509.32 | backward-compute: 413.20 | backward-send: 1.13 | backward-send-forward-recv: 6.88 | backward-params-all-reduce: 21.51 | backward-embedding-all-reduce: 1542.51 | optimizer-copy-to-main-grad: 10.12 | optimizer-unscale-and-check-inf: 13.21 | optimizer-clip-main-grad: 17.97 | optimizer-copy-main-to-model-params: 10.27 | optimizer: 95.71 | batch-generator: 2.58
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+slurmstepd: error: *** STEP 1809577.0 ON r6i5n1 CANCELLED AT 2021-05-23T08:46:02 ***
+Killing subprocess 74367
+Killing subprocess 74368
+Killing subprocess 3088
+Killing subprocess 74369
+slurmstepd: error: *** JOB 1809577 ON r6i5n1 CANCELLED AT 2021-05-23T08:46:02 ***
+Killing subprocess 3089
+Killing subprocess 74370
+Killing subprocess 3090
+Killing subprocess 70417
+Main process received SIGTERM, exiting
+Killing subprocess 3091
+Main process received SIGTERM, exiting
+Killing subprocess 51411
+Killing subprocess 54098
+Killing subprocess 13394
+Killing subprocess 70418
+Killing subprocess 13395
+Killing subprocess 72403
+Killing subprocess 70419
+Killing subprocess 66868
+Killing subprocess 54099
+Killing subprocess 70420
+Killing subprocess 51412
+Main process received SIGTERM, exiting
+Killing subprocess 20686
+Killing subprocess 72404
+Killing subprocess 72405
+Killing subprocess 42058
+Killing subprocess 4878
+Killing subprocess 29240
+Killing subprocess 51413
+Killing subprocess 72406
+Killing subprocess 51414
+Killing subprocess 66869
+Main process received SIGTERM, exiting
+Killing subprocess 66870
+Killing subprocess 20687
+Killing subprocess 29241
+Killing subprocess 66871
+Killing subprocess 20688
+Killing subprocess 54100
+Killing subprocess 75658
+Killing subprocess 13396
+Killing subprocess 54101
+Killing subprocess 13397
+Killing subprocess 38592
+Killing subprocess 42059
+Killing subprocess 76140
+Killing subprocess 4879
+Killing subprocess 20689
+Killing subprocess 29242
+Killing subprocess 29243
+Killing subprocess 75659
+Main process received SIGTERM, exiting
+Killing subprocess 38593
+Killing subprocess 4880
+Main process received SIGTERM, exiting
+Killing subprocess 38594
+Killing subprocess 4881
+Main process received SIGTERM, exiting
+Main process received SIGTERM, exiting
+Killing subprocess 75660
+Main process received SIGTERM, exiting
+Killing subprocess 75661
+Main process received SIGTERM, exiting
+Main process received SIGTERM, exiting
+Main process received SIGTERM, exiting
+Killing subprocess 38595
+Main process received SIGTERM, exiting
+Killing subprocess 42060
+Killing subprocess 42061
+Main process received SIGTERM, exiting
+Killing subprocess 76141
+Killing subprocess 76142
+Killing subprocess 76143
+Main process received SIGTERM, exiting
+Killing subprocess 4302
+Killing subprocess 4303
+Killing subprocess 4304
+Killing subprocess 4305
+Main process received SIGTERM, exiting

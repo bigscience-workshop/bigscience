@@ -2,8 +2,9 @@
 
 Scripts and logs of GPT2 experiments on Jean Zay HPC.
 
-Using 4x VT100 32GB nodes.
+Using 4x VT100 16GB nodes.
 
+For now can't really allocate many 32gb nodes so can't do any serious evaluation there.
 (add `-C v100-32g` for 32gb nodes.)
 
 ## Megatron-LM
@@ -26,8 +27,6 @@ This section summarizes the numbers from the experiment sections below:
 
 Not yet optimized with NVIDIA team!
 
-16GB nodes:
-
 | GPUs | Size | Micro-BS | PP Chunks |  DP | PP | Throughput |
 | ---: | ---: | -------: | --------: | --: | -: | ---------: |
 |   16 | 7.5B |        1 |         4 |   1 |  4 |  661ms     |
@@ -37,25 +36,11 @@ Not yet optimized with NVIDIA team!
 |  256 |  22B |        1 |         4 |   4 | 16 | 1826ms     |
 |      |      |          |           |     |    |            |
 
-32GB nodes:
-
-| GPUs | Size | Micro-BS | PP Chunks |  DP | PP | Throughput |
-| ---: | ---: | -------: | --------: | --: | -: | ---------: |
-|   16 |  18B |        1 |         4 |   1 |  4 | 1381.7ms   |
-|   32 |  28B |        1 |         4 |   1 |  8 | 1618.3ms   |
-|   64 |  61B |        1 |         4 |   1 | 16 | 2738.6ms   |
-|  128 | 109B |        1 |         4 |   1 | 32 | 4234.7ms   |
-|  256 | 193B |        1 |         4 |   1 | 64 | 6736.4ms   |
-|      |      |          |           |     |    |            |
-
 
 - `TP=4` in all of entries
 - Throughput is time per iteration - to complete global batch size
 - Global batch size is `micro-batch-size * pp_chunks * dp_size`
 - PP chunks is the number of PP stages, so each pipeline handles `micro-batch-size * pp_chunks`
-
-The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg).
-
 
 **Megatron + Deepspeed ZeRO**:
 
@@ -65,6 +50,621 @@ Not yet optimized with Deepspeed team!
 | ---: | ---: | -------: | --------: | --: | -: | ---------: |
 | 64   | 30B  | 1        | 4         | 1   | 16 | 28716ms    |
 |      |      |          |           |     |    |            |
+
+
+
+
+### Nodes=4 DP=1 TP=4 PP=4
+
+Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
+
+```
+salloc --nodes=4 --ntasks=4 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+```
+
+The biggest model we can fit with `micro-batch-size=1`: **7.5B**
+
+```
+
+cd ~/base/code/megatron-lm/
+
+CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
+MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
+DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+GPUS_PER_NODE=4
+NNODES=4
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+NODE_RANK=0
+
+NHEADS=32
+NHIDDEN=4096
+NLAYERS=36
+SEQ_LEN=1024
+VOCAB_SIZE=50257
+
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
+
+PP_SIZE=4
+DP_SIZE=1
+TP_SIZE=4
+
+GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
+WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+
+GPT_ARGS=" \
+    --num-layers $NLAYERS \
+    --hidden-size $NHIDDEN \
+    --num-attention-heads $NHEADS \
+    --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
+    --micro-batch-size $MICRO_BATCH_SIZE \
+    --global-batch-size $GLOBAL_BATCH_SIZE
+    --lr 0.00015 \
+    --lr-decay-style cosine \
+    --min-lr 1.0e-5 \
+    --train-iters 1000 \
+    --lr-decay-iters 800 \
+    --lr-warmup-fraction .01 \
+    --weight-decay 1e-2 \
+    --clip-grad 1.0 \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --fp16 \
+    --checkpoint-activations \
+    "
+
+OUTPUT_ARGS=" \
+    --log-interval 10 \
+    --save-interval 500 \
+    --eval-interval 100 \
+    --eval-iters 10 \
+    "
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+export CMD=" \
+    `pwd`/pretrain_gpt.py \
+    --tensor-model-parallel-size $TP_SIZE \
+    --pipeline-model-parallel-size $PP_SIZE \
+    $GPT_ARGS \
+    $OUTPUT_ARGS \
+    --save $SAVE_CHECKPOINT_PATH \
+    --load $SAVE_CHECKPOINT_PATH \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --split 949,50,1 \
+    --distributed-backend nccl \
+    "
+
+# clear old checkpoint as it'd mismatch while we sort things out
+rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+# model size
+python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
+
+# to debug - add echo (it exits and prints what it would have launched)
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+
+
+```
+
+Stats:
+
+```
+iteration 50/ 1000 | consumed samples: 200 | elapsed time per iteration (ms): 661.3 | learning rate:
+1.497E-04 | global batch size: 4 | lm loss: 8.238016E+00 | loss scale: 16384.0 | grad norm: 2.555 |
+number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) | forward-compute: 92.25 |
+forward-recv: 65.68 | backward-compute: 239.82 | backward-send: 0.54 | backward-send-forward-recv:
+4.29 | backward-params-all-reduce: 10.50 | backward-embedding-all-reduce: 204.76 |
+optimizer-copy-to-main-grad: 4.47 | optimizer-unscale-and-check-inf: 5.68 |
+optimizer-clip-main-grad: 8.56 | optimizer-copy-main-to-model-params: 4.41 | optimizer: 42.31 |
+batch-generator: 2.70
+```
+
+
+### Nodes=16 DP=1 TP=4 PP=16
+
+
+Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
+
+```
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+```
+
+The biggest model we can fit with `micro-batch-size=1`: barely **30B**
+
+(30B is not in paper's table - took 39B model and reduced NHIDDEN=7168 to overcome OOM) but it still OOM'ed after 60 steps so was a bit too much.
+
+```
+
+cd ~/base/code/megatron-lm/
+
+CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
+MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
+DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+GPUS_PER_NODE=4
+NNODES=16
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+NODE_RANK=0
+
+NHEADS=32
+NHIDDEN=7168
+NLAYERS=48
+SEQ_LEN=1024
+
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
+
+PP_SIZE=16
+DP_SIZE=1
+TP_SIZE=4
+
+GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
+WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+
+GPT_ARGS=" \
+    --num-layers $NLAYERS \
+    --hidden-size $NHIDDEN \
+    --num-attention-heads $NHEADS \
+    --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
+    --micro-batch-size $MICRO_BATCH_SIZE \
+    --global-batch-size $GLOBAL_BATCH_SIZE
+    --lr 0.00015 \
+    --lr-decay-style cosine \
+    --min-lr 1.0e-5 \
+    --train-iters 1000 \
+    --lr-decay-iters 800 \
+    --lr-warmup-fraction .01 \
+    --weight-decay 1e-2 \
+    --clip-grad 1.0 \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --fp16 \
+    --checkpoint-activations \
+    "
+
+OUTPUT_ARGS=" \
+    --log-interval 10 \
+    --save-interval 500 \
+    --eval-interval 100 \
+    --eval-iters 10 \
+    "
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+export CMD=" \
+    `pwd`/pretrain_gpt.py \
+    --tensor-model-parallel-size $TP_SIZE \
+    --pipeline-model-parallel-size $PP_SIZE \
+    $GPT_ARGS \
+    $OUTPUT_ARGS \
+    --save $SAVE_CHECKPOINT_PATH \
+    --load $SAVE_CHECKPOINT_PATH \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --split 949,50,1 \
+    --distributed-backend nccl \
+    "
+
+# clear old checkpoint as it'd mismatch while we sort things out
+rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+# to debug - add echo (it exits and prints what it would have launched)
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+
+
+```
+
+Stats:
+
+
+
+```
+iteration 30/ 1000 | consumed samples: 120 | elapsed time per iteration (ms): 1439.3 | learning
+rate: 1.500E-04 | global batch size: 4 | lm loss: 2.667133E+01 | loss scale: 16384.0 | grad norm:
+73.338 | number of skipped iterations: 1 | number of nan iterations: 0 | time (ms) |
+forward-compute: 77.94 | forward-recv: 285.81 | backward-compute: 203.21 | backward-send: 0.91 |
+backward-send-forward-recv: 5.44 | backward-params-all-reduce: 10.38 |
+backward-embedding-all-reduce: 811.34 | optimizer-copy-to-main-grad: 4.61 |
+optimizer-unscale-and-check-inf: 7.90 | optimizer-clip-main-grad: 7.91 |
+optimizer-copy-main-to-model-params: 3.95 | optimizer: 43.19 | batch-generator: 2.64
+```
+
+### Nodes=32 DP=1 TP=4 PP=32
+
+Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
+
+```
+salloc --nodes=32 --ntasks=32 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+```
+
+The biggest model we can fit with `micro-batch-size=1`: **50B**
+
+(50B is not in paper's table - took 76B model - had to change to nlayer=64 for it to work and reduced NHIDDEN=8192 to overcome OOM) but it still OOM'ed after 60 steps so was a bit too much.
+
+```
+perl -le 'print( (120*402780160+8*514977792)>>20)'
+50023
+```
+
+```
+
+cd ~/base/code/megatron-lm/
+
+CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
+MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
+DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+GPUS_PER_NODE=4
+NNODES=32
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+NODE_RANK=0
+
+NHEADS=32
+NHIDDEN=8192
+NLAYERS=64
+SEQ_LEN=1024
+
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
+
+PP_SIZE=32
+DP_SIZE=1
+TP_SIZE=4
+
+GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
+WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+
+GPT_ARGS=" \
+    --num-layers $NLAYERS \
+    --hidden-size $NHIDDEN \
+    --num-attention-heads $NHEADS \
+    --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
+    --micro-batch-size $MICRO_BATCH_SIZE \
+    --global-batch-size $GLOBAL_BATCH_SIZE
+    --lr 0.00015 \
+    --lr-decay-style cosine \
+    --min-lr 1.0e-5 \
+    --train-iters 1000 \
+    --lr-decay-iters 800 \
+    --lr-warmup-fraction .01 \
+    --weight-decay 1e-2 \
+    --clip-grad 1.0 \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --fp16 \
+    --checkpoint-activations \
+    "
+
+OUTPUT_ARGS=" \
+    --log-interval 10 \
+    --save-interval 500 \
+    --eval-interval 100 \
+    --eval-iters 10 \
+    "
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+export CMD=" \
+    `pwd`/pretrain_gpt.py \
+    --tensor-model-parallel-size $TP_SIZE \
+    --pipeline-model-parallel-size $PP_SIZE \
+    $GPT_ARGS \
+    $OUTPUT_ARGS \
+    --save $SAVE_CHECKPOINT_PATH \
+    --load $SAVE_CHECKPOINT_PATH \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --split 949,50,1 \
+    --distributed-backend nccl \
+    "
+
+# clear old checkpoint as it'd mismatch while we sort things out
+rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+# to debug - add echo (it exits and prints what it would have launched)
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+
+
+```
+
+Stats:
+
+```
+iteration 50/ 1000 | consumed samples: 200 | elapsed time per iteration (ms): 2124.0 | learning
+rate: 1.497E-04 | global batch size: 4 | lm loss: 1.038553E+01 | loss scale: 16384.0 | grad norm:
+14.954 | number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) |
+forward-compute: 68.08 | forward-recv: 485.51 | backward-compute: 175.50 | backward-send: 0.85 |
+backward-send-forward-recv: 5.63 | backward-params-all-reduce: 9.54 | backward-embedding-all-reduce:
+1321.49 | optimizer-copy-to-main-grad: 4.19 | optimizer-unscale-and-check-inf: 21.21 |
+optimizer-clip-main-grad: 8.04 | optimizer-copy-main-to-model-params: 3.98 | optimizer: 56.47 |
+batch-generator: 2.72
+
+```
+
+
+
+
+
+### Nodes=64 DP=1 TP=4 PP=64
+
+Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
+
+```
+salloc --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+```
+
+The biggest model we can fit with `micro-batch-size=1`: **78B**
+
+(78B is not in paper's table - took 76B model - had to change to nlayers=64 for it to work)
+
+```
+perl -le 'print( (248*314652160+8*454899200)>>20)'
+77889
+```
+
+```
+
+cd ~/base/code/megatron-lm/
+
+CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
+MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
+DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+GPUS_PER_NODE=4
+NNODES=64
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+NODE_RANK=0
+
+NHEADS=32
+NHIDDEN=10240
+NLAYERS=64
+SEQ_LEN=1024
+
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
+
+PP_SIZE=64
+DP_SIZE=1
+TP_SIZE=4
+
+GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
+WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+
+GPT_ARGS=" \
+    --num-layers $NLAYERS \
+    --hidden-size $NHIDDEN \
+    --num-attention-heads $NHEADS \
+    --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
+    --micro-batch-size $MICRO_BATCH_SIZE \
+    --global-batch-size $GLOBAL_BATCH_SIZE
+    --lr 0.00015 \
+    --lr-decay-style cosine \
+    --min-lr 1.0e-5 \
+    --train-iters 1000 \
+    --lr-decay-iters 800 \
+    --lr-warmup-fraction .01 \
+    --weight-decay 1e-2 \
+    --clip-grad 1.0 \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --fp16 \
+    --checkpoint-activations \
+    "
+
+OUTPUT_ARGS=" \
+    --log-interval 10 \
+    --save-interval 500 \
+    --eval-interval 100 \
+    --eval-iters 10 \
+    "
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+export CMD=" \
+    `pwd`/pretrain_gpt.py \
+    --tensor-model-parallel-size $TP_SIZE \
+    --pipeline-model-parallel-size $PP_SIZE \
+    $GPT_ARGS \
+    $OUTPUT_ARGS \
+    --save $SAVE_CHECKPOINT_PATH \
+    --load $SAVE_CHECKPOINT_PATH \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --split 949,50,1 \
+    --distributed-backend nccl \
+    "
+
+# clear old checkpoint as it'd mismatch while we sort things out
+rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+# to debug - add echo (it exits and prints what it would have launched)
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+
+```
+
+Stats:
+
+```
+iteration 30/ 1000 | consumed samples: 120 | elapsed time per iteration (ms): 2953.3 | learning
+rate: 1.500E-04 | global batch size: 4 | lm loss: 3.785040E+01 | loss scale: 16384.0 | grad norm:
+47.681 | number of skipped iterations: 1 | number of nan iterations: 0 | time (ms) |
+forward-compute: 53.67 | forward-recv: 746.59 | backward-compute: 134.74 | backward-send: 1.01 |
+backward-send-forward-recv: 6.49 | backward-params-all-reduce: 8.29 | backward-embedding-all-reduce:
+1964.85 | optimizer-copy-to-main-grad: 3.64 | optimizer-unscale-and-check-inf: 8.68 |
+optimizer-clip-main-grad: 6.34 | optimizer-copy-main-to-model-params: 3.10 | optimizer: 36.80 |
+batch-generator: 2.52
+```
+
+
+
+### Nodes=64 DP=4 TP=4 PP=16
+
+Let's try a smaller model with a larger batch size.
+
+Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
+
+```
+salloc --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+```
+
+The biggest model we can fit with `micro-batch-size=1` + D4: **22B**
+
+```
+perl -le 'print( (48*402780160+8*514977792)>>20)'
+22366
+```
+
+```
+
+cd ~/base/code/megatron-lm/
+
+CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
+MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
+DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+GPUS_PER_NODE=4
+NNODES=64
+
+MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_PORT=6000
+NODE_RANK=0
+
+NHEADS=32
+NHIDDEN=8192
+NLAYERS=32
+SEQ_LEN=1024
+
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
+GAS=$PP_CHUNKS
+
+PP_SIZE=16
+DP_SIZE=4
+TP_SIZE=4
+
+GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
+WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+
+GPT_ARGS=" \
+    --num-layers $NLAYERS \
+    --hidden-size $NHIDDEN \
+    --num-attention-heads $NHEADS \
+    --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
+    --micro-batch-size $MICRO_BATCH_SIZE \
+    --global-batch-size $GLOBAL_BATCH_SIZE \
+    --gas $GAS \
+    --lr 0.00015 \
+    --lr-decay-style cosine \
+    --min-lr 1.0e-5 \
+    --train-iters 1000 \
+    --lr-decay-iters 800 \
+    --lr-warmup-fraction .01 \
+    --weight-decay 1e-2 \
+    --clip-grad 1.0 \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --fp16 \
+    --checkpoint-activations \
+    "
+
+OUTPUT_ARGS=" \
+    --log-interval 10 \
+    --save-interval 500 \
+    --eval-interval 100 \
+    --eval-iters 10 \
+    "
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+export CMD=" \
+    `pwd`/pretrain_gpt.py \
+    --tensor-model-parallel-size $TP_SIZE \
+    --pipeline-model-parallel-size $PP_SIZE \
+    $GPT_ARGS \
+    $OUTPUT_ARGS \
+    --save $SAVE_CHECKPOINT_PATH \
+    --load $SAVE_CHECKPOINT_PATH \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --split 949,50,1 \
+    --distributed-backend nccl \
+    "
+
+# clear old checkpoint as it'd mismatch while we sort things out
+rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+
+# to debug - add echo (it exits and prints what it would have launched)
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+
+
+```
+
+Stats:
+
+```
+ iteration 40/ 1000 | consumed samples: 640 | elapsed time per iteration (ms): 1826.3 | learning
+ rate: 1.499E-04 | global batch size: 16 | lm loss: 1.290925E+01 | loss scale: 16384.0 | grad norm:
+ 7.607 | number of skipped iterations: 0 | number of nan iterations: 0 |
+time (ms) | forward-compute: 80.84 | forward-recv: 225.57 | backward-compute: 172.26 |
+backward-send: 0.86 | backward-send-forward-recv: 5.76 | backward-params-all-reduce: 307.62 |
+backward-embedding-all-reduce: 746.14 | optimizer-copy-to-main-grad: 4.20 |
+optimizer-unscale-and-check-inf: 250.90 | optimizer-clip-main-grad: 8.06 |
+optimizer-copy-main-to-model-params: 3.99 | optimizer: 286.27 | batch-generator: 2.72
+
+
+```
+
 
 
 
@@ -78,7 +678,7 @@ Status: Unoptimized
 
 
 ```
-salloc -C v100-32g --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
 ```
 
 Todo:
@@ -319,7 +919,7 @@ Status: Unoptimized
 
 
 ```
-salloc -C v100-32g --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
 ```
 
 
@@ -560,7 +1160,7 @@ time (ms) | forward: 0.00 | backward: 0.00 | optimizer: 0.00 | batch generator: 
 
 
 ```
-salloc -C v100-32g --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
 ```
 
 32GB nodes
