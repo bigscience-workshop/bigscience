@@ -17,7 +17,8 @@ Results:
 
 ```
 export NCCL_DEBUG=info
-srun --jobid $SLURM_JOBID bash -c 'python -m torch.distributed.launch --nnodes 16 --nproc_per_node=4 --node_rank $SLURM_PROCID --master_addr r7i4n1 --master_port 12345 all_reduce_bench.py' > 16_node_32gb_all_reduce_bench.txt
+export MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+srun --jobid $SLURM_JOBID bash -c 'python -m torch.distributed.launch --nnodes 16 --nproc_per_node=4 --node_rank $SLURM_PROCID --master_addr $MASTER_ADDR --master_port 12345 all_reduce_bench.py' > 16_node_32gb_all_reduce_bench.txt
 ```
 
 Results:
