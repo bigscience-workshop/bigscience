@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=meg_gpt2_n8_dp1_tp4_pp8
+#SBATCH --job-name=meg_gpt2_base_n16_dp1_tp4_pp16
 #SBATCH --constraint=v100-32g
-#SBATCH --nodes=8
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -30,17 +30,21 @@ MASTER_PORT=6000
 
 # adjust depending on the number of the nodes
 
-NNODES=8
-PP_SIZE=8 # NLAYERS must be a multiple of PP_SIZE here
+NNODES=16
+PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
+MICRO_BATCH_SIZE=4
+PP_CHUNKS=192
+
+# PP_CH MBS PP_SIZE GPUMEM CPUMEM speed/iter
+# 4     4     16      28GB  3GB   7.994s
 
 # succeeded:
-#MSIZE=18
-MSIZE=28 # maximum @32
+#MSIZE=39
+#MSIZE=48
+#MSIZE=61 # maximum @32
 
 # to try:
-# MSIZE=39 OOMed
-#MSIZE=48
-#MSIZE=75
+MSIZE=48
 
 if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
 elif [[ ${MSIZE} == 14 ]];   then NHIDDEN=6144;  NLAYERS=32
@@ -66,9 +70,6 @@ GPUS_PER_NODE=4
 NHEADS=32
 SEQ_LEN=1024
 VOCAB_SIZE=50257
-
-MICRO_BATCH_SIZE=1
-PP_CHUNKS=4
 
 DP_SIZE=1
 TP_SIZE=4
@@ -99,7 +100,7 @@ GPT_ARGS=" \
     "
 
 OUTPUT_ARGS=" \
-    --log-interval 10 \
+    --log-interval 1 \
     --save-interval 500 \
     --eval-interval 100 \
     --eval-iters 10 \
@@ -133,13 +134,4 @@ rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
-
-# iteration 180/ 1000 | consumed samples: 720 | elapsed time per iteration (ms): 1618.3 | learning
-# rate: 1.375E-04 | global batch size: 4 | lm loss: 7.811917E+00 | loss scale: 16384.0 | grad norm:
-# 3.312 | number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) | forward-compute:
-# 144.73 | forward-recv: 236.49 | backward-compute: 398.13 | backward-send: 0.75 |
-# backward-send-forward-recv: 5.22 | backward-params-all-reduce: 19.27 |
-# backward-embedding-all-reduce: 721.73 | optimizer-copy-to-main-grad: 9.19 |
-# optimizer-unscale-and-check-inf: 16.78 | optimizer-clip-main-grad: 16.21 |
-# optimizer-copy-main-to-model-params: 9.36 | optimizer: 90.96 | batch-generator: 2.58
+clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'

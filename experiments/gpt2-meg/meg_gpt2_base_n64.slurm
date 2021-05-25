@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=meg_gpt2_n32_dp1_tp4_pp32
+#SBATCH --job-name=meg_gpt2_base_n64_dp1_tp4_pp64
 #SBATCH --constraint=v100-32g
-#SBATCH --nodes=32
+#SBATCH --nodes=64
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -30,20 +30,13 @@ MASTER_PORT=6000
 
 # adjust depending on the number of the nodes
 
-NNODES=32
-PP_SIZE=32 # NLAYERS must be a multiple of PP_SIZE here
-
-#MSIZE=7
-#MSIZE=28
+NNODES=64
+PP_SIZE=64 # NLAYERS must be a multiple of PP_SIZE here
 
 # succeeded:
-#MSIZE=48
-#MSIZE=61
-#MSIZE=91
-MSIZE=109 # success
+MSIZE=193
 
 # to try:
-
 
 if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
 elif [[ ${MSIZE} == 14 ]];   then NHIDDEN=6144;  NLAYERS=32
@@ -138,11 +131,11 @@ python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
-# iteration 40/ 1000 | consumed samples: 160 | elapsed time per iteration (ms): 4234.7 | learning
-# rate: 1.499E-04 | global batch size: 4 | lm loss: 2.272675E+01 | loss scale: 16384.0 | grad norm:
-# 96.715 | number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) |
-# forward-compute: 130.18 | forward-recv: 896.29 | backward-compute: 362.68 | backward-send: 1.38 |
-# backward-send-forward-recv: 8.63 | backward-params-all-reduce: 20.87 |
-# backward-embedding-all-reduce: 2697.71 | optimizer-copy-to-main-grad: 9.42 |
-# optimizer-unscale-and-check-inf: 39.06 | optimizer-clip-main-grad: 16.64 |
-# optimizer-copy-main-to-model-params: 9.49 | optimizer: 116.13 | batch-generator: 2.76
+# iteration 40/ 1000 | consumed samples: 160 | elapsed time per iteration (ms): 6736.4 | learning
+# rate: 1.499E-04 | global batch size: 4 | lm loss: 3.169739E+01 | loss scale: 16384.0 | grad norm:
+# 13.641 | number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) |
+# forward-compute: 118.65 | forward-recv: 1581.02 | backward-compute: 321.30 | backward-send: 1.96 |
+# backward-send-forward-recv: 14.48 | backward-params-all-reduce: 20.05 |
+# backward-embedding-all-reduce: 4576.65 | optimizer-copy-to-main-grad: 8.94 |
+# optimizer-unscale-and-check-inf: 28.10 | optimizer-clip-main-grad: 15.90 |
+# optimizer-copy-main-to-model-params: 9.01 | optimizer: 101.33 | batch-generator: 2.83

@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=meg_gpt2_n4_dp1_tp4_pp4
+#SBATCH --job-name=meg_gpt2_base_n16_dp1_tp4_pp16
 #SBATCH --constraint=v100-32g
-#SBATCH --nodes=4
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -30,16 +30,17 @@ MASTER_PORT=6000
 
 # adjust depending on the number of the nodes
 
-NNODES=4
-PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
+NNODES=16
+PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
 
 # succeeded:
-# MSIZE=7
-# MSIZE=14
-MSIZE=18 # maximum @32
+#MSIZE=39
+#MSIZE=48
+MSIZE=61 # maximum @32
 
 # to try:
-#MSIZE=48
 #MSIZE=75
 
 if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
@@ -60,14 +61,12 @@ elif [[ ${MSIZE} == 193 ]];  then NHIDDEN=16384; NLAYERS=64
 else echo "invalid MSIZE: $MSIZE"
 fi
 
+
 GPUS_PER_NODE=4
 
 NHEADS=32
 SEQ_LEN=1024
 VOCAB_SIZE=50257
-
-MICRO_BATCH_SIZE=1
-PP_CHUNKS=4
 
 DP_SIZE=1
 TP_SIZE=4
@@ -134,11 +133,11 @@ python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
-# iteration 190/ 1000 | consumed samples: 760 | elapsed time per iteration (ms): 1381.7 | learning
-# rate: 1.359E-04 | global batch size: 4 | lm loss: 7.416655E+00 | loss scale: 16384.0 | grad norm:
-# 2.521 | number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) |
-# forward-compute: 175.98 | forward-recv: 126.42 | backward-compute: 515.29 | backward-send: 0.67 |
-# backward-send-forward-recv: 4.75 | backward-params-all-reduce: 23.18 |
-# backward-embedding-all-reduce: 419.14 | optimizer-copy-to-main-grad: 11.09 |
-# optimizer-unscale-and-check-inf: 25.63 | optimizer-clip-main-grad: 19.49 |
-# optimizer-copy-main-to-model-params: 11.34 | optimizer: 115.19 | batch-generator: 2.54
+# iteration 70/ 1000 | consumed samples: 280 | elapsed time per iteration (ms): 2738.6 | learning
+# rate: 1.490E-04 | global batch size: 4 | lm loss: 8.434969E+00 | loss scale: 16384.0 | grad norm:
+# 5.795 | number of skipped iterations: 0 | number of nan iterations: 0 | time (ms) | forward-compute:
+# 147.77 | forward-recv: 508.89 | backward-compute: 413.19 | backward-send: 1.21 |
+# backward-send-forward-recv: 6.61 | backward-params-all-reduce: 21.45 |
+# backward-embedding-all-reduce: 1543.07 | optimizer-copy-to-main-grad: 10.12 |
+# optimizer-unscale-and-check-inf: 12.93 | optimizer-clip-main-grad: 17.95 |
+# optimizer-copy-main-to-model-params: 10.27 | optimizer: 95.43 | batch-generator: 2.59

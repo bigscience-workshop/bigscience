@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=meg_ds_zero_gpt2_n16
+#SBATCH --job-name=meg_ds_zero_gpt2_perf_n16
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!

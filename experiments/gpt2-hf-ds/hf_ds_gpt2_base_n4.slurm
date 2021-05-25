@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=hf_ds_gpt2_n4
+#SBATCH --job-name=hf_ds_gpt2_base_n4
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
