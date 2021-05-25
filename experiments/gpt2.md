@@ -143,25 +143,43 @@ MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
 DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
 SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
-GPUS_PER_NODE=4
 NNODES=16
+MICRO_BATCH_SIZE=16
 
 MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
 MASTER_PORT=6000
 NODE_RANK=0
 
+# to try
+MSIZE=28
+
+if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
+elif [[ ${MSIZE} == 14 ]];   then NHIDDEN=6144;  NLAYERS=32
+elif [[ ${MSIZE} == 18 ]];   then NHIDDEN=6144;  NLAYERS=40
+elif [[ ${MSIZE} == 23 ]];   then NHIDDEN=7168;  NLAYERS=40
+elif [[ ${MSIZE} == 28 ]];   then NHIDDEN=7168;  NLAYERS=48
+elif [[ ${MSIZE} == 36 ]];   then NHIDDEN=8192;  NLAYERS=48
+elif [[ ${MSIZE} == 48 ]];   then NHIDDEN=8192;  NLAYERS=64
+elif [[ ${MSIZE} == 61 ]];   then NHIDDEN=9216;  NLAYERS=64
+elif [[ ${MSIZE} == 75 ]];   then NHIDDEN=10240; NLAYERS=64
+elif [[ ${MSIZE} == 91 ]];   then NHIDDEN=11264; NLAYERS=64
+elif [[ ${MSIZE} == 109 ]];  then NHIDDEN=12288; NLAYERS=64
+elif [[ ${MSIZE} == 127 ]];  then NHIDDEN=13312; NLAYERS=64
+elif [[ ${MSIZE} == 148 ]];  then NHIDDEN=14336; NLAYERS=64
+elif [[ ${MSIZE} == 169 ]];  then NHIDDEN=15360; NLAYERS=64
+elif [[ ${MSIZE} == 193 ]];  then NHIDDEN=16384; NLAYERS=64
+else echo "invalid MSIZE: $MSIZE"
+fi
+
+GPUS_PER_NODE=4
 NHEADS=32
-NHIDDEN=7168
-NLAYERS=48
 SEQ_LEN=1024
 VOCAB_SIZE=50257
-
-MICRO_BATCH_SIZE=16
 PP_CHUNKS=4
-
 PP_SIZE=16
 DP_SIZE=2
 TP_SIZE=2
+
 
 GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
@@ -203,14 +221,15 @@ stage3_prefetch_bucket_size=$(($NHIDDEN*$NHIDDEN*9/10))
 stage3_param_persistence_threshold=$((10*$NHIDDEN))
 
 # Here it is different from the other setup
-train_batch_size=$(($WORLD_SIZE*$MICRO_BATCH_SIZE*$gradient_accumulation_steps))
+#train_batch_size=$(($WORLD_SIZE*$MICRO_BATCH_SIZE*$gradient_accumulation_steps))
 
 config_json="./ds_zero_stage_3_config.json"
 
-#  "train_batch_size": $train_batch_size,
+#  "": $train_batch_size,
 
 cat <<EOT > $config_json
 {
+  "micro_batch_per_gpu": $MICRO_BATCH_SIZE,
   "gradient_accumulation_steps": $gradient_accumulation_steps,
   "steps_per_print": 10,
   "zero_optimization": {
@@ -335,6 +354,9 @@ export CMD=" \
     "
 
 rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+
+# model size
+python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
