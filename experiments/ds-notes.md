@@ -23,4 +23,13 @@ In this case seeing that the DP and parameter parallel size match means ZeRO wil
 
 
 
-##
+## experiments
+
+
+- try to tune up the max micro-bs on 1 node model scaled down to a few layers (Same hidden size)
+- experiment in the range of 16 to 64 to get the highest tflops
+- how efficient it's running w/o communications
+- fit on a single node
+- could turn off optimizer step - no communications between gpus
+- one more hyper param to experiment with:
+  tiled - turn it on - overlapping communication improvement

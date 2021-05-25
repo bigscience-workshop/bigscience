@@ -41,25 +41,25 @@ These first results are all about how big of a model can be fit into the given t
 
 16GB nodes:
 
-| GPUs | Size | Micro BS | Global BS |  DP | PP | Throughput |
-| ---: | ---: | -------: | --------: | --: | -: | ---------: |
-|   16 | 7.5B |        1 |         4 |   1 |  4 |  .661s     |
-|   64 |  30B |        1 |         4 |   1 | 16 | 1.439s     |
-|  128 |  50B |        1 |         4 |   1 | 32 | 2.124s     |
-|  256 |  78B |        1 |         4 |   1 | 64 | 2.953s     |
-|  256 |  22B |        1 |         4 |   4 | 16 | 1.826s     |
-|      |      |          |           |     |    |            |
+| GPUs | Model Size | Micro BS | Global BS |  DP | PP | Throughput |
+| ---: | ---------: | -------: | --------: | --: | -: | ---------: |
+|   16 | 7.5B       |        1 |         4 |   1 |  4 | .661s      |
+|   64 |  30B       |        1 |         4 |   1 | 16 | 1.439s     |
+|  128 |  50B       |        1 |         4 |   1 | 32 | 2.124s     |
+|  256 |  78B       |        1 |         4 |   1 | 64 | 2.953s     |
+|  256 |  22B       |        1 |         4 |   4 | 16 | 1.826s     |
+|      |            |          |           |     |    |            |
 
 32GB nodes:
 
-| GPUs | Size | Micro BS | Global BS |  DP | PP | Throughput | TFlops |
-| ---: | ---: | -------: | --------: | --: | -: | ---------: | -----: |
-|   16 |  18B |        1 |         4 |   1 |  4 | 1.381s     | 26.693 |
-|   32 |  28B |        1 |         4 |   1 |  8 | 1.618s     | 17.720 |
-|   64 |  61B |        1 |         4 |   1 | 16 | 2.738s     | 11.406 |
-|  128 | 109B |        1 |         4 |   1 | 32 | 4.234s     |  6.590 |
-|  256 | 193B |        1 |         4 |   1 | 64 | 6.736s     |  3.667 |
-|      |      |          |           |     |    |            |        |
+| GPUs | Model Size | Micro BS | Global BS |  DP | PP | Throughput | TFlops |
+| ---: | ---------: | -------: | --------: | --: | -: | ---------: | -----: |
+|   16 |  18B       |        1 |         4 |   1 |  4 | 1.381s     | 26.693 |
+|   32 |  28B       |        1 |         4 |   1 |  8 | 1.618s     | 17.720 |
+|   64 |  61B       |        1 |         4 |   1 | 16 | 2.738s     | 11.406 |
+|  128 | 109B       |        1 |         4 |   1 | 32 | 4.234s     |  6.590 |
+|  256 | 193B       |        1 |         4 |   1 | 64 | 6.736s     |  3.667 |
+|      |            |          |           |     |    |            |        |
 
 The TFLops are very low because there are too few PP chunks (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also lower the max model size.
 
@@ -77,22 +77,36 @@ The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg).
 
 Not yet optimized with Deepspeed team!
 
-| GPUs | Size | Micro BS | Global BS | DP  | PP | Throughput |
-| ---: | ---: | -------: | --------: | --: | -: | ---------: |
-| 64   | 30B  | 1        | 4         | 1   | 16 | 28.7s      |
-|      |      |          |           |     |    |            |
+| GPUs | Model Size | Micro BS | Global BS |  DP | Throughput | TFlops |
+| ---: | ---------: | -------: | --------: | --: | ---------: | -----: |
+|   64 |        30B |        1 |         4 |  16 | 28.7s      |   0.39 |
+|   64 |        48B |       48 |       768 |  16 | 122s       |  38.67 |
+|      |            |          |           |     |            |        |
+|      |            |          |           |     |            |        |
 
+
+
+```
+perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+```
+- Seq length is 1024
+- `TP=4` in all of entries
+- `DP` is number of nodes here
+- Throughput is time per iteration - to complete global batch size
+- Global batch size is `micro-batch-size * nnodes`
+
+- tried w/ and w/o Tiling once but saw no difference - perhaps would be more important on larger collections
 
 **HF + Deepspeed Zero 3 + Full Offload**
 
-| GPUs | Size | Global BS | Throughput | TFlops |
-| ---: | ---: | --------: | ---------: | -----: |
-|   16 | 23B  |         4 | 4.352s     |  10.82 |
-|   32 | 48B  |         4 | 4.464s     |  11.02 |
-|   64 | 91B  |         4 | 4.784s     |   9.73 |
-|      |      |           |            |        |
-|   64 | 61B  |         4 | 7.22s      |   4.32 |
-|      |      |           |            |        |
+| GPUs | Model Size | Global BS | Throughput | TFlops |
+| ---: | ---------: | --------: | ---------: | -----: |
+|   16 | 23B        |         4 | 4.352s     |  10.82 |
+|   32 | 48B        |         4 | 4.464s     |  11.02 |
+|   64 | 91B        |         4 | 4.784s     |   9.73 |
+|      |            |           |            |        |
+|   64 | 61B        |         4 | 7.22s      |   4.32 |
+|      |            |           |            |        |
 
 - gradient checkpointing activated
 
@@ -116,261 +130,7 @@ As each node has about 160GB of memory, the model size you can run with Z2-Offlo
 
 Status: Unoptimized
 
-### Nodes=16
-
-
-```
-salloc -C v100-32g --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
-```
-
-Todo:
-
-46B experiment:
-NHEADS=32
-NHIDDEN=9216
-NLAYERS=48
-SEQ_LEN=1024
-VOCAB_SIZE=50257
-
-
-```
-
-cd ~/base/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
-
-CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
-VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
-MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
-
-NNODES=16
-MICRO_BATCH_SIZE=16
-
-MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
-MASTER_PORT=6000
-NODE_RANK=0
-
-# to try
-MSIZE=28
-
-if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
-elif [[ ${MSIZE} == 14 ]];   then NHIDDEN=6144;  NLAYERS=32
-elif [[ ${MSIZE} == 18 ]];   then NHIDDEN=6144;  NLAYERS=40
-elif [[ ${MSIZE} == 23 ]];   then NHIDDEN=7168;  NLAYERS=40
-elif [[ ${MSIZE} == 28 ]];   then NHIDDEN=7168;  NLAYERS=48
-elif [[ ${MSIZE} == 36 ]];   then NHIDDEN=8192;  NLAYERS=48
-elif [[ ${MSIZE} == 48 ]];   then NHIDDEN=8192;  NLAYERS=64
-elif [[ ${MSIZE} == 61 ]];   then NHIDDEN=9216;  NLAYERS=64
-elif [[ ${MSIZE} == 75 ]];   then NHIDDEN=10240; NLAYERS=64
-elif [[ ${MSIZE} == 91 ]];   then NHIDDEN=11264; NLAYERS=64
-elif [[ ${MSIZE} == 109 ]];  then NHIDDEN=12288; NLAYERS=64
-elif [[ ${MSIZE} == 127 ]];  then NHIDDEN=13312; NLAYERS=64
-elif [[ ${MSIZE} == 148 ]];  then NHIDDEN=14336; NLAYERS=64
-elif [[ ${MSIZE} == 169 ]];  then NHIDDEN=15360; NLAYERS=64
-elif [[ ${MSIZE} == 193 ]];  then NHIDDEN=16384; NLAYERS=64
-else echo "invalid MSIZE: $MSIZE"
-fi
-
-GPUS_PER_NODE=4
-NHEADS=32
-SEQ_LEN=1024
-VOCAB_SIZE=50257
-PP_CHUNKS=4
-PP_SIZE=16
-DP_SIZE=2
-TP_SIZE=2
-
-
-GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
-WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
-
-#    --micro-batch-size $MICRO_BATCH_SIZE \
-#    --lr-warmup-fraction .01 \
-#    --global-batch-size $GLOBAL_BATCH_SIZE
-GPT_ARGS=" \
-    --num-layers $NLAYERS \
-    --hidden-size $NHIDDEN \
-    --num-attention-heads $NHEADS \
-    --seq-length $SEQ_LEN \
-    --max-position-embeddings $SEQ_LEN \
-    --batch-size $MICRO_BATCH_SIZE \
-    --train-iters 1000 \
-    --lr-decay-iters 800 \
-    --vocab-file $VOCAB_FILE \
-    --merge-file $MERGE_FILE \
-    --lr 1.5e-4 \
-    --lr-decay-style cosine \
-    --min-lr 1.0e-5 \
-    --weight-decay 1e-2 \
-    --clip-grad 1.0 \
-    --warmup 0.01 \
-    --fp16 \
-    "
-
-OUTPUT_ARGS=" \
-    --log-interval 1 \
-    --save-interval 500 \
-    --eval-interval 100 \
-    --eval-iters 10 \
-    "
-
-#ZeRO Configs
-gradient_accumulation_steps=1
-reduce_bucket_size=$(($NHIDDEN*$NHIDDEN))
-stage3_prefetch_bucket_size=$(($NHIDDEN*$NHIDDEN*9/10))
-stage3_param_persistence_threshold=$((10*$NHIDDEN))
-
-# Here it is different from the other setup
-#train_batch_size=$(($WORLD_SIZE*$MICRO_BATCH_SIZE*$gradient_accumulation_steps))
-
-config_json="./ds_zero_stage_3_config.json"
-
-#  "": $train_batch_size,
-
-cat <<EOT > $config_json
-{
-  "micro_batch_per_gpu": $MICRO_BATCH_SIZE,
-  "gradient_accumulation_steps": $gradient_accumulation_steps,
-  "steps_per_print": 10,
-  "zero_optimization": {
-    "stage": 3,
-    "stage3_max_live_parameters": 1e9,
-    "stage3_max_reuse_distance": 1e9,
-    "stage3_prefetch_bucket_size": $stage3_prefetch_bucket_size,
-    "stage3_param_persitence_threshold": $stage3_param_persistence_threshold,
-    "reduce_bucket_size": $reduce_bucket_size,
-    "contiguous_gradients": true
-  },
-  "gradient_clipping": 1.0,
-  "fp16": {
-    "enabled": true,
-    "loss_scale": 0,
-    "initial_scale_power": 10,
-    "loss_scale_window": 1000,
-    "hysteresis": 2,
-    "min_loss_scale": 1
-  },
-  "wall_clock_breakdown": false,
-  "zero_allow_untested_optimizer": false
-}
-EOT
-
-MP_SIZE=$TP_SIZE
-
-stage=3
-reduce_scatter=true
-contigious_gradients=true
-rbs=50000000
-agbs=5000000000
-
-#Activation Checkpointing and Contigious Memory
-chkp_layers=1
-PA=true
-PA_CPU=true
-CC=true
-SYNCHRONIZE=true
-PROFILE=false
-
-# TiledLinear splits, 0 is disable
-TILED_LINEAR="false"
-TILE_DIM=1
-
-
-DEEPSPEED_ARGS=" \
-    --deepspeed \
-    --deepspeed_config ${config_json} \
-    --zero-stage ${stage} \
-    --zero-reduce-bucket-size ${rbs} \
-    --zero-allgather-bucket-size ${agbs} \
-    "
-
-if [ "${contigious_gradients}" = "true" ]; then
-DEEPSPEED_ARGS="${DEEPSPEED_ARGS} \
-    --zero-contigious-gradients"
-fi
-
-if [ "${reduce_scatter}" = "true" ]; then
-DEEPSPEED_ARGS="${DEEPSPEED_ARGS} \
-    --zero-reduce-scatter"
-fi
-
-CHKP_ARGS=" \
---checkpoint-activations \
---deepspeed-activation-checkpointing \
---checkpoint-num-layers ${chkp_layers}"
-
-if [ "${PA}" = "true" ]; then
-CHKP_ARGS="${CHKP_ARGS} --partition-activations"
-fi
-
-if [ "${PA_CPU}" = "true" ]; then
-CHKP_ARGS="${CHKP_ARGS} \
-        --checkpoint-in-cpu"
-fi
-
-if [ "${SYNCHRONIZE}" = "true" ]; then
-CHKP_ARGS="${CHKP_ARGS} \
-        --synchronize-each-layer"
-fi
-
-if [ "${CC}" = "true" ]; then
-CHKP_ARGS="${CHKP_ARGS} \
-        --contigious-checkpointing"
-fi
-
-if [ "${PROFILE}" = "true" ]; then
-CHKP_ARGS="${CHKP_ARGS} \
-        --profile-backward"
-fi
-
-if [ "${TILED_LINEAR}" = "true" ]; then
-tile_opt="${tile_opt} \
-        --memory-centric-tiled-linear \
-        --tile-factor=${TILE_DIM}"
-fi
-
-export LAUNCHER="python -u -m torch.distributed.launch \
-    --nproc_per_node $GPUS_PER_NODE \
-    --nnodes $NNODES \
-    --master_addr $MASTER_ADDR \
-    --master_port $MASTER_PORT \
-    "
-
-#    --tensor-model-parallel-size $TP_SIZE \
-#    --pipeline-model-parallel-size $PP_SIZE \
-export CMD=" \
-    `pwd`/pretrain_gpt2.py \
-    --model-parallel-size $TP_SIZE \
-    $GPT_ARGS \
-    $OUTPUT_ARGS \
-    --save $SAVE_CHECKPOINT_PATH \
-    --load $SAVE_CHECKPOINT_PATH \
-    --data-path $DATA_PATH \
-    --data-impl mmap \
-    --split 949,50,1 \
-    --distributed-backend nccl \
-     $DEEPSPEED_ARGS \
-     $CHKP_ARGS \
-    "
-
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
-
-# model size
-python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
-
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
-
-```
-
-Stats:
-
-```
-iteration 20/ 1000 | elapsed time per iteration (ms): 28716.0 | learning rate: 1.500E-04 | lm loss:
-2.324108E+01 | loss scale: 1024.0 | number of skipped iterations: 0 | number of nan iterations: 0 |
-time (ms) | forward: 5495.35 | backward: 22976.72 | backward-backward: 22976.69 |
-backward-allreduce: 0.00 | optimizer: 243.03 | batch generator: 1.00 Effective Tera Flops per GPU:
-0.21 and total parameters 29.998 B
-```
+See scripts and logs under [gpt2-meg-ds-zero](./gpt2-meg-ds-zero).
 
 
 ## Megatron + Deepspeed 3D Parallelism
