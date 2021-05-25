@@ -37,7 +37,7 @@ Not yet optimized with NVIDIA team!
 
 16GB nodes:
 
-| GPUs | Size | Micro-BS | PP Chunks |  DP | PP | Throughput |
+| GPUs | Size | Micro-BS | Global BS |  DP | PP | Throughput |
 | ---: | ---: | -------: | --------: | --: | -: | ---------: |
 |   16 | 7.5B |        1 |         4 |   1 |  4 |  661ms     |
 |   64 |  30B |        1 |         4 |   1 | 16 | 1439ms     |
@@ -48,18 +48,18 @@ Not yet optimized with NVIDIA team!
 
 32GB nodes:
 
-| GPUs | Size | Micro-BS | PP Chunks |  DP | PP | Throughput | TFlops |
+| GPUs | Size | Micro-BS | Global BS |  DP | PP | Throughput | TFlops |
 | ---: | ---: | -------: | --------: | --: | -: | ---------: | -----: |
-|   16 | 18B  |        1 |         4 |   1 |  4 | 1381.7ms   | 26.693 |
-|   32 | 28B  |        1 |         4 |   1 |  8 | 1618.3ms   | 17.720 |
-|   64 | 61B  |        1 |         4 |   1 | 16 | 2738.6ms   | 11.406 |
+|   16 |  18B |        1 |         4 |   1 |  4 | 1381.7ms   | 26.693 |
+|   32 |  28B |        1 |         4 |   1 |  8 | 1618.3ms   | 17.720 |
+|   64 |  61B |        1 |         4 |   1 | 16 | 2738.6ms   | 11.406 |
 |  128 | 109B |        1 |         4 |   1 | 32 | 4234.7ms   |  6.590 |
 |  256 | 193B |        1 |         4 |   1 | 64 | 6736.4ms   |  3.667 |
 |      |      |          |           |     |    |            |        |
 
 The TFLops are very low because there are too few PP chunks (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also lower the max model size.
 
-
+- Size = Model Size
 - `TP=4` in all of entries
 - Throughput is time per iteration - to complete global batch size
 - Global batch size is `micro-batch-size * pp_chunks * dp_size`
@@ -73,7 +73,7 @@ The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg).
 
 Not yet optimized with Deepspeed team!
 
-| GPUs | Size | Micro-BS | PP Chunks | DP  | PP | Throughput |
+| GPUs | Size | Micro-BS | Global BS | DP  | PP | Throughput |
 | ---: | ---: | -------: | --------: | --: | -: | ---------: |
 | 64   | 30B  | 1        | 4         | 1   | 16 | 28716ms    |
 |      |      |          |           |     |    |            |
