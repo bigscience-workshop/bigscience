@@ -26,6 +26,8 @@ otherwise it will be 3, but for 200B model, activation check-pointing will alway
 
 The peak of V100 32gb gpu is about 125 TFlops/sec [spec](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf). But we cannot get the peak. The max achievable performance will be 30-60TFlops depending on the model size. So if you see low 20s, the model is not tuned well, if you see, over 100 then there is a bug in the calculation. ￼
 
+For v100 16gb gpus the max spec is 120 TFlops/sec.
+
 
 ### Summary
 
@@ -35,26 +37,28 @@ This section summarizes the numbers from the experiment sections below:
 
 Not yet optimized with NVIDIA team!
 
+These first results are all about how big of a model can be fit into the given the hardware on the smallest batch size, disregarding throughput.
+
 16GB nodes:
 
-| GPUs | Size | Micro-BS | Global BS |  DP | PP | Throughput |
+| GPUs | Size | Micro BS | Global BS |  DP | PP | Throughput |
 | ---: | ---: | -------: | --------: | --: | -: | ---------: |
-|   16 | 7.5B |        1 |         4 |   1 |  4 |  661ms     |
-|   64 |  30B |        1 |         4 |   1 | 16 | 1439ms     |
-|  128 |  50B |        1 |         4 |   1 | 32 | 2124ms     |
-|  256 |  78B |        1 |         4 |   1 | 64 | 2953ms     |
-|  256 |  22B |        1 |         4 |   4 | 16 | 1826ms     |
+|   16 | 7.5B |        1 |         4 |   1 |  4 |  .661s     |
+|   64 |  30B |        1 |         4 |   1 | 16 | 1.439s     |
+|  128 |  50B |        1 |         4 |   1 | 32 | 2.124s     |
+|  256 |  78B |        1 |         4 |   1 | 64 | 2.953s     |
+|  256 |  22B |        1 |         4 |   4 | 16 | 1.826s     |
 |      |      |          |           |     |    |            |
 
 32GB nodes:
 
-| GPUs | Size | Micro-BS | Global BS |  DP | PP | Throughput | TFlops |
+| GPUs | Size | Micro BS | Global BS |  DP | PP | Throughput | TFlops |
 | ---: | ---: | -------: | --------: | --: | -: | ---------: | -----: |
-|   16 |  18B |        1 |         4 |   1 |  4 | 1381.7ms   | 26.693 |
-|   32 |  28B |        1 |         4 |   1 |  8 | 1618.3ms   | 17.720 |
-|   64 |  61B |        1 |         4 |   1 | 16 | 2738.6ms   | 11.406 |
-|  128 | 109B |        1 |         4 |   1 | 32 | 4234.7ms   |  6.590 |
-|  256 | 193B |        1 |         4 |   1 | 64 | 6736.4ms   |  3.667 |
+|   16 |  18B |        1 |         4 |   1 |  4 | 1.381s     | 26.693 |
+|   32 |  28B |        1 |         4 |   1 |  8 | 1.618s     | 17.720 |
+|   64 |  61B |        1 |         4 |   1 | 16 | 2.738s     | 11.406 |
+|  128 | 109B |        1 |         4 |   1 | 32 | 4.234s     |  6.590 |
+|  256 | 193B |        1 |         4 |   1 | 64 | 6.736s     |  3.667 |
 |      |      |          |           |     |    |            |        |
 
 The TFLops are very low because there are too few PP chunks (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also lower the max model size.
@@ -73,10 +77,28 @@ The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg).
 
 Not yet optimized with Deepspeed team!
 
-| GPUs | Size | Micro-BS | Global BS | DP  | PP | Throughput |
+| GPUs | Size | Micro BS | Global BS | DP  | PP | Throughput |
 | ---: | ---: | -------: | --------: | --: | -: | ---------: |
-| 64   | 30B  | 1        | 4         | 1   | 16 | 28716ms    |
+| 64   | 30B  | 1        | 4         | 1   | 16 | 28.7s      |
 |      |      |          |           |     |    |            |
+
+
+**HF + Deepspeed Zero 3 + Full Offload**
+
+| GPUs | Size | Global BS | Throughput | TFlops |
+| ---: | ---: | --------: | ---------: | -----: |
+| 64   | 91B  | 4         | 4.784s     | 9.73   |
+|      |      |           |            |        |
+
+- gradient checkpointing activated
+
+Throughput reported by HF Trainer is samples_per_second - So total throughput in the table is `samples_per_second*global_bs`
+
+TFlops: `model_size_in_B * 4 * 2 * seq * global_batch_size / (time_in_sec_per_interations * total_gpus * 1e3)`
+```
+perl -le '$ng=64; $ms=91; $gbs=4; $sp=4.784; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+9.73
+```
 
 ## Deepspeed notes
 

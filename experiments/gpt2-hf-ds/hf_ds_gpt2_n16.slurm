@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
-#SBATCH --time 00:10:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time 00:30:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
 #SBATCH --account=eha@gpu
@@ -31,15 +31,15 @@ MASTER_PORT=6000
 # adjust depending on the number of the nodes
 
 NNODES=16
-MICRO_BATCH_SIZE=1
+MICRO_BATCH_SIZE=4
 
 # succeeded:
 # MSIZE=28
 # MSIZE=36
 # MSIZE=48
-
-# to try:
-MSIZE=61
+# MSIZE=61 @ MICRO_BATCH_SIZE=4
+# MSIZE=75
+MSIZE=91
 
 
 if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
@@ -81,7 +81,7 @@ cat <<EOT > $config_json
         "enabled": "auto",
         "loss_scale": 0,
         "loss_scale_window": 1000,
-        "initial_scale_power": 9,
+        "initial_scale_power": 8,
         "hysteresis": 2,
         "min_loss_scale": 1
     },

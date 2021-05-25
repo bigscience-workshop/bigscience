@@ -1,0 +1,561 @@
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[2021-05-25 05:21:12,648] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,648] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,804] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,814] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,819] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,820] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,846] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,857] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,862] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,875] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,886] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,893] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,898] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,899] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,901] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,911] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,914] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,917] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,971] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,982] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,985] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,987] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,988] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,995] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,996] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,997] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:12,998] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,002] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,008] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,013] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,041] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,051] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,055] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,060] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,099] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,110] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,112] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,115] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,188] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,198] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,204] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,204] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,428] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,428] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,428] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,428] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,647] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,656] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,662] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,667] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,818] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,818] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,818] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,818] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,884] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,884] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,884] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,884] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,986] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,986] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,986] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:13,986] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:15,547] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+[2021-05-25 05:21:15,561] [INFO] [distributed.py:46:init_distributed] Initializing torch distributed with backend: nccl
+nn.functional.linear has been overridden with a more memory efficient version. This will persist unless manually reset.
+[2021-05-25 05:21:24,375] [INFO] [logging.py:60:log_dist] [Rank 0] DeepSpeed info: version=0.3.17+unknown, git-hash=unknown, git-branch=unknown
+[2021-05-25 05:21:24,426] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,430] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,431] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,432] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,432] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,433] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,433] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,434] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,435] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,435] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,436] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,440] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,440] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,444] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,446] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,447] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,449] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,450] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,451] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,454] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,482] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,484] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,487] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,488] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,489] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,489] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,489] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,490] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,510] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,510] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,512] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,512] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,517] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,520] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,521] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,522] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,523] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,527] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,528] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,529] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,529] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,530] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,532] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,532] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,532] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,533] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,534] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,538] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,568] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,572] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,572] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,574] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,606] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,610] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,611] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,612] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,680] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,680] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,684] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,686] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,730] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,731] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,733] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:24,735] [INFO] [utils.py:11:_initialize_parameter_parallel_groups] data_parallel_size: 64, parameter_parallel_size: 64
+[2021-05-25 05:21:25,079] [INFO] [engine.py:164:__init__] DeepSpeed Flops Profiler Enabled: False
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+[2021-05-25 05:21:26,130] [INFO] [engine.py:636:_configure_optimizer] Using DeepSpeed Optimizer param name adamw as basic optimizer
+[2021-05-25 05:21:26,130] [INFO] [engine.py:641:_configure_optimizer] DeepSpeed Basic Optimizer = DeepSpeedCPUAdam
+Checking ZeRO support for optimizer=DeepSpeedCPUAdam type=<class 'deepspeed.ops.adam.cpu_adam.DeepSpeedCPUAdam'>
+[2021-05-25 05:21:26,130] [INFO] [logging.py:60:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer
+Initializing ZeRO Stage 3
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+[2021-05-25 05:21:26,212] [INFO] [utils.py:588:see_memory_usage] Stage 3 initialize beginning
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+[2021-05-25 05:21:26,213] [INFO] [utils.py:589:see_memory_usage] MA 3.97 GB         Max_MA 6.02 GB         CA 9.12 GB         Max_CA 9 GB 
+[2021-05-25 05:21:26,213] [INFO] [utils.py:597:see_memory_usage] CPU Virtual Memory:  used = 39.9 GB, percent = 21.3%
+[2021-05-25 05:21:26,213] [INFO] [stage3.py:624:__init__] Reduce bucket size 126877696
+[2021-05-25 05:21:26,213] [INFO] [stage3.py:625:__init__] Allgather bucket size 114189926.4
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+[2021-05-25 05:21:26,227] [INFO] [stage3.py:39:print_rank_0] FP16 params swapping is False, Max params in CPU is 1000000000.0
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+[2021-05-25 05:21:26,295] [INFO] [utils.py:588:see_memory_usage] Before creating fp16 partitions
+[2021-05-25 05:21:26,295] [INFO] [utils.py:589:see_memory_usage] MA 3.97 GB         Max_MA 3.97 GB         CA 9.12 GB         Max_CA 9 GB 
+[2021-05-25 05:21:26,296] [INFO] [utils.py:597:see_memory_usage] CPU Virtual Memory:  used = 39.9 GB, percent = 21.3%
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+Adam Optimizer #0 is created with AVX512 arithmetic capability.
+Config: alpha=0.000050, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_w=1
+[2021-05-25 05:21:28,113] [INFO] [stage3.py:39:print_rank_0] fp16 group 0 has 1 subgroups
+[2021-05-25 05:21:31,174] [INFO] [stage3.py:39:print_rank_0] Swappable FP32 Partitions: count=0 size= 0.00 GB
+[2021-05-25 05:21:31,174] [INFO] [stage3.py:39:print_rank_0] In-Memory FP32 Partitions: count=1 size= 5.71 GB
+[2021-05-25 05:21:45,894] [INFO] [stage3.py:819:__init__] optimizer state initialized
+[2021-05-25 05:21:45,895] [INFO] [stage3.py:39:print_rank_0] Largest partitioned param numel = 1531704592
+[2021-05-25 05:22:16,472] [INFO] [utils.py:588:see_memory_usage] After initializing ZeRO optimizer
+[2021-05-25 05:22:16,473] [INFO] [utils.py:589:see_memory_usage] MA 5.77 GB         Max_MA 7.66 GB         CA 14.83 GB         Max_CA 15 GB 
+[2021-05-25 05:22:16,473] [INFO] [utils.py:597:see_memory_usage] CPU Virtual Memory:  used = 143.57 GB, percent = 76.7%
+[2021-05-25 05:22:16,473] [INFO] [logging.py:60:log_dist] [Rank 0] DeepSpeed Final Optimizer = adamw
+[2021-05-25 05:22:16,473] [INFO] [engine.py:449:_configure_lr_scheduler] DeepSpeed using configured LR scheduler = WarmupLR
+[2021-05-25 05:22:16,474] [INFO] [logging.py:60:log_dist] [Rank 0] DeepSpeed LR Scheduler = <deepspeed.runtime.lr_schedules.WarmupLR object at 0x148d59937fd0>
+[2021-05-25 05:22:16,474] [INFO] [logging.py:60:log_dist] [Rank 0] step=0, skipped=0, lr=[5e-05], mom=[[0.9, 0.999]]
+[2021-05-25 05:22:16,474] [INFO] [config.py:748:print] DeepSpeedEngine configuration:
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   activation_checkpointing_config  {
+    "partition_activations": false, 
+    "contiguous_memory_optimization": false, 
+    "cpu_checkpointing": false, 
+    "number_checkpoints": null, 
+    "synchronize_checkpoint_boundary": false, 
+    "profile": false
+}
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True}
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   allreduce_always_fp32 ........ False
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   amp_enabled .................. False
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   amp_params ................... False
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   checkpoint_tag_validation_enabled  True
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   checkpoint_tag_validation_fail  False
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   disable_allgather ............ False
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   dump_state ................... False
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   dynamic_loss_scale_args ...... {'init_scale': 256, 'scale_window': 1000, 'delayed_shift': 2, 'min_scale': 1}
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   elasticity_enabled ........... False
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   flops_profiler_config ........ {
+    "enabled": false, 
+    "profile_step": 1, 
+    "module_depth": -1, 
+    "top_modules": 1, 
+    "detailed": true, 
+    "output_file": null
+}
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   fp16_enabled ................. True
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   global_rank .................. 0
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   gradient_accumulation_steps .. 1
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   gradient_clipping ............ 1.0
+[2021-05-25 05:22:16,474] [INFO] [config.py:752:print]   gradient_predivide_factor .... 1.0
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   initial_dynamic_scale ........ 256
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   loss_scale ................... 0
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   memory_breakdown ............. False
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   optimizer_legacy_fusion ...... False
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   optimizer_name ............... adamw
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   optimizer_params ............. {'lr': 5e-05, 'betas': [0.9, 0.999], 'eps': 1e-08, 'weight_decay': 0.0}
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0}
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   pld_enabled .................. False
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   pld_params ................... False
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   prescale_gradients ........... False
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   scheduler_name ............... WarmupLR
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   scheduler_params ............. {'warmup_min_lr': 0, 'warmup_max_lr': 5e-05, 'warmup_num_steps': 8}
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   sparse_attention ............. None
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   sparse_gradients_enabled ..... False
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   steps_per_print .............. 2000
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   tensorboard_enabled .......... False
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   tensorboard_job_name ......... DeepSpeedJobName
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   tensorboard_output_path ...... 
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   train_batch_size ............. 256
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   train_micro_batch_size_per_gpu  4
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   wall_clock_breakdown ......... False
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   world_size ................... 64
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   zero_allow_untested_optimizer  False
+[2021-05-25 05:22:16,475] [INFO] [config.py:752:print]   zero_config .................. {
+    "stage": 3, 
+    "contiguous_gradients": true, 
+    "reduce_scatter": false, 
+    "reduce_bucket_size": 1.268777e+08, 
+    "allgather_partitions": true, 
+    "allgather_bucket_size": 5.000000e+08, 
+    "overlap_comm": true, 
+    "load_from_fp32_weights": true, 
+    "elastic_checkpoint": true, 
+    "offload_param": {
+        "device": "cpu", 
+        "nvme_path": null, 
+        "buffer_count": 5, 
+        "buffer_size": 1.000000e+08, 
+        "max_in_cpu": 1.000000e+09, 
+        "pin_memory": true
+    }, 
+    "offload_optimizer": {
+        "device": "cpu", 
+        "nvme_path": null, 
+        "buffer_count": 4, 
+        "pin_memory": true, 
+        "pipeline_read": false, 
+        "pipeline_write": false, 
+        "fast_init": false, 
+        "pipeline": false
+    }, 
+    "sub_group_size": 1.000000e+14, 
+    "prefetch_bucket_size": 1.141899e+08, 
+    "param_persistence_threshold": 1.126400e+05, 
+    "max_live_parameters": 1.000000e+09, 
+    "max_reuse_distance": 1.000000e+09, 
+    "gather_fp16_weights_on_model_save": false, 
+    "ignore_unused_parameters": true
+}
+[2021-05-25 05:22:16,476] [INFO] [config.py:752:print]   zero_enabled ................. True
+[2021-05-25 05:22:16,476] [INFO] [config.py:752:print]   zero_optimization_stage ...... 3
+[2021-05-25 05:22:16,476] [INFO] [config.py:754:print]   json = {
+    "fp16": {
+        "enabled": true, 
+        "loss_scale": 0, 
+        "loss_scale_window": 1000, 
+        "initial_scale_power": 8, 
+        "hysteresis": 2, 
+        "min_loss_scale": 1
+    }, 
+    "optimizer": {
+        "type": "AdamW", 
+        "params": {
+            "lr": 5e-05, 
+            "betas": [0.9, 0.999], 
+            "eps": 1e-08, 
+            "weight_decay": 0.0
+        }
+    }, 
+    "scheduler": {
+        "type": "WarmupLR", 
+        "params": {
+            "warmup_min_lr": 0, 
+            "warmup_max_lr": 5e-05, 
+            "warmup_num_steps": 8
+        }
+    }, 
+    "zero_optimization": {
+        "stage": 3, 
+        "offload_optimizer": {
+            "device": "cpu", 
+            "pin_memory": true
+        }, 
+        "offload_param": {
+            "device": "cpu", 
+            "pin_memory": true
+        }, 
+        "overlap_comm": true, 
+        "contiguous_gradients": true, 
+        "sub_group_size": 1.000000e+14, 
+        "reduce_bucket_size": 1.268777e+08, 
+        "stage3_prefetch_bucket_size": 1.141899e+08, 
+        "stage3_param_persistence_threshold": 1.126400e+05, 
+        "stage3_max_live_parameters": 1.000000e+09, 
+        "stage3_max_reuse_distance": 1.000000e+09, 
+        "stage3_gather_fp16_weights_on_model_save": false
+    }, 
+    "gradient_accumulation_steps": 1, 
+    "gradient_clipping": 1.0, 
+    "steps_per_print": 2.000000e+03, 
+    "train_batch_size": 256, 
+    "train_micro_batch_size_per_gpu": 4, 
+    "wall_clock_breakdown": false
+}
+[2021-05-25 05:29:14,954] [INFO] [stage3.py:2708:_overflow_clean_up] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 256, reducing to 256
+[2021-05-25 05:32:40,976] [INFO] [stage3.py:2708:_overflow_clean_up] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 256, reducing to 128.0
+{'train_runtime': 836.394, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.4123, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.4003, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.3787, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.3778, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.4006, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.7121, 'train_samples_per_second': 1.195, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.3925, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.3826, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.7217, 'train_samples_per_second': 1.195, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.3661, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.3864, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.3817, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.708, 'train_samples_per_second': 1.195, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.3039, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+{'train_runtime': 836.3806, 'train_samples_per_second': 1.196, 'train_steps_per_second': 0.005, 'epoch': 1.0}
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,150] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,151] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,152] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,161] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,161] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
+[2021-05-25 05:36:13,569] [INFO] [engine.py:1867:save_fp16_model] Did not save the model output_dir/pytorch_model.bin because `stage3_gather_fp16_weights_on_model_save` is False
