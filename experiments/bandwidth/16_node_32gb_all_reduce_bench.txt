@@ -1,0 +1,3145 @@
+export NCCL_DEBUG=info
+srun --jobid $SLURM_JOBID bash -c 'python -m torch.distributed.launch --nnodes 16 --nproc_per_node=4 --node_rank $SLURM_PROCID --master_addr r7i4n1 --master_port 12345 all_reduce_bench.py' > 16_node_32gb_all_reduce_bench.txt
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+local_rank: 1
+local_rank: 3
+local_rank: 2
+local_rank: 1
+local_rank: 2
+local_rank: 2
+local_rank: 2
+local_rank: 3
+local_rank: 1
+local_rank: 2
+local_rank: 0
+local_rank: 3
+local_rank: 1
+local_rank: 2
+local_rank: 3
+local_rank: 0
+local_rank: 3
+local_rank: 3
+local_rank: 1
+local_rank: 0
+local_rank: 0
+local_rank: 2
+local_rank: 0
+local_rank: 3
+local_rank: 2
+local_rank: 3
+local_rank: 0
+local_rank: 1
+local_rank: 2
+local_rank: 1
+local_rank: 3
+local_rank: 3
+local_rank: 3
+local_rank: 1
+local_rank: 0
+local_rank: 1
+local_rank: 2
+local_rank: 1
+local_rank: 3
+local_rank: 2
+local_rank: 2
+local_rank: 1
+local_rank: 3
+local_rank: 1
+local_rank: 2
+local_rank: 3
+local_rank: 0
+local_rank: 1
+local_rank: 2
+local_rank: 1
+local_rank: 3
+local_rank: 0
+local_rank: 2
+local_rank: 0
+local_rank: 0
+local_rank: 0
+local_rank: 0
+local_rank: 2
+local_rank: 3
+local_rank: 1
+local_rank: 0
+local_rank: 0
+local_rank: 0
+local_rank: 1
+9 data size: 4.0 GB
+0 data size: 4.0 GB
+33 data size: 4.0 GB
+39 data size: 4.0 GB
+60 data size: 4.0 GB
+10 data size: 4.0 GB
+37 data size: 4.0 GB
+63 data size: 4.0 GB
+62 data size: 4.0 GB
+25 data size: 4.0 GB
+41 data size: 4.0 GB
+38 data size: 4.0 GB
+43 data size: 4.0 GB
+42 data size: 4.0 GB
+8 data size: 4.0 GB
+21 data size: 4.0 GB
+27 data size: 4.0 GB
+36 data size: 4.0 GB
+26 data size: 4.0 GB
+24 data size: 4.0 GB
+23 data size: 4.0 GB
+22 data size: 4.0 GB
+20 data size: 4.0 GB
+3 data size: 4.0 GB
+1 data size: 4.0 GB
+14 data size: 4.0 GB
+12 data size: 4.0 GB
+2 data size: 4.0 GB
+15 data size: 4.0 GB
+29 data size: 4.0 GB
+13 data size: 4.0 GB
+51 data size: 4.0 GB
+54 data size: 4.0 GB
+30 data size: 4.0 GB
+49 data size: 4.0 GB
+28 data size: 4.0 GB
+59 data size: 4.0 GB
+31 data size: 4.0 GB
+55 data size: 4.0 GB
+48 data size: 4.0 GB
+50 data size: 4.0 GB
+17 data size: 4.0 GB
+6 data size: 4.0 GB
+58 data size: 4.0 GB
+53 data size: 4.0 GB
+57 data size: 4.0 GB
+52 data size: 4.0 GB
+35 data size: 4.0 GB
+11 data size: 4.0 GB
+16 data size: 4.0 GB
+56 data size: 4.0 GB
+4 data size: 4.0 GB
+61 data size: 4.0 GB
+40 data size: 4.0 GB
+46 data size: 4.0 GB
+19 data size: 4.0 GB
+32 data size: 4.0 GB
+18 data size: 4.0 GB
+34 data size: 4.0 GB
+7 data size: 4.0 GB
+5 data size: 4.0 GB
+45 data size: 4.0 GB
+47 data size: 4.0 GB
+44 data size: 4.0 GB
+r7i4n1:77231:77231 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.76<0> [1]ib1:10.149.0.76<0>
+r7i4n1:77231:77231 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i4n1:77231:77231 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.76<0>
+r7i4n1:77231:77231 [0] NCCL INFO Using network IB
+NCCL version 2.7.8+cuda10.2
+r7i4n1:77234:77234 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.76<0> [1]ib1:10.149.0.76<0>
+r8i5n2:15801:15801 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.4.37<0> [1]ib1:10.149.4.37<0>
+r7i4n1:77234:77234 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i5n2:15801:15801 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n7:81279:81279 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.145<0> [1]ib1:10.149.7.145<0>
+r14i7n7:81279:81279 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i4n1:77234:77234 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.76<0>
+r7i4n1:77234:77234 [3] NCCL INFO Using network IB
+r8i5n2:15801:15801 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.4.37<0>
+r8i5n2:15801:15801 [3] NCCL INFO Using network IB
+r8i5n2:15800:15800 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.4.37<0> [1]ib1:10.149.4.37<0>
+r14i7n7:81279:81279 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.145<0>
+r14i7n7:81279:81279 [0] NCCL INFO Using network IB
+r8i5n2:15800:15800 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n3:66129:66129 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.154<0> [1]ib1:10.149.7.154<0>
+r14i7n3:66129:66129 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n0:25487:25487 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.151<0> [1]ib1:10.149.7.151<0>
+r8i5n2:15800:15800 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.4.37<0>
+r8i5n2:15800:15800 [2] NCCL INFO Using network IB
+r14i7n0:25487:25487 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n7:81280:81280 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.145<0> [1]ib1:10.149.7.145<0>
+r14i7n3:66129:66129 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.154<0>
+r14i7n3:66129:66129 [3] NCCL INFO Using network IB
+r8i1n1:21966:21966 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.205<0> [1]ib1:10.149.0.205<0>
+r14i7n7:81280:81280 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i1n1:21966:21966 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n0:25487:25487 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.151<0>
+r14i7n0:25487:25487 [0] NCCL INFO Using network IB
+r14i7n7:81280:81280 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.145<0>
+r14i7n7:81280:81280 [1] NCCL INFO Using network IB
+r8i1n1:21966:21966 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.205<0>
+r8i1n1:21966:21966 [3] NCCL INFO Using network IB
+r14i7n2:39446:39446 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.153<0> [1]ib1:10.149.7.153<0>
+r14i7n0:25490:25490 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.151<0> [1]ib1:10.149.7.151<0>
+r14i7n2:39446:39446 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n0:25490:25490 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i6n2:60564:60564 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.95<0> [1]ib1:10.149.0.95<0>
+r14i7n2:39446:39446 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.153<0>
+r14i7n2:39446:39446 [1] NCCL INFO Using network IB
+r14i7n0:25490:25490 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.151<0>
+r14i7n0:25490:25490 [3] NCCL INFO Using network IB
+r7i6n2:60564:60564 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i3n6:76352:76352 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.228<0> [1]ib1:10.149.0.228<0>
+r8i3n1:64579:64579 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.223<0> [1]ib1:10.149.0.223<0>
+r14i7n3:66127:66127 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.154<0> [1]ib1:10.149.7.154<0>
+r8i3n6:76352:76352 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i3n1:64579:64579 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n3:66127:66127 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i6n2:60564:60564 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.95<0>
+r7i6n2:60564:60564 [0] NCCL INFO Using network IB
+r8i2n1:41757:41757 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.214<0> [1]ib1:10.149.0.214<0>
+r8i1n1:21963:21963 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.205<0> [1]ib1:10.149.0.205<0>
+r14i7n3:66126:66126 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.154<0> [1]ib1:10.149.7.154<0>
+r14i7n6:27449:27449 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.144<0> [1]ib1:10.149.7.144<0>
+r8i1n1:21965:21965 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.205<0> [1]ib1:10.149.0.205<0>
+r8i2n1:41757:41757 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i1n1:21963:21963 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n3:66127:66127 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.154<0>
+r14i7n3:66127:66127 [1] NCCL INFO Using network IB
+r8i3n6:76352:76352 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.228<0>
+r8i3n6:76352:76352 [0] NCCL INFO Using network IB
+r8i3n1:64581:64581 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.223<0> [1]ib1:10.149.0.223<0>
+r14i7n3:66126:66126 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n6:27449:27449 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n4:5389:5389 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.142<0> [1]ib1:10.149.7.142<0>
+r8i3n1:64579:64579 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.223<0>
+r8i3n1:64579:64579 [1] NCCL INFO Using network IB
+r8i1n1:21965:21965 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i3n1:64581:64581 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n4:5389:5389 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n6:27448:27448 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.144<0> [1]ib1:10.149.7.144<0>
+r8i1n1:21963:21963 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.205<0>
+r8i1n1:21963:21963 [0] NCCL INFO Using network IB
+r8i2n1:41757:41757 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.214<0>
+r8i2n1:41757:41757 [0] NCCL INFO Using network IB
+r8i1n1:21965:21965 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.205<0>
+r8i1n1:21965:21965 [2] NCCL INFO Using network IB
+r14i7n3:66126:66126 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.154<0>
+r14i7n3:66126:66126 [0] NCCL INFO Using network IB
+r14i7n6:27448:27448 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n6:27449:27449 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.144<0>
+r14i7n6:27449:27449 [1] NCCL INFO Using network IB
+r8i3n1:64581:64581 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.223<0>
+r8i3n1:64581:64581 [3] NCCL INFO Using network IB
+r14i7n7:81282:81282 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.145<0> [1]ib1:10.149.7.145<0>
+r14i7n4:5389:5389 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.142<0>
+r14i7n4:5389:5389 [1] NCCL INFO Using network IB
+r14i7n7:81282:81282 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i5n2:15798:15798 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.4.37<0> [1]ib1:10.149.4.37<0>
+r8i2n1:41759:41759 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.214<0> [1]ib1:10.149.0.214<0>
+r14i7n6:27448:27448 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.144<0>
+r14i7n6:27448:27448 [0] NCCL INFO Using network IB
+r8i5n2:15798:15798 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i2n1:41759:41759 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n4:5391:5391 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.142<0> [1]ib1:10.149.7.142<0>
+r8i3n6:76355:76355 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.228<0> [1]ib1:10.149.0.228<0>
+r8i3n6:76353:76353 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.228<0> [1]ib1:10.149.0.228<0>
+r14i7n7:81282:81282 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.145<0>
+r14i7n7:81282:81282 [3] NCCL INFO Using network IB
+r14i7n6:27450:27450 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.144<0> [1]ib1:10.149.7.144<0>
+r14i7n4:5391:5391 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n1:29727:29727 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.152<0> [1]ib1:10.149.7.152<0>
+r14i7n6:27450:27450 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i3n6:76355:76355 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i3n6:76353:76353 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i5n2:15798:15798 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.4.37<0>
+r8i5n2:15798:15798 [0] NCCL INFO Using network IB
+r14i7n1:29727:29727 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i2n1:41759:41759 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.214<0>
+r8i2n1:41759:41759 [2] NCCL INFO Using network IB
+r14i7n5:42531:42531 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.143<0> [1]ib1:10.149.7.143<0>
+r14i7n5:42529:42529 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.143<0> [1]ib1:10.149.7.143<0>
+r14i7n4:5391:5391 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.142<0>
+r14i7n4:5391:5391 [3] NCCL INFO Using network IB
+r14i7n5:42531:42531 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n5:42529:42529 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i1n7:45558:45558 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.211<0> [1]ib1:10.149.0.211<0>
+r14i7n6:27450:27450 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.144<0>
+r14i7n6:27450:27450 [2] NCCL INFO Using network IB
+r8i2n1:41758:41758 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.214<0> [1]ib1:10.149.0.214<0>
+r8i3n6:76355:76355 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.228<0>
+r8i3n6:76355:76355 [3] NCCL INFO Using network IB
+r14i7n6:27451:27451 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.144<0> [1]ib1:10.149.7.144<0>
+r8i3n6:76353:76353 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.228<0>
+r8i3n6:76353:76353 [1] NCCL INFO Using network IB
+r8i1n7:45558:45558 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n1:29727:29727 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.152<0>
+r14i7n1:29727:29727 [2] NCCL INFO Using network IB
+r8i2n1:41758:41758 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n6:27451:27451 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i1n1:21964:21964 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.205<0> [1]ib1:10.149.0.205<0>
+r14i7n5:42531:42531 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.143<0>
+r14i7n5:42531:42531 [3] NCCL INFO Using network IB
+r8i3n1:64580:64580 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.223<0> [1]ib1:10.149.0.223<0>
+r14i7n5:42529:42529 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.143<0>
+r14i7n5:42529:42529 [1] NCCL INFO Using network IB
+r8i1n1:21964:21964 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n7:81281:81281 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.145<0> [1]ib1:10.149.7.145<0>
+r8i2n1:41758:41758 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.214<0>
+r8i2n1:41758:41758 [1] NCCL INFO Using network IB
+r8i3n1:64580:64580 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n6:27451:27451 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.144<0>
+r14i7n6:27451:27451 [3] NCCL INFO Using network IB
+r8i1n7:45558:45558 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.211<0>
+r8i1n7:45558:45558 [3] NCCL INFO Using network IB
+r14i7n7:81281:81281 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n5:42530:42530 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.143<0> [1]ib1:10.149.7.143<0>
+r14i7n0:25489:25489 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.151<0> [1]ib1:10.149.7.151<0>
+r14i7n5:42530:42530 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i1n1:21964:21964 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.205<0>
+r8i1n1:21964:21964 [1] NCCL INFO Using network IB
+r14i7n0:25489:25489 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i3n1:64580:64580 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.223<0>
+r8i3n1:64580:64580 [2] NCCL INFO Using network IB
+r14i7n4:5390:5390 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.142<0> [1]ib1:10.149.7.142<0>
+r8i3n1:64578:64578 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.223<0> [1]ib1:10.149.0.223<0>
+r14i7n7:81281:81281 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.145<0>
+r14i7n7:81281:81281 [2] NCCL INFO Using network IB
+r14i7n4:5390:5390 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i3n1:64578:64578 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n5:42530:42530 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.143<0>
+r7i6n2:60566:60566 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.95<0> [1]ib1:10.149.0.95<0>
+r14i7n5:42530:42530 [2] NCCL INFO Using network IB
+r14i7n0:25489:25489 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.151<0>
+r14i7n0:25489:25489 [2] NCCL INFO Using network IB
+r8i2n1:41760:41760 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.214<0> [1]ib1:10.149.0.214<0>
+r7i6n2:60566:60566 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i3n1:64578:64578 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.223<0>
+r8i3n1:64578:64578 [0] NCCL INFO Using network IB
+r8i2n1:41760:41760 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n1:29728:29728 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.152<0> [1]ib1:10.149.7.152<0>
+r14i7n4:5390:5390 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.142<0>
+r14i7n4:5390:5390 [2] NCCL INFO Using network IB
+r14i7n1:29726:29726 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.152<0> [1]ib1:10.149.7.152<0>
+r14i7n1:29728:29728 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i6n2:60565:60565 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.95<0> [1]ib1:10.149.0.95<0>
+r14i7n1:29726:29726 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i6n2:60566:60566 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.95<0>
+r7i6n2:60566:60566 [2] NCCL INFO Using network IB
+r8i1n7:45555:45555 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.211<0> [1]ib1:10.149.0.211<0>
+r7i6n2:60565:60565 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i2n1:41760:41760 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.214<0>
+r8i2n1:41760:41760 [3] NCCL INFO Using network IB
+r8i1n7:45555:45555 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n1:29728:29728 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.152<0>
+r14i7n1:29728:29728 [3] NCCL INFO Using network IB
+r14i7n1:29726:29726 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.152<0>
+r14i7n1:29726:29726 [1] NCCL INFO Using network IB
+r7i6n2:60565:60565 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.95<0>
+r7i6n2:60565:60565 [1] NCCL INFO Using network IB
+r8i1n7:45555:45555 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.211<0>
+r8i1n7:45555:45555 [0] NCCL INFO Using network IB
+r14i7n2:39448:39448 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.153<0> [1]ib1:10.149.7.153<0>
+r14i7n2:39448:39448 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i6n2:60567:60567 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.95<0> [1]ib1:10.149.0.95<0>
+r14i7n0:25488:25488 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.151<0> [1]ib1:10.149.7.151<0>
+r8i3n6:76354:76354 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.228<0> [1]ib1:10.149.0.228<0>
+r7i6n2:60567:60567 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n0:25488:25488 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i3n6:76354:76354 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n2:39448:39448 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.153<0>
+r14i7n2:39448:39448 [3] NCCL INFO Using network IB
+r14i7n3:66128:66128 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.154<0> [1]ib1:10.149.7.154<0>
+r14i7n3:66128:66128 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i6n2:60567:60567 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.95<0>
+r7i6n2:60567:60567 [3] NCCL INFO Using network IB
+r14i7n0:25488:25488 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.151<0>
+r14i7n0:25488:25488 [1] NCCL INFO Using network IB
+r8i3n6:76354:76354 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.228<0>
+r14i7n4:5388:5388 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.142<0> [1]ib1:10.149.7.142<0>
+r8i3n6:76354:76354 [2] NCCL INFO Using network IB
+r14i7n5:42528:42528 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.143<0> [1]ib1:10.149.7.143<0>
+r14i7n4:5388:5388 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n3:66128:66128 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.154<0>
+r14i7n3:66128:66128 [2] NCCL INFO Using network IB
+r14i7n5:42528:42528 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i1n7:45557:45557 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.211<0> [1]ib1:10.149.0.211<0>
+r8i1n7:45557:45557 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n4:5388:5388 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.142<0>
+r14i7n4:5388:5388 [0] NCCL INFO Using network IB
+r14i7n2:39445:39445 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.153<0> [1]ib1:10.149.7.153<0>
+r14i7n5:42528:42528 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.143<0>
+r14i7n5:42528:42528 [0] NCCL INFO Using network IB
+r14i7n2:39445:39445 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i1n7:45557:45557 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.211<0>
+r8i1n7:45557:45557 [2] NCCL INFO Using network IB
+r14i7n2:39445:39445 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.153<0>
+r14i7n2:39445:39445 [0] NCCL INFO Using network IB
+r14i7n2:39447:39447 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.153<0> [1]ib1:10.149.7.153<0>
+r14i7n2:39447:39447 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i1n7:45556:45556 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.211<0> [1]ib1:10.149.0.211<0>
+r8i1n7:45556:45556 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n2:39447:39447 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.153<0>
+r14i7n2:39447:39447 [2] NCCL INFO Using network IB
+r8i1n7:45556:45556 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.211<0>
+r8i1n7:45556:45556 [1] NCCL INFO Using network IB
+r14i7n1:29725:29725 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.7.152<0> [1]ib1:10.149.7.152<0>
+r14i7n1:29725:29725 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r14i7n1:29725:29725 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.7.152<0>
+r14i7n1:29725:29725 [0] NCCL INFO Using network IB
+r7i4n1:77232:77232 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.76<0> [1]ib1:10.149.0.76<0>
+r7i4n1:77232:77232 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i4n1:77233:77233 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.76<0> [1]ib1:10.149.0.76<0>
+r7i4n1:77233:77233 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i4n1:77232:77232 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.76<0>
+r7i4n1:77232:77232 [1] NCCL INFO Using network IB
+r7i4n1:77233:77233 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.76<0>
+r7i4n1:77233:77233 [2] NCCL INFO Using network IB
+r8i5n2:15799:15799 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.4.37<0> [1]ib1:10.149.4.37<0>
+r8i5n2:15799:15799 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r8i5n2:15799:15799 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.4.37<0>
+r8i5n2:15799:15799 [1] NCCL INFO Using network IB
+r8i3n6:76354:76402 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i3n6:76355:76396 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i3n6:76355:76396 [3] NCCL INFO Trees [0] -1/-1/-1->27->26|26->27->-1/-1/-1 [1] 24/-1/-1->27->26|26->27->24/-1/-1 [2] -1/-1/-1->27->26|26->27->-1/-1/-1 [3] 24/-1/-1->27->26|26->27->24/-1/-1
+r8i3n6:76354:76402 [2] NCCL INFO Trees [0] 27/-1/-1->26->25|25->26->27/-1/-1 [1] 27/22/30->26->18|18->26->27/22/30 [2] 27/-1/-1->26->25|25->26->27/-1/-1 [3] 27/-1/-1->26->30|30->26->27/-1/-1
+r8i3n6:76355:76396 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r8i3n6:76354:76402 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r8i3n6:76353:76397 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i3n6:76352:76387 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i3n6:76353:76397 [1] NCCL INFO Trees [0] 26/-1/-1->25->24|24->25->26/-1/-1 [1] -1/-1/-1->25->24|24->25->-1/-1/-1 [2] 26/-1/-1->25->24|24->25->26/-1/-1 [3] -1/-1/-1->25->24|24->25->-1/-1/-1
+r8i3n6:76352:76387 [0] NCCL INFO Trees [0] 25/20/28->24->16|16->24->25/20/28 [1] 25/-1/-1->24->27|27->24->25/-1/-1 [2] 25/-1/-1->24->28|28->24->25/-1/-1 [3] 25/-1/-1->24->27|27->24->25/-1/-1
+r8i3n6:76353:76397 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r8i3n6:76352:76387 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r8i3n1:64581:64618 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i3n1:64581:64618 [3] NCCL INFO Trees [0] -1/-1/-1->23->22|22->23->-1/-1/-1 [1] 20/-1/-1->23->22|22->23->20/-1/-1 [2] -1/-1/-1->23->22|22->23->-1/-1/-1 [3] 20/-1/-1->23->22|22->23->20/-1/-1
+r8i3n1:64580:64623 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i2n1:41760:41808 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i2n1:41758:41803 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i2n1:41760:41808 [3] NCCL INFO Trees [0] -1/-1/-1->19->18|18->19->-1/-1/-1 [1] 16/-1/-1->19->18|18->19->16/-1/-1 [2] -1/-1/-1->19->18|18->19->-1/-1/-1 [3] 16/-1/-1->19->18|18->19->16/-1/-1
+r8i3n1:64579:64613 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i3n1:64580:64623 [2] NCCL INFO Trees [0] 23/-1/-1->22->21|21->22->23/-1/-1 [1] 23/-1/-1->22->26|26->22->23/-1/-1 [2] 23/-1/-1->22->21|21->22->23/-1/-1 [3] 23/14/30->22->38|38->22->23/14/30
+r8i3n1:64581:64618 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r8i3n1:64579:64613 [1] NCCL INFO Trees [0] 22/-1/-1->21->20|20->21->22/-1/-1 [1] -1/-1/-1->21->20|20->21->-1/-1/-1 [2] 22/-1/-1->21->20|20->21->22/-1/-1 [3] -1/-1/-1->21->20|20->21->-1/-1/-1
+r8i3n1:64580:64623 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r8i3n1:64579:64613 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r8i3n1:64578:64628 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i3n1:64578:64628 [0] NCCL INFO Trees [0] 21/-1/-1->20->24|24->20->21/-1/-1 [1] 21/-1/-1->20->23|23->20->21/-1/-1 [2] 21/12/28->20->36|36->20->21/12/28 [3] 21/-1/-1->20->23|23->20->21/-1/-1
+r8i3n1:64578:64628 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r8i1n7:45558:45590 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i1n7:45558:45590 [3] NCCL INFO Trees [0] -1/-1/-1->15->14|14->15->-1/-1/-1 [1] 12/-1/-1->15->14|14->15->12/-1/-1 [2] -1/-1/-1->15->14|14->15->-1/-1/-1 [3] 12/-1/-1->15->14|14->15->12/-1/-1
+r8i1n1:21966:21998 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i2n1:41759:41798 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i2n1:41758:41803 [1] NCCL INFO Trees [0] 18/-1/-1->17->16|16->17->18/-1/-1 [1] -1/-1/-1->17->16|16->17->-1/-1/-1 [2] 18/-1/-1->17->16|16->17->18/-1/-1 [3] -1/-1/-1->17->16|16->17->-1/-1/-1
+r8i2n1:41759:41798 [2] NCCL INFO Trees [0] 19/-1/-1->18->17|17->18->19/-1/-1 [1] 19/10/26->18->34|34->18->19/10/26 [2] 19/-1/-1->18->17|17->18->19/-1/-1 [3] 19/-1/-1->18->14|14->18->19/-1/-1
+r8i2n1:41760:41808 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r8i2n1:41757:41793 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i2n1:41758:41803 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r8i2n1:41759:41798 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r8i1n7:45557:45600 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i1n7:45558:45590 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r8i1n7:45557:45600 [2] NCCL INFO Trees [0] 15/-1/-1->14->13|13->14->15/-1/-1 [1] 15/-1/-1->14->10|10->14->15/-1/-1 [2] 15/-1/-1->14->13|13->14->15/-1/-1 [3] 15/10/18->14->22|22->14->15/10/18
+r8i1n7:45555:45595 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i1n7:45556:45605 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i2n1:41757:41793 [0] NCCL INFO Trees [0] 17/8/24->16->32|32->16->17/8/24 [1] 17/-1/-1->16->19|19->16->17/-1/-1 [2] 17/-1/-1->16->12|12->16->17/-1/-1 [3] 17/-1/-1->16->19|19->16->17/-1/-1
+r8i2n1:41757:41793 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r8i1n7:45557:45600 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r8i1n7:45555:45595 [0] NCCL INFO Trees [0] 13/-1/-1->12->8|8->12->13/-1/-1 [1] 13/-1/-1->12->15|15->12->13/-1/-1 [2] 13/8/16->12->20|20->12->13/8/16 [3] 13/-1/-1->12->15|15->12->13/-1/-1
+r8i1n7:45556:45605 [1] NCCL INFO Trees [0] 14/-1/-1->13->12|12->13->14/-1/-1 [1] -1/-1/-1->13->12|12->13->-1/-1/-1 [2] 14/-1/-1->13->12|12->13->14/-1/-1 [3] -1/-1/-1->13->12|12->13->-1/-1/-1
+r8i1n7:45555:45595 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r8i1n7:45556:45605 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r8i1n1:21965:22008 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i1n1:21966:21998 [3] NCCL INFO Trees [0] -1/-1/-1->11->10|10->11->-1/-1/-1 [1] 8/-1/-1->11->10|10->11->8/-1/-1 [2] -1/-1/-1->11->10|10->11->-1/-1/-1 [3] 8/-1/-1->11->10|10->11->8/-1/-1
+r8i1n1:21965:22008 [2] NCCL INFO Trees [0] 11/-1/-1->10->9|9->10->11/-1/-1 [1] 11/6/14->10->18|18->10->11/6/14 [2] 11/-1/-1->10->9|9->10->11/-1/-1 [3] 11/-1/-1->10->14|14->10->11/-1/-1
+r8i5n2:15800:15838 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i5n2:15799:15848 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i5n2:15800:15838 [2] NCCL INFO Trees [0] 31/-1/-1->30->29|29->30->31/-1/-1 [1] 31/-1/-1->30->26|26->30->31/-1/-1 [2] 31/-1/-1->30->29|29->30->31/-1/-1 [3] 31/26/34->30->22|22->30->31/26/34
+r8i5n2:15799:15848 [1] NCCL INFO Trees [0] 30/-1/-1->29->28|28->29->30/-1/-1 [1] -1/-1/-1->29->28|28->29->-1/-1/-1 [2] 30/-1/-1->29->28|28->29->30/-1/-1 [3] -1/-1/-1->29->28|28->29->-1/-1/-1
+r8i1n1:21966:21998 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r8i1n1:21965:22008 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r8i1n1:21964:22013 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r7i6n2:60567:60614 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r7i6n2:60566:60604 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r7i6n2:60567:60614 [3] NCCL INFO Trees [0] -1/-1/-1->7->6|6->7->-1/-1/-1 [1] 4/-1/-1->7->6|6->7->4/-1/-1 [2] -1/-1/-1->7->6|6->7->-1/-1/-1 [3] 4/-1/-1->7->6|6->7->4/-1/-1
+r8i5n2:15800:15838 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r8i5n2:15799:15848 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r8i5n2:15798:15843 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i5n2:15798:15843 [0] NCCL INFO Trees [0] 29/-1/-1->28->24|24->28->29/-1/-1 [1] 29/-1/-1->28->31|31->28->29/-1/-1 [2] 29/24/32->28->20|20->28->29/24/32 [3] 29/-1/-1->28->31|31->28->29/-1/-1
+r14i7n1:29725:29775 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n1:29726:29770 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n1:29727:29760 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n0:25488:25537 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n0:25489:25532 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n0:25487:25522 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n0:25490:25527 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i1n1:21964:22013 [1] NCCL INFO Trees [0] 10/-1/-1->9->8|8->9->10/-1/-1 [1] -1/-1/-1->9->8|8->9->-1/-1/-1 [2] 10/-1/-1->9->8|8->9->10/-1/-1 [3] -1/-1/-1->9->8|8->9->-1/-1/-1
+r8i5n2:15798:15843 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r8i5n2:15801:15833 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r8i5n2:15801:15833 [3] NCCL INFO Trees [0] -1/-1/-1->31->30|30->31->-1/-1/-1 [1] 28/-1/-1->31->30|30->31->28/-1/-1 [2] -1/-1/-1->31->30|30->31->-1/-1/-1 [3] 28/-1/-1->31->30|30->31->28/-1/-1
+r8i5n2:15801:15833 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r8i1n1:21964:22013 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r7i4n1:77234:77296 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r7i4n1:77231:77291 [0] NCCL INFO Channel 00/04 :    0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19
+r7i4n1:77234:77296 [3] NCCL INFO Trees [0] -1/-1/-1->3->2|2->3->-1/-1/-1 [1] 0/-1/-1->3->2|2->3->0/-1/-1 [2] -1/-1/-1->3->2|2->3->-1/-1/-1 [3] 0/-1/-1->3->2|2->3->0/-1/-1
+r7i4n1:77231:77291 [0] NCCL INFO Channel 01/04 :    0   3   2   1   4   7   6   5   8  11  10   9  12  15  14  13  16  19  18  17
+r7i6n2:60566:60604 [2] NCCL INFO Trees [0] 7/-1/-1->6->5|5->6->7/-1/-1 [1] 7/-1/-1->6->10|10->6->7/-1/-1 [2] 7/-1/-1->6->5|5->6->7/-1/-1 [3] 7/38/-1->6->-1|-1->6->7/38/-1
+r7i6n2:60565:60609 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r7i6n2:60567:60614 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r7i6n2:60566:60604 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r7i6n2:60565:60609 [1] NCCL INFO Trees [0] 6/-1/-1->5->4|4->5->6/-1/-1 [1] -1/-1/-1->5->4|4->5->-1/-1/-1 [2] 6/-1/-1->5->4|4->5->6/-1/-1 [3] -1/-1/-1->5->4|4->5->-1/-1/-1
+r7i6n2:60564:60599 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r7i6n2:60565:60609 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n5:42531:42567 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n5:42530:42573 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n1:29725:29775 [0] NCCL INFO Trees [0] 37/-1/-1->36->40|40->36->37/-1/-1 [1] 37/-1/-1->36->39|39->36->37/-1/-1 [2] 37/20/52->36->4|4->36->37/20/52 [3] 37/-1/-1->36->39|39->36->37/-1/-1
+r14i7n1:29726:29770 [1] NCCL INFO Trees [0] 38/-1/-1->37->36|36->37->38/-1/-1 [1] -1/-1/-1->37->36|36->37->-1/-1/-1 [2] 38/-1/-1->37->36|36->37->38/-1/-1 [3] -1/-1/-1->37->36|36->37->-1/-1/-1
+r14i7n1:29727:29760 [2] NCCL INFO Trees [0] 39/-1/-1->38->37|37->38->39/-1/-1 [1] 39/-1/-1->38->42|42->38->39/-1/-1 [2] 39/-1/-1->38->37|37->38->39/-1/-1 [3] 39/22/54->38->6|6->38->39/22/54
+r14i7n0:25488:25537 [1] NCCL INFO Trees [0] 34/-1/-1->33->32|32->33->34/-1/-1 [1] -1/-1/-1->33->32|32->33->-1/-1/-1 [2] 34/-1/-1->33->32|32->33->34/-1/-1 [3] -1/-1/-1->33->32|32->33->-1/-1/-1
+r14i7n0:25487:25522 [0] NCCL INFO Trees [0] 33/16/48->32->0|0->32->33/16/48 [1] 33/-1/-1->32->35|35->32->33/-1/-1 [2] 33/-1/-1->32->28|28->32->33/-1/-1 [3] 33/-1/-1->32->35|35->32->33/-1/-1
+r14i7n0:25489:25532 [2] NCCL INFO Trees [0] 35/-1/-1->34->33|33->34->35/-1/-1 [1] 35/18/50->34->2|2->34->35/18/50 [2] 35/-1/-1->34->33|33->34->35/-1/-1 [3] 35/-1/-1->34->30|30->34->35/-1/-1
+r14i7n0:25490:25527 [3] NCCL INFO Trees [0] -1/-1/-1->35->34|34->35->-1/-1/-1 [1] 32/-1/-1->35->34|34->35->32/-1/-1 [2] -1/-1/-1->35->34|34->35->-1/-1/-1 [3] 32/-1/-1->35->34|34->35->32/-1/-1
+r8i1n1:21963:22007 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r7i6n2:60564:60599 [0] NCCL INFO Trees [0] 5/-1/-1->4->8|8->4->5/-1/-1 [1] 5/-1/-1->4->7|7->4->5/-1/-1 [2] 5/36/-1->4->-1|-1->4->5/36/-1 [3] 5/-1/-1->4->7|7->4->5/-1/-1
+r7i6n2:60564:60599 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r14i7n2:39447:39496 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n2:39445:39491 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n2:39446:39481 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n2:39445:39491 [0] NCCL INFO Trees [0] 41/36/44->40->48|48->40->41/36/44 [1] 41/-1/-1->40->43|43->40->41/-1/-1 [2] 41/-1/-1->40->44|44->40->41/-1/-1 [3] 41/-1/-1->40->43|43->40->41/-1/-1
+r14i7n1:29728:29769 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n1:29726:29770 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n1:29727:29760 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r14i7n1:29725:29775 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r14i7n6:27449:27483 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n6:27450:27493 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n6:27449:27483 [1] NCCL INFO Trees [0] 58/-1/-1->57->56|56->57->58/-1/-1 [1] -1/-1/-1->57->56|56->57->-1/-1/-1 [2] 58/-1/-1->57->56|56->57->58/-1/-1 [3] -1/-1/-1->57->56|56->57->-1/-1/-1
+r14i7n6:27450:27493 [2] NCCL INFO Trees [0] 59/-1/-1->58->57|57->58->59/-1/-1 [1] 59/54/62->58->50|50->58->59/54/62 [2] 59/-1/-1->58->57|57->58->59/-1/-1 [3] 59/-1/-1->58->62|62->58->59/-1/-1
+r14i7n0:25489:25532 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r14i7n0:25488:25537 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n0:25490:25527 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r14i7n0:25487:25522 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r8i1n1:21963:22007 [0] NCCL INFO Trees [0] 9/4/12->8->16|16->8->9/4/12 [1] 9/-1/-1->8->11|11->8->9/-1/-1 [2] 9/-1/-1->8->12|12->8->9/-1/-1 [3] 9/-1/-1->8->11|11->8->9/-1/-1
+r14i7n4:5388:5438 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n4:5390:5433 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n4:5391:5428 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n4:5389:5423 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n4:5388:5438 [0] NCCL INFO Trees [0] 49/40/56->48->32|32->48->49/40/56 [1] 49/-1/-1->48->51|51->48->49/-1/-1 [2] 49/-1/-1->48->44|44->48->49/-1/-1 [3] 49/-1/-1->48->51|51->48->49/-1/-1
+r14i7n4:5390:5433 [2] NCCL INFO Trees [0] 51/-1/-1->50->49|49->50->51/-1/-1 [1] 51/42/58->50->34|34->50->51/42/58 [2] 51/-1/-1->50->49|49->50->51/-1/-1 [3] 51/-1/-1->50->46|46->50->51/-1/-1
+r14i7n1:29728:29769 [3] NCCL INFO Trees [0] -1/-1/-1->39->38|38->39->-1/-1/-1 [1] 36/-1/-1->39->38|38->39->36/-1/-1 [2] -1/-1/-1->39->38|38->39->-1/-1/-1 [3] 36/-1/-1->39->38|38->39->36/-1/-1
+r14i7n1:29728:29769 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r14i7n7:81281:81329 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n7:81282:81324 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n7:81279:81314 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n7:81280:81319 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n7:81281:81329 [2] NCCL INFO Trees [0] 63/-1/-1->62->61|61->62->63/-1/-1 [1] 63/-1/-1->62->58|58->62->63/-1/-1 [2] 63/-1/-1->62->61|61->62->63/-1/-1 [3] 63/58/2->62->54|54->62->63/58/2
+r14i7n7:81279:81314 [0] NCCL INFO Trees [0] 61/-1/-1->60->56|56->60->61/-1/-1 [1] 61/-1/-1->60->63|63->60->61/-1/-1 [2] 61/56/0->60->52|52->60->61/56/0 [3] 61/-1/-1->60->63|63->60->61/-1/-1
+r14i7n7:81282:81324 [3] NCCL INFO Trees [0] -1/-1/-1->63->62|62->63->-1/-1/-1 [1] 60/-1/-1->63->62|62->63->60/-1/-1 [2] -1/-1/-1->63->62|62->63->-1/-1/-1 [3] 60/-1/-1->63->62|62->63->60/-1/-1
+r8i1n1:21963:22007 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r7i4n1:77233:77306 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r7i4n1:77231:77291 [0] NCCL INFO Channel 02/04 :    0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19
+r7i4n1:77232:77301 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r7i4n1:77234:77296 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r7i4n1:77233:77306 [2] NCCL INFO Trees [0] 3/-1/-1->2->1|1->2->3/-1/-1 [1] 3/34/-1->2->-1|-1->2->3/34/-1 [2] 3/-1/-1->2->1|1->2->3/-1/-1 [3] 3/-1/-1->2->62|62->2->3/-1/-1
+r7i4n1:77231:77291 [0] NCCL INFO Channel 03/04 :    0   3   2   1   4   7   6   5   8  11  10   9  12  15  14  13  16  19  18  17
+r7i4n1:77232:77301 [1] NCCL INFO Trees [0] 2/-1/-1->1->0|0->1->2/-1/-1 [1] -1/-1/-1->1->0|0->1->-1/-1/-1 [2] 2/-1/-1->1->0|0->1->2/-1/-1 [3] -1/-1/-1->1->0|0->1->-1/-1/-1
+r14i7n5:42529:42568 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n5:42530:42573 [2] NCCL INFO Trees [0] 55/-1/-1->54->53|53->54->55/-1/-1 [1] 55/-1/-1->54->58|58->54->55/-1/-1 [2] 55/-1/-1->54->53|53->54->55/-1/-1 [3] 55/46/62->54->38|38->54->55/46/62
+r14i7n5:42531:42567 [3] NCCL INFO Trees [0] -1/-1/-1->55->54|54->55->-1/-1/-1 [1] 52/-1/-1->55->54|54->55->52/-1/-1 [2] -1/-1/-1->55->54|54->55->-1/-1/-1 [3] 52/-1/-1->55->54|54->55->52/-1/-1
+r14i7n5:42528:42578 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n3:66126:66171 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n3:66127:66166 [1] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n3:66129:66161 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n3:66128:66176 [2] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n3:66126:66171 [0] NCCL INFO Trees [0] 45/-1/-1->44->40|40->44->45/-1/-1 [1] 45/-1/-1->44->47|47->44->45/-1/-1 [2] 45/40/48->44->52|52->44->45/40/48 [3] 45/-1/-1->44->47|47->44->45/-1/-1
+r14i7n3:66127:66166 [1] NCCL INFO Trees [0] 46/-1/-1->45->44|44->45->46/-1/-1 [1] -1/-1/-1->45->44|44->45->-1/-1/-1 [2] 46/-1/-1->45->44|44->45->46/-1/-1 [3] -1/-1/-1->45->44|44->45->-1/-1/-1
+r14i7n3:66129:66161 [3] NCCL INFO Trees [0] -1/-1/-1->47->46|46->47->-1/-1/-1 [1] 44/-1/-1->47->46|46->47->44/-1/-1 [2] -1/-1/-1->47->46|46->47->-1/-1/-1 [3] 44/-1/-1->47->46|46->47->44/-1/-1
+r7i4n1:77233:77306 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r7i4n1:77232:77301 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n4:5391:5428 [3] NCCL INFO Trees [0] -1/-1/-1->51->50|50->51->-1/-1/-1 [1] 48/-1/-1->51->50|50->51->48/-1/-1 [2] -1/-1/-1->51->50|50->51->-1/-1/-1 [3] 48/-1/-1->51->50|50->51->48/-1/-1
+r14i7n4:5389:5423 [1] NCCL INFO Trees [0] 50/-1/-1->49->48|48->49->50/-1/-1 [1] -1/-1/-1->49->48|48->49->-1/-1/-1 [2] 50/-1/-1->49->48|48->49->50/-1/-1 [3] -1/-1/-1->49->48|48->49->-1/-1/-1
+r14i7n4:5388:5438 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r14i7n4:5391:5428 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r14i7n4:5389:5423 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n4:5390:5433 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r14i7n5:42529:42568 [1] NCCL INFO Trees [0] 54/-1/-1->53->52|52->53->54/-1/-1 [1] -1/-1/-1->53->52|52->53->-1/-1/-1 [2] 54/-1/-1->53->52|52->53->54/-1/-1 [3] -1/-1/-1->53->52|52->53->-1/-1/-1
+r14i7n5:42530:42573 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r14i7n5:42531:42567 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r14i7n5:42528:42578 [0] NCCL INFO Trees [0] 53/-1/-1->52->56|56->52->53/-1/-1 [1] 53/-1/-1->52->55|55->52->53/-1/-1 [2] 53/44/60->52->36|36->52->53/44/60 [3] 53/-1/-1->52->55|55->52->53/-1/-1
+r14i7n5:42529:42568 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n6:27451:27498 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n6:27448:27488 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n6:27451:27498 [3] NCCL INFO Trees [0] -1/-1/-1->59->58|58->59->-1/-1/-1 [1] 56/-1/-1->59->58|58->59->56/-1/-1 [2] -1/-1/-1->59->58|58->59->-1/-1/-1 [3] 56/-1/-1->59->58|58->59->56/-1/-1
+r14i7n6:27448:27488 [0] NCCL INFO Trees [0] 57/52/60->56->48|48->56->57/52/60 [1] 57/-1/-1->56->59|59->56->57/-1/-1 [2] 57/-1/-1->56->60|60->56->57/-1/-1 [3] 57/-1/-1->56->59|59->56->57/-1/-1
+r14i7n6:27449:27483 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n6:27450:27493 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r14i7n6:27448:27488 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r7i4n1:77231:77291 [0] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n5:42528:42578 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r14i7n6:27451:27498 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r14i7n3:66128:66176 [2] NCCL INFO Trees [0] 47/-1/-1->46->45|45->46->47/-1/-1 [1] 47/-1/-1->46->42|42->46->47/-1/-1 [2] 47/-1/-1->46->45|45->46->47/-1/-1 [3] 47/42/50->46->54|54->46->47/42/50
+r7i4n1:77231:77291 [0] NCCL INFO Trees [0] 1/32/-1->0->-1|-1->0->1/32/-1 [1] 1/-1/-1->0->3|3->0->1/-1/-1 [2] 1/-1/-1->0->60|60->0->1/-1/-1 [3] 1/-1/-1->0->3|3->0->1/-1/-1
+r7i4n1:77231:77291 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r14i7n3:66126:66171 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r14i7n3:66129:66161 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r14i7n3:66128:66176 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r14i7n3:66127:66166 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n7:81280:81319 [1] NCCL INFO Trees [0] 62/-1/-1->61->60|60->61->62/-1/-1 [1] -1/-1/-1->61->60|60->61->-1/-1/-1 [2] 62/-1/-1->61->60|60->61->62/-1/-1 [3] -1/-1/-1->61->60|60->61->-1/-1/-1
+r14i7n7:81282:81324 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r14i7n7:81279:81314 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r14i7n7:81281:81329 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r14i7n7:81280:81319 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n2:39447:39496 [2] NCCL INFO Trees [0] 43/-1/-1->42->41|41->42->43/-1/-1 [1] 43/38/46->42->50|50->42->43/38/46 [2] 43/-1/-1->42->41|41->42->43/-1/-1 [3] 43/-1/-1->42->46|46->42->43/-1/-1
+r14i7n2:39448:39486 [3] NCCL INFO threadThresholds 8/8/64 | 512/8/64 | 8/8/64
+r14i7n2:39446:39481 [1] NCCL INFO Trees [0] 42/-1/-1->41->40|40->41->42/-1/-1 [1] -1/-1/-1->41->40|40->41->-1/-1/-1 [2] 42/-1/-1->41->40|40->41->42/-1/-1 [3] -1/-1/-1->41->40|40->41->-1/-1/-1
+r14i7n2:39448:39486 [3] NCCL INFO Trees [0] -1/-1/-1->43->42|42->43->-1/-1/-1 [1] 40/-1/-1->43->42|42->43->40/-1/-1 [2] -1/-1/-1->43->42|42->43->-1/-1/-1 [3] 40/-1/-1->43->42|42->43->40/-1/-1
+r14i7n2:39447:39496 [2] NCCL INFO Setting affinity for GPU 2 to ff,fff00000
+r14i7n2:39445:39491 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff
+r14i7n2:39446:39481 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff
+r14i7n2:39448:39486 [3] NCCL INFO Setting affinity for GPU 3 to ff,fff00000
+r14i7n5:42529:42568 [1] NCCL INFO Channel 00 : 53[1c000] -> 54[88000] via P2P/IPC
+r8i3n1:64579:64613 [1] NCCL INFO Channel 00 : 21[1c000] -> 22[88000] via P2P/IPC
+r8i2n1:41758:41803 [1] NCCL INFO Channel 00 : 17[1c000] -> 18[88000] via P2P/IPC
+r8i5n2:15799:15848 [1] NCCL INFO Channel 00 : 29[1c000] -> 30[88000] via P2P/IPC
+r8i1n7:45556:45605 [1] NCCL INFO Channel 00 : 13[1c000] -> 14[88000] via P2P/IPC
+r7i4n1:77232:77301 [1] NCCL INFO Channel 00 : 1[1c000] -> 2[88000] via P2P/IPC
+r14i7n6:27449:27483 [1] NCCL INFO Channel 00 : 57[1c000] -> 58[88000] via P2P/IPC
+r14i7n1:29726:29770 [1] NCCL INFO Channel 00 : 37[1c000] -> 38[88000] via P2P/IPC
+r14i7n0:25488:25537 [1] NCCL INFO Channel 00 : 33[1c000] -> 34[88000] via P2P/IPC
+r8i5n2:15800:15838 [2] NCCL INFO Channel 00 : 30[88000] -> 31[8a000] via P2P/IPC
+r7i6n2:60565:60609 [1] NCCL INFO Channel 00 : 5[1c000] -> 6[88000] via P2P/IPC
+r8i3n6:76353:76397 [1] NCCL INFO Channel 00 : 25[1c000] -> 26[88000] via P2P/IPC
+r8i1n1:21964:22013 [1] NCCL INFO Channel 00 : 9[1c000] -> 10[88000] via P2P/IPC
+r8i3n6:76354:76402 [2] NCCL INFO Channel 00 : 26[88000] -> 27[8a000] via P2P/IPC
+r14i7n7:81280:81319 [1] NCCL INFO Channel 00 : 61[1c000] -> 62[88000] via P2P/IPC
+r14i7n3:66127:66166 [1] NCCL INFO Channel 00 : 45[1c000] -> 46[88000] via P2P/IPC
+r14i7n6:27450:27493 [2] NCCL INFO Channel 00 : 58[88000] -> 59[8a000] via P2P/IPC
+r14i7n2:39446:39481 [1] NCCL INFO Channel 00 : 41[1c000] -> 42[88000] via P2P/IPC
+r14i7n7:81281:81329 [2] NCCL INFO Channel 00 : 62[88000] -> 63[8a000] via P2P/IPC
+r8i2n1:41759:41798 [2] NCCL INFO Channel 00 : 18[88000] -> 19[8a000] via P2P/IPC
+r14i7n4:5389:5423 [1] NCCL INFO Channel 00 : 49[1c000] -> 50[88000] via P2P/IPC
+r14i7n4:5390:5433 [2] NCCL INFO Channel 00 : 50[88000] -> 51[8a000] via P2P/IPC
+r14i7n2:39447:39496 [2] NCCL INFO Channel 00 : 42[88000] -> 43[8a000] via P2P/IPC
+r7i4n1:77233:77306 [2] NCCL INFO Channel 00 : 2[88000] -> 3[8a000] via P2P/IPC
+r14i7n0:25489:25532 [2] NCCL INFO Channel 00 : 34[88000] -> 35[8a000] via P2P/IPC
+r14i7n1:29727:29760 [2] NCCL INFO Channel 00 : 38[88000] -> 39[8a000] via P2P/IPC
+r7i6n2:60566:60604 [2] NCCL INFO Channel 00 : 6[88000] -> 7[8a000] via P2P/IPC
+r14i7n3:66128:66176 [2] NCCL INFO Channel 00 : 46[88000] -> 47[8a000] via P2P/IPC
+r8i3n1:64580:64623 [2] NCCL INFO Channel 00 : 22[88000] -> 23[8a000] via P2P/IPC
+r8i1n1:21965:22008 [2] NCCL INFO Channel 00 : 10[88000] -> 11[8a000] via P2P/IPC
+r14i7n5:42530:42573 [2] NCCL INFO Channel 00 : 54[88000] -> 55[8a000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 00 : 14[88000] -> 15[8a000] via P2P/IPC
+r8i5n2:15800:15838 [2] NCCL INFO Channel 00 : 30[88000] -> 29[1c000] via P2P/IPC
+r14i7n6:27450:27493 [2] NCCL INFO Channel 00 : 58[88000] -> 57[1c000] via P2P/IPC
+r8i3n6:76354:76402 [2] NCCL INFO Channel 00 : 26[88000] -> 25[1c000] via P2P/IPC
+r8i2n1:41759:41798 [2] NCCL INFO Channel 00 : 18[88000] -> 17[1c000] via P2P/IPC
+r14i7n7:81281:81329 [2] NCCL INFO Channel 00 : 62[88000] -> 61[1c000] via P2P/IPC
+r7i4n1:77233:77306 [2] NCCL INFO Channel 00 : 2[88000] -> 1[1c000] via P2P/IPC
+r14i7n2:39447:39496 [2] NCCL INFO Channel 00 : 42[88000] -> 41[1c000] via P2P/IPC
+r14i7n4:5390:5433 [2] NCCL INFO Channel 00 : 50[88000] -> 49[1c000] via P2P/IPC
+r14i7n3:66128:66176 [2] NCCL INFO Channel 00 : 46[88000] -> 45[1c000] via P2P/IPC
+r7i6n2:60566:60604 [2] NCCL INFO Channel 00 : 6[88000] -> 5[1c000] via P2P/IPC
+r14i7n0:25489:25532 [2] NCCL INFO Channel 00 : 34[88000] -> 33[1c000] via P2P/IPC
+r14i7n1:29727:29760 [2] NCCL INFO Channel 00 : 38[88000] -> 37[1c000] via P2P/IPC
+r8i3n1:64580:64623 [2] NCCL INFO Channel 00 : 22[88000] -> 21[1c000] via P2P/IPC
+r8i1n1:21965:22008 [2] NCCL INFO Channel 00 : 10[88000] -> 9[1c000] via P2P/IPC
+r14i7n5:42530:42573 [2] NCCL INFO Channel 00 : 54[88000] -> 53[1c000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 00 : 14[88000] -> 13[1c000] via P2P/IPC
+r8i2n1:41757:41793 [0] NCCL INFO Channel 00 : 15[8a000] -> 16[1a000] [receive] via NET/IB/3
+r8i1n7:45555:45595 [0] NCCL INFO Channel 00 : 11[8a000] -> 12[1a000] [receive] via NET/IB/3
+r14i7n0:25487:25522 [0] NCCL INFO Channel 00 : 31[8a000] -> 32[1a000] [receive] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 00 : 51[8a000] -> 52[1a000] [receive] via NET/IB/3
+r8i1n1:21963:22007 [0] NCCL INFO Channel 00 : 7[8a000] -> 8[1a000] [receive] via NET/IB/3
+r14i7n1:29725:29775 [0] NCCL INFO Channel 00 : 35[8a000] -> 36[1a000] [receive] via NET/IB/3
+r8i3n1:64578:64628 [0] NCCL INFO Channel 00 : 19[8a000] -> 20[1a000] [receive] via NET/IB/3
+r14i7n3:66126:66171 [0] NCCL INFO Channel 00 : 43[8a000] -> 44[1a000] [receive] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 00 : 52[1a000] -> 53[1c000] via P2P/IPC
+r7i6n2:60564:60599 [0] NCCL INFO Channel 00 : 3[8a000] -> 4[1a000] [receive] via NET/IB/3
+r14i7n7:81279:81314 [0] NCCL INFO Channel 00 : 59[8a000] -> 60[1a000] [receive] via NET/IB/3
+r8i5n2:15798:15843 [0] NCCL INFO Channel 00 : 27[8a000] -> 28[1a000] [receive] via NET/IB/3
+r8i2n1:41757:41793 [0] NCCL INFO Channel 00 : 16[1a000] -> 17[1c000] via P2P/IPC
+r14i7n2:39445:39491 [0] NCCL INFO Channel 00 : 39[8a000] -> 40[1a000] [receive] via NET/IB/3
+r14i7n6:27448:27488 [0] NCCL INFO Channel 00 : 55[8a000] -> 56[1a000] [receive] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 00 : 23[8a000] -> 24[1a000] [receive] via NET/IB/3
+r7i4n1:77231:77291 [0] NCCL INFO Channel 00 : 63[8a000] -> 0[1a000] [receive] via NET/IB/3
+r8i1n1:21963:22007 [0] NCCL INFO Channel 00 : 8[1a000] -> 9[1c000] via P2P/IPC
+r14i7n7:81279:81314 [0] NCCL INFO Channel 00 : 60[1a000] -> 61[1c000] via P2P/IPC
+r14i7n0:25487:25522 [0] NCCL INFO Channel 00 : 32[1a000] -> 33[1c000] via P2P/IPC
+r8i1n7:45555:45595 [0] NCCL INFO Channel 00 : 12[1a000] -> 13[1c000] via P2P/IPC
+r8i5n2:15798:15843 [0] NCCL INFO Channel 00 : 28[1a000] -> 29[1c000] via P2P/IPC
+r8i3n6:76355:76396 [3] NCCL INFO Channel 00 : 27[8a000] -> 28[1a000] [send] via NET/IB/2
+r7i6n2:60564:60599 [0] NCCL INFO Channel 00 : 4[1a000] -> 5[1c000] via P2P/IPC
+r14i7n1:29725:29775 [0] NCCL INFO Channel 00 : 36[1a000] -> 37[1c000] via P2P/IPC
+r14i7n2:39445:39491 [0] NCCL INFO Channel 00 : 40[1a000] -> 41[1c000] via P2P/IPC
+r8i5n2:15801:15833 [3] NCCL INFO Channel 00 : 31[8a000] -> 32[1a000] [send] via NET/IB/2
+r7i4n1:77234:77296 [3] NCCL INFO Channel 00 : 3[8a000] -> 4[1a000] [send] via NET/IB/2
+r8i3n1:64578:64628 [0] NCCL INFO Channel 00 : 20[1a000] -> 21[1c000] via P2P/IPC
+r14i7n3:66126:66171 [0] NCCL INFO Channel 00 : 44[1a000] -> 45[1c000] via P2P/IPC
+r8i2n1:41760:41808 [3] NCCL INFO Channel 00 : 19[8a000] -> 20[1a000] [send] via NET/IB/2
+r14i7n7:81282:81324 [3] NCCL INFO Channel 00 : 63[8a000] -> 0[1a000] [send] via NET/IB/2
+r14i7n6:27448:27488 [0] NCCL INFO Channel 00 : 56[1a000] -> 57[1c000] via P2P/IPC
+r14i7n6:27451:27498 [3] NCCL INFO Channel 00 : 59[8a000] -> 60[1a000] [send] via NET/IB/2
+r14i7n4:5388:5438 [0] NCCL INFO Channel 00 : 47[8a000] -> 48[1a000] [receive] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 00 : 24[1a000] -> 25[1c000] via P2P/IPC
+r14i7n2:39448:39486 [3] NCCL INFO Channel 00 : 43[8a000] -> 44[1a000] [send] via NET/IB/2
+r14i7n0:25490:25527 [3] NCCL INFO Channel 00 : 35[8a000] -> 36[1a000] [send] via NET/IB/2
+r14i7n4:5391:5428 [3] NCCL INFO Channel 00 : 51[8a000] -> 52[1a000] [send] via NET/IB/2
+r7i6n2:60567:60614 [3] NCCL INFO Channel 00 : 7[8a000] -> 8[1a000] [send] via NET/IB/2
+r8i1n7:45558:45590 [3] NCCL INFO Channel 00 : 15[8a000] -> 16[1a000] [send] via NET/IB/2
+r8i1n1:21966:21998 [3] NCCL INFO Channel 00 : 11[8a000] -> 12[1a000] [send] via NET/IB/2
+r8i3n1:64581:64618 [3] NCCL INFO Channel 00 : 23[8a000] -> 24[1a000] [send] via NET/IB/2
+r14i7n3:66129:66161 [3] NCCL INFO Channel 00 : 47[8a000] -> 48[1a000] [send] via NET/IB/2
+r14i7n1:29728:29769 [3] NCCL INFO Channel 00 : 39[8a000] -> 40[1a000] [send] via NET/IB/2
+r14i7n4:5388:5438 [0] NCCL INFO Channel 00 : 48[1a000] -> 49[1c000] via P2P/IPC
+r14i7n5:42531:42567 [3] NCCL INFO Channel 00 : 55[8a000] -> 56[1a000] [send] via NET/IB/2
+r8i2n1:41758:41803 [1] NCCL INFO Channel 00 : 17[1c000] -> 16[1a000] via P2P/IPC
+r14i7n5:42529:42568 [1] NCCL INFO Channel 00 : 53[1c000] -> 52[1a000] via P2P/IPC
+r14i7n0:25488:25537 [1] NCCL INFO Channel 00 : 33[1c000] -> 32[1a000] via P2P/IPC
+r8i1n1:21964:22013 [1] NCCL INFO Channel 00 : 9[1c000] -> 8[1a000] via P2P/IPC
+r14i7n7:81280:81319 [1] NCCL INFO Channel 00 : 61[1c000] -> 60[1a000] via P2P/IPC
+r8i1n7:45556:45605 [1] NCCL INFO Channel 00 : 13[1c000] -> 12[1a000] via P2P/IPC
+r14i7n1:29726:29770 [1] NCCL INFO Channel 00 : 37[1c000] -> 36[1a000] via P2P/IPC
+r8i5n2:15799:15848 [1] NCCL INFO Channel 00 : 29[1c000] -> 28[1a000] via P2P/IPC
+r7i6n2:60565:60609 [1] NCCL INFO Channel 00 : 5[1c000] -> 4[1a000] via P2P/IPC
+r14i7n3:66127:66166 [1] NCCL INFO Channel 00 : 45[1c000] -> 44[1a000] via P2P/IPC
+r14i7n6:27449:27483 [1] NCCL INFO Channel 00 : 57[1c000] -> 56[1a000] via P2P/IPC
+r14i7n2:39446:39481 [1] NCCL INFO Channel 00 : 41[1c000] -> 40[1a000] via P2P/IPC
+r8i3n1:64579:64613 [1] NCCL INFO Channel 00 : 21[1c000] -> 20[1a000] via P2P/IPC
+r8i3n6:76353:76397 [1] NCCL INFO Channel 00 : 25[1c000] -> 24[1a000] via P2P/IPC
+r7i4n1:77234:77296 [3] NCCL INFO Channel 00 : 3[8a000] -> 2[88000] via P2P/IPC
+r8i5n2:15801:15833 [3] NCCL INFO Channel 00 : 31[8a000] -> 30[88000] via P2P/IPC
+r14i7n2:39448:39486 [3] NCCL INFO Channel 00 : 43[8a000] -> 42[88000] via P2P/IPC
+r8i2n1:41760:41808 [3] NCCL INFO Channel 00 : 19[8a000] -> 18[88000] via P2P/IPC
+r14i7n6:27451:27498 [3] NCCL INFO Channel 00 : 59[8a000] -> 58[88000] via P2P/IPC
+r14i7n4:5389:5423 [1] NCCL INFO Channel 00 : 49[1c000] -> 48[1a000] via P2P/IPC
+r8i1n1:21966:21998 [3] NCCL INFO Channel 00 : 11[8a000] -> 10[88000] via P2P/IPC
+r8i3n6:76355:76396 [3] NCCL INFO Channel 00 : 27[8a000] -> 26[88000] via P2P/IPC
+r8i1n7:45558:45590 [3] NCCL INFO Channel 00 : 15[8a000] -> 14[88000] via P2P/IPC
+r14i7n1:29728:29769 [3] NCCL INFO Channel 00 : 39[8a000] -> 38[88000] via P2P/IPC
+r14i7n3:66129:66161 [3] NCCL INFO Channel 00 : 47[8a000] -> 46[88000] via P2P/IPC
+r7i4n1:77234:77296 [3] NCCL INFO Channel 01 : 3[8a000] -> 2[88000] via P2P/IPC
+r14i7n0:25490:25527 [3] NCCL INFO Channel 00 : 35[8a000] -> 34[88000] via P2P/IPC
+r8i3n1:64581:64618 [3] NCCL INFO Channel 00 : 23[8a000] -> 22[88000] via P2P/IPC
+r14i7n4:5391:5428 [3] NCCL INFO Channel 00 : 51[8a000] -> 50[88000] via P2P/IPC
+r7i6n2:60567:60614 [3] NCCL INFO Channel 00 : 7[8a000] -> 6[88000] via P2P/IPC
+r14i7n5:42531:42567 [3] NCCL INFO Channel 00 : 55[8a000] -> 54[88000] via P2P/IPC
+r14i7n6:27450:27493 [2] NCCL INFO Channel 01 : 58[88000] -> 57[1c000] via P2P/IPC
+r14i7n6:27451:27498 [3] NCCL INFO Channel 01 : 59[8a000] -> 58[88000] via P2P/IPC
+r14i7n2:39448:39486 [3] NCCL INFO Channel 01 : 43[8a000] -> 42[88000] via P2P/IPC
+r8i5n2:15800:15838 [2] NCCL INFO Channel 01 : 30[88000] -> 29[1c000] via P2P/IPC
+r8i2n1:41760:41808 [3] NCCL INFO Channel 01 : 19[8a000] -> 18[88000] via P2P/IPC
+r8i5n2:15801:15833 [3] NCCL INFO Channel 01 : 31[8a000] -> 30[88000] via P2P/IPC
+r14i7n2:39447:39496 [2] NCCL INFO Channel 01 : 42[88000] -> 41[1c000] via P2P/IPC
+r8i3n6:76354:76402 [2] NCCL INFO Channel 01 : 26[88000] -> 25[1c000] via P2P/IPC
+r8i2n1:41759:41798 [2] NCCL INFO Channel 01 : 18[88000] -> 17[1c000] via P2P/IPC
+r8i1n1:21965:22008 [2] NCCL INFO Channel 01 : 10[88000] -> 9[1c000] via P2P/IPC
+r8i3n6:76355:76396 [3] NCCL INFO Channel 01 : 27[8a000] -> 26[88000] via P2P/IPC
+r8i1n1:21966:21998 [3] NCCL INFO Channel 01 : 11[8a000] -> 10[88000] via P2P/IPC
+r14i7n3:66128:66176 [2] NCCL INFO Channel 01 : 46[88000] -> 45[1c000] via P2P/IPC
+r14i7n1:29727:29760 [2] NCCL INFO Channel 01 : 38[88000] -> 37[1c000] via P2P/IPC
+r14i7n0:25489:25532 [2] NCCL INFO Channel 01 : 34[88000] -> 33[1c000] via P2P/IPC
+r14i7n1:29728:29769 [3] NCCL INFO Channel 01 : 39[8a000] -> 38[88000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 01 : 14[88000] -> 13[1c000] via P2P/IPC
+r14i7n3:66129:66161 [3] NCCL INFO Channel 01 : 47[8a000] -> 46[88000] via P2P/IPC
+r14i7n0:25490:25527 [3] NCCL INFO Channel 01 : 35[8a000] -> 34[88000] via P2P/IPC
+r8i1n7:45558:45590 [3] NCCL INFO Channel 01 : 15[8a000] -> 14[88000] via P2P/IPC
+r8i3n1:64580:64623 [2] NCCL INFO Channel 01 : 22[88000] -> 21[1c000] via P2P/IPC
+r8i3n1:64581:64618 [3] NCCL INFO Channel 01 : 23[8a000] -> 22[88000] via P2P/IPC
+r14i7n4:5390:5433 [2] NCCL INFO Channel 01 : 50[88000] -> 49[1c000] via P2P/IPC
+r7i6n2:60566:60604 [2] NCCL INFO Channel 01 : 6[88000] -> 5[1c000] via P2P/IPC
+r14i7n4:5391:5428 [3] NCCL INFO Channel 01 : 51[8a000] -> 50[88000] via P2P/IPC
+r7i6n2:60567:60614 [3] NCCL INFO Channel 01 : 7[8a000] -> 6[88000] via P2P/IPC
+r14i7n5:42531:42567 [3] NCCL INFO Channel 01 : 55[8a000] -> 54[88000] via P2P/IPC
+r14i7n5:42530:42573 [2] NCCL INFO Channel 01 : 54[88000] -> 53[1c000] via P2P/IPC
+r14i7n7:81279:81314 [0] NCCL INFO Channel 00 : 60[1a000] -> 56[1a000] [send] via NET/IB/3
+r8i5n2:15798:15843 [0] NCCL INFO Channel 00 : 28[1a000] -> 24[1a000] [send] via NET/IB/3
+r14i7n0:25487:25522 [0] NCCL INFO Channel 00 : 16[1a000] -> 32[1a000] [receive] via NET/IB/3
+r14i7n3:66126:66171 [0] NCCL INFO Channel 00 : 44[1a000] -> 40[1a000] [send] via NET/IB/3
+r8i1n7:45555:45595 [0] NCCL INFO Channel 00 : 12[1a000] -> 8[1a000] [send] via NET/IB/3
+r7i6n2:60564:60599 [0] NCCL INFO Channel 00 : 4[1a000] -> 8[1a000] [send] via NET/IB/3
+r14i7n7:81280:81319 [1] NCCL INFO Channel 01 : 61[1c000] -> 0[1a000] [send] via NET/IB/3
+r14i7n1:29725:29775 [0] NCCL INFO Channel 00 : 36[1a000] -> 40[1a000] [send] via NET/IB/3
+r8i3n1:64578:64628 [0] NCCL INFO Channel 00 : 20[1a000] -> 24[1a000] [send] via NET/IB/3
+r8i2n1:41757:41793 [0] NCCL INFO Channel 00 : 8[1a000] -> 16[1a000] [receive] via NET/IB/3
+r14i7n2:39445:39491 [0] NCCL INFO Channel 00 : 36[1a000] -> 40[1a000] [receive] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 00 : 52[1a000] -> 56[1a000] [send] via NET/IB/3
+r14i7n4:5388:5438 [0] NCCL INFO Channel 00 : 40[1a000] -> 48[1a000] [receive] via NET/IB/3
+r8i1n1:21963:22007 [0] NCCL INFO Channel 00 : 4[1a000] -> 8[1a000] [receive] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 00 : 20[1a000] -> 24[1a000] [receive] via NET/IB/3
+r14i7n6:27448:27488 [0] NCCL INFO Channel 00 : 52[1a000] -> 56[1a000] [receive] via NET/IB/3
+r8i5n2:15799:15848 [1] NCCL INFO Channel 01 : 29[1c000] -> 32[1a000] [send] via NET/IB/3
+r14i7n3:66127:66166 [1] NCCL INFO Channel 01 : 45[1c000] -> 48[1a000] [send] via NET/IB/3
+r14i7n0:25488:25537 [1] NCCL INFO Channel 01 : 33[1c000] -> 36[1a000] [send] via NET/IB/3
+r8i5n2:15800:15838 [2] NCCL INFO Channel 01 : 30[88000] -> 26[88000] [send] via NET/IB/2
+r7i6n2:60565:60609 [1] NCCL INFO Channel 01 : 5[1c000] -> 8[1a000] [send] via NET/IB/3
+r14i7n4:5389:5423 [1] NCCL INFO Channel 01 : 49[1c000] -> 52[1a000] [send] via NET/IB/3
+r8i1n7:45556:45605 [1] NCCL INFO Channel 01 : 13[1c000] -> 16[1a000] [send] via NET/IB/3
+r14i7n2:39446:39481 [1] NCCL INFO Channel 01 : 41[1c000] -> 44[1a000] [send] via NET/IB/3
+r8i2n1:41758:41803 [1] NCCL INFO Channel 01 : 17[1c000] -> 20[1a000] [send] via NET/IB/3
+r14i7n6:27449:27483 [1] NCCL INFO Channel 01 : 57[1c000] -> 60[1a000] [send] via NET/IB/3
+r8i3n1:64579:64613 [1] NCCL INFO Channel 01 : 21[1c000] -> 24[1a000] [send] via NET/IB/3
+r8i1n1:21964:22013 [1] NCCL INFO Channel 01 : 9[1c000] -> 12[1a000] [send] via NET/IB/3
+r14i7n5:42529:42568 [1] NCCL INFO Channel 01 : 53[1c000] -> 56[1a000] [send] via NET/IB/3
+r14i7n2:39447:39496 [2] NCCL INFO Channel 01 : 38[88000] -> 42[88000] [receive] via NET/IB/2
+r14i7n3:66128:66176 [2] NCCL INFO Channel 01 : 46[88000] -> 42[88000] [send] via NET/IB/2
+r8i2n1:41759:41798 [2] NCCL INFO Channel 01 : 10[88000] -> 18[88000] [receive] via NET/IB/2
+r14i7n6:27450:27493 [2] NCCL INFO Channel 01 : 54[88000] -> 58[88000] [receive] via NET/IB/2
+r8i3n6:76353:76397 [1] NCCL INFO Channel 01 : 25[1c000] -> 28[1a000] [send] via NET/IB/3
+r14i7n1:29726:29770 [1] NCCL INFO Channel 01 : 37[1c000] -> 40[1a000] [send] via NET/IB/3
+r14i7n0:25489:25532 [2] NCCL INFO Channel 01 : 18[88000] -> 34[88000] [receive] via NET/IB/2
+r8i3n6:76354:76402 [2] NCCL INFO Channel 01 : 22[88000] -> 26[88000] [receive] via NET/IB/2
+r8i1n1:21965:22008 [2] NCCL INFO Channel 01 : 6[88000] -> 10[88000] [receive] via NET/IB/2
+r8i1n7:45557:45600 [2] NCCL INFO Channel 01 : 14[88000] -> 10[88000] [send] via NET/IB/2
+r14i7n1:29727:29760 [2] NCCL INFO Channel 01 : 38[88000] -> 42[88000] [send] via NET/IB/2
+r8i3n1:64580:64623 [2] NCCL INFO Channel 01 : 22[88000] -> 26[88000] [send] via NET/IB/2
+r14i7n4:5390:5433 [2] NCCL INFO Channel 01 : 42[88000] -> 50[88000] [receive] via NET/IB/2
+r7i6n2:60566:60604 [2] NCCL INFO Channel 01 : 6[88000] -> 10[88000] [send] via NET/IB/2
+r14i7n5:42530:42573 [2] NCCL INFO Channel 01 : 54[88000] -> 58[88000] [send] via NET/IB/2
+r14i7n0:25487:25522 [0] NCCL INFO Channel 00 : 48[1a000] -> 32[1a000] [receive] via NET/IB/3
+r8i2n1:41757:41793 [0] NCCL INFO Channel 00 : 24[1a000] -> 16[1a000] [receive] via NET/IB/3
+r14i7n2:39445:39491 [0] NCCL INFO Channel 00 : 44[1a000] -> 40[1a000] [receive] via NET/IB/3
+r8i1n1:21963:22007 [0] NCCL INFO Channel 00 : 12[1a000] -> 8[1a000] [receive] via NET/IB/3
+r14i7n4:5388:5438 [0] NCCL INFO Channel 00 : 56[1a000] -> 48[1a000] [receive] via NET/IB/3
+r14i7n6:27448:27488 [0] NCCL INFO Channel 00 : 60[1a000] -> 56[1a000] [receive] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 00 : 28[1a000] -> 24[1a000] [receive] via NET/IB/3
+r7i6n2:60564:60599 [0] NCCL INFO Channel 00 : 8[1a000] -> 4[1a000] [receive] via NET/IB/3
+r8i2n1:41759:41798 [2] NCCL INFO Channel 01 : 26[88000] -> 18[88000] [receive] via NET/IB/2
+r14i7n6:27450:27493 [2] NCCL INFO Channel 01 : 62[88000] -> 58[88000] [receive] via NET/IB/2
+r14i7n2:39447:39496 [2] NCCL INFO Channel 01 : 46[88000] -> 42[88000] [receive] via NET/IB/2
+r14i7n0:25489:25532 [2] NCCL INFO Channel 01 : 50[88000] -> 34[88000] [receive] via NET/IB/2
+r8i3n6:76354:76402 [2] NCCL INFO Channel 01 : 30[88000] -> 26[88000] [receive] via NET/IB/2
+r14i7n1:29725:29775 [0] NCCL INFO Channel 00 : 40[1a000] -> 36[1a000] [receive] via NET/IB/3
+r8i1n1:21965:22008 [2] NCCL INFO Channel 01 : 14[88000] -> 10[88000] [receive] via NET/IB/2
+r14i7n5:42528:42578 [0] NCCL INFO Channel 00 : 56[1a000] -> 52[1a000] [receive] via NET/IB/3
+r8i3n1:64578:64628 [0] NCCL INFO Channel 00 : 24[1a000] -> 20[1a000] [receive] via NET/IB/3
+r14i7n4:5390:5433 [2] NCCL INFO Channel 01 : 58[88000] -> 50[88000] [receive] via NET/IB/2
+r8i3n1:64580:64623 [2] NCCL INFO Channel 01 : 26[88000] -> 22[88000] [receive] via NET/IB/2
+r14i7n1:29727:29760 [2] NCCL INFO Channel 01 : 42[88000] -> 38[88000] [receive] via NET/IB/2
+r7i6n2:60566:60604 [2] NCCL INFO Channel 01 : 10[88000] -> 6[88000] [receive] via NET/IB/2
+r8i3n1:64580:64623 [2] NCCL INFO Channel 01 : 22[88000] -> 23[8a000] via P2P/IPC
+r14i7n1:29727:29760 [2] NCCL INFO Channel 01 : 38[88000] -> 39[8a000] via P2P/IPC
+r7i6n2:60566:60604 [2] NCCL INFO Channel 01 : 6[88000] -> 7[8a000] via P2P/IPC
+r14i7n5:42530:42573 [2] NCCL INFO Channel 01 : 58[88000] -> 54[88000] [receive] via NET/IB/2
+r14i7n5:42530:42573 [2] NCCL INFO Channel 01 : 54[88000] -> 55[8a000] via P2P/IPC
+r14i7n0:25487:25522 [0] NCCL INFO Channel 00 : 32[1a000] -> 0[1a000] [send] via NET/IB/3
+r8i2n1:41757:41793 [0] NCCL INFO Channel 00 : 16[1a000] -> 32[1a000] [send] via NET/IB/3
+r8i1n1:21963:22007 [0] NCCL INFO Channel 00 : 8[1a000] -> 16[1a000] [send] via NET/IB/3
+r14i7n2:39445:39491 [0] NCCL INFO Channel 00 : 40[1a000] -> 48[1a000] [send] via NET/IB/3
+r14i7n4:5388:5438 [0] NCCL INFO Channel 00 : 48[1a000] -> 32[1a000] [send] via NET/IB/3
+r14i7n6:27448:27488 [0] NCCL INFO Channel 00 : 56[1a000] -> 48[1a000] [send] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 00 : 24[1a000] -> 16[1a000] [send] via NET/IB/3
+r14i7n7:81279:81314 [0] NCCL INFO Channel 00 : 56[1a000] -> 60[1a000] [receive] via NET/IB/3
+r8i2n1:41759:41798 [2] NCCL INFO Channel 01 : 18[88000] -> 34[88000] [send] via NET/IB/2
+r14i7n0:25489:25532 [2] NCCL INFO Channel 01 : 34[88000] -> 2[88000] [send] via NET/IB/2
+r14i7n6:27450:27493 [2] NCCL INFO Channel 01 : 58[88000] -> 50[88000] [send] via NET/IB/2
+r14i7n2:39447:39496 [2] NCCL INFO Channel 01 : 42[88000] -> 50[88000] [send] via NET/IB/2
+r8i3n6:76354:76402 [2] NCCL INFO Channel 01 : 26[88000] -> 18[88000] [send] via NET/IB/2
+r8i1n1:21965:22008 [2] NCCL INFO Channel 01 : 10[88000] -> 18[88000] [send] via NET/IB/2
+r14i7n4:5390:5433 [2] NCCL INFO Channel 01 : 50[88000] -> 34[88000] [send] via NET/IB/2
+r7i4n1:77231:77291 [0] NCCL INFO Channel 00 : 0[1a000] -> 1[1c000] via P2P/IPC
+r14i7n3:66128:66176 [2] NCCL INFO Channel 01 : 42[88000] -> 46[88000] [receive] via NET/IB/2
+r8i5n2:15800:15838 [2] NCCL INFO Channel 01 : 26[88000] -> 30[88000] [receive] via NET/IB/2
+r8i1n7:45557:45600 [2] NCCL INFO Channel 01 : 10[88000] -> 14[88000] [receive] via NET/IB/2
+r14i7n3:66128:66176 [2] NCCL INFO Channel 01 : 46[88000] -> 47[8a000] via P2P/IPC
+r8i5n2:15800:15838 [2] NCCL INFO Channel 01 : 30[88000] -> 31[8a000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 01 : 14[88000] -> 15[8a000] via P2P/IPC
+r7i4n1:77232:77301 [1] NCCL INFO Channel 00 : 1[1c000] -> 0[1a000] via P2P/IPC
+r14i7n7:81282:81324 [3] NCCL INFO Channel 00 : 63[8a000] -> 62[88000] via P2P/IPC
+r14i7n7:81281:81329 [2] NCCL INFO Channel 01 : 62[88000] -> 61[1c000] via P2P/IPC
+r14i7n7:81282:81324 [3] NCCL INFO Channel 01 : 63[8a000] -> 62[88000] via P2P/IPC
+r7i4n1:77233:77306 [2] NCCL INFO Channel 01 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:77231:77291 [0] NCCL INFO Channel 00 : 32[1a000] -> 0[1a000] [receive] via NET/IB/3
+r14i7n7:81281:81329 [2] NCCL INFO Channel 01 : 62[88000] -> 58[88000] [send] via NET/IB/2
+r7i4n1:77232:77301 [1] NCCL INFO Channel 01 : 1[1c000] -> 4[1a000] [send] via NET/IB/3
+r7i4n1:77233:77306 [2] NCCL INFO Channel 01 : 34[88000] -> 2[88000] [receive] via NET/IB/2
+r8i1n7:45555:45595 [0] NCCL INFO Channel 00 : 8[1a000] -> 12[1a000] [receive] via NET/IB/3
+r14i7n7:81281:81329 [2] NCCL INFO Channel 01 : 58[88000] -> 62[88000] [receive] via NET/IB/2
+r14i7n7:81281:81329 [2] NCCL INFO Channel 01 : 62[88000] -> 63[8a000] via P2P/IPC
+r14i7n3:66126:66171 [0] NCCL INFO Channel 00 : 40[1a000] -> 44[1a000] [receive] via NET/IB/3
+r8i5n2:15798:15843 [0] NCCL INFO Channel 00 : 24[1a000] -> 28[1a000] [receive] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 00 : 16[1a000] -> 24[1a000] [receive] via NET/IB/3
+r7i4n1:77231:77291 [0] NCCL INFO Channel 00 : 0[1a000] -> 32[1a000] [send] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 00 : 24[1a000] -> 20[1a000] [send] via NET/IB/3
+r8i1n1:21965:22008 [2] NCCL INFO Channel 01 : 18[88000] -> 10[88000] [receive] via NET/IB/2
+r14i7n6:27450:27493 [2] NCCL INFO Channel 01 : 50[88000] -> 58[88000] [receive] via NET/IB/2
+r7i4n1:77233:77306 [2] NCCL INFO Channel 01 : 2[88000] -> 3[8a000] via P2P/IPC
+r14i7n0:25487:25522 [0] NCCL INFO Channel 00 : 0[1a000] -> 32[1a000] [receive] via NET/IB/3
+r8i1n1:21965:22008 [2] NCCL INFO Channel 01 : 10[88000] -> 11[8a000] via P2P/IPC
+r8i2n1:41757:41793 [0] NCCL INFO Channel 00 : 32[1a000] -> 16[1a000] [receive] via NET/IB/3
+r14i7n6:27450:27493 [2] NCCL INFO Channel 01 : 58[88000] -> 59[8a000] via P2P/IPC
+r8i1n1:21963:22007 [0] NCCL INFO Channel 00 : 16[1a000] -> 8[1a000] [receive] via NET/IB/3
+r14i7n6:27448:27488 [0] NCCL INFO Channel 00 : 48[1a000] -> 56[1a000] [receive] via NET/IB/3
+r14i7n4:5390:5433 [2] NCCL INFO Channel 01 : 34[88000] -> 50[88000] [receive] via NET/IB/2
+r8i3n6:76354:76402 [2] NCCL INFO Channel 01 : 18[88000] -> 26[88000] [receive] via NET/IB/2
+r14i7n4:5390:5433 [2] NCCL INFO Channel 01 : 50[88000] -> 51[8a000] via P2P/IPC
+r8i3n6:76354:76402 [2] NCCL INFO Channel 01 : 26[88000] -> 27[8a000] via P2P/IPC
+r14i7n2:39445:39491 [0] NCCL INFO Channel 00 : 48[1a000] -> 40[1a000] [receive] via NET/IB/3
+r14i7n2:39447:39496 [2] NCCL INFO Channel 01 : 50[88000] -> 42[88000] [receive] via NET/IB/2
+r14i7n4:5388:5438 [0] NCCL INFO Channel 00 : 32[1a000] -> 48[1a000] [receive] via NET/IB/3
+r14i7n2:39447:39496 [2] NCCL INFO Channel 01 : 42[88000] -> 43[8a000] via P2P/IPC
+r8i3n6:76352:76387 [0] NCCL INFO Channel 00 : 24[1a000] -> 28[1a000] [send] via NET/IB/3
+r7i4n1:77233:77306 [2] NCCL INFO Channel 01 : 2[88000] -> 34[88000] [send] via NET/IB/2
+r14i7n0:25487:25522 [0] NCCL INFO Channel 00 : 32[1a000] -> 16[1a000] [send] via NET/IB/3
+r8i1n1:21965:22008 [2] NCCL INFO Channel 01 : 10[88000] -> 6[88000] [send] via NET/IB/2
+r8i2n1:41757:41793 [0] NCCL INFO Channel 00 : 16[1a000] -> 8[1a000] [send] via NET/IB/3
+r14i7n6:27450:27493 [2] NCCL INFO Channel 01 : 58[88000] -> 54[88000] [send] via NET/IB/2
+r14i7n0:25489:25532 [2] NCCL INFO Channel 01 : 2[88000] -> 34[88000] [receive] via NET/IB/2
+r8i1n1:21963:22007 [0] NCCL INFO Channel 00 : 8[1a000] -> 4[1a000] [send] via NET/IB/3
+r14i7n6:27448:27488 [0] NCCL INFO Channel 00 : 56[1a000] -> 52[1a000] [send] via NET/IB/3
+r7i4n1:77231:77291 [0] NCCL INFO Channel 01 : 61[1c000] -> 0[1a000] [receive] via NET/IB/3
+r14i7n0:25489:25532 [2] NCCL INFO Channel 01 : 34[88000] -> 35[8a000] via P2P/IPC
+r7i4n1:77231:77291 [0] NCCL INFO Channel 01 : 0[1a000] -> 3[8a000] via P2P/IPC
+r14i7n4:5390:5433 [2] NCCL INFO Channel 01 : 50[88000] -> 42[88000] [send] via NET/IB/2
+r8i3n6:76354:76402 [2] NCCL INFO Channel 01 : 26[88000] -> 22[88000] [send] via NET/IB/2
+r14i7n2:39445:39491 [0] NCCL INFO Channel 00 : 40[1a000] -> 36[1a000] [send] via NET/IB/3
+r14i7n4:5388:5438 [0] NCCL INFO Channel 00 : 48[1a000] -> 40[1a000] [send] via NET/IB/3
+r14i7n2:39447:39496 [2] NCCL INFO Channel 01 : 42[88000] -> 38[88000] [send] via NET/IB/2
+r8i2n1:41759:41798 [2] NCCL INFO Channel 01 : 34[88000] -> 18[88000] [receive] via NET/IB/2
+r14i7n7:81280:81319 [1] NCCL INFO Channel 01 : 61[1c000] -> 60[1a000] via P2P/IPC
+r7i4n1:77234:77296 [3] NCCL INFO Channel 01 : 3[8a000] -> 0[1a000] via P2P/IPC
+r8i2n1:41759:41798 [2] NCCL INFO Channel 01 : 18[88000] -> 19[8a000] via P2P/IPC
+r7i4n1:77233:77306 [2] NCCL INFO Channel 02 : 2[88000] -> 3[8a000] via P2P/IPC
+r8i3n1:64578:64628 [0] NCCL INFO Channel 01 : 17[1c000] -> 20[1a000] [receive] via NET/IB/3
+r14i7n0:25487:25522 [0] NCCL INFO Channel 00 : 32[1a000] -> 48[1a000] [send] via NET/IB/3
+r8i3n1:64578:64628 [0] NCCL INFO Channel 01 : 20[1a000] -> 23[8a000] via P2P/IPC
+r8i2n1:41757:41793 [0] NCCL INFO Channel 00 : 16[1a000] -> 24[1a000] [send] via NET/IB/3
+r8i1n1:21965:22008 [2] NCCL INFO Channel 01 : 10[88000] -> 14[88000] [send] via NET/IB/2
+r14i7n6:27450:27493 [2] NCCL INFO Channel 01 : 58[88000] -> 62[88000] [send] via NET/IB/2
+r8i5n2:15798:15843 [0] NCCL INFO Channel 01 : 25[1c000] -> 28[1a000] [receive] via NET/IB/3
+r8i1n1:21963:22007 [0] NCCL INFO Channel 00 : 8[1a000] -> 12[1a000] [send] via NET/IB/3
+r8i5n2:15798:15843 [0] NCCL INFO Channel 01 : 28[1a000] -> 31[8a000] via P2P/IPC
+r14i7n6:27448:27488 [0] NCCL INFO Channel 00 : 56[1a000] -> 60[1a000] [send] via NET/IB/3
+r14i7n0:25489:25532 [2] NCCL INFO Channel 01 : 34[88000] -> 18[88000] [send] via NET/IB/2
+r8i2n1:41758:41803 [1] NCCL INFO Channel 01 : 17[1c000] -> 16[1a000] via P2P/IPC
+r8i3n1:64581:64618 [3] NCCL INFO Channel 01 : 23[8a000] -> 20[1a000] via P2P/IPC
+r14i7n4:5390:5433 [2] NCCL INFO Channel 01 : 50[88000] -> 58[88000] [send] via NET/IB/2
+r8i3n6:76354:76402 [2] NCCL INFO Channel 01 : 26[88000] -> 30[88000] [send] via NET/IB/2
+r14i7n2:39445:39491 [0] NCCL INFO Channel 00 : 40[1a000] -> 44[1a000] [send] via NET/IB/3
+r14i7n4:5388:5438 [0] NCCL INFO Channel 00 : 48[1a000] -> 56[1a000] [send] via NET/IB/3
+r8i5n2:15801:15833 [3] NCCL INFO Channel 01 : 31[8a000] -> 28[1a000] via P2P/IPC
+r8i3n6:76353:76397 [1] NCCL INFO Channel 01 : 25[1c000] -> 24[1a000] via P2P/IPC
+r14i7n2:39447:39496 [2] NCCL INFO Channel 01 : 42[88000] -> 46[88000] [send] via NET/IB/2
+r8i2n1:41759:41798 [2] NCCL INFO Channel 01 : 18[88000] -> 10[88000] [send] via NET/IB/2
+r14i7n0:25489:25532 [2] NCCL INFO Channel 01 : 34[88000] -> 50[88000] [send] via NET/IB/2
+r7i6n2:60564:60599 [0] NCCL INFO Channel 01 : 1[1c000] -> 4[1a000] [receive] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 01 : 49[1c000] -> 52[1a000] [receive] via NET/IB/3
+r7i6n2:60564:60599 [0] NCCL INFO Channel 01 : 4[1a000] -> 7[8a000] via P2P/IPC
+r8i3n6:76352:76387 [0] NCCL INFO Channel 01 : 21[1c000] -> 24[1a000] [receive] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 01 : 52[1a000] -> 55[8a000] via P2P/IPC
+r8i1n7:45555:45595 [0] NCCL INFO Channel 01 : 9[1c000] -> 12[1a000] [receive] via NET/IB/3
+r14i7n7:81279:81314 [0] NCCL INFO Channel 01 : 57[1c000] -> 60[1a000] [receive] via NET/IB/3
+r14i7n0:25487:25522 [0] NCCL INFO Channel 01 : 29[1c000] -> 32[1a000] [receive] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 01 : 24[1a000] -> 27[8a000] via P2P/IPC
+r14i7n7:81279:81314 [0] NCCL INFO Channel 01 : 60[1a000] -> 63[8a000] via P2P/IPC
+r8i1n7:45555:45595 [0] NCCL INFO Channel 01 : 12[1a000] -> 15[8a000] via P2P/IPC
+r14i7n1:29725:29775 [0] NCCL INFO Channel 01 : 33[1c000] -> 36[1a000] [receive] via NET/IB/3
+r14i7n0:25487:25522 [0] NCCL INFO Channel 01 : 32[1a000] -> 35[8a000] via P2P/IPC
+r8i1n1:21963:22007 [0] NCCL INFO Channel 01 : 5[1c000] -> 8[1a000] [receive] via NET/IB/3
+r8i2n1:41759:41798 [2] NCCL INFO Channel 01 : 18[88000] -> 26[88000] [send] via NET/IB/2
+r8i2n1:41757:41793 [0] NCCL INFO Channel 01 : 13[1c000] -> 16[1a000] [receive] via NET/IB/3
+r14i7n1:29725:29775 [0] NCCL INFO Channel 01 : 36[1a000] -> 39[8a000] via P2P/IPC
+r7i4n1:77232:77301 [1] NCCL INFO Channel 01 : 1[1c000] -> 0[1a000] via P2P/IPC
+r8i1n1:21963:22007 [0] NCCL INFO Channel 01 : 8[1a000] -> 11[8a000] via P2P/IPC
+r8i2n1:41757:41793 [0] NCCL INFO Channel 01 : 16[1a000] -> 19[8a000] via P2P/IPC
+r14i7n3:66126:66171 [0] NCCL INFO Channel 01 : 41[1c000] -> 44[1a000] [receive] via NET/IB/3
+r14i7n5:42531:42567 [3] NCCL INFO Channel 01 : 55[8a000] -> 52[1a000] via P2P/IPC
+r7i6n2:60567:60614 [3] NCCL INFO Channel 01 : 7[8a000] -> 4[1a000] via P2P/IPC
+r14i7n4:5389:5423 [1] NCCL INFO Channel 01 : 49[1c000] -> 48[1a000] via P2P/IPC
+r8i3n1:64579:64613 [1] NCCL INFO Channel 01 : 21[1c000] -> 20[1a000] via P2P/IPC
+r14i7n6:27448:27488 [0] NCCL INFO Channel 01 : 53[1c000] -> 56[1a000] [receive] via NET/IB/3
+r14i7n3:66126:66171 [0] NCCL INFO Channel 01 : 44[1a000] -> 47[8a000] via P2P/IPC
+r14i7n2:39445:39491 [0] NCCL INFO Channel 01 : 37[1c000] -> 40[1a000] [receive] via NET/IB/3
+r8i5n2:15799:15848 [1] NCCL INFO Channel 01 : 29[1c000] -> 28[1a000] via P2P/IPC
+r14i7n7:81282:81324 [3] NCCL INFO Channel 01 : 63[8a000] -> 60[1a000] via P2P/IPC
+r8i3n6:76355:76396 [3] NCCL INFO Channel 01 : 27[8a000] -> 24[1a000] via P2P/IPC
+r14i7n6:27448:27488 [0] NCCL INFO Channel 01 : 56[1a000] -> 59[8a000] via P2P/IPC
+r14i7n6:27449:27483 [1] NCCL INFO Channel 01 : 57[1c000] -> 56[1a000] via P2P/IPC
+r14i7n2:39445:39491 [0] NCCL INFO Channel 01 : 40[1a000] -> 43[8a000] via P2P/IPC
+r8i1n7:45558:45590 [3] NCCL INFO Channel 01 : 15[8a000] -> 12[1a000] via P2P/IPC
+r14i7n4:5388:5438 [0] NCCL INFO Channel 01 : 45[1c000] -> 48[1a000] [receive] via NET/IB/3
+r14i7n1:29728:29769 [3] NCCL INFO Channel 01 : 39[8a000] -> 36[1a000] via P2P/IPC
+r7i6n2:60565:60609 [1] NCCL INFO Channel 01 : 5[1c000] -> 4[1a000] via P2P/IPC
+r7i4n1:77231:77291 [0] NCCL INFO Channel 01 : 0[1a000] -> 1[1c000] via P2P/IPC
+r8i1n1:21964:22013 [1] NCCL INFO Channel 01 : 9[1c000] -> 8[1a000] via P2P/IPC
+r14i7n0:25490:25527 [3] NCCL INFO Channel 01 : 35[8a000] -> 32[1a000] via P2P/IPC
+r8i2n1:41760:41808 [3] NCCL INFO Channel 01 : 19[8a000] -> 16[1a000] via P2P/IPC
+r8i1n7:45556:45605 [1] NCCL INFO Channel 01 : 13[1c000] -> 12[1a000] via P2P/IPC
+r14i7n4:5388:5438 [0] NCCL INFO Channel 01 : 48[1a000] -> 51[8a000] via P2P/IPC
+r14i7n0:25488:25537 [1] NCCL INFO Channel 01 : 33[1c000] -> 32[1a000] via P2P/IPC
+r8i3n1:64578:64628 [0] NCCL INFO Channel 01 : 20[1a000] -> 21[1c000] via P2P/IPC
+r14i7n5:42529:42568 [1] NCCL INFO Channel 01 : 53[1c000] -> 52[1a000] via P2P/IPC
+r8i5n2:15798:15843 [0] NCCL INFO Channel 01 : 28[1a000] -> 29[1c000] via P2P/IPC
+r14i7n3:66129:66161 [3] NCCL INFO Channel 01 : 47[8a000] -> 44[1a000] via P2P/IPC
+r8i1n1:21966:21998 [3] NCCL INFO Channel 01 : 11[8a000] -> 8[1a000] via P2P/IPC
+r14i7n1:29726:29770 [1] NCCL INFO Channel 01 : 37[1c000] -> 36[1a000] via P2P/IPC
+r14i7n2:39446:39481 [1] NCCL INFO Channel 01 : 41[1c000] -> 40[1a000] via P2P/IPC
+r14i7n6:27451:27498 [3] NCCL INFO Channel 01 : 59[8a000] -> 56[1a000] via P2P/IPC
+r8i3n6:76352:76387 [0] NCCL INFO Channel 01 : 24[1a000] -> 25[1c000] via P2P/IPC
+r14i7n7:81279:81314 [0] NCCL INFO Channel 01 : 60[1a000] -> 61[1c000] via P2P/IPC
+r7i6n2:60564:60599 [0] NCCL INFO Channel 01 : 4[1a000] -> 5[1c000] via P2P/IPC
+r14i7n3:66127:66166 [1] NCCL INFO Channel 01 : 45[1c000] -> 44[1a000] via P2P/IPC
+r8i1n7:45555:45595 [0] NCCL INFO Channel 01 : 12[1a000] -> 13[1c000] via P2P/IPC
+r7i4n1:77232:77301 [1] NCCL INFO Channel 02 : 1[1c000] -> 2[88000] via P2P/IPC
+r14i7n0:25487:25522 [0] NCCL INFO Channel 01 : 32[1a000] -> 33[1c000] via P2P/IPC
+r14i7n2:39448:39486 [3] NCCL INFO Channel 01 : 43[8a000] -> 40[1a000] via P2P/IPC
+r14i7n5:42528:42578 [0] NCCL INFO Channel 01 : 52[1a000] -> 53[1c000] via P2P/IPC
+r8i2n1:41757:41793 [0] NCCL INFO Channel 01 : 16[1a000] -> 17[1c000] via P2P/IPC
+r14i7n4:5391:5428 [3] NCCL INFO Channel 01 : 51[8a000] -> 48[1a000] via P2P/IPC
+r8i1n1:21963:22007 [0] NCCL INFO Channel 01 : 8[1a000] -> 9[1c000] via P2P/IPC
+r8i3n1:64580:64623 [2] NCCL INFO Channel 02 : 22[88000] -> 23[8a000] via P2P/IPC
+r14i7n1:29725:29775 [0] NCCL INFO Channel 01 : 36[1a000] -> 37[1c000] via P2P/IPC
+r8i5n2:15799:15848 [1] NCCL INFO Channel 02 : 29[1c000] -> 30[88000] via P2P/IPC
+r8i3n1:64579:64613 [1] NCCL INFO Channel 02 : 21[1c000] -> 22[88000] via P2P/IPC
+r8i5n2:15800:15838 [2] NCCL INFO Channel 02 : 30[88000] -> 31[8a000] via P2P/IPC
+r14i7n6:27448:27488 [0] NCCL INFO Channel 01 : 56[1a000] -> 57[1c000] via P2P/IPC
+r7i4n1:77233:77306 [2] NCCL INFO Channel 02 : 2[88000] -> 1[1c000] via P2P/IPC
+r14i7n7:81280:81319 [1] NCCL INFO Channel 02 : 61[1c000] -> 62[88000] via P2P/IPC
+r14i7n3:66126:66171 [0] NCCL INFO Channel 01 : 44[1a000] -> 45[1c000] via P2P/IPC
+r8i3n6:76353:76397 [1] NCCL INFO Channel 02 : 25[1c000] -> 26[88000] via P2P/IPC
+r8i3n6:76354:76402 [2] NCCL INFO Channel 02 : 26[88000] -> 27[8a000] via P2P/IPC
+r14i7n2:39445:39491 [0] NCCL INFO Channel 01 : 40[1a000] -> 41[1c000] via P2P/IPC
+r8i1n7:45556:45605 [1] NCCL INFO Channel 02 : 13[1c000] -> 14[88000] via P2P/IPC
+r7i6n2:60566:60604 [2] NCCL INFO Channel 02 : 6[88000] -> 7[8a000] via P2P/IPC
+r14i7n0:25488:25537 [1] NCCL INFO Channel 02 : 33[1c000] -> 34[88000] via P2P/IPC
+r14i7n4:5388:5438 [0] NCCL INFO Channel 01 : 48[1a000] -> 49[1c000] via P2P/IPC
+r8i3n1:64580:64623 [2] NCCL INFO Channel 02 : 22[88000] -> 21[1c000] via P2P/IPC
+r7i6n2:60565:60609 [1] NCCL INFO Channel 02 : 5[1c000] -> 6[88000] via P2P/IPC
+r8i5n2:15800:15838 [2] NCCL INFO Channel 02 : 30[88000] -> 29[1c000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 02 : 14[88000] -> 15[8a000] via P2P/IPC
+r14i7n0:25489:25532 [2] NCCL INFO Channel 02 : 34[88000] -> 35[8a000] via P2P/IPC
+r8i2n1:41758:41803 [1] NCCL INFO Channel 02 : 17[1c000] -> 18[88000] via P2P/IPC
+r14i7n5:42530:42573 [2] NCCL INFO Channel 02 : 54[88000] -> 55[8a000] via P2P/IPC
+r14i7n5:42529:42568 [1] NCCL INFO Channel 02 : 53[1c000] -> 54[88000] via P2P/IPC
+r14i7n7:81281:81329 [2] NCCL INFO Channel 02 : 62[88000] -> 63[8a000] via P2P/IPC
+r8i2n1:41759:41798 [2] NCCL INFO Channel 02 : 18[88000] -> 19[8a000] via P2P/IPC
+r8i1n1:21964:22013 [1] NCCL INFO Channel 02 : 9[1c000] -> 10[88000] via P2P/IPC
+r14i7n1:29726:29770 [1] NCCL INFO Channel 02 : 37[1c000] -> 38[88000] via P2P/IPC
+r8i3n6:76354:76402 [2] NCCL INFO Channel 02 : 26[88000] -> 25[1c000] via P2P/IPC
+r14i7n6:27449:27483 [1] NCCL INFO Channel 02 : 57[1c000] -> 58[88000] via P2P/IPC
+r14i7n1:29727:29760 [2] NCCL INFO Channel 02 : 38[88000] -> 39[8a000] via P2P/IPC
+r8i1n1:21965:22008 [2] NCCL INFO Channel 02 : 10[88000] -> 11[8a000] via P2P/IPC
+r14i7n6:27450:27493 [2] NCCL INFO Channel 02 : 58[88000] -> 59[8a000] via P2P/IPC
+r7i6n2:60566:60604 [2] NCCL INFO Channel 02 : 6[88000] -> 5[1c000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 02 : 14[88000] -> 13[1c000] via P2P/IPC
+r14i7n7:81281:81329 [2] NCCL INFO Channel 02 : 62[88000] -> 61[1c000] via P2P/IPC
+r14i7n0:25489:25532 [2] NCCL INFO Channel 02 : 34[88000] -> 33[1c000] via P2P/IPC
+r14i7n3:66127:66166 [1] NCCL INFO Channel 02 : 45[1c000] -> 46[88000] via P2P/IPC
+r8i2n1:41759:41798 [2] NCCL INFO Channel 02 : 18[88000] -> 17[1c000] via P2P/IPC
+r14i7n5:42530:42573 [2] NCCL INFO Channel 02 : 54[88000] -> 53[1c000] via P2P/IPC
+r14i7n3:66128:66176 [2] NCCL INFO Channel 02 : 46[88000] -> 47[8a000] via P2P/IPC
+r14i7n4:5389:5423 [1] NCCL INFO Channel 02 : 49[1c000] -> 50[88000] via P2P/IPC
+r14i7n2:39446:39481 [1] NCCL INFO Channel 02 : 41[1c000] -> 42[88000] via P2P/IPC
+r14i7n1:29727:29760 [2] NCCL INFO Channel 02 : 38[88000] -> 37[1c000] via P2P/IPC
+r14i7n2:39447:39496 [2] NCCL INFO Channel 02 : 42[88000] -> 43[8a000] via P2P/IPC
+r8i1n1:21965:22008 [2] NCCL INFO Channel 02 : 10[88000] -> 9[1c000] via P2P/IPC
+r14i7n4:5390:5433 [2] NCCL INFO Channel 02 : 50[88000] -> 51[8a000] via P2P/IPC
+r14i7n6:27450:27493 [2] NCCL INFO Channel 02 : 58[88000] -> 57[1c000] via P2P/IPC
+r14i7n3:66128:66176 [2] NCCL INFO Channel 02 : 46[88000] -> 45[1c000] via P2P/IPC
+r14i7n4:5390:5433 [2] NCCL INFO Channel 02 : 50[88000] -> 49[1c000] via P2P/IPC
+r14i7n2:39447:39496 [2] NCCL INFO Channel 02 : 42[88000] -> 41[1c000] via P2P/IPC
+r7i4n1:77231:77291 [0] NCCL INFO Channel 02 : 63[8a000] -> 0[1a000] [receive] via NET/IB/3
+r7i4n1:77234:77296 [3] NCCL INFO Channel 02 : 3[8a000] -> 4[1a000] [send] via NET/IB/2
+r7i4n1:77231:77291 [0] NCCL INFO Channel 02 : 0[1a000] -> 1[1c000] via P2P/IPC
+r8i3n1:64581:64618 [3] NCCL INFO Channel 02 : 23[8a000] -> 24[1a000] [send] via NET/IB/2
+r8i3n1:64578:64628 [0] NCCL INFO Channel 02 : 19[8a000] -> 20[1a000] [receive] via NET/IB/3
+r8i5n2:15801:15833 [3] NCCL INFO Channel 02 : 31[8a000] -> 32[1a000] [send] via NET/IB/2
+r8i5n2:15798:15843 [0] NCCL INFO Channel 02 : 27[8a000] -> 28[1a000] [receive] via NET/IB/3
+r8i3n1:64578:64628 [0] NCCL INFO Channel 02 : 20[1a000] -> 21[1c000] via P2P/IPC
+r8i5n2:15798:15843 [0] NCCL INFO Channel 02 : 28[1a000] -> 29[1c000] via P2P/IPC
+r14i7n7:81279:81314 [0] NCCL INFO Channel 02 : 59[8a000] -> 60[1a000] [receive] via NET/IB/3
+r14i7n7:81282:81324 [3] NCCL INFO Channel 02 : 63[8a000] -> 0[1a000] [send] via NET/IB/2
+r8i3n6:76352:76387 [0] NCCL INFO Channel 02 : 23[8a000] -> 24[1a000] [receive] via NET/IB/3
+r7i6n2:60564:60599 [0] NCCL INFO Channel 02 : 3[8a000] -> 4[1a000] [receive] via NET/IB/3
+r8i3n6:76355:76396 [3] NCCL INFO Channel 02 : 27[8a000] -> 28[1a000] [send] via NET/IB/2
+r14i7n7:81279:81314 [0] NCCL INFO Channel 02 : 60[1a000] -> 61[1c000] via P2P/IPC
+r7i4n1:77232:77301 [1] NCCL INFO Channel 02 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i6n2:60567:60614 [3] NCCL INFO Channel 02 : 7[8a000] -> 8[1a000] [send] via NET/IB/2
+r8i1n7:45555:45595 [0] NCCL INFO Channel 02 : 11[8a000] -> 12[1a000] [receive] via NET/IB/3
+r8i1n7:45558:45590 [3] NCCL INFO Channel 02 : 15[8a000] -> 16[1a000] [send] via NET/IB/2
+r8i3n6:76352:76387 [0] NCCL INFO Channel 02 : 24[1a000] -> 25[1c000] via P2P/IPC
+r14i7n0:25490:25527 [3] NCCL INFO Channel 02 : 35[8a000] -> 36[1a000] [send] via NET/IB/2
+r7i6n2:60564:60599 [0] NCCL INFO Channel 02 : 4[1a000] -> 5[1c000] via P2P/IPC
+r14i7n0:25487:25522 [0] NCCL INFO Channel 02 : 31[8a000] -> 32[1a000] [receive] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 02 : 51[8a000] -> 52[1a000] [receive] via NET/IB/3
+r8i2n1:41760:41808 [3] NCCL INFO Channel 02 : 19[8a000] -> 20[1a000] [send] via NET/IB/2
+r8i1n7:45555:45595 [0] NCCL INFO Channel 02 : 12[1a000] -> 13[1c000] via P2P/IPC
+r8i2n1:41757:41793 [0] NCCL INFO Channel 02 : 15[8a000] -> 16[1a000] [receive] via NET/IB/3
+r14i7n5:42531:42567 [3] NCCL INFO Channel 02 : 55[8a000] -> 56[1a000] [send] via NET/IB/2
+r8i1n1:21966:21998 [3] NCCL INFO Channel 02 : 11[8a000] -> 12[1a000] [send] via NET/IB/2
+r14i7n0:25487:25522 [0] NCCL INFO Channel 02 : 32[1a000] -> 33[1c000] via P2P/IPC
+r14i7n5:42528:42578 [0] NCCL INFO Channel 02 : 52[1a000] -> 53[1c000] via P2P/IPC
+r8i1n1:21963:22007 [0] NCCL INFO Channel 02 : 7[8a000] -> 8[1a000] [receive] via NET/IB/3
+r8i3n1:64579:64613 [1] NCCL INFO Channel 02 : 21[1c000] -> 20[1a000] via P2P/IPC
+r8i5n2:15799:15848 [1] NCCL INFO Channel 02 : 29[1c000] -> 28[1a000] via P2P/IPC
+r8i2n1:41757:41793 [0] NCCL INFO Channel 02 : 16[1a000] -> 17[1c000] via P2P/IPC
+r14i7n1:29725:29775 [0] NCCL INFO Channel 02 : 35[8a000] -> 36[1a000] [receive] via NET/IB/3
+r14i7n1:29728:29769 [3] NCCL INFO Channel 02 : 39[8a000] -> 40[1a000] [send] via NET/IB/2
+r14i7n6:27448:27488 [0] NCCL INFO Channel 02 : 55[8a000] -> 56[1a000] [receive] via NET/IB/3
+r8i1n1:21963:22007 [0] NCCL INFO Channel 02 : 8[1a000] -> 9[1c000] via P2P/IPC
+r14i7n6:27451:27498 [3] NCCL INFO Channel 02 : 59[8a000] -> 60[1a000] [send] via NET/IB/2
+r14i7n1:29725:29775 [0] NCCL INFO Channel 02 : 36[1a000] -> 37[1c000] via P2P/IPC
+r8i3n1:64581:64618 [3] NCCL INFO Channel 02 : 23[8a000] -> 22[88000] via P2P/IPC
+r14i7n6:27448:27488 [0] NCCL INFO Channel 02 : 56[1a000] -> 57[1c000] via P2P/IPC
+r14i7n7:81280:81319 [1] NCCL INFO Channel 02 : 61[1c000] -> 60[1a000] via P2P/IPC
+r7i6n2:60565:60609 [1] NCCL INFO Channel 02 : 5[1c000] -> 4[1a000] via P2P/IPC
+r14i7n2:39445:39491 [0] NCCL INFO Channel 02 : 39[8a000] -> 40[1a000] [receive] via NET/IB/3
+r14i7n7:81282:81324 [3] NCCL INFO Channel 02 : 63[8a000] -> 62[88000] via P2P/IPC
+r14i7n3:66129:66161 [3] NCCL INFO Channel 02 : 47[8a000] -> 48[1a000] [send] via NET/IB/2
+r8i1n7:45556:45605 [1] NCCL INFO Channel 02 : 13[1c000] -> 12[1a000] via P2P/IPC
+r14i7n3:66126:66171 [0] NCCL INFO Channel 02 : 43[8a000] -> 44[1a000] [receive] via NET/IB/3
+r14i7n2:39448:39486 [3] NCCL INFO Channel 02 : 43[8a000] -> 44[1a000] [send] via NET/IB/2
+r7i4n1:77234:77296 [3] NCCL INFO Channel 02 : 3[8a000] -> 2[88000] via P2P/IPC
+r8i3n6:76353:76397 [1] NCCL INFO Channel 02 : 25[1c000] -> 24[1a000] via P2P/IPC
+r14i7n5:42529:42568 [1] NCCL INFO Channel 02 : 53[1c000] -> 52[1a000] via P2P/IPC
+r14i7n2:39445:39491 [0] NCCL INFO Channel 02 : 40[1a000] -> 41[1c000] via P2P/IPC
+r14i7n3:66126:66171 [0] NCCL INFO Channel 02 : 44[1a000] -> 45[1c000] via P2P/IPC
+r14i7n0:25488:25537 [1] NCCL INFO Channel 02 : 33[1c000] -> 32[1a000] via P2P/IPC
+r14i7n4:5388:5438 [0] NCCL INFO Channel 02 : 47[8a000] -> 48[1a000] [receive] via NET/IB/3
+r8i5n2:15801:15833 [3] NCCL INFO Channel 02 : 31[8a000] -> 30[88000] via P2P/IPC
+r8i3n6:76355:76396 [3] NCCL INFO Channel 02 : 27[8a000] -> 26[88000] via P2P/IPC
+r14i7n4:5391:5428 [3] NCCL INFO Channel 02 : 51[8a000] -> 52[1a000] [send] via NET/IB/2
+r14i7n1:29726:29770 [1] NCCL INFO Channel 02 : 37[1c000] -> 36[1a000] via P2P/IPC
+r8i1n7:45558:45590 [3] NCCL INFO Channel 02 : 15[8a000] -> 14[88000] via P2P/IPC
+r14i7n5:42531:42567 [3] NCCL INFO Channel 02 : 55[8a000] -> 54[88000] via P2P/IPC
+r14i7n4:5388:5438 [0] NCCL INFO Channel 02 : 48[1a000] -> 49[1c000] via P2P/IPC
+r8i2n1:41760:41808 [3] NCCL INFO Channel 02 : 19[8a000] -> 18[88000] via P2P/IPC
+r7i6n2:60567:60614 [3] NCCL INFO Channel 02 : 7[8a000] -> 6[88000] via P2P/IPC
+r8i2n1:41758:41803 [1] NCCL INFO Channel 02 : 17[1c000] -> 16[1a000] via P2P/IPC
+r8i1n1:21966:21998 [3] NCCL INFO Channel 02 : 11[8a000] -> 10[88000] via P2P/IPC
+r14i7n0:25490:25527 [3] NCCL INFO Channel 02 : 35[8a000] -> 34[88000] via P2P/IPC
+r14i7n6:27449:27483 [1] NCCL INFO Channel 02 : 57[1c000] -> 56[1a000] via P2P/IPC
+r14i7n7:81281:81329 [2] NCCL INFO Channel 03 : 62[88000] -> 61[1c000] via P2P/IPC
+r8i1n1:21964:22013 [1] NCCL INFO Channel 02 : 9[1c000] -> 8[1a000] via P2P/IPC
+r14i7n7:81282:81324 [3] NCCL INFO Channel 03 : 63[8a000] -> 62[88000] via P2P/IPC
+r14i7n6:27451:27498 [3] NCCL INFO Channel 02 : 59[8a000] -> 58[88000] via P2P/IPC
+r8i3n1:64580:64623 [2] NCCL INFO Channel 03 : 22[88000] -> 21[1c000] via P2P/IPC
+r8i3n1:64581:64618 [3] NCCL INFO Channel 03 : 23[8a000] -> 22[88000] via P2P/IPC
+r14i7n1:29728:29769 [3] NCCL INFO Channel 02 : 39[8a000] -> 38[88000] via P2P/IPC
+r7i4n1:77233:77306 [2] NCCL INFO Channel 03 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:77234:77296 [3] NCCL INFO Channel 03 : 3[8a000] -> 2[88000] via P2P/IPC
+r14i7n3:66127:66166 [1] NCCL INFO Channel 02 : 45[1c000] -> 44[1a000] via P2P/IPC
+r14i7n2:39446:39481 [1] NCCL INFO Channel 02 : 41[1c000] -> 40[1a000] via P2P/IPC
+r14i7n5:42530:42573 [2] NCCL INFO Channel 03 : 54[88000] -> 53[1c000] via P2P/IPC
+r14i7n2:39448:39486 [3] NCCL INFO Channel 02 : 43[8a000] -> 42[88000] via P2P/IPC
+r8i5n2:15800:15838 [2] NCCL INFO Channel 03 : 30[88000] -> 29[1c000] via P2P/IPC
+r8i5n2:15801:15833 [3] NCCL INFO Channel 03 : 31[8a000] -> 30[88000] via P2P/IPC
+r14i7n5:42531:42567 [3] NCCL INFO Channel 03 : 55[8a000] -> 54[88000] via P2P/IPC
+r14i7n3:66129:66161 [3] NCCL INFO Channel 02 : 47[8a000] -> 46[88000] via P2P/IPC
+r8i3n6:76354:76402 [2] NCCL INFO Channel 03 : 26[88000] -> 25[1c000] via P2P/IPC
+r8i3n6:76355:76396 [3] NCCL INFO Channel 03 : 27[8a000] -> 26[88000] via P2P/IPC
+r14i7n4:5389:5423 [1] NCCL INFO Channel 02 : 49[1c000] -> 48[1a000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 03 : 14[88000] -> 13[1c000] via P2P/IPC
+r8i2n1:41759:41798 [2] NCCL INFO Channel 03 : 18[88000] -> 17[1c000] via P2P/IPC
+r8i1n7:45558:45590 [3] NCCL INFO Channel 03 : 15[8a000] -> 14[88000] via P2P/IPC
+r7i6n2:60566:60604 [2] NCCL INFO Channel 03 : 6[88000] -> 5[1c000] via P2P/IPC
+r14i7n4:5391:5428 [3] NCCL INFO Channel 02 : 51[8a000] -> 50[88000] via P2P/IPC
+r7i6n2:60567:60614 [3] NCCL INFO Channel 03 : 7[8a000] -> 6[88000] via P2P/IPC
+r8i2n1:41760:41808 [3] NCCL INFO Channel 03 : 19[8a000] -> 18[88000] via P2P/IPC
+r14i7n0:25489:25532 [2] NCCL INFO Channel 03 : 34[88000] -> 33[1c000] via P2P/IPC
+r14i7n0:25490:25527 [3] NCCL INFO Channel 03 : 35[8a000] -> 34[88000] via P2P/IPC
+r8i1n1:21966:21998 [3] NCCL INFO Channel 03 : 11[8a000] -> 10[88000] via P2P/IPC
+r8i1n1:21965:22008 [2] NCCL INFO Channel 03 : 10[88000] -> 9[1c000] via P2P/IPC
+r14i7n6:27450:27493 [2] NCCL INFO Channel 03 : 58[88000] -> 57[1c000] via P2P/IPC
+r14i7n6:27451:27498 [3] NCCL INFO Channel 03 : 59[8a000] -> 58[88000] via P2P/IPC
+r14i7n1:29728:29769 [3] NCCL INFO Channel 03 : 39[8a000] -> 38[88000] via P2P/IPC
+r14i7n1:29727:29760 [2] NCCL INFO Channel 03 : 38[88000] -> 37[1c000] via P2P/IPC
+r14i7n2:39447:39496 [2] NCCL INFO Channel 03 : 42[88000] -> 41[1c000] via P2P/IPC
+r14i7n2:39448:39486 [3] NCCL INFO Channel 03 : 43[8a000] -> 42[88000] via P2P/IPC
+r14i7n3:66128:66176 [2] NCCL INFO Channel 03 : 46[88000] -> 45[1c000] via P2P/IPC
+r14i7n3:66129:66161 [3] NCCL INFO Channel 03 : 47[8a000] -> 46[88000] via P2P/IPC
+r14i7n4:5390:5433 [2] NCCL INFO Channel 03 : 50[88000] -> 49[1c000] via P2P/IPC
+r14i7n4:5391:5428 [3] NCCL INFO Channel 03 : 51[8a000] -> 50[88000] via P2P/IPC
+r7i4n1:77231:77291 [0] NCCL INFO Channel 02 : 0[1a000] -> 60[1a000] [send] via NET/IB/3
+r8i5n2:15798:15843 [0] NCCL INFO Channel 02 : 24[1a000] -> 28[1a000] [receive] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 02 : 24[1a000] -> 28[1a000] [send] via NET/IB/3
+r8i1n7:45555:45595 [0] NCCL INFO Channel 02 : 8[1a000] -> 12[1a000] [receive] via NET/IB/3
+r7i6n2:60564:60599 [0] NCCL INFO Channel 02 : 36[1a000] -> 4[1a000] [receive] via NET/IB/3
+r8i3n1:64578:64628 [0] NCCL INFO Channel 02 : 12[1a000] -> 20[1a000] [receive] via NET/IB/3
+r14i7n0:25487:25522 [0] NCCL INFO Channel 02 : 32[1a000] -> 28[1a000] [send] via NET/IB/3
+r8i2n1:41757:41793 [0] NCCL INFO Channel 02 : 16[1a000] -> 12[1a000] [send] via NET/IB/3
+r14i7n7:81279:81314 [0] NCCL INFO Channel 02 : 56[1a000] -> 60[1a000] [receive] via NET/IB/3
+r14i7n6:27448:27488 [0] NCCL INFO Channel 02 : 56[1a000] -> 60[1a000] [send] via NET/IB/3
+r7i4n1:77232:77301 [1] NCCL INFO Channel 03 : 1[1c000] -> 4[1a000] [send] via NET/IB/3
+r8i1n1:21963:22007 [0] NCCL INFO Channel 02 : 8[1a000] -> 12[1a000] [send] via NET/IB/3
+r14i7n1:29725:29775 [0] NCCL INFO Channel 02 : 20[1a000] -> 36[1a000] [receive] via NET/IB/3
+r8i5n2:15799:15848 [1] NCCL INFO Channel 03 : 29[1c000] -> 32[1a000] [send] via NET/IB/3
+r7i4n1:77233:77306 [2] NCCL INFO Channel 03 : 2[88000] -> 62[88000] [send] via NET/IB/2
+r14i7n2:39445:39491 [0] NCCL INFO Channel 02 : 40[1a000] -> 44[1a000] [send] via NET/IB/3
+r7i6n2:60565:60609 [1] NCCL INFO Channel 03 : 5[1c000] -> 8[1a000] [send] via NET/IB/3
+r8i3n1:64580:64623 [2] NCCL INFO Channel 03 : 14[88000] -> 22[88000] [receive] via NET/IB/2
+r14i7n3:66126:66171 [0] NCCL INFO Channel 02 : 40[1a000] -> 44[1a000] [receive] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 02 : 44[1a000] -> 52[1a000] [receive] via NET/IB/3
+r14i7n7:81281:81329 [2] NCCL INFO Channel 03 : 58[88000] -> 62[88000] [receive] via NET/IB/2
+r14i7n7:81280:81319 [1] NCCL INFO Channel 03 : 61[1c000] -> 0[1a000] [send] via NET/IB/3
+r8i3n1:64579:64613 [1] NCCL INFO Channel 03 : 21[1c000] -> 24[1a000] [send] via NET/IB/3
+r8i5n2:15800:15838 [2] NCCL INFO Channel 03 : 26[88000] -> 30[88000] [receive] via NET/IB/2
+r14i7n0:25488:25537 [1] NCCL INFO Channel 03 : 33[1c000] -> 36[1a000] [send] via NET/IB/3
+r8i1n7:45556:45605 [1] NCCL INFO Channel 03 : 13[1c000] -> 16[1a000] [send] via NET/IB/3
+r8i3n6:76353:76397 [1] NCCL INFO Channel 03 : 25[1c000] -> 28[1a000] [send] via NET/IB/3
+r14i7n4:5388:5438 [0] NCCL INFO Channel 02 : 48[1a000] -> 44[1a000] [send] via NET/IB/3
+r8i2n1:41758:41803 [1] NCCL INFO Channel 03 : 17[1c000] -> 20[1a000] [send] via NET/IB/3
+r8i3n6:76354:76402 [2] NCCL INFO Channel 03 : 26[88000] -> 30[88000] [send] via NET/IB/2
+r7i6n2:60566:60604 [2] NCCL INFO Channel 03 : 38[88000] -> 6[88000] [receive] via NET/IB/2
+r8i1n7:45557:45600 [2] NCCL INFO Channel 03 : 10[88000] -> 14[88000] [receive] via NET/IB/2
+r8i2n1:41759:41798 [2] NCCL INFO Channel 03 : 18[88000] -> 14[88000] [send] via NET/IB/2
+r14i7n0:25489:25532 [2] NCCL INFO Channel 03 : 34[88000] -> 30[88000] [send] via NET/IB/2
+r14i7n1:29726:29770 [1] NCCL INFO Channel 03 : 37[1c000] -> 40[1a000] [send] via NET/IB/3
+r8i1n1:21964:22013 [1] NCCL INFO Channel 03 : 9[1c000] -> 12[1a000] [send] via NET/IB/3
+r14i7n6:27449:27483 [1] NCCL INFO Channel 03 : 57[1c000] -> 60[1a000] [send] via NET/IB/3
+r14i7n5:42529:42568 [1] NCCL INFO Channel 03 : 53[1c000] -> 56[1a000] [send] via NET/IB/3
+r14i7n5:42530:42573 [2] NCCL INFO Channel 03 : 46[88000] -> 54[88000] [receive] via NET/IB/2
+r8i1n1:21965:22008 [2] NCCL INFO Channel 03 : 10[88000] -> 14[88000] [send] via NET/IB/2
+r14i7n6:27450:27493 [2] NCCL INFO Channel 03 : 58[88000] -> 62[88000] [send] via NET/IB/2
+r14i7n1:29727:29760 [2] NCCL INFO Channel 03 : 22[88000] -> 38[88000] [receive] via NET/IB/2
+r14i7n2:39446:39481 [1] NCCL INFO Channel 03 : 41[1c000] -> 44[1a000] [send] via NET/IB/3
+r14i7n3:66127:66166 [1] NCCL INFO Channel 03 : 45[1c000] -> 48[1a000] [send] via NET/IB/3
+r14i7n2:39447:39496 [2] NCCL INFO Channel 03 : 42[88000] -> 46[88000] [send] via NET/IB/2
+r14i7n4:5389:5423 [1] NCCL INFO Channel 03 : 49[1c000] -> 52[1a000] [send] via NET/IB/3
+r14i7n3:66128:66176 [2] NCCL INFO Channel 03 : 42[88000] -> 46[88000] [receive] via NET/IB/2
+r14i7n4:5390:5433 [2] NCCL INFO Channel 03 : 50[88000] -> 46[88000] [send] via NET/IB/2
+r8i5n2:15798:15843 [0] NCCL INFO Channel 02 : 32[1a000] -> 28[1a000] [receive] via NET/IB/3
+r8i1n7:45555:45595 [0] NCCL INFO Channel 02 : 16[1a000] -> 12[1a000] [receive] via NET/IB/3
+r8i3n1:64578:64628 [0] NCCL INFO Channel 02 : 28[1a000] -> 20[1a000] [receive] via NET/IB/3
+r14i7n7:81279:81314 [0] NCCL INFO Channel 02 : 0[1a000] -> 60[1a000] [receive] via NET/IB/3
+r14i7n1:29725:29775 [0] NCCL INFO Channel 02 : 52[1a000] -> 36[1a000] [receive] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 02 : 28[1a000] -> 24[1a000] [receive] via NET/IB/3
+r8i3n1:64580:64623 [2] NCCL INFO Channel 03 : 30[88000] -> 22[88000] [receive] via NET/IB/2
+r14i7n7:81281:81329 [2] NCCL INFO Channel 03 : 2[88000] -> 62[88000] [receive] via NET/IB/2
+r14i7n3:66126:66171 [0] NCCL INFO Channel 02 : 48[1a000] -> 44[1a000] [receive] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 02 : 60[1a000] -> 52[1a000] [receive] via NET/IB/3
+r8i5n2:15800:15838 [2] NCCL INFO Channel 03 : 34[88000] -> 30[88000] [receive] via NET/IB/2
+r14i7n6:27448:27488 [0] NCCL INFO Channel 02 : 60[1a000] -> 56[1a000] [receive] via NET/IB/3
+r8i1n7:45557:45600 [2] NCCL INFO Channel 03 : 18[88000] -> 14[88000] [receive] via NET/IB/2
+r8i1n1:21963:22007 [0] NCCL INFO Channel 02 : 12[1a000] -> 8[1a000] [receive] via NET/IB/3
+r14i7n5:42530:42573 [2] NCCL INFO Channel 03 : 62[88000] -> 54[88000] [receive] via NET/IB/2
+r8i3n6:76354:76402 [2] NCCL INFO Channel 03 : 30[88000] -> 26[88000] [receive] via NET/IB/2
+r14i7n2:39445:39491 [0] NCCL INFO Channel 02 : 44[1a000] -> 40[1a000] [receive] via NET/IB/3
+r8i3n6:76354:76402 [2] NCCL INFO Channel 03 : 26[88000] -> 27[8a000] via P2P/IPC
+r14i7n1:29727:29760 [2] NCCL INFO Channel 03 : 54[88000] -> 38[88000] [receive] via NET/IB/2
+r8i1n1:21965:22008 [2] NCCL INFO Channel 03 : 14[88000] -> 10[88000] [receive] via NET/IB/2
+r14i7n6:27450:27493 [2] NCCL INFO Channel 03 : 62[88000] -> 58[88000] [receive] via NET/IB/2
+r14i7n3:66128:66176 [2] NCCL INFO Channel 03 : 50[88000] -> 46[88000] [receive] via NET/IB/2
+r14i7n6:27450:27493 [2] NCCL INFO Channel 03 : 58[88000] -> 59[8a000] via P2P/IPC
+r8i1n1:21965:22008 [2] NCCL INFO Channel 03 : 10[88000] -> 11[8a000] via P2P/IPC
+r8i5n2:15798:15843 [0] NCCL INFO Channel 02 : 28[1a000] -> 20[1a000] [send] via NET/IB/3
+r14i7n2:39447:39496 [2] NCCL INFO Channel 03 : 46[88000] -> 42[88000] [receive] via NET/IB/2
+r8i1n7:45555:45595 [0] NCCL INFO Channel 02 : 12[1a000] -> 20[1a000] [send] via NET/IB/3
+r14i7n2:39447:39496 [2] NCCL INFO Channel 03 : 42[88000] -> 43[8a000] via P2P/IPC
+r8i3n1:64578:64628 [0] NCCL INFO Channel 02 : 20[1a000] -> 36[1a000] [send] via NET/IB/3
+r14i7n7:81279:81314 [0] NCCL INFO Channel 02 : 60[1a000] -> 52[1a000] [send] via NET/IB/3
+r14i7n0:25487:25522 [0] NCCL INFO Channel 02 : 28[1a000] -> 32[1a000] [receive] via NET/IB/3
+r8i2n1:41757:41793 [0] NCCL INFO Channel 02 : 12[1a000] -> 16[1a000] [receive] via NET/IB/3
+r14i7n1:29725:29775 [0] NCCL INFO Channel 02 : 36[1a000] -> 4[1a000] [send] via NET/IB/3
+r7i4n1:77231:77291 [0] NCCL INFO Channel 02 : 60[1a000] -> 0[1a000] [receive] via NET/IB/3
+r14i7n3:66126:66171 [0] NCCL INFO Channel 02 : 44[1a000] -> 52[1a000] [send] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 02 : 52[1a000] -> 36[1a000] [send] via NET/IB/3
+r14i7n4:5388:5438 [0] NCCL INFO Channel 02 : 44[1a000] -> 48[1a000] [receive] via NET/IB/3
+r8i5n2:15798:15843 [0] NCCL INFO Channel 02 : 20[1a000] -> 28[1a000] [receive] via NET/IB/3
+r7i6n2:60564:60599 [0] NCCL INFO Channel 02 : 4[1a000] -> 36[1a000] [send] via NET/IB/3
+r8i1n7:45555:45595 [0] NCCL INFO Channel 02 : 20[1a000] -> 12[1a000] [receive] via NET/IB/3
+r14i7n7:81279:81314 [0] NCCL INFO Channel 02 : 52[1a000] -> 60[1a000] [receive] via NET/IB/3
+r8i3n1:64578:64628 [0] NCCL INFO Channel 02 : 36[1a000] -> 20[1a000] [receive] via NET/IB/3
+r14i7n1:29725:29775 [0] NCCL INFO Channel 02 : 4[1a000] -> 36[1a000] [receive] via NET/IB/3
+r14i7n3:66126:66171 [0] NCCL INFO Channel 02 : 52[1a000] -> 44[1a000] [receive] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 02 : 36[1a000] -> 52[1a000] [receive] via NET/IB/3
+r8i5n2:15798:15843 [0] NCCL INFO Channel 02 : 28[1a000] -> 24[1a000] [send] via NET/IB/3
+r8i1n7:45555:45595 [0] NCCL INFO Channel 02 : 12[1a000] -> 8[1a000] [send] via NET/IB/3
+r14i7n7:81279:81314 [0] NCCL INFO Channel 02 : 60[1a000] -> 56[1a000] [send] via NET/IB/3
+r8i3n1:64578:64628 [0] NCCL INFO Channel 02 : 20[1a000] -> 12[1a000] [send] via NET/IB/3
+r14i7n3:66126:66171 [0] NCCL INFO Channel 02 : 44[1a000] -> 40[1a000] [send] via NET/IB/3
+r14i7n1:29725:29775 [0] NCCL INFO Channel 02 : 36[1a000] -> 20[1a000] [send] via NET/IB/3
+r14i7n5:42528:42578 [0] NCCL INFO Channel 02 : 52[1a000] -> 44[1a000] [send] via NET/IB/3
+r7i6n2:60564:60599 [0] NCCL INFO Channel 03 : 1[1c000] -> 4[1a000] [receive] via NET/IB/3
+r7i6n2:60564:60599 [0] NCCL INFO Channel 03 : 4[1a000] -> 7[8a000] via P2P/IPC
+r7i6n2:60567:60614 [3] NCCL INFO Channel 03 : 7[8a000] -> 4[1a000] via P2P/IPC
+r7i4n1:77232:77301 [1] NCCL INFO Channel 03 : 1[1c000] -> 0[1a000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 03 : 14[88000] -> 22[88000] [send] via NET/IB/2
+r8i5n2:15798:15843 [0] NCCL INFO Channel 02 : 28[1a000] -> 32[1a000] [send] via NET/IB/3
+r8i2n1:41759:41798 [2] NCCL INFO Channel 03 : 14[88000] -> 18[88000] [receive] via NET/IB/2
+r14i7n7:81279:81314 [0] NCCL INFO Channel 02 : 60[1a000] -> 0[1a000] [send] via NET/IB/3
+r8i1n7:45555:45595 [0] NCCL INFO Channel 02 : 12[1a000] -> 16[1a000] [send] via NET/IB/3
+r8i3n1:64580:64623 [2] NCCL INFO Channel 03 : 22[88000] -> 38[88000] [send] via NET/IB/2
+r8i2n1:41759:41798 [2] NCCL INFO Channel 03 : 18[88000] -> 19[8a000] via P2P/IPC
+r8i3n1:64578:64628 [0] NCCL INFO Channel 02 : 20[1a000] -> 28[1a000] [send] via NET/IB/3
+r14i7n3:66128:66176 [2] NCCL INFO Channel 03 : 46[88000] -> 54[88000] [send] via NET/IB/2
+r8i5n2:15800:15838 [2] NCCL INFO Channel 03 : 30[88000] -> 22[88000] [send] via NET/IB/2
+r14i7n5:42528:42578 [0] NCCL INFO Channel 02 : 52[1a000] -> 60[1a000] [send] via NET/IB/3
+r14i7n3:66126:66171 [0] NCCL INFO Channel 02 : 44[1a000] -> 48[1a000] [send] via NET/IB/3
+r14i7n1:29725:29775 [0] NCCL INFO Channel 02 : 36[1a000] -> 52[1a000] [send] via NET/IB/3
+r14i7n7:81281:81329 [2] NCCL INFO Channel 03 : 62[88000] -> 54[88000] [send] via NET/IB/2
+r14i7n4:5390:5433 [2] NCCL INFO Channel 03 : 46[88000] -> 50[88000] [receive] via NET/IB/2
+r14i7n0:25489:25532 [2] NCCL INFO Channel 03 : 30[88000] -> 34[88000] [receive] via NET/IB/2
+r14i7n4:5390:5433 [2] NCCL INFO Channel 03 : 50[88000] -> 51[8a000] via P2P/IPC
+r14i7n0:25489:25532 [2] NCCL INFO Channel 03 : 34[88000] -> 35[8a000] via P2P/IPC
+r7i4n1:77233:77306 [2] NCCL INFO Channel 03 : 62[88000] -> 2[88000] [receive] via NET/IB/2
+r8i3n6:76352:76387 [0] NCCL INFO Channel 03 : 21[1c000] -> 24[1a000] [receive] via NET/IB/3
+r8i3n6:76352:76387 [0] NCCL INFO Channel 03 : 24[1a000] -> 27[8a000] via P2P/IPC
+r14i7n6:27448:27488 [0] NCCL INFO Channel 03 : 53[1c000] -> 56[1a000] [receive] via NET/IB/3
+r14i7n0:25487:25522 [0] NCCL INFO Channel 03 : 29[1c000] -> 32[1a000] [receive] via NET/IB/3
+r8i1n1:21963:22007 [0] NCCL INFO Channel 03 : 5[1c000] -> 8[1a000] [receive] via NET/IB/3
+r14i7n6:27448:27488 [0] NCCL INFO Channel 03 : 56[1a000] -> 59[8a000] via P2P/IPC
+r14i7n0:25487:25522 [0] NCCL INFO Channel 03 : 32[1a000] -> 35[8a000] via P2P/IPC
+r8i1n1:21963:22007 [0] NCCL INFO Channel 03 : 8[1a000] -> 11[8a000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 03 : 22[88000] -> 14[88000] [receive] via NET/IB/2
+r7i4n1:77231:77291 [0] NCCL INFO Channel 03 : 61[1c000] -> 0[1a000] [receive] via NET/IB/3
+r8i2n1:41757:41793 [0] NCCL INFO Channel 03 : 13[1c000] -> 16[1a000] [receive] via NET/IB/3
+r8i3n6:76355:76396 [3] NCCL INFO Channel 03 : 27[8a000] -> 24[1a000] via P2P/IPC
+r8i2n1:41757:41793 [0] NCCL INFO Channel 03 : 16[1a000] -> 19[8a000] via P2P/IPC
+r7i4n1:77231:77291 [0] NCCL INFO Channel 03 : 0[1a000] -> 3[8a000] via P2P/IPC
+r8i1n7:45557:45600 [2] NCCL INFO Channel 03 : 14[88000] -> 15[8a000] via P2P/IPC
+r14i7n5:42529:42568 [1] NCCL INFO Channel 03 : 53[1c000] -> 52[1a000] via P2P/IPC
+r14i7n6:27451:27498 [3] NCCL INFO Channel 03 : 59[8a000] -> 56[1a000] via P2P/IPC
+r8i3n1:64580:64623 [2] NCCL INFO Channel 03 : 38[88000] -> 22[88000] [receive] via NET/IB/2
+r14i7n2:39445:39491 [0] NCCL INFO Channel 03 : 37[1c000] -> 40[1a000] [receive] via NET/IB/3
+r7i6n2:60565:60609 [1] NCCL INFO Channel 03 : 5[1c000] -> 4[1a000] via P2P/IPC
+r8i3n1:64579:64613 [1] NCCL INFO Channel 03 : 21[1c000] -> 20[1a000] via P2P/IPC
+r8i5n2:15798:15843 [0] NCCL INFO Channel 03 : 25[1c000] -> 28[1a000] [receive] via NET/IB/3
+r14i7n0:25490:25527 [3] NCCL INFO Channel 03 : 35[8a000] -> 32[1a000] via P2P/IPC
+r8i1n1:21966:21998 [3] NCCL INFO Channel 03 : 11[8a000] -> 8[1a000] via P2P/IPC
+r8i5n2:15799:15848 [1] NCCL INFO Channel 03 : 29[1c000] -> 28[1a000] via P2P/IPC
+r8i1n7:45555:45595 [0] NCCL INFO Channel 03 : 9[1c000] -> 12[1a000] [receive] via NET/IB/3
+r14i7n2:39445:39491 [0] NCCL INFO Channel 03 : 40[1a000] -> 43[8a000] via P2P/IPC
+r8i3n1:64580:64623 [2] NCCL INFO Channel 03 : 22[88000] -> 23[8a000] via P2P/IPC
+r8i1n7:45555:45595 [0] NCCL INFO Channel 03 : 12[1a000] -> 15[8a000] via P2P/IPC
+r7i4n1:77234:77296 [3] NCCL INFO Channel 03 : 3[8a000] -> 0[1a000] via P2P/IPC
+r8i3n1:64578:64628 [0] NCCL INFO Channel 03 : 17[1c000] -> 20[1a000] [receive] via NET/IB/3
+r8i5n2:15798:15843 [0] NCCL INFO Channel 03 : 28[1a000] -> 31[8a000] via P2P/IPC
+r14i7n7:81279:81314 [0] NCCL INFO Channel 03 : 57[1c000] -> 60[1a000] [receive] via NET/IB/3
+r14i7n3:66128:66176 [2] NCCL INFO Channel 03 : 54[88000] -> 46[88000] [receive] via NET/IB/2
+r14i7n4:5388:5438 [0] NCCL INFO Channel 03 : 45[1c000] -> 48[1a000] [receive] via NET/IB/3
+r8i2n1:41760:41808 [3] NCCL INFO Channel 03 : 19[8a000] -> 16[1a000] via P2P/IPC
+r14i7n7:81280:81319 [1] NCCL INFO Channel 03 : 61[1c000] -> 60[1a000] via P2P/IPC
+r8i3n1:64578:64628 [0] NCCL INFO Channel 03 : 20[1a000] -> 23[8a000] via P2P/IPC
+r14i7n7:81279:81314 [0] NCCL INFO Channel 03 : 60[1a000] -> 63[8a000] via P2P/IPC
+r8i5n2:15800:15838 [2] NCCL INFO Channel 03 : 22[88000] -> 30[88000] [receive] via NET/IB/2
+r14i7n4:5388:5438 [0] NCCL INFO Channel 03 : 48[1a000] -> 51[8a000] via P2P/IPC
+r14i7n3:66128:66176 [2] NCCL INFO Channel 03 : 46[88000] -> 47[8a000] via P2P/IPC
+r7i6n2:60564:60599 [0] NCCL INFO Channel 03 : 4[1a000] -> 5[1c000] via P2P/IPC
+r14i7n5:42530:42573 [2] NCCL INFO Channel 03 : 54[88000] -> 38[88000] [send] via NET/IB/2
+r14i7n3:66126:66171 [0] NCCL INFO Channel 03 : 41[1c000] -> 44[1a000] [receive] via NET/IB/3
+r8i1n7:45556:45605 [1] NCCL INFO Channel 03 : 13[1c000] -> 12[1a000] via P2P/IPC
+r14i7n2:39448:39486 [3] NCCL INFO Channel 03 : 43[8a000] -> 40[1a000] via P2P/IPC
+r14i7n5:42528:42578 [0] NCCL INFO Channel 03 : 49[1c000] -> 52[1a000] [receive] via NET/IB/3
+r8i1n1:21964:22013 [1] NCCL INFO Channel 03 : 9[1c000] -> 8[1a000] via P2P/IPC
+r8i3n6:76353:76397 [1] NCCL INFO Channel 03 : 25[1c000] -> 24[1a000] via P2P/IPC
+r7i6n2:60565:60609 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i5n2:15800:15838 [2] NCCL INFO Channel 03 : 30[88000] -> 31[8a000] via P2P/IPC
+r14i7n5:42528:42578 [0] NCCL INFO Channel 03 : 52[1a000] -> 55[8a000] via P2P/IPC
+r14i7n3:66126:66171 [0] NCCL INFO Channel 03 : 44[1a000] -> 47[8a000] via P2P/IPC
+r8i5n2:15801:15833 [3] NCCL INFO Channel 03 : 31[8a000] -> 28[1a000] via P2P/IPC
+r14i7n1:29726:29770 [1] NCCL INFO Channel 03 : 37[1c000] -> 36[1a000] via P2P/IPC
+r8i1n7:45558:45590 [3] NCCL INFO Channel 03 : 15[8a000] -> 12[1a000] via P2P/IPC
+r7i6n2:60565:60609 [1] NCCL INFO comm 0x154050001060 rank 5 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r7i6n2:60564:60599 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n1:29727:29760 [2] NCCL INFO Channel 03 : 38[88000] -> 6[88000] [send] via NET/IB/2
+r14i7n7:81282:81324 [3] NCCL INFO Channel 03 : 63[8a000] -> 60[1a000] via P2P/IPC
+r14i7n6:27449:27483 [1] NCCL INFO Channel 03 : 57[1c000] -> 56[1a000] via P2P/IPC
+r14i7n1:29725:29775 [0] NCCL INFO Channel 03 : 33[1c000] -> 36[1a000] [receive] via NET/IB/3
+r8i2n1:41758:41803 [1] NCCL INFO Channel 03 : 17[1c000] -> 16[1a000] via P2P/IPC
+r8i3n1:64581:64618 [3] NCCL INFO Channel 03 : 23[8a000] -> 20[1a000] via P2P/IPC
+r7i6n2:60564:60599 [0] NCCL INFO comm 0x14ed60001060 rank 4 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r14i7n1:29725:29775 [0] NCCL INFO Channel 03 : 36[1a000] -> 39[8a000] via P2P/IPC
+r14i7n4:5391:5428 [3] NCCL INFO Channel 03 : 51[8a000] -> 48[1a000] via P2P/IPC
+r7i4n1:77231:77291 [0] NCCL INFO Channel 03 : 0[1a000] -> 1[1c000] via P2P/IPC
+r14i7n5:42531:42567 [3] NCCL INFO Channel 03 : 55[8a000] -> 52[1a000] via P2P/IPC
+r8i1n1:21963:22007 [0] NCCL INFO Channel 03 : 8[1a000] -> 9[1c000] via P2P/IPC
+r14i7n2:39446:39481 [1] NCCL INFO Channel 03 : 41[1c000] -> 40[1a000] via P2P/IPC
+r8i3n6:76352:76387 [0] NCCL INFO Channel 03 : 24[1a000] -> 25[1c000] via P2P/IPC
+r8i1n1:21966:21998 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n3:66127:66166 [1] NCCL INFO Channel 03 : 45[1c000] -> 44[1a000] via P2P/IPC
+r8i3n6:76355:76396 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r7i4n1:77232:77301 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n4:5389:5423 [1] NCCL INFO Channel 03 : 49[1c000] -> 48[1a000] via P2P/IPC
+r14i7n7:81281:81329 [2] NCCL INFO Channel 03 : 54[88000] -> 62[88000] [receive] via NET/IB/2
+r8i1n1:21966:21998 [3] NCCL INFO comm 0x153eb0001060 rank 11 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r7i4n1:77232:77301 [1] NCCL INFO comm 0x147b78001060 rank 1 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r8i1n1:21964:22013 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i3n6:76355:76396 [3] NCCL INFO comm 0x147370001060 rank 27 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r8i2n1:41757:41793 [0] NCCL INFO Channel 03 : 16[1a000] -> 17[1c000] via P2P/IPC
+r14i7n1:29728:29769 [3] NCCL INFO Channel 03 : 39[8a000] -> 36[1a000] via P2P/IPC
+r8i3n6:76353:76397 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n6:27448:27488 [0] NCCL INFO Channel 03 : 56[1a000] -> 57[1c000] via P2P/IPC
+r7i4n1:77231:77291 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i1n1:21964:22013 [1] NCCL INFO comm 0x153980001060 rank 9 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r14i7n3:66129:66161 [3] NCCL INFO Channel 03 : 47[8a000] -> 44[1a000] via P2P/IPC
+r8i3n6:76353:76397 [1] NCCL INFO comm 0x14acc8001060 rank 25 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r14i7n0:25488:25537 [1] NCCL INFO Channel 03 : 33[1c000] -> 32[1a000] via P2P/IPC
+r14i7n6:27451:27498 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i1n1:21963:22007 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i2n1:41760:41808 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r7i4n1:77231:77291 [0] NCCL INFO comm 0x15100c001060 rank 0 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r8i3n6:76352:76387 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i5n2:15798:15843 [0] NCCL INFO Channel 03 : 28[1a000] -> 29[1c000] via P2P/IPC
+r8i1n7:45555:45595 [0] NCCL INFO Channel 03 : 12[1a000] -> 13[1c000] via P2P/IPC
+r8i1n1:21963:22007 [0] NCCL INFO comm 0x14e618001060 rank 8 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r8i2n1:41760:41808 [3] NCCL INFO comm 0x1498c0001060 rank 19 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r7i4n1:77231:77231 [0] NCCL INFO Launch mode Parallel
+r14i7n6:27451:27498 [3] NCCL INFO comm 0x14c788001060 rank 59 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n7:81281:81329 [2] NCCL INFO Channel 03 : 62[88000] -> 63[8a000] via P2P/IPC
+r8i3n6:76352:76387 [0] NCCL INFO comm 0x14f3a0001060 rank 24 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r8i2n1:41758:41803 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n6:27449:27483 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i5n2:15801:15833 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n6:27449:27483 [1] NCCL INFO comm 0x146ec0001060 rank 57 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r8i3n1:64578:64628 [0] NCCL INFO Channel 03 : 20[1a000] -> 21[1c000] via P2P/IPC
+r8i2n1:41758:41803 [1] NCCL INFO comm 0x14a560001060 rank 17 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r8i5n2:15801:15833 [3] NCCL INFO comm 0x14c280001060 rank 31 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n2:39445:39491 [0] NCCL INFO Channel 03 : 40[1a000] -> 41[1c000] via P2P/IPC
+r8i5n2:15799:15848 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n6:27448:27488 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i2n1:41757:41793 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i1n7:45558:45590 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i3n1:64581:64618 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n7:81279:81314 [0] NCCL INFO Channel 03 : 60[1a000] -> 61[1c000] via P2P/IPC
+r14i7n2:39448:39486 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i5n2:15799:15848 [1] NCCL INFO comm 0x153c10001060 rank 29 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r14i7n6:27448:27488 [0] NCCL INFO comm 0x146258001060 rank 56 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r8i2n1:41757:41793 [0] NCCL INFO comm 0x1546b0001060 rank 16 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r8i1n7:45558:45590 [3] NCCL INFO comm 0x151f90001060 rank 15 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r8i5n2:15798:15843 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i3n1:64581:64618 [3] NCCL INFO comm 0x14f700001060 rank 23 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n7:81282:81324 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n4:5388:5438 [0] NCCL INFO Channel 03 : 48[1a000] -> 49[1c000] via P2P/IPC
+r8i1n7:45556:45605 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n2:39448:39486 [3] NCCL INFO comm 0x151e08001060 rank 43 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n2:39446:39481 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i5n2:15798:15843 [0] NCCL INFO comm 0x1480b8001060 rank 28 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r14i7n7:81282:81324 [3] NCCL INFO comm 0x148eb0001060 rank 63 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n5:42528:42578 [0] NCCL INFO Channel 03 : 52[1a000] -> 53[1c000] via P2P/IPC
+r8i3n1:64579:64613 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n4:5391:5428 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n7:81280:81319 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n0:25487:25522 [0] NCCL INFO Channel 03 : 32[1a000] -> 33[1c000] via P2P/IPC
+r14i7n2:39446:39481 [1] NCCL INFO comm 0x150550001060 rank 41 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r8i1n7:45555:45595 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i1n7:45557:45600 [2] NCCL INFO Channel 03 : 14[88000] -> 10[88000] [send] via NET/IB/2
+r8i3n1:64579:64613 [1] NCCL INFO comm 0x151e40001060 rank 21 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r14i7n7:81280:81319 [1] NCCL INFO comm 0x149ab8001060 rank 61 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r14i7n3:66126:66171 [0] NCCL INFO Channel 03 : 44[1a000] -> 45[1c000] via P2P/IPC
+r14i7n4:5389:5423 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n2:39445:39491 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n0:25490:25527 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i1n7:45555:45595 [0] NCCL INFO comm 0x14bf70001060 rank 12 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r14i7n5:42529:42568 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n7:81279:81314 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i1n7:45556:45605 [1] NCCL INFO comm 0x14a380001060 rank 13 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r14i7n2:39445:39491 [0] NCCL INFO comm 0x14ead0001060 rank 40 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r14i7n4:5389:5423 [1] NCCL INFO comm 0x150500001060 rank 49 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r14i7n3:66129:66161 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n0:25490:25527 [3] NCCL INFO comm 0x1481f0001060 rank 35 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n7:81279:81314 [0] NCCL INFO comm 0x148e80001060 rank 60 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r14i7n5:42529:42568 [1] NCCL INFO comm 0x147128001060 rank 53 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r14i7n4:5388:5438 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n3:66129:66161 [3] NCCL INFO comm 0x1507a0001060 rank 47 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n4:5391:5428 [3] NCCL INFO comm 0x147848001060 rank 51 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n0:25488:25537 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n5:42528:42578 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n4:5388:5438 [0] NCCL INFO comm 0x146c80001060 rank 48 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r14i7n1:29725:29775 [0] NCCL INFO Channel 03 : 36[1a000] -> 37[1c000] via P2P/IPC
+r8i3n1:64580:64623 [2] NCCL INFO Channel 03 : 22[88000] -> 14[88000] [send] via NET/IB/2
+r14i7n0:25488:25537 [1] NCCL INFO comm 0x153088001060 rank 33 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r14i7n5:42528:42578 [0] NCCL INFO comm 0x153370001060 rank 52 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r7i6n2:60566:60604 [2] NCCL INFO Channel 03 : 6[88000] -> 7[8a000] via P2P/IPC
+r14i7n3:66127:66166 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n1:29726:29770 [1] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n3:66127:66166 [1] NCCL INFO comm 0x152550001060 rank 45 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r7i6n2:60567:60614 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n0:25487:25522 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n1:29726:29770 [1] NCCL INFO comm 0x149590001060 rank 37 nranks 64 cudaDev 1 busId 1c000 - Init COMPLETE
+r7i6n2:60567:60614 [3] NCCL INFO comm 0x150d70001060 rank 7 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n1:29725:29775 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i3n1:64578:64628 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n0:25487:25522 [0] NCCL INFO comm 0x146390001060 rank 32 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r14i7n1:29725:29775 [0] NCCL INFO comm 0x1533d0001060 rank 36 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r8i3n1:64578:64628 [0] NCCL INFO comm 0x154728001060 rank 20 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r14i7n3:66128:66176 [2] NCCL INFO Channel 03 : 46[88000] -> 42[88000] [send] via NET/IB/2
+r14i7n3:66126:66171 [0] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n3:66126:66171 [0] NCCL INFO comm 0x1484a0001060 rank 44 nranks 64 cudaDev 0 busId 1a000 - Init COMPLETE
+r8i5n2:15800:15838 [2] NCCL INFO Channel 03 : 30[88000] -> 26[88000] [send] via NET/IB/2
+r14i7n5:42530:42573 [2] NCCL INFO Channel 03 : 38[88000] -> 54[88000] [receive] via NET/IB/2
+r14i7n5:42530:42573 [2] NCCL INFO Channel 03 : 54[88000] -> 55[8a000] via P2P/IPC
+r14i7n7:81281:81329 [2] NCCL INFO Channel 03 : 62[88000] -> 58[88000] [send] via NET/IB/2
+r14i7n5:42531:42567 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n1:29727:29760 [2] NCCL INFO Channel 03 : 6[88000] -> 38[88000] [receive] via NET/IB/2
+r14i7n5:42531:42567 [3] NCCL INFO comm 0x14fa50001060 rank 55 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r8i1n7:45557:45600 [2] NCCL INFO Channel 03 : 14[88000] -> 18[88000] [send] via NET/IB/2
+r14i7n1:29727:29760 [2] NCCL INFO Channel 03 : 38[88000] -> 39[8a000] via P2P/IPC
+r14i7n1:29728:29769 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n1:29728:29769 [3] NCCL INFO comm 0x154f08001060 rank 39 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r7i6n2:60566:60604 [2] NCCL INFO Channel 03 : 6[88000] -> 38[88000] [send] via NET/IB/2
+r8i3n1:64580:64623 [2] NCCL INFO Channel 03 : 22[88000] -> 30[88000] [send] via NET/IB/2
+r8i1n1:21965:22008 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i1n1:21965:22008 [2] NCCL INFO comm 0x1455a0001060 rank 10 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r14i7n3:66128:66176 [2] NCCL INFO Channel 03 : 46[88000] -> 50[88000] [send] via NET/IB/2
+r7i6n2:60566:60604 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r7i6n2:60566:60604 [2] NCCL INFO comm 0x152f60001060 rank 6 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r8i2n1:41759:41798 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i2n1:41759:41798 [2] NCCL INFO comm 0x14dd50001060 rank 18 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r8i1n7:45557:45600 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i1n7:45557:45600 [2] NCCL INFO comm 0x152190001060 rank 14 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r7i4n1:77233:77306 [2] NCCL INFO Channel 03 : 2[88000] -> 3[8a000] via P2P/IPC
+r14i7n2:39447:39496 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n2:39447:39496 [2] NCCL INFO comm 0x146b98001060 rank 42 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r7i4n1:77234:77296 [3] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i5n2:15800:15838 [2] NCCL INFO Channel 03 : 30[88000] -> 34[88000] [send] via NET/IB/2
+r7i4n1:77234:77296 [3] NCCL INFO comm 0x14d410001060 rank 3 nranks 64 cudaDev 3 busId 8a000 - Init COMPLETE
+r14i7n4:5390:5433 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n4:5390:5433 [2] NCCL INFO comm 0x14aca0001060 rank 50 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r14i7n7:81281:81329 [2] NCCL INFO Channel 03 : 62[88000] -> 2[88000] [send] via NET/IB/2
+r14i7n5:42530:42573 [2] NCCL INFO Channel 03 : 54[88000] -> 46[88000] [send] via NET/IB/2
+r8i3n6:76354:76402 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n1:29727:29760 [2] NCCL INFO Channel 03 : 38[88000] -> 22[88000] [send] via NET/IB/2
+r8i3n6:76354:76402 [2] NCCL INFO comm 0x14b9c8001060 rank 26 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r14i7n6:27450:27493 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n0:25489:25532 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n6:27450:27493 [2] NCCL INFO comm 0x14f8c8001060 rank 58 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r14i7n0:25489:25532 [2] NCCL INFO comm 0x1541b0001060 rank 34 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r8i5n2:15800:15838 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i5n2:15800:15838 [2] NCCL INFO comm 0x14c4f8001060 rank 30 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r7i4n1:77233:77306 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r7i4n1:77233:77306 [2] NCCL INFO comm 0x153d90001060 rank 2 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r14i7n5:42530:42573 [2] NCCL INFO Channel 03 : 54[88000] -> 62[88000] [send] via NET/IB/2
+r14i7n1:29727:29760 [2] NCCL INFO Channel 03 : 38[88000] -> 54[88000] [send] via NET/IB/2
+r14i7n3:66128:66176 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n3:66128:66176 [2] NCCL INFO comm 0x149250001060 rank 46 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r8i3n1:64580:64623 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n7:81281:81329 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r8i3n1:64580:64623 [2] NCCL INFO comm 0x14b8d8001060 rank 22 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r14i7n7:81281:81329 [2] NCCL INFO comm 0x145540001060 rank 62 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r14i7n5:42530:42573 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n5:42530:42573 [2] NCCL INFO comm 0x14a310001060 rank 54 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+r14i7n1:29727:29760 [2] NCCL INFO 4 coll channels, 4 p2p channels, 1 p2p channels per peer
+r14i7n1:29727:29760 [2] NCCL INFO comm 0x147868001060 rank 38 nranks 64 cudaDev 2 busId 88000 - Init COMPLETE
+ignore me 32
+ignore me 32
+29:
+ duration: 1.4238 sec
+ algo throughput: 44949312238.5459 bps, 44.9493 Gbps
+ busbw: 44.2470  Gbps
+30:
+ duration: 2.7400 sec
+ algo throughput: 23357761551.2913 bps, 23.3578 Gbps
+ busbw: 22.9928  Gbps
+ignore me 32
+31:
+ duration: 2.7475 sec
+ algo throughput: 23293882339.6892 bps, 23.2939 Gbps
+ busbw: 22.9299  Gbps
+ignore me 32
+28:
+ duration: 2.7050 sec
+ algo throughput: 23660064022.5825 bps, 23.6601 Gbps
+ busbw: 23.2904  Gbps
+ignore me 32
+ignore me 32
+25:
+ duration: 2.7024 sec
+ algo throughput: 23682646586.1801 bps, 23.6826 Gbps
+ busbw: 23.3126  Gbps
+32:
+ duration: 2.7372 sec
+ algo throughput: 23381556289.9381 bps, 23.3816 Gbps
+ busbw: 23.0162  Gbps
+ignore me 32
+35:
+ duration: 2.7250 sec
+ algo throughput: 23486226145.8290 bps, 23.4862 Gbps
+ busbw: 23.1193  Gbps
+ignore me 32
+26:
+ duration: 2.6719 sec
+ algo throughput: 23953319066.3962 bps, 23.9533 Gbps
+ busbw: 23.5790  Gbps
+ignore me 32
+ignore me 32
+34:
+ duration: 2.6906 sec
+ algo throughput: 23786574860.4958 bps, 23.7866 Gbps
+ busbw: 23.4149  Gbps
+27:
+ duration: 2.7036 sec
+ algo throughput: 23672329074.9777 bps, 23.6723 Gbps
+ busbw: 23.3024  Gbps
+ignore me 32
+ignore me 32
+33:
+ duration: 2.6729 sec
+24:
+ duration: 2.7194 sec
+ algo throughput: 23943929494.9669 bps, 23.9439 Gbps
+ busbw: 23.5698  Gbps
+ algo throughput: 23534932876.5290 bps, 23.5349 Gbps
+ busbw: 23.1672  Gbps
+ignore me 32
+ignore me 32
+21:
+ duration: 2.7199 sec
+ algo throughput: 23530449802.3782 bps, 23.5304 Gbps
+ busbw: 23.1628  Gbps
+22:
+ duration: 2.6953 sec
+ algo throughput: 23745283505.8812 bps, 23.7453 Gbps
+ busbw: 23.3743  Gbps
+ignore me 32
+ignore me 32
+23:
+36:
+ duration: 2.6422 sec
+ duration: 2.7147 sec
+ algo throughput: 23575679911.7559 bps, 23.5757 Gbps
+ algo throughput: 24221937860.2714 bps, 24.2219 Gbps
+ busbw: 23.2073  Gbps
+ busbw: 23.8435  Gbps
+ignore me 32
+ignore me 32
+39:
+ duration: 2.6866 sec
+ algo throughput: 23821771714.9784 bps, 23.8218 Gbps
+ busbw: 23.4496  Gbps
+20:
+ duration: 2.6915 sec
+ algo throughput: 23778723983.1553 bps, 23.7787 Gbps
+ busbw: 23.4072  Gbps
+ignore me 32
+17:
+ duration: 2.7000 sec
+ algo throughput: 23703530808.9786 bps, 23.7035 Gbps
+ busbw: 23.3332  Gbps
+ignore me 32
+38:
+ duration: 2.7053 sec
+ algo throughput: 23657379765.9858 bps, 23.6574 Gbps
+ busbw: 23.2877  Gbps
+ignore me 32
+18:
+ duration: 2.7087 sec
+ algo throughput: 23627826495.1307 bps, 23.6278 Gbps
+ busbw: 23.2586  Gbps
+ignore me 32
+19:
+ duration: 2.6893 sec
+ algo throughput: 23798098995.1087 bps, 23.7981 Gbps
+ busbw: 23.4263  Gbps
+ignore me 32
+16:
+ duration: 2.7193 sec
+ algo throughput: 23535449127.8586 bps, 23.5354 Gbps
+ busbw: 23.1677  Gbps
+ignore me 32
+37:
+ duration: 2.6878 sec
+ algo throughput: 23810924739.9213 bps, 23.8109 Gbps
+ busbw: 23.4389  Gbps
+ignore me 32
+13:
+ duration: 2.6579 sec
+ algo throughput: 24079589945.4143 bps, 24.0796 Gbps
+ busbw: 23.7033  Gbps
+ignore me 32
+14:
+ duration: 2.6687 sec
+ algo throughput: 23981976345.2383 bps, 23.9820 Gbps
+ busbw: 23.6073  Gbps
+ignore me 32
+ignore me 32
+43:
+ duration: 2.6799 sec
+ algo throughput: 23881529023.8278 bps, 23.8815 Gbps
+ busbw: 23.5084  Gbps
+40:
+ duration: 2.6675 sec
+ algo throughput: 23992311591.2424 bps, 23.9923 Gbps
+ busbw: 23.6174  Gbps
+ignore me 32
+15:
+ duration: 2.7035 sec
+ignore me 32
+ algo throughput: 23672833390.0361 bps, 23.6728 Gbps
+ busbw: 23.3029  Gbps
+42:
+ duration: 2.6612 sec
+ algo throughput: 24048980012.2614 bps, 24.0490 Gbps
+ busbw: 23.6732  Gbps
+ignore me 32
+12:
+ duration: 2.6873 sec
+ algo throughput: 23815701948.8174 bps, 23.8157 Gbps
+ busbw: 23.4436  Gbps
+ignore me 32
+41:
+ duration: 2.7323 sec
+ algo throughput: 23423078349.8974 bps, 23.4231 Gbps
+ busbw: 23.0571  Gbps
+ignore me 32
+9:
+ duration: 2.7008 sec
+ algo throughput: 23697006649.9667 bps, 23.6970 Gbps
+ busbw: 23.3267  Gbps
+ignore me 32
+10:
+ duration: 2.7208 sec
+ algo throughput: 23522906453.0563 bps, 23.5229 Gbps
+ busbw: 23.1554  Gbps
+ignore me 32
+ignore me 32
+44:
+ duration: 2.7216 sec
+ algo throughput: 23515800543.0813 bps, 23.5158 Gbps
+ busbw: 23.1484  Gbps
+ignore me 32
+11:
+ duration: 2.7418 sec
+ algo throughput: 23342156648.8888 bps, 23.3422 Gbps
+ busbw: 22.9774  Gbps
+8:
+ duration: 2.7226 sec
+ algo throughput: 23507307437.4491 bps, 23.5073 Gbps
+ busbw: 23.1400  Gbps
+ignore me 32
+47:
+ duration: 2.7480 sec
+ algo throughput: 23289700965.6135 bps, 23.2897 Gbps
+ busbw: 22.9258  Gbps
+ignore me 32
+5:
+ duration: 2.6909 sec
+ algo throughput: 23783868684.3031 bps, 23.7839 Gbps
+ busbw: 23.4122  Gbps
+ignore me 32
+46:
+ duration: 2.6782 sec
+ algo throughput: 23896435164.6071 bps, 23.8964 Gbps
+ busbw: 23.5231  Gbps
+ignore me 32
+6:
+ duration: 2.6949 sec
+ algo throughput: 23748904138.5712 bps, 23.7489 Gbps
+ busbw: 23.3778  Gbps
+ignore me 32
+ignore me 32
+45:
+ duration: 2.7273 sec
+ algo throughput: 23466730368.0785 bps, 23.4667 Gbps
+ busbw: 23.1001  Gbps
+7:
+ duration: 2.6819 sec
+ algo throughput: 23863603392.8412 bps, 23.8636 Gbps
+ busbw: 23.4907  Gbps
+ignore me 32
+4:
+ duration: 2.7313 sec
+ algo throughput: 23431695065.9442 bps, 23.4317 Gbps
+ busbw: 23.0656  Gbps
+ignore me 32
+1:
+ duration: 2.4759 sec
+ algo throughput: 25848983853.4357 bps, 25.8490 Gbps
+ busbw: 25.4451  Gbps
+ignore me 32
+ignore me 32
+2:
+ duration: 2.4740 sec
+ algo throughput: 25869549395.3480 bps, 25.8695 Gbps
+ busbw: 25.4653  Gbps
+51:
+ duration: 2.7141 sec
+ algo throughput: 23580495129.2975 bps, 23.5805 Gbps
+ busbw: 23.2120  Gbps
+ignore me 32
+3:
+ duration: 2.7923 sec
+ algo throughput: 22920054190.3781 bps, 22.9201 Gbps
+ busbw: 22.5619  Gbps
+ignore me 32
+ignore me 32
+50:
+ duration: 2.7000 sec
+ algo throughput: 23703671307.9286 bps, 23.7037 Gbps
+ busbw: 23.3333  Gbps
+ignore me 32
+ignore me 32
+48:
+ duration: 2.6783 sec
+ algo throughput: 23895395451.9701 bps, 23.8954 Gbps
+ busbw: 23.5220  Gbps
+0:
+ duration: 2.7667 sec
+ignore me 32
+ algo throughput: 23132333701.1816 bps, 23.1323 Gbps
+ busbw: 22.7709  Gbps
+49:
+ duration: 2.7238 sec
+ algo throughput: 23496664005.5518 bps, 23.4967 Gbps
+ busbw: 23.1295  Gbps
+61:
+ duration: 2.7459 sec
+ algo throughput: 23307236982.8999 bps, 23.3072 Gbps
+ busbw: 22.9431  Gbps
+ignore me 32
+ignore me 32
+ignore me 32
+63:
+ duration: 2.7194 sec
+ algo throughput: 23534413589.1336 bps, 23.5344 Gbps
+ busbw: 23.1667  Gbps
+ignore me 32
+ignore me 32
+60:
+ duration: 2.7590 sec
+ algo throughput: 23196861557.9333 bps, 23.1969 Gbps
+52:
+ duration: 2.6780 sec
+ busbw: 22.8344  Gbps
+ algo throughput: 23898383117.6090 bps, 23.8984 Gbps
+62:
+ duration: 2.7047 sec
+ busbw: 23.5250  Gbps
+ algo throughput: 23662466551.6355 bps, 23.6625 Gbps
+ busbw: 23.2927  Gbps
+ignore me 32
+55:
+ duration: 2.7123 sec
+ algo throughput: 23596530186.7741 bps, 23.5965 Gbps
+ busbw: 23.2278  Gbps
+57:
+ duration: 2.7261 sec
+ algo throughput: 23477162203.4748 bps, 23.4772 Gbps
+ busbw: 23.1103  Gbps
+ignore me 32
+ignore me 32
+58:
+ duration: 2.7148 sec
+ algo throughput: 23574579438.3545 bps, 23.5746 Gbps
+ busbw: 23.2062  Gbps
+54:
+ duration: 2.7037 sec
+ algo throughput: 23671255490.3380 bps, 23.6713 Gbps
+ busbw: 23.3014  Gbps
+ignore me 32
+ignore me 32
+59:
+ duration: 2.7090 sec
+ algo throughput: 23624545419.9078 bps, 23.6245 Gbps
+ busbw: 23.2554  Gbps
+53:
+ duration: 2.7116 sec
+ algo throughput: 23602103526.4298 bps, 23.6021 Gbps
+ busbw: 23.2333  Gbps
+ignore me 32
+56:
+ duration: 2.7226 sec
+ algo throughput: 23506550398.1415 bps, 23.5066 Gbps
+ busbw: 23.1393  Gbps
+ignore me 2082
+29:
+ duration: 1.0835 sec
+ algo throughput: 59066859484.2421 bps, 59.0669 Gbps
+ busbw: 58.1439  Gbps
+ignore me 2082
+30:
+ duration: 1.0837 sec
+ algo throughput: 59058841716.5432 bps, 59.0588 Gbps
+ busbw: 58.1360  Gbps
+ignore me 2082
+31:
+ duration: 1.0835 sec
+ algo throughput: 59065131143.3213 bps, 59.0651 Gbps
+ busbw: 58.1422  Gbps
+ignore me 2082
+28:
+ duration: 1.0835 sec
+ algo throughput: 59066126804.8039 bps, 59.0661 Gbps
+ busbw: 58.1432  Gbps
+ignore me 2082
+ignore me 2082
+32:
+ duration: 1.0834 sec
+25:
+ duration: 1.0835 sec
+ algo throughput: 59070713566.1664 bps, 59.0707 Gbps
+ busbw: 58.1477  Gbps
+ algo throughput: 59067100566.9895 bps, 59.0671 Gbps
+ busbw: 58.1442  Gbps
+ignore me 2082
+35:
+ duration: 1.0835 sec
+ algo throughput: 59066808104.9576 bps, 59.0668 Gbps
+ busbw: 58.1439  Gbps
+ignore me 2082
+26:
+ duration: 1.0836 sec
+ algo throughput: 59063002859.3982 bps, 59.0630 Gbps
+ busbw: 58.1401  Gbps
+ignore me 2082
+34:
+ duration: 1.0835 sec
+ algo throughput: 59068015617.9326 bps, 59.0680 Gbps
+ busbw: 58.1451  Gbps
+ignore me 2082
+ignore me 2082
+27:
+ duration: 1.0836 sec
+ algo throughput: 59063539002.5322 bps, 59.0635 Gbps
+ busbw: 58.1407  Gbps
+33:
+ duration: 1.0835 sec
+ algo throughput: 59068859360.3372 bps, 59.0689 Gbps
+ busbw: 58.1459  Gbps
+ignore me 2082
+24:
+ duration: 1.0836 sec
+ algo throughput: 59063686930.3064 bps, 59.0637 Gbps
+ busbw: 58.1408  Gbps
+ignore me 2082
+21:
+ duration: 1.0831 sec
+ algo throughput: 59087830454.9430 bps, 59.0878 Gbps
+ busbw: 58.1646  Gbps
+ignore me 2082
+22:
+ duration: 1.0835 sec
+ algo throughput: 59069311273.5637 bps, 59.0693 Gbps
+ busbw: 58.1464  Gbps
+ignore me 2082
+ignore me 2082
+23:
+ duration: 1.0835 sec
+36:
+ duration: 1.0834 sec
+ algo throughput: 59070147766.6642 bps, 59.0701 Gbps
+ algo throughput: 59071704972.7534 bps, 59.0717 Gbps
+ busbw: 58.1472  Gbps
+ busbw: 58.1487  Gbps
+ignore me 2082
+ignore me 2082
+39:
+ duration: 1.0835 sec
+ algo throughput: 59070455646.9749 bps, 59.0705 Gbps
+ busbw: 58.1475  Gbps
+20:
+ duration: 1.0835 sec
+ algo throughput: 59068400396.6142 bps, 59.0684 Gbps
+ busbw: 58.1455  Gbps
+ignore me 2082
+17:
+ duration: 1.0835 sec
+ algo throughput: 59069228181.5338 bps, 59.0692 Gbps
+ busbw: 58.1463  Gbps
+ignore me 2082
+38:
+ duration: 1.0835 sec
+ algo throughput: 59067292480.1127 bps, 59.0673 Gbps
+ busbw: 58.1444  Gbps
+ignore me 2082
+18:
+ duration: 1.0835 sec
+ algo throughput: 59066918834.5348 bps, 59.0669 Gbps
+ busbw: 58.1440  Gbps
+ignore me 2082
+ignore me 2082
+37:
+ duration: 1.0830 sec
+19:
+ duration: 1.0835 sec
+ algo throughput: 59097268924.3910 bps, 59.0973 Gbps
+ busbw: 58.1739  Gbps
+ algo throughput: 59065899437.4802 bps, 59.0659 Gbps
+ busbw: 58.1430  Gbps
+ignore me 2082
+16:
+ duration: 1.0835 sec
+ algo throughput: 59067100973.1535 bps, 59.0671 Gbps
+ busbw: 58.1442  Gbps
+ignore me 2082
+13:
+ duration: 1.0834 sec
+ algo throughput: 59070788487.3026 bps, 59.0708 Gbps
+ busbw: 58.1478  Gbps
+ignore me 2082
+14:
+ duration: 1.0835 sec
+ algo throughput: 59069005258.4249 bps, 59.0690 Gbps
+ busbw: 58.1461  Gbps
+ignore me 2082
+ignore me 2082
+40:
+ duration: 1.0833 sec
+ algo throughput: 59078456811.2615 bps, 59.0785 Gbps
+ busbw: 58.1554  Gbps
+43:
+ duration: 1.0834 sec
+ algo throughput: 59073657924.5029 bps, 59.0737 Gbps
+ busbw: 58.1506  Gbps
+ignore me 2082
+15:
+ duration: 1.0834 sec
+ algo throughput: 59071604406.2674 bps, 59.0716 Gbps
+ busbw: 58.1486  Gbps
+ignore me 2082
+42:
+ duration: 1.0835 sec
+ algo throughput: 59068664162.1612 bps, 59.0687 Gbps
+ busbw: 58.1457  Gbps
+ignore me 2082
+12:
+ duration: 1.0835 sec
+ algo throughput: 59069243769.2050 bps, 59.0692 Gbps
+ busbw: 58.1463  Gbps
+ignore me 2082
+41:
+ duration: 1.0835 sec
+ algo throughput: 59069901175.3071 bps, 59.0699 Gbps
+ busbw: 58.1469  Gbps
+ignore me 2082
+9:
+ duration: 1.0834 sec
+ algo throughput: 59070958107.8323 bps, 59.0710 Gbps
+ busbw: 58.1480  Gbps
+ignore me 2082
+10:
+ duration: 1.0835 sec
+ algo throughput: 59067763154.8657 bps, 59.0678 Gbps
+ busbw: 58.1448  Gbps
+ignore me 2082
+11:
+ duration: 1.0831 sec
+ algo throughput: 59091223992.2625 bps, 59.0912 Gbps
+ busbw: 58.1679  Gbps
+ignore me 2082
+44:
+ duration: 1.0836 sec
+ algo throughput: 59063835417.2353 bps, 59.0638 Gbps
+ busbw: 58.1410  Gbps
+ignore me 2082
+8:
+ duration: 1.0836 sec
+ algo throughput: 59063976543.9658 bps, 59.0640 Gbps
+ busbw: 58.1411  Gbps
+ignore me 2082
+47:
+ duration: 1.0835 sec
+ algo throughput: 59066916829.1123 bps, 59.0669 Gbps
+ busbw: 58.1440  Gbps
+ignore me 2082
+5:
+ duration: 1.0835 sec
+ algo throughput: 59067000092.3359 bps, 59.0670 Gbps
+ busbw: 58.1441  Gbps
+ignore me 2082
+ignore me 2082
+46:
+ duration: 1.0836 sec
+ algo throughput: 59061574740.1701 bps, 59.0616 Gbps
+ busbw: 58.1387  Gbps
+6:
+ duration: 1.0835 sec
+ algo throughput: 59067310681.4618 bps, 59.0673 Gbps
+ busbw: 58.1444  Gbps
+ignore me 2082
+ignore me 2082
+7:
+ duration: 1.0835 sec
+ algo throughput: 59069864388.6128 bps, 59.0699 Gbps
+ busbw: 58.1469  Gbps
+45:
+ duration: 1.0836 sec
+ algo throughput: 59060554131.6867 bps, 59.0606 Gbps
+ busbw: 58.1377  Gbps
+ignore me 2082
+4:
+ duration: 1.0835 sec
+ algo throughput: 59068502018.4223 bps, 59.0685 Gbps
+ busbw: 58.1456  Gbps
+ignore me 2082
+1:
+ duration: 1.0835 sec
+ algo throughput: 59068737427.9660 bps, 59.0687 Gbps
+ busbw: 58.1458  Gbps
+ignore me 2082
+ignore me 2082
+48:
+ duration: 1.0830 sec
+ algo throughput: 59097017685.0354 bps, 59.0970 Gbps
+ busbw: 58.1736  Gbps
+2:
+ duration: 1.0835 sec
+ algo throughput: 59069347475.6640 bps, 59.0693 Gbps
+ busbw: 58.1464  Gbps
+ignore me 2082
+51:
+ duration: 1.0837 sec
+ algo throughput: 59056277492.4153 bps, 59.0563 Gbps
+ busbw: 58.1335  Gbps
+ignore me 2082
+3:
+ duration: 1.0837 sec
+ algo throughput: 59056992519.1950 bps, 59.0570 Gbps
+ busbw: 58.1342  Gbps
+ignore me 2082
+0:
+ duration: 1.0839 sec
+ algo throughput: 59046172437.9481 bps, 59.0462 Gbps
+ busbw: 58.1236  Gbps
+ignore me 2082
+50:
+ duration: 1.0844 sec
+ algo throughput: 59021354231.1332 bps, 59.0214 Gbps
+ignore me 2082
+ busbw: 58.0991  Gbps
+61:
+ duration: 1.0842 sec
+ algo throughput: 59031130336.6949 bps, 59.0311 Gbps
+ busbw: 58.1088  Gbps
+ignore me 2082
+62:
+ duration: 1.0840 sec
+ algo throughput: 59039602514.4646 bps, 59.0396 Gbps
+ busbw: 58.1171  Gbps
+ignore me 2082
+49:
+ duration: 1.0850 sec
+ algo throughput: 58986382453.8746 bps, 58.9864 Gbps
+ busbw: 58.0647  Gbps
+ignore me 2082
+63:
+ duration: 1.0847 sec
+ algo throughput: 59004654990.5545 bps, 59.0047 Gbps
+ busbw: 58.0827  Gbps
+ignore me 2082
+60:
+ duration: 1.0849 sec
+ algo throughput: 58992763717.5499 bps, 58.9928 Gbps
+ busbw: 58.0710  Gbps
+ignore me 2082
+ignore me 2082
+55:
+ duration: 1.0852 sec
+57:
+ duration: 1.0851 sec
+ algo throughput: 58975886240.9931 bps, 58.9759 Gbps
+ busbw: 58.0544  Gbps
+ignore me 2082
+ algo throughput: 58978312463.6023 bps, 58.9783 Gbps
+ busbw: 58.0568  Gbps
+52:
+ duration: 1.0854 sec
+ algo throughput: 58966362587.4101 bps, 58.9664 Gbps
+ busbw: 58.0450  Gbps
+ignore me 2082
+ignore me 2082
+58:
+ duration: 1.0854 sec
+ algo throughput: 58964692791.5706 bps, 58.9647 Gbps
+ busbw: 58.0434  Gbps
+54:
+ duration: 1.0854 sec
+ algo throughput: 58964768860.6620 bps, 58.9648 Gbps
+ busbw: 58.0434  Gbps
+ignore me 2082
+ignore me 2082
+59:
+ duration: 1.0857 sec
+53:
+ duration: 1.0856 sec
+ algo throughput: 58950712592.1092 bps, 58.9507 Gbps
+ algo throughput: 58953427702.0069 bps, 58.9534 Gbps
+ busbw: 58.0296  Gbps
+ busbw: 58.0323  Gbps
+ignore me 2082
+56:
+ duration: 1.0857 sec
+ algo throughput: 58945466837.5869 bps, 58.9455 Gbps
+ busbw: 58.0244  Gbps
+ignore me 133309
+1:
+ duration: 1.1391 sec
+ algo throughput: 56186630678.4523 bps, 56.1866 Gbps
+ busbw: 55.3087  Gbps
+ignore me 133309
+2:
+ duration: 1.1388 sec
+ algo throughput: 56197841965.9918 bps, 56.1978 Gbps
+ busbw: 55.3198  Gbps
+ignore me 133309
+3:
+ duration: 1.1386 sec
+ algo throughput: 56210536429.9574 bps, 56.2105 Gbps
+ busbw: 55.3322  Gbps
+ignore me 133309
+0:
+ duration: 1.1384 sec
+ algo throughput: 56218527471.7047 bps, 56.2185 Gbps
+ busbw: 55.3401  Gbps
+ignore me 133309
+ignore me 133309
+7:
+ duration: 1.1408 sec
+ignore me 133309
+ algo throughput: 56102562666.0355 bps, 56.1026 Gbps
+ busbw: 55.2260  Gbps
+4:
+ duration: 1.1403 sec
+ algo throughput: 56123380167.5427 bps, 56.1234 Gbps
+ busbw: 55.2465  Gbps
+61:
+ duration: 1.1382 sec
+ algo throughput: 56230478369.0786 bps, 56.2305 Gbps
+ busbw: 55.3519  Gbps
+ignore me 133309
+6:
+ duration: 1.1415 sec
+ignore me 133309
+ algo throughput: 56065940519.5571 bps, 56.0659 Gbps
+ busbw: 55.1899  Gbps
+62:
+ duration: 1.1380 sec
+ algo throughput: 56240584961.5016 bps, 56.2406 Gbps
+ busbw: 55.3618  Gbps
+ignore me 133309
+ignore me 133309
+5:
+ duration: 1.1423 sec
+ algo throughput: 56028055753.7944 bps, 56.0281 Gbps
+ busbw: 55.1526  Gbps
+ignore me 133309
+63:
+ duration: 1.1378 sec
+ algo throughput: 56249756590.0532 bps, 56.2498 Gbps
+ busbw: 55.3709  Gbps
+60:
+ duration: 1.1375 sec
+ algo throughput: 56261938000.7831 bps, 56.2619 Gbps
+ busbw: 55.3828  Gbps
+ignore me 133309
+57:
+ duration: 1.1373 sec
+ algo throughput: 56272326070.3276 bps, 56.2723 Gbps
+ busbw: 55.3931  Gbps
+ignore me 133309
+58:
+ duration: 1.1371 sec
+ algo throughput: 56284141411.0425 bps, 56.2841 Gbps
+ busbw: 55.4047  Gbps
+ignore me 133309
+ignore me 133309
+59:
+ duration: 1.1369 sec
+ algo throughput: 56293245261.6948 bps, 56.2932 Gbps
+ busbw: 55.4137  Gbps
+11:
+ duration: 1.1441 sec
+ algo throughput: 55938995618.7239 bps, 55.9390 Gbps
+ busbw: 55.0649  Gbps
+ignore me 133309
+ignore me 133309
+10:
+ignore me 133309
+ duration: 1.1448 sec
+ algo throughput: 55906467841.9515 bps, 55.9065 Gbps
+ busbw: 55.0329  Gbps
+ignore me 133309
+56:
+ duration: 1.1368 sec
+ algo throughput: 56297972665.7302 bps, 56.2980 Gbps
+ busbw: 55.4183  Gbps
+8:
+ duration: 1.1439 sec
+53:
+ duration: 1.1373 sec
+ algo throughput: 55950271462.9815 bps, 55.9503 Gbps
+ busbw: 55.0760  Gbps
+ algo throughput: 56274477937.5927 bps, 56.2745 Gbps
+ busbw: 55.3952  Gbps
+ignore me 133309
+9:
+ duration: 1.1456 sec
+ignore me 133309
+ algo throughput: 55867699042.4541 bps, 55.8677 Gbps
+ busbw: 54.9948  Gbps
+54:
+ duration: 1.1379 sec
+ algo throughput: 56242161571.4548 bps, 56.2422 Gbps
+ busbw: 55.3634  Gbps
+ignore me 133309
+55:
+ duration: 1.1387 sec
+ algo throughput: 56203992048.2376 bps, 56.2040 Gbps
+ busbw: 55.3258  Gbps
+ignore me 133309
+52:
+ duration: 1.1389 sec
+ algo throughput: 56196038730.8567 bps, 56.1960 Gbps
+ busbw: 55.3180  Gbps
+ignore me 133309
+ignore me 133309
+49:
+ duration: 1.1401 sec
+ algo throughput: 56133974251.2953 bps, 56.1340 Gbps
+ busbw: 55.2569  Gbps
+12:
+ duration: 1.1468 sec
+ algo throughput: 55806916192.1737 bps, 55.8069 Gbps
+ busbw: 54.9349  Gbps
+ignore me 133309
+ignore me 133309
+15:
+ duration: 1.1474 sec
+ algo throughput: 55778094162.5050 bps, 55.7781 Gbps
+ busbw: 54.9066  Gbps
+50:
+ duration: 1.1412 sec
+ algo throughput: 56082315409.3190 bps, 56.0823 Gbps
+ busbw: 55.2060  Gbps
+ignore me 133309
+ignore me 133309
+14:
+ duration: 1.1482 sec
+ algo throughput: 55739916871.7653 bps, 55.7399 Gbps
+ busbw: 54.8690  Gbps
+51:
+ duration: 1.1424 sec
+ algo throughput: 56021014275.0669 bps, 56.0210 Gbps
+ busbw: 55.1457  Gbps
+ignore me 133309
+13:
+ duration: 1.1487 sec
+ algo throughput: 55713226310.2563 bps, 55.7132 Gbps
+ busbw: 54.8427  Gbps
+ignore me 133309
+48:
+ duration: 1.1431 sec
+ algo throughput: 55990240878.8492 bps, 55.9902 Gbps
+ busbw: 55.1154  Gbps
+ignore me 133309
+45:
+ duration: 1.1445 sec
+ algo throughput: 55922039630.2006 bps, 55.9220 Gbps
+ busbw: 55.0483  Gbps
+ignore me 133309
+46:
+ duration: 1.1452 sec
+ algo throughput: 55884867458.2303 bps, 55.8849 Gbps
+ busbw: 55.0117  Gbps
+ignore me 133309
+16:
+ duration: 1.1498 sec
+ algo throughput: 55662150999.5133 bps, 55.6622 Gbps
+ busbw: 54.7924  Gbps
+ignore me 133309
+ignore me 133309
+47:
+ duration: 1.1461 sec
+ algo throughput: 55840080608.4029 bps, 55.8401 Gbps
+ busbw: 54.9676  Gbps
+19:
+ duration: 1.1504 sec
+ algo throughput: 55634093851.0884 bps, 55.6341 Gbps
+ busbw: 54.7648  Gbps
+ignore me 133309
+ignore me 133309
+44:
+ duration: 1.1466 sec
+ algo throughput: 55816907945.4274 bps, 55.8169 Gbps
+ busbw: 54.9448  Gbps
+18:
+ duration: 1.1511 sec
+ignore me 133309
+ algo throughput: 55596946472.7115 bps, 55.5969 Gbps
+ busbw: 54.7282  Gbps
+41:
+ duration: 1.1484 sec
+ algo throughput: 55731437832.9023 bps, 55.7314 Gbps
+ busbw: 54.8606  Gbps
+ignore me 133309
+17:
+ duration: 1.1519 sec
+ algo throughput: 55559341074.1980 bps, 55.5593 Gbps
+ignore me 133309
+ busbw: 54.6912  Gbps
+42:
+ duration: 1.1492 sec
+ algo throughput: 55693060179.6313 bps, 55.6931 Gbps
+ busbw: 54.8229  Gbps
+ignore me 133309
+43:
+ duration: 1.1499 sec
+ algo throughput: 55656863113.6962 bps, 55.6569 Gbps
+ busbw: 54.7872  Gbps
+ignore me 133309
+40:
+ duration: 1.1502 sec
+ignore me 133309
+ignore me 133309
+ algo throughput: 55643327110.3709 bps, 55.6433 Gbps
+ busbw: 54.7739  Gbps
+20:
+ duration: 1.1530 sec
+37:
+ duration: 1.1516 sec
+ algo throughput: 55572725416.9574 bps, 55.5727 Gbps
+ busbw: 54.7044  Gbps
+ algo throughput: 55508082457.9716 bps, 55.5081 Gbps
+ busbw: 54.6408  Gbps
+ignore me 133309
+ignore me 133309
+23:
+ duration: 1.1537 sec
+ algo throughput: 55472482295.3113 bps, 55.4725 Gbps
+ busbw: 54.6057  Gbps
+38:
+ duration: 1.1527 sec
+ algo throughput: 55524025660.1277 bps, 55.5240 Gbps
+ busbw: 54.6565  Gbps
+ignore me 133309
+ignore me 133309
+22:
+ duration: 1.1544 sec
+ algo throughput: 55439647607.6852 bps, 55.4396 Gbps
+ busbw: 54.5734  Gbps
+39:
+ duration: 1.1536 sec
+ algo throughput: 55479549449.4088 bps, 55.4795 Gbps
+ busbw: 54.6127  Gbps
+ignore me 133309
+36:
+ duration: 1.1543 sec
+ algo throughput: 55445227348.2578 bps, 55.4452 Gbps
+ busbw: 54.5789  Gbps
+ignore me 133309
+ignore me 133309
+33:
+ duration: 1.1559 sec
+ algo throughput: 55369285535.2113 bps, 55.3693 Gbps
+ busbw: 54.5041  Gbps
+21:
+ duration: 1.1554 sec
+ algo throughput: 55393329563.2963 bps, 55.3933 Gbps
+ busbw: 54.5278  Gbps
+ignore me 133309
+34:
+ duration: 1.1566 sec
+ algo throughput: 55332871761.9836 bps, 55.3329 Gbps
+ busbw: 54.4683  Gbps
+ignore me 133309
+35:
+ duration: 1.1574 sec
+ algo throughput: 55296232496.1253 bps, 55.2962 Gbps
+ busbw: 54.4322  Gbps
+ignore me 133309
+ignore me 133309
+32:
+ duration: 1.1580 sec
+ algo throughput: 55267795287.7934 bps, 55.2678 Gbps
+ busbw: 54.4042  Gbps
+ignore me 133309
+ignore me 133309
+27:
+ duration: 1.1571 sec
+ algo throughput: 55312877568.3247 bps, 55.3129 Gbps
+ busbw: 54.4486  Gbps
+24:
+ duration: 1.1567 sec
+ algo throughput: 55330741896.0498 bps, 55.3307 Gbps
+ busbw: 54.4662  Gbps
+29:
+ duration: 1.1597 sec
+ algo throughput: 55186535829.2139 bps, 55.1865 Gbps
+ busbw: 54.3242  Gbps
+ignore me 133309
+ignore me 133309
+26:
+ duration: 1.1577 sec
+30:
+ duration: 1.1597 sec
+ algo throughput: 55280126126.6868 bps, 55.2801 Gbps
+ busbw: 54.4164  Gbps
+ algo throughput: 55187768889.9608 bps, 55.1878 Gbps
+ busbw: 54.3255  Gbps
+ignore me 133309
+25:
+ duration: 1.1585 sec
+ algo throughput: 55243535561.7803 bps, 55.2435 Gbps
+ignore me 133309
+ busbw: 54.3804  Gbps
+31:
+ duration: 1.1595 sec
+ algo throughput: 55195885322.0013 bps, 55.1959 Gbps
+ busbw: 54.3334  Gbps
+ignore me 133309
+28:
+ duration: 1.1593 sec
+ algo throughput: 55206334459.6821 bps, 55.2063 Gbps
+ busbw: 54.3437  Gbps
+ignore me 8531839
+29:
+ duration: 1.0795 sec
+ algo throughput: 59286911481.4458 bps, 59.2869 Gbps
+ busbw: 58.3606  Gbps
+ignore me 8531839
+30:
+ duration: 1.0795 sec
+ algo throughput: 59286408408.9583 bps, 59.2864 Gbps
+ busbw: 58.3601  Gbps
+ignore me 8531839
+31:
+ duration: 1.0797 sec
+ algo throughput: 59278191565.0471 bps, 59.2782 Gbps
+ busbw: 58.3520  Gbps
+ignore me 8531839
+28:
+ duration: 1.0799 sec
+ignore me 8531839
+ algo throughput: 59263025257.0778 bps, 59.2630 Gbps
+ busbw: 58.3370  Gbps
+32:
+ duration: 1.0810 sec
+ algo throughput: 59205441780.3854 bps, 59.2054 Gbps
+ busbw: 58.2804  Gbps
+ignore me 8531839
+35:
+ duration: 1.0813 sec
+ algo throughput: 59185679740.7383 bps, 59.1857 Gbps
+ busbw: 58.2609  Gbps
+ignore me 8531839
+ignore me 8531839
+25:
+ duration: 1.0807 sec
+34:
+ duration: 1.0818 sec
+ algo throughput: 59158778835.9291 bps, 59.1588 Gbps
+ busbw: 58.2344  Gbps
+ algo throughput: 59219009427.4692 bps, 59.2190 Gbps
+ busbw: 58.2937  Gbps
+ignore me 8531839
+26:
+ duration: 1.0812 sec
+ algo throughput: 59192899586.7344 bps, 59.1929 Gbps
+ busbw: 58.2680  Gbps
+ignore me 8531839
+33:
+ duration: 1.0824 sec
+ algo throughput: 59127256274.3892 bps, 59.1273 Gbps
+ busbw: 58.2034  Gbps
+ignore me 8531839
+27:
+ duration: 1.0817 sec
+ algo throughput: 59167287492.5382 bps, 59.1673 Gbps
+ busbw: 58.2428  Gbps
+ignore me 8531839
+24:
+ duration: 1.0818 sec
+ algo throughput: 59159151072.6827 bps, 59.1592 Gbps
+ busbw: 58.2348  Gbps
+ignore me 8531839
+21:
+ duration: 1.0829 sec
+ algo throughput: 59099415307.5828 bps, 59.0994 Gbps
+ busbw: 58.1760  Gbps
+ignore me 8531839
+36:
+ duration: 1.0833 sec
+ algo throughput: 59079977681.5775 bps, 59.0800 Gbps
+ busbw: 58.1569  Gbps
+ignore me 8531839
+ignore me 8531839
+22:
+ duration: 1.0837 sec
+ algo throughput: 59055663121.6989 bps, 59.0557 Gbps
+ busbw: 58.1329  Gbps
+39:
+ duration: 1.0837 sec
+ algo throughput: 59055189417.1339 bps, 59.0552 Gbps
+ busbw: 58.1325  Gbps
+ignore me 8531839
+ignore me 8531839
+23:
+ duration: 1.0842 sec
+ algo throughput: 59030011445.3982 bps, 59.0300 Gbps
+ busbw: 58.1077  Gbps
+38:
+ duration: 1.0842 sec
+ algo throughput: 59028259984.3437 bps, 59.0283 Gbps
+ busbw: 58.1059  Gbps
+ignore me 8531839
+20:
+ duration: 1.0847 sec
+ algo throughput: 59004785777.9222 bps, 59.0048 Gbps
+ busbw: 58.0828  Gbps
+ignore me 8531839
+17:
+ duration: 1.0855 sec
+ algo throughput: 58958978304.9890 bps, 58.9590 Gbps
+ busbw: 58.0377  Gbps
+ignore me 8531839
+37:
+ duration: 1.0849 sec
+ignore me 8531839
+ algo throughput: 58991461897.3442 bps, 58.9915 Gbps
+ busbw: 58.0697  Gbps
+18:
+ duration: 1.0860 sec
+ algo throughput: 58929937869.1926 bps, 58.9299 Gbps
+ busbw: 58.0092  Gbps
+ignore me 8531839
+19:
+ duration: 1.0866 sec
+ algo throughput: 58900757003.1444 bps, 58.9008 Gbps
+ busbw: 57.9804  Gbps
+ignore me 8531839
+ignore me 8531839
+ignore me 8531839
+16:
+ duration: 1.0870 sec
+ algo throughput: 58880195126.7510 bps, 58.8802 Gbps
+ busbw: 57.9602  Gbps
+13:
+ duration: 1.0876 sec
+40:
+ duration: 1.0857 sec
+ algo throughput: 58842732172.8244 bps, 58.8427 Gbps
+ busbw: 57.9233  Gbps
+ algo throughput: 58945852979.2074 bps, 58.9459 Gbps
+ busbw: 58.0248  Gbps
+ignore me 8531839
+ignore me 8531839
+43:
+ duration: 1.0861 sec
+14:
+ duration: 1.0880 sec
+ algo throughput: 58927187378.4591 bps, 58.9272 Gbps
+ busbw: 58.0065  Gbps
+ algo throughput: 58820897723.0911 bps, 58.8209 Gbps
+ busbw: 57.9018  Gbps
+ignore me 8531839
+42:
+ duration: 1.0866 sec
+ algo throughput: 58901245146.1473 bps, 58.9012 Gbps
+ busbw: 57.9809  Gbps
+ignore me 8531839
+15:
+ duration: 1.0886 sec
+ algo throughput: 58791413029.8789 bps, 58.7914 Gbps
+ busbw: 57.8728  Gbps
+ignore me 8531839
+41:
+ duration: 1.0871 sec
+ignore me 8531839
+ algo throughput: 58871381066.5900 bps, 58.8714 Gbps
+ busbw: 57.9515  Gbps
+12:
+ duration: 1.0890 sec
+ algo throughput: 58771752987.2678 bps, 58.7718 Gbps
+ busbw: 57.8534  Gbps
+ignore me 8531839
+9:
+ duration: 1.0899 sec
+ algo throughput: 58719761283.1440 bps, 58.7198 Gbps
+ busbw: 57.8023  Gbps
+ignore me 8531839
+10:
+ duration: 1.0905 sec
+ algo throughput: 58691072684.4358 bps, 58.6911 Gbps
+ busbw: 57.7740  Gbps
+ignore me 8531839
+ignore me 8531839
+11:
+ duration: 1.0909 sec
+44:
+ duration: 1.0880 sec
+ algo throughput: 58668924615.5916 bps, 58.6689 Gbps
+ busbw: 57.7522  Gbps
+ algo throughput: 58823636890.2922 bps, 58.8236 Gbps
+ busbw: 57.9045  Gbps
+ignore me 8531839
+ignore me 8531839
+47:
+ duration: 1.0884 sec
+ algo throughput: 58802147709.6931 bps, 58.8021 Gbps
+ busbw: 57.8834  Gbps
+8:
+ duration: 1.0909 sec
+ algo throughput: 58669493348.8639 bps, 58.6695 Gbps
+ busbw: 57.7528  Gbps
+ignore me 8531839
+ignore me 8531839
+46:
+ duration: 1.0889 sec
+5:
+ duration: 1.0922 sec
+ algo throughput: 58776404011.0439 bps, 58.7764 Gbps
+ busbw: 57.8580  Gbps
+ algo throughput: 58595292130.0957 bps, 58.5953 Gbps
+ busbw: 57.6797  Gbps
+ignore me 8531839
+6:
+ duration: 1.0927 sec
+ algo throughput: 58568672254.4708 bps, 58.5687 Gbps
+ busbw: 57.6535  Gbps
+ignore me 8531839
+45:
+ duration: 1.0894 sec
+ignore me 8531839
+ algo throughput: 58746329829.1854 bps, 58.7463 Gbps
+ busbw: 57.8284  Gbps
+7:
+ duration: 1.0933 sec
+ algo throughput: 58538489260.3194 bps, 58.5385 Gbps
+ busbw: 57.6238  Gbps
+ignore me 8531839
+4:
+ duration: 1.0935 sec
+ algo throughput: 58528192503.3891 bps, 58.5282 Gbps
+ busbw: 57.6137  Gbps
+ignore me 8531839
+1:
+ duration: 1.0945 sec
+ algo throughput: 58474433972.9440 bps, 58.4744 Gbps
+ busbw: 57.5608  Gbps
+ignore me 8531839
+ignore me 8531839
+48:
+ duration: 1.0903 sec
+ algo throughput: 58701374285.9175 bps, 58.7014 Gbps
+ busbw: 57.7842  Gbps
+2:
+ duration: 1.0945 sec
+ignore me 8531839
+ algo throughput: 58473699049.7601 bps, 58.4737 Gbps
+ busbw: 57.5600  Gbps
+51:
+ duration: 1.0907 sec
+ algo throughput: 58677790184.1529 bps, 58.6778 Gbps
+ busbw: 57.7609  Gbps
+ignore me 8531839
+3:
+ duration: 1.0946 sec
+ algo throughput: 58471182051.0963 bps, 58.4712 Gbps
+ busbw: 57.5576  Gbps
+ignore me 8531839
+50:
+ duration: 1.0912 sec
+ algo throughput: 58649778797.4147 bps, 58.6498 Gbps
+ busbw: 57.7334  Gbps
+ignore me 8531839
+0:
+ duration: 1.0945 sec
+ algo throughput: 58475366330.2289 bps, 58.4754 Gbps
+ busbw: 57.5617  Gbps
+ignore me 8531839
+61:
+ duration: 1.0945 sec
+ algo throughput: 58475001902.2709 bps, 58.4750 Gbps
+ busbw: 57.5613  Gbps
+ignore me 8531839
+ignore me 8531839
+49:
+ duration: 1.0920 sec
+ algo throughput: 58610507438.4729 bps, 58.6105 Gbps
+ busbw: 57.6947  Gbps
+62:
+ duration: 1.0944 sec
+ algo throughput: 58479376830.5396 bps, 58.4794 Gbps
+ busbw: 57.5656  Gbps
+ignore me 8531839
+ignore me 8531839
+63:
+ duration: 1.0943 sec
+ algo throughput: 58483011432.8103 bps, 58.4830 Gbps
+ busbw: 57.5692  Gbps
+60:
+ duration: 1.0943 sec
+ algo throughput: 58482721292.0378 bps, 58.4827 Gbps
+ busbw: 57.5689  Gbps
+ignore me 8531839
+ignore me 8531839
+ignore me 8531839
+55:
+ duration: 1.0930 sec
+ algo throughput: 58557035155.2496 bps, 58.5570 Gbps
+ busbw: 57.6421  Gbps
+52:
+57:
+ duration: 1.0944 sec
+ duration: 1.0927 sec
+ algo throughput: 58569873887.8907 bps, 58.5699 Gbps
+ busbw: 57.6547  Gbps
+ algo throughput: 58481957941.1610 bps, 58.4820 Gbps
+ busbw: 57.5682  Gbps
+ignore me 8531839
+ignore me 8531839
+58:
+ duration: 1.0943 sec
+ algo throughput: 58482942275.5710 bps, 58.4829 Gbps
+ busbw: 57.5691  Gbps
+54:
+ duration: 1.0935 sec
+ algo throughput: 58529632382.1275 bps, 58.5296 Gbps
+ busbw: 57.6151  Gbps
+ignore me 8531839
+ignore me 8531839
+59:
+ duration: 1.0943 sec
+53:
+ duration: 1.0939 sec
+ algo throughput: 58484596221.1178 bps, 58.4846 Gbps
+ busbw: 57.5708  Gbps
+ algo throughput: 58504811528.0580 bps, 58.5048 Gbps
+ busbw: 57.5907  Gbps
+ignore me 8531839
+56:
+ duration: 1.0943 sec
+ algo throughput: 58486115439.8358 bps, 58.4861 Gbps
+ busbw: 57.5723  Gbps
+ignore me 546037696
+1:
+ duration: 1.1476 sec
+ algo throughput: 55770762346.0617 bps, 55.7708 Gbps
+ busbw: 54.8993  Gbps
+ignore me 546037696
+2:
+ duration: 1.1475 sec
+ algo throughput: 55771017398.3502 bps, 55.7710 Gbps
+ busbw: 54.8996  Gbps
+ignore me 546037696
+3:
+ duration: 1.1475 sec
+ algo throughput: 55771333738.8483 bps, 55.7713 Gbps
+ busbw: 54.8999  Gbps
+ignore me 546037696
+0:
+ duration: 1.1476 sec
+ algo throughput: 55769516968.5215 bps, 55.7695 Gbps
+ busbw: 54.8981  Gbps
+ignore me 546037696
+ignore me 546037696
+61:
+ duration: 1.1476 sec
+ algo throughput: 55770292281.9796 bps, 55.7703 Gbps
+ busbw: 54.8989  Gbps
+ignore me 546037696
+4:
+ duration: 1.1487 sec
+ algo throughput: 55717449805.5686 bps, 55.7174 Gbps
+ busbw: 54.8469  Gbps
+7:
+ duration: 1.1489 sec
+ algo throughput: 55705382055.5402 bps, 55.7054 Gbps
+ busbw: 54.8350  Gbps
+ignore me 546037696
+62:
+ duration: 1.1476 sec
+ignore me 546037696
+ algo throughput: 55768766319.9799 bps, 55.7688 Gbps
+ busbw: 54.8974  Gbps
+6:
+ duration: 1.1494 sec
+ algo throughput: 55680938790.6285 bps, 55.6809 Gbps
+ busbw: 54.8109  Gbps
+ignore me 546037696
+ignore me 546037696
+5:
+ duration: 1.1498 sec
+63:
+ duration: 1.1477 sec
+ algo throughput: 55765849797.1745 bps, 55.7658 Gbps
+ busbw: 54.8945  Gbps
+ algo throughput: 55661444152.7538 bps, 55.6614 Gbps
+ busbw: 54.7917  Gbps
+ignore me 546037696
+60:
+ duration: 1.1477 sec
+ algo throughput: 55762914009.1087 bps, 55.7629 Gbps
+ busbw: 54.8916  Gbps
+ignore me 546037696
+57:
+ duration: 1.1477 sec
+ algo throughput: 55765430612.6848 bps, 55.7654 Gbps
+ busbw: 54.8941  Gbps
+ignore me 546037696
+58:
+ duration: 1.1477 sec
+ algo throughput: 55763080232.6062 bps, 55.7631 Gbps
+ busbw: 54.8918  Gbps
+ignore me 546037696
+ignore me 546037696
+ignore me 546037696
+59:
+ duration: 1.1477 sec
+8:
+ duration: 1.1508 sec
+ algo throughput: 55762394643.4226 bps, 55.7624 Gbps
+ busbw: 54.8911  Gbps
+ algo throughput: 55611961476.5661 bps, 55.6120 Gbps
+ busbw: 54.7430  Gbps
+11:
+ duration: 1.1511 sec
+ algo throughput: 55598461044.5628 bps, 55.5985 Gbps
+ busbw: 54.7297  Gbps
+ignore me 546037696
+ignore me 546037696
+56:
+ duration: 1.1478 sec
+10:
+ duration: 1.1515 sec
+ algo throughput: 55760993562.6936 bps, 55.7610 Gbps
+ busbw: 54.8897  Gbps
+ algo throughput: 55577492254.7561 bps, 55.5775 Gbps
+ busbw: 54.7091  Gbps
+ignore me 546037696
+53:
+ duration: 1.1481 sec
+ algo throughput: 55742639371.6693 bps, 55.7426 Gbps
+ busbw: 54.8717  Gbps
+ignore me 546037696
+ignore me 546037696
+9:
+ duration: 1.1521 sec
+ algo throughput: 55548756769.4051 bps, 55.5488 Gbps
+ busbw: 54.6808  Gbps
+54:
+ duration: 1.1486 sec
+ algo throughput: 55722188346.6659 bps, 55.7222 Gbps
+ busbw: 54.8515  Gbps
+ignore me 546037696
+55:
+ duration: 1.1491 sec
+ algo throughput: 55696658264.1312 bps, 55.6967 Gbps
+ busbw: 54.8264  Gbps
+ignore me 546037696
+52:
+ duration: 1.1493 sec
+ algo throughput: 55684052078.0344 bps, 55.6841 Gbps
+ busbw: 54.8140  Gbps
+ignore me 546037696
+ignore me 546037696
+49:
+ duration: 1.1501 sec
+ algo throughput: 55649095693.8313 bps, 55.6491 Gbps
+ busbw: 54.7796  Gbps
+12:
+ duration: 1.1530 sec
+ algo throughput: 55505198112.8937 bps, 55.5052 Gbps
+ busbw: 54.6379  Gbps
+ignore me 546037696
+50:
+ duration: 1.1508 sec
+ignore me 546037696
+ algo throughput: 55613869060.5475 bps, 55.6139 Gbps
+ busbw: 54.7449  Gbps
+ignore me 546037696
+15:
+ duration: 1.1535 sec
+ algo throughput: 55481402494.6963 bps, 55.4814 Gbps
+ busbw: 54.6145  Gbps
+14:
+ duration: 1.1539 sec
+ algo throughput: 55463380623.3736 bps, 55.4634 Gbps
+ busbw: 54.5968  Gbps
+ignore me 546037696
+51:
+ duration: 1.1513 sec
+ algo throughput: 55589348274.9666 bps, 55.5893 Gbps
+ busbw: 54.7208  Gbps
+ignore me 546037696
+13:
+ duration: 1.1544 sec
+ algo throughput: 55438208761.5075 bps, 55.4382 Gbps
+ busbw: 54.5720  Gbps
+ignore me 546037696
+48:
+ duration: 1.1518 sec
+ algo throughput: 55566775315.2157 bps, 55.5668 Gbps
+ busbw: 54.6985  Gbps
+ignore me 546037696
+45:
+ duration: 1.1525 sec
+ algo throughput: 55529057698.1972 bps, 55.5291 Gbps
+ busbw: 54.6614  Gbps
+ignore me 546037696
+46:
+ duration: 1.1531 sec
+ algo throughput: 55500407337.6886 bps, 55.5004 Gbps
+ busbw: 54.6332  Gbps
+ignore me 546037696
+ignore me 546037696
+47:
+ duration: 1.1536 sec
+ algo throughput: 55476425397.6833 bps, 55.4764 Gbps
+ busbw: 54.6096  Gbps
+16:
+ duration: 1.1552 sec
+ algo throughput: 55400712115.8729 bps, 55.4007 Gbps
+ busbw: 54.5351  Gbps
+ignore me 546037696
+19:
+ duration: 1.1556 sec
+ignore me 546037696
+ algo throughput: 55382462428.1853 bps, 55.3825 Gbps
+ busbw: 54.5171  Gbps
+44:
+ duration: 1.1540 sec
+ algo throughput: 55458928869.5273 bps, 55.4589 Gbps
+ busbw: 54.5924  Gbps
+ignore me 546037696
+ignore me 546037696
+41:
+ duration: 1.1549 sec
+ algo throughput: 55413716946.1284 bps, 55.4137 Gbps
+ busbw: 54.5479  Gbps
+18:
+ duration: 1.1561 sec
+ algo throughput: 55357170878.3853 bps, 55.3572 Gbps
+ busbw: 54.4922  Gbps
+ignore me 546037696
+ignore me 546037696
+17:
+ duration: 1.1566 sec
+42:
+ duration: 1.1554 sec
+ algo throughput: 55390228161.2849 bps, 55.3902 Gbps
+ algo throughput: 55336032557.8372 bps, 55.3360 Gbps
+ busbw: 54.4714  Gbps
+ busbw: 54.5248  Gbps
+ignore me 546037696
+43:
+ duration: 1.1560 sec
+ algo throughput: 55365107742.2023 bps, 55.3651 Gbps
+ busbw: 54.5000  Gbps
+ignore me 546037696
+40:
+ duration: 1.1563 sec
+ algo throughput: 55350589759.8898 bps, 55.3506 Gbps
+ busbw: 54.4857  Gbps
+ignore me 546037696
+37:
+ duration: 1.1571 sec
+ algo throughput: 55309680398.2002 bps, 55.3097 Gbps
+ busbw: 54.4455  Gbps
+ignore me 546037696
+ignore me 546037696
+20:
+ duration: 1.1575 sec
+ algo throughput: 55290520639.7217 bps, 55.2905 Gbps
+ busbw: 54.4266  Gbps
+38:
+ duration: 1.1578 sec
+ algo throughput: 55277908297.7533 bps, 55.2779 Gbps
+ busbw: 54.4142  Gbps
+ignore me 546037696
+23:
+ duration: 1.1580 sec
+ algo throughput: 55268827063.0441 bps, 55.2688 Gbps
+ busbw: 54.4053  Gbps
+ignore me 546037696
+ignore me 546037696
+39:
+ duration: 1.1583 sec
+ algo throughput: 55253175352.9890 bps, 55.2532 Gbps
+ busbw: 54.3898  Gbps
+22:
+ duration: 1.1584 sec
+ algo throughput: 55246403812.5930 bps, 55.2464 Gbps
+ busbw: 54.3832  Gbps
+ignore me 546037696
+36:
+ duration: 1.1587 sec
+ algo throughput: 55233935159.9718 bps, 55.2339 Gbps
+ busbw: 54.3709  Gbps
+ignore me 546037696
+21:
+ duration: 1.1590 sec
+ignore me 546037696
+ algo throughput: 55221176178.2793 bps, 55.2212 Gbps
+ busbw: 54.3583  Gbps
+33:
+ duration: 1.1596 sec
+ algo throughput: 55191858700.9777 bps, 55.1919 Gbps
+ busbw: 54.3295  Gbps
+ignore me 546037696
+34:
+ duration: 1.1601 sec
+ algo throughput: 55166645593.2811 bps, 55.1666 Gbps
+ busbw: 54.3047  Gbps
+ignore me 546037696
+ignore me 546037696
+35:
+ duration: 1.1606 sec
+ algo throughput: 55142290362.2515 bps, 55.1423 Gbps
+ busbw: 54.2807  Gbps
+ignore me 546037696
+ignore me 546037696
+24:
+ duration: 1.1599 sec
+32:
+ duration: 1.1609 sec
+ algo throughput: 55174945593.5325 bps, 55.1749 Gbps
+ busbw: 54.3128  Gbps
+ algo throughput: 55127795096.6593 bps, 55.1278 Gbps
+ busbw: 54.2664  Gbps
+29:
+ duration: 1.1624 sec
+ algo throughput: 55058666612.5252 bps, 55.0587 Gbps
+ busbw: 54.1984  Gbps
+ignore me 546037696
+27:
+ duration: 1.1603 sec
+ algo throughput: 55155878033.7081 bps, 55.1559 Gbps
+ busbw: 54.2941  Gbps
+ignore me 546037696
+30:
+ duration: 1.1624 sec
+ algo throughput: 55056140811.3376 bps, 55.0561 Gbps
+ busbw: 54.1959  Gbps
+ignore me 546037696
+26:
+ duration: 1.1609 sec
+ algo throughput: 55131348773.8920 bps, 55.1313 Gbps
+ busbw: 54.2699  Gbps
+ignore me 546037696
+ignore me 546037696
+31:
+ duration: 1.1623 sec
+ algo throughput: 55064778996.1452 bps, 55.0648 Gbps
+ busbw: 54.2044  Gbps
+25:
+ duration: 1.1614 sec
+ algo throughput: 55107526353.1258 bps, 55.1075 Gbps
+ busbw: 54.2465  Gbps
+ignore me 546037696
+28:
+ duration: 1.1620 sec
+ algo throughput: 55076608455.7517 bps, 55.0766 Gbps
+ busbw: 54.2160  Gbps

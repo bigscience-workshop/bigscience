@@ -22,7 +22,7 @@ According to Megatron-LM paper the highest degree of TP we can use is 4 for 4-gp
 TFlops: `model_size_in_B * 4 * 2 * seq * global_batch_size / (time_in_sec_per_interations * total_gpus * 1e3)`
 
 The factor of 4 is when used with activation check-pointing,
-otherwise it will be 3, but for 200B model, activation check-pointing will always be one
+otherwise it will be 3, but for 200B model, activation check-pointing will always be on.
 
 The peak of V100 32gb gpu is about 125 TFlops/sec [spec](https://images.nvidia.com/content/technologies/volta/pdf/volta-v100-datasheet-update-us-1165301-r5.pdf). But we cannot get the peak. The max achievable performance will be 30-60TFlops depending on the model size. So if you see low 20s, the model is not tuned well, if you see, over 100 then there is a bug in the calculation. ￼
 
@@ -77,6 +77,10 @@ Not yet optimized with Deepspeed team!
 | ---: | ---: | -------: | --------: | --: | -: | ---------: |
 | 64   | 30B  | 1        | 4         | 1   | 16 | 28716ms    |
 |      |      |          |           |     |    |            |
+
+## Deepspeed notes
+
+As each node has about 160GB of memory, the model size you can run with Z2-Offload is about 8-10B parameters per node. Each of those parameters will require 4 bytes for fp32 momentum, variance, and parameters, gradients so a total of 16 bytes per parameter, for a total of about 160 GB.
 
 
 

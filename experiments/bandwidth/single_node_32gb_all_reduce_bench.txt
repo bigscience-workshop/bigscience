@@ -1,0 +1,264 @@
+export NCCL_DEBUG=info
+python -m torch.distributed.launch --nproc_per_node=4 all_reduce_bench.py
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+local_rank: 3
+local_rank: 1
+local_rank: 0
+local_rank: 2
+0 data size: 4.0 GB
+2 data size: 4.0 GB
+3 data size: 4.0 GB
+1 data size: 4.0 GB
+r7i4n1:63120:63120 [0] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.76<0> [1]ib1:10.149.0.76<0>
+r7i4n1:63120:63120 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i4n1:63120:63120 [0] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.76<0>
+r7i4n1:63120:63120 [0] NCCL INFO Using network IB
+NCCL version 2.7.8+cuda10.2
+r7i4n1:63123:63123 [3] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.76<0> [1]ib1:10.149.0.76<0>
+r7i4n1:63121:63121 [1] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.76<0> [1]ib1:10.149.0.76<0>
+r7i4n1:63123:63123 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i4n1:63121:63121 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i4n1:63121:63121 [1] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.76<0>
+r7i4n1:63123:63123 [3] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.76<0>
+r7i4n1:63121:63121 [1] NCCL INFO Using network IB
+r7i4n1:63123:63123 [3] NCCL INFO Using network IB
+r7i4n1:63122:63122 [2] NCCL INFO Bootstrap : Using [0]ib0:10.148.0.76<0> [1]ib1:10.149.0.76<0>
+r7i4n1:63122:63122 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+r7i4n1:63122:63122 [2] NCCL INFO NET/IB : Using [0]hfi1_2:1/IB [1]hfi1_0:1/IB [2]hfi1_3:1/IB [3]hfi1_1:1/IB ; OOB ib0:10.148.0.76<0>
+r7i4n1:63122:63122 [2] NCCL INFO Using network IB
+r7i4n1:63120:63191 [0] NCCL INFO Channel 00/12 :    0   1   2   3
+r7i4n1:63122:63194 [2] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/64
+r7i4n1:63121:63193 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/64
+r7i4n1:63123:63192 [3] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/64
+r7i4n1:63120:63191 [0] NCCL INFO Channel 01/12 :    0   1   3   2
+r7i4n1:63122:63194 [2] NCCL INFO Trees [0] 3/-1/-1->2->1|1->2->3/-1/-1 [1] -1/-1/-1->2->0|0->2->-1/-1/-1 [2] 0/-1/-1->2->-1|-1->2->0/-1/-1 [3] 1/-1/-1->2->3|3->2->1/-1/-1 [4] 3/-1/-1->2->1|1->2->3/-1/-1 [5] -1/-1/-1->2->0|0->2->-1/-1/-1 [6] 3/-1/-1->2->1|1->2->3/-1/-1 [7] -1/-1/-1->2->0|0->2->-1/-1/-1 [8] 0/-1/-1->2->-1|-1->2->0/-1/-1 [9] 1/-1/-1->2->3|3->2->1/-1/-1 [10] 3/-1/-1->2->1|1->2->3/-1/-1 [11] -1/-1/-1->2->0|0->2->-1/-1/-1
+r7i4n1:63121:63193 [1] NCCL INFO Trees [0] 2/-1/-1->1->0|0->1->2/-1/-1 [1] 3/-1/-1->1->-1|-1->1->3/-1/-1 [2] -1/-1/-1->1->3|3->1->-1/-1/-1 [3] 0/-1/-1->1->2|2->1->0/-1/-1 [4] 2/-1/-1->1->0|0->1->2/-1/-1 [5] 3/-1/-1->1->-1|-1->1->3/-1/-1 [6] 2/-1/-1->1->0|0->1->2/-1/-1 [7] 3/-1/-1->1->-1|-1->1->3/-1/-1 [8] -1/-1/-1->1->3|3->1->-1/-1/-1 [9] 0/-1/-1->1->2|2->1->0/-1/-1 [10] 2/-1/-1->1->0|0->1->2/-1/-1 [11] 3/-1/-1->1->-1|-1->1->3/-1/-1
+r7i4n1:63120:63191 [0] NCCL INFO Channel 02/12 :    0   2   3   1
+r7i4n1:63123:63192 [3] NCCL INFO Trees [0] -1/-1/-1->3->2|2->3->-1/-1/-1 [1] 0/-1/-1->3->1|1->3->0/-1/-1 [2] 1/-1/-1->3->0|0->3->1/-1/-1 [3] 2/-1/-1->3->-1|-1->3->2/-1/-1 [4] -1/-1/-1->3->2|2->3->-1/-1/-1 [5] 0/-1/-1->3->1|1->3->0/-1/-1 [6] -1/-1/-1->3->2|2->3->-1/-1/-1 [7] 0/-1/-1->3->1|1->3->0/-1/-1 [8] 1/-1/-1->3->0|0->3->1/-1/-1 [9] 2/-1/-1->3->-1|-1->3->2/-1/-1 [10] -1/-1/-1->3->2|2->3->-1/-1/-1 [11] 0/-1/-1->3->1|1->3->0/-1/-1
+r7i4n1:63122:63194 [2] NCCL INFO Setting affinity for GPU 2 to ffff,f00000ff,fff00000
+r7i4n1:63120:63191 [0] NCCL INFO Channel 03/12 :    0   2   1   3
+r7i4n1:63121:63193 [1] NCCL INFO Setting affinity for GPU 1 to 0fffff00,000fffff
+r7i4n1:63123:63192 [3] NCCL INFO Setting affinity for GPU 3 to ffff,f00000ff,fff00000
+r7i4n1:63120:63191 [0] NCCL INFO Channel 04/12 :    0   3   1   2
+r7i4n1:63122:63194 [2] NCCL INFO Channel 00 : 2[88000] -> 3[8a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 05/12 :    0   3   2   1
+r7i4n1:63120:63191 [0] NCCL INFO Channel 06/12 :    0   1   2   3
+r7i4n1:63120:63191 [0] NCCL INFO Channel 07/12 :    0   1   3   2
+r7i4n1:63120:63191 [0] NCCL INFO Channel 08/12 :    0   2   3   1
+r7i4n1:63120:63191 [0] NCCL INFO Channel 09/12 :    0   2   1   3
+r7i4n1:63120:63191 [0] NCCL INFO Channel 10/12 :    0   3   1   2
+r7i4n1:63120:63191 [0] NCCL INFO Channel 11/12 :    0   3   2   1
+r7i4n1:63120:63191 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/64
+r7i4n1:63120:63191 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1|-1->0->1/-1/-1 [1] 2/-1/-1->0->3|3->0->2/-1/-1 [2] 3/-1/-1->0->2|2->0->3/-1/-1 [3] -1/-1/-1->0->1|1->0->-1/-1/-1 [4] 1/-1/-1->0->-1|-1->0->1/-1/-1 [5] 2/-1/-1->0->3|3->0->2/-1/-1 [6] 1/-1/-1->0->-1|-1->0->1/-1/-1 [7] 2/-1/-1->0->3|3->0->2/-1/-1 [8] 3/-1/-1->0->2|2->0->3/-1/-1 [9] -1/-1/-1->0->1|1->0->-1/-1/-1 [10] 1/-1/-1->0->-1|-1->0->1/-1/-1 [11] 2/-1/-1->0->3|3->0->2/-1/-1
+r7i4n1:63120:63191 [0] NCCL INFO Setting affinity for GPU 0 to 0fffff00,000fffff
+r7i4n1:63123:63192 [3] NCCL INFO Channel 00 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 00 : 1[1c000] -> 2[88000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 00 : 0[1a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 00 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 00 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 00 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 01 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 01 : 2[88000] -> 0[1a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 01 : 0[1a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 01 : 1[1c000] -> 3[8a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 01 : 0[1a000] -> 3[8a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 01 : 3[8a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 01 : 0[1a000] -> 2[88000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 01 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 02 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 02 : 2[88000] -> 3[8a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 02 : 3[8a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 02 : 0[1a000] -> 2[88000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 02 : 1[1c000] -> 3[8a000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 02 : 2[88000] -> 0[1a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 02 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 03 : 1[1c000] -> 3[8a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 02 : 0[1a000] -> 3[8a000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 03 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 03 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 03 : 0[1a000] -> 2[88000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 03 : 1[1c000] -> 2[88000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 03 : 0[1a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 03 : 2[88000] -> 3[8a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 03 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 03 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 04 : 0[1a000] -> 3[8a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 04 : 1[1c000] -> 2[88000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 04 : 3[8a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 04 : 2[88000] -> 0[1a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 04 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 04 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 04 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 04 : 0[1a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 04 : 2[88000] -> 3[8a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 05 : 0[1a000] -> 3[8a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 05 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 05 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 05 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 05 : 3[8a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 05 : 2[88000] -> 0[1a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 05 : 1[1c000] -> 3[8a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 05 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 05 : 0[1a000] -> 2[88000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 06 : 1[1c000] -> 2[88000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 06 : 2[88000] -> 3[8a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 06 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 06 : 0[1a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 06 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 06 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 06 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 07 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 07 : 0[1a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 07 : 1[1c000] -> 3[8a000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 07 : 2[88000] -> 0[1a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 07 : 0[1a000] -> 3[8a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 07 : 3[8a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 07 : 0[1a000] -> 2[88000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 07 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 08 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 08 : 2[88000] -> 3[8a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 08 : 0[1a000] -> 2[88000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 08 : 3[8a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 08 : 2[88000] -> 0[1a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 08 : 1[1c000] -> 3[8a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 08 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 09 : 1[1c000] -> 3[8a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 08 : 0[1a000] -> 3[8a000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 09 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 09 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 09 : 0[1a000] -> 2[88000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 09 : 1[1c000] -> 2[88000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 09 : 0[1a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 09 : 2[88000] -> 3[8a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 09 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 09 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 10 : 0[1a000] -> 3[8a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 10 : 1[1c000] -> 2[88000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 10 : 2[88000] -> 0[1a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 10 : 3[8a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 10 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 10 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 10 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 10 : 0[1a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 10 : 2[88000] -> 3[8a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 11 : 1[1c000] -> 0[1a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 11 : 0[1a000] -> 3[8a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 11 : 3[8a000] -> 2[88000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 11 : 2[88000] -> 1[1c000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 11 : 3[8a000] -> 1[1c000] via P2P/IPC
+r7i4n1:63122:63194 [2] NCCL INFO Channel 11 : 2[88000] -> 0[1a000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO Channel 11 : 1[1c000] -> 3[8a000] via P2P/IPC
+r7i4n1:63123:63192 [3] NCCL INFO Channel 11 : 3[8a000] -> 0[1a000] via P2P/IPC
+r7i4n1:63120:63191 [0] NCCL INFO Channel 11 : 0[1a000] -> 2[88000] via P2P/IPC
+r7i4n1:63121:63193 [1] NCCL INFO 12 coll channels, 16 p2p channels, 4 p2p channels per peer
+r7i4n1:63121:63193 [1] NCCL INFO comm 0x148f80001060 rank 1 nranks 4 cudaDev 1 busId 1c000 - Init COMPLETE
+r7i4n1:63122:63194 [2] NCCL INFO 12 coll channels, 16 p2p channels, 4 p2p channels per peer
+r7i4n1:63122:63194 [2] NCCL INFO comm 0x152f00001060 rank 2 nranks 4 cudaDev 2 busId 88000 - Init COMPLETE
+r7i4n1:63123:63192 [3] NCCL INFO 12 coll channels, 16 p2p channels, 4 p2p channels per peer
+r7i4n1:63120:63191 [0] NCCL INFO 12 coll channels, 16 p2p channels, 4 p2p channels per peer
+r7i4n1:63123:63192 [3] NCCL INFO comm 0x146050001060 rank 3 nranks 4 cudaDev 3 busId 8a000 - Init COMPLETE
+r7i4n1:63120:63191 [0] NCCL INFO comm 0x14f24c001060 rank 0 nranks 4 cudaDev 0 busId 1a000 - Init COMPLETE
+r7i4n1:63120:63120 [0] NCCL INFO Launch mode Parallel
+ignore me 2
+ignore me 2
+ignore me 2
+3:
+ duration: 0.6125 sec
+ algo throughput: 104487664227.6784 bps, 104.4877 Gbps
+ busbw: 78.3657  Gbps
+0:
+ duration: 0.5584 sec
+ algo throughput: 114613183387.2373 bps, 114.6132 Gbps
+ busbw: 85.9599  Gbps
+2:
+ duration: 0.5140 sec
+ algo throughput: 124513941981.7996 bps, 124.5139 Gbps
+ busbw: 93.3855  Gbps
+ignore me 2
+1:
+ duration: 0.6245 sec
+ algo throughput: 102486528362.0469 bps, 102.4865 Gbps
+ busbw: 76.8649  Gbps
+ignore me 11
+ignore me 11
+ignore me 11
+ignore me 11
+1:
+ duration: 0.0479 sec
+ algo throughput: 1337346013047.7080 bps, 1337.3460 Gbps
+ busbw: 1003.0095  Gbps
+2:
+ duration: 0.0482 sec
+ algo throughput: 1328071705904.8621 bps, 1328.0717 Gbps
+ busbw: 996.0538  Gbps
+3:
+ duration: 0.0483 sec
+ algo throughput: 1325052362787.1750 bps, 1325.0524 Gbps
+ busbw: 993.7893  Gbps
+0:
+ duration: 0.0483 sec
+ algo throughput: 1325619195876.0120 bps, 1325.6192 Gbps
+ busbw: 994.2144  Gbps
+ignore me 45
+ignore me 45
+ignore me 45
+ignore me 45
+1:
+ duration: 0.0485 sec
+ algo throughput: 1319242278750.3755 bps, 1319.2423 Gbps
+ busbw: 989.4317  Gbps
+3:
+ duration: 0.0485 sec
+ algo throughput: 1320339103321.9136 bps, 1320.3391 Gbps
+ busbw: 990.2543  Gbps
+2:
+ duration: 0.0485 sec
+ algo throughput: 1318722904549.9961 bps, 1318.7229 Gbps
+ busbw: 989.0422  Gbps
+0:
+ duration: 0.0485 sec
+ algo throughput: 1320313583319.3479 bps, 1320.3136 Gbps
+ busbw: 990.2352  Gbps
+ignore me 183
+ignore me 183
+ignore me 183
+ignore me 183
+2:
+ duration: 0.0484 sec
+ algo throughput: 1322236494553.5015 bps, 1322.2365 Gbps
+ busbw: 991.6774  Gbps
+0:
+ duration: 0.0484 sec
+ algo throughput: 1321797181142.1807 bps, 1321.7972 Gbps
+ busbw: 991.3479  Gbps
+1:
+ duration: 0.0485 sec
+ algo throughput: 1318282723325.4265 bps, 1318.2827 Gbps
+ busbw: 988.7120  Gbps
+3:
+ duration: 0.0485 sec
+ algo throughput: 1320550708735.8535 bps, 1320.5507 Gbps
+ busbw: 990.4130  Gbps
+ignore me 733
+ignore me 733
+ignore me 733
+1:
+ duration: 0.0483 sec
+ algo throughput: 1323715979433.6658 bps, 1323.7160 Gbps
+ busbw: 992.7870  Gbps
+2:
+ duration: 0.0484 sec
+ algo throughput: 1322345035832.8503 bps, 1322.3450 Gbps
+ busbw: 991.7588  Gbps
+ignore me 733
+3:
+ duration: 0.0484 sec
+ algo throughput: 1323624408929.4016 bps, 1323.6244 Gbps
+ busbw: 992.7183  Gbps
+0:
+ duration: 0.0485 sec
+ algo throughput: 1319272113636.8833 bps, 1319.2721 Gbps
+ busbw: 989.4541  Gbps
