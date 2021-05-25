@@ -87,7 +87,11 @@ Not yet optimized with Deepspeed team!
 
 | GPUs | Size | Global BS | Throughput | TFlops |
 | ---: | ---: | --------: | ---------: | -----: |
-| 64   | 91B  | 4         | 4.784s     | 9.73   |
+|   16 | 23B  |         4 | 4.352s     |  10.82 |
+|   32 | 48B  |         4 | 4.464s     |  11.02 |
+|   64 | 91B  |         4 | 4.784s     |   9.73 |
+|      |      |           |            |        |
+|   64 | 61B  |         4 | 7.22s      |   4.32 |
 |      |      |           |            |        |
 
 - gradient checkpointing activated
@@ -96,7 +100,7 @@ Throughput reported by HF Trainer is samples_per_second - So total throughput in
 
 TFlops: `model_size_in_B * 4 * 2 * seq * global_batch_size / (time_in_sec_per_interations * total_gpus * 1e3)`
 ```
-perl -le '$ng=64; $ms=91; $gbs=4; $sp=4.784; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+perl -le '$ng=64; $ms=61; $gbs=4; $sp=7.22; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 9.73
 ```
 

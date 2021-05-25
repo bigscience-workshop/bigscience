@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=hf_ds_gpt2_n4
+#SBATCH --job-name=hf_ds_gpt2_n8
 #SBATCH --constraint=v100-32g
-#SBATCH --nodes=4
+#SBATCH --nodes=8
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -31,13 +31,16 @@ MASTER_PORT=6000
 
 # adjust depending on the number of the nodes
 
-NNODES=4
+NNODES=8
 MICRO_BATCH_SIZE=4
 
 # succeeded:
+# MSIZE=28
+#MSIZE=36
 
-# to try:
-MSIZE=23
+# to try
+MSIZE=48
+
 
 if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
 elif [[ ${MSIZE} == 14 ]];   then NHIDDEN=6144;  NLAYERS=32
@@ -109,7 +112,8 @@ cat <<EOT > $config_json
             "pin_memory": true
         },
         "offload_param": {
-            "device": "none"
+            "device": "cpu",
+            "pin_memory": true
         },
         "overlap_comm": true,
         "contiguous_gradients": true,
@@ -161,4 +165,4 @@ rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' | tee -a hf_ds_gpt2_n16_bs4.txt

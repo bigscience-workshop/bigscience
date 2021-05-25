@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=hf_ds_gpt2_n16_dp1_tp4_pp4
+#SBATCH --job-name=hf_ds_gpt2_n16
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -12,6 +12,7 @@
 #SBATCH --account=eha@gpu
 
 set -x -e
+export PYTHONUNBUFFERED=1
 
 source $ALL_CCFRSCRATCH/start-prod
 
@@ -37,7 +38,7 @@ MICRO_BATCH_SIZE=4
 # MSIZE=28
 # MSIZE=36
 # MSIZE=48
-# MSIZE=61 @ MICRO_BATCH_SIZE=4
+# MSIZE=61 # @ MICRO_BATCH_SIZE=4
 # MSIZE=75
 MSIZE=91
 
@@ -165,4 +166,4 @@ rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' | tee -a hf_ds_gpt2_n16_bs4.txt
