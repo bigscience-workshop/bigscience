@@ -10,8 +10,8 @@ python -m torch.distributed.launch --nproc_per_node=4 all_reduce_bench.py
 ```
 
 Results:
-- [16gp](./n1_16gb_all_reduce_bench.txt)
-- [32gp](./n1_32gb_all_reduce_bench.txt)
+- [16gp](./n1_16gb_all_reduce_bench.txt) - `algo throughput: 1329.4242 Gbps`
+- [32gp](./n1_32gb_all_reduce_bench.txt) - `algo throughput: 1323.6244 Gbps`
 
 ## 16 nodes
 
@@ -22,4 +22,4 @@ srun --jobid $SLURM_JOBID bash -c 'python -m torch.distributed.launch --nnodes 1
 
 Results:
 
-- [32gp](./n16_32gb_all_reduce_bench.txt)
+- [32gp](./n16_32gb_all_reduce_bench.txt) - `algo throughput: 55.0766 Gbps`
