@@ -21,6 +21,9 @@ python -u -m torch.distributed.launch \
 
 In this case seeing that the DP and parameter parallel size match means ZeRO will partition across all gpus
 
+## Memory estimates
+
+As each node has about 160GB of memory, the model size you can run with Z2-Offload is about 8-10B parameters per node. Each of those parameters will require 4 bytes for fp32 momentum, variance, and parameters, gradients so a total of 16 bytes per parameter, for a total of about 160 GB.
 
 
 ## experiments

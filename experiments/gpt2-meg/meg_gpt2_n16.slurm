@@ -27,13 +27,13 @@ SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
 MASTER_PORT=6000
-NODE_RANK=0
 
 # adjust depending on the number of the nodes
 
 NNODES=16
 PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
-
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
 
 # succeeded:
 #MSIZE=39
@@ -67,9 +67,6 @@ GPUS_PER_NODE=4
 NHEADS=32
 SEQ_LEN=1024
 VOCAB_SIZE=50257
-
-MICRO_BATCH_SIZE=1
-PP_CHUNKS=4
 
 DP_SIZE=1
 TP_SIZE=4

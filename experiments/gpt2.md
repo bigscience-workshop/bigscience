@@ -33,7 +33,9 @@ For v100 16gb gpus the max spec is 120 TFlops/sec.
 
 This section summarizes the numbers from the experiment sections below:
 
-**Megatron**:
+#### Megatron
+
+The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg).
 
 Not yet optimized with NVIDIA team!
 
@@ -54,14 +56,27 @@ These first results are all about how big of a model can be fit into the given t
 
 | GPUs | Model Size | Micro BS | Global BS |  DP | PP | Throughput | TFlops |
 | ---: | ---------: | -------: | --------: | --: | -: | ---------: | -----: |
-|   16 |  18B       |        1 |         4 |   1 |  4 | 1.381s     | 26.693 |
-|   32 |  28B       |        1 |         4 |   1 |  8 | 1.618s     | 17.720 |
-|   64 |  61B       |        1 |         4 |   1 | 16 | 2.738s     | 11.406 |
+|   16 | 18B        |        1 |         4 |   1 |  4 | 1.381s     | 26.693 |
+|   32 | 28B        |        1 |         4 |   1 |  8 | 1.618s     | 17.720 |
+|   64 | 61B        |        1 |         4 |   1 | 16 | 2.738s     | 11.406 |
 |  128 | 109B       |        1 |         4 |   1 | 32 | 4.234s     |  6.590 |
 |  256 | 193B       |        1 |         4 |   1 | 64 | 6.736s     |  3.667 |
 |      |            |          |           |     |    |            |        |
 
-The TFLops are very low because there are too few PP chunks (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also lower the max model size.
+**Performance**
+
+These experiments are to try a lower model size, but much higher TFlops performance
+
+| GPUs | Model Size | Micro BS | Global BS |  DP | PP | Throughput | TFlops |
+| ---: | ---------: | -------: | --------: | --: | -: | ---------: | -----: |
+|   64 | 48B        |        4 |       512 |   1 | 16 | 70.4s      | 44.68  |
+|      |            |          |           |     |    |            |        |
+
+```
+perl -le '$ng=64; $ms=48; $gbs=512; $sp=60; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+```
+
+The TFLops are very low because there are too few PP chunks (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also need to lower the max model size to have memory to hold those chunks in.
 
 - Size = Model Size
 - `TP=4` in all of entries
@@ -70,10 +85,13 @@ The TFLops are very low because there are too few PP chunks (gradient accumulati
 - PP chunks is the number of PP stages, so each pipeline handles `micro-batch-size * pp_chunks`
 - Seq length is 1024
 
-The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg).
 
 
-**Megatron + Deepspeed ZeRO**:
+
+
+#### Megatron + Deepspeed ZeRO
+
+See scripts and logs under [gpt2-meg-ds-zero](./gpt2-meg-ds-zero).
 
 Not yet optimized with Deepspeed team!
 
@@ -97,7 +115,13 @@ perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $
 
 - tried w/ and w/o Tiling once but saw no difference - perhaps would be more important on larger collections
 
-**HF + Deepspeed Zero 3 + Full Offload**
+
+
+#### HF + Deepspeed Zero 3 + Full Offload
+
+See scripts and logs under [gpt2-hf-ds](./gpt2-hf-ds).
+
+Not yet optimized with Deepspeed team!
 
 | GPUs | Model Size | Global BS | Throughput | TFlops |
 | ---: | ---------: | --------: | ---------: | -----: |
@@ -118,9 +142,6 @@ perl -le '$ng=64; $ms=61; $gbs=4; $sp=7.22; print $ms*4*2*1024*$gbs / ( $sp * $n
 9.73
 ```
 
-## Deepspeed notes
-
-As each node has about 160GB of memory, the model size you can run with Z2-Offload is about 8-10B parameters per node. Each of those parameters will require 4 bytes for fp32 momentum, variance, and parameters, gradients so a total of 16 bytes per parameter, for a total of about 160 GB.
 
 
 
