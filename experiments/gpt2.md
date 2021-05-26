@@ -171,20 +171,20 @@ Not yet optimized with Deepspeed team!
 
 **Max model size**
 
-| GPUs | Size  | Glob-BS | Throughput | TFlops |
-| ---: | ----: |  -----: | ---------: | -----: |
-|   16 | 23B   |       4 | 3.67s      |  25.66 |
-|   32 | 48B   |       4 | 3.58s      |  13.72 |
-|   64 | 91B   |       4 | 3.48s      |  13.38 |
-|      |       |         |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ----: | -----: | ------: | ---------: | -----: |
+|   16 | 23B   |      4 |      64 |  58.72s    |  25.66 |
+|   32 | 48B   |      4 |     128 | 114.56s    |  13.72 |
+|   64 | 91B   |      4 |     256 | 222.72s    |  13.38 |
+|      |       |        |         |            |        |
 
 
 **Performance**
 
-| GPUs | Size  | Glob-BS | Throughput | TFlops |
-| ---: | ----: | -----:  | ---------: | -----: |
-| 64   | 48B   | 8       | 2.18s      | 22     |
-|      |       |         |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ----: | -----: | ------: | ---------: | -----: |
+| 64   | 48B   | 8      | 512     | 139.52s    | 22.54  |
+|      |       |        |         |            |        |
 
 Don't seem to be able to enlarge the global bs here - OOMing
 
@@ -196,11 +196,11 @@ Don't seem to be able to enlarge the global bs here - OOMing
 
 - global bs = micro bs * DP
 
-- Throughput reported by HF Trainer is samples_per_second - So total throughput in the table is `global_bs/samples_per_second`
+- Throughput reported by HF Trainer is samples_per_second per node - So total throughput in the table is `glob_bs/samples_per_second`
 
 - TFlops: `model_size_in_B * 4 * 2 * seq * global_batch_size / (time_in_sec_per_interation * total_gpus * 1e3)`
 ```
-perl -le '$ng=64; $ms=48; $gbs=8; $sp=2.18; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+perl -le '$ng=64; $ms=48; $gbs=512; $sp=139.52; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 22
 ```
 

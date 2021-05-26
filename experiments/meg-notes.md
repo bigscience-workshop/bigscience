@@ -12,7 +12,13 @@ NVIDIA paper: https://arxiv.org/abs/2104.04473v2
 
 - they used 80GB A100s with 312TFlops/gpu (and achieved about 50% of that in the largest model/batch size (163TFlops)
 
-- we are using 32GB V100s with 125TFlops/gpu (so if we reach about 60TFlops that would be fantastic)
+- we are using 32GB V100s with 125TFlops/gpu
+
+- The DGX-2 clusters used by NVIDIA have 300GBps intra-node connections and 800Gbps inter-node connections
+
+- JZ on the other hand has 50GBps intra-node connections and 400Gbps inter-node connections.
+
+and the rest of the hardware is less powerful (so if we reach about 35-50TFlops that would be fantastic)
 
 Their main scaling table:
 

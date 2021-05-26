@@ -32,7 +32,7 @@ MASTER_PORT=6000
 # adjust depending on the number of the nodes
 
 NNODES=16
-MICRO_BATCH_SIZE=8 # worked 8
+MICRO_BATCH_SIZE=12 # worked 8
 
 # succeeded:
 MSIZE=48
@@ -105,11 +105,11 @@ cat <<EOT > $config_json
         "stage": 3,
         "offload_optimizer": {
             "device": "cpu",
-            "pin_memory": true
+            "pin_memory": false
         },
         "offload_param": {
             "device": "cpu",
-            "pin_memory": true
+            "pin_memory": false
         },
         "overlap_comm": true,
         "contiguous_gradients": true,
@@ -164,4 +164,4 @@ rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a hf_ds_gpt2_perf_n16_bs4.out
+clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a hf_ds_gpt2_perf_n16_bs4.out
