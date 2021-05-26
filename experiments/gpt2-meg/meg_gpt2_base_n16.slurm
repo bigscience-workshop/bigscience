@@ -97,7 +97,7 @@ GPT_ARGS=" \
     "
 
 OUTPUT_ARGS=" \
-    --log-interval 10 \
+    --log-interval 1 \
     --save-interval 500 \
     --eval-interval 100 \
     --eval-iters 10 \

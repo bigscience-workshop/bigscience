@@ -158,6 +158,19 @@ Don't seem to be able to enlarge the global bs here - either using up more than 
 
 
 
+#### Megatron + Deepspeed 3D
+
+
+
+**Performance**
+| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
+| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
+| ---: | ----: | ---:  | -----: | --: | ---------: | -----: |
+| 64   | 48B   | 4     |        | 1   |            |        |
+|      |       |       |        |     |            |        |
+|      |       |       |        |     |            |        |
+
+
 #### HF + Deepspeed Zero 3 + Full Offload
 
 See scripts and logs under [gpt2-hf-ds](./gpt2-hf-ds).
@@ -218,6 +231,8 @@ See scripts and logs under [gpt2-meg-ds-zero](./gpt2-meg-ds-zero).
 **Important**: `DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism` is not in sync with M-LM master - so several config args don't match.
 
 Status: Unoptimized
+
+See scripts and logs under [gpt2-meg-ds-3d](./gpt2-meg-ds-3d).
 
 ### Nodes=16
 
@@ -420,22 +435,6 @@ export CMD=" \
 rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
-
-# can't figure out how to launch from salloc
-#
-# r10i5n[5-6],r10i6n[4-5,7-8],r10i7n[0,4-5],r11i3n[3-6],r13i1n[2-4]
-function makehostfile() {
-perl -e '$slots=split /,/, $ENV{"SLURM_STEP_GPUS"};
-$slots=4 if $slots==0; # workaround
-while ($ENV{"SLURM_JOB_NODELIST"} =~ m/(\w+)(?:\[([\d-,]+)\])?,?/msg) {
-$b=$1; $s=$2||q[""]; $s=~s/-/../g;
-print map { "$b$_ slots=$slots\n" } eval $s }'
-}
-makehostfile > hostfile
-#
-#
-# srun --jobid $SLURM_JOBID deepspeed -H `pwd`/hostfile --num_nodes ${NNODES} --num_gpus ${GPUS_PER_NODE} $CMD
-#
 
 # to kill hanging python processes on all nodes at once
 # srun pkill python

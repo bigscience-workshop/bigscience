@@ -35,9 +35,6 @@ PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
 MICRO_BATCH_SIZE=4 # raising to 6 didn't speed things up
 PP_CHUNKS=256
 
-# PP_CH MBS PP_SIZE GPUMEM CPUMEM speed/iter
-# 4     4     16      28GB  3GB   7.994s
-
 # succeeded:
 #MSIZE=39
 #MSIZE=48
