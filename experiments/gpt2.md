@@ -47,27 +47,25 @@ These first results are all about how big of a model can be fit into the given t
 
 16GB nodes:
 
-|  Num | Model | Micro | Global | DP | PP | Iteration  | TFlops |
-| GPUs | Size  |    BS |     BS |    |    | Throughput | / GPU  |
-| ---: | ----: |  ---: | -----: | -: | -: | ---------: | -----: |
-|   16 | 7.5B  |     1 |      4 |  1 |  4 | 0.661s     |        |
-|   64 | 30B   |     1 |      4 |  1 | 16 | 1.439s     |        |
-|  128 | 50B   |     1 |      4 |  1 | 32 | 2.124s     |        |
-|  256 | 78B   |     1 |      4 |  1 | 64 | 2.953s     |        |
-|  256 | 22B   |     1 |      4 |  4 | 16 | 1.826s     |        |
-|      |       |       |        |    |    |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | DP | PP | Throughput | TFlops |
+| ---: | ----: | -----: |  -----: | -: | -: | ---------: | -----: |
+|   16 | 7.5B  |      1 |       4 |  1 |  4 | 0.661s     |        |
+|   64 | 30B   |      1 |       4 |  1 | 16 | 1.439s     |        |
+|  128 | 50B   |      1 |       4 |  1 | 32 | 2.124s     |        |
+|  256 | 78B   |      1 |       4 |  1 | 64 | 2.953s     |        |
+|  256 | 22B   |      1 |       4 |  4 | 16 | 1.826s     |        |
+|      |       |        |         |    |    |            |        |
 
 32GB nodes:
 
-|  Num | Model | Micro | Global | DP | PP | Iteration  | TFlops |
-| GPUs | Size  |    BS |     BS |    |    | Throughput |  / GPU |
-| ---: | ----: |  ---: | -----: | -: | -: | ---------: | -----: |
-|   16 |  18B  |     1 |      4 |  1 |  4 | 1.381s     | 26.693 |
-|   32 |  28B  |     1 |      4 |  1 |  8 | 1.618s     | 17.720 |
-|   64 |  61B  |     1 |      4 |  1 | 16 | 2.738s     | 11.406 |
-|  128 | 109B  |     1 |      4 |  1 | 32 | 4.234s     |  6.590 |
-|  256 | 193B  |     1 |      4 |  1 | 64 | 6.736s     |  3.667 |
-|      |       |       |        |    |    |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | DP | PP | Throughput | TFlops |
+| ---: | ----: | -----: |  -----: | -: | -: | ---------: | -----: |
+|   16 | 18B   |      1 |       4 |  1 |  4 | 1.381s     | 26.693 |
+|   32 | 28B   |      1 |       4 |  1 |  8 | 1.618s     | 17.720 |
+|   64 | 61B   |      1 |       4 |  1 | 16 | 2.738s     | 11.406 |
+|  128 | 109B  |      1 |       4 |  1 | 32 | 4.234s     |  6.590 |
+|  256 | 193B  |      1 |       4 |  1 | 64 | 6.736s     |  3.667 |
+|      |       |        |         |    |    |            |        |
 
 The TFLops are very low because there are too few PP chunks/micro-batches (4) (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also need to lower the max model size to have memory to hold those chunks in.
 
@@ -75,11 +73,10 @@ The TFLops are very low because there are too few PP chunks/micro-batches (4) (g
 
 These experiments are to try a lower model size, but much higher TFlops performance
 
-| Num  | Model | Micro | Global | DP | PP | Iteration  | TFlops |
-| GPUs | Size  | BS    | BS     |    |    | Throughput | / GPU  |
-| ---: | ----: | ---:  | -----: | -: | -: | ---------: | -----: |
-| 64   | 48B   | 4     | 1024   | 1  | 16 | 129s       | 48.7   |
-|      |       |       |        |    |    |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | DP | PP | Throughput | TFlops |
+| ---: | ----: | -----: | -----:  | -: | -: | ---------: | -----: |
+| 64   | 48B   | 4      | 1024    | 1  | 16 | 129s       | 48.7   |
+|      |       |        |         |    |    |            |        |
 
 - Size = Model Size
 - `TP=4` in all of entries
@@ -108,19 +105,17 @@ Not yet optimized with Deepspeed team!
 **With Offload off**
 
 **Max model size**
-| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
-| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
-| ---: | ----: | ---:  | -----: | --: | ---------: | -----: |
-|      |       |       |        |     |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | DP  | Throughput | TFlops |
+| ---: | ----: | ---:   | -----:  | --: | ---------: | -----: |
+|      |       |        |         |     |            |        |
 
 
 **Performance**
-| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
-| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
-| ---: | ----: | ---:  | -----: | --: | ---------: | -----: |
-| 64   | 48B   | 48    | 768    | 16  | 122s       | 38.67  |
-|      |       |       |        |     |            |        |
-|      |       |       |        |     |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | DP  | Throughput | TFlops |
+| ---: | ----: | ---:   | -----:  | --: | ---------: | -----: |
+| 64   | 48B   | 48     | 768     | 16  | 122s       | 38.67  |
+|      |       |        |         |     |            |        |
+|      |       |        |         |     |            |        |
 
 
 
@@ -137,12 +132,11 @@ perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $
 
 **With full cpu offload**
 
-| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
-| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
-| ---: | ----: | ---:  | -----: | --: | ---------: | -----: |
-| 64   | 48B   | 64    | 1024   | 16  | 171s       | 39.71  |
-|      |       |       |        |     |            |        |
-|      |       |       |        |     |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | DP  | Throughput | TFlops |
+| ---: | ----: | ---:   | -----:  | --: | ---------: | -----: |
+| 64   | 48B   | 64     | 1024    | 16  | 171s       | 39.71  |
+|      |       |        |         |     |            |        |
+|      |       |        |         |     |            |        |
 
 Don't seem to be able to enlarge the global bs here - either using up more than 40GB RAM/gpu or OOMing
 
@@ -150,11 +144,10 @@ Don't seem to be able to enlarge the global bs here - either using up more than 
 **With full optim cpu offload**
 
 
-| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
-| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
-| ---: | ----: | ----: | -----: | --: | ---------: | -----: |
-|      |       |       |        |     |            |        |
-|      |       |       |        |     |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | DP  | Throughput | TFlops |
+| ---: | ----: | ---:   | -----:  | --: | ---------: | -----: |
+|      |       |        |         |     |            |        |
+|      |       |        |         |     |            |        |
 
 
 
@@ -163,12 +156,11 @@ Don't seem to be able to enlarge the global bs here - either using up more than 
 
 
 **Performance**
-| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
-| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
-| ---: | ----: | ---:  | -----: | --: | ---------: | -----: |
-| 64   | 48B   | 4     |        | 1   |            |        |
-|      |       |       |        |     |            |        |
-|      |       |       |        |     |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | DP  | Throughput | TFlops |
+| ---: | ----: | ---:   | -----:  | --: | ---------: | -----: |
+| 64   | 48B   | 4      |         | 1   |            |        |
+|      |       |        |         |     |            |        |
+|      |       |        |         |     |            |        |
 
 
 #### HF + Deepspeed Zero 3 + Full Offload
@@ -179,22 +171,20 @@ Not yet optimized with Deepspeed team!
 
 **Max model size**
 
-|  Num | Model | Global | Iteration  | TFlops |
-| GPUs | Size  |     BS | Throughput |  / GPU |
-| ---: | ----: | -----: | ---------: | -----: |
-|   16 | 23B   |      4 | 3.67s      |  25.66 |
-|   32 | 48B   |      4 | 3.58s      |  13.72 |
-|   64 | 91B   |      4 | 3.48s      |  13.38 |
-|      |       |        |            |        |
+| GPUs | Size  | Glob-BS | Throughput | TFlops |
+| ---: | ----: |  -----: | ---------: | -----: |
+|   16 | 23B   |       4 | 3.67s      |  25.66 |
+|   32 | 48B   |       4 | 3.58s      |  13.72 |
+|   64 | 91B   |       4 | 3.48s      |  13.38 |
+|      |       |         |            |        |
 
 
 **Performance**
 
-| Num  | Model | Global | Iteration  | TFlops |
-| GPUs | Size  | BS     | Throughput | / GPU  |
-| ---: | ----: | -----: | ---------: | -----: |
-| 64   | 48B   | 8      | 2.18s      | 22     |
-|      |       |        |            |        |
+| GPUs | Size  | Glob-BS | Throughput | TFlops |
+| ---: | ----: | -----:  | ---------: | -----: |
+| 64   | 48B   | 8       | 2.18s      | 22     |
+|      |       |         |            |        |
 
 Don't seem to be able to enlarge the global bs here - OOMing
 
