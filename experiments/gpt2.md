@@ -19,7 +19,7 @@ According to Megatron-LM paper the highest degree of TP we can use is 4 for 4-gp
 
 ## Metrics
 
-TFlops: `model_size_in_B * 4 * 2 * seq * global_batch_size / (time_in_sec_per_interations * total_gpus * 1e3)`
+TFlops: `model_size_in_B * 4 * 2 * seq * global_batch_size / (time_in_sec_per_interation * total_gpus * 1e3)`
 
 The factor of 4 is when used with activation check-pointing,
 otherwise it will be 3, but for 200B model, activation check-pointing will always be on.
@@ -41,44 +41,45 @@ The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg):
 
 Not yet optimized with NVIDIA team!
 
+**Max model size**
+
 These first results are all about how big of a model can be fit into the given the hardware on the smallest batch size, disregarding throughput.
 
 16GB nodes:
 
-| GPUs | Model Size | Micro BS | Global BS |  DP | PP | Throughput |
-| ---: | ---------: | -------: | --------: | --: | -: | ---------: |
-|   16 | 7.5B       |        1 |         4 |   1 |  4 | .661s      |
-|   64 |  30B       |        1 |         4 |   1 | 16 | 1.439s     |
-|  128 |  50B       |        1 |         4 |   1 | 32 | 2.124s     |
-|  256 |  78B       |        1 |         4 |   1 | 64 | 2.953s     |
-|  256 |  22B       |        1 |         4 |   4 | 16 | 1.826s     |
-|      |            |          |           |     |    |            |
+|  Num | Model | Micro | Global | DP | PP | Iteration  | TFlops |
+| GPUs | Size  |    BS |     BS |    |    | Throughput | / GPU  |
+| ---: | ----: |  ---: | -----: | -: | -: | ---------: | -----: |
+|   16 | 7.5B  |     1 |      4 |  1 |  4 | 0.661s     |        |
+|   64 | 30B   |     1 |      4 |  1 | 16 | 1.439s     |        |
+|  128 | 50B   |     1 |      4 |  1 | 32 | 2.124s     |        |
+|  256 | 78B   |     1 |      4 |  1 | 64 | 2.953s     |        |
+|  256 | 22B   |     1 |      4 |  4 | 16 | 1.826s     |        |
+|      |       |       |        |    |    |            |        |
 
 32GB nodes:
 
-| GPUs | Model Size | Micro BS | Global BS |  DP | PP | Throughput | TFlops |
-| ---: | ---------: | -------: | --------: | --: | -: | ---------: | -----: |
-|   16 | 18B        |        1 |         4 |   1 |  4 | 1.381s     | 26.693 |
-|   32 | 28B        |        1 |         4 |   1 |  8 | 1.618s     | 17.720 |
-|   64 | 61B        |        1 |         4 |   1 | 16 | 2.738s     | 11.406 |
-|  128 | 109B       |        1 |         4 |   1 | 32 | 4.234s     |  6.590 |
-|  256 | 193B       |        1 |         4 |   1 | 64 | 6.736s     |  3.667 |
-|      |            |          |           |     |    |            |        |
+|  Num | Model | Micro | Global | DP | PP | Iteration  | TFlops |
+| GPUs | Size  |    BS |     BS |    |    | Throughput |  / GPU |
+| ---: | ----: |  ---: | -----: | -: | -: | ---------: | -----: |
+|   16 |  18B  |     1 |      4 |  1 |  4 | 1.381s     | 26.693 |
+|   32 |  28B  |     1 |      4 |  1 |  8 | 1.618s     | 17.720 |
+|   64 |  61B  |     1 |      4 |  1 | 16 | 2.738s     | 11.406 |
+|  128 | 109B  |     1 |      4 |  1 | 32 | 4.234s     |  6.590 |
+|  256 | 193B  |     1 |      4 |  1 | 64 | 6.736s     |  3.667 |
+|      |       |       |        |    |    |            |        |
+
+The TFLops are very low because there are too few PP chunks/micro-batches (4) (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also need to lower the max model size to have memory to hold those chunks in.
 
 **Performance**
 
 These experiments are to try a lower model size, but much higher TFlops performance
 
-| GPUs | Model Size | Micro BS | Global BS | DP  | PP | Throughput | TFlops |
-| ---: | ---------: | -------: | --------: | --: | -: | ---------: | -----: |
-| 64   | 48B        | 4        | 1024      | 1   | 16 | 129s       | 48.7   |
-|      |            |          |           |     |    |            |        |
-
-```
-perl -le '$ng=64; $ms=48; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
-```
-
-The TFLops are very low because there are too few PP chunks (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also need to lower the max model size to have memory to hold those chunks in.
+| Num  | Model | Micro | Global | DP | PP | Iteration  | TFlops |
+| GPUs | Size  | BS    | BS     |    |    | Throughput | / GPU  |
+| ---: | ----: | ---:  | -----: | -: | -: | ---------: | -----: |
+| 64   | 48B   | 4     | 1024   | 1  | 16 | 129s       | 48.7   |
+|      |       |       |        |    |    |            |        |
 
 - Size = Model Size
 - `TP=4` in all of entries
@@ -86,6 +87,11 @@ The TFLops are very low because there are too few PP chunks (gradient accumulati
 - Global batch size is `micro-batch-size * pp_chunks * dp_size`
 - PP chunks is the number of PP stages, so each pipeline handles `micro-batch-size * pp_chunks`
 - Seq length is 1024
+
+```
+perl -le '$ng=64; $ms=48; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+```
+
 
 
 
@@ -99,12 +105,22 @@ This one uses only TP from Megatron (no PP)
 
 Not yet optimized with Deepspeed team!
 
-| GPUs | Model Size | Micro BS | Global BS |  DP | Throughput | TFlops |
-| ---: | ---------: | -------: | --------: | --: | ---------: | -----: |
-|   64 |        30B |        1 |         4 |  16 | 28.7s      |   0.39 |
-|   64 |        48B |       48 |       768 |  16 | 122s       |  38.67 |
-|      |            |          |           |     |            |        |
-|      |            |          |           |     |            |        |
+**With Offload off**
+
+**Max model size**
+| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
+| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
+| ---: | ----: | ---:  | -----: | --: | ---------: | -----: |
+|      |       |       |        |     |            |        |
+
+
+**Performance**
+| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
+| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
+| ---: | ----: | ---:  | -----: | --: | ---------: | -----: |
+| 64   | 48B   | 48    | 768    | 16  | 122s       | 38.67  |
+|      |       |       |        |     |            |        |
+|      |       |       |        |     |            |        |
 
 
 
@@ -119,6 +135,27 @@ perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $
 
 - tried w/ and w/o Tiling once but saw no difference - perhaps would be more important on larger collections
 
+**With full cpu offload**
+
+| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
+| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
+| ---: | ----: | ---:  | -----: | --: | ---------: | -----: |
+| 64   | 48B   | 64    | 1024   | 16  | 171s       | 39.71  |
+|      |       |       |        |     |            |        |
+|      |       |       |        |     |            |        |
+
+Don't seem to be able to enlarge the global bs here - either using up more than 40GB RAM/gpu or OOMing
+
+
+**With full optim cpu offload**
+
+
+| Num  | Model | Micro | Global | DP  | Iteration  | TFlops |
+| GPUs | Size  | BS    | BS     |     | Throughput | / GPU  |
+| ---: | ----: | ----: | -----: | --: | ---------: | -----: |
+|      |       |       |        |     |            |        |
+|      |       |       |        |     |            |        |
+
 
 
 #### HF + Deepspeed Zero 3 + Full Offload
@@ -127,23 +164,41 @@ See scripts and logs under [gpt2-hf-ds](./gpt2-hf-ds).
 
 Not yet optimized with Deepspeed team!
 
-| GPUs | Model Size | Global BS | Throughput | TFlops |
-| ---: | ---------: | --------: | ---------: | -----: |
-|   16 | 23B        |         4 | 4.352s     |  10.82 |
-|   32 | 48B        |         4 | 4.464s     |  11.02 |
-|   64 | 91B        |         4 | 4.784s     |   9.73 |
-|      |            |           |            |        |
-|   64 | 61B        |         4 | 7.22s      |   4.32 |
-|      |            |           |            |        |
+**Max model size**
+
+|  Num | Model | Global | Iteration  | TFlops |
+| GPUs | Size  |     BS | Throughput |  / GPU |
+| ---: | ----: | -----: | ---------: | -----: |
+|   16 | 23B   |      4 | 3.67s      |  25.66 |
+|   32 | 48B   |      4 | 3.58s      |  13.72 |
+|   64 | 91B   |      4 | 3.48s      |  13.38 |
+|      |       |        |            |        |
+
+
+**Performance**
+
+| Num  | Model | Global | Iteration  | TFlops |
+| GPUs | Size  | BS     | Throughput | / GPU  |
+| ---: | ----: | -----: | ---------: | -----: |
+| 64   | 48B   | 8      | 2.18s      | 22     |
+|      |       |        |            |        |
+
+Don't seem to be able to enlarge the global bs here - OOMing
+
+
 
 - gradient checkpointing activated
 
-Throughput reported by HF Trainer is samples_per_second - So total throughput in the table is `samples_per_second*global_bs`
+- DP=1
 
-TFlops: `model_size_in_B * 4 * 2 * seq * global_batch_size / (time_in_sec_per_interations * total_gpus * 1e3)`
+- global bs = micro bs * DP
+
+- Throughput reported by HF Trainer is samples_per_second - So total throughput in the table is `global_bs/samples_per_second`
+
+- TFlops: `model_size_in_B * 4 * 2 * seq * global_batch_size / (time_in_sec_per_interation * total_gpus * 1e3)`
 ```
-perl -le '$ng=64; $ms=61; $gbs=4; $sp=7.22; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
-9.73
+perl -le '$ng=64; $ms=48; $gbs=8; $sp=2.18; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+22
 ```
 
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=meg_ds_zero_gpt2_perf_n16
+#SBATCH --job-name=meg_ds_zero_gpt2_perf_n16_offload
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -33,7 +33,9 @@ MASTER_PORT=6000
 
 NNODES=16
 PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
-MICRO_BATCH_SIZE=48 # works at 48, OOMs at 64
+MICRO_BATCH_SIZE=96 # works at 64, OOMs at
+
+# at mbs96 full offload it get cgroup killed - overcomes 40gb/gpu limit
 
 # succeeded:
 #MSIZE=28 # @ mbs 16 # gpu ~17gb, cpu 5gb res per gpu, 20TFlops
@@ -110,8 +112,10 @@ stage3_param_persistence_threshold=$((10*$NHIDDEN))
 
 config_json="./ds_zero_stage_3_config.json"
 
-#  "": $train_batch_size,
 
+    # "offload_param": {
+    #     "device": "none"
+    # },
 cat <<EOT > $config_json
 {
   "train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
@@ -119,6 +123,14 @@ cat <<EOT > $config_json
   "steps_per_print": 10,
   "zero_optimization": {
     "stage": 3,
+    "offload_optimizer": {
+        "device": "cpu",
+        "pin_memory": true
+    },
+    "offload_param": {
+        "device": "cpu",
+        "pin_memory": true
+    },
     "stage3_max_live_parameters": 1e9,
     "stage3_max_reuse_distance": 1e9,
     "stage3_prefetch_bucket_size": $stage3_prefetch_bucket_size,
@@ -157,7 +169,7 @@ SYNCHRONIZE=true
 PROFILE=false
 
 # TiledLinear splits, "true" to enable
-TILED_LINEAR="false"
+TILED_LINEAR="true"
 TILE_DIM=1
 
 
@@ -246,7 +258,7 @@ rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
-clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee meg_ds_zero_gpt2_perf_n16.out
+clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee meg_ds_zero_gpt2_perf_n16_offload.out
 
 
 #  iteration        2/    1000 | elapsed time per iteration (ms): 122204.8 | learning rate: 3.750E-05 | lm loss: 1.251770E+01 | loss scale: 1024.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
