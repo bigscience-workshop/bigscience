@@ -32,7 +32,7 @@ MASTER_PORT=6000
 # adjust depending on the number of the nodes
 
 NNODES=16
-MICRO_BATCH_SIZE=12 # worked 8
+MICRO_BATCH_SIZE=4 # worked 8
 
 # succeeded:
 MSIZE=48

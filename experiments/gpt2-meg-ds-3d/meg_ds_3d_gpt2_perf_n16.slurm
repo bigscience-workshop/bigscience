@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=meg_gpt2_perf_n16
+#SBATCH --job-name=meg_ds_3d_gpt2_perf_n16
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -17,13 +17,13 @@ source $ALL_CCFRSCRATCH/start-prod
 
 nvidia-smi
 
-cd ~/base/code/megatron-lm/
+cd ~/base/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
 
 CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
 DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
 MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
 MASTER_PORT=6000
@@ -32,8 +32,8 @@ MASTER_PORT=6000
 
 NNODES=16
 PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
-MICRO_BATCH_SIZE=4 # raising to 6 didn't speed things up
-PP_CHUNKS=256
+MICRO_BATCH_SIZE=4 # works at 4, OOMs at
+PP_CHUNKS=256 # GAS
 
 MSIZE=48
 
@@ -55,38 +55,38 @@ elif [[ ${MSIZE} == 193 ]];  then NHIDDEN=16384; NLAYERS=64
 else echo "invalid MSIZE: $MSIZE"
 fi
 
-
 GPUS_PER_NODE=4
 NHEADS=32
 SEQ_LEN=1024
 VOCAB_SIZE=50257
 
 DP_SIZE=1
-TP_SIZE=4
+TP_SIZE=4 # always fixed to the size of a single node
 
-GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
-WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+# --gas added by Deepspeed only for PP (this option is not in MegLM master) - same as PP_CHUNKS
 
+#    --micro-batch-size $MICRO_BATCH_SIZE \
+#    --lr-warmup-fraction .01 \
+#    --global-batch-size $GLOBAL_BATCH_SIZE
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
-    --micro-batch-size $MICRO_BATCH_SIZE \
-    --global-batch-size $GLOBAL_BATCH_SIZE
-    --lr 0.00015 \
+    --batch-size $MICRO_BATCH_SIZE \
+    --gas $PP_CHUNKS \
+    --lr 1.5e-4 \
     --lr-decay-style cosine \
     --min-lr 1.0e-5 \
     --train-iters 1000 \
     --lr-decay-iters 800 \
-    --lr-warmup-fraction .01 \
     --weight-decay 1e-2 \
     --clip-grad 1.0 \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
+    --warmup 0.01 \
     --fp16 \
-    --checkpoint-activations \
     "
 
 OUTPUT_ARGS=" \
@@ -96,6 +96,94 @@ OUTPUT_ARGS=" \
     --eval-iters 10 \
     "
 
+#ZeRO Configs
+#train_batch_size=$(($DP_SIZE*$MICRO_BATCH_SIZE*$gradient_accumulation_steps))
+#  "train_batch_size": $train_batch_size,
+
+config_json="./ds_config.json"
+
+cat <<EOT > $config_json
+{
+  "train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
+  "gradient_accumulation_steps": $PP_CHUNKS,
+  "steps_per_print": 1,
+  "gradient_clipping": 1.0,
+  "fp16": {
+    "enabled": true,
+    "loss_scale": 0,
+    "initial_scale_power": 10,
+    "loss_scale_window": 1000,
+    "hysteresis": 2,
+    "min_loss_scale": 1
+  },
+  "wall_clock_breakdown": false,
+  "zero_allow_untested_optimizer": false
+}
+EOT
+
+MP_SIZE=$TP_SIZE
+
+stage=0
+reduce_scatter=true
+contigious_gradients=true
+rbs=50000000
+agbs=5000000000
+
+#Activation Checkpointing and Contigious Memory
+chkp_layers=1
+PA=true
+PA_CPU=false
+CC=true
+SYNCHRONIZE=true
+PROFILE=false
+
+DEEPSPEED_ARGS=" \
+    --deepspeed \
+    --deepspeed_config ${config_json} \
+    --zero-stage ${stage} \
+    --zero-reduce-bucket-size ${rbs} \
+    --zero-allgather-bucket-size ${agbs} \
+    "
+
+if [ "${contigious_gradients}" = "true" ]; then
+DEEPSPEED_ARGS="${DEEPSPEED_ARGS} \
+    --zero-contigious-gradients"
+fi
+
+if [ "${reduce_scatter}" = "true" ]; then
+DEEPSPEED_ARGS="${DEEPSPEED_ARGS} \
+    --zero-reduce-scatter"
+fi
+
+CHKP_ARGS=" \
+--checkpoint-activations \
+--checkpoint-num-layers ${chkp_layers}"
+
+if [ "${PA}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --partition-activations"
+fi
+
+if [ "${PA_CPU}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --checkpoint-in-cpu"
+fi
+
+if [ "${SYNCHRONIZE}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --synchronize-each-layer"
+fi
+
+if [ "${CC}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --contigious-checkpointing"
+fi
+
+if [ "${PROFILE}" = "true" ]; then
+CHKP_ARGS="${CHKP_ARGS} \
+        --profile-backward"
+fi
+
 export LAUNCHER="python -u -m torch.distributed.launch \
     --nproc_per_node $GPUS_PER_NODE \
     --nnodes $NNODES \
@@ -103,10 +191,13 @@ export LAUNCHER="python -u -m torch.distributed.launch \
     --master_port $MASTER_PORT \
     "
 
+# new names:
+#    --tensor-model-parallel-size $TP_SIZE \
+#    --pipeline-model-parallel-size $PP_SIZE \
 export CMD=" \
-    `pwd`/pretrain_gpt.py \
-    --tensor-model-parallel-size $TP_SIZE \
-    --pipeline-model-parallel-size $PP_SIZE \
+    `pwd`/pretrain_gpt2.py \
+    --model-parallel-size $TP_SIZE \
+    --pipe-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
     --save $SAVE_CHECKPOINT_PATH \
@@ -115,13 +206,15 @@ export CMD=" \
     --data-impl mmap \
     --split 949,50,1 \
     --distributed-backend nccl \
+     $DEEPSPEED_ARGS \
+     $CHKP_ARGS \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
 # model size
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
-clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee meg_gpt2_perf_n16.out
+clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee meg_ds_3d_gpt2_perf_n16.out
