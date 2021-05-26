@@ -35,7 +35,9 @@ This section summarizes the numbers from the experiment sections below:
 
 #### Megatron
 
-The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg).
+The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg):
+- scripts starting with `meg_gpt2_base_` are for getting the baseline with tiny BS
+- scripts starting with `meg_gpt2_perf_` are for smaller model, and tuned for high performance
 
 Not yet optimized with NVIDIA team!
 
@@ -67,13 +69,13 @@ These first results are all about how big of a model can be fit into the given t
 
 These experiments are to try a lower model size, but much higher TFlops performance
 
-| GPUs | Model Size | Micro BS | Global BS |  DP | PP | Throughput | TFlops |
+| GPUs | Model Size | Micro BS | Global BS | DP  | PP | Throughput | TFlops |
 | ---: | ---------: | -------: | --------: | --: | -: | ---------: | -----: |
-|   64 | 48B        |        4 |       512 |   1 | 16 | 70.4s      | 44.68  |
+| 64   | 48B        | 4        | 1024      | 1   | 16 | 129s       | 48.7   |
 |      |            |          |           |     |    |            |        |
 
 ```
-perl -le '$ng=64; $ms=48; $gbs=512; $sp=60; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+perl -le '$ng=64; $ms=48; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 ```
 
 The TFLops are very low because there are too few PP chunks (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also need to lower the max model size to have memory to hold those chunks in.
@@ -92,6 +94,8 @@ The TFLops are very low because there are too few PP chunks (gradient accumulati
 #### Megatron + Deepspeed ZeRO
 
 See scripts and logs under [gpt2-meg-ds-zero](./gpt2-meg-ds-zero).
+
+This one uses only TP from Megatron (no PP)
 
 Not yet optimized with Deepspeed team!
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=meg_gpt2_base_n16_dp1_tp4_pp16
+#SBATCH --job-name=meg_gpt2_perf_n16
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -32,8 +32,8 @@ MASTER_PORT=6000
 
 NNODES=16
 PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
-MICRO_BATCH_SIZE=4
-PP_CHUNKS=192
+MICRO_BATCH_SIZE=4 # raising to 6 didn't speed things up
+PP_CHUNKS=256
 
 # PP_CH MBS PP_SIZE GPUMEM CPUMEM speed/iter
 # 4     4     16      28GB  3GB   7.994s
@@ -134,4 +134,4 @@ rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
-clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' | tee meg_gpt2_perf_n16.out

@@ -33,7 +33,7 @@ MASTER_PORT=6000
 
 NNODES=16
 PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
-MICRO_BATCH_SIZE=48
+MICRO_BATCH_SIZE=48 # works at 48, OOMs at 64
 
 # succeeded:
 #MSIZE=28 # @ mbs 16 # gpu ~17gb, cpu 5gb res per gpu, 20TFlops
@@ -246,7 +246,7 @@ rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
-clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' | tee meg_ds_zero_gpt2_perf_n16.out
 
 
 #  iteration        2/    1000 | elapsed time per iteration (ms): 122204.8 | learning rate: 3.750E-05 | lm loss: 1.251770E+01 | loss scale: 1024.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
