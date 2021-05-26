@@ -47,25 +47,25 @@ These first results are all about how big of a model can be fit into the given t
 
 16GB nodes:
 
-| GPUs | Size  | DP | PP | Mic-BS | Glob-BS | Throughput | TFlops |
-| ---: | ----: | -: | -: | -----: |  -----: | ---------: | -----: |
-|   16 | 7.5B  |  1 |  4 |      1 |       4 | 0.661s     |        |
-|   64 | 30B   |  1 | 16 |      1 |       4 | 1.439s     |        |
-|  128 | 50B   |  1 | 32 |      1 |       4 | 2.124s     |        |
-|  256 | 78B   |  1 | 64 |      1 |       4 | 2.953s     |        |
-|  256 | 22B   |  4 | 16 |      1 |       4 | 1.826s     |        |
-|      |       |    |    |        |         |            |        |
+| GPUs | Size | DP | PP | PP Chunks | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ---: | -: | -: | --------: | -----: |  -----: | ---------: | -----: |
+|   16 | 7.5B |  1 |  4 |         4 |      1 |       4 | 0.661s     |        |
+|   64 | 30B  |  1 | 16 |         4 |      1 |       4 | 1.439s     |        |
+|  128 | 50B  |  1 | 32 |         4 |      1 |       4 | 2.124s     |        |
+|  256 | 78B  |  1 | 64 |         4 |      1 |       4 | 2.953s     |        |
+|  256 | 22B  |  4 | 16 |         4 |      1 |       4 | 1.826s     |        |
+|      |      |    |    |           |        |         |            |        |
 
 32GB nodes:
 
-| GPUs | Size  | DP | PP | Mic-BS | Glob-BS | Throughput | TFlops |
-| ---: | ----: | -: | -: | -----: |  -----: | ---------: | -----: |
-|   16 | 18B   |  1 |  4 |      1 |       4 | 1.381s     | 26.693 |
-|   32 | 28B   |  1 |  8 |      1 |       4 | 1.618s     | 17.720 |
-|   64 | 61B   |  1 | 16 |      1 |       4 | 2.738s     | 11.406 |
-|  128 | 109B  |  1 | 32 |      1 |       4 | 4.234s     |  6.590 |
-|  256 | 193B  |  1 | 64 |      1 |       4 | 6.736s     |  3.667 |
-|      |       |    |    |        |         |            |        |
+| GPUs | Size | DP | PP | PP Chunks | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ---: | -: | -: | --------: | -----: |  -----: | ---------: | -----: |
+|   16 | 18B  |  1 |  4 |         4 |      1 |       4 | 1.381s     | 26.693 |
+|   32 | 28B  |  1 |  8 |         4 |      1 |       4 | 1.618s     | 17.720 |
+|   64 | 61B  |  1 | 16 |         4 |      1 |       4 | 2.738s     | 11.406 |
+|  128 | 109B |  1 | 32 |         4 |      1 |       4 | 4.234s     |  6.590 |
+|  256 | 193B |  1 | 64 |         4 |      1 |       4 | 6.736s     |  3.667 |
+|      |      |    |    |           |        |         |            |        |
 
 The TFLops are very low because there are too few PP chunks/micro-batches (4) (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also need to lower the max model size to have memory to hold those chunks in.
 
@@ -73,10 +73,10 @@ The TFLops are very low because there are too few PP chunks/micro-batches (4) (g
 
 These experiments are to try a lower model size, but much higher TFlops performance
 
-| GPUs | Size  | DP | PP | Mic-BS | Glob-BS | Throughput | TFlops |
-| ---: | ----: | -: | -: | -----: | -----:  | ---------: | -----: |
-| 64   | 48B   | 1  | 16 | 4      | 1024    | 129s       | 48.7   |
-|      |       |    |    |        |         |            |        |
+| GPUs | Size | DP | PP | PP Chunks | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ---: | -: | -: | --------: | -----: | -----:  | ---------: | -----: |
+| 64   | 48B  | 1  | 16 | 256       | 4      | 1024    | 129s       | 48.7   |
+|      |      |    |    |           |        |         |            |        |
 
 
 - Size = Model Size
@@ -91,6 +91,30 @@ perl -le '$ng=64; $ms=48; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * 
 ```
 
 
+#### Megatron + Deepspeed 3D
+
+Uses 3D:
+- TP: tensor parallelism
+- PP: pipeline parallelism
+- DP: data parallelism
+
+same features as Megatron's native, but improved by Deepspeed
+
+**Performance**
+
+| GPUs | Size | DP | PP | PP chunks | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ---: | -: | -: | --------: | -----: | ------: | ---------: | -----: |
+| 64   | 48B  | 1  | 16 | 256       | 4      | 1024    | 244s       | 25     |
+|      |      |    |    |           |        |         |            |        |
+
+
+- GAS = Gradient Accumulation size (same as PP_chunks / number of PP stages)
+- Global_bs = pp_chunks*micro_bs*dp_size
+- `TP_SIZE=4` (size of the node)
+
+```
+perl -le '$ng=64; $ms=48; $gbs=1024; $sp=244; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+```
 
 
 
@@ -106,11 +130,11 @@ Not yet optimized with Deepspeed team!
 **With Offload off**
 
 **Performance**
-| GPUs | Size  | DP  | Mic-BS | Glob-BS | Throughput | TFlops |
-| ---: | ----: | --: | ---:   | -----:  | ---------: | -----: |
-| 64   | 48B   | 16  | 48     | 768     | 122s       | 38.67  |
-|      |       |     |        |         |            |        |
-|      |       |     |        |         |            |        |
+| GPUs | Size  | DP | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ----: | -: | ---:   | -----:  | ---------: | -----: |
+| 64   | 48B   | 16 | 48     | 768     | 122s       | 38.67  |
+|      |       |    |        |         |            |        |
+|      |       |    |        |         |            |        |
 
 
 
@@ -127,42 +151,17 @@ perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $
 
 **With full cpu offload**
 
-| GPUs | Size  | DP  | Mic-BS | Glob-BS | Throughput | TFlops |
-| ---: | ----: | --: | ---:   | -----:  | ---------: | -----: |
-| 64   | 48B   | 16  | 64     | 1024    | 171s       | 39.71  |
-|      |       |     |        |         |            |        |
-|      |       |     |        |         |            |        |
+| GPUs | Size | DP | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ---: | -: | -----: | ------: | ---------: | -----: |
+| 64   | 48B  | 16 | 64     | 1024    | 171s       | 39.71  |
+|      |      |    |        |         |            |        |
+|      |      |    |        |         |            |        |
 
 XXX: Don't seem to be able to enlarge the global bs here - either using up more than 40GB RAM/gpu or OOMing
 
 
 **With full optim cpu offload**
 
-
-
-#### Megatron + Deepspeed 3D
-
-Uses 3D:
-- TP: tensor parallelism
-- PP: pipeline parallelism
-- DP: data parallelism
-
-same features as Megatron's native, but improved by Deepspeed
-
-**Performance**
-| GPUs | Size  | PP chunks | DP  | Mic-BS | Glob-BS | Throughput | TFlops |
-| ---: | ----: | --------: | --: | -----: | ------: | ---------: | -----: |
-| 64   | 48B   | 256       | 1   | 4      | 1024    | 244        |  25    |
-|      |       |           |     |        |         |            |        |
-|      |       |           |     |        |         |            |        |
-
-- GAS = Gradient Accumulation size (same as PP_chunks / number of PP stages)
-- Global_bs = pp_chunks*micro_bs*dp_size
-- `TP_SIZE=4` (size of the node)
-
-```
-perl -le '$ng=64; $ms=48; $gbs=1024; $sp=244; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
-```
 
 
 

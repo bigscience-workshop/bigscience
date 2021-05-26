@@ -35,13 +35,7 @@ PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
 MICRO_BATCH_SIZE=1
 PP_CHUNKS=4
 
-# succeeded:
-#MSIZE=39
-#MSIZE=48
 MSIZE=61 # maximum @32
-
-# to try:
-#MSIZE=75
 
 if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
 elif [[ ${MSIZE} == 14 ]];   then NHIDDEN=6144;  NLAYERS=32
@@ -63,7 +57,6 @@ fi
 
 
 GPUS_PER_NODE=4
-
 NHEADS=32
 SEQ_LEN=1024
 VOCAB_SIZE=50257

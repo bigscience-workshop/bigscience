@@ -32,11 +32,10 @@ MASTER_PORT=6000
 
 NNODES=64
 PP_SIZE=64 # NLAYERS must be a multiple of PP_SIZE here
+MICRO_BATCH_SIZE=1
+PP_CHUNKS=4
 
-# succeeded:
 MSIZE=193
-
-# to try:
 
 if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
 elif [[ ${MSIZE} == 14 ]];   then NHIDDEN=6144;  NLAYERS=32
@@ -58,13 +57,9 @@ fi
 
 
 GPUS_PER_NODE=4
-
 NHEADS=32
 SEQ_LEN=1024
 VOCAB_SIZE=50257
-
-MICRO_BATCH_SIZE=1
-PP_CHUNKS=4
 
 DP_SIZE=1
 TP_SIZE=4
