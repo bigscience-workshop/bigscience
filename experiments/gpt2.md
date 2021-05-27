@@ -73,18 +73,44 @@ The TFLops are very low because there are too few PP chunks/micro-batches (4) (g
 
 These experiments are to try a lower model size, but much higher TFlops performance
 
-| GPUs | Size | DP | PP | PP Chunks | Mic-BS | Glob-BS | Throughput | TFlops |
-| ---: | ---: | -: | -: | --------: | -----: | -----:  | ---------: | -----: |
-| 64   | 48B  | 1  | 16 | 256       | 4      | 1024    | 129s       | 48.7   |
-|      |      |    |    |           |        |         |            |        |
+| GPUs | Size | DP | PP | PP Chunks | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
+| ---: | ---: | -: | -: | --------: | -----: |  -----: | ---------: | -----: | ----: |
+|   16 | 18B  |  1 |  8 |        64 |      4 |     256 | 90.5s      |   26.1 | 05-26 |
+|   16 | 18B  |  1 |  8 |       128 |      4 |     512 | 177s       |   26.5 | 05-26 |
+|   16 | 18B  |  1 |  8 |       256 |      4 |    1024 | 356s       |   26.5 | 05-26 |
+|      |      |    |    |           |        |         |            |        |       |
+|   16 | 18B  |  1 |  4 |       128 |      4 |     512 | 179s       |   26.3 | 05-26 |
+|   16 | 18B  |  1 |  4 |       128 |      6 |     768 | 262s       |   27.0 | 05-26 |
+|   16 | 18B  |  1 |  8 |       128 |      6 |     768 | 259s       |   27.3 | 05-26 |
+|   16 | 18B  |  1 |  8 |        32 |      8 |     256 | 89s        |   26.5 | 05-26 |
+|      |      |    |    |           |        |         |            |        |       |
+|   32 | 36B  |  1 |  8 |       128 |      4 |     512 | 82s        |   57.5 | 05-26 |
+|   32 | 36B  |  1 |  8 |       128 |      6 |     768 | 123s       |   57.5 | 05-26 |
+|   32 | 36B  |  1 |  8 |       256 |      6 |    1536 | 241s       |   58.7 | 05-26 |
+|   32 | 36B  |  1 |  8 |       512 |      6 |    3072 | 478s       |   59.2 | 05-26 |
+|      |      |    |    |           |        |         |            |        |       |
+|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 129s       |   48.7 | 05-25 |
+|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 217s       |   29.0 | 05-26 |
+|      |      |    |    |           |        |         |            |        |       |
+|   64 | 48B  |  1 | 16 |       256 |      6 |    1536 | 328s       |   28.7 | 05-26 |
+|   64 | 48B  |  1 | 16 |       256 |      8 |    2048 | 435s       |   28.9 | 05-26 |
+|   64 | 48B  |  1 | 16 |       512 |      6 |    3072 | 650s       |   29.0 | 05-26 |
+|   64 | 48B  |  1 | 16 |       512 |      8 |    4096 | 870s       |   28.9 | 05-26 |
+|   64 | 48B  |  1 | 32 |       256 |      4 |    1024 | 220s       |   28.6 | 05-26 |
+|      |      |    |    |           |        |         |            |        |       |
 
 
+data:
 - Size = Model Size
 - `TP=4` in all of entries
 - Throughput is time per iteration - to complete global batch size
 - Global batch size is `micro-batch-size * pp_chunks * dp_size`
 - PP chunks is the number of PP stages, so each pipeline handles `micro-batch-size * pp_chunks`
 - Seq length is 1024
+
+notes:
+- 32gpus had a very snag fit for gpu memory for 36B model (others were in ~75%) so it might be a bit too risky to OOM-borderline
+
 
 ```
 perl -le '$ng=64; $ms=48; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'

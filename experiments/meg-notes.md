@@ -6,6 +6,22 @@
    By default, `pipeline_model_parallel_size=`` and `tensor_model_parallel_size=1`
 
 
+## troubleshooting
+
+- if megatron hangs in:
+
+```
+>>> done with dataset index builder. Compilation time: 0.107 seconds
+> compiling and loading fused kernels ...
+```
+do:
+```
+rm megatron/fused_kernels/build/lock
+```
+and restart.
+
+
+
 ## some general performance notes:
 
 NVIDIA paper: https://arxiv.org/abs/2104.04473v2

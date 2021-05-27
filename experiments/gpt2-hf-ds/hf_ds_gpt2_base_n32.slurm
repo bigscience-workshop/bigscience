@@ -37,7 +37,10 @@ MICRO_BATCH_SIZE=4
 # succeeded:
 
 # to try
-MSIZE=169
+MSIZE=148
+
+# failed
+# MSIZE=169
 
 if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
 elif [[ ${MSIZE} == 14 ]];   then NHIDDEN=6144;  NLAYERS=32

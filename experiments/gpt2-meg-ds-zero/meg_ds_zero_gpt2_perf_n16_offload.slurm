@@ -258,7 +258,7 @@ rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
-clear; reset; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee meg_ds_zero_gpt2_perf_n16_offload.out
+clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee meg_ds_zero_gpt2_perf_n16_offload.out
 
 
 #  iteration        2/    1000 | elapsed time per iteration (ms): 122204.8 | learning rate: 3.750E-05 | lm loss: 1.251770E+01 | loss scale: 1024.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
