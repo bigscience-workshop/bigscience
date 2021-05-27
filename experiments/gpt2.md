@@ -92,7 +92,7 @@ These experiments are to try a lower model size, but much higher TFlops performa
 |   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 129s       |   48.7 | 05-25 |
 |   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 217s       |   29.0 | 05-26 |
 |   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 217s       |   29.0 | 05-26 |
-|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 |            |        | 05-27 |
+|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 125s       |   50.3 | 05-27 |
 |      |      |    |    |           |        |         |            |        |       |
 |   64 | 48B  |  1 | 16 |       256 |      6 |    1536 | 328s       |   28.7 | 05-26 |
 |   64 | 48B  |  1 | 16 |       256 |      8 |    2048 | 435s       |   28.9 | 05-26 |
@@ -130,9 +130,9 @@ same features as Megatron's native, but improved by Deepspeed
 
 **Performance**
 
-| GPUs | Size | DP | PP | PP chunks | Mic-BS | Glob-BS | Throughput | TFlops |       |
-| ---: | ---: | -: | -: | --------: | -----: | ------: | ---------: | -----: |     - |
-|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 146s       | 43     | 05-27 |
+| GPUs | Size | DP | PP | PP chunks | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
+| ---: | ---: | -: | -: | --------: | -----: | ------: | ---------: | -----: | ----: |
+| 64   | 48B  | 1  | 16 | 256       | 4      | 1024    | 146s       | 43     | 05-27 |
 |      |      |    |    |           |        |         |            |        |       |
 
 
@@ -166,8 +166,8 @@ Not yet optimized with Deepspeed team!
 **With Offload off**
 
 **Performance**
-| GPUs | Size  | DP | Mic-BS | Glob-BS | Throughput | TFlops |       |
-| ---: | ----: | -: |   ---: |  -----: | ---------: | -----: |     - |
+| GPUs | Size  | DP | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
+| ---: | ----: | -: |   ---: |  -----: | ---------: | -----: | ----: |
 |   64 | 48B   | 16 |     48 |     768 | 122s       |  38.67 | 05-25 |
 |   64 | 48B   | 16 |     48 |     768 | 127s       |  37.15 | 05-27 |
 |      |       |    |        |         |            |        |       |
@@ -220,16 +220,19 @@ Not yet optimized with Deepspeed team!
 
 **Performance**
 
-| GPUs | Size  | Mic-BS | Glob-BS | Throughput | TFlops |
-| ---: | ----: | -----: | ------: | ---------: | -----: |
-| 64   | 48B   | 8      | 512     | 139.52s    | 22.54  |
-|      |       |        |         |            |        |
+| GPUs | Size  | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
+| ---: | ----: | -----: | ------: | ---------: | -----: | ----: |
+|   64 | 48B   |      8 |     512 | 139.52s    |  22.54 | 05-25 |
+|   64 | 48B   |      4 |     256 | 185s       |   8.50 | 05-27 |
+|   64 | 48B   |      8 |     512 | 118.38     |  26.57 | 05-27 |
+|      |       |        |         |            |        |       |
+|      |       |        |         |            |        |       |
 
 Don't seem to be able to enlarge the global bs here - OOMing
 
 - gradient checkpointing activated
 
-- DP=1
+- DP=GPUs
 
 - global bs = micro bs * DP
 
