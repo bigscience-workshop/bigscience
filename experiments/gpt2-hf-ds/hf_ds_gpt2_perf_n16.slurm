@@ -105,11 +105,11 @@ cat <<EOT > $config_json
         "stage": 3,
         "offload_optimizer": {
             "device": "cpu",
-            "pin_memory": false
+            "pin_memory": true
         },
         "offload_param": {
             "device": "cpu",
-            "pin_memory": false
+            "pin_memory": true
         },
         "overlap_comm": true,
         "contiguous_gradients": true,
