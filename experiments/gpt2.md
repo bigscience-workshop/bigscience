@@ -29,11 +29,7 @@ The peak of V100 32gb gpu is about 125 TFlops/sec [spec](https://images.nvidia.c
 For v100 16gb gpus the max spec is 120 TFlops/sec.
 
 
-### Summary
-
-This section summarizes the numbers from the experiment sections below:
-
-#### Megatron
+### Megatron
 
 The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg):
 - scripts starting with `meg_gpt2_base_` are for getting the baseline with tiny BS
@@ -91,7 +87,6 @@ These experiments are to try a lower model size, but much higher TFlops performa
 |      |      |    |    |           |        |         |            |        |       |
 |   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 129s       |   48.7 | 05-25 |
 |   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 217s       |   29.0 | 05-26 |
-|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 217s       |   29.0 | 05-26 |
 |   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 125s       |   50.3 | 05-27 |
 |      |      |    |    |           |        |         |            |        |       |
 |   64 | 48B  |  1 | 16 |       256 |      6 |    1536 | 328s       |   28.7 | 05-26 |
@@ -119,7 +114,12 @@ perl -le '$ng=64; $ms=48; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * 
 ```
 
 
-#### Megatron + Deepspeed 3D
+### Megatron + Deepspeed 3D
+
+
+**Important**: `DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism` is not in sync with M-LM master - so several config args don't match. It's about 8 months old.
+
+See scripts and logs under [gpt2-meg-ds-3d](./gpt2-meg-ds-3d).
 
 Uses 3D:
 - TP: tensor parallelism
@@ -150,12 +150,7 @@ perl -le '$ng=64; $ms=48; $gbs=1024; $sp=146; print $ms*4*2*1024*$gbs / ( $sp * 
 #### Megatron + Deepspeed ZeRO
 
 
-To try:
-
-- TP=2 and TP=1 to boost the batch size
-- to try
-
-
+**Important**: `DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3` is not in sync with M-LM master - so several config args don't match. It's about 8 months old.
 
 See scripts and logs under [gpt2-meg-ds-zero](./gpt2-meg-ds-zero).
 
@@ -174,7 +169,6 @@ Not yet optimized with Deepspeed team!
 |      |       |    |        |         |            |        |       |
 
 
-
 ```
 perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 ```
@@ -182,19 +176,27 @@ perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $
 - `TP=4` in all of entries
 - `DP` is number of nodes here
 - Throughput is time per iteration - to complete global batch size
-- Global batch size is `micro-batch-size * nnodes`
+- Global batch size is `micro-batch-size * dp-size`
 
 - tried w/ and w/o Tiling once but saw no difference - perhaps would be more important on larger collections
 
+
+
+| GPUs | Size | TP | DP | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
+| ---: | ---: | -: | -: | -----: | ------: | ---------: | -----: | ----: |
+|      |      |    |    |        |         |            |        |       |
+|   64 | 48B  |  4 | 16 |     48 |     768 |        127 |  37.15 |       |
+|   64 | 48B  |  2 | 32 |     32 |    1024 |        167 |  37.67 |       |
+|   64 | 48B  |  1 | 64 |     16 |    1024 |        184 |  34.99 |       |
+|   64 | 24B  |  1 | 64 |     16 |    1024 |       89.0 |  35.34 |       |
+|   64 | 24B  |  2 | 32 |     32 |    1024 |       85.7 |  36.70 |       |
+
 **With full cpu offload**
 
-| GPUs | Size | DP | Mic-BS | Glob-BS | Throughput | TFlops |
-| ---: | ---: | -: | -----: | ------: | ---------: | -----: |
-| 64   | 48B  | 16 | 64     | 1024    | 171s       | 39.71  |
-|      |      |    |        |         |            |        |
-|      |      |    |        |         |            |        |
-
-XXX: Don't seem to be able to enlarge the global bs here - either using up more than 40GB RAM/gpu or OOMing
+| GPUs | Size | TP | DP | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ---: | -: | -: | -----: | ------: | ---------: | -----: |
+| 64   | 48B  | 4  | 16 | 64     | 1024    | 171s       | 39.71  |
+|      |      |    |    |        |         |            |        |
 
 
 **With full optim cpu offload**
@@ -202,7 +204,7 @@ XXX: Don't seem to be able to enlarge the global bs here - either using up more 
 
 
 
-#### HF + Deepspeed Zero 3 + Full Offload
+### HF + Deepspeed Zero 3 + Full Offload
 
 See scripts and logs under [gpt2-hf-ds](./gpt2-hf-ds).
 
@@ -226,7 +228,6 @@ Not yet optimized with Deepspeed team!
 |   64 | 48B   |      4 |     256 | 185s       |   8.50 | 05-27 |
 |   64 | 48B   |      8 |     512 | 118.38     |  26.57 | 05-27 |
 |      |       |        |         |            |        |       |
-|      |       |        |         |            |        |       |
 
 Don't seem to be able to enlarge the global bs here - OOMing
 
@@ -242,358 +243,4 @@ Don't seem to be able to enlarge the global bs here - OOMing
 ```
 perl -le '$ng=64; $ms=48; $gbs=512; $sp=139.52; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 22
-```
-
-
-
-
-## Megatron + Deepspeed ZeRO
-
-**Important**: `DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3` is not in sync with M-LM master - so several config args don't match.
-
-Status: Unoptimized
-
-See scripts and logs under [gpt2-meg-ds-zero](./gpt2-meg-ds-zero).
-
-
-## Megatron + Deepspeed 3D Parallelism
-
-**Important**: `DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism` is not in sync with M-LM master - so several config args don't match.
-
-Status: Unoptimized
-
-See scripts and logs under [gpt2-meg-ds-3d](./gpt2-meg-ds-3d).
-
-## HF + Deepspeed ZeRO
-
-### Nodes=16 ZeRO-2
-
-
-```
-salloc -C v100-32g --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
-```
-
-32GB nodes
-
-This works - at about 25GB / gpus - very slow 20s/it
-
-Model size: 3.5B
-
-Higher model the 40GB/gpu limit is passed and processes get killed.
-
-We don't have zero.Init() here so the whole model is loaded onto each process - not possible to scale.
-
-This memory gets released afterwards, but we don't have enough to bypass that hump.
-
-```
-
-# use custom PR branch to handle the model creation on the fly
-cd ~/base/code/transformers-clm-any-model-config/
-
-export HF_DATASETS_CACHE=$eha_ALL_CCFRSCRATCH/datasets
-export HF_MODULES_CACHE=$eha_ALL_CCFRSCRATCH/modules
-export HF_METRICS_CACHE=$eha_ALL_CCFRSCRATCH/metrics
-
-MODEL=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
-DATASET="stas/openwebtext-10k"
-
-GPUS_PER_NODE=4
-NNODES=16
-
-MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
-MASTER_PORT=6000
-
-NHEADS=32
-NHIDDEN=3072
-NLAYERS=30
-SEQ_LEN=1024
-VOCAB_SIZE=50257
-
-export LAUNCHER="python -u -m torch.distributed.launch \
-    --nproc_per_node $GPUS_PER_NODE \
-    --nnodes $NNODES \
-    --master_addr $MASTER_ADDR \
-    --master_port $MASTER_PORT \
-    "
-
-
-config_json="./ds_z2_no_offload.json"
-cat <<EOT > $config_json
-{
-    "fp16": {
-        "enabled": "auto",
-        "loss_scale": 0,
-        "loss_scale_window": 1000,
-        "initial_scale_power": 16,
-        "hysteresis": 2,
-        "min_loss_scale": 1
-    },
-
-    "optimizer": {
-        "type": "AdamW",
-        "params": {
-            "lr": "auto",
-            "betas": "auto",
-            "eps": "auto",
-            "weight_decay": "auto"
-        }
-    },
-
-    "scheduler": {
-        "type": "WarmupLR",
-        "params": {
-            "warmup_min_lr": "auto",
-            "warmup_max_lr": "auto",
-            "warmup_num_steps": "auto"
-        }
-    },
-
-    "zero_optimization": {
-        "stage": 2,
-        "allgather_partitions": true,
-        "allgather_bucket_size": 2e8,
-        "overlap_comm": true,
-        "reduce_scatter": true,
-        "reduce_bucket_size": 2e8,
-        "contiguous_gradients": true,
-        "cpu_offload": true
-    },
-
-    "gradient_accumulation_steps": "auto",
-    "gradient_clipping": "auto",
-    "steps_per_print": 2000,
-    "train_batch_size": "auto",
-    "train_micro_batch_size_per_gpu": "auto",
-    "wall_clock_breakdown": false
-}
-EOT
-
-export PYTHONPATH=src
-export HF_DATASETS_OFFLINE=1
-export TRANSFORMERS_OFFLINE=1
-export USE_TF=0
-
-#    deepspeed  -H `pwd`/hostfile-exp2 --num_nodes $NNODES --num_gpus $GPUS_PER_NODE \
-export CMD=" \
-    examples/pytorch/language-modeling/run_clm.py \
-    --model_type gpt2 \
-    --tokenizer_name gpt2 \
-    --config_overrides "n_embd=$NHIDDEN,n_head=$NHEADS,n_layer=$NLAYERS,n_positions=$SEQ_LEN" \
-    --dataset_name $DATASET \
-    --output_dir output_dir \
-    --overwrite_output_dir \
-    --do_train \
-    --do_eval \
-    --max_train_samples 10000 \
-    --max_eval_samples 1000 \
-    --per_device_train_batch_size 4 \
-    --per_device_eval_batch_size 4 \
-    --num_train_epochs 1 \
-    --warmup_steps 8 \
-    --fp16 \
-    --report_to none \
-    --deepspeed $config_json \
-    "
-
-# model size
-python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
-
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
-
-
-```
-
-Stats:
-
-```
-
-
-```
-
-
-## Node16 ZeRO-3 + CPU Offload
-
-32GB nodes
-
-Model size: 7B
-
-
-```
-
-# use custom PR branch to handle the model creation on the fly
-cd ~/base/code/transformers-clm-any-model-config/
-
-export HF_DATASETS_CACHE=$eha_ALL_CCFRSCRATCH/datasets
-export HF_MODULES_CACHE=$eha_ALL_CCFRSCRATCH/modules
-export HF_METRICS_CACHE=$eha_ALL_CCFRSCRATCH/metrics
-
-MODEL=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
-DATASET="stas/openwebtext-10k"
-
-MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
-MASTER_PORT=6000
-
-
-NNODES=16
-
-# succeeded:
-# MSIZE=7
-# MSIZE=14
-MSIZE=18 # maximum @32
-
-# to try:
-#MSIZE=48
-#MSIZE=75
-
-
-if [[ ${MSIZE} == 7 ]];  then
-    NHIDDEN=4096; NLAYERS=36
-elif [[ ${MSIZE} == 14 ]];  then
-    NHIDDEN=6144; NLAYERS=32
-elif [[ ${MSIZE} == 18 ]];  then
-    NHIDDEN=6144; NLAYERS=40
-elif [[ ${MSIZE} == 23 ]];  then
-    NHIDDEN=7168; NLAYERS=40
-elif [[ ${MSIZE} == 28 ]];  then
-    NHIDDEN=7168; NLAYERS=48
-elif [[ ${MSIZE} == 39 ]];  then
-    NHIDDEN=8192; NLAYERS=48
-elif [[ ${MSIZE} == 48 ]];  then
-    NHIDDEN=8192; NLAYERS=64
-elif [[ ${MSIZE} == 61 ]];  then
-    NHIDDEN=9216; NLAYERS=64
-elif [[ ${MSIZE} == 75 ]];  then
-    NHIDDEN=10240; NLAYERS=64
-elif [[ ${MSIZE} == 91 ]];  then
-    NHIDDEN=11264; NLAYERS=64
-elif [[ ${MSIZE} == 109 ]];  then
-    NHIDDEN=12288; NLAYERS=64
-elif [[ ${MSIZE} == 127 ]];  then
-    NHIDDEN=13312; NLAYERS=64
-elif [[ ${MSIZE} == 148 ]];  then
-    NHIDDEN=14336; NLAYERS=64
-elif [[ ${MSIZE} == 169 ]];  then
-    NHIDDEN=15360; NLAYERS=64
-elif [[ ${MSIZE} == 193 ]];  then
-    NHIDDEN=16384; NLAYERS=64
-else
-    echo "invalid MSIZE: $MSIZE"
-fi
-
-
-GPUS_PER_NODE=4
-
-NHEADS=32
-NHIDDEN=1024
-NLAYERS=10
-SEQ_LEN=1024
-VOCAB_SIZE=50257
-
-export LAUNCHER="python -u -m torch.distributed.launch \
-    --nproc_per_node $GPUS_PER_NODE \
-    --nnodes $NNODES \
-    --master_addr $MASTER_ADDR \
-    --master_port $MASTER_PORT \
-    "
-
-
-config_json="./ds_z3_cpu_offload.json"
-cat <<EOT > $config_json
-{
-    "fp16": {
-        "enabled": "auto",
-        "loss_scale": 0,
-        "loss_scale_window": 1000,
-        "initial_scale_power": 16,
-        "hysteresis": 2,
-        "min_loss_scale": 1
-    },
-
-    "optimizer": {
-        "type": "AdamW",
-        "params": {
-            "lr": "auto",
-            "betas": "auto",
-            "eps": "auto",
-            "weight_decay": "auto"
-        }
-    },
-
-    "scheduler": {
-        "type": "WarmupLR",
-        "params": {
-            "warmup_min_lr": "auto",
-            "warmup_max_lr": "auto",
-            "warmup_num_steps": "auto"
-        }
-    },
-
-    "zero_optimization": {
-        "stage": 3,
-        "offload_optimizer": {
-            "device": "cpu",
-            "pin_memory": true
-        },
-        "offload_param": {
-            "device": "cpu",
-            "pin_memory": true
-        },
-        "overlap_comm": true,
-        "contiguous_gradients": true,
-        "sub_group_size": 1e14,
-        "reduce_bucket_size": "auto",
-        "stage3_prefetch_bucket_size": "auto",
-        "stage3_param_persistence_threshold": "auto",
-        "stage3_max_live_parameters": 1e9,
-        "stage3_max_reuse_distance": 1e9,
-        "stage3_gather_fp16_weights_on_model_save": true
-    },
-
-    "gradient_accumulation_steps": "auto",
-    "gradient_clipping": "auto",
-    "steps_per_print": 2000,
-    "train_batch_size": "auto",
-    "train_micro_batch_size_per_gpu": "auto",
-    "wall_clock_breakdown": false
-}
-EOT
-
-export PYTHONPATH=src
-export HF_DATASETS_OFFLINE=1
-export TRANSFORMERS_OFFLINE=1
-export USE_TF=0
-
-export CMD=" \
-    examples/pytorch/language-modeling/run_clm.py \
-    --model_type gpt2 \
-    --tokenizer_name gpt2 \
-    --config_overrides "n_embd=$NHIDDEN,n_head=$NHEADS,n_layer=$NLAYERS,n_positions=$SEQ_LEN" \
-    --dataset_name $DATASET \
-    --output_dir output_dir \
-    --overwrite_output_dir \
-    --do_train \
-    --do_eval \
-    --max_train_samples 10000 \
-    --max_eval_samples 1000 \
-    --per_device_train_batch_size 4 \
-    --per_device_eval_batch_size 4 \
-    --num_train_epochs 1 \
-    --warmup_steps 8 \
-    --fp16 \
-    --report_to none \
-    --deepspeed $config_json \
-    "
-
-# model size
-python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
-
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
-
-```
-
-
-Stats:
-
-```
-
 ```

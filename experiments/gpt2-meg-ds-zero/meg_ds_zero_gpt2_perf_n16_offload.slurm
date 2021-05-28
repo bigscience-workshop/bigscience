@@ -32,7 +32,6 @@ MASTER_PORT=6000
 # adjust depending on the number of the nodes
 
 NNODES=16
-PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
 MICRO_BATCH_SIZE=96 # works at 64, OOMs at
 
 # at mbs96 full offload it get cgroup killed - overcomes 40gb/gpu limit
