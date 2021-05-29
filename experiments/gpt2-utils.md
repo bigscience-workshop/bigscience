@@ -11,18 +11,17 @@ Calculate the number of params in the model:
 - v = vocabulary size
 
 ```
-$ python -c "h=1024; l=24; s=1024; v=50257; print(f'{l * (12*h**2 + 13*h) + (v * h) + (s * h) >> 20}M')"
+$ python -c "h=1024; l=24; s=1024; v=50257; print(f'{l*(12*h**2 + 13*h) + v*h + s*h + 2*h >> 20}M')"
 338M
 ```
 
 For our scripts where we only care for Billions:
 ```
-NHEADS=32
 NHIDDEN=4096
 NLAYERS=36
 SEQ_LEN=512
 VOCAB_SIZE=50257
-python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
+python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + s*h + 2*h) / 10**9 :.0f}B')"
 ```
 
 Full math for the above final formula: (num_heads is not really part of the calculations)
@@ -43,10 +42,18 @@ pos_ff_con_b = h                                      #  h
 layer_norm1 = 2 * h                                   # 2h
 layer_norm2 = 2 * h                                   # 2h
 # Magic Formula:
-total_params = n * (12h^2 + 13h) + (v * h) + (s * h)
+total_params = n * (12h^2 + 13h) + (v * h) + (s * h) + 2*h
 ```
 credits: Sidd Karamcheti
 
+An estimate variations of this for large hidden size and number of layers (seq and vocab size have very small contribution)
+
+```
+NHIDDEN=4096
+NLAYERS=36
+python -c "h=$NHIDDEN; l=$NLAYERS; print(f'Model size: {(12*l*h**2) / 10**9 :.0f}B')"
+```
+credits: Mohammad Shoeybi
 
 Can calculate the same on a given `model` object (counts shared params once):
 ```

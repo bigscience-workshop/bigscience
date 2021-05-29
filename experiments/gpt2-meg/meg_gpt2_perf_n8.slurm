@@ -35,23 +35,23 @@ PP_SIZE=8 # NLAYERS must be a multiple of PP_SIZE here
 MICRO_BATCH_SIZE=6
 PP_CHUNKS=512
 
-MSIZE=36
+MSIZE=39
 
 if   [[ ${MSIZE} == 7 ]];    then NHIDDEN=4096;  NLAYERS=36
 elif [[ ${MSIZE} == 14 ]];   then NHIDDEN=6144;  NLAYERS=32
 elif [[ ${MSIZE} == 18 ]];   then NHIDDEN=6144;  NLAYERS=40
-elif [[ ${MSIZE} == 23 ]];   then NHIDDEN=7168;  NLAYERS=40
-elif [[ ${MSIZE} == 28 ]];   then NHIDDEN=7168;  NLAYERS=48
-elif [[ ${MSIZE} == 36 ]];   then NHIDDEN=8192;  NLAYERS=48
-elif [[ ${MSIZE} == 48 ]];   then NHIDDEN=8192;  NLAYERS=64
-elif [[ ${MSIZE} == 61 ]];   then NHIDDEN=9216;  NLAYERS=64
-elif [[ ${MSIZE} == 75 ]];   then NHIDDEN=10240; NLAYERS=64
-elif [[ ${MSIZE} == 91 ]];   then NHIDDEN=11264; NLAYERS=64
-elif [[ ${MSIZE} == 109 ]];  then NHIDDEN=12288; NLAYERS=64
-elif [[ ${MSIZE} == 127 ]];  then NHIDDEN=13312; NLAYERS=64
-elif [[ ${MSIZE} == 148 ]];  then NHIDDEN=14336; NLAYERS=64
-elif [[ ${MSIZE} == 169 ]];  then NHIDDEN=15360; NLAYERS=64
-elif [[ ${MSIZE} == 193 ]];  then NHIDDEN=16384; NLAYERS=64
+elif [[ ${MSIZE} == 25 ]];   then NHIDDEN=7168;  NLAYERS=40
+elif [[ ${MSIZE} == 30 ]];   then NHIDDEN=7168;  NLAYERS=48
+elif [[ ${MSIZE} == 39 ]];   then NHIDDEN=8192;  NLAYERS=48
+elif [[ ${MSIZE} == 52 ]];   then NHIDDEN=8192;  NLAYERS=64
+elif [[ ${MSIZE} == 65 ]];   then NHIDDEN=9216;  NLAYERS=64
+elif [[ ${MSIZE} == 81 ]];   then NHIDDEN=10240; NLAYERS=64
+elif [[ ${MSIZE} == 97 ]];   then NHIDDEN=11264; NLAYERS=64
+elif [[ ${MSIZE} == 116 ]];  then NHIDDEN=12288; NLAYERS=64
+elif [[ ${MSIZE} == 136 ]];  then NHIDDEN=13312; NLAYERS=64
+elif [[ ${MSIZE} == 158 ]];  then NHIDDEN=14336; NLAYERS=64
+elif [[ ${MSIZE} == 181 ]];  then NHIDDEN=15360; NLAYERS=64
+elif [[ ${MSIZE} == 206 ]];  then NHIDDEN=16384; NLAYERS=64
 else echo "invalid MSIZE: $MSIZE"
 fi
 
@@ -121,7 +121,7 @@ export CMD=" \
 rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 # model size
-python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 2**30 :.0f}B')"
+python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"
 
 # to debug - add echo (it exits and prints what it would have launched)
 clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee meg_gpt2_perf_n8.out

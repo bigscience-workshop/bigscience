@@ -50,22 +50,22 @@ These first results are all about how big of a model can be fit into the given t
 
 | GPUs | Size | DP | PP | PP Chunks | Mic-BS | Glob-BS | Throughput | TFlops |
 | ---: | ---: | -: | -: | --------: | -----: |  -----: | ---------: | -----: |
-|   16 | 7.5B |  1 |  4 |         4 |      1 |       4 | 0.661s     |        |
-|   64 | 30B  |  1 | 16 |         4 |      1 |       4 | 1.439s     |        |
-|  128 | 50B  |  1 | 32 |         4 |      1 |       4 | 2.124s     |        |
-|  256 | 78B  |  1 | 64 |         4 |      1 |       4 | 2.953s     |        |
-|  256 | 22B  |  4 | 16 |         4 |      1 |       4 | 1.826s     |        |
+|   16 | 7.5B |  1 |  4 |         4 |      1 |       4 | 0.661s     |   23.2 |
+|   64 |  30B |  1 | 16 |         4 |      1 |       4 | 1.439s     |   10.7 |
+|  128 |  50B |  1 | 32 |         4 |      1 |       4 | 2.124s     |    6.0 |
+|  256 |  78B |  1 | 64 |         4 |      1 |       4 | 2.953s     |    3.4 |
+|  256 |  22B |  4 | 16 |         4 |      1 |       4 | 1.826s     |    1.5 |
 |      |      |    |    |           |        |         |            |        |
 
 32GB nodes:
 
 | GPUs | Size | DP | PP | PP Chunks | Mic-BS | Glob-BS | Throughput | TFlops |
 | ---: | ---: | -: | -: | --------: | -----: |  -----: | ---------: | -----: |
-|   16 | 18B  |  1 |  4 |         4 |      1 |       4 | 1.381s     | 26.693 |
-|   32 | 28B  |  1 |  8 |         4 |      1 |       4 | 1.618s     | 17.720 |
-|   64 | 61B  |  1 | 16 |         4 |      1 |       4 | 2.738s     | 11.406 |
-|  128 | 109B |  1 | 32 |         4 |      1 |       4 | 4.234s     |  6.590 |
-|  256 | 193B |  1 | 64 |         4 |      1 |       4 | 6.736s     |  3.667 |
+|   16 |  18B |  1 |  4 |         4 |      1 |       4 | 1.381s     |   26.7 |
+|   32 |  30B |  1 |  8 |         4 |      1 |       4 | 1.618s     |   19.0 |
+|   64 |  65B |  1 | 16 |         4 |      1 |       4 | 2.738s     |   12.2 |
+|  128 | 116B |  1 | 32 |         4 |      1 |       4 | 4.234s     |    7.0 |
+|  256 | 206B |  1 | 64 |         4 |      1 |       4 | 6.736s     |    3.9 |
 |      |      |    |    |           |        |         |            |        |
 
 The TFLops are very low because there are too few PP chunks/micro-batches (4) (gradient accumulation size / GAS) and so the bubble takes a lot of overhead, increasing PP chunks should dramatically improve performance but also need to lower the max model size to have memory to hold those chunks in.
@@ -77,29 +77,29 @@ These experiments are to try a lower model size, but much higher TFlops performa
 | GPUs | Size | DP | PP | PP Chunks | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
 | ---: | ---: | -: | -: | --------: | -----: |  -----: | ---------: | -----: | ----: |
 |   16 | 18B  |  1 |  8 |        64 |      4 |     256 | 90.5s      |   26.1 | 05-26 |
-|   16 | 18B  |  1 |  8 |       128 |      4 |     512 | 177s       |   26.5 | 05-26 |
+|   16 | 18B  |  1 |  8 |       128 |      4 |     512 | 177s       |   26.7 | 05-26 |
 |   16 | 18B  |  1 |  8 |       256 |      4 |    1024 | 356s       |   26.5 | 05-26 |
 |      |      |    |    |           |        |         |            |        |       |
-|   16 | 18B  |  1 |  4 |       128 |      4 |     512 | 179s       |   26.3 | 05-26 |
+|   16 | 18B  |  1 |  4 |       128 |      4 |     512 | 179s       |   26.4 | 05-26 |
 |   16 | 18B  |  1 |  4 |       128 |      6 |     768 | 262s       |   27.0 | 05-26 |
 |   16 | 18B  |  1 |  8 |       128 |      6 |     768 | 259s       |   27.3 | 05-26 |
-|   16 | 18B  |  1 |  8 |        32 |      8 |     256 | 89s        |   26.5 | 05-26 |
+|   16 | 18B  |  1 |  8 |        32 |      8 |     256 |  89s       |   26.5 | 05-26 |
 |      |      |    |    |           |        |         |            |        |       |
-|   32 | 36B  |  1 |  8 |       128 |      4 |     512 | 82s        |   57.5 | 05-26 |
-|   32 | 36B  |  1 |  8 |       128 |      6 |     768 | 123s       |   57.5 | 05-26 |
-|   32 | 36B  |  1 |  8 |       256 |      6 |    1536 | 241s       |   58.7 | 05-26 |
-|   32 | 36B  |  1 |  8 |       512 |      6 |    3072 | 478s       |   59.2 | 05-26 |
+|   32 | 39B  |  1 |  8 |       128 |      4 |     512 |  82s       |   62.3 | 05-26 |
+|   32 | 39B  |  1 |  8 |       128 |      6 |     768 | 123s       |   62.3 | 05-26 |
+|   32 | 39B  |  1 |  8 |       256 |      6 |    1536 | 241s       |   63.6 | 05-26 |
+|   32 | 39B  |  1 |  8 |       512 |      6 |    3072 | 478s       |   64.2 | 05-26 |
 |      |      |    |    |           |        |         |            |        |       |
-|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 129s       |   48.7 | 05-25 |
-|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 217s       |   29.0 | 05-26 |
-|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 125s       |   50.3 | 05-27 |
-|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 225s       |   28.0 | 05-28 |
+|   64 | 52B  |  1 | 16 |       256 |      4 |    1024 | 129s       |   52.8 | 05-25 |
+|   64 | 52B  |  1 | 16 |       256 |      4 |    1024 | 217s       |   31.4 | 05-26 |
+|   64 | 52B  |  1 | 16 |       256 |      4 |    1024 | 125s       |   54.5 | 05-27 |
+|   64 | 52B  |  1 | 16 |       256 |      4 |    1024 | 225s       |   30.3 | 05-28 |
 |      |      |    |    |           |        |         |            |        |       |
-|   64 | 48B  |  1 | 16 |       256 |      6 |    1536 | 328s       |   28.7 | 05-26 |
-|   64 | 48B  |  1 | 16 |       256 |      8 |    2048 | 435s       |   28.9 | 05-26 |
-|   64 | 48B  |  1 | 16 |       512 |      6 |    3072 | 650s       |   29.0 | 05-26 |
-|   64 | 48B  |  1 | 16 |       512 |      8 |    4096 | 870s       |   28.9 | 05-26 |
-|   64 | 48B  |  1 | 32 |       256 |      4 |    1024 | 220s       |   28.6 | 05-26 |
+|   64 | 52B  |  1 | 16 |       256 |      6 |    1536 | 328s       |   31.2 | 05-26 |
+|   64 | 52B  |  1 | 16 |       256 |      8 |    2048 | 435s       |   31.3 | 05-26 |
+|   64 | 52B  |  1 | 16 |       512 |      6 |    3072 | 650s       |   31.5 | 05-26 |
+|   64 | 52B  |  1 | 16 |       512 |      8 |    4096 | 870s       |   31.3 | 05-26 |
+|   64 | 52B  |  1 | 32 |       256 |      4 |    1024 | 220s       |   31.0 | 05-26 |
 |      |      |    |    |           |        |         |            |        |       |
 
 
@@ -112,7 +112,7 @@ data:
 - Seq length is 1024
 
 notes:
-- 32gpus had a very snag fit for gpu memory for 36B model (others were in ~75%) so it might be a bit too risky to OOM-borderline
+- 32gpus had a very snag fit for gpu memory for 39B model (others were in ~75%) so it might be a bit too risky to OOM-borderline
 
 
 ```
@@ -138,7 +138,7 @@ same features as Megatron's native, but improved by Deepspeed
 
 | GPUs | Size | DP | PP | PP chunks | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
 | ---: | ---: | -: | -: | --------: | -----: | ------: | ---------: | -----: | ----: |
-| 64   | 48B  | 1  | 16 | 256       | 4      | 1024    | 146s       | 43     | 05-27 |
+| 64   | 52B  | 1  | 16 | 256       | 4      | 1024    | 146s       | 46.7   | 05-27 |
 |      |      |    |    |           |        |         |            |        |       |
 
 
@@ -169,9 +169,8 @@ Not yet optimized with Deepspeed team!
 **Performance**
 | GPUs | Size  | DP | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
 | ---: | ----: | -: |   ---: |  -----: | ---------: | -----: | ----: |
-|   64 | 48B   | 16 |     48 |     768 | 122s       |  38.67 | 05-25 |
-|   64 | 48B   | 16 |     48 |     768 | 127s       |  37.15 | 05-27 |
-|      |       |    |        |         |            |        |       |
+|   64 | 52B   | 16 |     48 |     768 | 122s       |   41.9 | 05-25 |
+|   64 | 52B   | 16 |     48 |     768 | 127s       |   40.3 | 05-27 |
 |      |       |    |        |         |            |        |       |
 
 
@@ -186,22 +185,20 @@ perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $
 
 - tried w/ and w/o Tiling once but saw no difference - perhaps would be more important on larger collections
 
-
-
 | GPUs | Size | TP | DP | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
 | ---: | ---: | -: | -: | -----: | ------: | ---------: | -----: | ----: |
-|      |      |    |    |        |         |            |        |       |
-|   64 | 48B  |  4 | 16 |     48 |     768 |        127 |  37.15 |       |
-|   64 | 48B  |  2 | 32 |     32 |    1024 |        167 |  37.67 |       |
-|   64 | 48B  |  1 | 64 |     16 |    1024 |        184 |  34.99 |       |
-|   64 | 24B  |  1 | 64 |     16 |    1024 |       89.0 |  35.34 |       |
-|   64 | 24B  |  2 | 32 |     32 |    1024 |       85.7 |  36.70 |       |
+|   64 | 52B  |  4 | 16 |     48 |     768 | 127s       |   40.3 |       |
+|   64 | 52B  |  2 | 32 |     32 |    1024 | 167s       |   40.8 |       |
+|   64 | 52B  |  1 | 64 |     16 |    1024 | 184s       |   37.0 |       |
+|   64 | 24B  |  1 | 64 |     16 |    1024 | 89.0s      |   35.3 |       |
+|   64 | 24B  |  2 | 32 |     32 |    1024 | 85.7s      |   36.7 |       |
+
 
 **With full cpu offload**
 
 | GPUs | Size | TP | DP | Mic-BS | Glob-BS | Throughput | TFlops |
 | ---: | ---: | -: | -: | -----: | ------: | ---------: | -----: |
-| 64   | 48B  | 4  | 16 | 64     | 1024    | 171s       | 39.71  |
+| 64   | 52B  | 4  | 16 | 64     | 1024    | 171s       | 39.9   |
 |      |      |    |    |        |         |            |        |
 
 
@@ -220,9 +217,9 @@ Not yet optimized with Deepspeed team!
 
 | GPUs | Size  | Mic-BS | Glob-BS | Throughput | TFlops |
 | ---: | ----: | -----: | ------: | ---------: | -----: |
-|   16 | 23B   |      4 |      64 |  58.72s    |  25.66 |
-|   32 | 48B   |      4 |     128 | 114.56s    |  13.72 |
-|   64 | 91B   |      4 |     256 | 222.72s    |  13.38 |
+|   16 | 25B   |      4 |      64 | 58.72s     |   14.0 |
+|   32 | 52B   |      4 |     128 | 114.56s    |   14.9 |
+|   64 | 97B   |      4 |     256 | 222.72s    |   14.3 |
 |      |       |        |         |            |        |
 
 - full offload enabled
@@ -231,18 +228,18 @@ Not yet optimized with Deepspeed team!
 
 | GPUs | Size  | Zero | Opt Offl | Par Offl | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
 | ---: | ----: |  --: | -------: | -------: | -----: | ------: | ---------: | -----: | ----: |
-|   64 | 48B   |    3 | N        | N        |      8 |     512 | 139s       |  22.54 | 05-25 |
-|   64 | 48B   |    3 | N        | N        |      4 |     256 | 185s       |   8.50 | 05-27 |
-|   64 | 48B   |    3 | N        | N        |      8 |     512 | 118s       |  26.57 | 05-27 |
+|   64 | 52B   |    3 | N        | N        |      8 |     512 | 139s       |   24.5 | 05-25 |
+|   64 | 52B   |    3 | N        | N        |      4 |     256 | 185s       |    9.2 | 05-27 |
+|   64 | 52B   |    3 | N        | N        |      8 |     512 | 118s       |   28.9 | 05-27 |
 |      |       |      |          |          |        |         |            |        |       |
-|   64 | 48B   |    3 | N        | N        |      8 |     512 | 117s       |  26.88 | 05-28 |
-|   64 | 48B   |    3 | N        | N        |      6 |     384 | 111s       |  21.25 | 05-28 |
-|   64 | 48B   |    3 | N        | N        |     10 |     640 | 150s       |  26.21 | 05-28 |
-|   64 | 48B   |    3 | Y        | N        |     12 |     768 | 183s       |  25.78 | 05-28 |
-|   64 | 48B   |    3 | Y        | N        |     12 |     768 | 175s       |  26.96 | 05-28 |
-|   64 | 48B   |    3 | Y        | Y        |     12 |     768 | 177s       |  26.66 | 05-28 |
+|   64 | 52B   |    3 | N        | N        |      8 |     512 | 117s       |   29.1 | 05-28 |
+|   64 | 52B   |    3 | N        | N        |      6 |     384 | 111s       |   23.0 | 05-28 |
+|   64 | 52B   |    3 | N        | N        |     10 |     640 | 150s       |   28.4 | 05-28 |
+|   64 | 52B   |    3 | Y        | N        |     12 |     768 | 183s       |   27.9 | 05-28 |
+|   64 | 52B   |    3 | Y        | N        |     12 |     768 | 175s       |   29.2 | 05-28 |
+|   64 | 52B   |    3 | Y        | Y        |     12 |     768 | 177s       |   28.9 | 05-28 |
 |      |       |      |          |          |        |         |            |        |       |
-|   64 | 48B   |    2 | Y        | N        |        |         | OOM        |        | 05-28 |
+|   64 | 52B   |    2 | Y        | N        |        |         | OOM        |        | 05-28 |
 |      |       |      |          |          |        |         |            |        |       |
 
 - full offload enabled
@@ -264,3 +261,22 @@ perl -le '$ng=64; $ms=48; $gbs=512; $sp=139.52; print $ms*4*2*1024*$gbs / ( $sp 
 ```
 
 ZeRO-2 with model of this size I can't fit into this setup at all - even BS=4 - it keeps getting on getting killed by cgroups - i.e. it's asking for more than 40GB general RAM per gpu. Same story w/ or w/o offload.
+
+
+## Maintenance
+
+A secret formula to re-generate tflops column:
+```
+perl -ne 's#^(\| +(\d+) +\| +(\d+)B.*? +(\d+) +\| +([\d\.]+)s) +\| +[\d\.]+ +(.*?)$#"$1 | ".sprintf("%.01f", $3*4*2*1024*$4 / ($5*$2*1e3))." $6"#e && print ' gpt2.md
+```
+
+I originally had a mistake in model size calculation script - which has been fixed in tables and the scripts, but many logs still have the old formula - I used G `(2**30)` instead of B `(10**9)` so the model size was getting reported small than it is.
+
+Now it's the correct:
+```
+NHIDDEN=4096
+NLAYERS=36
+SEQ_LEN=512
+VOCAB_SIZE=50257
+python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + s*h + 2*h) / 10**9 :.0f}B')"
+```
