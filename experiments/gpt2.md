@@ -8,8 +8,9 @@ Using 4x VT100 32GB nodes.
 
 ## Apples and Oranges
 
-JZ seems to give us inconsistent allocations - so each allocation may give performance that can vary as much as 40%, so the numbers in the summaries of this document are very hard to compare.
+JZ seems to give us inconsistent performance - so each allocation may give performance that can vary as much as 40%, so the numbers in the summaries of this document are very hard to compare. We thought it had to do with the proximity of the allocated nodes but it proved to vary randomly through the day, most likely highly dependening on the traffic on the JZ network.
 
+Therefore any results you will find in this summary are +/-40% correct. An identical test scored 40% faster or slower on the same allocation at different times of the day.
 
 ## Megatron-LM
 
