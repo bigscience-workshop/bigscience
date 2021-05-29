@@ -6,6 +6,11 @@ Using 4x VT100 32GB nodes.
 
 (add `-C v100-32g` for 32gb nodes.)
 
+## Apples and Oranges
+
+JZ seems to give us inconsistent allocations - so each allocation may give performance that can vary as much as 40%, so the numbers in the summaries of this document are very hard to compare.
+
+
 ## Megatron-LM
 
 Constants:
@@ -88,6 +93,7 @@ These experiments are to try a lower model size, but much higher TFlops performa
 |   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 129s       |   48.7 | 05-25 |
 |   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 217s       |   29.0 | 05-26 |
 |   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 125s       |   50.3 | 05-27 |
+|   64 | 48B  |  1 | 16 |       256 |      4 |    1024 | 225s       |   28.0 | 05-28 |
 |      |      |    |    |           |        |         |            |        |       |
 |   64 | 48B  |  1 | 16 |       256 |      6 |    1536 | 328s       |   28.7 | 05-26 |
 |   64 | 48B  |  1 | 16 |       256 |      8 |    2048 | 435s       |   28.9 | 05-26 |
@@ -219,15 +225,27 @@ Not yet optimized with Deepspeed team!
 |   64 | 91B   |      4 |     256 | 222.72s    |  13.38 |
 |      |       |        |         |            |        |
 
+- full offload enabled
 
 **Performance**
 
-| GPUs | Size  | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
-| ---: | ----: | -----: | ------: | ---------: | -----: | ----: |
-|   64 | 48B   |      8 |     512 | 139.52s    |  22.54 | 05-25 |
-|   64 | 48B   |      4 |     256 | 185s       |   8.50 | 05-27 |
-|   64 | 48B   |      8 |     512 | 118.38     |  26.57 | 05-27 |
-|      |       |        |         |            |        |       |
+| GPUs | Size  | Zero | Opt Offl | Par Offl | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
+| ---: | ----: |  --: | -------: | -------: | -----: | ------: | ---------: | -----: | ----: |
+|   64 | 48B   |    3 | N        | N        |      8 |     512 | 139s       |  22.54 | 05-25 |
+|   64 | 48B   |    3 | N        | N        |      4 |     256 | 185s       |   8.50 | 05-27 |
+|   64 | 48B   |    3 | N        | N        |      8 |     512 | 118s       |  26.57 | 05-27 |
+|      |       |      |          |          |        |         |            |        |       |
+|   64 | 48B   |    3 | N        | N        |      8 |     512 | 117s       |  26.88 | 05-28 |
+|   64 | 48B   |    3 | N        | N        |      6 |     384 | 111s       |  21.25 | 05-28 |
+|   64 | 48B   |    3 | N        | N        |     10 |     640 | 150s       |  26.21 | 05-28 |
+|   64 | 48B   |    3 | Y        | N        |     12 |     768 | 183s       |  25.78 | 05-28 |
+|   64 | 48B   |    3 | Y        | N        |     12 |     768 | 175s       |  26.96 | 05-28 |
+|   64 | 48B   |    3 | Y        | Y        |     12 |     768 | 177s       |  26.66 | 05-28 |
+|      |       |      |          |          |        |         |            |        |       |
+|   64 | 48B   |    2 | Y        | N        |        |         | OOM        |        | 05-28 |
+|      |       |      |          |          |        |         |            |        |       |
+
+- full offload enabled
 
 Don't seem to be able to enlarge the global bs here - OOMing
 
@@ -244,3 +262,5 @@ Don't seem to be able to enlarge the global bs here - OOMing
 perl -le '$ng=64; $ms=48; $gbs=512; $sp=139.52; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 22
 ```
+
+ZeRO-2 with model of this size I can't fit into this setup at all - even BS=4 - it keeps getting on getting killed by cgroups - i.e. it's asking for more than 40GB general RAM per gpu. Same story w/ or w/o offload.

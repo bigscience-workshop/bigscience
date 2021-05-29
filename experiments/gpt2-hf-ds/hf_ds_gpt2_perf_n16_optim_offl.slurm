@@ -32,7 +32,7 @@ MASTER_PORT=6000
 # adjust depending on the number of the nodes
 
 NNODES=16
-MICRO_BATCH_SIZE=10 # 10 is 99% gpu
+MICRO_BATCH_SIZE=12 # OOMs at 14
 
 # succeeded:
 MSIZE=48
@@ -104,7 +104,8 @@ cat <<EOT > $config_json
     "zero_optimization": {
         "stage": 3,
         "offload_optimizer": {
-            "device": "none"
+            "device": "cpu",
+            "pin_memory": true
         },
         "offload_param": {
             "device": "none"

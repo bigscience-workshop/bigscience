@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=hf_ds_gpt2_perf_n16
+#SBATCH --job-name=hf_ds_gpt2_perf_n16_z2
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -32,7 +32,7 @@ MASTER_PORT=6000
 # adjust depending on the number of the nodes
 
 NNODES=16
-MICRO_BATCH_SIZE=10 # 10 is 99% gpu
+MICRO_BATCH_SIZE=4
 
 # succeeded:
 MSIZE=48
@@ -77,7 +77,7 @@ cat <<EOT > $config_json
         "enabled": "auto",
         "loss_scale": 0,
         "loss_scale_window": 1000,
-        "initial_scale_power": 8,
+        "initial_scale_power": 10,
         "hysteresis": 2,
         "min_loss_scale": 1
     },
@@ -102,22 +102,14 @@ cat <<EOT > $config_json
     },
 
     "zero_optimization": {
-        "stage": 3,
-        "offload_optimizer": {
-            "device": "none"
-        },
-        "offload_param": {
-            "device": "none"
-        },
+        "stage": 2,
+        "allgather_partitions": true,
+        "allgather_bucket_size": 2e8,
         "overlap_comm": true,
+        "reduce_scatter": true,
+        "reduce_bucket_size": 2e8,
         "contiguous_gradients": true,
-        "sub_group_size": 1e14,
-        "reduce_bucket_size": "auto",
-        "stage3_prefetch_bucket_size": "auto",
-        "stage3_param_persistence_threshold": "auto",
-        "stage3_max_live_parameters": 1e9,
-        "stage3_max_reuse_distance": 1e9,
-        "stage3_gather_fp16_weights_on_model_save": false
+        "cpu_offload": false
     },
 
     "gradient_accumulation_steps": "auto",
@@ -166,4 +158,4 @@ export PKILL="pkill python"
 
 echo $CMD
 # to debug - add echo (it exits and prints what it would have launched)
-clear; srun --jobid $SLURM_JOBID bash -c '$PKILL; $LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a hf_ds_gpt2_perf_n16_bs4.out
+clear; srun --jobid $SLURM_JOBID bash -c '$PKILL; $LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a hf_ds_gpt2_perf_n16_z2.out
