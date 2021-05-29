@@ -223,7 +223,6 @@ Not yet optimized with Deepspeed team!
 |   64 | 97B   |      4 |     256 | 222.72s    |   14.3 |
 |      |       |        |         |            |        |
 
-- full offload enabled
 
 **Performance**
 
@@ -243,19 +242,15 @@ Not yet optimized with Deepspeed team!
 |   64 | 52B   |    2 | Y        | N        |        |         | OOM        |        | 05-28 |
 |      |       |      |          |          |        |         |            |        |       |
 
-- full offload enabled
-
-Don't seem to be able to enlarge the global bs here - OOMing
-
-- gradient checkpointing activated
 
 - DP=GPUs
-
 - global bs = micro bs * DP
+- Throughput reported by HF Trainer metrics is `samples_per_second` - So total throughput in the table is `glob_bs/samples_per_second`
 
-- Throughput reported by HF Trainer is samples_per_second per node - So total throughput in the table is `glob_bs/samples_per_second`
+notes:
+- gradient checkpointing activated
 
-- TFlops: `model_size_in_B * 4 * 2 * seq * global_batch_size / (time_in_sec_per_interation * total_gpus * 1e3)`
+
 ```
 perl -le '$ng=64; $ms=48; $gbs=512; $sp=139.52; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 22
@@ -273,7 +268,7 @@ perl -ne 's#^(\| +(\d+) +\| +(\d+)B.*? +(\d+) +\| +([\d\.]+)s) +\| +[\d\.]+ +(.*
 
 I originally had a mistake in model size calculation script - which has been fixed in tables and the scripts, but many logs still have the old formula - I used G `(2**30)` instead of B `(10**9)` so the model size was getting reported small than it is.
 
-Now it's the correct:
+Now it's the correct version:
 ```
 NHIDDEN=4096
 NLAYERS=36
