@@ -206,6 +206,24 @@ perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $
 **With full optim cpu offload**
 
 
+New experiments:
+
+
+ the mp=4 and mp=2 with the following for both cases
+1) Disable (remove) these options
+    a) --synchronize-each-layer
+    b) --contigious-checkpointing
+2) Change "--checkpoint-num-layers 1" to "--checkpoint-num-layers 2"
+3) Add --split-transformers
+4) Toggle "--scattered-embeddings"
+
+I think you are using some incarnation of our ds_pretrain_gpt2-zero3.sh script, in which case steps 1 & 2 above correspond to
+1a) SYNCHRONIZE=false
+1b) CC=false
+2  chkp_layers=2
+
+For mp=4, run batch size = 48 & 52
+For mp=2, run batch size = 32 & 36
 
 
 ### HF + Deepspeed Zero 3 + Full Offload
