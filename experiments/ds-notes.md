@@ -65,14 +65,14 @@ PyTorch's PP implementation is based on the GPipe algorithm, which still has a c
 
 ![gpipe](images/gpipe.png)
 
-Their docs use both chunks/microbatch terminology. I'll use 'mb' for short. The key thing to note is that the all the forward passes are done first, then all the backward passes. That means that the pipeline memory overheads (eg., activations from each mb) are kept around and scale linearly with the number of chunks. Since you increase the number of chunks to decrease PP overheads, you pay a linearly increasing memory cost to improve throughput.
+Their docs use both chunks/microbatch terminology. I'll use 'mb' for short. The key thing to note is that all the forward passes are done first, then all the backward passes. That means that the pipeline memory overheads (eg., activations from each mb) are kept around and scale linearly with the number of chunks. Since you increase the number of chunks to decrease PP overheads, you pay a linearly increasing memory cost to improve throughput.
 
 DeepSpeed's pipeline parallelism takes another approach, in which the forward/backward passes for different mbs are done in parallel.
 
 ![deepspeed pipe](images/deepspeed-pipe.png)
 
 After each backward pass completes, the gradient is accumulated into a single gradient buffer and the corresponding activations are freed. The number of mbs in flight at any time is bounded by the dimension of pipeline parallelism, not the number of gradient accumulation steps (same thing as chunks). That means that you can still increase the gas to improve efficiency, but memory overheads stay constant and only scale with the number of pipeline stages.
-￼
+
 Say you split a model across 20 pipeline stages and want 90% PP efficiency... the GPipe approach will need about 8x more memory for activations because each microbatch has to be kept around until all of the backward passes begin.
 
 Activation checkpointing of course reduces activation memory for both, but this applies even with checkpointing each layer. There are also pipeline overheads in which you store the input/output for each mb to pass to the adjacent stages
