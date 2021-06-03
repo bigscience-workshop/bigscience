@@ -203,28 +203,31 @@ perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $
 |      |      |    |    |        |         |            |        |
 
 
-**With full optim cpu offload**
+Olatunji requested the following experiments:
+
+- enabled/set: `--split-transformers --checkpoint-num-layers=2`
+- removed: `--synchronize-each-layer   --contigious-checkpointing`
+
+| GPUs | Size | ScatEmb | TP | DP | Mic-BS | Glob-BS | Throughput | TFlops |
+| ---: | ---: | ------: | -: | -: | -----: | ------: | ---------: | -----: |
+|   64 | 52B  | N       |  4 | 16 |     48 |     768 | 119s       |   43.0 |
+|   64 | 52B  | Y       |  4 | 16 |     48 |     768 | 115s       |   44.5 |
+|   64 | 52B  | Y       |  4 | 16 |     52 |     832 | 124s       |   44.7 |
+|   64 | 52B  | N       |  2 | 16 |     32 |     512 | 159s       |   21.4 |
+|   64 | 52B  | Y       |  2 | 16 |     32 |     512 | 158s       |   21.6 |
+|   64 | 52B  | Y       |  2 | 16 |     36 |     576 | 176s       |   21.8 |
+|   64 | 52B  | Y       |  4 | 16 |     56 |     896 | 161s       |   37.0 |
+|   64 | 52B  | Y       |  2 | 16 |     38 |     608 | 178s       |   22.7 |
+|   64 | 52B  | Y       |  1 | 16 |     18 |     288 | 197s       |    9.7 |
+|   64 | 52B  | Y       |  1 | 16 |     20 |     320 | 219s       |    9.7 |
+|   64 | 52B  | Y       |  1 | 16 |     22 |     352 | OOM        |        |
 
 
-New experiments:
 
-
- the mp=4 and mp=2 with the following for both cases
-1) Disable (remove) these options
-    a) --synchronize-each-layer
-    b) --contigious-checkpointing
-2) Change "--checkpoint-num-layers 1" to "--checkpoint-num-layers 2"
-3) Add --split-transformers
-4) Toggle "--scattered-embeddings"
-
-I think you are using some incarnation of our ds_pretrain_gpt2-zero3.sh script, in which case steps 1 & 2 above correspond to
-1a) SYNCHRONIZE=false
-1b) CC=false
-2  chkp_layers=2
-
-For mp=4, run batch size = 48 & 52
-For mp=2, run batch size = 32 & 36
-
+Automatically process slurm/ megatron log files, average the througput (prints 'fail' on when the training failed):
+```
+find . -type f -exec perl -lne 'm|elapsed time per iteration .ms.: ([\d\.]+)| &&  do {$x+=$1; $c++}; END { print "$ARGV " . ($c ? int($x/$c/1000) : "fail")}' {} \; | sort | grep -v fail
+```
 
 ### HF + Deepspeed Zero 3 + Full Offload
 

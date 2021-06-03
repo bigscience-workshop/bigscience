@@ -54,9 +54,10 @@ DP = (total number of GPUs // MP size)
 
 Here is the main table from the paper with added breakdown of TP/PP/DP:
 
+|       |       |        |     |    |    |    |     |      |       |        |        |        |        |
+| ---:  | ----: | -----: | --: | -: | -: | -: | --: | ---: |  ---: | -----: |  ----: |  ----: | -----: |
 | Model | Atten | Hidden | Lay | TP | PP | DP |  MP | GPUs | Micro | Global | TFlops | TFlops | PFlops |
 | size  | heads |   size | ers |    |    |    |     |      |    BS |     BS |   /GPU |      % | Aggreg |
-| ---:  | ----: | -----: | --: | -: | -: | -: | --: | ---: |  ---: | -----: |  ----: |  ----: | -----: |
 | 1.7B  |    24 |   2304 |  24 |  1 |  1 | 32 |   1 |   32 |    16 |    512 |    137 |    44% |    4.4 |
 | 3.6B  |    32 |   3072 |  30 |  2 |  1 | 32 |   2 |   64 |    16 |    512 |    138 |    44% |    8.8 |
 | 7.5B  |    32 |   4096 |  36 |  4 |  1 | 32 |   4 |  128 |    16 |    512 |    142 |    46% |   18.2 |
