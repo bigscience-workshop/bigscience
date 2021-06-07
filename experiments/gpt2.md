@@ -43,6 +43,19 @@ The full slurm scripts and log files are at [`gpt2-meg`](./gpt2-meg):
 
 Not yet optimized with NVIDIA team!
 
+Metrics can be calculated in bash after figuring out the throughput (in seconds):
+
+```
+THROUGHPUT=122
+NNODES=16
+MSIZE=52
+MICRO_BATCH_SIZE=4
+DP_SIZE=1
+PP_CHUNKS=256
+echo "($MSIZE*4*2*1024*$MICRO_BATCH_SIZE*$DP_SIZE*$PP_CHUNKS)/($THROUGHPUT*$NNODES*4*1000)" | bc -l
+55.86675409836065573770
+```
+
 **Max model size**
 
 These first results are all about how big of a model can be fit into the given the hardware on the smallest batch size, disregarding throughput.
