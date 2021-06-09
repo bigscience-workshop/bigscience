@@ -166,8 +166,28 @@ perl -le '$ng=64; $ms=48; $gbs=1024; $sp=146; print $ms*4*2*1024*$gbs / ( $sp * 
 
 
 
-
 #### Megatron + Deepspeed ZeRO
+
+This is new branch synced with Megatron
+
+DeepSpeed branch: https://github.com/ShadenSmith/DeepSpeed/tree/megatron2.4-3d
+Megatron branch: https://github.com/jeffra/DSE/tree/megatron-2.4-ds-pipe
+
+```
+git clone https://github.com/ShadenSmith/DeepSpeed/ deepspeed-shaden
+cd deepspeed-shaden
+git checkout megatron2.4-3d
+```
+
+```
+git clone https://github.com/jeffra/DSE deepspeed-examples-jeffra
+cd deepspeed-examples-jeffra
+git checkout megatron-2.4-ds-pipe
+```
+
+
+
+#### Megatron + Deepspeed ZeRO (old branch)
 
 
 **Important**: `DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3` is not in sync with M-LM master - so several config args don't match. It's about 8 months old.
