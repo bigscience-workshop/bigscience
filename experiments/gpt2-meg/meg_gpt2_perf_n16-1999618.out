@@ -643,10 +643,10 @@ test' '0;'
 ++++ pwd
 +++ __GIT_PROMPT_DIR=/gpfsssd/scratch/rech/eha/commun/envs/.bash-git-prompt
 +++ source /gpfsssd/scratch/rech/eha/commun/envs/.bash-git-prompt/git-prompt-help.sh
-++ export SBATCH_ACCOUNT=eha@gpu
-++ SBATCH_ACCOUNT=eha@gpu
-++ export SLURM_ACCOUNT=eha@gpu
-++ SLURM_ACCOUNT=eha@gpu
+++ export SBATCH_ACCOUNT=six@gpu
+++ SBATCH_ACCOUNT=six@gpu
+++ export SLURM_ACCOUNT=six@gpu
+++ SLURM_ACCOUNT=six@gpu
 ++ export TRANSFORMERS_CACHE=/gpfsscratch/rech/eha/commun/models
 ++ TRANSFORMERS_CACHE=/gpfsscratch/rech/eha/commun/models
 ++ export HF_DATASETS_CACHE=/gpfsscratch/rech/eha/commun/datasets

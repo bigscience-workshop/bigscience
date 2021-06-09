@@ -9,7 +9,7 @@
 #SBATCH --time 00:10:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
-#SBATCH --account=eha@gpu
+#SBATCH --account=six@gpu
 
 set -x -e
 
@@ -19,11 +19,11 @@ nvidia-smi
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
 MASTER_PORT=6000
@@ -120,7 +120,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 # model size
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"

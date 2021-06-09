@@ -68,11 +68,11 @@ The biggest model we can fit with `micro-batch-size=1`: **7.5B**
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
 NNODES=4
@@ -148,7 +148,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 # model size
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"
@@ -190,11 +190,11 @@ The biggest model we can fit with `micro-batch-size=1`: barely **30B**
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
 NNODES=16
@@ -269,7 +269,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
@@ -313,11 +313,11 @@ perl -le 'print( (120*402780160+8*514977792)>>20)'
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
 NNODES=32
@@ -392,7 +392,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
@@ -439,11 +439,11 @@ perl -le 'print( (248*314652160+8*454899200)>>20)'
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
 NNODES=64
@@ -518,7 +518,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
@@ -561,11 +561,11 @@ perl -le 'print( (48*402780160+8*514977792)>>20)'
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
 NNODES=64
@@ -642,7 +642,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
@@ -695,11 +695,11 @@ VOCAB_SIZE=50257
 
 cd ~/base/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
 
-CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
 GPUS_PER_NODE=4
 NNODES=16
@@ -892,7 +892,7 @@ export CMD=" \
      $CHKP_ARGS \
     "
 
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
@@ -927,11 +927,11 @@ salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithre
 
 cd ~/base/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
 
-CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$eha_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
-SAVE_CHECKPOINT_PATH=$eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
 GPUS_PER_NODE=4
 NNODES=16
@@ -1113,7 +1113,7 @@ export CMD=" \
      $CHKP_ARGS \
     "
 
-rm -rf $eha_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
@@ -1180,11 +1180,11 @@ This memory gets released afterwards, but we don't have enough to bypass that hu
 # use custom PR branch to handle the model creation on the fly
 cd ~/base/code/transformers-clm-any-model-config/
 
-export HF_DATASETS_CACHE=$eha_ALL_CCFRSCRATCH/datasets
-export HF_MODULES_CACHE=$eha_ALL_CCFRSCRATCH/modules
-export HF_METRICS_CACHE=$eha_ALL_CCFRSCRATCH/metrics
+export HF_DATASETS_CACHE=$six_ALL_CCFRSCRATCH/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRSCRATCH/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRSCRATCH/metrics
 
-MODEL=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
+MODEL=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
 DATASET="stas/openwebtext-10k"
 
 GPUS_PER_NODE=4
@@ -1313,11 +1313,11 @@ Model size: 7B
 # use custom PR branch to handle the model creation on the fly
 cd ~/base/code/transformers-clm-any-model-config/
 
-export HF_DATASETS_CACHE=$eha_ALL_CCFRSCRATCH/datasets
-export HF_MODULES_CACHE=$eha_ALL_CCFRSCRATCH/modules
-export HF_METRICS_CACHE=$eha_ALL_CCFRSCRATCH/metrics
+export HF_DATASETS_CACHE=$six_ALL_CCFRSCRATCH/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRSCRATCH/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRSCRATCH/metrics
 
-MODEL=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
+MODEL=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
 DATASET="stas/openwebtext-10k"
 
 GPUS_PER_NODE=4
@@ -1458,18 +1458,18 @@ Stats:
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=std-%j.out          # output file name
 #SBATCH --error=std-%j.out           # error file name (same to watch just one file)
-#SBATCH --account=eha@gpu
+#SBATCH --account=six@gpu
 
 # use custom PR branch to handle the model creation on the fly
 cd ~/base/code/transformers-clm-any-model-config/
 
 source $ALL_CCFRSCRATCH/start-prod
 
-export HF_DATASETS_CACHE=$eha_ALL_CCFRSCRATCH/datasets
-export HF_MODULES_CACHE=$eha_ALL_CCFRSCRATCH/modules
-export HF_METRICS_CACHE=$eha_ALL_CCFRSCRATCH/metrics
+export HF_DATASETS_CACHE=$six_ALL_CCFRSCRATCH/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRSCRATCH/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRSCRATCH/metrics
 
-MODEL=$eha_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
+MODEL=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
 DATASET="stas/openwebtext-10k"
 
 GPUS_PER_NODE=4
