@@ -59,7 +59,7 @@ Not yet optimized with Deepspeed team!
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=4 --ntasks=4 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=4 --ntasks=4 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1`: **7.5B**
@@ -68,10 +68,10 @@ The biggest model we can fit with `micro-batch-size=1`: **7.5B**
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/openwebtext-10k/meg-gpt2_text_document
 SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
@@ -148,7 +148,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRWORK/checkpoints/gpt2-1-node
 
 # model size
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"
@@ -179,7 +179,7 @@ batch-generator: 2.70
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1`: barely **30B**
@@ -190,10 +190,10 @@ The biggest model we can fit with `micro-batch-size=1`: barely **30B**
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/openwebtext-10k/meg-gpt2_text_document
 SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
@@ -269,7 +269,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRWORK/checkpoints/gpt2-1-node
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
@@ -297,7 +297,7 @@ optimizer-copy-main-to-model-params: 3.95 | optimizer: 43.19 | batch-generator: 
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=32 --ntasks=32 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=32 --ntasks=32 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1`: **50B**
@@ -313,10 +313,10 @@ perl -le 'print( (120*402780160+8*514977792)>>20)'
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/openwebtext-10k/meg-gpt2_text_document
 SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
@@ -392,7 +392,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRWORK/checkpoints/gpt2-1-node
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
@@ -423,7 +423,7 @@ batch-generator: 2.72
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1`: **78B**
@@ -439,10 +439,10 @@ perl -le 'print( (248*314652160+8*454899200)>>20)'
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/openwebtext-10k/meg-gpt2_text_document
 SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
@@ -518,7 +518,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRWORK/checkpoints/gpt2-1-node
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
@@ -547,7 +547,7 @@ Let's try a smaller model with a larger batch size.
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1` + D4: **22B**
@@ -561,10 +561,10 @@ perl -le 'print( (48*402780160+8*514977792)>>20)'
 
 cd ~/base/code/megatron-lm/
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/openwebtext-10k/meg-gpt2_text_document
 SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
 
 GPUS_PER_NODE=4
@@ -642,7 +642,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRWORK/checkpoints/gpt2-1-node
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
@@ -678,7 +678,7 @@ Status: Unoptimized
 
 
 ```
-salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 Todo:
@@ -695,10 +695,10 @@ VOCAB_SIZE=50257
 
 cd ~/base/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/openwebtext-10k/meg-gpt2_text_document
 SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
 GPUS_PER_NODE=4
@@ -892,7 +892,7 @@ export CMD=" \
      $CHKP_ARGS \
     "
 
-rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+rm -rf $six_ALL_CCFRWORK/checkpoints/gpt2-meg-ds
 
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
@@ -919,7 +919,7 @@ Status: Unoptimized
 
 
 ```
-salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 
@@ -927,10 +927,10 @@ salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithre
 
 cd ~/base/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
+CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/openwebtext-10k/meg-gpt2_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/openwebtext-10k/meg-gpt2_text_document
 SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 
 GPUS_PER_NODE=4
@@ -1113,7 +1113,7 @@ export CMD=" \
      $CHKP_ARGS \
     "
 
-rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
+rm -rf $six_ALL_CCFRWORK/checkpoints/gpt2-meg-ds
 
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
 
@@ -1160,7 +1160,7 @@ time (ms) | forward: 0.00 | backward: 0.00 | optimizer: 0.00 | batch generator: 
 
 
 ```
-salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $ALL_CCFRSCRATCH/start-prod
+salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 32GB nodes
@@ -1180,11 +1180,11 @@ This memory gets released afterwards, but we don't have enough to bypass that hu
 # use custom PR branch to handle the model creation on the fly
 cd ~/base/code/transformers-clm-any-model-config/
 
-export HF_DATASETS_CACHE=$six_ALL_CCFRSCRATCH/datasets
-export HF_MODULES_CACHE=$six_ALL_CCFRSCRATCH/modules
-export HF_METRICS_CACHE=$six_ALL_CCFRSCRATCH/metrics
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 
-MODEL=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
+MODEL=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron-gpt2-345m
 DATASET="stas/openwebtext-10k"
 
 GPUS_PER_NODE=4
@@ -1313,11 +1313,11 @@ Model size: 7B
 # use custom PR branch to handle the model creation on the fly
 cd ~/base/code/transformers-clm-any-model-config/
 
-export HF_DATASETS_CACHE=$six_ALL_CCFRSCRATCH/datasets
-export HF_MODULES_CACHE=$six_ALL_CCFRSCRATCH/modules
-export HF_METRICS_CACHE=$six_ALL_CCFRSCRATCH/metrics
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 
-MODEL=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
+MODEL=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron-gpt2-345m
 DATASET="stas/openwebtext-10k"
 
 GPUS_PER_NODE=4
@@ -1463,13 +1463,13 @@ Stats:
 # use custom PR branch to handle the model creation on the fly
 cd ~/base/code/transformers-clm-any-model-config/
 
-source $ALL_CCFRSCRATCH/start-prod
+source $six_ALL_CCFRWORK/start-prod
 
-export HF_DATASETS_CACHE=$six_ALL_CCFRSCRATCH/datasets
-export HF_MODULES_CACHE=$six_ALL_CCFRSCRATCH/modules
-export HF_METRICS_CACHE=$six_ALL_CCFRSCRATCH/metrics
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 
-MODEL=$six_ALL_CCFRSCRATCH/models-custom/megatron-gpt2/megatron-gpt2-345m
+MODEL=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron-gpt2-345m
 DATASET="stas/openwebtext-10k"
 
 GPUS_PER_NODE=4

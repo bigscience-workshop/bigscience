@@ -34,6 +34,12 @@ The peak of V100 32gb gpu is about 125 TFlops/sec [spec](https://images.nvidia.c
 
 For v100 16gb gpus the max spec is 120 TFlops/sec.
 
+## Allocation
+
+```
+salloc --constraint=v100-32g --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
+
 
 ### Megatron
 
@@ -172,6 +178,9 @@ This is new branch synced with Megatron
 
 DeepSpeed branch: https://github.com/ShadenSmith/DeepSpeed/tree/megatron2.4-3d
 Megatron branch: https://github.com/jeffra/DSE/tree/megatron-2.4-ds-pipe
+
+all in one script:
+https://github.com/jeffra/DSE/blob/megatron-2.4-ds-pipe/run.sh
 
 ```
 git clone https://github.com/ShadenSmith/DeepSpeed/ deepspeed-shaden

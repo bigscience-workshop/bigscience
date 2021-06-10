@@ -14,15 +14,15 @@
 set -x -e
 export PYTHONUNBUFFERED=1
 
-source $ALL_CCFRSCRATCH/start-prod
+source $six_ALL_CCFRWORK/start-prod
 
 nvidia-smi
 
 cd ~/base/code/transformers-clm-any-model-config/
 
-export HF_DATASETS_CACHE=$six_ALL_CCFRSCRATCH/datasets
-export HF_MODULES_CACHE=$six_ALL_CCFRSCRATCH/modules
-export HF_METRICS_CACHE=$six_ALL_CCFRSCRATCH/metrics
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 
 DATASET="stas/openwebtext-10k"
 
@@ -155,7 +155,7 @@ export CMD=" \
     "
 
 # clear old checkpoint as it'd mismatch while we sort things out
-rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-1-node
+rm -rf $six_ALL_CCFRWORK/checkpoints/gpt2-1-node
 
 # model size
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"
