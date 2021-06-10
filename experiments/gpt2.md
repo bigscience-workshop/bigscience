@@ -136,12 +136,22 @@ notes:
 
 
 ```
-perl -le '$ng=64; $ms=48; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+perl -le '$ng=64; $ms=52; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 ```
 
 
 
 #### Megatron + Deepspeed 3D (new branch)
+
+
+Why:
+
+1. More generic pipeline API that is not hard-coded into the model
+2. Better memory efficiency - needs less GPU memory, so can probably work with fewer pipeline stages
+3. Works with ZeRO-Offload so can significantly reduce the GPUs required for fine-tuning once the model is pre-trained, making it accessible to a lot more folks, who don't have access to hundreds of GPUs.
+
+How:
+
 
 This is new branch synced with Megatron
 
@@ -163,15 +173,30 @@ cd megator-jeffra
 git checkout megatron-2.4-ds-pipe
 ```
 
+See scripts and logs under [gpt2-meg-ds-3d](./gpt2-meg-ds-3d).
 
-| GPUs | Size | GPU Mem | DP | PP | PP chunks | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
-| ---: | ---: | -----:  | -: | -: | --------: | -----: | ------: | ---------: | -----: | ----: |
-| 64   | 52B  |  26GB   | 1  | 16 | 256       | 4      | 1024    |            |        | 06-10 |
-|      |      |         |    |    |           |        |         |            |        |       |
+Now we use the same code-base for training w/ and w/ DS/3D - so can use a shared results table.
+Also added memory usage columns.
+
+
+| GPUs | Size | DS | CPU M | GPU M | DP | PP |  GAS | MBS |  GBS | Speed | TFlops | Notes |
+| ---: | ---: | -: | ----: | ----: | -: | -: | ---: | --: | ---: | ----: | -----: | ----: |
+|   64 | 52B  | Y  | 3GB   | 26GB  |  1 | 16 |  256 |   4 | 1024 | 137s  |  46.7  | 06-10 |
+|   64 | 52B  | N  | 3GB   | 32GB  |  1 | 16 |  256 |   4 | 1024 | 126s  |  54.1  | 06-10 |
+|      |      |    |       |       |    |    |      |     |      |       |        |       |
 
 ```
-perl -le '$ng=64; $ms=48; $gbs=1024; $sp=146; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+perl -le '$ng=64; $ms=52; $gbs=1024; $sp=146; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 ```
+
+- DS: Deepspeed/3D enabled
+- CPU memory: Resident per GPU
+- GPU memory: rounded up per GPU
+- MBS: Micro BS
+- GBS: Global BS = GAS * MBS * DP_SIZE
+- GAS: Gradient Accumulation Steps (= MBS pipe stages, = PP chunks)
+
+
 
 
 

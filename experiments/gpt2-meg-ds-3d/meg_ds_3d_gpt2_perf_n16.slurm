@@ -42,11 +42,11 @@ MASTER_PORT=6000
 
 NNODES=16
 PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
-MICRO_BATCH_SIZE=4 # works at 4, OOMs at
+MICRO_BATCH_SIZE=6 # works at 4, OOMs at
 PP_CHUNKS=256 # GAS
 
-USE_DEEPSPEED=1   # Meg+DS/3D
-#USE_DEEPSPEED=0   # Meg-alone baseline
+#USE_DEEPSPEED=1   # Meg+DS/3D
+USE_DEEPSPEED=0   # Meg-alone baseline
 
 MSIZE=52
 
