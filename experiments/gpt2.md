@@ -140,12 +140,47 @@ perl -le '$ng=64; $ms=48; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * 
 ```
 
 
-### Megatron + Deepspeed 3D
+
+#### Megatron + Deepspeed 3D (new branch)
+
+This is new branch synced with Megatron
+
+DeepSpeed branch: https://github.com/ShadenSmith/DeepSpeed/tree/megatron2.4-3d
+Megatron branch: https://github.com/jeffra/DSE/tree/megatron-2.4-ds-pipe
+
+This script can now launch Meg alone or Meg + Deepspeed 3D (ignore the zero options it doesn't work yet):
+https://github.com/jeffra/DSE/blob/megatron-2.4-ds-pipe/run.sh
+
+```
+git clone https://github.com/ShadenSmith/DeepSpeed/ deepspeed-shaden
+cd deepspeed-shaden
+git checkout megatron2.4-3d
+```
+
+```
+git clone https://github.com/jeffra/DSE megator-jeffra
+cd megator-jeffra
+git checkout megatron-2.4-ds-pipe
+```
+
+
+| GPUs | Size | GPU Mem | DP | PP | PP chunks | Mic-BS | Glob-BS | Throughput | TFlops | Notes |
+| ---: | ---: | -----:  | -: | -: | --------: | -----: | ------: | ---------: | -----: | ----: |
+| 64   | 52B  |  26GB   | 1  | 16 | 256       | 4      | 1024    |            |        | 06-10 |
+|      |      |         |    |    |           |        |         |            |        |       |
+
+```
+perl -le '$ng=64; $ms=48; $gbs=1024; $sp=146; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+```
+
+
+
+### Megatron + Deepspeed 3D (old branch)
 
 
 **Important**: `DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism` is not in sync with M-LM master - so several config args don't match. It's about 8 months old.
 
-See scripts and logs under [gpt2-meg-ds-3d](./gpt2-meg-ds-3d).
+See scripts and logs under [gpt2-meg-ds-3d-old](./gpt2-meg-ds-3d-old).
 
 Uses 3D:
 - TP: tensor parallelism
@@ -167,32 +202,11 @@ same features as Megatron's native, but improved by Deepspeed
 - `TP_SIZE=4` (size of the node)
 
 ```
-perl -le '$ng=64; $ms=48; $gbs=1024; $sp=146; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+perl -le '$ng=64; $ms=52; $gbs=1024; $sp=146; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 ```
 
 
 
-#### Megatron + Deepspeed ZeRO
-
-This is new branch synced with Megatron
-
-DeepSpeed branch: https://github.com/ShadenSmith/DeepSpeed/tree/megatron2.4-3d
-Megatron branch: https://github.com/jeffra/DSE/tree/megatron-2.4-ds-pipe
-
-all in one script:
-https://github.com/jeffra/DSE/blob/megatron-2.4-ds-pipe/run.sh
-
-```
-git clone https://github.com/ShadenSmith/DeepSpeed/ deepspeed-shaden
-cd deepspeed-shaden
-git checkout megatron2.4-3d
-```
-
-```
-git clone https://github.com/jeffra/DSE deepspeed-examples-jeffra
-cd deepspeed-examples-jeffra
-git checkout megatron-2.4-ds-pipe
-```
 
 
 
@@ -218,7 +232,7 @@ Not yet optimized with Deepspeed team!
 
 
 ```
-perl -le '$ng=64; $ms=48; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+perl -le '$ng=64; $ms=52; $gbs=768; $sp=122; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 ```
 - Seq length is 1024
 - `TP=4` in all of entries
@@ -315,7 +329,7 @@ notes:
 
 
 ```
-perl -le '$ng=64; $ms=48; $gbs=512; $sp=139.52; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+perl -le '$ng=64; $ms=52; $gbs=512; $sp=139.52; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 22
 ```
 
