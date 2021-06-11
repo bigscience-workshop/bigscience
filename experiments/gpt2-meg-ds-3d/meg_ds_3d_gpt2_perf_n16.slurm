@@ -42,11 +42,14 @@ MASTER_PORT=6000
 
 NNODES=16
 PP_SIZE=16 # NLAYERS must be a multiple of PP_SIZE here
-MICRO_BATCH_SIZE=4 # works at 4, OOMs at
+MICRO_BATCH_SIZE=4 # works at 4 (for meg alone) 8 (for meg+ds/3d), OOMs at
 PP_CHUNKS=256 # GAS
 
-#USE_DEEPSPEED=1   # Meg+DS/3D
-USE_DEEPSPEED=0   # Meg-alone baseline
+USE_DEEPSPEED=1   # Meg-alone baseline
+#USE_DEEPSPEED=0   # Meg+DS/3D
+
+EXIT_EARLY=0
+#EXIT_EARLY=1
 
 MSIZE=52
 
@@ -76,6 +79,12 @@ VOCAB_SIZE=50257
 DP_SIZE=1
 TP_SIZE=4 # always fixed to the size of a single node
 
+# --exit-duration-in-mins
+# --exit-interval - exit after this many iterations
+if [[ ${EXIT_EARLY} == 1 ]]; then EXIT_OPTS="--exit-interval 2"
+else EXIT_OPTS=""
+fi
+
 GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$PP_CHUNKS*$DP_SIZE))
 GPT_ARGS=" \
     --num-layers $NLAYERS \
@@ -98,6 +107,7 @@ GPT_ARGS=" \
     --merge-file $MERGE_FILE \
     --fp16 \
     --checkpoint-activations \
+    $EXIT_OPTS \
     "
 
 OUTPUT_ARGS=" \
@@ -174,9 +184,9 @@ export CMD=" \
 
 # clear old checkpoint as it'd mismatch while we sort things out
 if   [[ ${MYENV} == stas ]];    then
-    rm -rf $six_CCFRWORK/checkpoints/gpt2-meg-ds
+    rm -rf $six_CCFRSCRATCH/checkpoints/gpt2-meg-ds/*
 else
-    rm -rf $six_ALL_CCFRWORK/checkpoints/gpt2-meg-ds
+    rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds/*
 fi
 
 # model size

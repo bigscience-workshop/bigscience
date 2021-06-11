@@ -175,27 +175,51 @@ git checkout megatron-2.4-ds-pipe
 
 See scripts and logs under [gpt2-meg-ds-3d](./gpt2-meg-ds-3d).
 
-Now we use the same code-base for training w/ and w/ DS/3D - so can use a shared results table.
+Now we use the same code-base for training w/ and w/o DS/3D - so can use a shared results table.
 Also added memory usage columns.
 
 
-| GPUs | Size | DS | CPU M | GPU M | DP | PP |  GAS | MBS |  GBS | Speed | TFlops | Notes |
-| ---: | ---: | -: | ----: | ----: | -: | -: | ---: | --: | ---: | ----: | -----: | ----: |
-|   64 | 52B  | Y  | 3GB   | 26GB  |  1 | 16 |  256 |   4 | 1024 | 137s  |  46.7  | 06-10 |
-|   64 | 52B  | N  | 3GB   | 32GB  |  1 | 16 |  256 |   4 | 1024 | 126s  |  54.1  | 06-10 |
-|      |      |    |       |       |    |    |      |     |      |       |        |       |
+| GPUs | Size | DS | GPU M | DP | PP |  GAS | MBS |  GBS | Speed | TFlops | Notes |
+| ---: | ---: | -: | ----: | -: | -: | ---: | --: | ---: | ----: | -----: | ----: |
+|   64 | 52B  | Y  | 26GB  |  1 | 16 |  256 |   4 | 1024 | 137s  |   46.7 | 06-10 |
+|   64 | 52B  | Y  | 29GB  |  1 | 16 |  256 |   4 | 1536 | 206s  |   49.6 | 06-10 |
+|   64 | 52B  | Y  | 32GB  |  1 | 16 |  256 |   4 | 2048 | 270s  |   50.5 | 06-10 |
+|   64 | 52B  | Y  | 26GB  |  1 | 16 | 1024 |   4 | 4096 | 544s  |   50.1 | 06-10 |
+|      |      |    |       |    |    |      |     |      |       |        |       |
+|      |      |    |       |    |    |      |     |      |       |        |       |
+|   64 | 52B  | N  | 32GB  |  1 | 16 |  256 |   4 | 1024 | 126s  |   54.1 | 06-10 |
+|      |      |    |       |    |    |      |     |      |       |        |       |
 
 ```
 perl -le '$ng=64; $ms=52; $gbs=1024; $sp=146; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
 ```
 
 - DS: Deepspeed/3D enabled
-- CPU memory: Resident per GPU
 - GPU memory: rounded up per GPU
 - MBS: Micro BS
 - GBS: Global BS = GAS * MBS * DP_SIZE
 - GAS: Gradient Accumulation Steps (= MBS pipe stages, = PP chunks)
 
+Resident CPU memory remained at about 3GB per GPU.
+
+note: I also did tests on 1 node - getting almost identical results for Meg w/ and w/o DS/3D. So all the fluctuations are the network to blame for.
+
+```
+NNODES=1
+PP_SIZE=1
+TP_SIZE=4
+MICRO_BATCH_SIZE=4
+PP_CHUNKS=16 # GAS
+MSIZE=4
+```
+
+got an average over 22 iterations in msecs (too short for good stats)
+
+```
+ds  6875.05
+meg 6896.20
+```
+but it's obvious they are pretty similar.
 
 
 
