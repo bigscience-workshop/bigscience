@@ -1,0 +1,40 @@
+#!/bin/bash
+#SBATCH --job-name=second_lm_balanced_prompted # job name
+#SBATCH --ntasks=1                   # number of MP task
+#SBATCH --cpus-per-task=32           # number of cores per tasks
+#SBATCH --hint=nomultithread         # we get physical cores not logical
+#SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --output=std-%j.out          # output file name
+#SBATCH --error=std-%j.err           # error file name
+#SBATCH --account=ajs@cpu
+#SBATCH --mail-type=ALL
+
+set -x -e
+
+DATASET=wiki_bk_prompted
+SERIALIZATION_DIR=${ALL_CCFRSCRATCH}/experiments/preprocess_data
+
+source ~/.bashrc
+conda activate smallexps
+export TOKENIZERS_PARALLELISM=false
+export PYTHONUNBUFFERED=true
+export HF_DATASETS_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+
+python ${WORK}/jay-z/scripts/run_clm_prompted.py \
+    --model_name_or_path gpt2-medium \
+    --tokenizer_name gpt2 \
+    --dataset_name ${ALL_CCFRSCRATCH}/datasets/${DATASET} --block_size 1024 \
+    --preprocessing_num_workers 31 \
+    --group_by_length --length_column_name length \
+    --cache_dir ${CACHE_DIR} \
+    --do_train --do_eval \
+    --max_steps 15000 \
+    --max_train_samples 10000000 \
+    --per_device_train_batch_size 4 --gradient_accumulation_steps 16 \
+    --per_device_eval_batch_size 8 \
+    --output_dir ${SERIALIZATION_DIR} --overwrite_output_dir \
+    --report_to tensorboard \
+    --logging_strategy steps --logging_first_step --logging_dir tb --logging_steps 20 \
+    --eval_steps 250 --evaluation_strategy steps \
+    --save_strategy steps --save_steps 500 --save_total_limit 31
