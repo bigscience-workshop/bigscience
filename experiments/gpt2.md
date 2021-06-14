@@ -478,14 +478,14 @@ perl -le '$ng=64; $ms=52; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * 
 ```
 (ng = total gpus, ms = model size in B, gbs = global batch size, sp = throughput in seconds)
 
-same with bash env vars:
+same with bash env vars and broken down GBS into mbs*dp*gas (gas=pp_chunks):
 ```
 echo "($MSIZE*4*2*1024*$MICRO_BATCH_SIZE*$DP_SIZE*$PP_CHUNKS)/($THROUGHPUT*$NNODES*4*1000)" | bc -l
 ```
 
 - Automatically process slurm/ megatron log files, average the throughput (prints 'fail' on when the training failed w/o producing a single iteration stat):
 ```
-find . -type f -exec perl -lne 'm|elapsed time per iteration .ms.: ([\d\.]+)| &&  do {$x+=$1; $c++}; END { print "$ARGV " . ($c ? int($x/$c/1000) : "fail")}' {} \; | sort | grep -v fail
+find . -type f -name "*out" -exec perl -lne 'm|elapsed time per iteration .ms.: ([\d\.]+)| &&  do {$x+=$1; $c++}; END { print "$ARGV " . ($c ? int($x/$c/1000) : "fail")}' {} \; | sort | grep -v fail
 ```
 
 
@@ -510,4 +510,36 @@ NLAYERS=36
 SEQ_LEN=512
 VOCAB_SIZE=50257
 python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + s*h + 2*h) / 10**9 :.0f}B')"
+```
+
+- misc file renames
+
+
+```
+# rename both .sh and .out based on GAS (PP_CHUNKS) value inside
+# 61B-megatron-mbs-2-pp16-dp-1.sh -> 61B-megatron-mbs-2-pp16-dp-1-gas128.sh
+perl -lne 'm|PP_CHUNKS=(\d+)| && do {$gas=$1; $q = chr(39); $ARGV=~s|\.sh$||; print qq[rename.pl ${q}s|dp-(\\d)|dp-\$1-gas-$gas|$q $ARGV*] }' *sh > run-renames.sh
+sh ./run-renames.sh
+```
+
+- calculate speed + tflops from filename and averaging `elapsed time per iteration` from the log - including failed runs:
+
+```
+find . -type f -name "*out" -exec perl -lne 'm|elapsed time per iteration .ms.: ([\d\.]+)| &&  do {$x+=$1; $c++}; END { $sp=$c ? int($x/$c/1000) : 0; $d=qr/(\d+)/; $ARGV=~m|${d}B-.*?-mbs-$d-pp$d-dp-$d-gas-$d| && do {$ng=64; $ms=$1; $gbs=$2*$4*$5; $tf=$sp ? sprintf "%0.1f", $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3) : 0}; $r = $sp ? "$ARGV $sp $tf" : "$ARGV fail"; print $r}'  {} \; | sort -nk3 -r
+./61B-megatron-mbs-2-pp16-dp-1-gas-512-200977.out 144 55.5
+./55B-megatron-mbs-2-pp16-dp-1-gas-512-200968.out 134 53.8
+./55B-ds-zero0-mbs-2-pp16-dp-1-gas-512-200964.out 141 51.1
+./55B-ds-zero0-mbs-4-pp16-dp-1-gas-256-200965.out 145 49.7
+./55B-megatron-mbs-4-pp16-dp-1-gas-256-200970.out 149 48.4
+./61B-ds-zero0-mbs-4-pp16-dp-1-gas-256-200973.out 166 48.2
+./61B-ds-zero0-mbs-2-pp16-dp-1-gas-512-200972.out 169 47.3
+./61B-megatron-mbs-4-pp16-dp-1-gas-256-200979.out 172 46.5
+./61B-megatron-mbs-4-pp8-dp-2-gas-128-200980.out fail
+./61B-megatron-mbs-2-pp8-dp-2-gas-256-200978.out fail
+./61B-ds-zero1-mbs-4-pp8-dp-2-gas-128-200976.out fail
+./61B-ds-zero1-mbs-2-pp8-dp-2-gas-256-200974.out fail
+./55B-megatron-mbs-4-pp8-dp-2-gas-128-200971.out fail
+./55B-megatron-mbs-2-pp8-dp-2-gas-256-200969.out fail
+./55B-ds-zero1-mbs-4-pp8-dp-2-gas-128-200967.out fail
+./55B-ds-zero1-mbs-2-pp8-dp-2-gas-256-200966.out fail
 ```
