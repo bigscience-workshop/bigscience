@@ -1,6 +1,6 @@
 # bigscience
 
-Research workshop on large language models - The Summer of Language Models 21
+[Research workshop on large language models - The Summer of Language Models 21](https://bigscience.huggingface.co/)
 
 Currently active segments of this repo:
 

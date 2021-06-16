@@ -1,4 +1,4 @@
-# SLURM HOWTO
+# SLURM How To
 
 **Partitions**:
 
@@ -72,11 +72,29 @@ When finished, to release the resources, either exit the shell started in `sallo
 
 This reserved node will be counted towards hours usage the whole time it's allocated, so release as soon as done with it.
 
-## Make allocations for a desired time
+## Make allocations at a scheduled time
 
-Not guaranteed, but can try to start an allocation say from the night before for the next morning:
+To postpone making the allocation for a given time, use:
 ```
 salloc --begin HH:MM MM/DD/YY
+```
+
+It will simply put the job into the queue at the requested time, as if you were to execute this command at this time. If resources are available at that time, the allocation will be given right away. Otherwise it'll be queued up.
+
+## Re-use allocation
+
+e.g. when wanting to run various jobs on identical node allocation.
+
+In one shell:
+```
+salloc --constraint=v100-32g --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=3:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+echo $SLURM_JOBID
+```
+
+In another shell:
+```
+export SLURM_JOBID=<JOB ID FROM ABOVE>
+srun --jobid=$SLURM_JOBID ...
 ```
 
 ## Detailed job info
@@ -105,6 +123,7 @@ alias myjobs='squeue -u `whoami` -o "%.10i %.9P %.20j %.8T %.10M %.6D %.20S %R"'
 ```
 
 ## show my jobs
+
 ```
 squeue -u `whoami`
 ```
@@ -115,7 +134,7 @@ by job id:
 squeue -j JOBID
 ```
 
-# zombies
+## zombies
 
 If there are any zombies left behind across nodes, send one command to kill them all.
 
@@ -124,9 +143,9 @@ srun pkill python
 ```
 
 
-# queue
+## queue
 
-## cancel job
+### cancel job
 
 To cancel a job:
 ```
@@ -143,8 +162,12 @@ To cancel all of your jobs on a specific partition:
 scancel -u <userid> -p <partition>
 ```
 
+### tips
 
-# show the state of nodes
+- if you see that `salloc`'ed interactive job is scheduled to run much later than you need, try to cancel the job and ask for shorter period - often there might be a closer window for a shorter time allocation.
+
+
+## show the state of nodes
 ```
 sinfo -p PARTITION
 ```
