@@ -1050,7 +1050,7 @@ Tue May 25 06:29:21 2021
 |=============================================================================|
 |  No running processes found                                                 |
 +-----------------------------------------------------------------------------+
-+ cd /linkhome/rech/genhug01/ura81os/base/code/transformers-clm-any-model-config/
++ cd /linkhome/rech/genhug01/ura81os/prod/code/transformers-clm-any-model-config/
 + export HF_DATASETS_CACHE=/gpfsscratch/rech/eha/commun/datasets
 + HF_DATASETS_CACHE=/gpfsscratch/rech/eha/commun/datasets
 + export HF_MODULES_CACHE=/gpfsscratch/rech/eha/commun/modules

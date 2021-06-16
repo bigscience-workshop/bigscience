@@ -21,7 +21,7 @@ if   [[ ${MYENV} == stas ]];    then
     SAVE_CHECKPOINT_PATH=$six_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 else
     source $six_ALL_CCFRWORK/start-prod
-    cd ~/base/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
+    cd ~/prod/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
     SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 fi
 

@@ -180,14 +180,6 @@ TODO:
 - put the specially crafted super do-it-all `$six_ALL_CCFRWORK/envs` under git
 
 
-## Shared directories
-
-We use `umask 0007` to get the shared dirs have group `rwx` perms, so that we can all operate on those, but it doesn't always help. When a tarball is extracted it will often retain the original perms on the files, so if those didn't have `w` for the group it'll remain as such. Therefore occasionally and especially after installing a new dataset please run:
-
-```
-find $six_ALL_CCFRWORK -user `whoami` -type d -execdir chmod g+rwx {} \;
-find $six_ALL_CCFRWORK -user `whoami` -type f -execdir chmod g+rw {} \;
-```
 
 # Compute Resources
 

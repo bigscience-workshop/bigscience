@@ -23,13 +23,17 @@ if the DNS round robin doesn't send you to another login node, you can target a 
 
 ## Syncing the perms
 
-While everybody should have `umask 0007` in their `~/.bashrc` for some reason group perms go wrong at times. We need all files to be `g+wrx` (dirs), `g+rw` (files), `six` (group name), so here is how to fix things back to normal:
+We use `umask 0007` in `~/.bashrc` to get the shared dirs have `g+rwx` perms, so that we can all operate on those, but it doesn't always help. When a tarball is extracted it will often retain the original perms on the files, so if those didn't have `w` for the group it'll remain as such. Therefore occasionally and especially after installing a new dataset please run:
+
+We also need `g+s` to automatically create files with the parent's perm (e.g. when `scp`-ing from outside).
+
+For some reason group perms go wrong at times. We need all files to be `g+wrxs` (dirs), `g+rw` (files), `six` (group name), so here is how to fix things back to normal:
 
 ```
-find $six_ALL_CCFRWORK -user `whoami` -type d -execdir chmod g+rwx {} \;
+find $six_ALL_CCFRWORK -user `whoami` -type d -execdir chmod g+rwxs {} \;
 find $six_ALL_CCFRWORK -user `whoami` -type f -execdir chmod g+rw {} \;
 chgrp -R six $six_ALL_CCFRWORK
-find $six_ALL_CCFRSCRATCH -user `whoami` -type d -execdir chmod g+rwx {} \;
+find $six_ALL_CCFRSCRATCH -user `whoami` -type d -execdir chmod g+rwxs {} \;
 find $six_ALL_CCFRSCRATCH -user `whoami` -type f -execdir chmod g+rw {} \;
 chgrp -R six $six_ALL_CCFRSCRATCH
 ```
@@ -45,7 +49,7 @@ source $six_ALL_CCFRWORK/start-prod
 And if you made the symlink from your `$HOME`, interactively it's easier to remember to type:
 
 ```
-source ~/base/start-prod
+source ~/prod/start-prod
 ```
 
 
@@ -121,13 +125,13 @@ srun --pty --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultith
 Quick instructions (detailed listing follow):
 
 ```
-mkdir -p ~/base/tmp
-export TMPDIR=~/base/tmp
+mkdir -p ~/prod/tmp
+export TMPDIR=~/prod/tmp
 
-cd ~/base/code/deepspeed
+cd ~/prod/code/deepspeed
 ./build.sh
 
-cd ~/base/code/apex
+cd ~/prod/code/apex
 ./build.sh
 
 ```
@@ -137,8 +141,8 @@ cd ~/base/code/apex
 To pre-build deepspeed (as compared to have it built via JIT at runtime):
 
 ```
-export TMPDIR=~/base/tmp
-cd ~/base/code/deepspeed
+export TMPDIR=~/prod/tmp
+cd ~/prod/code/deepspeed
 ./build.sh
 ```
 
@@ -158,7 +162,7 @@ To build apex (needed by megatron-lm):
 
 build:
 ```
-cd ~/base/code/apex
+cd ~/prod/code/apex
 ./build.sh
 ```
 

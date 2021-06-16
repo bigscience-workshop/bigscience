@@ -489,13 +489,6 @@ find . -type f -name "*out" -exec perl -lne 'm|elapsed time per iteration .ms.: 
 ```
 
 
-- A formula to match the script name to the log file, by rewriting the `job-name`:
-```
-perl -pi -e '$ARGV=~s|\.sh$||; s|#SBATCH --job-name=.*|#SBATCH --job-name=$ARGV|' *slurm *sh
-```
-now the log file will match the slurm file.
-
-
 - re-generate tflops column in the tables above:
 ```
 perl -ne 's#^(\| +(\d+) +\| +(\d+)B.*? +(\d+) +\| +([\d\.]+)s) +\| +[\d\.]+ +(.*?)$#"$1 | ".sprintf("%.01f", $3*4*2*1024*$4 / ($5*$2*1e3))." $6"#e && print ' gpt2.md
@@ -522,7 +515,18 @@ perl -lne 'm|PP_CHUNKS=(\d+)| && do {$gas=$1; $q = chr(39); $ARGV=~s|\.sh$||; pr
 sh ./run-renames.sh
 ```
 
-- calculate speed + tflops from filename and averaging `elapsed time per iteration` from the log - including failed runs:
+- A formula to match the script name to the log file, by rewriting the `job-name`:
+```
+perl -pi -e '$ARGV=~s|\.sh$||; s|#SBATCH --job-name=.*|#SBATCH --job-name=$ARGV|' *slurm *sh
+```
+now the log file will match the slurm file.
+
+- change runtime:
+```
+perl -pi -e '$ARGV=~s|\.sh$||; s|#SBATCH --time=.*|#SBATCH --time=00:20:00|' *slurm *sh
+```
+
+- calculate speed + tflops from filename and averaging `elapsed time per iteration` from the log - including failed runs (needs the `-gas-` file rename from above)
 
 ```
 find . -type f -name "*out" -exec perl -lne 'm|elapsed time per iteration .ms.: ([\d\.]+)| &&  do {$x+=$1; $c++}; END { $sp=$c ? int($x/$c/1000) : 0; $d=qr/(\d+)/; $ARGV=~m|${d}B-.*?-mbs-$d-pp$d-dp-$d-gas-$d| && do {$ng=64; $ms=$1; $gbs=$2*$4*$5; $tf=$sp ? sprintf "%0.1f", $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3) : 0}; $r = $sp ? "$ARGV $sp $tf" : "$ARGV fail"; print $r}'  {} \; | sort -nk3 -r
@@ -542,4 +546,12 @@ find . -type f -name "*out" -exec perl -lne 'm|elapsed time per iteration .ms.: 
 ./55B-megatron-mbs-2-pp8-dp-2-gas-256-200969.out fail
 ./55B-ds-zero1-mbs-4-pp8-dp-2-gas-128-200967.out fail
 ./55B-ds-zero1-mbs-2-pp8-dp-2-gas-256-200966.out fail
+```
+
+- same as above but with finer control over which files are processed and preserving their run order, e.g. sorted by latest run:
+```
+ls -1t 61*out | xargs -n1 perl -lne 'm|elapsed time per iteration .ms.: ([\d\.]+)| &&  do {$x+=$1; $c++}; END { $sp=$c ? int($x/$c/1000) : 0; $d=qr/(\d+)/; $ARGV=~m|${d}B-.*?-mbs-$d-pp$d-dp-$d-gas-$d| && do {$ng=64; $ms=$1; $gbs=$2*$4*$5; $tf=$sp ? sprintf "%0.1f", $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3) : 0}; $r = $sp ? "$ARGV $sp $tf" : "$ARGV fail"; print $r}'
+61B-ds-zero1-mbs-2-pp16-dp-1-gas-512.18488.out 196 40.8
+61B-megatron-mbs-2-pp16-dp-1-gas-512.8189.out 176 45.4
+61B-ds-zero1-mbs-2-pp16-dp-1-gas-512.17709.out 194 41.2
 ```
