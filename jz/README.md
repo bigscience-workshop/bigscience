@@ -5,10 +5,8 @@ Jean Zay aka JZ pronounced "Jay-Z"
 - HF Internal: https://github.com/huggingface/conf/wiki/JZ
 - Official: http://www.idris.fr/eng/jean-zay/
 - Collaborative doc: https://jean-zay-doc.readthedocs.io/en/latest/
-- Hackathon action plan: [Gdoc](https://docs.google.com/document/d/1HqUhc2CSSsj_cna1jk3apxUIvORNIUWQce9N1dFDpgk/edit#heading=h.sxozo8oh4fsb)
 
-
-# accounts
+# Accounts
 
 - `ajs` - original dynamic access allocations - use it as we still have resources there
 - `six` - the BigScience allocation
@@ -30,8 +28,6 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 # share dirs/files with the group
 umask 0007
 
-# eha@gpu is the hackathon account
-
 export SBATCH_ACCOUNT=six@gpu
 export SLURM_ACCOUNT=six@gpu
 export SALLOC_ACCOUNT=six@gpu
@@ -44,7 +40,7 @@ export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 export DATASETS_CUSTOM=$six_ALL_CCFRWORK/datasets-custom
 
 # shortcut
-export BASE=$six_ALL_CCFRWORK
+export PROD=$six_ALL_CCFRWORK
 
 # handy shortcuts
 alias myjobs="squeue -u `whoami`"
@@ -53,12 +49,12 @@ alias myjobs="squeue -u `whoami`"
 
 Since most of our work is at `$six_ALL_CCFRWORK` you might want to add something like:
 ```
-ln -s $six_ALL_CCFRWORK ~/base
+ln -s $six_ALL_CCFRWORK ~/prod
 ```
-and then you can quickly `cd` there w/o needing to type too much, and with the shortcut `$BASE` env var you now you can do one of 2 ways:
+and then you can quickly `cd` there w/o needing to type too much, and with the shortcut `$PROD` env var you now you can do one of 2 ways:
 ```
-cd ~/base
-cd $BASE
+cd ~/prod
+cd $PROD
 ```
 
 
@@ -94,6 +90,29 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 in your `~/.bashrc`.
 
 You can use it for anything but please don't install anything into it (unless coordinating with others), as we want this to be a reliable environment for all to share.
+
+# Your personal environment
+
+You can use these dirs, which are your private spaces:
+
+- `$WORK`
+- `$SCRATCH`
+- `$STORE`
+
+So you probably want to mimic the production env,
+
+We also agreed to use
+
+```
+ln -s $WORK ~/user
+ln -s $SCRATCH ~/user-scratch
+ln -s $STORE ~/user-store
+```
+and then you can quickly `cd` there w/o needing to type too much:
+```
+cd ~/user
+```
+
 
 # Monitoring
 

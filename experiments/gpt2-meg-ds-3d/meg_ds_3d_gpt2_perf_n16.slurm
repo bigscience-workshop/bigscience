@@ -16,7 +16,7 @@ set -x -e
 MYENV=stas
 
 if   [[ ${MYENV} == stas ]];    then
-    source $six_CCFRWORK/start-stas
+    source $six_CCFRWORK/start-user
     cd ~/stas/code/megatron-jeffra
     SAVE_CHECKPOINT_PATH=$six_CCFRSCRATCH/checkpoints/gpt2-meg-ds
 else
