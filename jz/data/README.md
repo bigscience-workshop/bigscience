@@ -30,7 +30,7 @@ Of course, this will also require fiddling with `HF_DATASETS_CACHE` for the dura
 
 ## Code snippets
 
-To get the full pass expected by the cache checker:
+To get the full path expected by the cache checker:
 ```
 from datasets.load import prepare_module, import_main_class
 dataset_name = "openwebtext"
