@@ -5,8 +5,8 @@
 
 **Accounts:**
 
-- `ajs` - original dynamic access allocations - use it as we still have resources there
-- `six` - the BigScience allocation
+- `six` - the BigScience allocation - our main allocation
+- `ajs` - original dynamic access allocations - use it if you can as we still have resources there - but it will give low priority on scheduling - hence use primarily for jobs that can be bumped down in the queue for a few days.
 
 To switch to `six` as the main project:
 ```

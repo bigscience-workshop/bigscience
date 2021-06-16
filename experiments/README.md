@@ -1,6 +1,13 @@
 # Experiments and Results
 
-(please edit this doc as we gather info)
+
+- [GPT2 Experiments](./gpt2.md) - main working doc with all the experiment results
+
+
+
+
+The following is mostly outdated and should be recycled/updated:
+
 
 Model
 

@@ -6,22 +6,19 @@ This section of the repo is all about how things are done on JZ.
 
 Main documents:
 
-- [Setup](./envs/README.md)
-
 - [Compute Resources](./compute-resources.md)
 - [JZ Specs](./hpc-specs.md)
-
-- [Config files](./configs/)
-- [Datasets info](./data/)
 - [Framework-specific notes](./frameworks/)
 - [Model-specific Instructions](./archs/)
+- [Datasets info](./data/)
 
-
+Code:
+- [Work Env and Setup](./envs/README.md)
+- [SLURM scripts](./scripts/)
+- [Config files](./configs/)
 
 Tools:
-- [Monitoring](./monitoring.md)
-
-- [SLURM scripts](./scripts/)
+- [Monitoring Tools](./monitoring.md)
 - [SLURM HowTo](./slurm/)
 
 General JZ Docs:
