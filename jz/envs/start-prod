@@ -11,7 +11,8 @@ then
    . /etc/profile.d/z_modules.sh
 fi
 module purge
-module load pytorch-gpu/py3/1.8.0 nvtop
+module load pytorch-gpu/py3/1.8.0
+module load nvtop
 
 # git prompt
 export GIT_PROMPT_ONLY_IN_REPO=0;
@@ -21,7 +22,7 @@ source $six_ALL_CCFRWORK/envs/.bash-git-prompt/gitprompt.sh
 # We are using common disk spaces for datasets, caches, and experiment dumps:
 #
 #- Code, cache and datasets -> `$six_ALL_CCFRWORK/cache_dir` and ``$six_ALL_CCFRWORK/datasets`
-#- Experiment dumps -> `$six_ALL_CCFRWORK/EXPERIMENTS`
+#- Experiment dumps -> `$six_ALL_CCFRWORK/experiments`
 
 # SLURM / Account specific settings
 
