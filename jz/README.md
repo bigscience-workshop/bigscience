@@ -10,7 +10,6 @@ Main documents:
 - [JZ Specs](./hpc-specs.md)
 - [Framework-specific notes](./frameworks/)
 - [Model-specific Instructions](./archs/)
-- [Datasets info](./data/)
 
 Code:
 - [Work Env and Setup](./envs/README.md)

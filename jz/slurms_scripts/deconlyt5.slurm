@@ -29,11 +29,11 @@ EVAL_FREQUENCY=1000
 SERIALIZATION_DIR=${eha_ALL_CCFRSCRATCH}/experiments/dec_only_t5-medium
 LOGGING_DIR=${eha_ALL_CCFRSCRATCH}/tensorboard/dec_only_t5-medium
 
-deepspeed ${eha_ALL_CCFRSCRATCH}/code/jay-z/scripts/run_clm.py \
-  --deepspeed ${SCRATCH}/code/jay-z/configs/deepspeed/ds_zero3.json \
+deepspeed ${six_ALL_CCFRWORK/code/bigscience/jz/scripts/run_clm.py \
+  --deepspeed ${SCRATCH}/code/bigscience/jz/configs/deepspeed/ds_zero3.json \
   --model_type decoder_only_t5 \
   --tokenizer_name t5-small \
-  --config_name ${eha_ALL_CCFRSCRATCH}/code/jay-z/configs/dec_only_t5/decoder_only_t5-medium.json \
+  --config_name ${six_ALL_CCFRWORK/code/bigscience/jz/configs/dec_only_t5/decoder_only_t5-medium.json \
   --dataset_name ${DATASET} --block_size 1024 \
   --preprocessing_num_workers 76 \
   --do_train --do_eval \

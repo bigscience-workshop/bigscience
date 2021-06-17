@@ -26,7 +26,7 @@ export TRANSFORMERS_OFFLINE=1
 DATASET=openwebtext
 SERIALIZATION_DIR=${eha_ALL_CCFRSCRATCH}/experiments/dec_only_t5-tiny
 
-python -m torch.distributed.launch --nproc_per_node 4 ${eha_ALL_CCFRSCRATCH}/code/jay-z/scripts/run_clm.py \
+python -m torch.distributed.launch --nproc_per_node 4 ${six_ALL_CCFRWORK/code/bigscience/jz/scripts/run_clm.py \
     --model_name_or_path ${SERIALIZATION_DIR}/checkpoint-${SLURM_ARRAY_TASK_ID} \
     --tokenizer_name t5-small \
     --dataset_name ${DATASET} --block_size 1024 \

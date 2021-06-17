@@ -27,10 +27,10 @@ EVAL_FREQUENCY=100000
 SERIALIZATION_DIR=${eha_ALL_CCFRSCRATCH}/experiments/preprocesslmt5
 LOGGING_DIR=${eha_ALL_CCFRSCRATCH}/tensorboard/preprocesslmt5
 
-python ${eha_ALL_CCFRSCRATCH}/code/jay-z/scripts/run_text2text.py \
+python ${six_ALL_CCFRWORK/code/bigscience/jz/scripts/run_text2text.py \
   --model_type t5 \
   --tokenizer_name t5-small \
-  --config_name ${eha_ALL_CCFRSCRATCH}/code/jay-z/configs/lm_t5/lm_t5-tiny.json \
+  --config_name ${six_ALL_CCFRWORK/code/bigscience/jz/configs/lm_t5/lm_t5-tiny.json \
   --dataset_name ${DATASET} --block_size 512 \
   --preprocessing_num_workers 76 \
   --do_train --do_eval \

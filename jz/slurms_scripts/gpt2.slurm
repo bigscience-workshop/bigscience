@@ -30,8 +30,8 @@ RUN_NAME=${N_LAYER}-${N_EMBD}-${N_INNER}
 SERIALIZATION_DIR=${SCRATCH}/experiments/gpt2_repro/${RUN_NAME}
 LOGGING_DIR=${SCRATCH}/tensorboard/gpt2_repro/${RUN_NAME}
 
-deepspeed ${SCRATCH}/code/jay-z/scripts/run_clm.py \
-  --deepspeed ${SCRATCH}/code/jay-z/configs/deepspeed/ds_zero2.json \
+deepspeed ${SCRATCH}/code/bigscience/jz/scripts/run_clm.py \
+  --deepspeed ${SCRATCH}/code/bigscience/jz/configs/deepspeed/ds_zero2.json \
   --model_type gpt2 \
   --tokenizer_name gpt2 \
   --dataset_name ${DATASET} --block_size 1024 \

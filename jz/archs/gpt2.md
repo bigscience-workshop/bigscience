@@ -9,7 +9,7 @@
 srun --pty --nodes=1 --ntasks=4 --cpus-per-task=10 --gres=gpu:4 --hint=nomultithread --time=60 bash
 ```
 
-For multi-node versions of these scripts please see `$six_ALL_CCFRWORK/code/jay-z/slurm`.
+For multi-node versions of these scripts please see `$six_ALL_CCFRWORK/code/bigscience/jz/slurm`.
 
 
 ## Data
@@ -62,14 +62,14 @@ small
 ```
 mkdir -p $six_ALL_CCFRWORK/datasets-custom/openwebtext-10k
 cd $six_ALL_CCFRWORK/datasets-custom/openwebtext-10k
-$six_ALL_CCFRWORK/code/jay-z/data/openwebtext-to-jsonl.py -10k
+$six_ALL_CCFRWORK/code/bigscience/data/megatron/openwebtext-to-jsonl.py -10k
 ```
 
 full (needs lots or RAM)
 ```
 mkdir -p $six_ALL_CCFRWORK/datasets-custom/openwebtext
 cd $six_ALL_CCFRWORK/datasets-custom/openwebtext
-HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 $six_ALL_CCFRWORK/code/jay-z/data/openwebtext-to-jsonl.py
+HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 $six_ALL_CCFRWORK/code/bigscience/data/megatron/openwebtext-to-jsonl.py
 ```
 
 To prep a 10k-sample for megatron

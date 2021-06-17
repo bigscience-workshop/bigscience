@@ -94,14 +94,14 @@ small
 ```
 mkdir -p $six_ALL_CCFRWORK/datasets-custom/openwebtext-10k
 cd $six_ALL_CCFRWORK/datasets-custom/openwebtext-10k
-$six_ALL_CCFRWORK/code/jay-z/data/openwebtext-to-jsonl.py -10k
+$six_ALL_CCFRWORK/code/bigscience/data/megatron/openwebtext-to-jsonl.py -10k
 ```
 
 full (needs lots or RAM)
 ```
 mkdir -p $six_ALL_CCFRWORK/datasets-custom/openwebtext
 cd $six_ALL_CCFRWORK/datasets-custom/openwebtext
-HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 $six_ALL_CCFRWORK/code/jay-z/data/openwebtext-to-jsonl.py
+HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 $six_ALL_CCFRWORK/code/bigscience/data/megatron/openwebtext-to-jsonl.py
 ```
 
 
