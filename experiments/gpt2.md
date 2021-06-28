@@ -280,6 +280,25 @@ meg 6896.20
 but it's obvious they are pretty similar.
 
 
+**save-checkpoint Measurement**
+
+| Nodes | MSize | Time (ms) |
+| ----: | ----: |  -------: |
+|     8 | 25B   |  17960.68 |
+|       |       |           |
+|    16 | 52B   |  19298.14 |
+|    32 | 52B   |  19228.38 |
+|    64 | 52B   |  19652.80 |
+|       |       |           |
+|    32 | 97B   |  19417.09 |
+|    64 | 97B   |  11525.99 |
+|       |       |           |
+|    64 | 181B  |  19495.31 |
+|       |       |           |
+
+
+
+
 
 
 ### Megatron + Deepspeed 3D (old branch)

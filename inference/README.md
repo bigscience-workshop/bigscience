@@ -10,4 +10,6 @@ Solution: We can do this with ZeRO-Infinity. Seems like @Shaden Smith already ha
 
 Hardware Requirements : Would require about 500-1000 GB of memory (can be CPU, GPU or NVMe). Single Node with enough CPU or NVMe memory should work here.
 
+The single node can be as little as 4x 32GB-V100. It will be just slower than say, 8x 80GB-A100.
+
 Estimated Work: If all works as expected, 1-3 weeks based on bandwidth availability. Tuning for the best performance might another week or so, but that wont be blocking the availability of the functionality.
