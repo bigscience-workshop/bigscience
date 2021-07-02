@@ -297,7 +297,23 @@ but it's obvious they are pretty similar.
 |       |       |           |
 
 
+Currently it saves everything, not just model weights.
 
+The biggest test was for 181B model, 64 nodes, 256 gpus, and a total 2.4TB per checkpoint.
+
+The breakdown is:
+
+1. 0.34TB in PP layer states, 1.4GB per file per gpu (1.4*256) - this one looks like 2bytes per param
+2. 2.00TB in optimizer states,  8.0GB per file per gpu (8*256) - this one looks like 12bytes per param
+
+The data sizes are correspondingly:
+
+1. 2 bytes per param for fp16 weights
+2. 12 bytes are 8 bytes for optimizer and 4 bytes for fp32 model, right?
+
+To make lots of these we should copy away only the fp16 weights, and overwrite the checkpoint - otherwise a lot more HD space will be needed.
+
+Important: also remember that `$six_ALL_CCFRSCRATCH` files that don't get accessed in 30 days get auto-deleted, so the important checkpoints need to be backed up (probably tar'ed and put on `$six_ALL_CCFRSTORE`).
 
 
 
