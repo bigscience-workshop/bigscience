@@ -10,3 +10,8 @@ twine==1.14.0
 
 pytest==4.6.5
 pytest-runner==5.1
+
+dataset>=1.5.0
+datasets>=1.8.0
+SqlAlchemy>=1.4.20
+indexed_gzip>=1.6.1
