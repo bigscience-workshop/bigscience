@@ -470,7 +470,7 @@ class FeaturesWithViews(Features):
     def __repr__(self):
         ret =  "{"+"\n".join([f"'{a[0]}': {a[1]}" for a in self.items() if a[0] not in self.features_map])
         if self.features_map:
-            ret = ret+"\n"+"\n".join(f"'{a[0]}': View({a[1]})" for a in  self.features_map.items()))
+            ret = ret+"\n"+"\n".join(f"'{a[0]}': View({a[1]})" for a in  self.features_map.items())
         ret +="}"
         return ret
 
@@ -598,7 +598,7 @@ class Datastore(Dataset): #, dict
                 continue
             if col in self.features:
                 raise RuntimeError(f"Column {col} already in the dataset")
-            self.features_map[column] = {'type':'sql', 'connection_url': connection_url, 'table_name': table_name, 'column': column]
+            self.features_map[column] = {'type':'sql', 'connection_url': connection_url, 'table_name': table_name, 'column': column}
         return self
     
     def _getitem(
@@ -689,7 +689,7 @@ class Datastore(Dataset): #, dict
 
         def getitems(self, outputs, column, keys, contiguous, start, end, format_columns, output_all_columns, mmap_by_items):
             if column is None:
-                items in self.features_map.items():
+                items in self.features_map.items()
             else:
                 items = (column, self.features_map[column])
             sql_results = {}
@@ -1281,5 +1281,3 @@ class Datastore(Dataset): #, dict
     
 
 
-
-  
