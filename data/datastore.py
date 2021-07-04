@@ -160,7 +160,7 @@ class DatabaseExt(dataset.Database):
 
     def __init__(self, url, flask_app=None, schema=None, reflect_metadata=True,
                  engine_kwargs=None, reflect_views=True,
-                 ensure_schema=True, row_type=row_type):
+                 ensure_schema=True, row_type=dataset.util.row_type):
         """Configure and connect to the database."""
         if url is None:
             url = os.environ.get('DATABASE_URL', 'sqlite://')
