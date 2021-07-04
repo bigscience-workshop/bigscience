@@ -478,7 +478,7 @@ class FeaturesWithViews(Features):
 class Datastore(Dataset): #, dict
     """
     A class that wraps a Huggingface arrow based Dataset to provide some optimized reading and *writing* in various persistance backends. 
-    Currently provides support for columns bound to dask memmap, txt file, and sqlalchemy, faiss, elastic search, minhash and apache beam.
+    Currently provides support for columns bound to memmap, igzip file, and sqlalchemy databases.
     """
     @property 
     def features(self):
