@@ -45,7 +45,7 @@ And ideally we want this:
 ```
 from datasets import load_dataset_builder
 dataset_name = "openwebtext"
-builder = load_dataset_builder(dataset_name)
-print(builder.cache_dir)
+dataset_builder = load_dataset_builder(dataset_name)
+print(dataset_builder.cache_dir)
 ```
-but it's not there yet.
+this feature was added in https://github.com/huggingface/datasets/pull/2500

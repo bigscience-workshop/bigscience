@@ -18,10 +18,7 @@ Check which projects one belongs to: `idrproj`
 
 **Users:**
 
-- ugo23cf - François
-- uhk85as - Teven
-- ura81os - Stas
-- uul91hs - Victor
+Use `idracct six` to see which username belongs to which real person.
 
 
 ## First time setup

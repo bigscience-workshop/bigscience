@@ -32,21 +32,73 @@ srun --pty --partition=prepost --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gp
 
 ## Quotas
 
+Group/project (`six`):
+
+- `$six_ALL_CCFRSCRATCH` - no quota fastest (full SSD),  →  files removed after 30 days without access
+- `$six_ALL_CCFRWORK` - 5TB / 500k inodes (slower than SCRATCH) → sources, constantly used input/output files
+- `$six_ALL_CCFRSTORE` - 50TB / 100k inodes (slow) → for long term storage in tar files (very few inodes!)
+
+Personal:
+
+- `$HOME` - 3GB / 150k inodes (for small files)
+- `$SCRATCH` - fastest (full SSD), no quota, files removed after 30 days without access
+- `$WORK` - Shared with the `$six_ALL_CCFRWORK` quota, that is `du -sh $six_ALL_CCFRWORK/..`
+- `$STORE` - Shared with the  `$six_ALL_CCFRSTORE` quota, that is `du -sh $six_ALL_CCFRSTORE/..`
+
+Note that WORK and STORE group quotas of the project include all project's users' WORK and STORE usage correspondingly.
+
+Checking usage:
 ```
 idrquota -m # $HOME @ user
-idrquota -s # $STORE @ user
-idrquota -w # $WORK @ user
-idrquota -s -p six # $STORE @ shared
+idrquota -s -p six # $STORE @ shared (this is updated every 30min)
 idrquota -w -p six # $WORK @ shared
 ```
+
+
 if you prefer it the easy way here is an alias to add to `~/.bashrc`:
 ```
-alias dfi="echo Personal:; idrquota -m; idrquota -s; idrquota -w; echo; echo \"Shared (six):\"; idrquota -w -p six; idrquota -s -p six"
+alias dfi=" \
+echo \"*** Total (six) ***\"; \
+idrquota -w -p six; \
+idrquota -s -p six; \
+echo; \
+echo \"*** Personal ***\"; \
+idrquota -m; \
+echo WORK: `du -hs $WORK | cut -f1`; \
+echo WORK: `du -hs --inodes $WORK| cut -f1` inodes; \
+echo STORE: `du -hs $STORE | cut -f1`; \
+echo STORE: `du -hs --inodes $STORE| cut -f1` inodes; \
+echo SCRATCH: `du -hs $SCRATCH | cut -f1`; \
+echo SCRATCH: `du -hs --inodes $SCRATCH| cut -f1` inodes; \
+"
 ```
+This includes the report on usage of personal WORK and SCRATCH partitions.
+
+
+
+## Diagnosing the Lack of Disc Space
+
+To help diagnose the situations when we are short of disc space here are some tools:
+
+Useful commands:
+
+* Get current dir's sub-dir usage breakdown sorted by highest usage first:
+```
+du -ahd1 | sort -rh
+```
+
+* Check that users don't consume too much of their personal `$WORK` space, which goes towards the total WORK space limit.
+
+```
+du -ahd1 $six_ALL_CCFRWORK/.. | sort -rh
+```
+
+
+
 
 ## Directories
 
-- `$six_ALL_CCFRSCRATCH` - for checkpoints
+- `$six_ALL_CCFRSCRATCH` - for checkpoints - make sure to copy important ones to WORK or tarball to STORE
 - `$six_ALL_CCFRWORK` - for everything else
 - `$six_ALL_CCFRSTORE` - for long term storage in tar files (very few inodes!)
 
@@ -62,10 +114,3 @@ More specifically:
 - `$six_ALL_CCFRWORK/envs` - custom scripts to create easy to use environments
 - `$six_ALL_CCFRWORK/models-custom` - manually created or converted models
 - `$six_ALL_CCFRWORK/modules` -  (normally under `~/.cache/huggingface/modules`)
-
-Personal:
-
-- `$HOME` - 3GB for small files
-- `$WORK` - 5TB / 500k inodes → sources, input/output files
-- `$SCRATCH` - fastest (full SSD), no quota, files removed after 30 days without access
-- `$STORE` - for long term storage in tar files (very few inodes!)
