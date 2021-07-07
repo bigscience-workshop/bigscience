@@ -47,6 +47,8 @@ Personal:
 
 Note that WORK and STORE group quotas of the project include all project's users' WORK and STORE usage correspondingly.
 
+[Detailed information](http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-calculateurs-disques-eng.html)
+
 Checking usage:
 ```
 idrquota -m # $HOME @ user
@@ -76,26 +78,6 @@ This includes the report on usage of personal WORK and SCRATCH partitions.
 
 
 
-## Diagnosing the Lack of Disc Space
-
-To help diagnose the situations when we are short of disc space here are some tools:
-
-Useful commands:
-
-* Get current dir's sub-dir usage breakdown sorted by highest usage first:
-```
-du -ahd1 | sort -rh
-```
-
-* Check that users don't consume too much of their personal `$WORK` space, which goes towards the total WORK space limit.
-
-```
-du -ahd1 $six_ALL_CCFRWORK/.. | sort -rh
-```
-
-
-
-
 ## Directories
 
 - `$six_ALL_CCFRSCRATCH` - for checkpoints - make sure to copy important ones to WORK or tarball to STORE
@@ -114,3 +96,48 @@ More specifically:
 - `$six_ALL_CCFRWORK/envs` - custom scripts to create easy to use environments
 - `$six_ALL_CCFRWORK/models-custom` - manually created or converted models
 - `$six_ALL_CCFRWORK/modules` -  (normally under `~/.cache/huggingface/modules`)
+
+
+
+## Diagnosing the Lack of Disc Space
+
+To help diagnose the situations when we are short of disc space here are some tools:
+
+Useful commands:
+
+* Get current dir's sub-dir usage breakdown sorted by highest usage first:
+```
+du -ahd1 | sort -rh
+```
+
+* Check that users don't consume too much of their personal `$WORK` space, which goes towards the total WORK space limit.
+
+```
+du -ahd1 $six_ALL_CCFRWORK/.. | sort -rh
+```
+
+
+## Efficient tar-balling to STORE
+
+When short on space you don't want to create large tarballs in the WORK dir, instead tar directly to the destination, e.g.
+
+e.g. w/o gzip since we already have arrow binary files
+
+```
+mkdir -p $six_ALL_CCFRSTORE/datasets
+cd $six_ALL_CCFRWORK/datasets
+tar -cvf $six_ALL_CCFRSTORE/datasets/openwebtext.tar openwebtext
+```
+
+
+e.g. w/ gzip for non-binary data
+```
+tar -czvf $six_ALL_CCFRSTORE/datasets/openwebtext.tar openwebtext
+```
+
+If the file is large and takes some resources to build, `tar` will get killed, in such case you can't do it from the login instance and have to use one of the beefier instances. e.g.:
+```
+srun --pty --nodes=1 --ntasks=1 --cpus-per-task=32 --gres=gpu:0 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+tar ...
+```
+and if that's not enough do a slurm job
