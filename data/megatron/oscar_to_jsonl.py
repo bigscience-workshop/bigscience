@@ -14,7 +14,7 @@ from datasets import concatenate_datasets, load_dataset, ReadInstruction
 from transformers import GPT2TokenizerFast
 
 DATASET_NAME = "oscar"
-CONTEXT_SIZE = 2048
+CONTEXT_SIZE = 1024
 
 logging.getLogger("transformers.tokenization_utils_base").setLevel(logging.ERROR)
 
@@ -40,13 +40,13 @@ tokenizer = GPT2TokenizerFast.from_pretrained("gpt2")
 split = ReadInstruction("train", to=0.1 if args.subset else 100, unit="%")
 
 language_subsets = (
-    "unshuffled_deduplicated_ar",
-    "unshuffled_deduplicated_sw",
+    # "unshuffled_deduplicated_ar",
+    # "unshuffled_deduplicated_sw",
     # "unshuffled_deduplicated_zh",
-    # "unshuffled_deduplicated_en",
-    "unshuffled_deduplicated_fr",
-    "unshuffled_deduplicated_pt",
-    "unshuffled_deduplicated_es",
+    "unshuffled_deduplicated_en",
+    # "unshuffled_deduplicated_fr",
+    # "unshuffled_deduplicated_pt",
+    # "unshuffled_deduplicated_es",
 )
 
 datasets = []
