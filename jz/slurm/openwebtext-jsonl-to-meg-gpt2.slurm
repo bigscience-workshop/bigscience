@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=jsonl-to-meg-gpt2 # job name
+#SBATCH --job-name=openwebtext-jsonl-to-meg-gpt2 # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:0                 # number of gpus

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=openwebtext-jsonl-to-meg-t5   # job name
+#SBATCH --job-name=oscar-jsonl-to-meg-gpt2 # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:0                 # number of gpus
@@ -16,10 +16,13 @@ source $six_ALL_CCFRWORK/start-prod
 
 cd $six_ALL_CCFRWORK/code/megatron-lm
 python tools/preprocess_data.py \
-       --input $six_ALL_CCFRWORK/datasets-custom/openwebtext/openwebtext.jsonl \
-       --output-prefix $six_ALL_CCFRWORK/datasets-custom/openwebtext/meg-t5 \
-       --vocab $six_ALL_CCFRWORK/datasets-custom/vocabs/bert-large-uncased-vocab.txt \
+       --input $six_ALL_CCFRSCRATCH/datasets/oscar-small/oscar-small.jsonl \
+       --output-prefix $six_ALL_CCFRSCRATCH/datasets/oscar-small/meg-gpt2 \
+       --vocab data/gpt2-vocab.json \
        --dataset-impl mmap \
-       --tokenizer-type BertWordPieceLowerCase \
-       --split-sentences \
+       --tokenizer-type GPT2BPETokenizer \
+       --merge-file data/gpt2-merges.txt \
+       --append-eod \
        --workers 8
+
+echo "now copy the results to $six_ALL_CCFRWORK/datasets-custom/oscar/ from $six_ALL_CCFRSCRATCH/datasets/oscar-small/meg-gpt2"
