@@ -7,7 +7,7 @@
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=std-%j.out          # output file name
-#SBATCH --error=std-%j.out           # error file name (same to watch just one file)
+#SBATCH --error=%x-%j.out           # error file name (same to watch just one file)
 #SBATCH --account=six@gpu
 
 set -x -e
