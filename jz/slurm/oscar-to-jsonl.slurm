@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --job-name=oscar-to-jsonl    # job name
+#SBATCH --ntasks=1                   # number of MP tasks
+#SBATCH --nodes=1
+#SBATCH --gres=gpu:0                 # number of gpus
+#SBATCH --hint=nomultithread         # we get physical cores not logical
+#SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --output=std-%j.out          # output file name
+#SBATCH --error=std-%j.out           # error file name (same to watch just one file)
+#SBATCH --account=six@cpu
+
+set -x -e
+
+source $six_ALL_CCFRWORK/start-prod
+
+# must have already downloaded the data
+export HF_DATASETS_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+
+cd $six_ALL_CCFRWORK/datasets-custom/oscar-small
+$six_ALL_CCFRWORK/code/bigscience/data/megatron/oscar_to_jsonl.py -s
+
