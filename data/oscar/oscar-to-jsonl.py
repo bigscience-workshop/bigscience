@@ -5,11 +5,11 @@
 # see various notes in the scripts for different options
 #
 # full dataset:
-# ./oscar_to_jsonl.py
+# ./oscar-to-jsonl.py
 # cat oscar-[0-4].jsonl > oscar.jsonl
 #
 # small dataset (0.1%):
-# ./oscar_to_jsonl.py -s
+# ./oscar-to-jsonl.py -s
 # cat oscar-[0-4].jsonl > oscar.jsonl
 
 import logging
