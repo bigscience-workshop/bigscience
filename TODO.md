@@ -17,3 +17,16 @@ Contributors that have no access to JZ will want to have intermediary checkpoint
 The current DS PP format saves each layer's state dict in its own file, and they're named differently than the optimizer states. Could be as simple as pattern matching the scp. The pipeline engine selectively loads the files based on pipeline rank, so no need to merge them.
 
 But users outside of JZ will very likely have a different HW setup, so these will need to be re-shaped to match a new PP-degree.
+
+## Overcoming lack of crontab for exporting data outside of JZ
+
+Try out this suggestion:
+
+Use the "compil" partition as a cron-like partition. There are usually some resources available on this partition.
+
+The idea would be submit a job that resubmit itself while the job performing the actual computation runs:
+
+```
+  # Resubmit the cron-like job if the compute job is still running
+  squeue -j $COMPUTE_JOB_ID >& /dev/null && sbatch --begin=now+3hours cron_job.slurm
+```
