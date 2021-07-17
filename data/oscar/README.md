@@ -1,6 +1,31 @@
 # OSCAR
 
-## Pre-processing
+
+## Megatron pre-processed files
+
+These are the megatron-ready OSCAR files
+
+- Full 70754K version (393GB) : `$six_ALL_CCFRWORK/datasets-custom/oscar-en`
+- Tiny 10K version (56M): `$six_ALL_CCFRWORK/datasets-custom/oscar-en-10k`
+
+Each folder contains: `meg-gpt2_text_document.bin` and `meg-gpt2_text_document.idx` and Megatron-LM training script expects the following argument:
+```
+--data-path $six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
+```
+
+Should something get corrupted there is a backup:
+
+- Full 70754K version (393GB) : `$six_ALL_CCFRSTORE/datasets-custom/oscar-en`
+- Tiny 10K version (56M): `$six_ALL_CCFRSTORE/datasets-custom/oscar-en-10k`
+
+
+
+
+## How pre-processing was done
+
+In general the process is to first generate jsonl version of the dataset, while filtering out entries smaller than 1K, and then run that jsonl data through Megatron-LM preprocessing tool.
+
+The rest of this document is the step by step process of accomplishing that in an efficient way.
 
 1. Convert `datasets` to `jsonl` which is the format required by Megatron-LM
 
@@ -14,7 +39,7 @@ With "unshuffled_deduplicated_en" after filtering large entries (`>=1024`) we en
 
 The result is 5 files `oscar-[0-4].jsonl` of about 180GB each.
 
-Runtime: ??h to download, ~2h to build, ~8h to filter, ~1.5h to write shards out
+Runtime: 2-3h to download, ~2h to build, ~8h to filter, ~1.5h to write shards out
 
 
 2. Concatenate
@@ -60,13 +85,57 @@ Finally we do the pre-processing:
 
 To launch: [oscar-jsonl-to-meg-gpt2.slurm](./oscar-jsonl-to-meg-gpt2.slurm).
 
-Runtime: about 12h
+Outcome:
+
+```
+ls -sh *
+392G meg-gpt2_text_document.bin
+1.4G meg-gpt2_text_document.idx
+```
+
+
+Runtime: about 13h
+
+Let's make a small 10k version for experiments:
+
+```
+head -10000 oscar-shuffled.jsonl > oscar-shuffled-10k.jsonl
+```
+and then process with the same slurm script above, but changing the input to `oscar-shuffled-10k.jsonl`
+
+
 
 5. Final destination
 
 We did all the processing on the SCRATCH partition which gets wiped out every 30 days, so we need to move the files to where they will not be deleted.
 
-Final result:
+Since at this moment we used just the English part of the OSCAR dataset, let's include that in the folder name to differentiate from other builds that will be multi-lingual.
+
+Make the final result which will be used by the megatron training script available on the persistent WORK partition:
+
+```
+mkdir oscar-en
+mv meg-gpt2_text_document.* oscar-en
+cp -r oscar-en $six_ALL_CCFRWORK/datasets-custom
+```
+
+Back it up to STORE:
+
+It's already binary and just 2 files, so no need to tar (STORE has limited inodes)
+```
+mkdir -p $six_ALL_CCFRSTORE/datasets-custom
+cp -r oscar-en $six_ALL_CCFRSTORE/datasets-custom
+```
+
+Also copy the small version for experiments to WORK and STORE:
+```
+cp -r oscar-en-10k $six_ALL_CCFRWORK/datasets-custom
+cp -r oscar-en-10k $six_ALL_CCFRSTORE/datasets-custom
+```
+
+Tar/gz `oscar-shuffled.jsonl` and the dataset files to STORE:
+
+```
 
 
-Tar `oscar-shuffled.jsonl` and the dataset files to STORE:
+```
