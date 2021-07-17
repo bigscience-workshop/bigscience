@@ -14,10 +14,10 @@ set -x -e
 
 source $six_ALL_CCFRWORK/start-prod
 
-# must have already downloaded the data
+# must have already downloaded the data in a networked instance
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
+# use SCRATCH for building as it's much faster
 cd $six_ALL_CCFRSCRATCH/datasets/oscar-small
-#export PYTHONPATH=$six_ALL_CCFRWORK/code/datasets-optimize-filter/src
-$six_ALL_CCFRWORK/code/bigscience/data/megatron/oscar-to-jsonl.py
+$six_ALL_CCFRWORK/code/bigscience/data/oscar/oscar-to-jsonl.py
