@@ -14,7 +14,10 @@ set -x -e
 
 source $six_ALL_CCFRWORK/start-prod
 
-# must have already downloaded the data in a networked instance
+# 1. first run this script directly by bash (not sbatch) after commenting out the offline exports on
+# a login instance as there is little processing needed, once the data is downloaded kill the script
+
+# 2. after the download was done, then run this is a slurm with the exports enabled
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
