@@ -18,7 +18,7 @@ input=$six_ALL_CCFRSCRATCH/datasets/oscar-small/oscar-shuffled.jsonl
 output=$six_ALL_CCFRSCRATCH/datasets/oscar-small/meg-gpt2
 
 cd $six_ALL_CCFRWORK/code/megatron-lm
-python tools/preprocess_data.py \
+/usr/bin/time -v python tools/preprocess_data.py \
        --input $input \
        --output-prefix $output \
        --vocab data/gpt2-vocab.json \
@@ -26,6 +26,6 @@ python tools/preprocess_data.py \
        --dataset-impl mmap \
        --tokenizer-type GPT2BPETokenizer \
        --append-eod \
-       --workers 8
+       --workers 16
 
 #echo "now copy the results to $six_ALL_CCFRWORK/datasets-custom/oscar/ from $six_ALL_CCFRSCRATCH/datasets/oscar-small/meg-gpt2"
