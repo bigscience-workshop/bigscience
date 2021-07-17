@@ -20,4 +20,4 @@ export TRANSFORMERS_OFFLINE=1
 
 # use SCRATCH for building as it's much faster
 cd $six_ALL_CCFRSCRATCH/datasets/oscar-small
-$six_ALL_CCFRWORK/code/bigscience/data/megatron/oscar_to_jsonl.py -s
+$six_ALL_CCFRWORK/code/bigscience/data/oscar/oscar-to-jsonl.py

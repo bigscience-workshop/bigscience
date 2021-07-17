@@ -3,7 +3,7 @@
 
 ## Megatron pre-processed files
 
-These are the megatron-ready OSCAR files
+These are the megatron-ready OSCAR files:
 
 - Full 70754K version (393GB) : `$six_ALL_CCFRWORK/datasets-custom/oscar-en`
 - Tiny 10K version (56M): `$six_ALL_CCFRWORK/datasets-custom/oscar-en-10k`
