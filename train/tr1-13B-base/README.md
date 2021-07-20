@@ -21,11 +21,15 @@ GPT_ARGS=" \
     "
 ```
 
-## task
+
+
+## Task
 
 regular transformer language model with prefix-LM objective
 
-## global batch size
+
+
+## Global batch size
 
 use a schedule
 
@@ -42,13 +46,18 @@ XXX: sort this out
 ```
 
 
-## optimizer: AdamW,  β1=0.9, β2=0.95 eps=1e−8
+## Optimizer
 
-- learning rate: peak=1e-4, warmup over 2000 steps, 
+- AdamW,  β1=0.9, β2=0.95 eps=1e−8
+- learning rate: peak=1e-4, warmup over 2000 steps
 - clipping by global norm of 1 (as in GPT-3)
 - weight decay of 0.1
 
 ```
+    --optimizer adam \
+    --adam-beta1 0.9 \
+    --adam-beta2 0.95 \
+    --adam-eps 1e-8 \
     --lr 1e-4 \
     --lr_warmup_iters 2000
     --clip-grad 1.0 \
@@ -57,7 +66,7 @@ XXX: sort this out
 ```
 
 
-## sequence length
+## Sequence Length
 
 prompt 512 tokens + autoregressive part 512 tokens
 
@@ -68,7 +77,9 @@ XXX: sort this out
 - pre-padding: sample minibatches, where prompt is (partially or fully) empty - align prompts to the right, use special padding to pad from the left
 - no post-padding: always fill the entire 1024 tokens with text, - if a document is too short, join multiple documents over EOS token (same as in GPT3)
 
-## dataset:
+
+
+## Dataset
 
 - by default, use OSCAR:
    - use version with full documents (*not* individual sentences) 
@@ -77,7 +88,9 @@ XXX: sort this out
 - tokenization / subword:
    -@mryab will ask the tokenization WG for best practices
 
-## extras
+
+
+## Extras
 
 - need to save intermediate checkpoints (prioritizing early steps) for experiments on training dynamics (@Hendrik Strobelt)
 
