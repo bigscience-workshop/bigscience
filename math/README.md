@@ -19,3 +19,5 @@ python -c 'print(300*1e9*8*13*1e9/(256*45*1e12*60*60*24))'
 Notes:
 
 - the factor of 8 can be broken into `(2 x (1+2+1))` where the factor of 2 is for multiple+add, the two ones are for forward propagation and recomputation in the backward and the 2 is for the backward propagation.
+
+contributed by Samyam Rajbhandari
