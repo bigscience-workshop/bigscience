@@ -10,7 +10,7 @@
 #SBATCH --gres=gpu:4
 #SBATCH --time 00:30:00
 #SBATCH --output=%x_%j.out
-#SBATCH --output=std-%j.out
+#SBATCH --output=%x-%j.out
 #SBATCH --account=six@gpu
 
 set -x -e
