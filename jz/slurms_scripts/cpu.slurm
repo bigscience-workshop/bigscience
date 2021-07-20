@@ -4,8 +4,8 @@
 #SBATCH --cpus-per-task=32           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=std-%j.out          # output file name
-#SBATCH --error=std-%j.err           # error file name
+#SBATCH --output=%x-%j.out          # output file name
+#SBATCH --error=%x-%j.err           # error file name
 #SBATCH --account=ajs@cpu
 #SBATCH --mail-type=ALL
 

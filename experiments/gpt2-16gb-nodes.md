@@ -1456,8 +1456,8 @@ Stats:
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=std-%j.out          # output file name
-#SBATCH --error=std-%j.out           # error file name (same to watch just one file)
+#SBATCH --output=%x-%j.out          # output file name
+#SBATCH --error=%x-%j.out           # error file name (same to watch just one file)
 #SBATCH --account=six@gpu
 
 # use custom PR branch to handle the model creation on the fly
