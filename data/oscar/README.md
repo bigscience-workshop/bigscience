@@ -27,6 +27,8 @@ In general the process is to first generate jsonl version of the dataset, while 
 
 The rest of this document is the step by step process of accomplishing that in an efficient way.
 
+**Update: Now that we better understand Megatron-LM's dataloader we know that it contacts all docs on the fly and delivers seqlen at a time as a single sample ([reference](https://github.com/NVIDIA/Megatron-LM/blob/90e0a0dd08159e1c95f4f9d99bb8687f327d36c3/megatron/data/gpt_dataset.py#L169-L185). So we don't need to filter out docs that are shorter than seqlen. Therefore in the future runs. We should adjust `oscar-to-jsonl.py` to remove the filtering.**
+
 1. Convert `datasets` to `jsonl` which is the format required by Megatron-LM
 
 The main script is [oscar-to-jsonl.py](./oscar-to-jsonl.py). Edit to change languages to use, initially using just English.

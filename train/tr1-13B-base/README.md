@@ -92,7 +92,7 @@ XXX: can we use scientific notation in args?
 This means it will start with global batch size 32 and over 63 (`(2048-32)/32`) intervals will increase the
 batch size by 32 linearly to 2048. Each interval is ~160 steps (`10000/63`).
 
-Ramp-Up samples is calculated to be ~10M. First 160 steps at bs=32, next 160 steps at `bs=64=2*32`, next 160 steps at `bs=192=3*32`, ..., finally last 160 steps at  `bs=2016=63*32` summed up gives 10,321,920 from `32*160*(1+2+3+4+...+63)` or `5120*63*(1+63)/2`.
+Ramp-Up samples is calculated to be ~10M. First 160 steps at bs=32, next 160 steps at `bs=64=2*32`, next 160 steps at `bs=192=3*32`, ..., finally last 160 steps at `bs=2016=63*32`, all summed up gives 10,321,920 from `32*160*(1+2+3+4+...+63)` or `5120*63*(1+63)/2`.
 
 
 ## Checkpoints
