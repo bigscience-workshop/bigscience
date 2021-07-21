@@ -280,7 +280,7 @@ meg 6896.20
 but it's obvious they are pretty similar.
 
 
-**save-checkpoint Measurement**
+**save-checkpoint speed Measurement**
 
 | Nodes | MSize | Time (ms) |
 | ----: | ----: |  -------: |

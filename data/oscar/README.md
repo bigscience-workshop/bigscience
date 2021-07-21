@@ -47,15 +47,15 @@ Runtime: 2-3h to download, ~2h to build, ~8h to filter, ~1.5h to write shards ou
 2. Concatenate
 
 ```
-cat oscar-[0-4].jsonl > oscar.jsonl
+cat oscar-[0-4].jsonl > oscar-en.jsonl
 ```
 
 This gives us a 900GB file.
 
 Check:
 ```
-$ wc -l oscar.jsonl
-70754078 oscar.jsonl
+$ wc -l oscar-en.jsonl
+70754078 oscar-en.jsonl
 ```
 
 Runtime: a few minutes
@@ -141,3 +141,27 @@ Tar/gz `oscar-shuffled.jsonl` and the dataset files to STORE:
 
 
 ```
+
+6. Estimate total number of tokens
+
+Make a 1GB slice:
+```
+$ head -77150 oscar-en-shuffled.jsonl > oscar-1GB.jsonl
+$ ls -sh oscar-1GB.jsonl
+1000M oscar-1GB.jsonl
+```
+
+Analyze it (low mem-footprint):
+```
+$ python -c "import json, sys; \
+from transformers import GPT2TokenizerFast; \
+tokenizer = GPT2TokenizerFast.from_pretrained('gpt2'); \
+print(sum(tokenizer(json.loads(l)['text'], return_length=True).length[0] for l in sys.stdin.readlines()))" < oscar-1GB.jsonl
+228311771
+```
+
+Extrapolate:
+
+Thus 228.3M tokens in 1GB, ~205.5B tokens in 900GB (`228.3*900`)
+
+Incidentally this coincides with @Yozh's `900/4.5` formula! (average 4.5chars per word)

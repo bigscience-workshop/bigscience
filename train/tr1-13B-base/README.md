@@ -28,6 +28,11 @@ GPT_ARGS=" \
     "
 ```
 
+Sanity check:
+```
+$ VOCAB_SIZE=50257 NLAYERS=40 NHIDDEN=5120 NHEADS=32 SEQ_LEN=1024; python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"
+Model size: 13B
+```
 
 
 ## Optimizer
@@ -111,22 +116,17 @@ Because there are 3 different schedules, and Megatron-LM has only fixed checkpoi
 
 note: the interoperability study doesn't care for checkpoints in the range of 1k-20k, so we only save those to be able to restart the training.
 
-1.
-```
-    --train-iter 100 \
-    --save-interval 10 \
-```
+Three rounds
 
-2.
 ```
-    --train-iter 1000 \
-    --save-interval 18 \
-```
+if   [[ ${ROUND} == 1 ]]; then TRAIN_ITER=100    SAVE_INTERVAL=10
+elif [[ ${ROUND} == 2 ]]; then TRAIN_ITER=1000   SAVE_INTERVAL=18
+elif [[ ${ROUND} == 3 ]]; then TRAIN_ITER=300000 SAVE_INTERVAL=1500
+else echo "invalid ROUND: $ROUND"
+fi
 
-3.
-```
-    --train-iter 300000 \
-    --save-interval 1500 \
+    --train-iter $TRAIN_ITER \
+    --save-interval $SAVE_INTERVAL  \
 ```
 
 XXX: I assume that each run get a different input at the beginning - i.e. dataloader doesn't have a fixed seed?
@@ -153,6 +153,10 @@ XXX: need to figure out how we emulate crontab on JZ via self-respawning slurm j
 
 
 ## Dataset
+
+
+- Full 304.2M version (XXXGB) : `$six_ALL_CCFRWORK/datasets-custom/oscar-en`
+- Tiny 10K version (56M): `$six_ALL_CCFRWORK/datasets-custom/oscar-en-10k`
 
 We are using english-only OSCAR with full documents (*not* individual sentences).
 
@@ -189,6 +193,12 @@ Of course, the training will be much slower in the first 10k steps because of th
 
 - GCS https://console.cloud.google.com/storage/browser/bigscience
 - The Hub https://huggingface.co/bigscience
+
+
+## Training scripts
+
+[tr1-13B-round1.slurm](./tr1-13B-round1.slurm)
+
 
 
 ## Extras

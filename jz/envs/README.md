@@ -266,6 +266,7 @@ cd ~/prod/code/apex
 To pre-build deepspeed (as compared to have it built via JIT at runtime):
 
 ```
+mkdir -p ~/prod/tmp
 export TMPDIR=~/prod/tmp
 cd ~/prod/code/deepspeed
 ./build.sh
