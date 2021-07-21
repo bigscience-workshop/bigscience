@@ -89,7 +89,7 @@ XXX: can we use scientific notation in args?
 
 
 This means it will start with global batch size 32 and over 63 (`(2048-32)/32`) intervals will increase the
-batch size by 32 linearly to 2048. Each interval is 160 steps (`10000/63`)
+batch size by 32 linearly to 2048. Each interval is ~160 steps (`10000/63`).
 
 
 ## Checkpoints
@@ -102,7 +102,7 @@ We need the checkpoints:
 Because there are 3 different schedules, and Megatron-LM has only fixed checkpoint saving schedule, we will need 3 different run scripts, to be launched in a sequence, each starting once the previous has finished.
 
 1. steps 1-100 - 10 checkpoints, interval 10 steps
-1. steps 101-1000 - 50 checkpoints, interval 18 steps
+2. steps 101-1000 - 50 checkpoints, interval 18 steps
 3. steps 1001-300K - 100+ checkpoints, interval 1500 steps
 4. if still needed, can continue with schedule 3
 
