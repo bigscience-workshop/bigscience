@@ -3,7 +3,7 @@
 
 ## Task
 
-regular transformer language model with prefix-LM objective
+Auto-regressive objective using regular Megatron-LM GPT2 language model
 
 
 
@@ -182,6 +182,13 @@ print(f"{Btokens*1e9*8*Bmodel*1e9/(n_gpus*Tflops*1e12*60*60*24):0.2f} days")'
 You will find the detailed explanation of the estimation formula [here](../../math/README.md#estimate-model-training-time).
 
 Of course, the training will be much slower in the first 10k steps because of the batch size rampup, where the pipeline will be very inefficient.
+
+
+
+## Exports
+
+- GCS https://console.cloud.google.com/storage/browser/bigscience
+- The Hub https://huggingface.co/bigscience
 
 
 ## Extras

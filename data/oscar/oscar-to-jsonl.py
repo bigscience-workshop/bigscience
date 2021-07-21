@@ -76,23 +76,30 @@ for language_subset in language_subsets:
     dataset = load_dataset(DATASET_NAME, language_subset, split=split, keep_in_memory=False, cache_dir='cache')
     datasets.append(dataset)
 
-### Filter large records
-
-# Once this part of the process completes it gets cached, so on subsequent runs it'll be much faster
-
 concat_dataset = concatenate_datasets(datasets)
-print(f"Filtering {len(concat_dataset)} examples")
 
-# version 1 using map:
-# takes about 8-10h
-filtered_dataset = concat_dataset.map(filter_short_documents, batched=True, batch_size=256, num_proc=cpu_count())
+# Realized we don't need to filter short records out as Megatron-LM concats all the data together anyway
+# ### Filter large records
+#
+# # Once this part of the process completes it gets cached, so on subsequent runs it'll be much faster
+#
 
-# version 2 using the experimental 'optimize-filter' branch of datasets
-# this should be faster as it manipulates the indices - less disc space used as well
-# didn't run fully, but based on ETAs didn't suggest to finish any faster than version 1
-#filtered_dataset = concat_dataset.filter(is_big, load_from_cache_file=True, batched=True, num_proc=cpu_count())
+# print(f"Filtering {len(concat_dataset)} examples")
+#
+# # version 1 using map:
+# # takes about 8-10h
+# filtered_dataset = concat_dataset.map(filter_short_documents, batched=True, batch_size=256, num_proc=cpu_count())
+#
+# # version 2 using the experimental 'optimize-filter' branch of datasets
+# # this should be faster as it manipulates the indices - less disc space used as well
+# # didn't run fully, but based on ETAs didn't suggest to finish any faster than version 1
+# #filtered_dataset = concat_dataset.filter(is_big, load_from_cache_file=True, batched=True, num_proc=cpu_count())
+#
+# print(f"Before filtering: {len(concat_dataset)} examples, after filtering: {len(filtered_dataset)} examples")
 
-print(f"Before filtering: {len(concat_dataset)} examples, after filtering: {len(filtered_dataset)} examples")
+print(f"Saving {len(filtered_dataset)} examples")
+
+filtered_dataset = concat_dataset
 
 ### Save jsonl
 
