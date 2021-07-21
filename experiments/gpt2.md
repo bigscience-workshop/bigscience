@@ -309,7 +309,7 @@ The breakdown is:
 The data sizes are correspondingly:
 
 1. 2 bytes per param for fp16 weights
-2. 12 bytes are 8 bytes for optimizer and 4 bytes for fp32 model, right?
+2. 12 bytes are 8 bytes for optimizer and 4 bytes for fp32 model
 
 To make lots of these we should copy away only the fp16 weights, and overwrite the checkpoint - otherwise a lot more HD space will be needed.
 
