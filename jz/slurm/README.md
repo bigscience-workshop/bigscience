@@ -97,6 +97,15 @@ export SLURM_JOBID=<JOB ID FROM ABOVE>
 srun --jobid=$SLURM_JOBID ...
 ```
 
+## Signal the running jobs to finish
+
+Since each SLURM run has a limited time span, it can be configured to send a signal of choice to the program a desired amount of time before the end of the allocated time.
+```
+--signal=[[R][B]:]<sig_num>[@<sig_time>]
+```
+TODO: need to experiment with this to help training finish gracefully and not start a new cycle after saving the last checkpoint.
+
+
 ## Detailed job info
 
 While most useful information is preset in various `SLURM_*` env vars, sometimes the info is missing. In such cases use:
