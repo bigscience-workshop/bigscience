@@ -14,7 +14,7 @@ set -x -e
 
 source $six_ALL_CCFRWORK/start-prod
 
-input=$six_ALL_CCFRSCRATCH/datasets/oscar-small/oscar-shuffled.jsonl
+input=$six_ALL_CCFRSCRATCH/datasets/oscar-small/oscar-en-shuffled.jsonl
 output=$six_ALL_CCFRSCRATCH/datasets/oscar-small/meg-gpt2
 
 cd $six_ALL_CCFRWORK/code/megatron-lm

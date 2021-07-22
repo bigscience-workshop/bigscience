@@ -77,7 +77,7 @@ To launch: [oscar-fast-shuffle.slurm](./oscar-fast-shuffle.slurm)
 
 The result is `oscar-shuffled.jsonl`
 
-Runtime: 1.5h
+Runtime: 2h
 
 
 
@@ -146,9 +146,9 @@ Tar/gz `oscar-shuffled.jsonl` and the dataset files to STORE:
 
 Make a 1GB slice:
 ```
-$ head -77150 oscar-en-shuffled.jsonl > oscar-1GB.jsonl
+$ head -79000 oscar-en-shuffled.jsonl > oscar-1GB.jsonl
 $ ls -sh oscar-1GB.jsonl
-1000M oscar-1GB.jsonl
+1.0G oscar-1GB.jsonl
 ```
 
 Analyze it (low mem-footprint):
@@ -157,11 +157,11 @@ $ python -c "import json, sys; \
 from transformers import GPT2TokenizerFast; \
 tokenizer = GPT2TokenizerFast.from_pretrained('gpt2'); \
 print(sum(tokenizer(json.loads(l)['text'], return_length=True).length[0] for l in sys.stdin.readlines()))" < oscar-1GB.jsonl
-228311771
+234260484
 ```
 
 Extrapolate:
 
-Thus 228.3M tokens in 1GB, ~205.5B tokens in 900GB (`228.3*900`)
+Thus 234M tokens in 1GB, ~280B tokens in 1.2TB (`234*1200`)
 
-Incidentally this coincides with @Yozh's `900/4.5` formula! (average 4.5chars per word)
+Incidentally this coincides with @Yozh's `FILE_SIZE_IN_GBS/4.5` formula! (average 4.5chars per word)

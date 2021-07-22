@@ -140,6 +140,8 @@ XXX: figure out how Megatron-LM resumes from checkpoint. Does it need the exact 
 ```
 
 
+Remi suggests 100TB on SCRATCH shouldn't be a problem.
+
 
 ## Logging
 
