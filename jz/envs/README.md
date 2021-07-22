@@ -201,6 +201,21 @@ If the login node is heavily used by someone, one can switch to another node
 if the DNS round robin doesn't send you to another login node, you can target a specific login node (`jean-zayN.idris.fr` , with N from 1 to 5, though some might not be available so using the alias is always better)
 
 
+## Dealing with running out of disc space
+
+Find out where disc space is used up:
+```
+du -ahd1 $six_ALL_CCFRWORK  | sort -rh
+du -ahd1 $six_ALL_CCFRSTORE | sort -rh
+```
+
+Find out where inodes are used up:
+```
+du -ahd1 --inodes $six_ALL_CCFRWORK | sort -rh
+du -ahd1 --inodes $six_ALL_CCFRSTORE | sort -rh
+```
+
+
 
 ## Syncing the perms
 
