@@ -77,7 +77,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
     --lr 1e-4 \
-    --lr_warmup_iters 2000
+    --lr-warmup-samples 432_640 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
@@ -94,7 +94,7 @@ GPT_ARGS=" \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --rampup-batch-size 32 32 10_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
-    --train-iters $TRAIN_ITER \
+    --train-samples $TRAIN_SAMPLES \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
     --loss-scale 12 \

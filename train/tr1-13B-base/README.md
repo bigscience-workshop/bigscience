@@ -35,25 +35,6 @@ Model size: 13B
 ```
 
 
-## Optimizer
-
-- AdamW,  β1=0.9, β2=0.95 eps=1e−8
-- learning rate: peak=1e-4, warmup over 2000 steps
-- clipping by global norm of 1 (as in GPT-3)
-- weight decay of 0.1
-
-```
-    --optimizer adam \
-    --adam-beta1 0.9 \
-    --adam-beta2 0.95 \
-    --adam-eps 1e-8 \
-    --lr 1e-4 \
-    --lr_warmup_iters 2000
-    --clip-grad 1.0 \
-    --weight-decay 1e-1 \
-
-```
-
 
 ## Sequence Length
 
@@ -152,9 +133,6 @@ fi
 ```
 Save interval is still in steps (super confusing!)
 
-
-XXX: I assume that each run get a different input at the beginning - i.e. dataloader doesn't have a fixed seed?
-
 Because it'd be potentially too demanding to export TBs of data and the intended users might not be even able to download all that data, most likely we will need to run the interpretabity post-analysis experiments on JZ and send the reports to those who need the reports.
 
 Megatron-LM resumes from the most recent checkpoint by default. Does it need the exact path or does it auto-discover the latest checkpoint by default.
@@ -165,6 +143,36 @@ Megatron-LM resumes from the most recent checkpoint by default. Does it need the
 
 
 Remi suggests 100TB on SCRATCH shouldn't be a problem.
+
+
+## Optimizer
+
+- AdamW,  β1=0.9, β2=0.95 eps=1e−8
+- learning rate: peak=1e-4, warmup over 2000 steps
+- clipping by global norm of 1 (as in GPT-3)
+- weight decay of 0.1
+
+Can't use:
+```
+   --lr-warmup-iters 2000
+```
+it wants it in samples, so doing the math again as in checkpoints
+
+`2000=160*12+80`
+
+so we will get to `2000` in 432_640 samples `32*160*12*(12+1)/2+32*13*80`
+
+```
+    --optimizer adam \
+    --adam-beta1 0.9 \
+    --adam-beta2 0.95 \
+    --adam-eps 1e-8 \
+    --lr 1e-4 \
+    --lr-warmup-samples 432_640 \
+    --clip-grad 1.0 \
+    --weight-decay 1e-1 \
+
+```
 
 
 ## Logging
