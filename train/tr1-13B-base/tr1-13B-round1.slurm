@@ -92,7 +92,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
-    --rampup-batch-size 32 32 10e6 \
+    --rampup-batch-size 32 32 10_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-iters $TRAIN_ITER \
     --vocab-file $VOCAB_FILE \
