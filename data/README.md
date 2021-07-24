@@ -1,5 +1,9 @@
 # Data
 
+* [Sharing data with the outside world](./export.md)
+
+
+
 ## Filesystem nuances
 
 `WORK` has only 5M inodes, so we can't pre-process large datasets there. e.g. openwebtext is 8M files.
