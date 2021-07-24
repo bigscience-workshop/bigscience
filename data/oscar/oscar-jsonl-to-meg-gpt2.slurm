@@ -14,8 +14,8 @@ set -x -e
 
 source $six_ALL_CCFRWORK/start-prod
 
-input=$six_ALL_CCFRSCRATCH/datasets/oscar-small/oscar-en-shuffled.jsonl
-output=$six_ALL_CCFRSCRATCH/datasets/oscar-small/meg-gpt2
+input=$six_ALL_CCFRSCRATCH/datasets/oscar-small/oscar-en-shuffled-p1.jsonl
+output=$six_ALL_CCFRSCRATCH/datasets/oscar-small/meg-gpt2-p1
 
 cd $six_ALL_CCFRWORK/code/megatron-lm
 /usr/bin/time -v python tools/preprocess_data.py \
@@ -29,3 +29,4 @@ cd $six_ALL_CCFRWORK/code/megatron-lm
        --workers 16
 
 #echo "now copy the results to $six_ALL_CCFRWORK/datasets-custom/oscar/ from $six_ALL_CCFRSCRATCH/datasets/oscar-small/meg-gpt2"
+

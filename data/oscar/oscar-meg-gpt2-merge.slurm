@@ -2,9 +2,10 @@
 #SBATCH --job-name=oscar-meg-gpt2-merge.slurm # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
+#SBATCH --cpus-per-task=10           # number of cores per task
 #SBATCH --gres=gpu:0                 # number of gpus
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time=2:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out          # output file name
 #SBATCH --error=%x-%j.out           # error file name (same to watch just one file)
 #SBATCH --account=six@cpu

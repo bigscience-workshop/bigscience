@@ -97,9 +97,9 @@ concat_dataset = concatenate_datasets(datasets)
 #
 # print(f"Before filtering: {len(concat_dataset)} examples, after filtering: {len(filtered_dataset)} examples")
 
+filtered_dataset = concat_dataset
 print(f"Saving {len(filtered_dataset)} examples")
 
-filtered_dataset = concat_dataset
 
 ### Save jsonl
 
