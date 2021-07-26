@@ -102,36 +102,81 @@ note: the interoperability study doesn't care for checkpoints in the range of 1k
 
 It'd have been
 ```
+ROUND=1
 if   [[ ${ROUND} == 1 ]]; then TRAIN_ITER=100    SAVE_INTERVAL=10
 elif [[ ${ROUND} == 2 ]]; then TRAIN_ITER=1000   SAVE_INTERVAL=18
 elif [[ ${ROUND} == 3 ]]; then TRAIN_ITER=300000 SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
+    --train-iter $TRAIN_ITER  \
+    --save-interval $SAVE_INTERVAL  \
 ```
 
-Unfortunately, `--rampup-batch-size` can't work with `--train-iter` and we have to use  `--train-samples` instead:
+Unfortunately, `--rampup-batch-size` can't work with `--train-iter` and we have to use `--train-samples` instead. It has to be fixed through all of trainings and can't be changed, otherwise resume from checkpoint will break.
 
-Translating from steps to samples, because our batch size linearly increases the translation is somewhat not simple:
-
-1. steps 1-100: 3200 samples (32*100)
-2. steps 101-1000: 116_480 samples - first let's map out the step numbers to get to 1000 using intervals of 160 which gives us `160*6+40`, now we have an arithmetic progression `32*160*6*7/2+32*7*40` or the long write out `1*32*160+2*32*160+3*32*160+4*32*160+5*32*160+6*32*160+7*32*40`.
-3. steps 1001-300K: 300_000_000 samples
-
-We have to remember to add the samples from previous steps, as it skips those if a checkpoint is found. So we calculate for the max value of each stage.
-
+So the only thing left is to use `--exit-interval` which is in steps.
 
 Which gives us the three rounds:
 
 ```
-if   [[ ${ROUND} == 1 ]]; then TRAIN_SAMPLES=3200        SAVE_INTERVAL=10
-elif [[ ${ROUND} == 2 ]]; then TRAIN_SAMPLES=116_480     SAVE_INTERVAL=18
-elif [[ ${ROUND} == 3 ]]; then TRAIN_SAMPLES=300_000_000 SAVE_INTERVAL=1500
+ROUND=1
+if   [[ ${ROUND} == 1 ]]; then EXIT_INTERVAL=100 SAVE_INTERVAL=10
+elif [[ ${ROUND} == 2 ]]; then EXIT_INTERVAL=900 SAVE_INTERVAL=18
+elif [[ ${ROUND} == 3 ]]; then                   SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
-    --train-samples $TRAIN_SAMPLES \
+
+    --train-samples 300_000_000 \
+    --exit-interval $EXIT_INTERVAL \
     --save-interval $SAVE_INTERVAL  \
 ```
-Save interval is still in steps (super confusing!)
+
+`--exit-interval` counts steps only for the current run, regardless of previous steps. So to stop at effective step 1000, the second round we tell it to exit at 900 (the first round did the first 100).
+
+And unfortunately, this proved to be not supported by Megatron-LM either. So the only way we can do it at the moment is by not using `--exit-interval` and instead manually kill the training after 100, and then 900 iterations, while changing the save interval, and manually fixing up the `checkpoints/gpt2/latest_checkpointed_iteration.txt` to point to the correct checkpoint - since the manual killing might have a few extra checkpoints. So the recipe to follow:
+
+```
+ROUND=1
+if   [[ ${ROUND} == 1 ]]; then SAVE_INTERVAL=10
+elif [[ ${ROUND} == 2 ]]; then SAVE_INTERVAL=18
+elif [[ ${ROUND} == 3 ]]; then SAVE_INTERVAL=1500
+else echo "invalid ROUND: $ROUND"
+fi
+
+    --train-samples 300_000_000 \
+    --save-interval $SAVE_INTERVAL  \
+```
+
+The do this manually:
+1.
+
+* set to `ROUND=1`
+* `sbatch tr1-13B-round1.slurm`
+* run for 100+ steps
+* scancel the job
+* clean up `checkpoints/gpt2/` to remove any checkpoints beyond 100
+* make sure `checkpoints/gpt2/latest_checkpointed_iteration.txt` contains 100
+
+
+2.
+
+* set to `ROUND=2`
+* `sbatch tr1-13B-round1.slurm`
+* run for the additional 900+ steps (it's incremental, so the script already knows it started at 100)
+* scancel the job
+* clean up `checkpoints/gpt2/` to remove any checkpoints beyond 1000
+* make sure `checkpoints/gpt2/latest_checkpointed_iteration.txt` contains 1000
+
+
+3.
+
+* set to `ROUND=3`
+* `sbatch tr1-13B-round1.slurm`
+* run normally
+
+
+
+
 
 Because it'd be potentially too demanding to export TBs of data and the intended users might not be even able to download all that data, most likely we will need to run the interpretabity post-analysis experiments on JZ and send the reports to those who need the reports.
 
