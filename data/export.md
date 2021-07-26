@@ -2,7 +2,7 @@
 
 
 
-# Upload to the Hub
+## Upload to the Hub
 
 First go to https://huggingface.co/bigscience/ and via your username (right upper corner) create "new Model"
 while choosing the `bigscience` as org.

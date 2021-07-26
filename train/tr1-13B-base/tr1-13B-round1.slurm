@@ -15,21 +15,16 @@ set -x -e
 
 
 ROUND=1
-TESTING=1
 
-SAVE_CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/
+SAVE_CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
+TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
+CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
+
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
 MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
-
-if [[ ${TESTING} == 1 ]]; then
-    # testing on 10k
-    DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en-10k/meg-gpt2_text_document
-else
-    # production on full 304M records
-    DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
-
-fi
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 source $six_ALL_CCFRWORK/start-prod
 cd $MEGATRON_DEEPSPEED_REPO
@@ -41,16 +36,13 @@ MASTER_PORT=6000
 
 # XXX: edit me
 GPUS_PER_NODE=4
-NNODES=16
-PP_SIZE=8 # NLAYERS must be a multiple of PP_SIZE here
+NNODES=16 # switch to 64
+PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=2
 GAS=256 # PP chunks
-
-EXIT_EARLY=0
-#EXIT_EARLY=1
 
 NLAYERS=40
 NHIDDEN=5120
@@ -59,17 +51,13 @@ FFN_HIDDEN_SIZE=20480
 SEQ_LEN=1024
 VOCAB_SIZE=50257
 
-if   [[ ${ROUND} == 1 ]]; then TRAIN_ITER=100    SAVE_INTERVAL=10
-elif [[ ${ROUND} == 2 ]]; then TRAIN_ITER=1000   SAVE_INTERVAL=18
-elif [[ ${ROUND} == 3 ]]; then TRAIN_ITER=300000 SAVE_INTERVAL=1500
+
+if   [[ ${ROUND} == 1 ]]; then SAVE_INTERVAL=10
+elif [[ ${ROUND} == 2 ]]; then SAVE_INTERVAL=18
+elif [[ ${ROUND} == 3 ]]; then SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
 
-# --exit-duration-in-mins
-# --exit-interval - exit after this many iterations
-if [[ ${EXIT_EARLY} == 1 ]]; then EXIT_OPTS="--exit-interval 2"
-else EXIT_OPTS=""
-fi
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \
@@ -94,7 +82,8 @@ GPT_ARGS=" \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --rampup-batch-size 32 32 10_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
-    --train-samples $TRAIN_SAMPLES \
+    --train-samples 300_000_000 \
+    --exit-interval $EXIT_INTERVAL \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
     --loss-scale 12 \
@@ -104,14 +93,17 @@ GPT_ARGS=" \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
-
-SAVE_INTERVAL
+#    --codecarbon-dir $CODECARBON_PATH \
 OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 100 \
-    --eval-iters 10 \
-    "
+    --eval-interval 1000 \
+    --eval-iters 100 \
+    --tensorboard-dir $TENSORBOARD_PATH \
+    --tensorboard-queue-size 5 \
+    --log-timers-to-tensorboard \
+    --log-batch-size-to-tensorboard \
+    --log-validation-ppl-to-tensorboard \    "
 
 ZERO_STAGE=1
 
