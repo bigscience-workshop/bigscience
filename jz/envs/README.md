@@ -268,7 +268,7 @@ Quick instructions (detailed listing follow):
 mkdir -p ~/prod/tmp
 export TMPDIR=~/prod/tmp
 
-cd ~/prod/code/deepspeed
+cd ~/prod/code/deepspeed-big-science
 ./build.sh
 
 cd ~/prod/code/apex
@@ -278,12 +278,21 @@ cd ~/prod/code/apex
 
 ### deepspeed
 
+
+We are using a special branch maintained for us:
+```
+cd ~/prod/code/
+git clone https://github.com/microsoft/deepspeed deepspeed-big-science
+cd deepspeed-big-science
+git checkout big-science
+```
+
 To pre-build deepspeed (as compared to have it built via JIT at runtime):
 
 ```
 mkdir -p ~/prod/tmp
 export TMPDIR=~/prod/tmp
-cd ~/prod/code/deepspeed
+cd ~/prod/code/deepspeed-big-science
 ./build.sh
 ```
 
