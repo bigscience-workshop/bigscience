@@ -66,7 +66,7 @@ OPTIMIZER_ARGS=" \
     --lr 1e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 141_601_562 \
+    --lr-decay-samples 126_953_125 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "

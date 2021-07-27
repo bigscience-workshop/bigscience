@@ -213,11 +213,11 @@ Remi suggests 100TB on SCRATCH shouldn't be a problem.
 ## Optimizer
 
 - AdamW,  β1=0.9, β2=0.95 eps=1e−8
-- learning rate: peak=1e-4, cosine decay for learning rate down to 10% of its value, over 290B tokens (after 290 billion tokens, training continues at 10% of the original learning rate)
+- learning rate: peak=1e-4, cosine decay for learning rate down to 10% of its value, over 260B tokens (after 260 billion tokens, training continues at 10% of the original learning rate)
 - clipping by global norm of 1 (as in GPT-3)
 - weight decay of 0.1
 
-We need lr-decay in samples, so tokens2samples = 290B / 2048 = 141_601_562
+We need lr-decay in samples, so tokens2samples = 260B / 2048 = 126_953_125
 
 ```
     --optimizer adam \
@@ -227,7 +227,7 @@ We need lr-decay in samples, so tokens2samples = 290B / 2048 = 141_601_562
     --lr 1e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 141_601_562 \
+    --lr-decay-samples 126_953_125 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
 ```
@@ -238,7 +238,20 @@ We need lr-decay in samples, so tokens2samples = 290B / 2048 = 141_601_562
 
 For now enable all tensorboard features, later we might decide to not log it all.
 
-Tensorboard config:
+We are logging:
+
+- lr (enabled by default)
+- bs (enabled)
+- loss (always)
+- loss-scale (log_loss) (enabled by default)
+- grad-norm (always)
+- num-zeros (always)
+- param-norm (always)
+- timers (enabled)
+- validation loss (always)
+- validation ppl (perplexity) (enabled)
+
+**Tensorboard config**:
 
 ```
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
@@ -250,7 +263,7 @@ TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
     --log-validation-ppl-to-tensorboard \
 ```
 
-CodeCarbon config:
+**CodeCarbon config**:
 
 ```
 CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
