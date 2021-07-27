@@ -147,15 +147,19 @@ fi
     --save-interval $SAVE_INTERVAL  \
 ```
 
-The do this manually:
+Therefore do this manually:
+
+0.
+* delete the old checkpoints `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B`
+
 1.
 
 * set to `ROUND=1`
 * `sbatch tr1-13B-round1.slurm`
 * run for 100+ steps
 * scancel the job
-* clean up `checkpoints/gpt2/` to remove any checkpoints beyond 100
-* make sure `checkpoints/gpt2/latest_checkpointed_iteration.txt` contains 100
+* clean up `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints` to remove any checkpoints beyond 100
+* make sure `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints/latest_checkpointed_iteration.txt` contains 100
 
 
 2.
@@ -164,8 +168,8 @@ The do this manually:
 * `sbatch tr1-13B-round1.slurm`
 * run for the additional 900+ steps (it's incremental, so the script already knows it started at 100)
 * scancel the job
-* clean up `checkpoints/gpt2/` to remove any checkpoints beyond 1000
-* make sure `checkpoints/gpt2/latest_checkpointed_iteration.txt` contains 1000
+* clean up `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints` to remove any checkpoints beyond 1000
+* make sure `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints/latest_checkpointed_iteration.txt` contains 1000
 
 
 3.
@@ -222,11 +226,28 @@ so we will get to `2000` in 432_640 samples `32*160*12*(12+1)/2+32*13*80`
 
 ## Logging
 
-XXX: Tensorboard config?
+Tensorboard config:
+
+```
+TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
+
+    --tensorboard-dir $TENSORBOARD_PATH \
+    --tensorboard-queue-size 5 \
+    --log-timers-to-tensorboard \
+    --log-batch-size-to-tensorboard \
+    --log-validation-ppl-to-tensorboard \
+```
+
+XXX: CodeCarbon config:
+
+```
+```
+
+
 
 XXX: need to export to HF model hub for collaborators
 
-XXX: need to find how to best export from JZ
+need to find how to best export from JZ: so far via the hub git pushes works
 
 XXX: need to figure out how we emulate crontab on JZ via self-respawning slurm job (since JZ has no crontab)
 

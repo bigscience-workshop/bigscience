@@ -13,17 +13,17 @@
 
 set -x -e
 
-
 ROUND=1
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 SAVE_CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
 CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
 
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/Megatron-DeepSpeed
-VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
-MERGE_FILE=$CHECKPOINT_PATH/gpt2-merges.txt
+
+VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
+MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 source $six_ALL_CCFRWORK/start-prod
@@ -37,27 +37,26 @@ MASTER_PORT=6000
 # XXX: edit me
 GPUS_PER_NODE=4
 NNODES=16 # switch to 64
-PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
-TP_SIZE=4 # always fixed to the size of a single node
-DP_SIZE=$NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE) # will get derived automatically by trainer
+TP_SIZE=2 # always fixed to the size of a single node
+PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
+#DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
 
-MICRO_BATCH_SIZE=2
-GAS=256 # PP chunks
+# global batch size (2048) has to be divisible by mbs*DP_size
+MICRO_BATCH_SIZE=4
+GLOBAL_BATCH_SIZE=1024
 
 NLAYERS=40
 NHIDDEN=5120
 NHEADS=32
-FFN_HIDDEN_SIZE=20480
-SEQ_LEN=1024
+#FFN_HIDDEN_SIZE=20480
+SEQ_LEN=2048
 VOCAB_SIZE=50257
-
 
 if   [[ ${ROUND} == 1 ]]; then SAVE_INTERVAL=10
 elif [[ ${ROUND} == 2 ]]; then SAVE_INTERVAL=18
 elif [[ ${ROUND} == 3 ]]; then SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
-
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \
@@ -70,20 +69,23 @@ OPTIMIZER_ARGS=" \
     --weight-decay 1e-1 \
     "
 
+# XXX: fails to get this option?
+#    --ffn_hidden_size $FFN_HIDDEN_SIZE \
+
+# XXX: must re-enabled this
+# testing with max batch-size first as a tune up
+#    --rampup-batch-size 32 32 10_000_000 \
+
 # GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$GAS*$DP_SIZE))
-GLOBAL_BATCH_SIZE=2048
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \
-    --ffn_hidden_size $FFN_HIDDEN_SIZE \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
-    --rampup-batch-size 32 32 10_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples 300_000_000 \
-    --exit-interval $EXIT_INTERVAL \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
     --loss-scale 12 \
@@ -103,16 +105,18 @@ OUTPUT_ARGS=" \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
     --log-batch-size-to-tensorboard \
-    --log-validation-ppl-to-tensorboard \    "
+    --log-validation-ppl-to-tensorboard \
+    "
 
 ZERO_STAGE=1
 
 config_json="./ds_config.$SLURM_JOBID.json"
 
+# Deepspeed figures out GAS dynamically from dynamic GBS via set_train_batch_size()
 cat <<EOT > $config_json
 {
   "train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
-  "gradient_accumulation_steps": $GAS,
+  "train_batch_size": $GLOBAL_BATCH_SIZE,
   "gradient_clipping": 1.0,
   "zero_optimization": {
     "stage": $ZERO_STAGE
@@ -173,3 +177,7 @@ echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
 clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee tr1-13B-round1.$SLURM_JOBID.out
+
+
+
+#
