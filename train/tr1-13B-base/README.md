@@ -63,16 +63,16 @@ Use a schedule:
 
 - start from 32k tokens (gbs=16)
 - increase linearly to 2048k (gbs=1024) over 10K steps (for a total of ~10B tokens = 5M samples)
-- then continue at 2048k  (gbs=1024) for 290K steps (290B tokens = 290M samples)
+- then continue at 2048k  (gbs=1024) for 145K  steps (290B tokens = 145M samples)
 
-Total: 300B tokens (300M steps)
+Total: 300B tokens (150M steps)
 
 syntax:
 ```
 --rampup-batch-size <start batch size>  <batch size increment> <ramp-up samples>
 ```
 
-At seqlen 1024 (1k tokens is bs=1), we get:
+At seqlen 2048 (1k tokens is bs=1), we get:
 
 ```
     --rampup-batch-size 16 16 5_000_000 \
