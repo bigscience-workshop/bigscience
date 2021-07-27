@@ -1,18 +1,28 @@
 # SLURM How To
 
-**Partitions**:
 
-- `-p gpu_p1`: 4x v100-32g
-- `-p gpu_p2`: 8x v100-32g
-- `-p gpu_p3`: 4x v100-16g
+## Partitions
+
+- `-p gpu_p1`: 4x v100-32gb
+- `-p gpu_p2`: 8x v100-32gb
+- `-p gpu_p3`: 4x v100-16gb
+- `-p gpu_p4`: 8x A100-40gb / 48cpu cores (only 3 nodes)
+
+Non-gpu nodes time on which isn't deducted from allocation:
+
+- `-p prepost`: up to 20h - for pre/post-processing
+- `-p visu`:    up to 4h - for visualization
+- `-p archive`: up to 20h - for archiving
+- `-p compil`:  up to 20h - for compilation
 
 Combos:
+
 - `-p gpu_p13` - all 4x nodes combined - i.e. when either 16gb or 32gb will do
 
 **Constraints**:
 
-- `-C v100-16g` # to select nodes having GPUs with 16 GB of memory (same as `-p gpu_p3`)
-- `-C v100-32g` # to select nodes having GPUs with 32 GB of memory (same as `-p gpu_p1`)
+- `-C v100-16g` # to select nodes having v100 GPUs with 16 GB of memory (same as `-p gpu_p3`)
+- `-C v100-32g` # to select nodes having v100 GPUs with 32 GB of memory (same as `-p gpu_p1`)
 
 If your job can run on both types of GPUs, we recommend not to specify any constraints as it will reduce the waiting time of your jobs before resources are available for the execution.
 
@@ -20,7 +30,7 @@ Special reservation constraint - if a special reservation is made, e.g., `huggin
 
 **Long running jobs**:
 
-Normal jobs can do max `--time=20:00:00`, for longer jobs up to 100h use `--qos=qos_gpu-t4`.
+Normal jobs can do max `--time=20:00:00`, for longer jobs up to 100h use `--qos=qos_gpu-t4`. Limit 16 GPUs.
 
 Note: the given node could be already heavily used by any other random users.
 

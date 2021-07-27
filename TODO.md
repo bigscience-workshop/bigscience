@@ -30,3 +30,10 @@ The idea would be submit a job that resubmit itself while the job performing the
   # Resubmit the cron-like job if the compute job is still running
   squeue -j $COMPUTE_JOB_ID >& /dev/null && sbatch --begin=now+3hours cron_job.slurm
 ```
+
+
+# TODO
+
+- add fixes to Megatron-Deepspeed to our branch
+- exit duration in minutes to match the 20h limit - set it to a slightly shorter duration
+- deepspeed: activate contiguous activation checkpoints - less fragmentation!

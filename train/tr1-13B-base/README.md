@@ -17,16 +17,20 @@ config:
 NLAYERS=40
 NHIDDEN=5120
 NHEADS=32
-FFN_HIDDEN_SIZE=20480
+#FFN_HIDDEN_SIZE=20480
 
+#    --ffn_hidden_size $FFN_HIDDEN_SIZE \
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \
-    --ffn_hidden_size $FFN_HIDDEN_SIZE \
     [...]
     "
 ```
+
+XXX: for some reason `--ffn_hidden_size` doesn't work, but its default `args.ffn_hidden_size = 4 * args.hidden_size` leads to the same number, ok for the first traiing. But should still fix it.
+
+
 
 Sanity check:
 ```
@@ -43,7 +47,7 @@ Default Megatron-LM LM with 1024 tokens
 All dataset samples are at least 1024 tokens long (filtered via `transformers`'s `GPT2TokenizerFast`).
 
 ```
-SEQ_LEN=1024
+SEQ_LEN=2048
 
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
@@ -57,9 +61,9 @@ GBS = Global Batch Size
 
 Use a schedule:
 
-- start from 32k tokens
-- increase linearly to 2048k over 10K steps (for a total of ~10B tokens = 10M samples)
-- then continue at 2048k for 290K steps (290B tokens = 290M samples)
+- start from 32k tokens (gbs=16)
+- increase linearly to 2048k (gbs=1024) over 10K steps (for a total of ~10B tokens = 5M samples)
+- then continue at 2048k  (gbs=1024) for 290K steps (290B tokens = 290M samples)
 
 Total: 300B tokens (300M steps)
 
@@ -71,17 +75,22 @@ syntax:
 At seqlen 1024 (1k tokens is bs=1), we get:
 
 ```
-    --rampup-batch-size 32 32 10_000_000 \
-    --global-batch-size 2048 \
+    --rampup-batch-size 16 16 5_000_000 \
+    --global-batch-size 1024 \
 ```
-This means it will start with global batch size 32 and over 63 (`(2048-32)/32`) intervals will increase the
-batch size by 32 linearly to 2048. Each interval is ~160 steps (`10000/63`).
 
-Ramp-Up samples is calculated to be ~10M. First 160 steps at bs=32, next 160 steps at `bs=64=2*32`, next 160 steps at `bs=192=3*32`, ..., finally last 160 steps at `bs=2016=63*32`, all summed up gives 10,321,920 from `32*160*(1+2+3+4+...+63)` or `5120*63*(1+63)/2`.
+This means it will start with global batch size 16 and over 63 (`(1024-16)/16`) intervals will increase the
+batch size by 16 linearly to 1024. Each interval is ~160 steps (`10000/63`).
+
+Ramp-Up samples is calculated to be ~5M. First 160 steps at `gbs=16`, next 160 steps at `gbs=32=2*16`, next 160 steps at `gbs=48=3*16`, ..., finally last 160 steps at `gbs=1008=63*16`, all summed up gives 5_160_960 from `16*160*(1+2+3+4+...+63)` or `16*160*63*(1+63)/2`.
 
 Notes:
 * `--rampup-batch-size` requires the use of `--train-samples` and can't be used with `--train-iters`.
 * global batch size has to be divisible by micro-batch-size * DP_SIZE
+
+XXX: need to come up with yet another schedule to switching up the number of GPUs to match GBS, since the software will fail if GBS is not divisible by `MBS * DP_SIZE`
+Though Jared's recommendation is to use MBS=1 and then it's much easier to match GBS/DP_SIZE even at GBS=16. So it might just work. Need to do the math.
+
 
 
 ## Checkpoints
@@ -133,7 +142,14 @@ fi
 
 `--exit-interval` counts steps only for the current run, regardless of previous steps. So to stop at effective step 1000, the second round we tell it to exit at 900 (the first round did the first 100).
 
-And unfortunately, this proved to be not supported by Megatron-LM either. So the only way we can do it at the moment is by not using `--exit-interval` and instead manually kill the training after 100, and then 900 iterations, while changing the save interval, and manually fixing up the `checkpoints/gpt2/latest_checkpointed_iteration.txt` to point to the correct checkpoint - since the manual killing might have a few extra checkpoints. So the recipe to follow:
+And unfortunately, this proved to be not supported by Megatron-LM either at the moment. There are a few possible ways to approach this:
+
+1. One approach is to simply use 3 independent trainings, while using the same `--seed ` and just have `--exit_interval` as above. Though after each training moving the checkpoints away.
+
+2.
+XXX: Also megatron could be edited to implement `--exit-samples` - so sample-based exit strategy
+
+3. Yet another approach is to do it manually. Kill the training after 100, and then restart and kill after 900 iterations, while changing the save interval, and manually fixing up the `checkpoints/gpt2/latest_checkpointed_iteration.txt` to point to the correct checkpoint - since the manual killing might have a few extra checkpoints. So the recipe to follow:
 
 ```
 ROUND=1
@@ -146,6 +162,8 @@ fi
     --train-samples 300_000_000 \
     --save-interval $SAVE_INTERVAL  \
 ```
+
+(could also do it with 3 parallel jobs by using the same seed!)
 
 Therefore do this manually:
 
@@ -180,8 +198,6 @@ Therefore do this manually:
 
 
 
-
-
 Because it'd be potentially too demanding to export TBs of data and the intended users might not be even able to download all that data, most likely we will need to run the interpretabity post-analysis experiments on JZ and send the reports to those who need the reports.
 
 Megatron-LM resumes from the most recent checkpoint by default. Does it need the exact path or does it auto-discover the latest checkpoint by default.
@@ -197,19 +213,11 @@ Remi suggests 100TB on SCRATCH shouldn't be a problem.
 ## Optimizer
 
 - AdamW,  β1=0.9, β2=0.95 eps=1e−8
-- learning rate: peak=1e-4, warmup over 2000 steps
+- learning rate: peak=1e-4, cosine decay for learning rate down to 10% of its value, over 290B tokens (after 290 billion tokens, training continues at 10% of the original learning rate)
 - clipping by global norm of 1 (as in GPT-3)
 - weight decay of 0.1
 
-Can't use:
-```
-   --lr-warmup-iters 2000
-```
-it wants it in samples, so doing the math again as in checkpoints
-
-`2000=160*12+80`
-
-so we will get to `2000` in 432_640 samples `32*160*12*(12+1)/2+32*13*80`
+We need lr-decay in samples, so tokens2samples = 290B / 2048 = 141_601_562
 
 ```
     --optimizer adam \
@@ -217,14 +225,18 @@ so we will get to `2000` in 432_640 samples `32*160*12*(12+1)/2+32*13*80`
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
     --lr 1e-4 \
-    --lr-warmup-samples 432_640 \
+    --min-lr 1e-5 \
+    --lr-decay-style cosine \
+    --lr-decay-samples 141_601_562 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
-
 ```
 
 
 ## Logging
+
+
+For now enable all tensorboard features, later we might decide to not log it all.
 
 Tensorboard config:
 
@@ -238,9 +250,12 @@ TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
     --log-validation-ppl-to-tensorboard \
 ```
 
-XXX: CodeCarbon config:
+CodeCarbon config:
 
 ```
+CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
+
+    --codecarbon-dir $CODECARBON_PATH \
 ```
 
 
@@ -255,22 +270,14 @@ XXX: need to figure out how we emulate crontab on JZ via self-respawning slurm j
 ## Dataset
 
 
-- Full 304.2M version (XXXGB) : `$six_ALL_CCFRWORK/datasets-custom/oscar-en`
+- Full 304.2M version (529GB) : `$six_ALL_CCFRWORK/datasets-custom/oscar-en`
 - Tiny 10K version (56M): `$six_ALL_CCFRWORK/datasets-custom/oscar-en-10k`
 
 We are using english-only OSCAR with full documents (*not* individual sentences).
 
-After filtering 1024K+ token-long documents we have ~70M shuffled records in 900GB of jsonl text which was then pre-processed into Megatron-LM format.
+We have about 300M records in 1.2TB of jsonl data (about 3/4 of which are smaller than 1K tokens), which amounts to about 280B tokens (estimated at about 4.5chars/word).
 
-A rough estimate, considering average 4.5chars/word, 900GB is roughly ~200B tokens. But we are only going to use 1024 tokens from each record, so we really have only 70B tokens for epoch 1, and then for subsequent epochs other slices of the document will be taken randomly in documents longer than 1024 tokens.
-
-For more information on the pre-processing process see: [OSCAR](../../data/oscar/README.md)
-
-We aren't doing of the following - next training perhaps?
-
-- ask data tooling WG and @Julien Launay about filtering - otherwise our model will generate… naughty stuff :)  @Julien Launay wrote: "In my experience with raw OSCAR, you end up with a very naughty model. This might be OK for a first test run. We used CCNet (https://github.com/facebookresearch/cc_net) for our French GPT-2, and it increased generation quality and reduced NSFW content a lot"
-- tokenization / subword:
-   -@mryab will ask the tokenization WG for best practices
+For more information on the pre-processing process and various estimations see: [OSCAR](../../data/oscar/README.md)
 
 
 

@@ -64,7 +64,9 @@ OPTIMIZER_ARGS=" \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
     --lr 1e-4 \
-    --lr-warmup-samples 432_640 \
+    --min-lr 1e-5 \
+    --lr-decay-style cosine \
+    --lr-decay-samples 141_601_562 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
@@ -74,7 +76,7 @@ OPTIMIZER_ARGS=" \
 
 # XXX: must re-enabled this
 # testing with max batch-size first as a tune up
-#    --rampup-batch-size 32 32 10_000_000 \
+#    --rampup-batch-size 16 16 5_000_000 \
 
 # GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$GAS*$DP_SIZE))
 GPT_ARGS=" \
