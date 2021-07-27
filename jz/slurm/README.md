@@ -195,16 +195,16 @@ NODES(A/I/O/T) "allocated/idle/other/total".
 So here 597 out of 612 nodes are allocated. 0 idle and 15 are not available for whatever other reasons.
 
 ```
-sinfo -p gpu_p13 -o "%A"
+sinfo -p gpu_p1 -o "%A"
 ```
 
 gives:
 ```
 NODES(A/I)
-597/0
+236/24
 ``
 
-so you can see if any nodes are available on the 4-gpu partition (`gpu_p13`)
+so you can see if any nodes are available on the 4x v100-32g partition (`gpu_p1`)
 
 To check each specific partition:
 
@@ -215,6 +215,7 @@ sinfo -p gpu_p3 -o "%A"
 sinfo -p gpu_p13 -o "%A"
 ```
 
+See the table at the top of this document for which partition is which.
 
 # TODO:
 
