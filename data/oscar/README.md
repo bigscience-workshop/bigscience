@@ -5,7 +5,7 @@
 
 These are the megatron-ready OSCAR files:
 
-- Full 70754K version (393GB) : `$six_ALL_CCFRWORK/datasets-custom/oscar-en`
+- Full 300M version (529GB) : `$six_ALL_CCFRWORK/datasets-custom/oscar-en`
 - Tiny 10K version (56M): `$six_ALL_CCFRWORK/datasets-custom/oscar-en-10k`
 
 Each folder contains: `meg-gpt2_text_document.bin` and `meg-gpt2_text_document.idx` and Megatron-LM training script expects the following argument:
@@ -15,7 +15,7 @@ Each folder contains: `meg-gpt2_text_document.bin` and `meg-gpt2_text_document.i
 
 Should something get corrupted there is a backup:
 
-- Full 70754K version (393GB) : `$six_ALL_CCFRSTORE/datasets-custom/oscar-en`
+- Full 300M version (529GB) : `$six_ALL_CCFRSTORE/datasets-custom/oscar-en`
 - Tiny 10K version (56M): `$six_ALL_CCFRSTORE/datasets-custom/oscar-en-10k`
 
 
@@ -39,7 +39,7 @@ To launch: [oscar-to-jsonl.slurm](./oscar-to-jsonl.slurm).
 
 With "unshuffled_deduplicated_en" after filtering large entries (`>=1024`) we end up with 70754K examples out of 304230K total (about 1/4th of the full dataset).
 
-The result is 5 files `oscar-[0-4].jsonl` of about 180GB each.
+The result is 5 files `oscar-[0-4].jsonl` of about 250GB each.
 
 Runtime: 2-3h to download, ~2h to build, ~8h to filter, ~1.5h to write shards out
 
@@ -50,12 +50,12 @@ Runtime: 2-3h to download, ~2h to build, ~8h to filter, ~1.5h to write shards ou
 cat oscar-[0-4].jsonl > oscar-en.jsonl
 ```
 
-This gives us a 900GB file.
+This gives us a 1.2TB file.
 
 Check:
 ```
 $ wc -l oscar-en.jsonl
-70754078 oscar-en.jsonl
+304230423 oscar-en.jsonl
 ```
 
 Runtime: a few minutes
@@ -83,9 +83,9 @@ Runtime: 2h
 
 4. Megatron-LM preprocess
 
-We only have 20h to do processing which is not enough to process 300M records, I think the current megatron preprocessing script can handle about 900GB over 16 workers on SCRATCH, more workers and the IO becomes a bottleneck.
+We only have 20h to do processing which is not enough to process 300M records. Trying to do the whole thing in one preprocessing script took more than 24h and thus failed. Adding more than 16 workers didn't speed things up.
 
-So we are splitting it in 4 chunks of 80M records
+So we are splitting it in 4 chunks of ~80M records
 
 ```
 split -l 77000000 oscar-en-shuffled.jsonl oscar
