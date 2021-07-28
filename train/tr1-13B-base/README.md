@@ -213,11 +213,22 @@ Remi suggests 100TB on SCRATCH shouldn't be a problem.
 ## Optimizer
 
 - AdamW,  β1=0.9, β2=0.95 eps=1e−8
-- learning rate: peak=1e-4, cosine decay for learning rate down to 10% of its value, over 260B tokens (after 260 billion tokens, training continues at 10% of the original learning rate)
+- learning rate:
+   * peak=1e-4
+   * warmup over 2000 steps
+   * cosine decay for learning rate down to 10% of its value, over 260B tokens (after 260 billion tokens, training continues at 10% of the original learning rate)
 - clipping by global norm of 1 (as in GPT-3)
 - weight decay of 0.1
 
 We need lr-decay in samples, so tokens2samples = 260B / 2048 = 126_953_125
+
+We need lr-warmup in samples, so doing the math again as in checkpoints
+
+2000=160*12+80
+
+so we will get to 2000 in 216_320 samples `16*160*12*(12+1)/2+16*13*80`
+
+
 
 ```
     --optimizer adam \
@@ -228,6 +239,7 @@ We need lr-decay in samples, so tokens2samples = 260B / 2048 = 126_953_125
     --min-lr 1e-5 \
     --lr-decay-style cosine \
     --lr-decay-samples 126_953_125 \
+    --lr-warmup-samples 216_320 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
 ```
@@ -250,6 +262,8 @@ We are logging:
 - timers (enabled)
 - validation loss (always)
 - validation ppl (perplexity) (enabled)
+
+almost all of these are also logged as a comparison to consumed_train_samples
 
 **Tensorboard config**:
 
