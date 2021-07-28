@@ -18,7 +18,7 @@ date
 ROUND=1
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
-SAVE_CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
+CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
 CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
 
@@ -37,7 +37,7 @@ MASTER_PORT=6000
 GPUS_PER_NODE=4
 NNODES=16 # switch to 64
 TP_SIZE=2 # always fixed to the size of a single node
-PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
+PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
 #DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
 
 # global batch size (2048) has to be divisible by mbs*DP_size
@@ -161,23 +161,14 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
-    --save $SAVE_CHECKPOINT_PATH \
-    --load $SAVE_CHECKPOINT_PATH \
+    --save $CHECKPOINT_PATH \
+    --load $CHECKPOINT_PATH \
     --data-path $DATA_PATH \
     --data-impl mmap \
     --split 949,50,1 \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
     "
-
-
-# # clear old checkpoint as it'd mismatch while we sort things out
-# if   [[ ${MYENV} == stas ]];    then
-#     rm -rf $six_CCFRSCRATCH/checkpoints/gpt2-meg-ds/*
-# else
-#     rm -rf $six_ALL_CCFRSCRATCH/checkpoints/gpt2-meg-ds/*
-# fi
-
 
 echo $CMD
 
