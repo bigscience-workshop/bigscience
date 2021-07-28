@@ -294,6 +294,15 @@ need to find how to best export from JZ: so far via the hub git pushes works
 XXX: need to figure out how we emulate crontab on JZ via self-respawning slurm job (since JZ has no crontab)
 
 
+## Deepspeed config
+
+Using Deepspeed's activation checkpointing to use a lot less GPU memory
+
+```
+    --deepspeed-activation-checkpointing \
+```
+
+
 ## Dataset
 
 
@@ -305,6 +314,20 @@ We are using english-only OSCAR with full documents (*not* individual sentences)
 We have about 300M records in 1.2TB of jsonl data (about 3/4 of which are smaller than 1K tokens), which amounts to about 280B tokens (estimated at about 4.5chars/word).
 
 For more information on the pre-processing process and various estimations see: [OSCAR](../../data/oscar/README.md)
+
+
+## Dealing with 20h limit
+
+First, let's ensure we save a checkpoint just before SLURM kills the job
+
+let's try 19:50 1190=60*24-10
+
+```
+    --exit-duration-in-mins 1190 \
+```
+
+Then we need to figure out how to schedule the next slurm job as soon as the currently running one is over.
+
 
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=tr1-13B-round1.slurm
 #SBATCH --constraint=v100-32g
-#SBATCH --nodes=64
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -32,9 +32,6 @@ cd $MEGATRON_DEEPSPEED_REPO
 MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
 MASTER_PORT=6000
 
-# adjust depending on the number of the nodes
-
-# XXX: edit me
 GPUS_PER_NODE=4
 NNODES=16 # switch to 64
 TP_SIZE=2 # always fixed to the size of a single node
@@ -74,6 +71,10 @@ OPTIMIZER_ARGS=" \
 
 # XXX: fails to get this option?
 #    --ffn_hidden_size $FFN_HIDDEN_SIZE \
+
+EXIT_OPTS=" \
+    --exit-duration-in-mins 1190 \
+    "
 
 # XXX: must re-enabled this
 # testing with max batch-size first as a tune up

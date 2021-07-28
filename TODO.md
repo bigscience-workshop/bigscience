@@ -18,6 +18,7 @@ The current DS PP format saves each layer's state dict in its own file, and they
 
 But users outside of JZ will very likely have a different HW setup, so these will need to be re-shaped to match a new PP-degree.
 
+
 ## Overcoming lack of crontab for exporting data outside of JZ
 
 Try out this suggestion:
@@ -35,5 +36,4 @@ The idea would be submit a job that resubmit itself while the job performing the
 # TODO
 
 - add fixes to Megatron-Deepspeed to our branch
-- exit duration in minutes to match the 20h limit - set it to a slightly shorter duration
 - deepspeed: activate contiguous activation checkpoints - less fragmentation!
