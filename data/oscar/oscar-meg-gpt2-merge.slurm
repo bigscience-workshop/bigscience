@@ -12,6 +12,8 @@
 
 set -x -e
 
+source $six_ALL_CCFRWORK/start-prod
+
 cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 DATA=$six_ALL_CCFRSCRATCH/datasets/oscar-small
 /usr/bin/time -v python tools/merge_preprocessed_data.py \
@@ -20,4 +22,4 @@ DATA=$six_ALL_CCFRSCRATCH/datasets/oscar-small
     $DATA/meg-gpt2-p2_text_document \
     $DATA/meg-gpt2-p3_text_document \
     $DATA/meg-gpt2-p4_text_document \
-    --output-prefix $DATA/meg-gpt2
+    --output-prefix $DATA/meg-gpt2_text_document
