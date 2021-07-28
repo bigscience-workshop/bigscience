@@ -14,15 +14,10 @@ set -x -e
 
 cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 DATA=$six_ALL_CCFRSCRATCH/datasets/oscar-small
-/usr/bin/time -v python tools/preprocess_data.py \
+/usr/bin/time -v python tools/merge_preprocessed_data.py \
     --datasets \
     $DATA/meg-gpt2-p1_text_document \
     $DATA/meg-gpt2-p2_text_document \
     $DATA/meg-gpt2-p3_text_document \
     $DATA/meg-gpt2-p4_text_document \
-    --output-prefix $DATA/meg-gpt2 \
-    --merge-file data/gpt2-merges.txt \
-    --vocab data/gpt2-vocab.json \
-    --dataset-impl mmap \
-    --tokenizer-type GPT2BPETokenizer
-
+    --output-prefix $DATA/meg-gpt2

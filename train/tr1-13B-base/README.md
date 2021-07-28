@@ -265,6 +265,10 @@ We are logging:
 
 almost all of these are also logged as a comparison to consumed_train_samples
 
+XXX: nice to have:
+- throughput - Tflops/gpu or tokens
+
+
 **Tensorboard config**:
 
 ```
@@ -301,6 +305,11 @@ Using Deepspeed's activation checkpointing to use a lot less GPU memory
 ```
     --deepspeed-activation-checkpointing \
 ```
+
+Possible extras:
+
+- Enabling `"contiguous_memory_optimization": true,` can help to reduce memory fragmentation, but it requires￼setting `number_checkpoints`. This should be set to be equal to number of transformer blocks per pipeline stage times the number of pipeline parallel stage. Samyam says: Full disclaimer: I have only used this with ZeRO but not with pipeline parallelism. But by setting the number_checkpoints as described, it should work for PP too. The benefit of using it is usually only apparent when running very close to the memory limit.
+
 
 
 ## Dataset
@@ -342,7 +351,7 @@ sbatch --array=1-10%1 tr1-13B-round1.slurm
 
 JZ doesn't have a user-accessible crontab facility, so we have to emulate it with a self-restarting slurm job.
 
-
+I'm thinking of having a slurm script that will poll some dir and if it finds any scripts in it will run those. perhaps we can emulate `/etc/cron.hourly` and `/etc/cron.daily`
 XXX:
 
 
