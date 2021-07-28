@@ -316,7 +316,8 @@ We have about 300M records in 1.2TB of jsonl data (about 3/4 of which are smalle
 For more information on the pre-processing process and various estimations see: [OSCAR](../../data/oscar/README.md)
 
 
-## Dealing with 20h limit
+
+## Dealing with 20h SLURM limit
 
 First, let's ensure we save a checkpoint just before SLURM kills the job
 
@@ -326,9 +327,23 @@ let's try 19:50 1190=60*24-10
     --exit-duration-in-mins 1190 \
 ```
 
-Then we need to figure out how to schedule the next slurm job as soon as the currently running one is over.
+Then we need to figure out how to schedule the next slurm job as soon as the currently running one is over in 20h.
+
+We will use job arrays, to solve this. Let's start with just 10 such jobs:
+
+```
+sbatch --array=1-10%1 tr1-13B-round1.slurm
+```
+
+`%1` limits the number of simultaneously running tasks from this job array to 1, since we want them to run in a sequence.
 
 
+## Crontab
+
+JZ doesn't have a user-accessible crontab facility, so we have to emulate it with a self-restarting slurm job.
+
+
+XXX:
 
 
 ## Estimated run time

@@ -221,18 +221,30 @@ du -ahd1 --inodes $six_ALL_CCFRSTORE | sort -rh
 
 We use `umask 0007` in `~/.bashrc` to get the shared dirs have `g+rwx` perms, so that we can all operate on those, but it doesn't always help. When a tarball is extracted it will often retain the original perms on the files, so if those didn't have `w` for the group it'll remain as such. Therefore occasionally and especially after installing a new dataset please run:
 
-We also need `g+s` to automatically create files with the parent's perm (e.g. when `scp`-ing from outside).
+We also need `g+s` on dirs, so that new dirs and files created in the sub-dir get created with the same group as the parent dir (e.g. important when `scp`-ing from outside, but also in many other cases).
+
+Then note that `chgrp` removes the sgid bit,  as it has to be restored immediately, so do not run it alone!
 
 For some reason group perms go wrong at times. We need all files to be `g+wrxs` (dirs), `g+rw` (files), `six` (group name), so here is how to fix things back to normal:
 
 ```
-find $six_ALL_CCFRWORK -user `whoami` -type d -execdir chmod g+rwxs {} \;
-find $six_ALL_CCFRWORK -user `whoami` -type f -execdir chmod g+rw {} \;
-chgrp -R six $six_ALL_CCFRWORK
-find $six_ALL_CCFRSCRATCH -user `whoami` -type d -execdir chmod g+rwxs {} \;
+find $six_ALL_CCFRWORK    -user `whoami` -type d -execdir chgrp six {} + -execdir chmod g+rwxs {} \;
+find $six_ALL_CCFRWORK    -user `whoami` -type f -execdir chmod g+rw {} \;
+find $six_ALL_CCFRSCRATCH -user `whoami` -type d -execdir chgrp six {} + -execdir chmod g+rwxs {} \;
 find $six_ALL_CCFRSCRATCH -user `whoami` -type f -execdir chmod g+rw {} \;
-chgrp -R six $six_ALL_CCFRSCRATCH
+find $six_ALL_CCFRSTORE   -user `whoami` -type d -execdir chgrp six {} + -execdir chmod g+rwxs {} \;
+find $six_ALL_CCFRSTORE   -user `whoami` -type f -execdir chmod g+rw {} \;
 ```
+
+If somehow we lost the sgid bit on some dirs, to restore just those:
+```
+find $six_ALL_CCFRWORK    -user `whoami` -type d -execdir chmod g+s {} \;
+find $six_ALL_CCFRSCRATCH -user `whoami` -type d -execdir chmod g+s {} \;
+find $six_ALL_CCFRSTORE   -user `whoami` -type d -execdir chmod g+s {} \;
+```
+albeit, the set of commands above should have already done the right thing, as they include `g+rwxs`.
+
+
 
 ## Activate production script
 

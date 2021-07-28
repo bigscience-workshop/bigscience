@@ -11,7 +11,7 @@
 Non-gpu nodes time on which isn't deducted from allocation:
 
 - `-p prepost`: up to 20h - for pre/post-processing
-- `-p visu`:    up to 4h - for visualization
+- `-p visu`:    up to 4h  - for visualization
 - `-p archive`: up to 20h - for archiving
 - `-p compil`:  up to 20h - for compilation
 
@@ -164,6 +164,7 @@ srun pkill python
 
 ## queue
 
+
 ### cancel job
 
 To cancel a job:
@@ -212,7 +213,7 @@ gives:
 ```
 NODES(A/I)
 236/24
-``
+```
 
 so you can see if any nodes are available on the 4x v100-32g partition (`gpu_p1`)
 
@@ -227,6 +228,68 @@ sinfo -p gpu_p13 -o "%A"
 
 See the table at the top of this document for which partition is which.
 
-# TODO:
+
+## Job arrays
+
+
+To run a sequence of jobs, so that the next slurm job is scheduled as soon as the currently running one is over in 20h we use a job array.
+
+Let's start with just 10 such jobs:
+
+```
+sbatch --array=1-10%1 array-test.slurm
+```
+
+`%1` limits the number of simultaneously running tasks from this job array to 1. Without it it will try to run all the jobs at once, which we may want sometimes (in which case remove %1), but when training we need one job at a time.
+
+
+Here is toy slurm script, which can be used to see how it works:
+
+```
+#!/bin/bash
+#SBATCH --job-name=array-test
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
+#SBATCH --cpus-per-task=1            # number of cores per tasks
+#SBATCH --hint=nomultithread         # we get physical cores not logical
+#SBATCH --gres=gpu:0                 # number of gpus
+#SBATCH --time 00:02:00              # maximum execution time (HH:MM:SS)
+#SBATCH --output=%x-%j.out           # output file name
+#SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
+#SBATCH --account=six@cpu
+#SBATCH -p prepost
+
+echo $SLURM_JOB_ID
+echo "I am job ${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}"
+date
+sleep 10
+date
+```
+
+Note `$SLURM_ARRAY_JOB_ID` is the same as `$SLURM_JOB_ID`, and `$SLURM_ARRAY_TASK_ID` is the index of the job.
+
+To see the jobs running:
+```
+$ squeue -u `whoami` -o "%.10i %.9P %.26j %.8T %.10M %.6D %.20S %R"
+     JOBID PARTITION                       NAME    STATE       TIME  NODES           START_TIME NODELIST(REASON)
+591970_[2-   prepost                 array-test  PENDING       0:00      1  2021-07-28T20:01:06 (JobArrayTaskLimit)
+```
+now job 2 is running.
+
+To cancel the whole array, cancel the job id as normal (the number before `_`)
+```
+scancel 591970
+```
+
+If it's important to have the log-file contain the array id, add `%A_%a`
+
+```
+#SBATCH --output=%x-%j.%A_%a.log
+```
+
+More details https://slurm.schedmd.com/job_array.html
+
+
+## TODO
 
 absorb more goodies from here: https://ubccr.freshdesk.com/support/solutions/articles/5000686861-how-do-i-check-the-status-of-my-job-s-

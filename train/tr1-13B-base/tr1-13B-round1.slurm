@@ -13,6 +13,8 @@
 
 set -x -e
 
+date
+
 ROUND=1
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
