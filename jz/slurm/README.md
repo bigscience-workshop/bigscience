@@ -131,6 +131,7 @@ Handy aliases
 
 ```
 alias myjobs="squeue -u `whoami`"
+alias groupjobs="squeue --user=$(getent group six | cut -d: -f4)"
 alias myjobs-pending="squeue -u `whoami` --start"
 alias idle-nodes="sinfo -p gpu_p13 -o '%A'"
 ```
@@ -139,6 +140,7 @@ more informative all-in-one myjobs that includes the projected start time for pe
 
 ```
 alias myjobs='squeue -u `whoami` -o "%.10i %.9P %.20j %.8T %.10M %.6D %.20S %R"'
+alias groupjobs='squeue -u $(getent group six | cut -d: -f4) -o "%.10i %.9P %.20j %.8T %.10M %.6D %.20S %R"'
 ```
 
 ## show my jobs
@@ -152,6 +154,21 @@ by job id:
 ```
 squeue -j JOBID
 ```
+
+group's jobs (probably won't include the non-account partitions), including all users is probably better
+
+```
+squeue --account=six@gpu,six@cpu
+```
+
+group's jobs including all `six`'s users:
+
+```
+squeue --user=$(getent group six | cut -d: -f4)
+
+```
+
+
 
 ## zombies
 
