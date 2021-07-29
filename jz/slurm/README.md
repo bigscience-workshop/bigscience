@@ -38,9 +38,11 @@ Special reservation constraint - if a special reservation is made, e.g., `huggin
 
 **Long running jobs**:
 
-Normal jobs can do max `--time=20:00:00`, for longer jobs up to 100h use `--qos=qos_gpu-t4`. Limit 16 GPUs.
+Normal GPU jobs can do max `--time=20:00:00`, for longer jobs up to 100h use `--qos=qos_gpu-t4`. Limit 16 GPUs.
 
 Note: the given node could be already heavily used by any other random users.
+
+Normal CPU jobs can do max `--time=100:00:00` (only `-p cpu_p1`, other partitions 20h)
 
 Full details per parition type
 
@@ -57,6 +59,8 @@ Full details per parition type
 
 Full info: http://www.idris.fr/eng/jean-zay/gpu/jean-zay-gpu-exec_partition_slurm-eng.html
 
+
+
 ## Wait time for resource granting
 
 ```
@@ -65,6 +69,18 @@ squeue -u `whoami` --start
 will show when any pending jobs are scheduled to start.
 
 They may start sooner if others cancel their reservations before the end of the reservation.
+
+
+
+## Make allocations at a scheduled time
+
+To postpone making the allocation for a given time, use:
+```
+salloc --begin HH:MM MM/DD/YY
+```
+
+It will simply put the job into the queue at the requested time, as if you were to execute this command at this time. If resources are available at that time, the allocation will be given right away. Otherwise it'll be queued up.
+
 
 
 ## Preallocated node without time 60min limit
@@ -93,14 +109,7 @@ When finished, to release the resources, either exit the shell started in `sallo
 
 This reserved node will be counted towards hours usage the whole time it's allocated, so release as soon as done with it.
 
-## Make allocations at a scheduled time
 
-To postpone making the allocation for a given time, use:
-```
-salloc --begin HH:MM MM/DD/YY
-```
-
-It will simply put the job into the queue at the requested time, as if you were to execute this command at this time. If resources are available at that time, the allocation will be given right away. Otherwise it'll be queued up.
 
 ## Re-use allocation
 
@@ -118,6 +127,7 @@ export SLURM_JOBID=<JOB ID FROM ABOVE>
 srun --jobid=$SLURM_JOBID ...
 ```
 
+
 ## Signal the running jobs to finish
 
 Since each SLURM run has a limited time span, it can be configured to send a signal of choice to the program a desired amount of time before the end of the allocated time.
@@ -125,6 +135,7 @@ Since each SLURM run has a limited time span, it can be configured to send a sig
 --signal=[[R][B]:]<sig_num>[@<sig_time>]
 ```
 TODO: need to experiment with this to help training finish gracefully and not start a new cycle after saving the last checkpoint.
+
 
 
 ## Detailed job info
@@ -135,24 +146,6 @@ scontrol show -d job $SLURM_JOB_ID
 ```
 and then parse out what's needed.
 
-
-## aliases
-
-Handy aliases
-
-```
-alias myjobs="squeue -u `whoami`"
-alias groupjobs="squeue --user=$(getent group six | cut -d: -f4)"
-alias myjobs-pending="squeue -u `whoami` --start"
-alias idle-nodes="sinfo -p gpu_p13 -o '%A'"
-```
-
-more informative all-in-one myjobs that includes the projected start time for pending jobs
-
-```
-alias myjobs='squeue -u `whoami` -o "%.10i %.9P %.20j %.8T %.10M %.6D %.20S %R"'
-alias groupjobs='squeue -u $(getent group six | cut -d: -f4) -o "%.10i %.9P %.20j %.8T %.10M %.6D %.20S %R"'
-```
 
 ## show my jobs
 
@@ -179,9 +172,27 @@ squeue --user=$(getent group six | cut -d: -f4)
 
 ```
 
+## Aliases
+
+Handy aliases
+
+```
+alias myjobs="squeue -u `whoami`"
+alias groupjobs="squeue --user=$(getent group six | cut -d: -f4)"
+alias myjobs-pending="squeue -u `whoami` --start"
+alias idle-nodes="sinfo -p gpu_p13 -o '%A'"
+```
+
+more informative all-in-one myjobs that includes the projected start time for pending jobs
+
+```
+alias myjobs='squeue -u `whoami` -o "%.10i %.9P %.20j %.8T %.10M %.6D %.20S %R"'
+alias groupjobs='squeue -u $(getent group six | cut -d: -f4) -o "%.10i %.9P %.20j %.8T %.10M %.6D %.20S %R"'
+```
 
 
-## zombies
+
+## Zombies
 
 If there are any zombies left behind across nodes, send one command to kill them all.
 
@@ -190,10 +201,10 @@ srun pkill python
 ```
 
 
-## queue
+## Queue
 
 
-### cancel job
+### Cancel job
 
 To cancel a job:
 ```
@@ -210,12 +221,12 @@ To cancel all of your jobs on a specific partition:
 scancel -u <userid> -p <partition>
 ```
 
-### tips
+### Tips
 
 - if you see that `salloc`'ed interactive job is scheduled to run much later than you need, try to cancel the job and ask for shorter period - often there might be a closer window for a shorter time allocation.
 
 
-## show the state of nodes
+## Show the state of nodes
 ```
 sinfo -p PARTITION
 ```
