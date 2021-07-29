@@ -8,7 +8,8 @@
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --partition=compil
 
-set -x -e
+# do not set -e - we must run all of it
+# set -x -e
 
 cd $six_ALL_CCFRWORK/cron/scheduler
 

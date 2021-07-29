@@ -76,3 +76,8 @@ Another approach to adding/removing is to keep the slurm scripts elsewhere and s
 ## Permissions
 
 The scheduler runs with Unix permissions of the person who launched the SLRUM cron scheduler job and so all other SLURM scripts launched by that cron job.
+
+
+## TODO
+
+XXX: need to have a facility to report failures. Which is tricky because the job has to run on a SLURM partition that has Internet and that's just `--partition=prepost`
