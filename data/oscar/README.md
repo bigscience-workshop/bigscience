@@ -83,6 +83,8 @@ Runtime: 2h
 
 4. Megatron-LM preprocess
 
+**Update**: that was an error, we can actually run for 100h on `-p cpu_p1` and so the normal script can complete no problem, but as a result of this mistake we can now pre-process data much faster.
+
 We only have 20h to do processing which is not enough to process 300M records. Trying to do the whole thing in one preprocessing script took more than 24h and thus failed. Adding more than 16 workers didn't speed things up.
 
 So we are splitting it in 4 chunks of ~80M records
