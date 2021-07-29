@@ -3,21 +3,29 @@
 
 ## Partitions
 
+GPU-nodes: `--account=six@gpu`
+
 - `-p gpu_p1`: 4x v100-32gb
 - `-p gpu_p2`: 8x v100-32gb
 - `-p gpu_p3`: 4x v100-16gb
 - `-p gpu_p4`: 8x A100-40gb / 48cpu cores (only 3 nodes)
-
-Non-gpu nodes time on which isn't deducted from allocation:
-
-- `-p prepost`: up to 20h - for pre/post-processing
-- `-p visu`:    up to 4h  - for visualization
-- `-p archive`: up to 20h - for archiving
-- `-p compil`:  up to 20h - for compilation
+- `-p prepost`: 1x V100-16GB + network
 
 Combos:
 
 - `-p gpu_p13` - all 4x nodes combined - i.e. when either 16gb or 32gb will do
+
+CPU-only nodes: `--account=six@cpu`
+
+- `-p cpu_p1`:  up to 100h: this is the default partition for `--account=six@cpu`
+
+The following CPU-only partitions time on which isn't deducted from allocation:
+
+- `-p prepost`: up to 20h - for pre/post-processing + has internet!
+- `-p visu`:    up to 4h  - for visualization
+- `-p archive`: up to 20h - for archiving
+- `-p compil`:  up to 20h - for compilation
+
 
 **Constraints**:
 
@@ -34,7 +42,10 @@ Normal jobs can do max `--time=20:00:00`, for longer jobs up to 100h use `--qos=
 
 Note: the given node could be already heavily used by any other random users.
 
-Full details http://www.idris.fr/eng/jean-zay/gpu/jean-zay-gpu-exec_partition_slurm-eng.html
+Full details per parition type
+
+- CPU: http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-exec_alloc-mem-eng.html
+- GPU: http://www.idris.fr/eng/jean-zay/gpu/jean-zay-gpu-exec_partition_slurm-eng.html
 
 
 ## Priorities
@@ -259,6 +270,10 @@ sbatch --array=1-10%1 array-test.slurm
 
 `%1` limits the number of simultaneously running tasks from this job array to 1. Without it it will try to run all the jobs at once, which we may want sometimes (in which case remove %1), but when training we need one job at a time.
 
+Alternatively, as always this param can be part of the script:
+```
+#SBATCH --array=1-10%1
+```
 
 Here is toy slurm script, which can be used to see how it works:
 
@@ -293,12 +308,17 @@ $ squeue -u `whoami` -o "%.10i %.9P %.26j %.8T %.10M %.6D %.20S %R"
 ```
 now job 2 is running.
 
-To cancel the whole array, cancel the job id as normal (the number before `_`)
+To cancel the whole array, cancel the job id as normal (the number before `_`):
 ```
 scancel 591970
 ```
 
-If it's important to have the log-file contain the array id, add `%A_%a`
+To cancel as specific job:
+```
+scancel 591970_2
+```
+
+If it's important to have the log-file contain the array id, add `%A_%a`:
 
 ```
 #SBATCH --output=%x-%j.%A_%a.log

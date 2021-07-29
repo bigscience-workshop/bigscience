@@ -17,12 +17,23 @@ Activated with `--partition=prepost`
 - only 4 nodes
 - 2 to 20 hours
 - No limitations of the login shell
-- I think there 1x 16gb gpu there, but it's there w/o asking
+- 1x V100-16GB
+- The computing hours are not deducted from your allocation
 
 to request:
 ```
 srun --pty --partition=prepost --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:0 --hint=nomultithread --time=1:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
+
+or to work interactively there, could ssh directly to that partition via:
+```
+ssh jean-zay-pp          # from inside
+ssh jean-zay-pp.idris.fr # from outside
+```
+There are 4 boxes, so `jean-zay-pp1`, ..., `jean-zay-pp4`. It's possible that larger numbers have less users, but not necessarily.
+
+In this case there is no need to do SLURM,
+
 
 ## GPU Instances
 
