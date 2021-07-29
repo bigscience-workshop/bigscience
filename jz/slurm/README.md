@@ -60,6 +60,16 @@ Full details per parition type
 Full info: http://www.idris.fr/eng/jean-zay/gpu/jean-zay-gpu-exec_partition_slurm-eng.html
 
 
+## Consumption report
+
+
+Run:
+```
+idr_compuse
+```
+
+This provides a report on how heavily we use our allocations. When they are over-consumed we get a lower priority in the scheduler.
+
 
 ## Wait time for resource granting
 
