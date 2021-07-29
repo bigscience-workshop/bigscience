@@ -142,7 +142,7 @@ Outcome: 304_230_423 records
 ```
 $ ls -1sh meg-gpt2_text_document.*
 529G meg-gpt2_text_document.bin
-3.5G meg-gpt2_text_document.idx
+5.7G meg-gpt2_text_document.idx
 ```
 
 Total runtime: under 7h.
