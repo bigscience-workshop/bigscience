@@ -1,14 +1,15 @@
 # Crontab Jobs
 
-JZ has no crontab so we have to emulate it
+JZ has no crontab so we have to emulate it.
 
 Put your slurm scripts into either:
 ```
 $six_ALL_CCFRWORK/cron/cron.hourly
 $six_ALL_CCFRWORK/cron/cron.daily
 ```
+depending on whether you want to run those approximately once an hour or once a day.
 
-Any scripts found in these dirs will be run as `sbatch scriptname`.
+Any scripts found in these dirs that have `.slurm` extension, will be run as `sbatch scriptname`.
 
 ## The scheduler
 
@@ -23,35 +24,47 @@ If these 2 aren't running when you run:
 ```
 squeue --user=$(getent group six | cut -d: -f4) | grep cron
 ```
-re-launch the missing one(s) with:
+the re-launch the missing one(s) with:
 ```
 cd $six_ALL_CCFRWORK/cron/scheduler
 sbatch cron-hourly.slurm
 sbatch cron-daily.slurm
 ```
 
-If these scripts aren't there copy them from the folder in the repo where this README.md is located.
+If these scripts aren't there, copy them from the folder in the repo where this README.md is located.
+
+XXX: need some kind of a watchdog to ensure the 2 cron scheduler jobs don't disappear.
+
+quick alias to test:
+```
+alias cron-check="squeue --user=$(getent group six | cut -d: -f4) | grep cron"
+```
 
 ## Example daily entry
 
-Here is an example of a job that gets to run daily:
-
+Here is an example of a job that gets to run daily.
 ```
 $ cat $six_ALL_CCFRWORK/cron/cron.daily/mlocate-update.slurm
 #!/bin/bash
-#SBATCH --job-name=mlocal-update     # job name
+#SBATCH --job-name=mlocate-update    # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:0                 # number of gpus
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --partition=archive
+#SBATCH --partition=compil
 
 set -e
-
+date
+echo "updating mlocate db"
 # "--require-visibility 0" is required when launching this command as a regular user
-updatedb -o $ALL_CCFRWORK/lib/mlocate/mlocate.db -U $ALL_CCFRWORK --require-visibility 0
+/usr/bin/time -v /usr/bin/updatedb -o $ALL_CCFRWORK/lib/mlocate/mlocate.db -U $ALL_CCFRWORK --require-visibility 0
+```
+
+This builds an index of the files under WORK which you can then quickly query with:
+```
+/usr/bin/locate -d /gpfswork/rech/six/commun/lib/mlocate/mlocate.db pattern
 ```
 
 The slurm script `mlocate-update.slurm` has been placed inside `$six_ALL_CCFRWORK/cron/cron.daily`. To stop running it, just move it elsewhere.

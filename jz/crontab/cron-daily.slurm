@@ -13,12 +13,10 @@ set -x -e
 cd $six_ALL_CCFRWORK/cron/scheduler
 
 # ensure to restart self first
-sbatch --begin=now+23.5hour cron-daily.slurm
+sbatch --begin=now+24hour cron-daily.slurm
 
-# now run any scripts
-
+# now launch any slurm scripts in cron.daily
 cd $six_ALL_CCFRWORK/cron/cron.daily
-
 for f in *.slurm; do
   sbatch "$f"
 done

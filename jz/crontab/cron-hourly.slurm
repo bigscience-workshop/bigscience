@@ -15,10 +15,8 @@ cd $six_ALL_CCFRWORK/cron/scheduler
 # ensure to restart self first
 sbatch --begin=now+1hour cron-hourly.slurm
 
-# now run any scripts
-
+# now launch any slurm scripts in cron.hourly
 cd $six_ALL_CCFRWORK/cron/cron.hourly
-
 for f in *.slurm; do
   sbatch "$f"
 done
