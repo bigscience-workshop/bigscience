@@ -279,12 +279,21 @@ source ~/prod/start-prod
 
 ## Building things from source
 
+
 The building should happen on a beefy instance - or things just get killed
 
-e.g.
+Normally use the free `-p compil` partition:
+
+```
+srun --pty -p compil --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
+
+but if it has to be really fast, use a dedicated instance with pre-allocated cpu cores:
 ```
 srun --pty --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
+
+
 
 `/tmp` is tiny on gpu instances, at least apex needs a big `/tmp` folder:
 
@@ -300,8 +309,8 @@ cd ~/prod/code/deepspeed-big-science
 
 cd ~/prod/code/apex
 ./build.sh
-
 ```
+
 
 ### deepspeed
 
