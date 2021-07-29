@@ -35,13 +35,13 @@ MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; 
 MASTER_PORT=6000
 
 GPUS_PER_NODE=4
-NNODES=16 # switch to 64
-TP_SIZE=2 # always fixed to the size of a single node
-PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
+NNODES=16    # switch to 64
+TP_SIZE=2    # always fixed to the size of a single node
+PP_SIZE=4    # NLAYERS must be a multiple of PP_SIZE here
 #DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
 
-# global batch size (2048) has to be divisible by mbs*DP_size
-MICRO_BATCH_SIZE=4
+# GLOBAL_BATCH_SIZE has to be divisible by MICRO_BATCH_SIZE*DP_size
+MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=1024
 
 NLAYERS=40
@@ -56,6 +56,7 @@ elif [[ ${ROUND} == 2 ]]; then SAVE_INTERVAL=18
 elif [[ ${ROUND} == 3 ]]; then SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
+
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \

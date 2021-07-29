@@ -147,9 +147,9 @@ And unfortunately, this proved to be not supported by Megatron-LM either at the 
 1. One approach is to simply use 3 independent trainings, while using the same `--seed ` and just have `--exit_interval` as above. Though after each training moving the checkpoints away.
 
 2.
-XXX: Also megatron could be edited to implement `--exit-samples` - so sample-based exit strategy
+XXX: Also megatron code could be extended to implement `--exit-samples` - so sample-based exit strategy
 
-3. Yet another approach is to do it manually. Kill the training after 100, and then restart and kill after 900 iterations, while changing the save interval, and manually fixing up the `checkpoints/gpt2/latest_checkpointed_iteration.txt` to point to the correct checkpoint - since the manual killing might have a few extra checkpoints. So the recipe to follow:
+3. Yet another approach is to do it manually. Kill the training after 100, and then restart and kill after 900 iterations, while changing the save interval, and manually fixing up the `checkpoints/latest` to point to the correct checkpoint - since the manual killing might have a few extra checkpoints. So the recipe to follow:
 
 ```
 ROUND=1
@@ -168,7 +168,7 @@ fi
 Therefore do this manually:
 
 0.
-* delete the old checkpoints `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B`
+* delete the old checkpoints `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints`
 
 1.
 
@@ -177,7 +177,7 @@ Therefore do this manually:
 * run for 100+ steps
 * scancel the job
 * clean up `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints` to remove any checkpoints beyond 100
-* make sure `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints/latest_checkpointed_iteration.txt` contains 100
+* make sure `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints/latest` contains 100
 
 
 2.
@@ -187,7 +187,7 @@ Therefore do this manually:
 * run for the additional 900+ steps (it's incremental, so the script already knows it started at 100)
 * scancel the job
 * clean up `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints` to remove any checkpoints beyond 1000
-* make sure `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints/latest_checkpointed_iteration.txt` contains 1000
+* make sure `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints/latest` contains 1000
 
 
 3.
@@ -295,7 +295,38 @@ XXX: need to export to HF model hub for collaborators
 
 need to find how to best export from JZ: so far via the hub git pushes works
 
-XXX: need to figure out how we emulate crontab on JZ via self-respawning slurm job (since JZ has no crontab)
+
+## Exporting
+
+Before starting training insert cloned git repos to where output data will go.
+
+The last 3 should all be git repo clones
+```
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
+CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
+TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
+CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
+```
+
+I created 3 repos on https://huggingface.co/bigscience/ and now we can clone those as the folders data will be output into:
+
+```
+cd $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
+git clone https://huggingface.co/bigscience/tr1-13B-checkpoints checkpoints
+git clone https://huggingface.co/bigscience/tr1-13B-tensorboard tensorboard
+git clone https://huggingface.co/bigscience/tr1-13B-codecarbon codecarbon
+```
+
+Only the first one will have huge files, so we need to setup lfs:
+`*.pt` is already being lfs-tracked
+
+```
+cd checkpoints
+git lfs track "*.gz"
+git commit -m "checkpoints" .gitattributes
+
+
+```
 
 
 ## Deepspeed config
@@ -330,11 +361,13 @@ For more information on the pre-processing process and various estimations see: 
 
 First, let's ensure we save a checkpoint just before SLURM kills the job
 
-let's try 19:50 1190=60*24-10
+Let's try 19:50 1190=60*24-10
 
 ```
     --exit-duration-in-mins 1190 \
 ```
+
+For the bigger models 10min might not be long enoug to finish an iteration (assume the limit hits right as one starts) and write out a checkpoint.
 
 Then we need to figure out how to schedule the next slurm job as soon as the currently running one is over in 20h.
 
@@ -347,12 +380,14 @@ sbatch --array=1-10%1 tr1-13B-round1.slurm
 `%1` limits the number of simultaneously running tasks from this job array to 1, since we want them to run in a sequence.
 
 
+
 ## Crontab
 
 JZ doesn't have a user-accessible crontab facility, so we have to emulate it with a self-restarting slurm job.
 
 I'm thinking of having a slurm script that will poll some dir and if it finds any scripts in it will run those. perhaps we can emulate `/etc/cron.hourly` and `/etc/cron.daily`
 XXX:
+
 
 
 ## Estimated run time
