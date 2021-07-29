@@ -215,6 +215,21 @@ du -ahd1 --inodes $six_ALL_CCFRWORK | sort -rh
 du -ahd1 --inodes $six_ALL_CCFRSTORE | sort -rh
 ```
 
+## Finding things
+
+Our WORK is indexed by mlocate, after adding this alias:
+```
+alias locate="/usr/bin/locate -d $ALL_CCFRWORK/lib/mlocate/mlocate.db"
+```
+You can now do:
+```
+locate -i megatron
+```
+(remove `-i` if you want case-sensitive search)
+
+the index is being updated by `~/prod/bin/mlocate-update` in a crontab job in `~/prod/cron/cron.daily/mlocate-update.slurm`.
+
+For more details on the emulated crontab job see: [crontab](../crontab/README.md).
 
 
 ## Syncing the perms
