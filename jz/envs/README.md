@@ -228,19 +228,19 @@ Then note that `chgrp` removes the sgid bit,  as it has to be restored immediate
 For some reason group perms go wrong at times. We need all files to be `g+wrxs` (dirs), `g+rw` (files), `six` (group name), so here is how to fix things back to normal:
 
 ```
-find $six_ALL_CCFRWORK    -user `whoami` -type d -execdir chgrp six {} + -execdir chmod g+rwxs {} \;
-find $six_ALL_CCFRWORK    -user `whoami` -type f -execdir chmod g+rw {} \;
-find $six_ALL_CCFRSCRATCH -user `whoami` -type d -execdir chgrp six {} + -execdir chmod g+rwxs {} \;
-find $six_ALL_CCFRSCRATCH -user `whoami` -type f -execdir chmod g+rw {} \;
-find $six_ALL_CCFRSTORE   -user `whoami` -type d -execdir chgrp six {} + -execdir chmod g+rwxs {} \;
-find $six_ALL_CCFRSTORE   -user `whoami` -type f -execdir chmod g+rw {} \;
+find $six_ALL_CCFRWORK    -type d ! \( -readable -executable \) -prune -o -type d -execdir chgrp six {} \; , -execdir chmod g+rwxs {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find $six_ALL_CCFRWORK    -type d ! \( -readable -executable \) -prune -o -type f -execdir chmod g+rw {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find $six_ALL_CCFRSCRATCH -type d ! \( -readable -executable \) -prune -o -type d -execdir chgrp six {} \; , -execdir chmod g+rwxs {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find $six_ALL_CCFRSCRATCH -type d ! \( -readable -executable \) -prune -o -type f -execdir chmod g+rw {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find $six_ALL_CCFRSTORE   -type d ! \( -readable -executable \) -prune -o -type d -execdir chgrp six {} \; , -execdir chmod g+rwxs {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find $six_ALL_CCFRSTORE   -type d ! \( -readable -executable \) -prune -o -type f -execdir chmod g+rw {} \; 2>&1 | egrep -v "(Operation not permitted)"
 ```
 
 If somehow we lost the sgid bit on some dirs, to restore just those:
 ```
-find $six_ALL_CCFRWORK    -user `whoami` -type d -execdir chmod g+s {} \;
-find $six_ALL_CCFRSCRATCH -user `whoami` -type d -execdir chmod g+s {} \;
-find $six_ALL_CCFRSTORE   -user `whoami` -type d -execdir chmod g+s {} \;
+find $six_ALL_CCFRWORK    -type d ! \( -readable -executable \) -prune -o -type d -execdir chmod g+s {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find $six_ALL_CCFRSCRATCH -type d ! \( -readable -executable \) -prune -o -type d -execdir chmod g+s {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find $six_ALL_CCFRSTORE   -type d ! \( -readable -executable \) -prune -o -type d -execdir chmod g+s {} \; 2>&1 | egrep -v "(Operation not permitted)"
 ```
 albeit, the set of commands above should have already done the right thing, as they include `g+rwxs`.
 
