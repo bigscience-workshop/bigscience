@@ -317,16 +317,27 @@ git clone https://huggingface.co/bigscience/tr1-13B-tensorboard tensorboard
 git clone https://huggingface.co/bigscience/tr1-13B-codecarbon codecarbon
 ```
 
-Only the first one will have huge files, so we need to setup lfs:
-`*.pt` is already being lfs-tracked
+Only the first one will have huge files, and `*.pt` is already being lfs-tracked by default, so no setup is required.
+
+If this is your first time running git-lfs on this system, you need to init it once:
+```
+module load git-lfs
+git lfs install
+```
+
+Now we just need a cronjob to automatically do for each type of data to export:
 
 ```
 cd checkpoints
-git lfs track "*.gz"
-git commit -m "checkpoints" .gitattributes
-
-
+git add */*.pt
+git commit -am "new data"
+git push
 ```
+
+XXX: need an automatic script based on a filepattern
+
+XXX: need to check that it gets the perms right - should
+
 
 
 ## Deepspeed config
@@ -379,7 +390,10 @@ sbatch --array=1-10%1 tr1-13B-round1.slurm
 
 `%1` limits the number of simultaneously running tasks from this job array to 1, since we want them to run in a sequence.
 
-
+Alternatively, as always this param can be part of the script:
+```
+#SBATCH --array=1-10%1
+```
 
 ## Crontab
 
