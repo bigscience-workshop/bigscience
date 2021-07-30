@@ -70,22 +70,22 @@ idrquota -w -p six # $WORK @ shared
 
 if you prefer it the easy way here is an alias to add to `~/.bashrc`:
 ```
-alias dfi=" \
-echo \"*** Total (six) ***\"; \
+alias dfi=' \
+echo \"*** Total \(six\) ***\"; \
 idrquota -w -p six; \
 idrquota -s -p six; \
-echo WORKSF: `du -hs /gpfsssd/worksf/projects/rech/six/commun | cut -f1`; \
-echo WORKSF: `du -hs --inodes /gpfsssd/worksf/projects/rech/six/commun | cut -f1` inodes; \
+echo WORKSF: $(du -hs /gpfsssd/worksf/projects/rech/six/commun | cut -f1); \
+echo WORKSF: $(du -hs --inodes /gpfsssd/worksf/projects/rech/six/commun | cut -f1) inodes; \
 echo; \
 echo \"*** Personal ***\"; \
 idrquota -m; \
-echo WORK: `du -hs $WORK | cut -f1`; \
-echo WORK: `du -hs --inodes $WORK | cut -f1` inodes; \
-echo STORE: `du -hs $STORE | cut -f1`; \
-echo STORE: `du -hs --inodes $STORE | cut -f1` inodes; \
-echo SCRATCH: `du -hs $SCRATCH | cut -f1`; \
-echo SCRATCH: `du -hs --inodes $SCRATCH | cut -f1` inodes; \
-"
+echo WORK: $(du -hs $WORK | cut -f1); \
+echo WORK: $(du -hs --inodes $WORK | cut -f1) inodes; \
+echo STORE: $(du -hs $STORE | cut -f1); \
+echo STORE: $(du -hs --inodes $STORE | cut -f1) inodes; \
+echo SCRATCH: $(du -hs $SCRATCH | cut -f1); \
+echo SCRATCH: $(du -hs --inodes $SCRATCH | cut -f1) inodes; \
+'
 ```
 This includes the report on usage of personal WORK and SCRATCH partitions.
 
