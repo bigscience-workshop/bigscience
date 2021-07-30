@@ -8,6 +8,7 @@
 #SBATCH --time=100:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@cpu
+#SBATCH --partition=cpu_p1
 
 set -x -e
 

@@ -4,9 +4,9 @@
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:0                 # number of gpus
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --time=100:00:00             # maximum execution time (HH:MM:SS)
+#SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --account=six@cpu
+#SBATCH --partition=archive
 
 set -x -e
 

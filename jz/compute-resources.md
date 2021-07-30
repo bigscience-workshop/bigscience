@@ -95,6 +95,9 @@ This includes the report on usage of personal WORK and SCRATCH partitions.
 - `$six_ALL_CCFRWORK` - for everything else
 - `$six_ALL_CCFRSTORE` - for long term storage in tar files (very few inodes!)
 
+- `/gpfsssd/worksf/projects/rech/six/` - for conda and python git clones that take tens of thousands of inodes - it's a small partition with a huge number of inodes. 1 TB and 3M inodes.
+
+
 More specifically:
 
 - `$six_ALL_CCFRWORK/cache_dir` - `CACHE_DIR` points here
