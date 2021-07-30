@@ -2,11 +2,17 @@
 #SBATCH --job-name=oscar-to-backup-tgz # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
+#SBATCH --cpus-per-task=10           # number of cores per task
 #SBATCH --gres=gpu:0                 # number of gpus
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
+#SBATCH --time=100:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --partition=archive
+#SBATCH --account=six@cpu
+#SBATCH --partition=cpu_p1
+
+# 20h is not enough to gzip 1.2TB file, so have to use the other allocation
+##SBATCH --partition=archive
+
 
 set -x -e
 
