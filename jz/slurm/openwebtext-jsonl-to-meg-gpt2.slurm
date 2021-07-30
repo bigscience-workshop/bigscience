@@ -2,7 +2,6 @@
 #SBATCH --job-name=openwebtext-jsonl-to-meg-gpt2 # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
-#SBATCH --gres=gpu:0                 # number of gpus
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --time=100:00:00             # maximum execution time (HH:MM:SS)

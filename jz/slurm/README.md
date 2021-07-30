@@ -18,6 +18,11 @@ Combos:
 CPU-only nodes: `--account=six@cpu`
 
 - `-p cpu_p1`:  up to 100h: this is the default partition for `--account=six@cpu`
+only 20h by default, add `--qos=qos_cpu-t4` to use 100h
+
+**Important: Currently to launch jobs on `-p cpu_p1` one must explicitly pass `--account=six@cpu` on the command line `sbatch --account=six@cpu ...` as it ignores the `#SBATCH --account=six@cpu` listing in the slurm script.**
+
+**Additionally, having `#SBATCH --gres=gpu:0` in a slurm file forces gpu allocations as well, ignoring the account specification. So remove those**
 
 The following CPU-only partitions time on which isn't deducted from allocation:
 
@@ -46,7 +51,8 @@ Normal CPU jobs can do max `--time=100:00:00` (only `-p cpu_p1`, other partition
 
 Full details per parition type
 
-- CPU: http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-exec_alloc-mem-eng.html
+- CPU: http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-exec_partition_slurm-eng.html and
+http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-exec_alloc-mem-eng.html
 - GPU: http://www.idris.fr/eng/jean-zay/gpu/jean-zay-gpu-exec_partition_slurm-eng.html
 
 
