@@ -62,7 +62,7 @@ fi
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
-    --adam-beta2 0.95 \
+    --adam-beta2 0.999 \
     --adam-eps 1e-8 \
     --lr 1e-4 \
     --min-lr 1e-5 \

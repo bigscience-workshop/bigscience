@@ -212,7 +212,7 @@ Remi suggests 100TB on SCRATCH shouldn't be a problem.
 
 ## Optimizer
 
-- AdamW,  β1=0.9, β2=0.95 eps=1e−8
+- AdamW,  β1=0.9, β2=0.999 eps=1e−8
 - learning rate:
    * peak=1e-4
    * warmup over 2000 steps
@@ -233,7 +233,7 @@ so we will get to 2000 in 216_320 samples `16*160*12*(12+1)/2+16*13*80`
 ```
     --optimizer adam \
     --adam-beta1 0.9 \
-    --adam-beta2 0.95 \
+    --adam-beta2 0.999 \
     --adam-eps 1e-8 \
     --lr 1e-4 \
     --min-lr 1e-5 \
