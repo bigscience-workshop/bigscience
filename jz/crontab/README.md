@@ -59,7 +59,8 @@ set -e
 date
 echo "updating mlocate db"
 # "--require-visibility 0" is required when launching this command as a regular user
-/usr/bin/time -v /usr/bin/updatedb -o $ALL_CCFRWORK/lib/mlocate/mlocate.db -U $ALL_CCFRWORK --require-visibility 0
+/usr/bin/updatedb -o $ALL_CCFRWORK/lib/mlocate/work.db   -U $ALL_CCFRWORK --require-visibility 0
+/usr/bin/updatedb -o $ALL_CCFRWORK/lib/mlocate/worksf.db -U /gpfsssd/worksf/projects/rech/six/commun --require-visibility 0
 ```
 
 This builds an index of the files under WORK which you can then quickly query with:

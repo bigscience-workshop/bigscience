@@ -62,6 +62,7 @@ Also since most of our work is at `$six_ALL_CCFRWORK` you need to add a symlink:
 ln -s $six_ALL_CCFRWORK ~/prod
 ln -s $six_ALL_CCFRSCRATCH ~/prod-scratch
 ln -s $six_ALL_CCFRSTORE ~/prod-store
+ln -s /gpfsssd/worksf/projects/rech/six/commun ~/prod-worksf
 ```
 and then you can quickly `cd` there w/o needing to type too much, and with the shortcut `$PROD` env var you now you can do one of 2 ways:
 ```
@@ -215,11 +216,22 @@ du -ahd1 --inodes $six_ALL_CCFRWORK | sort -rh
 du -ahd1 --inodes $six_ALL_CCFRSTORE | sort -rh
 ```
 
+Some busy git clone can be pruned of unused files with: `git gc`, e.g. to prune a dir with multiple-clones as a subdir
+
+```
+~/prod/code
+du -hs .
+du -hs --inodes .
+find . -mindepth 1 -maxdepth 1 -type d -exec bash -c "cd '{}' && git gc" \;
+du -hs .
+du -hs --inodes .
+```
+
 ## Finding things
 
 Our WORK is indexed by mlocate, after adding this alias:
 ```
-alias locate="/usr/bin/locate -d $ALL_CCFRWORK/lib/mlocate/mlocate.db"
+alias locate="/usr/bin/locate -d $ALL_CCFRWORK/lib/mlocate/work.db:$ALL_CCFRWORK/lib/mlocate/worksf.db"
 ```
 You can now do:
 ```
@@ -245,6 +257,8 @@ For some reason group perms go wrong at times. We need all files to be `g+wrxs` 
 ```
 find $six_ALL_CCFRWORK    -user `whoami` -type d ! \( -readable -executable \) -prune -o -type d -execdir chgrp six {} \; , -execdir chmod g+rwxs {} \; 2>&1 | egrep -v "(Operation not permitted)"
 find $six_ALL_CCFRWORK    -user `whoami` -type d ! \( -readable -executable \) -prune -o -type f -execdir chgrp six {} \; , -execdir chmod g+rw {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find /gpfsssd/worksf/projects/rech/six/commun    -user `whoami` -type d ! \( -readable -executable \) -prune -o -type d -execdir chgrp six {} \; , -execdir chmod g+rwxs {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find /gpfsssd/worksf/projects/rech/six/commun    -user `whoami` -type d ! \( -readable -executable \) -prune -o -type f -execdir chgrp six {} \; , -execdir chmod g+rw {} \; 2>&1 | egrep -v "(Operation not permitted)"
 find $six_ALL_CCFRSCRATCH -user `whoami` -type d ! \( -readable -executable \) -prune -o -type d -execdir chgrp six {} \; , -execdir chmod g+rwxs {} \; 2>&1 | egrep -v "(Operation not permitted)"
 find $six_ALL_CCFRSCRATCH -user `whoami` -type d ! \( -readable -executable \) -prune -o -type f -execdir chgrp six {} \; , -execdir chmod g+rw {} \; 2>&1 | egrep -v "(Operation not permitted)"
 find $six_ALL_CCFRSTORE   -user `whoami` -type d ! \( -readable -executable \) -prune -o -type d -execdir chgrp six {} \; , -execdir chmod g+rwxs {} \; 2>&1 | egrep -v "(Operation not permitted)"
@@ -254,6 +268,7 @@ find $six_ALL_CCFRSTORE   -user `whoami` -type d ! \( -readable -executable \) -
 If somehow we lost the sgid bit on some dirs, to restore just those:
 ```
 find $six_ALL_CCFRWORK    -user `whoami` -type d ! \( -readable -executable \) -prune -o -type d -execdir chmod g+s {} \; 2>&1 | egrep -v "(Operation not permitted)"
+find /gpfsssd/worksf/projects/rech/six/commun    -user `whoami` -type d ! \( -readable -executable \) -prune -o -type d -execdir chmod g+s {} \; 2>&1 | egrep -v "(Operation not permitted)"
 find $six_ALL_CCFRSCRATCH -user `whoami` -type d ! \( -readable -executable \) -prune -o -type d -execdir chmod g+s {} \; 2>&1 | egrep -v "(Operation not permitted)"
 find $six_ALL_CCFRSTORE   -user `whoami` -type d ! \( -readable -executable \) -prune -o -type d -execdir chmod g+s {} \; 2>&1 | egrep -v "(Operation not permitted)"
 ```

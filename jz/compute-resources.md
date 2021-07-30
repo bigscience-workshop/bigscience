@@ -74,15 +74,17 @@ alias dfi=" \
 echo \"*** Total (six) ***\"; \
 idrquota -w -p six; \
 idrquota -s -p six; \
+echo WORKSF: `du -hs /gpfsssd/worksf/projects/rech/six/commun | cut -f1`; \
+echo WORKSF: `du -hs --inodes /gpfsssd/worksf/projects/rech/six/commun | cut -f1` inodes; \
 echo; \
 echo \"*** Personal ***\"; \
 idrquota -m; \
 echo WORK: `du -hs $WORK | cut -f1`; \
-echo WORK: `du -hs --inodes $WORK| cut -f1` inodes; \
+echo WORK: `du -hs --inodes $WORK | cut -f1` inodes; \
 echo STORE: `du -hs $STORE | cut -f1`; \
-echo STORE: `du -hs --inodes $STORE| cut -f1` inodes; \
+echo STORE: `du -hs --inodes $STORE | cut -f1` inodes; \
 echo SCRATCH: `du -hs $SCRATCH | cut -f1`; \
-echo SCRATCH: `du -hs --inodes $SCRATCH| cut -f1` inodes; \
+echo SCRATCH: `du -hs --inodes $SCRATCH | cut -f1` inodes; \
 "
 ```
 This includes the report on usage of personal WORK and SCRATCH partitions.
@@ -94,8 +96,8 @@ This includes the report on usage of personal WORK and SCRATCH partitions.
 - `$six_ALL_CCFRSCRATCH` - for checkpoints - make sure to copy important ones to WORK or tarball to STORE
 - `$six_ALL_CCFRWORK` - for everything else
 - `$six_ALL_CCFRSTORE` - for long term storage in tar files (very few inodes!)
-
-- `/gpfsssd/worksf/projects/rech/six/` - for conda and python git clones that take tens of thousands of inodes - it's a small partition with a huge number of inodes. 1 TB and 3M inodes.
+- `/gpfsssd/worksf/projects/rech/six/commun/` - for conda and python git clones that take tens of thousands of inodes - it's a small partition with a huge number of inodes. 1TB and 3M inodes.
+XXX: update this and above once env var was created.
 
 
 More specifically:
