@@ -52,11 +52,18 @@ NHEADS=32
 SEQ_LEN=2048
 VOCAB_SIZE=50257
 
-if   [[ ${ROUND} == 1 ]]; then SAVE_INTERVAL=10
-elif [[ ${ROUND} == 2 ]]; then SAVE_INTERVAL=18
-elif [[ ${ROUND} == 3 ]]; then SAVE_INTERVAL=1500
+
+if   [[ ${ROUND} == 1 ]]; then EXIT_INTERVAL=100  SAVE_INTERVAL=10
+elif [[ ${ROUND} == 2 ]]; then EXIT_INTERVAL=1000 SAVE_INTERVAL=18
+elif [[ ${ROUND} == 3 ]]; then                    SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
+
+# if   [[ ${ROUND} == 1 ]]; then SAVE_INTERVAL=10
+# elif [[ ${ROUND} == 2 ]]; then SAVE_INTERVAL=18
+# elif [[ ${ROUND} == 3 ]]; then SAVE_INTERVAL=1500
+# else echo "invalid ROUND: $ROUND"
+# fi
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \
@@ -96,6 +103,7 @@ GPT_ARGS=" \
     --clip-grad 1.0 \
     --fp16 \
     --checkpoint-activations \
+    --seed 42
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
