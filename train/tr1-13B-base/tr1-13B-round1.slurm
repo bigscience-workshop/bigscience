@@ -58,7 +58,6 @@ elif [[ ${ROUND} == 3 ]]; then SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
 
-
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
@@ -73,16 +72,12 @@ OPTIMIZER_ARGS=" \
     --weight-decay 1e-1 \
     "
 
-# XXX: fails to get this option?
+# XXX: fails to get this option? but it's fine, as the default is correct
 #    --ffn_hidden_size $FFN_HIDDEN_SIZE \
 
 EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
-
-# XXX: must re-enabled this
-# testing with max batch-size first as a tune up
-#    --rampup-batch-size 16 16 5_000_000 \
 
 # GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$GAS*$DP_SIZE))
 GPT_ARGS=" \
@@ -92,6 +87,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
+    --rampup-batch-size 16 16 5_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples 300_000_000 \
     --vocab-file $VOCAB_FILE \
@@ -103,6 +99,8 @@ GPT_ARGS=" \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
+
+# codecarbon isn't ready, will enable once it's working
 #    --codecarbon-dir $CODECARBON_PATH \
 OUTPUT_ARGS=" \
     --log-interval 1 \
