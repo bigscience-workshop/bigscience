@@ -65,10 +65,11 @@ DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
 CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
+BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/bigscience
 
-tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*'
-tools/hub-sync.py --repo-path $CODECARBON_PATH  --patterns '*csv'
-tools/hub-sync.py --repo-path $CHECKPOINT_PATH  --patterns '*pt'
+$BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*'
+$BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $CODECARBON_PATH  --patterns '*csv'
+$BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $CHECKPOINT_PATH  --patterns '*pt'
 ```
 
 Of course this needs to be automated, so we will create slurm jobs to perform all these. These must be run on the `prepost` partition, since it has open Internet.
@@ -90,8 +91,9 @@ module load git-lfs
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
+BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/bigscience
 
-tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*' -d
+$BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*' -d
 
 ```
 

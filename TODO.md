@@ -35,5 +35,8 @@ The idea would be submit a job that resubmit itself while the job performing the
 
 # TODO
 
-- add fixes to Megatron-Deepspeed to our branch
-- deepspeed: activate contiguous activation checkpoints - less fragmentation!
+general:
+-
+
+sysadmin:
+-
