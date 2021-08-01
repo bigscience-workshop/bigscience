@@ -4,14 +4,18 @@
 # the password in public git
 
 import getpass
+import json
 from huggingface_hub import HfApi
+
+HUB_DATA_PATH = "./.hub_info.json"
 
 username = input("Hub username: ")
 password = getpass.getpass("Hub password: ")
+email = input("Hub email: ")
+auth_token = HfApi().login(username=username, password=password)
 
-print(username, password)
-use_auth_token = HfApi().login(username=username, password=password)
+data = dict(username=username, email=email, auth_token=auth_token)
+print(data)
 
-path = "./.auth_token"
-with open(path, "w+") as f:
-    f.write(use_auth_token)
+with open(HUB_DATA_PATH, 'w') as f:
+    json.dump(data, f)
