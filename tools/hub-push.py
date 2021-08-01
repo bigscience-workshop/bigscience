@@ -13,18 +13,20 @@
 # multiple patterns can be passed
 
 import argparse
-import os
 import io
-import re
 import json
-import sys
+import os
+import re
 import subprocess
+import sys
+
+from collections import defaultdict
 from fnmatch import fnmatch
 from huggingface_hub import HfApi, HfFolder, Repository
+from pathlib import Path
 from typing import List, Optional, Union
-from collections import defaultdict
 
-HUB_DATA_PATH = "./.hub_info.json"
+HUB_DATA_PATH = Path(__file__).parent / ".hub_info.json"
 
 
 # map https://git-scm.com/docs/git-status#_short_format
