@@ -26,8 +26,7 @@ from huggingface_hub import HfApi, HfFolder, Repository
 from pathlib import Path
 from typing import List, Optional, Union
 
-HUB_DATA_PATH = Path(__file__).parent / ".hub_info.json"
-
+HUB_DATA_PATH = Path(__file__).resolve().parent / ".hub_info.json"
 
 # map https://git-scm.com/docs/git-status#_short_format
 #

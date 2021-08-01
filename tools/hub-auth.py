@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from huggingface_hub import HfApi
 
-HUB_DATA_PATH = Path(__file__).parent / ".hub_info.json"
+HUB_DATA_PATH = Path(__file__).resolve().parent / ".hub_info.json"
 
 username = input("Hub username: ")
 password = getpass.getpass("Hub password: ")
