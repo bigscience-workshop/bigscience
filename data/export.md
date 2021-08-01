@@ -45,15 +45,15 @@ Now you can tell the contributor on the other side where they can download the f
 
 One a repo has been cloned and is used as a destination for checkpoints and log files, the following process will automatically push any new files into it.
 
-1. Once you need to auth the application - use the `bigscience-bot` user, so that it doesn't interfere for your work.
+1. Once you need to auth the application - use the `bigscience-bot` user, so that it doesn't interfere with your work.
 
-Once you have the login and password, run:
+Once you have the login and password, and email, run:
 
 ```
-./hub-auth.py
+tools/hub-auth.py
 ```
 
-which creates `/.auth_token` with the token locally. Anybody can do it. It will be the same token, specific to the `bigscience-bot` user
+which creates `tools/.hub_info.json` with the username, email and then auth token locally. Anybody can do it. It will be the same token, specific to the `bigscience-bot` user.
 
 2. Now for each tracking repo, run the script with the desired pattern, e.g.:
 
@@ -66,16 +66,17 @@ CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
 CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
 
-tools/files2hub.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*'
-tools/files2hub.py --repo-path $CODECARBON_PATH  --patterns '*csv'
-tools/files2hub.py --repo-path $CHECKPOINT_PATH  --patterns '*pt'
+tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*'
+tools/hub-sync.py --repo-path $CODECARBON_PATH  --patterns '*csv'
+tools/hub-sync.py --repo-path $CHECKPOINT_PATH  --patterns '*pt'
 ```
 
 Of course this needs to be automated, so we will create slurm jobs to perform all these. These must be run on the `prepost` partition, since it has open Internet.
 
 ```
+$ cat tr1-13B-hub-sync-tensorboard.slurm
 #!/bin/bash
-#SBATCH --job-name=sync-tensorboard  # job name
+#SBATCH --job-name=tr1-13B-hub-sync-tensorboard  # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1                    # number of nodes
 #SBATCH --cpus-per-task=40           # number of cores per task
@@ -90,8 +91,12 @@ module load git-lfs
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
 
-tools/files2hub.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*'
+tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*' -d
 
 ```
+
+XXX: create a slurm script for codecarbon when it starts operating
+
+XXX: create a slurm script for checkpoints once we figure out how to share those
 
 XXX: concern: if this is run from `cron.hourly` what if the first `git push` is still uploading when the next round is pushed?
