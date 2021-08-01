@@ -141,13 +141,20 @@ def run_cmd(cmd, local_dir):
 
 def hub_config_repo(hub_data, local_dir):
 
+    # if we have the bot user email set, that means we have done this process already
+    cmd = f"git config user.email"
+    email = run_cmd(cmd.split(), local_dir)
+    if len(email) > 0 and email == hub_data['email']:
+        return
+
+    print(f"* Detected a new clone. Setting it up for {hub_data['username']}")
+
     # to work as another user we need
     # 1. their user.email
     cmd = f"git config user.email {hub_data['email']}"
     run_cmd(cmd.split(), local_dir)
 
     # 2. pre-auth the repo
-
     # a. get url
     cmd = "git remote get-url origin"
     url = run_cmd(cmd.split(), local_dir)
@@ -223,7 +230,7 @@ def main():
             repo.git_commit(commit_message="new data")
 
     if total_to_commit:
-        print("* Pushing {total_to_commit} files")
+        print(f"* Pushing {total_to_commit} files")
         repo.git_push()
         print("* Pushed")
     else:
