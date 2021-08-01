@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr1-13B-round1.slurm
+#SBATCH --job-name=tr1-13B-round3.slurm
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=64
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -13,10 +13,9 @@
 
 set -x -e
 
-# start
-date
+echo "START TIME: $(date)"
 
-ROUND=1
+#ROUND=3
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
@@ -53,11 +52,13 @@ SEQ_LEN=2048
 VOCAB_SIZE=50257
 
 
-if   [[ ${ROUND} == 1 ]]; then EXIT_INTERVAL=100  SAVE_INTERVAL=10
-elif [[ ${ROUND} == 2 ]]; then EXIT_INTERVAL=1000 SAVE_INTERVAL=18
-elif [[ ${ROUND} == 3 ]]; then                    SAVE_INTERVAL=1500
-else echo "invalid ROUND: $ROUND"
-fi
+SAVE_INTERVAL=1500
+
+#if   [[ ${ROUND} == 1 ]]; then EXIT_INTERVAL=100  SAVE_INTERVAL=10
+#elif [[ ${ROUND} == 2 ]]; then EXIT_INTERVAL=1000 SAVE_INTERVAL=18
+#elif [[ ${ROUND} == 3 ]]; then                    SAVE_INTERVAL=1500
+#else echo "invalid ROUND: $ROUND"
+#fi
 
 # if   [[ ${ROUND} == 1 ]]; then SAVE_INTERVAL=10
 # elif [[ ${ROUND} == 2 ]]; then SAVE_INTERVAL=18
@@ -185,7 +186,6 @@ echo $CMD
 # to debug - add echo (it exits and prints what it would have launched)
 clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee tr1-13B-round1.$SLURM_JOBID.out
 
-# end
-date
+echo "END TIME: $(date)"
 
 #
