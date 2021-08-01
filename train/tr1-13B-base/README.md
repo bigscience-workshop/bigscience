@@ -165,6 +165,10 @@ fi
 
 (could also do it with 3 parallel jobs by using the same seed!)
 
+```
+--seed 42
+```
+
 Therefore do this manually:
 
 0.

@@ -86,6 +86,8 @@ EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
 
+#     --exit-interval $EXIT_INTERVAL \
+
 # GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$GAS*$DP_SIZE))
 GPT_ARGS=" \
     --num-layers $NLAYERS \
@@ -111,7 +113,7 @@ GPT_ARGS=" \
 # codecarbon isn't ready, will enable once it's working
 #    --codecarbon-dir $CODECARBON_PATH \
 OUTPUT_ARGS=" \
-    --log-interval 1 \
+    --log-interval 10 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 1000 \
     --eval-iters 100 \
