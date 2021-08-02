@@ -24,15 +24,6 @@ source $six_ALL_CCFRWORK/envs/.bash-git-prompt/gitprompt.sh
 #- Code, cache and datasets -> `$six_ALL_CCFRWORK/cache_dir` and ``$six_ALL_CCFRWORK/datasets`
 #- Experiment dumps -> `$six_ALL_CCFRWORK/experiments`
 
-# SLURM / Account specific settings
-
-# six@gpu is the bigscience account
-# ajs@gpu is an older long-term general access account
-
-export SBATCH_ACCOUNT=six@gpu
-export SLURM_ACCOUNT=six@gpu
-export SALLOC_ACCOUNT=six@gpu
-
 # specific caches
 
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
