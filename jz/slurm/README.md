@@ -143,6 +143,10 @@ export SLURM_JOBID=<JOB ID FROM ABOVE>
 srun --jobid=$SLURM_JOBID ...
 ```
 
+You may need to set `--gres=gpu:0` to run some diagnostics job on the nodes. For example, let's check shared memory of all the hosts:
+```
+srun --jobid 631078 --gres=gpu:0 bash -c 'echo $(hostname) $(df -h | grep shm)'
+```
 
 ## Signal the running jobs to finish
 
