@@ -36,7 +36,7 @@ The idea would be submit a job that resubmit itself while the job performing the
 # TODO
 
 general:
--
+-  grad_norm is being always logged as 0 training.py:572
 
 sysadmin:
 -

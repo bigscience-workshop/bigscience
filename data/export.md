@@ -97,8 +97,8 @@ BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/bigscience
 $BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*' -d
 
 echo "END TIME: $(date)"
-
 ```
+
 
 XXX: create a slurm script for codecarbon when it starts operating
 

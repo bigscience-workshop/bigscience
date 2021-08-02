@@ -342,6 +342,7 @@ XXX: need an automatic script based on a filepattern
 
 XXX: need to check that it gets the perms right - should
 
+Here is the slurm script to sync the tensorboard data: [tr1-13B-hub-sync-tensorboard.slurm](./tr1-13B-hub-sync-tensorboard.slurm)
 
 
 ## Deepspeed config
