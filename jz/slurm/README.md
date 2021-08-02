@@ -20,9 +20,7 @@ CPU-only nodes: `--account=six@cpu`
 - `-p cpu_p1`:  up to 100h: this is the default partition for `--account=six@cpu`
 only 20h by default, add `--qos=qos_cpu-t4` to use 100h
 
-**Important: Currently to launch jobs on `-p cpu_p1` one must explicitly pass `--account=six@cpu` on the command line `sbatch --account=six@cpu ...` as it ignores the `#SBATCH --account=six@cpu` listing in the slurm script.**
-
-**Additionally, having `#SBATCH --gres=gpu:0` in a slurm file forces gpu allocations as well, ignoring the account specification. So remove those**
+**Important: having `#SBATCH --gres=gpu:0` in a slurm file forces gpu allocations as well, ignoring the account specification. So remove those**
 
 The following CPU-only partitions time on which isn't deducted from allocation:
 
