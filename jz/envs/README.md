@@ -38,10 +38,6 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 # share dirs/files with the group
 umask 0007
 
-export SBATCH_ACCOUNT=six@gpu
-export SLURM_ACCOUNT=six@gpu
-export SALLOC_ACCOUNT=six@gpu
-
 # specific caches
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
