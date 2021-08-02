@@ -95,7 +95,17 @@ salloc --begin HH:MM MM/DD/YY
 
 It will simply put the job into the queue at the requested time, as if you were to execute this command at this time. If resources are available at that time, the allocation will be given right away. Otherwise it'll be queued up.
 
+Sometimes the relative begin time is useful. And other formats can be used. Examples:
 
+```
+--begin now+2hours
+--begin=16:00
+--begin=now+1hour
+--begin=now+60  # seconds by default
+--begin=2010-01-20T12:34:00
+```
+
+the time-units can be `seconds` (default), `minutes`, `hours`, `days`, or `weeks`:
 
 ## Preallocated node without time 60min limit
 
@@ -103,7 +113,7 @@ This is very useful for running repetitive interactive experiments - so one does
 
 set `--time` to the desired window (e.g. 6h):
 ```
-salloc --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash
+salloc --account=six@gpu --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash
 salloc: Pending job allocation 1732778
 salloc: job 1732778 queued and waiting for resources
 salloc: job 1732778 has been allocated resources
@@ -131,7 +141,7 @@ e.g. when wanting to run various jobs on identical node allocation.
 
 In one shell:
 ```
-salloc --constraint=v100-32g --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=3:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+salloc --account=six@gpu --constraint=v100-32g --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=3:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 echo $SLURM_JOBID
 ```
 

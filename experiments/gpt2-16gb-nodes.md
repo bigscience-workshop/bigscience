@@ -59,7 +59,7 @@ Not yet optimized with Deepspeed team!
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=4 --ntasks=4 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+salloc --account=six@gpu --nodes=4 --ntasks=4 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1`: **7.5B**
@@ -179,7 +179,7 @@ batch-generator: 2.70
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+salloc --account=six@gpu --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1`: barely **30B**
@@ -297,7 +297,7 @@ optimizer-copy-main-to-model-params: 3.95 | optimizer: 43.19 | batch-generator: 
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=32 --ntasks=32 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+salloc --account=six@gpu --nodes=32 --ntasks=32 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1`: **50B**
@@ -423,7 +423,7 @@ batch-generator: 2.72
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+salloc --account=six@gpu --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1`: **78B**
@@ -547,7 +547,7 @@ Let's try a smaller model with a larger batch size.
 Pre-allocate so that we can run experiments immediately and not wait for slurm to grant us resources:
 
 ```
-salloc --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+salloc --account=six@gpu --nodes=64 --ntasks=64 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 The biggest model we can fit with `micro-batch-size=1` + D4: **22B**
@@ -678,7 +678,7 @@ Status: Unoptimized
 
 
 ```
-salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+salloc --account=six@gpu --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 Todo:
@@ -919,7 +919,7 @@ Status: Unoptimized
 
 
 ```
-salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+salloc --account=six@gpu --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 
@@ -1160,7 +1160,7 @@ time (ms) | forward: 0.00 | backward: 0.00 | optimizer: 0.00 | batch generator: 
 
 
 ```
-salloc --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+salloc --account=six@gpu --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 32GB nodes
