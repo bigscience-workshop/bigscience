@@ -36,7 +36,10 @@ The idea would be submit a job that resubmit itself while the job performing the
 # TODO
 
 general:
--  grad_norm is being always logged as 0 training.py:572
+- grad_norm is being always logged as 0 training.py:572
+- add a prefix `train/` before each key here https://github.com/bigscience-workshop/Megatron-DeepSpeed/blob/781676b59d28c5f4b6fd155fcbf15026991d2187/megatron/training.py#L559 and `val` here https://github.com/bigscience-workshop/Megatron-DeepSpeed/blob/781676b59d28c5f4b6fd155fcbf15026991d2187/megatron/training.py#L819
+
+As a result, the train/validation loss/ppl should get in their respective subgroups
 
 sysadmin:
 -
