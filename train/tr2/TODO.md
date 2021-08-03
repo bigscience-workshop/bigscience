@@ -30,7 +30,12 @@ Num zeros
 - Num zeros vs samples
 ```
 that's mostly about changing to
+
+```
 tb.add_scalar("batch size/batch size", batch_size, iteration)
-and tb.add_scalar("batch size/batch size vs samples", batch_size, args.consumed_train_samples)
+tb.add_scalar("batch size/batch size vs samples", batch_size, args.consumed_train_samples)
+```
+
+tracking: https://github.com/bigscience-workshop/Megatron-DeepSpeed/issues/38
 
 add new metrics: XXX
