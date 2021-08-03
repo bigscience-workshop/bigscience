@@ -1,6 +1,7 @@
 # Train 2 TODO
 
 - name the project (like tr2-26B-prompt)
+    -  [arch&scale] suggests using the same model size as tr1 (13B) but with the model and data changes listed below
 
 - group the tensorboard reports:
 
@@ -39,3 +40,11 @@ tb.add_scalar("batch size/batch size vs samples", batch_size, args.consumed_trai
 tracking: https://github.com/bigscience-workshop/Megatron-DeepSpeed/issues/38
 
 add new metrics: XXX
+
+- Depending on the results from the arch&scale experiments (when do we expect to start this run? we want to make sure we have answers for the following questions by then)
+    - Pre-layernorm (if it is not already used)
+    - Rotary embeddings
+    - Prefix-lm
+
+- Train on multiple languages
+
