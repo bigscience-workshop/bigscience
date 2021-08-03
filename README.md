@@ -20,3 +20,7 @@ Currently, the most active segments of this repo are:
 * [the full spec and discussions](https://github.com/bigscience-workshop/bigscience/tree/master/train/tr1-13B-base)
 * [the training script](https://github.com/bigscience-workshop/bigscience/blob/master/train/tr1-13B-base/tr1-13B-round1.slurm)
 * checkpoints and logs - TODO
+
+### Train 2
+
+* [todo](./tr2/TODO.md)
