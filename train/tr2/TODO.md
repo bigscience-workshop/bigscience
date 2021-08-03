@@ -1,7 +1,7 @@
 # Train 2 TODO
 
 - name the project (like tr2-26B-prompt)
-    -  [arch&scale] suggests using the same model size as tr1 (13B) but with the model and data changes listed below
+    -  arch&scale suggests using the same model size as tr1 (13B) but with the model and data changes listed below
 
 - group the tensorboard reports:
 
