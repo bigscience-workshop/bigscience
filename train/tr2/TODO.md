@@ -42,7 +42,6 @@ tracking: https://github.com/bigscience-workshop/Megatron-DeepSpeed/issues/38
 add new metrics: XXX
 
 - Depending on the results from the arch&scale experiments (when do we expect to start this run? we want to make sure we have answers for the following questions by then)
-    - Pre-layernorm (if it is not already used)
     - Rotary embeddings
     - Prefix-lm
 
