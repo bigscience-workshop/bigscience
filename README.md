@@ -17,10 +17,12 @@ Currently, the most active segments of this repo are:
 
 ### Train 1 - 13B - unmodified Megatron gpt2 - baseline
 
-* [the full spec and discussions](https://github.com/bigscience-workshop/bigscience/tree/master/train/tr1-13B-base)
-* [the training script](https://github.com/bigscience-workshop/bigscience/blob/master/train/tr1-13B-base/tr1-13B-round1.slurm)
-* checkpoints and logs - TODO
+* [the full spec and discussions](./train/tr1-13B-base)
+* [the training script](./train/tr1-13B-base/tr1-13B-round1.slurm)
+* checkpoints and logs:
+   - [tensorboard](https://huggingface.co/bigscience/tr1-13B-tensorboard/tensorboard)
+
 
 ### Train 2
 
-* [todo](./tr2/TODO.md)
+* [todo](./train/tr2/TODO.md)
