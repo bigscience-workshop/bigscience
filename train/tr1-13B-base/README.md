@@ -7,7 +7,19 @@ Auto-regressive objective using regular Megatron-LM GPT2 language model
 
 ## Environment
 
-Build once the following custom environment:
+To launch the environment use [start-tr1-13B](./start-tr1-13B)
+
+```
+source $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B
+```
+
+We are using the following branches specific to this training:
+
+- `~/prod/code/tr1-13B/Megatron-DeepSpeed-tr1-13B` a frozen `tr1-13B` branch - can cherry pick from `main` if need be.
+- `~/prod/code/tr1-13B/DeepSpeed-big-science` - a mostly frozen `big-science` branch - under Deepspeed's team control - so it may also require a specific SHA if something gets broken upstream.
+
+
+How the environment was built:
 ```
 export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
@@ -43,18 +55,8 @@ git clone https://github.com/NVIDIA/apex
 cd apex
 pip install --global-option="--cpp_ext" --global-option="--cuda_ext" --no-cache -v --disable-pip-version-check .  2>&1 | tee build.log
 
-#cp ~/prod/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B
+#cp ~/prod/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B ...
 
-```
-
-Frozen envs:
-- `~/prod/code/tr1-13B/Megatron-DeepSpeed-tr1-13B` a frozen `tr1-13B` branch - can cherry pick from main if need be.
-- `~/prod/code/tr1-13B/DeepSpeed-big-science` - a mostly frozen `big-science` branch - under Deepspeed's team control - so it may also require a specific SHA if something gets broken upstream.
-
-To launch the environment use [start-tr1-13B](./start-tr1-13B)
-
-```
-source $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B
 ```
 
 
