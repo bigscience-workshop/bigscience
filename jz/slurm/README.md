@@ -133,6 +133,12 @@ When finished, to release the resources, either exit the shell started in `sallo
 
 This reserved node will be counted towards hours usage the whole time it's allocated, so release as soon as done with it.
 
+To get just the CPUs instances :
+
+```
+salloc --account=six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --hint=nomultithread --time=6:00:00 bash
+```
+edit `--cpus-per-task` if more cpu cores are needed.
 
 
 ## Re-use allocation
