@@ -5,6 +5,54 @@
 
 Auto-regressive objective using regular Megatron-LM GPT2 language model
 
+## Environment
+
+Build once the following custom environment:
+```
+export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
+
+conda create -y -n tr1-13B python=3.8
+conda activate tr1-13B
+conda install pytorch==1.8.1 torchvision torchaudio cudatoolkit=10.2 -c pytorch -y
+pip install deepspeed
+
+mkdir ~/prod/code/tr1-13B
+cd ~/prod/code/tr1-13B
+
+cd ~/prod/code/tr1-13B
+git clone https://github.com/bigscience-workshop/Megatron-DeepSpeed Megatron-DeepSpeed-tr1-13B
+cd Megatron-DeepSpeed-tr1-13B
+git checkout tr1-13B
+pip install -r requirements.txt
+
+# apex and deepspeed build require an instance w/ cpu and internet (unless cloned beforehand)
+ssh jean-zay-pp
+export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
+
+cd ~/prod/code/tr1-13B
+git clone https://github.com/microsoft/DeepSpeed DeepSpeed-big-science
+cd DeepSpeed-big-science
+git checkout big-science
+TORCH_CUDA_ARCH_LIST="7.0" DS_BUILD_CPU_ADAM=1 DS_BUILD_AIO=1 DS_BUILD_UTILS=1 pip install -e . --global-option="build_ext" --global-option="-j8" --no-cache -v --disable-pip-version-check 2>&1 | tee build.log
+
+cd ~/prod/code/tr1-13B
+git clone https://github.com/NVIDIA/apex
+cd apex
+pip install --global-option="--cpp_ext" --global-option="--cuda_ext" --no-cache -v --disable-pip-version-check .  2>&1 | tee build.log
+
+#cp ~/prod/code/bigscience/train/tr1-13B-base/start-tr1-13B
+
+```
+
+Frozen envs:
+- `~/prod/code/tr1-13B/Megatron-DeepSpeed-tr1-13B` a frozen `tr1-13B` branch - can cherry pick from main if need be.
+- `~/prod/code/tr1-13B/DeepSpeed-big-science` - a mostly frozen `big-science` branch - under Deepspeed's team control - so it may also require a specific SHA if something gets broken upstream.
+
+To launch the environment use [start-tr1-13B](./start-tr1-13B)
+
+```
+source $six_ALL_CCFRWORK/code/bigscience/train/tr1-13B-base/start-tr1-13B
+```
 
 
 ## Architecture
