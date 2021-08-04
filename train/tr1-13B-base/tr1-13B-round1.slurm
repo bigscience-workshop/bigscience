@@ -21,6 +21,7 @@ DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
 CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
+LOGS_PATH=$DATA_OUTPUT_PATH/logs
 
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 
@@ -184,7 +185,7 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee tr1-13B-round1.$SLURM_JOBID.out
+clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
 
 echo "END TIME: $(date)"
 
