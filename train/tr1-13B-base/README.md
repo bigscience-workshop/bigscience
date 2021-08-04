@@ -29,19 +29,31 @@ conda install pytorch==1.8.1 torchvision torchaudio cudatoolkit=10.2 -c pytorch 
 pip install deepspeed
 
 mkdir ~/prod/code/tr1-13B
-cd ~/prod/code/tr1-13B
 
 cd ~/prod/code/tr1-13B
 git clone https://github.com/bigscience-workshop/bigscience
+
+cd ~/prod/code/tr1-13B
+git clone https://github.com/huggingface/transformers
+cd transformers
+pip install -e .
 
 cd ~/prod/code/tr1-13B
 git clone https://github.com/bigscience-workshop/Megatron-DeepSpeed Megatron-DeepSpeed-tr1-13B
 cd Megatron-DeepSpeed-tr1-13B
 git checkout tr1-13B
 pip install -r requirements.txt
+mkdir data
+cd data
+wget https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-vocab.json
+wget https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-merges.txt
+```
 
-# apex and deepspeed build require an instance w/ cpu and internet (unless cloned beforehand)
+`apex` and `deepspeed` build require an instance w/ beefy cpu and internet (unless cloned beforehand), so continue on the `prepost` partition:
+
+```
 ssh jean-zay-pp
+conda activate tr1-13B
 export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 cd ~/prod/code/tr1-13B
@@ -353,11 +365,9 @@ CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
     --codecarbon-dir $CODECARBON_PATH \
 ```
 
+**Training logs**
 
-
-XXX: need to export to HF model hub for collaborators
-
-need to find how to best export from JZ: so far via the hub git pushes works
+All training logs are piped into `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs/main_log.txt`.
 
 
 ## Exporting
