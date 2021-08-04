@@ -93,6 +93,8 @@ To postpone making the allocation for a given time, use:
 salloc --begin HH:MM MM/DD/YY
 ```
 
+Same for `sbatch`.
+
 It will simply put the job into the queue at the requested time, as if you were to execute this command at this time. If resources are available at that time, the allocation will be given right away. Otherwise it'll be queued up.
 
 Sometimes the relative begin time is useful. And other formats can be used. Examples:
@@ -129,7 +131,9 @@ if this `srun` job timed out or manually exited, you can re-start it again in th
 
 `srun` can, of course, call the real training command directly and not just `bash`.
 
-When finished, to release the resources, either exit the shell started in `salloc` or `scancel jobid`.
+Important: when allocating a single node, the allocated shell is not on the node (it never is). You have to find out the hostname of the node (reports when giving the allocation or via `squeue` and `ssh` to it.
+
+When finished, to release the resources, either exit the shell started in `salloc` or `scancel JOBID`.
 
 This reserved node will be counted towards hours usage the whole time it's allocated, so release as soon as done with it.
 
