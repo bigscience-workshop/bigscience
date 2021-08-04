@@ -20,6 +20,9 @@ mkdir ~/prod/code/tr1-13B
 cd ~/prod/code/tr1-13B
 
 cd ~/prod/code/tr1-13B
+git clone https://github.com/bigscience-workshop/bigscience
+
+cd ~/prod/code/tr1-13B
 git clone https://github.com/bigscience-workshop/Megatron-DeepSpeed Megatron-DeepSpeed-tr1-13B
 cd Megatron-DeepSpeed-tr1-13B
 git checkout tr1-13B
@@ -40,7 +43,7 @@ git clone https://github.com/NVIDIA/apex
 cd apex
 pip install --global-option="--cpp_ext" --global-option="--cuda_ext" --no-cache -v --disable-pip-version-check .  2>&1 | tee build.log
 
-#cp ~/prod/code/bigscience/train/tr1-13B-base/start-tr1-13B
+#cp ~/prod/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B
 
 ```
 
@@ -51,7 +54,7 @@ Frozen envs:
 To launch the environment use [start-tr1-13B](./start-tr1-13B)
 
 ```
-source $six_ALL_CCFRWORK/code/bigscience/train/tr1-13B-base/start-tr1-13B
+source $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B
 ```
 
 
