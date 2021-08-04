@@ -2,6 +2,11 @@
 
 Notes on the training progress with a particular focus on any encountered problems and their diagnosis and solutions/prevention.
 
+To follow the training progress charts, see: [tensorboard](https://huggingface.co/bigscience/tr1-13B-tensorboard/tensorboard).
+
+To follow the raw training logs see: [logs](https://huggingface.co/bigscience/tr1-13B-logs/).
+
+
 ## Round1 SAVE_INTERVAL=10
 
 NNODES=16

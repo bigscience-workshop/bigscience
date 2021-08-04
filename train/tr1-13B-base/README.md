@@ -62,10 +62,10 @@ GBS = Global Batch Size
 Use a schedule:
 
 - start from 32k tokens (gbs=16)
-- increase linearly to 2048k (gbs=1024) over 10K steps (for a total of ~10B tokens = 5M samples)
-- then continue at 2048k  (gbs=1024) for 145K  steps (290B tokens = 145M samples)
+- increase linearly to 2048k (gbs=1024) over 5M samples (for a total of ~10B tokens / 10k steps)
+- then continue at 2048k  (gbs=1024) for 145M samples (290B tokens / 145K steps)
 
-Total: 300B tokens (150M steps)
+Total: 300B tokens (150K steps)
 
 syntax:
 ```
@@ -80,16 +80,23 @@ At seqlen 2048 (1k tokens is bs=1), we get:
 ```
 
 This means it will start with global batch size 16 and over 63 (`(1024-16)/16`) intervals will increase the
-batch size by 16 linearly to 1024. Each interval is ~160 steps (`10000/63`).
+batch size by 16 linearly to 1024.
 
-Ramp-Up samples is calculated to be ~5M. First 160 steps at `gbs=16`, next 160 steps at `gbs=32=2*16`, next 160 steps at `gbs=48=3*16`, ..., finally last 160 steps at `gbs=1008=63*16`, all summed up gives 5_160_960 from `16*160*(1+2+3+4+...+63)` or `16*160*63*(1+63)/2`.
+79365 (`5_000_000/63`) is the number of samples before the next GBS increment. That is we run at GBS=16 for 79365 samples, or 4960 steps (`79365/16`). Then we run at GBS=32 for 79365 samples, or 2480 steps. Then 1653 steps at GBS=48, 1240 at GBS=64, etc....
 
 Notes:
 * `--rampup-batch-size` requires the use of `--train-samples` and can't be used with `--train-iters`.
 * global batch size has to be divisible by micro-batch-size * DP_SIZE
 
-XXX: need to come up with yet another schedule to switching up the number of GPUs to match GBS, since the software will fail if GBS is not divisible by `MBS * DP_SIZE`
-Though Jared's recommendation is to use MBS=1 and then it's much easier to match GBS/DP_SIZE even at GBS=16. So it might just work. Need to do the math.
+Important:  the software will fail if GBS is not divisible by `MBS * DP_SIZE`.
+Though Jared's recommendation is to use MBS=1 and then it's much easier to match GBS/DP_SIZE even at GBS=16.
+
+`DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE)`
+
+Since the increments are in GBS=16, we can do only DP_SIZE=16, which means that at most we can use 32 nodes (`32*4/(4*2)=16`).
+
+Once GBS reaches 1024, we can use up to 8192 GPUs (1024*2*4), so we will be able to switch to 64 nodes or may be even 128 nodes (4 gpus each).
+
 
 
 
@@ -310,24 +317,35 @@ DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
 CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
+LOGS_PATH=$DATA_OUTPUT_PATH/logs
 ```
 
-I created 3 repos on https://huggingface.co/bigscience/ and now we can clone those as the folders data will be output into:
+I created 4 repos on https://huggingface.co/bigscience/ and now we can clone those as the folders data will be output into:
 
 ```
 cd $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 git clone https://huggingface.co/bigscience/tr1-13B-checkpoints checkpoints
 git clone https://huggingface.co/bigscience/tr1-13B-tensorboard tensorboard
 git clone https://huggingface.co/bigscience/tr1-13B-codecarbon codecarbon
+git clone https://huggingface.co/bigscience/tr1-13B-logs logs
 ```
-
-Only the first one will have huge files, and `*.pt` is already being lfs-tracked by default, so no setup is required.
 
 If this is your first time running git-lfs on this system, you need to init it once:
 ```
 module load git-lfs
 git lfs install
 ```
+
+Most of the data types we are going to sync will be large or huge, and most are already lfs-tracked by default, so no setup is required. Except our log file which too can grow large, so we need to set it up:
+
+```
+cd logs
+git-lfs track *.txt
+git commit -m "large text files" .gitattributes
+git push
+```
+
+### Cronjobs to auto-sync the hub
 
 Now we just need a cronjob to automatically do for each type of data to export:
 
@@ -338,11 +356,35 @@ git commit -am "new data"
 git push
 ```
 
-XXX: need an automatic script based on a filepattern
+**Weights checkpoints**
 
-XXX: need to check that it gets the perms right - should
+Currently, we aren't exporting checkpoints.
+
+**Tensorboard**
 
 Here is the slurm script to sync the tensorboard data: [tr1-13B-hub-sync-tensorboard.slurm](./tr1-13B-hub-sync-tensorboard.slurm)
+
+**CodeCarbon**
+
+Currently is not running, so nothing to log.
+
+**Log of logs**
+
+Let's also create a log of logs. We will pipe all the logs in there and also the various statuses - e.g. while SLURM is queued the training and it's not running.
+
+Here is the slurm script to sync the raw logs data: [tr1-13B-hub-sync-logs.slurm](./tr1-13B-hub-sync-logs.slurm)
+
+The main source of logs is the training scripts. The logs are gathered via
+```
+$CMD ... 2>&1 | tee -a $LOGS_PATH/main_log.txt
+```
+in the training slurm script.
+
+XXX: add a pulse script that will report to the outside world when the training job is on the backburner (or perhaps not even scheduled).
+
+XXX: we could also add various other diagnostics appended to the main log file. e.g. shared memory, etc.
+
+
 
 
 ## Deepspeed config

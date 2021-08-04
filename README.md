@@ -21,6 +21,7 @@ Currently, the most active segments of this repo are:
 * [the training script](./train/tr1-13B-base/tr1-13B-round1.slurm)
 * checkpoints and logs:
    - [tensorboard](https://huggingface.co/bigscience/tr1-13B-tensorboard/tensorboard)
+   - [logs](https://huggingface.co/bigscience/tr1-13B-logs/)
 * [chronicles](./train/tr1-13B-base/chronicles.md)
 
 ### Train 2
