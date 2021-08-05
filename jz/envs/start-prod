@@ -6,13 +6,16 @@
 #
 #
 
-if [ -z $(type -t module) ]
-then
-   . /etc/profile.d/z_modules.sh
-fi
+# if this session isn't run via a login shell, which is the case when running a
+# command which is not shell via ssh, the bash function `module` will be missing.
+# so work around it by emulating part of the login shell that loads modules environment
+# if [ -z $(type -t module) ]
+# then
+#    . /etc/profile.d/z_modules.sh
+# fi
 module purge
 module load pytorch-gpu/py3/1.8.0
-module load nvtop
+module load nvtop git-lfs github-cli mc
 
 # git prompt
 export GIT_PROMPT_ONLY_IN_REPO=0;
@@ -34,16 +37,6 @@ export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 #export PYTHONPATH=$WORK/hf/transformers-master/src
 
 export DATASETS_CUSTOM=$six_ALL_CCFRWORK/datasets-custom
-
-# if this session isn't run via a login shell, which is the case when running a
-# command which is not shell via ssh, the bash function `module` will be missing.
-# so work around it by emulating part of the login shell that loads modules environment
-#if [ -z $(type -t module) ]
-#then
-#   . /etc/profile.d/z_modules.sh
-#fi
-#module load pytorch-gpu/py3/1.8.0
-
 
 ### CONDA ###
 
