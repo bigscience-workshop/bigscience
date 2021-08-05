@@ -14,7 +14,7 @@
 #    . /etc/profile.d/z_modules.sh
 # fi
 module purge
-module load pytorch-gpu/py3/1.8.0
+module load pytorch-gpu/py3/1.8.1
 module load nvtop git-lfs github-cli mc
 
 # git prompt
@@ -56,4 +56,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
+conda activate base
 conda activate hf-prod

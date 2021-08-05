@@ -62,6 +62,7 @@ cd $six_ALL_CCFRWORK/code/tr1-13B
 git clone https://github.com/microsoft/DeepSpeed DeepSpeed-big-science
 cd DeepSpeed-big-science
 git checkout big-science
+rm -rf build
 TORCH_CUDA_ARCH_LIST="7.0" DS_BUILD_CPU_ADAM=1 DS_BUILD_AIO=1 DS_BUILD_UTILS=1 pip install -e . --global-option="build_ext" --global-option="-j8" --no-cache -v --disable-pip-version-check 2>&1 | tee build.log
 
 cd $six_ALL_CCFRWORK/code/tr1-13B

@@ -113,7 +113,9 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n hf-prod python=3.8
 conda activate hf-prod
-conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch -y
+conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
+# pip doesn't seem to produce the right package - missing libnvrtc
+# pip3 install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
 pip install deepspeed
 
 cd $six_ALL_CCFRWORK/code/transformers
@@ -370,6 +372,9 @@ $ cat build.sh
 
 pip install --global-option="--cpp_ext" --global-option="--cuda_ext" --no-cache -v --disable-pip-version-check .  2>&1 | tee build.log
 ```
+
+Note that since we are using pt/cuda-11.1 and JZ has cuda-11.2, apex won't build unless we skip the version check (which is totally not necessary - things work just fine), so should you reset the clone and removed the local patch, you can restore it with this diff: https://github.com/NVIDIA/apex/issues/988#issuecomment-726343453
+
 
 
 ## Aliases
