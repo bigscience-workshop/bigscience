@@ -367,7 +367,7 @@ srun --pty --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultith
 
 ```
 
-cd ~/prod/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
+cd $six_ALL_CCFRWORK/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
 
 
 CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
@@ -531,7 +531,7 @@ srun --pty --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultith
 
 ```
 
-cd ~/prod/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
+cd $six_ALL_CCFRWORK/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
 
 
 # Change for multinode config

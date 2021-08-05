@@ -18,7 +18,7 @@ source $six_ALL_CCFRWORK/start-prod
 nvidia-smi
 
 
-cd ~/prod/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
+cd $six_ALL_CCFRWORK/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
 
 CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json

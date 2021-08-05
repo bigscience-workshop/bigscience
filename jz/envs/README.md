@@ -53,7 +53,7 @@ alias myjobs="squeue -u `whoami`"
 
 ```
 
-Also since most of our work is at `$six_ALL_CCFRWORK` you need to add a symlink:
+Also since most of our work is at `$six_ALL_CCFRWORK` you may want to add symlinks:
 ```
 ln -s $six_ALL_CCFRWORK ~/prod
 ln -s $six_ALL_CCFRSCRATCH ~/prod-scratch
@@ -66,7 +66,7 @@ cd ~/prod
 cd $PROD
 ```
 
-And `~/prod` is also what all scripts will use, as it's much easier to type.
+Some users prefer to use the env vars, so let's try to not expect the symlinks to be there for everybody.
 
 
 ## Production environment
@@ -116,16 +116,16 @@ conda activate hf-prod
 conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch -y
 pip install deepspeed
 
-cd ~/prod/code/transformers
+cd $six_ALL_CCFRWORK/code/transformers
 pip install -e .[dev]
 
-cd ~/prod/code/megatron-lm
+cd $six_ALL_CCFRWORK/code/megatron-lm
 pip install -r requirements.txt
 
-cd ~/prod/code/apex
+cd $six_ALL_CCFRWORK/code/apex
 ./build.sh
 
-cd ~/prod/code/deepspeed
+cd $six_ALL_CCFRWORK/code/deepspeed
 ./build.sh
 
 ```
@@ -212,10 +212,10 @@ du -ahd1 --inodes $six_ALL_CCFRWORK | sort -rh
 du -ahd1 --inodes $six_ALL_CCFRSTORE | sort -rh
 ```
 
-Some busy git clone can be pruned of unused files with: `git gc`, e.g. to prune a dir with multiple-clones as a subdir
+Some busy git clones can be pruned of unused files with: `git gc`, e.g. to prune a dir with multiple-clones as sub-dirs:
 
 ```
-~/prod/code
+cd $six_ALL_CCFRWORK/code
 du -hs .
 du -hs --inodes .
 find . -mindepth 1 -maxdepth 1 -type d -exec bash -c "cd '{}' && git gc" \;
@@ -235,7 +235,7 @@ locate -i megatron
 ```
 (remove `-i` if you want case-sensitive search)
 
-the index is being updated by `~/prod/bin/mlocate-update` in a crontab job in `~/prod/cron/cron.daily/mlocate-update.slurm`.
+the index is being updated by `$six_ALL_CCFRWORK/bin/mlocate-update` in a crontab job in `$six_ALL_CCFRWORK/cron/cron.daily/mlocate-update.slurm`.
 
 For more details on the emulated crontab job see: [crontab](../crontab/README.md).
 
@@ -283,7 +283,7 @@ source $six_ALL_CCFRWORK/start-prod
 And if you made the symlink from your `$HOME`, interactively it's easier to remember to type:
 
 ```
-source ~/prod/start-prod
+source $six_ALL_CCFRWORK/start-prod
 ```
 
 
@@ -312,13 +312,13 @@ srun --pty --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultith
 Quick instructions (detailed listing follow):
 
 ```
-mkdir -p ~/prod/tmp
-export TMPDIR=~/prod/tmp
+mkdir -p $six_ALL_CCFRWORK/tmp
+export TMPDIR=$six_ALL_CCFRWORK/tmp
 
-cd ~/prod/code/deepspeed-big-science
+cd $six_ALL_CCFRWORK/code/deepspeed-big-science
 ./build.sh
 
-cd ~/prod/code/apex
+cd $six_ALL_CCFRWORK/code/apex
 ./build.sh
 ```
 
@@ -328,7 +328,7 @@ cd ~/prod/code/apex
 
 We are using a special branch maintained for us:
 ```
-cd ~/prod/code/
+cd $six_ALL_CCFRWORK/code/
 git clone https://github.com/microsoft/deepspeed deepspeed-big-science
 cd deepspeed-big-science
 git checkout big-science
@@ -337,9 +337,9 @@ git checkout big-science
 To pre-build deepspeed (as compared to have it built via JIT at runtime):
 
 ```
-mkdir -p ~/prod/tmp
-export TMPDIR=~/prod/tmp
-cd ~/prod/code/deepspeed-big-science
+mkdir -p $six_ALL_CCFRWORK/tmp
+export TMPDIR=$six_ALL_CCFRWORK/tmp
+cd $six_ALL_CCFRWORK/code/deepspeed-big-science
 ./build.sh
 ```
 
@@ -359,7 +359,7 @@ To build apex (needed by megatron-lm):
 
 build:
 ```
-cd ~/prod/code/apex
+cd $six_ALL_CCFRWORK/code/apex
 ./build.sh
 ```
 

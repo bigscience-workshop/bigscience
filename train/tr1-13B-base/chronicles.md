@@ -111,13 +111,13 @@ Though Remi checked that all nodes used by the training that crashed had this ex
 
 To continually diagnose the running nodes's shm memory usage:
 ```
-for ((;;)) { (srun --jobid 637799 --gres=gpu:0 ~/prod/bin/report_shm_usage | grep -v "1%"); sleep 10; }
+for ((;;)) { (srun --jobid 637799 --gres=gpu:0 $six_ALL_CCFRWORK/bin/report_shm_usage | grep -v "1%"); sleep 10; }
 ```
 after adjusting the jobid number.
 
 where:
 ```
-cat ~/prod/bin/report_shm_usage
+cat $six_ALL_CCFRWORK/bin/report_shm_usage
 #!/usr/bin/bash
 
 # print shared memory usage with the host

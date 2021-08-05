@@ -18,7 +18,7 @@ source $six_ALL_CCFRWORK/start-prod
 
 nvidia-smi
 
-cd ~/prod/code/transformers-clm-any-model-config/
+cd $six_ALL_CCFRWORK/code/transformers-clm-any-model-config/
 
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
