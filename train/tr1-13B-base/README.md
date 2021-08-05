@@ -27,6 +27,7 @@ conda create -y -n tr1-13B python=3.8
 conda activate tr1-13B
 conda install pytorch==1.8.1 torchvision torchaudio cudatoolkit=10.2 -c pytorch -y
 pip install deepspeed
+pip install tensorboard
 
 mkdir ~/prod/code/tr1-13B
 
@@ -43,6 +44,7 @@ git clone https://github.com/bigscience-workshop/Megatron-DeepSpeed Megatron-Dee
 cd Megatron-DeepSpeed-tr1-13B
 git checkout tr1-13B
 pip install -r requirements.txt
+pip install -e .
 mkdir data
 cd data
 wget https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-vocab.json
