@@ -312,8 +312,8 @@ srun --pty --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultith
 Quick instructions (detailed listing follow):
 
 ```
-mkdir -p $six_ALL_CCFRWORK/tmp
 export TMPDIR=$six_ALL_CCFRWORK/tmp
+mkdir -p $TMPDIR
 
 cd $six_ALL_CCFRWORK/code/deepspeed-big-science
 ./build.sh
@@ -337,8 +337,8 @@ git checkout big-science
 To pre-build deepspeed (as compared to have it built via JIT at runtime):
 
 ```
-mkdir -p $six_ALL_CCFRWORK/tmp
 export TMPDIR=$six_ALL_CCFRWORK/tmp
+mkdir -p $TMPDIR
 cd $six_ALL_CCFRWORK/code/deepspeed-big-science
 ./build.sh
 ```
