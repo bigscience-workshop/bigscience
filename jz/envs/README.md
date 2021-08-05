@@ -171,21 +171,19 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n stas python=3.8
 conda activate stas
-conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch -y
+conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
 pip install deepspeed
 
-cd ~/stas/code/transformers
+cd ~/user/code/transformers
 pip install -e .[dev]
 
-cd ~/stas/code/megatron-lm
+cd ~/user/code/Megatron-Deepspeed
 pip install -r requirements.txt
 
-pip install torch==1.8.1+cu102 torchvision==0.9.1+cu102 torchaudio -f https://download.pytorch.org/whl/torch_stable.html
-
-cd ~/stas/code/apex
+cd ~/user/code/apex
 ./build.sh
 
-cd ~/stas/code/deepspeed-shaden
+cd ~/user/code/deepspeed-big-science
 ./build.sh
 ```
 
