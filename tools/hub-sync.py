@@ -213,7 +213,7 @@ def main():
     uncommitted_files.extend(get_modified_files(args.repo_path))
 
     total_to_commit = 0
-    if len(uncommitted_files) > 0
+    if len(uncommitted_files) > 0:
         print(f"* Found {len(uncommitted_files)} uncommitted files:")
         if args.debug:
             print(''.join(f"- {f}\n" for f in uncommitted_files))
