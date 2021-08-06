@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr1-13B-round3.slurm
+#SBATCH --job-name=tr1-13B-round3
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=64
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
