@@ -47,6 +47,10 @@ One a repo has been cloned and is used as a destination for checkpoints and log 
 
 1. Once you need to auth the application - use the `bigscience-bot` user, so that it doesn't interfere with your work.
 
+If there is already `.hub_info.json` in the `tools` dir, you can skip this step - we are sharing the same `bigscience-bot` so if someone has set it up, you don't need to re-run the auth.
+
+Only if `tools/.hub_info.json` is not there, proceed with the current step.
+
 Once you have the login and password, and email, run:
 
 ```
