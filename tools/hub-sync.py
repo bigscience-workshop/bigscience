@@ -155,8 +155,10 @@ def hub_config_repo(hub_data, local_dir):
     print(f"* Detected a new clone. Setting it up for {hub_data['username']}")
 
     # to work as another user we need
-    # 1. their user.email
+    # 1. their user.email ( but also user.name is required but can be anything)
     cmd = f"git config user.email {hub_data['email']}"
+    run_cmd(cmd.split(), local_dir)
+    cmd = f"git config user.name {hub_data['username']}"
     run_cmd(cmd.split(), local_dir)
 
     # 2. pre-auth the repo
@@ -205,34 +207,33 @@ def main():
     hub_config_repo(hub_data, local_dir=args.repo_path)
 
     files_dict = get_git_files_by_status(args.repo_path)
-    #from pprint import pprint
-    #pprint(files_dict)
-    #sys.exit()
 
     # we want untracked and modified files
     uncommitted_files = get_untracked_files(args.repo_path)
     uncommitted_files.extend(get_modified_files(args.repo_path))
-    print(f"* Found {len(uncommitted_files)} uncommitted files:")
-    if args.debug:
-        print(''.join(f"- {f}\n" for f in uncommitted_files))
 
     total_to_commit = 0
-    for pattern in args.patterns:
-
-        # *** new and modified files ***
-        # check that these are the files that match the pattern passed to git_add
-        uncommitted_files_matched = [f for f in uncommitted_files if fnmatch(f, pattern)]
-        print(f"* Found {len(uncommitted_files_matched)} uncommitted files matching pattern: {pattern}:")
-
+    if len(uncommitted_files) > 0
+        print(f"* Found {len(uncommitted_files)} uncommitted files:")
         if args.debug:
-            print(''.join(f"- {f}\n" for f in uncommitted_files_matched))
+            print(''.join(f"- {f}\n" for f in uncommitted_files))
 
-        if len(uncommitted_files_matched) > 0:
-            total_to_commit += len(uncommitted_files_matched)
+        for pattern in args.patterns:
 
-            # # auto_lfs_track requires huggingface-hub-0.0.15, but transformers forces 0.0.12
-            repo.git_add(pattern=pattern) # , auto_lfs_track=True)
-            repo.git_commit(commit_message="new data")
+            # *** new and modified files ***
+            # check that these are the files that match the pattern passed to git_add
+            uncommitted_files_matched = [f for f in uncommitted_files if fnmatch(f, pattern)]
+            print(f"* Found {len(uncommitted_files_matched)} uncommitted files matching pattern: {pattern}:")
+
+            if args.debug:
+                print(''.join(f"- {f}\n" for f in uncommitted_files_matched))
+
+            if len(uncommitted_files_matched) > 0:
+                total_to_commit += len(uncommitted_files_matched)
+
+                # # auto_lfs_track requires huggingface-hub-0.0.15, but transformers forces 0.0.12
+                repo.git_add(pattern=pattern) # , auto_lfs_track=True)
+                repo.git_commit(commit_message="new data")
 
     if total_to_commit:
         print(f"* Pushing {total_to_commit} files")
