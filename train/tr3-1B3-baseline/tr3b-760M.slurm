@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=760M.slurm
 #SBATCH --qos=qos_gpu-t3
-#SBATCH --nodes=4
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -45,19 +45,19 @@ MASTER_PORT=6000
 
 # XXX: edit me
 GPUS_PER_NODE=4
-NNODES=8
+NNODES=16
 PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
-MICRO_BATCH_SIZE=8
+MICRO_BATCH_SIZE=4
 GLOBAL_BATCH_SIZE=256
 TRAIN_ITER=146_484_375
 
 NLAYERS=24
 NHIDDEN=1536
 NHEADS=16
-FFN_HIDDEN_SIZE=8192
+FFN_HIDDEN_SIZE=6144
 SEQ_LEN=2048
 
 if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10

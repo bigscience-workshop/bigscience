@@ -163,6 +163,7 @@ export CMD=" \
     $GPT_ARGS \
     $OUTPUT_ARGS \
     --save $OUTPUT_PATH/checkpoints \
+    --load $OUTPUT_PATH/checkpoints \
     --data-path $DATA_PATH \
     --data-impl mmap \
     --split 949,50,1 \
@@ -178,4 +179,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | OUTPUT_PATH/logs/tee tr3-1B3-modeling-baseline.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr3-1B3-modeling-baseline.$SLURM_JOBID.out
