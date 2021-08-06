@@ -143,10 +143,14 @@ def run_cmd(cmd, local_dir):
 def hub_config_repo(hub_data, local_dir):
 
     # if we have the bot user email set, that means we have done this process already
-    cmd = f"git config user.email"
-    email = run_cmd(cmd.split(), local_dir)
-    if len(email) > 0 and email == hub_data['email']:
-        return
+    # but some users don't have any `user.email` set, so recover gracefully if that's the case
+    try:
+        cmd = f"git config user.email"
+        email = run_cmd(cmd.split(), local_dir)
+        if len(email) > 0 and email == hub_data['email']:
+            return
+    except:
+        pass
 
     print(f"* Detected a new clone. Setting it up for {hub_data['username']}")
 
