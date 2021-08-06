@@ -77,16 +77,16 @@ In order to use the production environment, run:
 start-prod
 ```
 which will:
-- activate our custom conda environment which has everything in it
 - setup env vars
 - configure nice git-prompt with lots of useful info built in
 - load the right `module`s
+- activate our custom production conda environment which has everything in it
 
 so basically use it when running production scripts.
 
 The alias should have been set in `~/.bashrc` as instructed above.
 
-Note: the fancy [bash-git-prompt](https://github.com/magicmonty/bash-git-prompt) tells you which conda env you are in, and then which branch your are in and a ton of useful git enfo, and it was extended to tell you whether you're in the login instance (prefix `0-0-1`) or whether you're on a GPU instance where it then shows something like `2-0,1,23-10` - the 3 numbers stand for `${SLURM_NNODES}-${SLURM_STEP_GPUS}-${SLURM_CPUS_PER_TASK}` - so you know what `srun` configuration you're logged into (or the login shell where you get 1 cpu and no gpus hence `0-0-1` ).
+Note: the fancy [bash-git-prompt](https://github.com/magicmonty/bash-git-prompt) tells you which conda env you are in, and then which branch your are in and a ton of useful git enfo, and it was extended to tell you whether you're in the login instance (prefix `0-1`) or whether you're on a GPU instance where it then shows something like `4-40` - the 2 numbers stand for `${SLURM_NNODES}-${SLURM_CPUS_PER_TASK}` - so you know what `srun` configuration you're logged into (or the login shell where you get no nodes, with 0 gpus and 1 cpu hence `0-1`).
 
 The production conda env `hf-prod` is too set up already, so you don't need to do anything, but here are some details on how it was done should you want to know.
 
