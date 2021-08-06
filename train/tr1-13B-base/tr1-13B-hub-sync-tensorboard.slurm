@@ -14,7 +14,7 @@ module load git-lfs
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
-BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/bigscience
+BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/tr1-13B/bigscience
 
 $BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*' -d
 
