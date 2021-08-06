@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
 #
-# this tool automatically pushes newly added files into the hub repo
+# This tool automatically pushes newly added and modified files into the hub repo, if they match the
+# provided one or more patterns.
 #
 # If the program fails to run the first time make sure to run `hub-auth.py` to authenticate and save
-# the token locally which will then be used by this program
+# the token, and user name/email locally which will then be used by this program to alter the config
+# of the target repo to automatically commit as the user you authenticated with. This is needed when
+# pushing as someone else, which is the case here, as we want the software to always work and not
+# depend on the developer's git setup.
 #
 # Example:
 #
-# tools/files2hub.py --repo-path /hf/Megatron-DeepSpeed-master/output_dir/tensorboard/ --patterns '*tfevents*' -d
+# tools/files2hub.py --repo-path /hf/Megatron-DeepSpeed-master/output_dir/tensorboard/ --patterns '*tfevents*'
 #
 # multiple patterns can be passed
 
