@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr1-13B-hub-sync-tensorboard  # job name
+#SBATCH --job-name=tr1-13B-slurm-status  # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1                    # number of nodes
 #SBATCH --cpus-per-task=1            # number of cores per task
@@ -10,12 +10,13 @@
 
 echo "START TIME: $(date)"
 
-module load git-lfs
-
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
-TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
+LOGS_PATH=$DATA_OUTPUT_PATH/logs
+MAIN_LOG_FILE=$LOGS_PATH/main_log.txt
 BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/tr1-13B/bigscience
+# XXX: fix me on the next schedule when the name is fixed to remove .slurm
+WATCH_SLURM_NAME=tr1-13B-round3.slurm
 
-$BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*' -d
+$BIG_SCIENCE_REPO_PATH/tools/slurm-status.py --job-name $WATCH_SLURM_NAME 2>&1 | tee -a $MAIN_LOG_FILE
 
 echo "END TIME: $(date)"

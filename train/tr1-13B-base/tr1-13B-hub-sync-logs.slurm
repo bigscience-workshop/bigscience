@@ -14,7 +14,7 @@ module load git-lfs
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 LOGS_PATH=$DATA_OUTPUT_PATH/logs
-BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/bigscience
+BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/tr1-13B/bigscience
 
 $BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $LOGS_PATH --patterns '*.txt' -d
 
