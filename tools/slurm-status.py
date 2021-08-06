@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 #
-# This tool reports on the status of the job - whether it's running or scheduled and various other useful data
+# This tool reports on the status of the job - whether it's running or scheduled and various other
+# useful data
 #
 # Example:
 #
-# slurm-status.py --job-name tr1-13B-round3.slurm
+# slurm-status.py --job-name tr1-13B-round3
 #
 
 import argparse
@@ -17,6 +18,8 @@ import subprocess
 import sys
 import shlex
 from datetime import datetime, timedelta
+
+SLURM_GROUP_NAME = "six"
 
 def run_cmd(cmd):
     try:
@@ -36,10 +39,9 @@ def run_cmd(cmd):
 def get_slurm_group_status():
     # we need to monitor slurm jobs of the whole group six, since the slurm job could be owned by
     # any user in that group
-    group = "six"
-    cmd = f"getent group {group}"
+    cmd = f"getent group {SLURM_GROUP_NAME}"
     getent = run_cmd(cmd.split())
-    # six:*:3015222:foo,bar,tar
+    # sample output: six:*:3015222:foo,bar,tar
     usernames = getent.split(':')[-1]
 
     # get all the scheduled and running jobs
@@ -60,12 +62,26 @@ def get_remaining_time(time_str):
     return delta
 
 def process_job(jobid, partition, name, state, time, nodes, start_time, notes):
-    if state == "RUNNING":
-        print(f"{name} is running for {time} since {start_time} ({jobid} on '{partition}' partition ({notes})")
-    elif state == "PENDING":
-        remaining_wait_time = get_remaining_time(start_time)
-        print(f"{name} is scheduled to start in {remaining_wait_time} (at {start_time}) ({jobid} on '{partition}' partition)")
 
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    job_on_partition = f"{jobid} on '{partition}' partition"
+
+    if state == "RUNNING":
+        print(f"[{timestamp}] {name} is running for {time} since {start_time} ({job_on_partition} ({notes})")
+    elif state == "PENDING":
+        if start_time == "N/A":
+            if notes == "(JobArrayTaskLimit)":
+                print(f"[{timestamp}] {name} is waiting for the previous Job Array job to finish before scheduling a new one ({job_on_partition})")
+            else:
+                print(f"[{timestamp}] {name} is waiting to be scheduled ({job_on_partition})")
+        else:
+            remaining_wait_time = get_remaining_time(start_time)
+            print(f"[{timestamp}] {name} is scheduled to start in {remaining_wait_time} (at {start_time}) ({job_on_partition})")
+
+        return True
+    else:
+        # Check that we don't get some 3rd state
+        print(f"[{timestamp}] {name} is unknown - fix me: (at {start_time}) ({job_on_partition}) ({notes})")
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -78,11 +94,18 @@ def main():
     args = get_args()
     status_lines = get_slurm_group_status()
 
+    in_the_system = False
     for l in status_lines:
         #print(f"l=[{l}]")
         jobid, partition, name, state, time, nodes, start_time, notes = l.split()
+        # XXX: add support for regex matching so partial name can be provided
         if name == args.job_name:
+            in_the_system = True
             process_job(jobid, partition, name, state, time, nodes, start_time, notes)
+
+    if not in_the_system:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(f"[{timestamp}] ***ALERT: {args.job_name} is not RUNNING or SCHEDULED! Alert someone at Eng WG***")
 
 
 if __name__ == "__main__":
