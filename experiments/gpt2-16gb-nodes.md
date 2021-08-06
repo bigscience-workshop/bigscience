@@ -66,7 +66,7 @@ The biggest model we can fit with `micro-batch-size=1`: **7.5B**
 
 ```
 
-cd ~/prod/code/megatron-lm/
+cd $six_ALL_CCFRWORK/code/megatron-lm/
 
 CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
@@ -188,7 +188,7 @@ The biggest model we can fit with `micro-batch-size=1`: barely **30B**
 
 ```
 
-cd ~/prod/code/megatron-lm/
+cd $six_ALL_CCFRWORK/code/megatron-lm/
 
 CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
@@ -311,7 +311,7 @@ perl -le 'print( (120*402780160+8*514977792)>>20)'
 
 ```
 
-cd ~/prod/code/megatron-lm/
+cd $six_ALL_CCFRWORK/code/megatron-lm/
 
 CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
@@ -437,7 +437,7 @@ perl -le 'print( (248*314652160+8*454899200)>>20)'
 
 ```
 
-cd ~/prod/code/megatron-lm/
+cd $six_ALL_CCFRWORK/code/megatron-lm/
 
 CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
@@ -559,7 +559,7 @@ perl -le 'print( (48*402780160+8*514977792)>>20)'
 
 ```
 
-cd ~/prod/code/megatron-lm/
+cd $six_ALL_CCFRWORK/code/megatron-lm/
 
 CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
@@ -693,7 +693,7 @@ VOCAB_SIZE=50257
 
 ```
 
-cd ~/prod/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
+cd $six_ALL_CCFRWORK/code/DeepSpeedExamples/Megatron-LM-v1.1.5-ZeRO3
 
 CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
@@ -925,7 +925,7 @@ salloc --account=six@gpu --nodes=16 --ntasks=16 --cpus-per-task=40 --gres=gpu:4 
 
 ```
 
-cd ~/prod/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
+cd $six_ALL_CCFRWORK/code/DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism
 
 CHECKPOINT_PATH=$six_ALL_CCFRWORK/models-custom/megatron-gpt2/megatron_lm_345m_v0.0/release
 VOCAB_FILE=$CHECKPOINT_PATH/gpt2-vocab.json
@@ -1178,7 +1178,7 @@ This memory gets released afterwards, but we don't have enough to bypass that hu
 ```
 
 # use custom PR branch to handle the model creation on the fly
-cd ~/prod/code/transformers-clm-any-model-config/
+cd $six_ALL_CCFRWORK/code/transformers-clm-any-model-config/
 
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
@@ -1311,7 +1311,7 @@ Model size: 7B
 ```
 
 # use custom PR branch to handle the model creation on the fly
-cd ~/prod/code/transformers-clm-any-model-config/
+cd $six_ALL_CCFRWORK/code/transformers-clm-any-model-config/
 
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
@@ -1461,7 +1461,7 @@ Stats:
 #SBATCH --account=six@gpu
 
 # use custom PR branch to handle the model creation on the fly
-cd ~/prod/code/transformers-clm-any-model-config/
+cd $six_ALL_CCFRWORK/code/transformers-clm-any-model-config/
 
 source $six_ALL_CCFRWORK/start-prod
 

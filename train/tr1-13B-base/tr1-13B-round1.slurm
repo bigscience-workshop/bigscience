@@ -13,6 +13,8 @@
 
 set -x -e
 
+source $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B
+
 echo "START TIME: $(date)"
 
 #ROUND=3
@@ -23,13 +25,12 @@ TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
 CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
 LOGS_PATH=$DATA_OUTPUT_PATH/logs
 
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/
 
 VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
 MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
-source $six_ALL_CCFRWORK/start-prod
 cd $MEGATRON_DEEPSPEED_REPO
 
 MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`

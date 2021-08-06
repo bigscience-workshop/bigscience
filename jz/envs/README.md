@@ -53,7 +53,7 @@ alias myjobs="squeue -u `whoami`"
 
 ```
 
-Also since most of our work is at `$six_ALL_CCFRWORK` you need to add a symlink:
+Also since most of our work is at `$six_ALL_CCFRWORK` you may want to add symlinks:
 ```
 ln -s $six_ALL_CCFRWORK ~/prod
 ln -s $six_ALL_CCFRSCRATCH ~/prod-scratch
@@ -66,7 +66,7 @@ cd ~/prod
 cd $PROD
 ```
 
-And `~/prod` is also what all scripts will use, as it's much easier to type.
+Some users prefer to use the env vars, so let's try to not expect the symlinks to be there for everybody.
 
 
 ## Production environment
@@ -113,19 +113,21 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n hf-prod python=3.8
 conda activate hf-prod
-conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch -y
+conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
+# pip doesn't seem to produce the right package - missing libnvrtc
+# pip3 install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
 pip install deepspeed
 
-cd ~/prod/code/transformers
+cd $six_ALL_CCFRWORK/code/transformers
 pip install -e .[dev]
 
-cd ~/prod/code/megatron-lm
+cd $six_ALL_CCFRWORK/code/megatron-lm
 pip install -r requirements.txt
 
-cd ~/prod/code/apex
+cd $six_ALL_CCFRWORK/code/apex
 ./build.sh
 
-cd ~/prod/code/deepspeed
+cd $six_ALL_CCFRWORK/code/deepspeed
 ./build.sh
 
 ```
@@ -169,21 +171,19 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n stas python=3.8
 conda activate stas
-conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch -y
+conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
 pip install deepspeed
 
-cd ~/stas/code/transformers
+cd ~/user/code/transformers
 pip install -e .[dev]
 
-cd ~/stas/code/megatron-lm
+cd ~/user/code/Megatron-Deepspeed
 pip install -r requirements.txt
 
-pip install torch==1.8.1+cu102 torchvision==0.9.1+cu102 torchaudio -f https://download.pytorch.org/whl/torch_stable.html
-
-cd ~/stas/code/apex
+cd ~/user/code/apex
 ./build.sh
 
-cd ~/stas/code/deepspeed-shaden
+cd ~/user/code/deepspeed-big-science
 ./build.sh
 ```
 
@@ -212,10 +212,10 @@ du -ahd1 --inodes $six_ALL_CCFRWORK | sort -rh
 du -ahd1 --inodes $six_ALL_CCFRSTORE | sort -rh
 ```
 
-Some busy git clone can be pruned of unused files with: `git gc`, e.g. to prune a dir with multiple-clones as a subdir
+Some busy git clones can be pruned of unused files with: `git gc`, e.g. to prune a dir with multiple-clones as sub-dirs:
 
 ```
-~/prod/code
+cd $six_ALL_CCFRWORK/code
 du -hs .
 du -hs --inodes .
 find . -mindepth 1 -maxdepth 1 -type d -exec bash -c "cd '{}' && git gc" \;
@@ -235,7 +235,7 @@ locate -i megatron
 ```
 (remove `-i` if you want case-sensitive search)
 
-the index is being updated by `~/prod/bin/mlocate-update` in a crontab job in `~/prod/cron/cron.daily/mlocate-update.slurm`.
+the index is being updated by `$six_ALL_CCFRWORK/bin/mlocate-update` in a crontab job in `$six_ALL_CCFRWORK/cron/cron.daily/mlocate-update.slurm`.
 
 For more details on the emulated crontab job see: [crontab](../crontab/README.md).
 
@@ -283,7 +283,7 @@ source $six_ALL_CCFRWORK/start-prod
 And if you made the symlink from your `$HOME`, interactively it's easier to remember to type:
 
 ```
-source ~/prod/start-prod
+source $six_ALL_CCFRWORK/start-prod
 ```
 
 
@@ -312,13 +312,13 @@ srun --pty --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultith
 Quick instructions (detailed listing follow):
 
 ```
-mkdir -p ~/prod/tmp
-export TMPDIR=~/prod/tmp
+export TMPDIR=$six_ALL_CCFRWORK/tmp
+mkdir -p $TMPDIR
 
-cd ~/prod/code/deepspeed-big-science
+cd $six_ALL_CCFRWORK/code/deepspeed-big-science
 ./build.sh
 
-cd ~/prod/code/apex
+cd $six_ALL_CCFRWORK/code/apex
 ./build.sh
 ```
 
@@ -328,7 +328,7 @@ cd ~/prod/code/apex
 
 We are using a special branch maintained for us:
 ```
-cd ~/prod/code/
+cd $six_ALL_CCFRWORK/code/
 git clone https://github.com/microsoft/deepspeed deepspeed-big-science
 cd deepspeed-big-science
 git checkout big-science
@@ -337,9 +337,9 @@ git checkout big-science
 To pre-build deepspeed (as compared to have it built via JIT at runtime):
 
 ```
-mkdir -p ~/prod/tmp
-export TMPDIR=~/prod/tmp
-cd ~/prod/code/deepspeed-big-science
+export TMPDIR=$six_ALL_CCFRWORK/tmp
+mkdir -p $TMPDIR
+cd $six_ALL_CCFRWORK/code/deepspeed-big-science
 ./build.sh
 ```
 
@@ -359,7 +359,7 @@ To build apex (needed by megatron-lm):
 
 build:
 ```
-cd ~/prod/code/apex
+cd $six_ALL_CCFRWORK/code/apex
 ./build.sh
 ```
 
@@ -370,6 +370,9 @@ $ cat build.sh
 
 pip install --global-option="--cpp_ext" --global-option="--cuda_ext" --no-cache -v --disable-pip-version-check .  2>&1 | tee build.log
 ```
+
+Note that since we are using pt/cuda-11.1 and JZ has cuda-11.2, apex won't build unless we skip the version check (which is totally not necessary - things work just fine), so should you reset the clone and removed the local patch, you can restore it with this diff: https://github.com/NVIDIA/apex/issues/988#issuecomment-726343453
+
 
 
 ## Aliases
