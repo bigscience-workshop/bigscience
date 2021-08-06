@@ -14,10 +14,10 @@
 set -x -e
 
 
-ROUND=1
+ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$SCRATCH/exps/tr3-1B3/
+OUTPUT_PATH=$SCRATCH/synched_exps/tr3-1B3-full/
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/Megatron-DeepSpeed
 
 if [[ ${TESTING} == 1 ]]; then
@@ -46,7 +46,7 @@ MASTER_PORT=6000
 # XXX: edit me
 GPUS_PER_NODE=4
 NNODES=16
-PP_SIZE=8 # NLAYERS must be a multiple of PP_SIZE here
+PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
@@ -61,7 +61,7 @@ FFN_HIDDEN_SIZE=8192
 SEQ_LEN=2048
 
 if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10
-elif [[ ${ROUND} == 3 ]]; then  SAVE_INTERVAL=1500
+elif [[ ${ROUND} == 2 ]]; then  SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
 
@@ -104,10 +104,10 @@ GPT_ARGS=" \
     "
 
 OUTPUT_ARGS=" \
-    --log-interval 1 \
+    --log-interval 200 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 10 \
-    --eval-iters 10 \
+    --eval-interval 1000 \
+    --eval-iters 100 \
     --tensorboard-dir $OUTPUT_PATH/tensorboard \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
@@ -163,7 +163,6 @@ export CMD=" \
     $GPT_ARGS \
     $OUTPUT_ARGS \
     --save $OUTPUT_PATH/checkpoints \
-    --load $OUTPUT_PATH/checkpoints \
     --data-path $DATA_PATH \
     --data-impl mmap \
     --split 949,50,1 \
@@ -179,4 +178,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee tr3-1B3-modeling-baseline.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | OUTPUT_PATH/logs/tee tr3-1B3-modeling-baseline.$SLURM_JOBID.out
