@@ -16,6 +16,6 @@ DATA_OUTPUT_PATH=$SCRATCH/synched_exps/tr3-1B3-full
 LOGS_PATH=$DATA_OUTPUT_PATH/logs
 BIG_SCIENCE_REPO_PATH=$SCRATCH/bigscience
 
-$BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $LOGS_PATH --patterns '*.txt' -d
+$BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $LOGS_PATH --patterns '*.out' -d
 
 echo "END TIME: $(date)"
