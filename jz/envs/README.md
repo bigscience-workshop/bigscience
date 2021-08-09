@@ -113,10 +113,9 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n hf-prod python=3.8
 conda activate hf-prod
-conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
-conda install libsndfile
+conda install pytorch torchvision cudatoolkit=11.1 -c pytorch-lts -c nvidia
 # pip doesn't seem to produce the right package - missing libnvrtc
-# pip3 install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
+# pip3 install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
 pip install deepspeed
 
 cd $six_ALL_CCFRWORK/code/transformers
@@ -172,7 +171,7 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n stas python=3.8
 conda activate stas
-conda install pytorch torchvision torchaudio cudatoolkit=11.1 -c pytorch-lts -c nvidia
+conda install pytorch torchvision cudatoolkit=11.1 -c pytorch-lts -c nvidia
 pip install deepspeed
 
 cd ~/user/code/transformers
