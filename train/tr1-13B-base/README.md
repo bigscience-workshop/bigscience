@@ -25,7 +25,7 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n tr1-13B python=3.8
 conda activate tr1-13B
-conda install pytorch==1.8.1 torchvision torchaudio cudatoolkit=10.2 -c pytorch -y
+conda install pytorch==1.8.1 torchvision cudatoolkit=10.2 -c pytorch -y
 pip install deepspeed
 pip install tensorboard
 
