@@ -17,8 +17,8 @@ Code:
 - [Config files](./configs/)
 
 Tools:
-- [Monitoring Tools](./monitoring.md)
 - [SLURM HowTo](./slurm/)
+- [Various Tools](./tools/)
 
 General JZ Docs:
 
