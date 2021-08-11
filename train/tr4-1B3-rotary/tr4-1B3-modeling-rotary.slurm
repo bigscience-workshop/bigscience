@@ -13,8 +13,8 @@
 set -x -e
 source $six_ALL_CCFRWORK/start-prod
 
-ROUND=1
-TESTING=1
+ROUND=2
+TESTING=0
 
 # Prevent internet access
 export HF_DATASETS_OFFLINE=1
