@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr4-1B3-hub-sync-logs  # job name
+#SBATCH --job-name=tr4-1B3-hub-sync-tensorboard  # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1                    # number of nodes
 #SBATCH --cpus-per-task=1            # number of cores per task
@@ -14,9 +14,10 @@ echo "START TIME: $(date)"
 module load git-lfs
 
 DATA_OUTPUT_PATH=$SCRATCH/synched_exps/tr4-1B3-full
-LOGS_PATH=$DATA_OUTPUT_PATH/logs
-BIG_SCIENCE_REPO_PATH=$WORK/code/bigscience
+TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
+BIG_SCIENCE_REPO_PATH=$WORK/code/big_science/bigscience
 
-$BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $LOGS_PATH --patterns '*.out' -d
+$BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*' -d
 
 echo "END TIME: $(date)"
+

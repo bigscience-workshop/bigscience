@@ -9,6 +9,7 @@
 #SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --error=logs/%x-%j.out            # error file name (same to watch just one file)
 #SBATCH --account=six@gpu
+#SBATCH --array=1-10%1
 
 set -x -e
 source $six_ALL_CCFRWORK/start-prod
