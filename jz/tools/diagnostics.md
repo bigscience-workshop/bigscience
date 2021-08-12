@@ -1,4 +1,4 @@
-# Tools for diagnostics of the problems with training
+# Tools for diagnostics of training problems
 
 
 ## Hanging processes
