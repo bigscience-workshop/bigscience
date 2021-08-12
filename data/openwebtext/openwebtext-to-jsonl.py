@@ -21,9 +21,8 @@ ds = load_dataset(dataset_name, split='train')
 ds.to_json(f"{name}.jsonl", orient="records", lines=True)
 
 # subset to jsonlines
-# n_samples = 10000
+# n_samples = 1000
 # ds = load_dataset(dataset_name, split='train')
 # ds_small = ds.select(range(n_samples))
 # path = f"{dataset_name}-{n_samples}.jsonl"
-# ds.to_json(path, orient="records", lines=True)
-
+# ds_small.to_json(path, orient="records", lines=True)
