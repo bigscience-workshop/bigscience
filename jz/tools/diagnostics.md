@@ -11,6 +11,11 @@ pgrep -f pretrain_gpt | xargs -i /path/to/py-spy dump --pid {} > /networked/path
 
 Given the dumps of a hung 3D trainer, the node with issues usually get stuck in a different part of the training pipeline. Pipelines with no issues will be waiting at an all-reduce before step, whereas the problematic pipeline usually hangs somewhere in the training microbatches. We often see the pipeline-adjacent processes stuck on a pipe send/recv from the problematic node(s).
 
+If `py-spy` isn't already installed, do:
+```
+pip install py-spy
+```
+
 
 ## Malfunctioning GPUs
 
