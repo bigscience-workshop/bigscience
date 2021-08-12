@@ -5,12 +5,10 @@
 
 These are the megatron-ready mc4 files:
 
-XXX: todo:
 - 1.3TB: `$six_ALL_CCFRWORK/datasets-custom/mc4/mc4_preprocessing`
 
 Should something get corrupted there is a backup:
 
-XXX: todo:
 - 1.3TB: `$six_ALL_CCFRSTORE/datasets-custom/mc4/mc4_preprocessing`
 
 If files need to re-pre-processed, the original jsonl files are at:
