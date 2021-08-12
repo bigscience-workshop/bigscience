@@ -27,3 +27,19 @@ gsutil -m cp -r \
 ```
 
 To debug add `-d`.
+
+To download a single file, go to the file's page, e.g.:
+
+https://console.cloud.google.com/storage/browser/_details/bigscience/mc4_preprocessing/en/train_text_document_1.bin
+
+and it'll have the `gsutil URI` entry, in this case:  `gs://bigscience/mc4_preprocessing/en/train_text_document_1.bin` which you then feed to `gsutil`:
+
+```
+gsutil -m cp "gs://bigscience/mc4_preprocessing/en/train_text_document_1.bin" .
+```
+
+rsync might be a better way to sync files when they are large and the client keeps on crashing, example:
+```
+gsutil -m rsync -r "gs://bigscience/mc4_preprocessing" mc4_preprocessing
+```
+note that `gsutil` keeps track of what it failed to do and tries to re-do it even if you manually fetched a large file and inserted it into the right location, it'll ignore its appearance, will delete it and will attempt to fetch it a new. Not really great `rsync` feature, if you're used to the normal `rsync(1)` tool.
