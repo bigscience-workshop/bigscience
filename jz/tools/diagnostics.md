@@ -4,7 +4,7 @@
 ## Hanging processes
 
 
-To track down the culprit of a hung process, by dumping the stack traces of the training processes.
+To track down the culprit of a hung process dumping the stack traces of the training processes.
 ```
 pgrep -f pretrain_gpt | xargs -i /path/to/py-spy dump --pid {} > /networked/path/unique/for/node
 ```
