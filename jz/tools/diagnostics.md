@@ -6,7 +6,7 @@
 
 To track down the culprit of a hung process, by dumping the stack traces of the training processes.
 ```
-pgrep -f pretrain_gpt | xargs -i sudo /path/to/py-spy dump --pid {} > /networked/path/unique/for/node
+pgrep -f pretrain_gpt | xargs -i /path/to/py-spy dump --pid {} > /networked/path/unique/for/node
 ```
 
 Given the dumps of a hung 3D trainer, the node with issues usually get stuck in a different part of the training pipeline. Pipelines with no issues will be waiting at an all-reduce before step, whereas the problematic pipeline usually hangs somewhere in the training microbatches. We often see the pipeline-adjacent processes stuck on a pipe send/recv from the problematic node(s).
