@@ -1,6 +1,54 @@
 # Train 1 - 13B - unmodified Megatron gpt2 - baseline
 
 
+
+## On Call
+
+When a person is on call, they need to watch that the training is either running or scheduled to run. If neither is happening they need to schedule a new training. When this situation occurs the log file will report:
+
+```
+***ALERT: tr1-13B-round3.slurm is not RUNNING or SCHEDULED! Alert someone at Eng WG***
+```
+
+XXX: will soon add an email alert as well. bigscience-jean-zay@groups.google.com
+
+The next section explains how to watch the logs.
+
+If for some reason the training is not scheduled or running, to schedule a new training:
+
+```
+cd $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base
+sbatch --array=1-5%1 tr1-13B-round1.slurm
+```
+
+This will schedule a job array of 5 jobs of 20h each, so if all goes well, that's at least 4 days of not needing to do anything other than being on the lookout for potential crashes.
+
+XXX: need a troubleshooting section, but elsewhere in document that is not this training specific.
+
+1. if one of the nodes gets a corrupted gpu, and the training crashes there is a risk that the next job in the training will get allocated the same node, in which case it'll crash again. We need a method to identify which node is corrupted, report that to assist@idris.fr so they know to fix it and exclude this node from the slurm job by adding a list of nodes to exclude as following:
+
+```
+sbatch --exclude=r7i5n2,r7i5n6 ...
+```
+but we currently have no way to identify which node is faulty. I think if we switch to pt-1.9.0 or higher where torch elastic replaces the usual launcher
+
+
+## Watching the training logs
+
+On JZ:
+```
+tail -f $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs/main_log.txt
+```
+
+Outside of JZ:
+```
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/x-linked-size: (\d+)/; \
+print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
+https://huggingface.co/bigscience/tr1-13B-logs/resolve/main/main_log.txt
+```
+Currently the updates happen hourly, so this is a delayed version of `tail -f`.
+
+
 ## Task
 
 Auto-regressive objective using regular Megatron-LM GPT2 language model
@@ -130,7 +178,7 @@ GBS = Global Batch Size
 Use a schedule:
 
 - start from 32k tokens (gbs=16)
-- increase linearly to 2048k (gbs=1024) over 5M samples (for a total of ~10B tokens / 10k steps)
+- increase linearly to 2048k (gbs=1024) over 5M samples (for a total of ~10B tokens / 5k steps)
 - then continue at 2048k  (gbs=1024) for 145M samples (290B tokens / 145K steps)
 
 Total: 300B tokens (150K steps)
