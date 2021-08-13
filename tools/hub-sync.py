@@ -12,7 +12,7 @@
 #
 # Example:
 #
-# tools/files2hub.py --repo-path /hf/Megatron-DeepSpeed-master/output_dir/tensorboard/ --patterns '*tfevents*'
+# hub-sync.py --repo-path /hf/Megatron-DeepSpeed-master/output_dir/tensorboard/ --patterns '*tfevents*'
 #
 # multiple patterns can be passed
 
