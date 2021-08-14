@@ -125,10 +125,8 @@ pip install --global-option="--cpp_ext" --global-option="--cuda_ext" --no-cache 
 
 ## Architecture
 
-40 layers | 40 heads (128d each) | hid size 5120 | ffn size 20480
+Config:
 
-
-config:
 ```
 NLAYERS=40
 NHIDDEN=5120
@@ -147,7 +145,7 @@ GPT_ARGS=" \
 
 Sanity check:
 ```
-$ VOCAB_SIZE=50257 NLAYERS=40 NHIDDEN=5120 NHEADS=32 SEQ_LEN=1024; python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"
+$ VOCAB_SIZE=50257 NLAYERS=40 NHIDDEN=5120 NHEADS=32 SEQ_LEN=2048; python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"
 Model size: 13B
 ```
 
@@ -155,9 +153,7 @@ Model size: 13B
 
 ## Sequence Length
 
-Default Megatron-LM LM with 1024 tokens
-
-All dataset samples are at least 1024 tokens long (filtered via `transformers`'s `GPT2TokenizerFast`).
+Default Megatron-LM language model with 2048 tokens sequence length
 
 ```
 SEQ_LEN=2048
@@ -208,7 +204,7 @@ Though Jared's recommendation is to use MBS=1 and then it's much easier to match
 
 Since the increments are in GBS=16, we can do only DP_SIZE=16, which means that at most we can use 32 nodes (`32*4/(4*2)=16`).
 
-Once GBS reaches 1024, we can use up to 8192 GPUs (1024*2*4), so we will be able to switch to 64 nodes or may be even 128 nodes (4 gpus each).
+Once GBS reaches 1024, we can use up to 8192 GPUs (1024*2*4), so we will be able to switch to 64 nodes or may be even 128 nodes (4 gpus each). We can't use any number of nodes between 64 and 128 though, because the number has to be 2**X. So 96 nodes won't work, because it has a multiplier of 3 there.
 
 
 
@@ -514,13 +510,14 @@ Possible extras:
 
 ## Dataset
 
-
 - Full 304.2M version (529GB) : `$six_ALL_CCFRWORK/datasets-custom/oscar-en`
 - Tiny 10K version (56M): `$six_ALL_CCFRWORK/datasets-custom/oscar-en-10k`
 
-We are using english-only OSCAR with full documents (*not* individual sentences).
+We are using English-only subset of OSCAR with full documents (*not* individual sentences).
 
 We have about 300M records in 1.2TB of jsonl data (about 3/4 of which are smaller than 1K tokens), which amounts to about 280B tokens (estimated at about 4.5chars/word).
+
+Megatron's preprocessing tool indexes everything and then at training time the Dataloader serves chunks of the desired fixed sequence length (2048 tokens in our case).
 
 For more information on the pre-processing process and various estimations see: [OSCAR](../../data/oscar/README.md)
 
@@ -564,7 +561,7 @@ XXX:
 
 ## Estimated run time
 
-Best case scenario:
+Best case scenario when training 24/7 on 64 nodes with 4 gpus each:
 ```
 $ python -c 'Btokens=300; Bmodel=13; n_gpus=256; Tflops=45; \
 print(f"{Btokens*1e9*8*Bmodel*1e9/(n_gpus*Tflops*1e12*60*60*24):0.2f} days")'
@@ -573,8 +570,9 @@ print(f"{Btokens*1e9*8*Bmodel*1e9/(n_gpus*Tflops*1e12*60*60*24):0.2f} days")'
 
 You will find the detailed explanation of the estimation formula [here](../../math/README.md#estimate-model-training-time).
 
-Of course, the training will be much slower in the first 10k steps because of the batch size rampup, where the pipeline will be very inefficient.
+The training was much slower in the first 10k steps because of the batch size rampup, where the pipeline was very inefficient.
 
+And then we were only able to use 20h slurm jobs, with unpredictable gaps of wait time in between (1-30 hours!), so it's impossible to predict when the finish line will be finished.
 
 
 ## Exports
