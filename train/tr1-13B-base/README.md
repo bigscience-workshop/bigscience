@@ -585,7 +585,8 @@ Of course, the training will be much slower in the first 10k steps because of th
 
 ## Training scripts
 
-[tr1-13B-round1.slurm](./tr1-13B-round1.slurm)
+- [tr1-13B-round1.slurm](./tr1-13B-round1.slurm)
+- [tr1-13B-short.slurm](./tr1-13B-short.slurm) - this is a very small model to do quick testing and debug, but otherwise the same as the main script
 
 
 

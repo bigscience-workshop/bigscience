@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=tr1-13B-round3
+#SBATCH --job-name=tr1-13B-short
 #SBATCH --constraint=v100-32g
-#SBATCH --nodes=64
+#SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -11,15 +11,27 @@
 #SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
 #SBATCH --account=six@gpu
 
-set -x -e
+
+
+# This is the same as the main script but pre-configured for a small model that can be easily tested
+# on 1 or 2 nodes, which is handy to verify everything works before using it on the main training.
+#
+# It's also useful for pre-building megatron CUDA kernels if and when things get borked and it gets stuck in building kernels.
+#
+# Change to NNODES=1 if needed
+#
+# to allocate (change to 2 for NNODES=2)
+# salloc --constraint=v100-32g --account=six@gpu --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash
 
 source $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B
+
+set -x -e
 
 echo "START TIME: $(date)"
 
 #ROUND=3
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B-test
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
 CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
@@ -37,24 +49,25 @@ MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; 
 MASTER_PORT=6000
 
 GPUS_PER_NODE=4
-NNODES=64    # switch to 64
+NNODES=2    # switch to 64
 TP_SIZE=2    # always fixed to the size of a single node
-PP_SIZE=4    # NLAYERS must be a multiple of PP_SIZE here
+PP_SIZE=2    # NLAYERS must be a multiple of PP_SIZE here
 #DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
 
 # GLOBAL_BATCH_SIZE has to be divisible by MICRO_BATCH_SIZE*DP_size
 # GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$GAS*$DP_SIZE)) - GAS is auto-derived by deepspeed
 MICRO_BATCH_SIZE=1
-GLOBAL_BATCH_SIZE=1024
+GLOBAL_BATCH_SIZE=64
 
-NLAYERS=40
-NHIDDEN=5120
-NHEADS=32
-FFN_HIDDEN_SIZE=20480
-SEQ_LEN=2048
+NLAYERS=8
+NHIDDEN=512
+NHEADS=8
+FFN_HIDDEN_SIZE=2048
+SEQ_LEN=512
 VOCAB_SIZE=50257
 
-SAVE_INTERVAL=1500
+SAVE_INTERVAL=2000
+
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \
@@ -151,6 +164,7 @@ export LAUNCHER="python -u -m torch.distributed.launch \
     --master_port $MASTER_PORT \
     "
 
+#    /usr/bin/env PYTHONPATH="." `pwd`/pretrain_gpt.py \
 export CMD=" \
     `pwd`/pretrain_gpt.py \
     --tensor-model-parallel-size $TP_SIZE \
@@ -169,7 +183,8 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
+clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD'
+#2>&1 | tee -a $LOGS_PATH/main_log.txt
 
 echo "END TIME: $(date)"
 
