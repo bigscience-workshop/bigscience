@@ -176,6 +176,8 @@ Use a schedule:
 
 Total: 300B tokens (150K steps)
 
+Note: the training script wasn't updated when we flipped seqlen/gbs from 1024/2048 to 2048/1024, so we are currently planning to train for 300K steps (samples) and 600B tokens. But since longer doesn't impact anything, we will just stop at half the time. I updated the document to use the right 150K number so we don't repeat this mistake in the next training.
+
 syntax:
 ```
 --rampup-batch-size <start batch size>  <batch size increment> <ramp-up samples>
@@ -220,7 +222,7 @@ Because there are 3 different schedules, and Megatron-LM has only fixed checkpoi
 
 1. steps 1-100 - 10 checkpoints, interval 10 steps
 2. steps 101-1000 - 50 checkpoints, interval 18 steps
-3. steps 1001-300K - 100+ checkpoints, interval 1500 steps
+3. steps 1001-150K - 100+ checkpoints, interval 1500 steps
 4. if still needed, can continue with schedule 3
 
 note: the interoperability study doesn't care for checkpoints in the range of 1k-20k, so we only save those to be able to restart the training.
@@ -230,7 +232,7 @@ It'd have been
 ROUND=1
 if   [[ ${ROUND} == 1 ]]; then TRAIN_ITER=100    SAVE_INTERVAL=10
 elif [[ ${ROUND} == 2 ]]; then TRAIN_ITER=1000   SAVE_INTERVAL=18
-elif [[ ${ROUND} == 3 ]]; then TRAIN_ITER=300000 SAVE_INTERVAL=1500
+elif [[ ${ROUND} == 3 ]]; then TRAIN_ITER=150000 SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
     --train-iter $TRAIN_ITER  \
@@ -251,7 +253,7 @@ elif [[ ${ROUND} == 3 ]]; then                   SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
 
-    --train-samples 300_000_000 \
+    --train-samples 150_000_000 \
     --exit-interval $EXIT_INTERVAL \
     --save-interval $SAVE_INTERVAL  \
 ```
@@ -275,7 +277,7 @@ elif [[ ${ROUND} == 3 ]]; then SAVE_INTERVAL=1500
 else echo "invalid ROUND: $ROUND"
 fi
 
-    --train-samples 300_000_000 \
+    --train-samples 150_000_000 \
     --save-interval $SAVE_INTERVAL  \
 ```
 
@@ -513,13 +515,13 @@ Possible extras:
 - Full 304.2M version (529GB) : `$six_ALL_CCFRWORK/datasets-custom/oscar-en`
 - Tiny 10K version (56M): `$six_ALL_CCFRWORK/datasets-custom/oscar-en-10k`
 
-We are using English-only subset of OSCAR with full documents (*not* individual sentences).
+We are using English-only subset of [the OSCAR dataset](https://huggingface.co/datasets/oscar) with full documents (*not* individual sentences).
 
 We have about 300M records in 1.2TB of jsonl data (about 3/4 of which are smaller than 1K tokens), which amounts to about 280B tokens (estimated at about 4.5chars/word).
 
 Megatron's preprocessing tool indexes everything and then at training time the Dataloader serves chunks of the desired fixed sequence length (2048 tokens in our case).
 
-For more information on the pre-processing process and various estimations see: [OSCAR](../../data/oscar/README.md)
+For more information on the pre-processing process and various estimations see: [OSCAR](../../data/oscar/README.md).
 
 
 
@@ -552,10 +554,26 @@ Alternatively, as always this param can be part of the script:
 
 ## Crontab
 
-JZ doesn't have a user-accessible crontab facility, so we have to emulate it with a self-restarting slurm job.
+JZ doesn't have a user-accessible crontab facility, so we have to emulate it with a self-restarting slurm job that polls some dir for new jobs to run. For full details on how this works please see [Crontab Jobs](../../jz/crontab/).
 
-I'm thinking of having a slurm script that will poll some dir and if it finds any scripts in it will run those. perhaps we can emulate `/etc/cron.hourly` and `/etc/cron.daily`
-XXX:
+But to use it simply put your slurm scripts into either:
+```
+$six_ALL_CCFRWORK/cron/cron.hourly
+$six_ALL_CCFRWORK/cron/cron.daily
+```
+
+and the jobs will be run on hourly or daily basis. This is similar to Linux's `/etc/cron.*` setup. Except the jobs aren't guaranteed to start on the hour, but should be around that time.
+
+Currently we have:
+
+```
+ls -1 $six_ALL_CCFRWORK/cron/cron.hourly/*slurm
+tr1-13B-hub-sync-logs.slurm
+tr1-13B-hub-sync-tensorboard.slurm
+tr1-13B-slurm-status.slurm
+```
+
+The first 2 sync log files to the hub and the last one monitors the health of the training and alerts of any problems.
 
 
 
@@ -573,6 +591,8 @@ You will find the detailed explanation of the estimation formula [here](../../ma
 The training was much slower in the first 10k steps because of the batch size rampup, where the pipeline was very inefficient.
 
 And then we were only able to use 20h slurm jobs, with unpredictable gaps of wait time in between (1-30 hours!), so it's impossible to predict when the finish line will be finished.
+
+
 
 
 ## Exports
