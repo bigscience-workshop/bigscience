@@ -49,7 +49,7 @@ GLOBAL_BATCH_SIZE=1024
 NLAYERS=40
 NHIDDEN=5120
 NHEADS=32
-#FFN_HIDDEN_SIZE=20480
+FFN_HIDDEN_SIZE=20480
 SEQ_LEN=2048
 VOCAB_SIZE=50257
 
@@ -82,9 +82,6 @@ OPTIMIZER_ARGS=" \
     --weight-decay 1e-1 \
     "
 
-# XXX: fails to get this option? but it's fine, as the default is correct
-#    --ffn_hidden_size $FFN_HIDDEN_SIZE \
-
 EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
@@ -95,6 +92,7 @@ EXIT_OPTS=" \
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
+    --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --num-attention-heads $NHEADS \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \

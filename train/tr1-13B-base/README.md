@@ -133,20 +133,17 @@ config:
 NLAYERS=40
 NHIDDEN=5120
 NHEADS=32
-#FFN_HIDDEN_SIZE=20480
+FFN_HIDDEN_SIZE=20480
 
 #    --ffn_hidden_size $FFN_HIDDEN_SIZE \
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
+    --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --num-attention-heads $NHEADS \
     [...]
     "
 ```
-
-XXX: for some reason `--ffn_hidden_size` doesn't work, but its default `args.ffn_hidden_size = 4 * args.hidden_size` leads to the same number, ok for the first traiing. But should still fix it.
-
-
 
 Sanity check:
 ```
