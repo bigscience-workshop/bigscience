@@ -1,54 +1,6 @@
 # Train 1 - 13B - unmodified Megatron gpt2 - baseline
 
 
-
-## On Call
-
-When a person is on call, they need to watch that the training is either running or scheduled to run. If neither is happening they need to schedule a new training. When this situation occurs the log file will report:
-
-```
-***ALERT: tr1-13B-round3.slurm is not RUNNING or SCHEDULED! Alert someone at Eng WG***
-```
-
-XXX: will soon add an email alert as well. bigscience-jean-zay@groups.google.com
-
-The next section explains how to watch the logs.
-
-If for some reason the training is not scheduled or running, to schedule a new training:
-
-```
-cd $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base
-sbatch --array=1-5%1 tr1-13B-round1.slurm
-```
-
-This will schedule a job array of 5 jobs of 20h each, so if all goes well, that's at least 4 days of not needing to do anything other than being on the lookout for potential crashes.
-
-XXX: need a troubleshooting section, but elsewhere in document that is not this training specific.
-
-1. if one of the nodes gets a corrupted gpu, and the training crashes there is a risk that the next job in the training will get allocated the same node, in which case it'll crash again. We need a method to identify which node is corrupted, report that to assist@idris.fr so they know to fix it and exclude this node from the slurm job by adding a list of nodes to exclude as following:
-
-```
-sbatch --exclude=r7i5n2,r7i5n6 ...
-```
-but we currently have no way to identify which node is faulty. I think if we switch to pt-1.9.0 or higher where torch elastic replaces the usual launcher
-
-
-## Watching the training logs
-
-On JZ:
-```
-tail -f $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs/main_log.txt
-```
-
-Outside of JZ:
-```
-perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/x-linked-size: (\d+)/; \
-print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
-https://huggingface.co/bigscience/tr1-13B-logs/resolve/main/main_log.txt
-```
-Currently the updates happen hourly, so this is a delayed version of `tail -f`.
-
-
 ## Task
 
 Auto-regressive objective using regular Megatron-LM GPT2 language model
@@ -593,6 +545,21 @@ The training was much slower in the first 10k steps because of the batch size ra
 And then we were only able to use 20h slurm jobs, with unpredictable gaps of wait time in between (1-30 hours!), so it's impossible to predict when the finish line will be finished.
 
 
+## Memory usage
+
+During training currently we use 256GB (8x 32GB gpus) per each full replica (TP=2 + PP=4), the rest are ZeRO-DP. So if we throw x times more GPUs we just speed things up by having more 2-node replicas.
+The required memory breakdown:
+
+1. 4B for fp32 weights
+2. 2B for fp16 weights
+3. 8B for optimizer states.
+4. 4B for gradients (we don't save these in the checkpoint)
+5. plus memory for activations and temps, which total majorly depends on the seqlen and mini batch size - and since we use activation checkpointing this memory need is quite small.
+
+Total: 234GB (18*13) plus activations and temps memory. So we are close to 256GB here.
+
+Activation memory would have been much much bigger if it weren't for activation checkpointing.
+
 
 
 ## Exports
@@ -606,6 +573,54 @@ And then we were only able to use 20h slurm jobs, with unpredictable gaps of wai
 - [tr1-13B-round1.slurm](./tr1-13B-round1.slurm)
 - [tr1-13B-short.slurm](./tr1-13B-short.slurm) - this is a very small model to do quick testing and debug, but otherwise the same as the main script
 
+
+
+
+## On Call
+
+When a person is on call, they need to watch that the training is either running or scheduled to run. If neither is happening they need to schedule a new training. When this situation occurs the log file will report:
+
+```
+***ALERT: tr1-13B-round3.slurm is not RUNNING or SCHEDULED! Alert someone at Eng WG***
+```
+
+XXX: will soon add an email alert as well. bigscience-jean-zay@groups.google.com
+
+The next section explains how to watch the logs.
+
+If for some reason the training is not scheduled or running, to schedule a new training:
+
+```
+cd $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base
+sbatch --array=1-5%1 tr1-13B-round1.slurm
+```
+
+This will schedule a job array of 5 jobs of 20h each, so if all goes well, that's at least 4 days of not needing to do anything other than being on the lookout for potential crashes.
+
+XXX: need a troubleshooting section, but elsewhere in document that is not this training specific.
+
+1. if one of the nodes gets a corrupted gpu, and the training crashes there is a risk that the next job in the training will get allocated the same node, in which case it'll crash again. We need a method to identify which node is corrupted, report that to assist@idris.fr so they know to fix it and exclude this node from the slurm job by adding a list of nodes to exclude as following:
+
+```
+sbatch --exclude=r7i5n2,r7i5n6 ...
+```
+but we currently have no way to identify which node is faulty. I think if we switch to pt-1.9.0 or higher where torch elastic replaces the usual launcher
+
+
+## Watching the training logs
+
+On JZ:
+```
+tail -f $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs/main_log.txt
+```
+
+Outside of JZ:
+```
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/x-linked-size: (\d+)/; \
+print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
+https://huggingface.co/bigscience/tr1-13B-logs/resolve/main/main_log.txt
+```
+Currently the updates happen hourly, so this is a delayed version of `tail -f`.
 
 
 ## Extras
