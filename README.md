@@ -14,7 +14,7 @@ Currently, the most active segments of this repo are:
 - [Datasets info](./data/)
 
 
-## Contribute
+## Contributing
 
 This is a community project and we would love to have your help. If you are inspired to contribute please see the following entries:
 
