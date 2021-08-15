@@ -19,27 +19,18 @@ The current DS PP format saves each layer's state dict in its own file, and they
 But users outside of JZ will very likely have a different HW setup, so these will need to be re-shaped to match a new PP-degree.
 
 
-## Overcoming lack of crontab for exporting data outside of JZ
-
-Try out this suggestion:
-
-Use the "compil" partition as a cron-like partition. There are usually some resources available on this partition.
-
-The idea would be submit a job that resubmit itself while the job performing the actual computation runs:
-
-```
-  # Resubmit the cron-like job if the compute job is still running
-  squeue -j $COMPUTE_JOB_ID >& /dev/null && sbatch --begin=now+3hours cron_job.slurm
-```
-
 
 # TODO
 
 general:
-- grad_norm is being always logged as 0 training.py:572
-- add a prefix `train/` before each key here https://github.com/bigscience-workshop/Megatron-DeepSpeed/blob/781676b59d28c5f4b6fd155fcbf15026991d2187/megatron/training.py#L559 and `val` here https://github.com/bigscience-workshop/Megatron-DeepSpeed/blob/781676b59d28c5f4b6fd155fcbf15026991d2187/megatron/training.py#L819
+- hook up slurm-status.slurm to an email when it alerts of a problem bigscience-jean-zay@groups.google.com
+- add alerts for loss spikes
 
-As a result, the train/validation loss/ppl should get in their respective subgroups
+
+data:
+- extract the source text based on a range of sample ids: created an issue:
+https://github.com/bigscience-workshop/Megatron-DeepSpeed/issues/56
+
 
 sysadmin:
 -
