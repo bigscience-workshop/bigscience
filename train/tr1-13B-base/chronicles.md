@@ -151,4 +151,176 @@ Let's do math:
 
 ## Round3 SAVE_INTERVAL=1500 NNODES=64
 
+Finally GBS is at 1024, so we can do 64 nodes. Clocking about 23-26 secs / iteration - the performance jumps around quite a lot from run to run. But we know that already about JZ - it's very unsteady and depends on network usage by others.
+
+Created a dedicated branch `tr1-13B`, which allows further development w/o the risk of breaking the current training.
+
+## A huge lm loss spike
+
+The training loss just jumped from ~3 to ~9
+```
+ iteration    29020/  311541 | consumed samples:     10698064 | elapsed time per iteration (ms): 22306.6 | learning rate: 9.850E-05 | global batch size:  1024 | lm loss: 2.775923E+00 | loss scale: 32768.0 | grad norm: 0.000 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration    29030/  311541 | consumed samples:     10708304 | elapsed time per iteration (ms): 22336.4 | learning rate: 9.849E-05 | global batch size:  1024 | lm loss: 2.772822E+00 | loss scale: 32768.0 | grad norm: 0.000 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration    29040/  311541 | consumed samples:     10718544 | elapsed time per iteration (ms): 22332.6 | learning rate: 9.849E-05 | global batch size:  1024 | lm loss: 2.768131E+00 | loss scale: 65536.0 | grad norm: 0.000 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration    29050/  311541 | consumed samples:     10728784 | elapsed time per iteration (ms): 22148.5 | learning rate: 9.849E-05 | global batch size:  1024 | lm loss: 7.343709E+00 | loss scale: 8192.0 | grad norm: 0.000 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration    29060/  311541 | consumed samples:     10739024 | elapsed time per iteration (ms): 22181.7 | learning rate: 9.849E-05 | global batch size:  1024 | lm loss: 8.715872E+00 | loss scale: 4096.0 | grad norm: 0.000 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration    29070/  311541 | consumed samples:     10749264 | elapsed time per iteration (ms): 22107.1 | learning rate: 9.848E-05 | global batch size:  1024 | lm loss: 7.654131E+00 | loss scale: 4096.0 | grad norm: 0.000 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration    29080/  311541 | consumed samples:     10759504 | elapsed time per iteration (ms): 22131.2 | learning rate: 9.848E-05 | global batch size:  1024 | lm loss: 7.192470E+00 | loss scale: 4096.0 | grad norm: 0.000 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration    29090/  311541 | consumed samples:     10769744 | elapsed time per iteration (ms): 22119.2 | learning rate: 9.848E-05 | global batch size:  1024 | lm loss: 6.849044E+00 | loss scale: 4096.0 | grad norm: 0.000 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+```
+
+You can see the spike at https://huggingface.co/bigscience/tr1-13B-tensorboard/tensorboard
+
+It took some 500 iteration to recover.
+
+There was a second spike a bit later, half the first one this time and recovered very quickly.
+
+We discussed why it may have happened, but we don't have any definitive answer.
+
+
+## Checkpoint bloat issue
+
+We have an issue with per-layer checkpoints that are way bigger than they should be. They are 10x bigger than what they should be. After some research we discovered that `torch.save()` doesn't save the current view, but the whole tensor with its original tensor storage. So that's why were were getting 10x bigger files than the actual data in the per-layer checkpoints.
+
+We need to `.clone()` the tensors before saving them. and then the checkpoint for layers is just modelsize*2 bytes. The reason they were bloated is because ZeRO-1 pre-allocated large tensor buffers for run-time optimization. So this needs to be fixed in Deepspeed's pipe checkpoing saving.
+
+Also will write a script to fix the already-saved checkpoints to `clone` and re-save.
+
+
+## old NCCL
+
+Discovered the NCCL was statically linked into the distributed pytorch and it's really old 2.7.9. Supposedly newer NCCL should help with OPA interlink performance. But that means we either need to switch to a more recent pytorch or build our own. This is not resolved yet.
+
+
+## Watchdog
+
+We created a watchdog, that reports if we are running/scheduled and alerts if neither is happening. E.g. the recent log in the main log file was:
+
+```
+ iteration    33240/  311541 | consumed samples:     15019344 | elapsed time per iteration (ms): 23491.4 | learning rate: 9.702E-05 | global batch size:  1024 | lm loss: 2.722675E+00 | loss scale: 32768.0 | grad norm: 0.000 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+saving checkpoint at iteration   33241 to /gpfsscratch/rech/six/commun/checkpoints/tr1-13B/checkpoints
+[2021-08-08 01:00:44,221] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: /gpfsscratch/rech/six/commun/checkpoints/tr1-13B/checkpoints/global_step33241/mp_rank_00_model_states.pt
+  successfully saved checkpoint at iteration   33241 to /gpfsscratch/rech/six/commun/checkpoints/tr1-13B/checkpoints
+time (ms) | save-checkpoint: 57514.53
+[exiting program after 1190.0357275923093 minutes] datetime: 2021-08-08 01:00:51
+[2021-08-08 01:49:40] ***ALERT: tr1-13B-round3.slurm is not RUNNING or SCHEDULED! Alert someone at Eng WG***
+[2021-08-08 02:49:44] ***ALERT: tr1-13B-round3.slurm is not RUNNING or SCHEDULED! Alert someone at Eng WG***
+[2021-08-08 03:56:54] tr1-13B-round3 is scheduled to start in 3 days, 7:24:19 (at 2021-08-11T11:21:14) (682842_[1-5%1] on 'gpu_p13' partition)
+```
+
+## NNODES=96
+
+We thoughts that trying more nodes would be a good idea, but 96 nodes proved to be unacceptable, since
+
+GBS=1024 is not divisible by 384 (96*4), so there is no way to spread data evenly across all replicas.
+
+We can only have either 256, 512 or 1024 gpus (64, 128, 256 nodes)
+
+## Corrupt GPU crashes the training multiple times
+
+One of the array job trainings crashes after many hours of training:
+
+```
+iteration    43680/  311541 | consumed samples:     25709904 | elapsed time per iteration (ms): 25593.4 | learning rate: 9.135E-05 | global batch size:  1024 | lm loss: 2.635663E+00 | loss scale: 131072.0 | grad norm: 17224.723 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+Traceback (most recent call last):
+  File "/gpfswork/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/pretrain_gpt.py", line 222, in <module>
+    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+  File "/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/megatron/training.py", line 144, in pretrain
+    iteration = train(forward_step_func,
+  File "/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/megatron/training.py", line 677, in train
+    train_step(forward_step_func,
+  File "/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/megatron/training.py", line 381, in train_step
+    loss = model[0].train_batch(data_iter=data_iterator)
+  File "/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/DeepSpeed-big-science/deepspeed/runtime/pipe/engine.py", line 291, in train_batch
+    self._exec_schedule(sched)
+  File "/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/DeepSpeed-big-science/deepspeed/runtime/pipe/engine.py", line 1237, in _exec_schedule
+    self._exec_instr(**cmd.kwargs)
+  File "/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/DeepSpeed-big-science/deepspeed/runtime/pipe/engine.py", line 679, in _exec_backward_pass
+    torch.autograd.backward(tensors=(outputs, ), grad_tensors=(grad_tensors, ))
+  File "/gpfswork/rech/six/commun/conda/tr1-13B/lib/python3.8/site-packages/torch/autograd/__init__.py", line 145, in backward
+    Variable._execution_engine.run_backward(
+RuntimeError: transform: failed to synchronize: cudaErrorECCUncorrectable: uncorrectable ECC error encountered
+terminate called after throwing an instance of 'c10::Error'
+  what():  CUDA error: uncorrectable ECC error encountered
+Exception raised from create_event_internal at /opt/conda/conda-bld/pytorch_1616554793803/work/c10/cuda/CUDACachingAllocator.cpp:733 (most recent call first):
+frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x42 (0x1500fb4d42f2 in /gpfswork/rech/six/commun/conda/tr1-13B/lib/python3.8/site-packages/torch/lib/libc10.so)
+frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, std::string const&) + 0x5b (0x1500fb4d167b in /gpfswork/rech/six/commun/conda/tr1-13B/lib/python3.8/site-packages/torch/lib/libc10.so)
+frame #2: c10::cuda::CUDACachingAllocator::raw_delete(void*) + 0x809 (0x1500fb72d219 in /gpfswork/rech/six/commun/conda/tr1-13B/lib/python3.8/site-packages/torch/lib/libc10_cuda.so)
+frame #3: c10::TensorImpl::release_resources() + 0x54 (0x1500fb4bc3a4 in /gpfswork/rech/six/commun/conda/tr1-13B/lib/python3.8/site-packages/torch/lib/libc10.so)
+frame #4: <unknown function> + 0x6e0e5a (0x150152432e5a in /gpfswork/rech/six/commun/conda/tr1-13B/lib/python3.8/site-packages/torch/lib/libtorch_python.so)
+frame #5: <unknown function> + 0x6e0ef1 (0x150152432ef1 in /gpfswork/rech/six/commun/conda/tr1-13B/lib/python3.8/site-packages/torch/lib/libtorch_python.so)
+frame #6: <unknown function> + 0x1a6b5a (0x56434fce9b5a in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #7: <unknown function> + 0x110b7c (0x56434fc53b7c in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #8: <unknown function> + 0x1105b9 (0x56434fc535b9 in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #9: <unknown function> + 0x1105a3 (0x56434fc535a3 in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #10: <unknown function> + 0x1105a3 (0x56434fc535a3 in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #11: <unknown function> + 0x177917 (0x56434fcba917 in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #12: PyDict_SetItemString + 0x4c (0x56434fcbd86c in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #13: PyImport_Cleanup + 0xac (0x56434fd2f0ec in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #14: Py_FinalizeEx + 0x79 (0x56434fd95589 in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #15: Py_RunMain + 0x1bc (0x56434fd988fc in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #16: Py_BytesMain + 0x39 (0x56434fd98ce9 in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+frame #17: __libc_start_main + 0xf3 (0x150183467873 in /lib64/libc.so.6)
+frame #18: <unknown function> + 0x1f7847 (0x56434fd3a847 in /gpfswork/rech/six/commun/conda/tr1-13B/bin/python)
+```
+
+Nobody was around to notice and slurm scheduler started the next training job in the array, and it crashed too this time right away on:
+
+```
+> initializing tensor model parallel with size 2
+> initializing pipeline model parallel with size 4
+> setting random seeds to 42 ...
+[2021-08-12 08:19:28,225] [INFO] [checkpointing.py:226:model_parallel_cuda_manual_seed] > initializing model parallel cuda seeds on global rank 0, model parallel rank 0, and data parallel rank 0 with model parallel seed: 2760 and data parallel seed: 42
+> compiling dataset index builder ...
+make: Entering directory '/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/megatron/data'
+make: Nothing to be done for 'default'.
+make: Leaving directory '/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/megatron/data'
+>>> done with dataset index builder. Compilation time: 0.338 seconds
+> compiling and loading fused kernels ...
+Traceback (most recent call last):
+  File "/gpfswork/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/pretrain_gpt.py", line 222, in <module>
+    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+  File "/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/megatron/training.py", line 95, in pretrain
+    initialize_megatron(extra_args_provider=extra_args_provider,
+  File "/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/megatron/initialize.py", line 89, in initialize_megatron
+    _compile_dependencies()
+  File "/gpfsssd/worksf/projects/rech/six/commun/code/tr1-13B/Megatron-DeepSpeed-tr1-13B/megatron/initialize.py", line 140, in _compile_dependencies
+    torch.distributed.barrier()
+  File "/gpfswork/rech/six/commun/conda/tr1-13B/lib/python3.8/site-packages/torch/distributed/distributed_c10d.py", line 2420, in barrier
+    work = default_pg.barrier(opts=opts)
+RuntimeError: CUDA error: out of memory
+```
+
+We figured one of the gpus had a hardware problem. So it crashed the first time. And then the scheduler allocated the same node and of course, we crashed again.
+
+We contacted JZ admins and indeed one of the nodes was faulty. The next training didn't hit this node and the training continued.
+
+Unfortunately we currently don't have a way to correlate the exceptions to the hostname of the node that it happened on. It's really to have this feature available, since if we don't, we can keep on hitting the faulty node and it'll continue crashing the training. If we know the node's hostname we can exclude it from the `sbatch --exclude=node1,node2,... `.
+
+## Really long wait time to get allocation
+
+When a job gets queued we often see 3 days expected wait time before yielding, but most of the time the job comes through in several hours. Sometimes we have to wait for a really long time, like 30h, with scheduler bumping our job down multiple times. This is a big problem as it pushes the finish line away continuously. We aren't anywhere close to being able to train 24/7 despite having many hours allocated to us for this project.
+
+Another problem is that within a project we don't have a way to give the main training job a higher priority than other jobs that we run in parallel on various experiments and small trainings. There really should be a way for a user to say, this is a high priority job amongst all other jobs of the same group. But we didn't find a way to do that.
+
+## Test suite
+
+A test suite was finally added. It was odd Megatron-LM didn't have one in the first place, so we had to create our own.
+
+Now need to find some hardware with 2 gpus to create a CI.
+
+
+
+
 XXX: to be continued
+
+stopped at Date: 2021-08-14
