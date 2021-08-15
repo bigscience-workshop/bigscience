@@ -13,6 +13,22 @@ Currently, the most active segments of this repo are:
 - [Experiments](./experiments) - many experiments are being done. Documentation, result tables, scripts and logs are all there
 - [Datasets info](./data/)
 
+
+## Contribute
+
+This is a community project and we would love to have your help. If you are inspired to contribute please see the following entries:
+
+Megatron-DeeepSpeed:
+
+- [Megatron-DeepSpeed Issues](https://github.com/bigscience-workshop/Megatron-DeepSpeed/issues)
+- [Good First Issues](https://github.com/bigscience-workshop/Megatron-DeepSpeed/contribute)
+
+General BigScience:
+
+- [bigscience Issues](https://github.com/bigscience-workshop/bigscience/issues)
+- [Good First Issues](https://github.com/bigscience-workshop/bigscience/contribute)
+
+
 ## Trainings
 
 ### Train 1 - 13B - unmodified Megatron gpt2 - baseline
@@ -23,6 +39,13 @@ Currently, the most active segments of this repo are:
    - [tensorboard](https://huggingface.co/bigscience/tr1-13B-tensorboard/tensorboard)
    - [logs](https://huggingface.co/bigscience/tr1-13B-logs/)
 * [chronicles](./train/tr1-13B-base/chronicles.md)
+
+You can watch the training logs live by running this `tail -f` like script over remote log file that gets synced to the hub once an hour:
+```
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/x-linked-size: (\d+)/; \
+print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
+https://huggingface.co/bigscience/tr1-13B-logs/resolve/main/main_log.txt
+```
 
 ### Train 2
 
