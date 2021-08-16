@@ -43,21 +43,21 @@ Now you can tell the contributor on the other side where they can download the f
 
 ## Automated upload to the hub
 
-One a repo has been cloned and is used as a destination for checkpoints and log files, the following process will automatically push any new files into it.
+Once a repo has been cloned and is used as a destination for checkpoints and log files, the following process will automatically push any new files into it.
 
-1. Once you need to auth the application - use the `bigscience-bot` user, so that it doesn't interfere with your work.
+1. Auth.
 
-If there is already `.hub_info.json` in the `tools` dir, you can skip this step - we are sharing the same `bigscience-bot` so if someone has set it up, you don't need to re-run the auth.
+Typically you can skip directly to the stage 2 as stage 1 should already work.
 
-Only if `tools/.hub_info.json` is not there, proceed with the current step.
+We use a shared auth file located at `$six_ALL_CCFRWORK/auth/.hub_info.json` for all processes syncing to the hub. We use a special account of the `bigscience-bot` user so that the process doesn't depend on personal accounts.
 
-Once you have the login and password, and email, run:
+If for some reason you need to override this shared file with a different auth data for a specific project, simply run:
 
 ```
 tools/hub-auth.py
 ```
 
-which creates `tools/.hub_info.json` with the username, email and then auth token locally. Anybody can do it. It will be the same token, specific to the `bigscience-bot` user.
+And enter login and password, and email, at prompt. This will create `tools/.hub_info.json` with the username, email and then auth token locally.
 
 2. Now for each tracking repo, run the script with the desired pattern, e.g.:
 
@@ -76,7 +76,7 @@ $BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $CODECARBON_PATH  --pattern
 $BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $CHECKPOINT_PATH  --patterns '*pt'
 ```
 
-Of course this needs to be automated, so we will create slurm jobs to perform all these. These must be run on the `prepost` partition, since it has open Internet.
+Of course this needs to be automated, so we will create slurm jobs to perform all these. These must be run on the `prepost` partition, since it has a limited Internet access.
 
 ```
 $ cat tr1-13B-hub-sync-tensorboard.slurm
