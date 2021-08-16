@@ -264,6 +264,19 @@ scancel -u <userid> -p <partition>
 - if you see that `salloc`'ed interactive job is scheduled to run much later than you need, try to cancel the job and ask for shorter period - often there might be a closer window for a shorter time allocation.
 
 
+## Logging
+
+If we need to separate logs to different log files per node add: `%N` so that you have:
+
+```
+#SBATCH --output=%x-%j-%N.out
+```
+
+That way we can tell if a specific node misbehaves - e.g. has a corrupt GPU. This is because currently pytorch doesn't log which node / gpu rank triggered an exception.
+
+Hoping it'll be a built-in feature of pytorch https://github.com/pytorch/pytorch/issues/63174 and then one won't need to make things complicated on the logging side.
+
+
 ## Show the state of nodes
 ```
 sinfo -p PARTITION

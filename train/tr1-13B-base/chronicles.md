@@ -306,6 +306,8 @@ We contacted JZ admins and indeed one of the nodes was faulty. The next training
 
 Unfortunately we currently don't have a way to correlate the exceptions to the hostname of the node that it happened on. It's really to have this feature available, since if we don't, we can keep on hitting the faulty node and it'll continue crashing the training. If we know the node's hostname we can exclude it from the `sbatch --exclude=node1,node2,... `.
 
+update: At the moment we have to add `%N` to `#SBATCH --output=%x-%j-%N.out` and then each node will have is own log file and then we can tell which node has a corrupt GPU.
+
 ## Really long wait time to get allocation
 
 When a job gets queued we often see 3 days expected wait time before yielding, but most of the time the job comes through in several hours. Sometimes we have to wait for a really long time, like 30h, with scheduler bumping our job down multiple times. This is a big problem as it pushes the finish line away continuously. We aren't anywhere close to being able to train 24/7 despite having many hours allocated to us for this project.
