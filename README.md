@@ -14,21 +14,6 @@ Currently, the most active segments of this repo are:
 - [Datasets info](./data/)
 
 
-## Contributing
-
-This is a community project and we would love to have your help. If you are inspired to contribute please see the following entries:
-
-Megatron-DeeepSpeed:
-
-- [Megatron-DeepSpeed Issues](https://github.com/bigscience-workshop/Megatron-DeepSpeed/issues)
-- [Good First Issues](https://github.com/bigscience-workshop/Megatron-DeepSpeed/contribute)
-
-General BigScience:
-
-- [bigscience Issues](https://github.com/bigscience-workshop/bigscience/issues)
-- [Good First Issues](https://github.com/bigscience-workshop/bigscience/contribute)
-
-
 ## Trainings
 
 ### Train 1 - 13B - unmodified Megatron gpt2 - baseline

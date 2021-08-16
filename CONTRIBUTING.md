@@ -1,9 +1,20 @@
 # Contributing
 
-Contributions are welcome, and they are greatly appreciated! Every
-little bit helps, and credit will always be given.
+This is a community project and contributions are welcome, and they are greatly appreciated! Every little bit helps, and credit will always be given.
 
-You can contribute in many ways:
+If you are inspired to contribute please see the following entries:
+
+Megatron-DeeepSpeed:
+
+- [Megatron-DeepSpeed Issues](https://github.com/bigscience-workshop/Megatron-DeepSpeed/issues)
+- [Good First Issues](https://github.com/bigscience-workshop/Megatron-DeepSpeed/contribute)
+
+General BigScience:
+
+- [bigscience Issues](https://github.com/bigscience-workshop/bigscience/issues)
+- [Good First Issues](https://github.com/bigscience-workshop/bigscience/contribute)
+
+
 
 ### Report Bugs
 
