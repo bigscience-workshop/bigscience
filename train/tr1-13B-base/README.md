@@ -570,10 +570,54 @@ Activation memory would have been much much bigger if it weren't for activation 
 
 ## Training scripts
 
+The training script is:
+
 - [tr1-13B-round1.slurm](./tr1-13B-round1.slurm)
-- [tr1-13B-short.slurm](./tr1-13B-short.slurm) - this is a very small model to do quick testing and debug, but otherwise the same as the main script
 
+We also have:
 
+- [tr1-13B-short.slurm](./tr1-13B-short.slurm)
+
+which is a very small model to do quick testing and debug, but otherwise the same as the main script.
+
+The scripts are located at:
+
+```
+cd $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base
+```
+
+When no jobs are scheduled, currently we launch the main training script using:
+
+```
+sbatch --array=1-5%1 tr1-13B-round1.slurm
+```
+This will schedule 5 20h-trainings which will run one at a time, once the scheduler yields to the request, with unknown wait time in between each job.
+
+If there is a job running already, **do not use the above command** as we can't have 2 trainings overlap. If there is a training already running you can:
+
+1. either tell `sbatch` to start the new job once the currently running job succeeds, using:
+
+```
+sbatch --dependency=CURRENTLY_RUNNING_JOB_ID --array=1-5%1 tr1-13B-round1.slurm
+```
+
+Where `CURRENTLY_RUNNING_JOB_ID` is the job being reported running. For example if the report of the last job is:
+```
+[2021-08-16 22:08:01] tr1-13B-round3 is running for 18:15:59 since 2021-08-16T03:52:02 (711114_4 on 'gpu_p13' partition (r7i4n[1-7],r7i7n[1-8],r8i0n0,r8i5n[3-8],r8i6n[0-8],r9i0n8,r9i1n[0-8],r9i2n[7-8],r9i3n[0-8],r9i4n[0-8],r9i5n[0-2])
+```
+then the currently running job ID is `711114_4`. You can also gather the same info about the current scheduler status using `squeue`:
+
+```
+squeue --user=$(getent group six | cut -d: -f4) | grep tr1-13B
+```
+
+2. you could also see how much time is left before the current job finished (based on training log files) and then pass that many hours to `sbatch`. For example, if the job has **less** than 2 hours to run, but more than 1 hour, you want to launch it `now+2hours` from now:
+
+```
+sbatch --begin now+2hours --array=1-5%1 tr1-13B-round1.slurm
+```
+
+Using `--dependency` may lead to shorter wait times, since if the time passed to `--begin` allows even for a few minutes of delay since the stopping of the last job, the scheduler may already start some other jobs even if their priority is lower than our job. That's because the scheduler ignores any jobs with `--begin` until the specified time arrives.
 
 
 ## On Call
@@ -605,14 +649,14 @@ sbatch --array=1-5%1 tr1-13B-round1.slurm
 
 This will schedule a job array of 5 jobs of 20h each, so if all goes well, that's at least 4 days of not needing to do anything other than being on the lookout for potential crashes.
 
-XXX: need a troubleshooting section, but elsewhere in document that is not this training specific.
+XXX: need a troubleshooting section, but elsewhere in the document that is not this training specific.
 
 1. if one of the nodes gets a corrupted gpu, and the training crashes there is a risk that the next job in the training will get allocated the same node, in which case it'll crash again. We need a method to identify which node is corrupted, report that to assist@idris.fr so they know to fix it and exclude this node from the slurm job by adding a list of nodes to exclude as following:
 
 ```
 sbatch --exclude=r7i5n2,r7i5n6 ...
 ```
-but we currently have no way to identify which node is faulty. I think if we switch to pt-1.9.0 or higher where torch elastic replaces the usual launcher
+but we currently have no way to identify which node is faulty. I think if we switch to pt-1.9.0 or higher where torch elastic replaces the usual launcher. Or we have to use dedicated log files per node via: `#SBATCH --output=%x-%j-%N.out`.
 
 
 ## Watching the training logs
