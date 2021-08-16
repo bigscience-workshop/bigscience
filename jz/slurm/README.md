@@ -266,7 +266,7 @@ scancel -u <userid> -p <partition>
 
 ## Logging
 
-If we need to separate logs to different log files per node add: `%N` so that you have:
+If we need to separate logs to different log files per node add `%N` (for short hostname) so that we have:
 
 ```
 #SBATCH --output=%x-%j-%N.out
