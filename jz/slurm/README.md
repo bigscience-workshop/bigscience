@@ -86,6 +86,17 @@ They may start sooner if others cancel their reservations before the end of the 
 
 
 
+## Request allocation via dependency
+
+To schedule a new job when one more of the currently scheduled job ends (regardless of whether it still running or not started yet), use the dependency mechanism, by telling `sbatch` to start the new job once the currently running job succeeds, using:
+
+```
+sbatch --dependency=CURRENTLY_RUNNING_JOB_ID tr1-13B-round1.slurm
+```
+
+Using `--dependency` may lead to shorter wait times that using `--begin`, since if the time passed to `--begin` allows even for a few minutes of delay since the stopping of the last job, the scheduler may already start some other jobs even if their priority is lower than our job. That's because the scheduler ignores any jobs with `--begin` until the specified time arrives.
+
+
 ## Make allocations at a scheduled time
 
 To postpone making the allocation for a given time, use:
