@@ -30,7 +30,9 @@ from huggingface_hub import HfApi, HfFolder, Repository
 from pathlib import Path
 from typing import List, Optional, Union
 
-HUB_DATA_PATH = Path(__file__).resolve().parent / ".hub_info.json"
+# normally using a globally shared hub data, but can override it with the local token if need be
+HUB_DATA_PATH_SHARED = "/gpfsdswork/projects/rech/six/commun/auth/.hub_info.json"
+HUB_DATA_PATH_LOCAL = Path(__file__).resolve().parent / ".hub_info.json"
 
 # map https://git-scm.com/docs/git-status#_short_format
 #
@@ -177,11 +179,21 @@ def hub_config_repo(hub_data, local_dir):
 
 
 def get_hub_data():
-    hub_data_path = "./.hub_info.json"
-    if not os.path.isfile(HUB_DATA_PATH):
-        raise FileNotFoundError(f"File '{hub_data_path}' doesn't exist. Please run hub-auth.py first")
+    """
+    To simplify the setup of different projects we use a common hug info data file at HUB_DATA_PATH_SHARED.
 
-    with io.open(HUB_DATA_PATH, 'r', encoding='utf-8') as f:
+    But if desired it can be overriden with a local data file at HUB_DATA_PATH_LOCAL
+    """
+
+    if os.path.isfile(HUB_DATA_PATH_LOCAL):
+        hub_data_path = HUB_DATA_PATH_LOCAL
+    elif os.path.isfile(HUB_DATA_PATH_SHARED):
+        hub_data_path = HUB_DATA_PATH_SHARED
+    else:
+        raise FileNotFoundError(f"Couldn't locate .hub_info.json neither at {HUB_DATA_PATH_LOCAL} nor {HUB_DATA_PATH_SHARED}. "
+                                "Please run hub-auth.py first")
+
+    with io.open(hub_data_path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
 def get_args():
@@ -196,10 +208,10 @@ def main():
     args = get_args()
 
     if not os.path.isdir(args.repo_path):
-        raise FileNotFoundError(f"Repository directory '{args.repo_path}' doesn't exist. Have you cloned the repo")
+        raise FileNotFoundError(f"Repository directory '{args.repo_path}' doesn't exist. Clone the repo first to '{args.repo_path}'.")
 
     if len(args.patterns) == 0:
-        raise ValueError("at least one --pattern is required")
+        raise ValueError("At least one --pattern is required.")
 
     if args.debug:
         print(f"Tracking {len(args.patterns)} patterns:")
@@ -245,8 +257,6 @@ def main():
         print("* Pushed")
     else:
         print("* Detected no new or modified files. Nothing to push.")
-
-
 
 
 if __name__ == "__main__":
