@@ -586,7 +586,15 @@ When a person is on call, they need to watch that the training is either running
 
 XXX: will soon add an email alert as well. bigscience-jean-zay@groups.google.com
 
+
 The next section explains how to watch the logs.
+
+
+Other than waiting for the watchdog which runs once an hour, one can immediately see if anything is scheduled with:
+
+```
+$six_ALL_CCFRWORK/code/tr1-13B/bigscience/tools/slurm-status.py --job-name tr1-13B-round3
+```
 
 If for some reason the training is not scheduled or running, to schedule a new training:
 
