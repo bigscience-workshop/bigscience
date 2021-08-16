@@ -370,9 +370,9 @@ All training logs are piped into `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs/
 
 ## Exporting
 
-Before starting training insert cloned git repos to where output data will go.
+Before starting training create cloned git repos to where output data will go.
 
-The last 3 should all be git repo clones
+The last 4 should all be git repo clones
 ```
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
@@ -381,7 +381,7 @@ CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
 LOGS_PATH=$DATA_OUTPUT_PATH/logs
 ```
 
-I created 4 repos on https://huggingface.co/bigscience/ and now we can clone those as the folders data will be output into:
+I created 4 repos at https://huggingface.co/bigscience/ and now we can clone those as the dirs data will be output into:
 
 ```
 cd $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
@@ -417,6 +417,8 @@ git commit -am "new data"
 git push
 ```
 
+This job is performed automatically by `hub-sync.py`. For full details see: [Automated upload to the hub](../../data/export.md#automated-upload-to-the-hub).
+
 **Weights checkpoints**
 
 Currently, we aren't exporting checkpoints.
@@ -427,11 +429,11 @@ Here is the slurm script to sync the tensorboard data: [tr1-13B-hub-sync-tensorb
 
 **CodeCarbon**
 
-Currently is not running, so nothing to log.
+Currently the feature is not enabled, so there is nothing to log.
 
 **Log of logs**
 
-Let's also create a log of logs. We will pipe all the logs in there and also the various statuses - e.g. while SLURM is queued the training and it's not running.
+Let's also create a log of logs. We will pipe all the logs in there and also the various status reports - e.g. while SLURM is queued the training and it's not running.
 
 Here is the slurm script to sync the raw logs data: [tr1-13B-hub-sync-logs.slurm](./tr1-13B-hub-sync-logs.slurm)
 
@@ -440,8 +442,6 @@ The main source of logs is the training scripts. The logs are gathered via
 $CMD ... 2>&1 | tee -a $LOGS_PATH/main_log.txt
 ```
 in the training slurm script.
-
-XXX: add a pulse script that will report to the outside world when the training job is on the backburner (or perhaps not even scheduled).
 
 XXX: we could also add various other diagnostics appended to the main log file. e.g. shared memory, etc.
 
