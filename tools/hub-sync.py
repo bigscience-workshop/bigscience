@@ -207,8 +207,9 @@ def main():
 
     args = get_args()
 
-    if not os.path.isdir(args.repo_path):
-        raise FileNotFoundError(f"Repository directory '{args.repo_path}' doesn't exist. Clone the repo first to '{args.repo_path}'.")
+    if not (os.path.isdir(args.repo_path) and os.path.isdir(f"{args.repo_path}/.git")):
+        raise FileNotFoundError(f"Directory '{args.repo_path}' either doesn't exist or it's not a git clone directory. "
+                                "Clone the desired repo first to '{args.repo_path}'.")
 
     if len(args.patterns) == 0:
         raise ValueError("At least one --pattern is required.")
@@ -218,7 +219,7 @@ def main():
         print(''.join(f"- {x}\n" for x in args.patterns))
 
     hub_data = get_hub_data()
-    repo = Repository(args.repo_path)#, use_auth_token=use_auth_token)
+    repo = Repository(args.repo_path)
 
     hub_config_repo(hub_data, local_dir=args.repo_path)
 
