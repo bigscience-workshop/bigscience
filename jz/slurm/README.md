@@ -64,6 +64,16 @@ http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-exec_alloc-mem-eng.html
 Full info: http://www.idris.fr/eng/jean-zay/gpu/jean-zay-gpu-exec_partition_slurm-eng.html
 
 
+**How the job priority is computed**
+
+Currently on Jean Zay:
+
+1. 69.4% of the priority depends directly of the chosen QoS
+2. 27.8% is the fairshare (`idr_compuse`)
+3. and only 2.8% is the job age in queue
+
+
+
 ## Consumption report
 
 
