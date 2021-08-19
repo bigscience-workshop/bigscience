@@ -5,6 +5,7 @@
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
+#SBATCH -C v100-16g                  # Force usage of 16gb v100
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --error=logs/%x-%j.out            # error file name (same to watch just one file)
@@ -85,7 +86,7 @@ GPT_ARGS=" \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_ITER \
     --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path google/t5 \
+    --tokenizer-name-or-path google/mt5-base \
     --loss-scale 12 \
     --clip-grad 1.0 \
     --fp16 \
