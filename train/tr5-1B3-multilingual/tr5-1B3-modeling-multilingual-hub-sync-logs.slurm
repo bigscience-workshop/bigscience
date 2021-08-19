@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr4-1B3-hub-sync-logs  # job name
+#SBATCH --job-name=tr5-1B3-hub-sync-logs  # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1                    # number of nodes
 #SBATCH --cpus-per-task=1            # number of cores per task

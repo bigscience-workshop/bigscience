@@ -15,7 +15,6 @@ set -x -e
 source $six_ALL_CCFRWORK/start-prod
 
 ROUND=2
-TESTING=0
 
 # Prevent internet access
 export HF_DATASETS_OFFLINE=1
@@ -23,15 +22,10 @@ export TRANSFORMERS_OFFLINE=1
 
 OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr5-1B3-multilingual
 MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
+BIGSCIENCE_REPO=$OUTPUT_PATH/code/bigscience
 
-if [[ ${TESTING} == 1 ]]; then
-    # testing on 10k
-    DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/c4_preprocessing/c4_100k_text_document
-else
-    # production on full 304M records
-    DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/c4_preprocessing/c4_en_train_text_document
-
-fi
+python $BIGSCIENCE_REPO/train/tr5-1B3-multilingual/generate_dataset_probabilities.py
+DATA_PATH=`cat $OUTPUT_PATH/dataset_probabilities.txt`
 
 pushd $MEGATRON_DEEPSPEED_REPO
 
