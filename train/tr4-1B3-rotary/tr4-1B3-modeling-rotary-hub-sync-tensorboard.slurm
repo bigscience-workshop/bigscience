@@ -13,9 +13,9 @@ echo "START TIME: $(date)"
 
 module load git-lfs
 
-DATA_OUTPUT_PATH=$SCRATCH/synched_exps/tr4-1B3-full
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr4-1B3-rotary
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
-BIG_SCIENCE_REPO_PATH=$WORK/code/big_science/bigscience
+BIG_SCIENCE_REPO_PATH=$DATA_OUTPUT_PATH/code/bigscience
 
 $BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $TENSORBOARD_PATH --patterns '*tfevents*' -d
 

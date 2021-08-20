@@ -21,8 +21,8 @@ TESTING=0
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
-OUTPUT_PATH=$SCRATCH/synched_exps/tr4-1B3-full/
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/Megatron-DeepSpeed
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr4-1B3-rotary
+MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
 
 if [[ ${TESTING} == 1 ]]; then
     # testing on 10k
