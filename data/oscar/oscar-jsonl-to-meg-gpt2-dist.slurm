@@ -33,7 +33,7 @@ output=$six_ALL_CCFRSCRATCH/datasets/oscar-small/meg-gpt2-dist
 ##########################
 
 # I use a line like the following.  Perhaps easier to read if this works for you?
-#MASTER_ADDR=`scontrol show hostname ${SLURM_NODELIST} | head -n1`
+#MASTER_ADDR=`scontrol show hostname | head -1`
 MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
 MASTER_PORT=6000
 
