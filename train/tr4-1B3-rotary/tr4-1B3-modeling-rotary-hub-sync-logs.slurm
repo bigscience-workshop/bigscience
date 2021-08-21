@@ -13,9 +13,9 @@ echo "START TIME: $(date)"
 
 module load git-lfs
 
-DATA_OUTPUT_PATH=$SCRATCH/synched_exps/tr4-1B3-full
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr4-1B3-rotary
 LOGS_PATH=$DATA_OUTPUT_PATH/logs
-BIG_SCIENCE_REPO_PATH=$WORK/code/bigscience
+BIG_SCIENCE_REPO_PATH=$DATA_OUTPUT_PATH/code/bigscience
 
 $BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $LOGS_PATH --patterns '*.out' -d
 

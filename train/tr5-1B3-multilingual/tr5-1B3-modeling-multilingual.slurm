@@ -1,10 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-rotary.slurm
+#SBATCH --job-name=1B3-multilingual.slurm
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
+#SBATCH -C v100-16g                  # Force usage of 16gb v100
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --error=logs/%x-%j.out            # error file name (same to watch just one file)
@@ -15,23 +16,17 @@ set -x -e
 source $six_ALL_CCFRWORK/start-prod
 
 ROUND=2
-TESTING=0
 
 # Prevent internet access
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr4-1B3-rotary
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr5-1B3-multilingual
 MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
+BIGSCIENCE_REPO=$OUTPUT_PATH/code/bigscience
 
-if [[ ${TESTING} == 1 ]]; then
-    # testing on 10k
-    DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/c4_preprocessing/c4_100k_text_document
-else
-    # production on full 304M records
-    DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/c4_preprocessing/c4_en_train_text_document
-
-fi
+python $BIGSCIENCE_REPO/train/tr5-1B3-multilingual/generate_dataset_probabilities.py
+DATA_PATH=`cat $OUTPUT_PATH/dataset_probabilities.txt`
 
 pushd $MEGATRON_DEEPSPEED_REPO
 
@@ -86,16 +81,16 @@ GPT_ARGS=" \
     --num-attention-heads $NHEADS \
     --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_ITER \
     --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path t5-small \
+    --tokenizer-name-or-path google/mt5-base \
     --loss-scale 12 \
     --clip-grad 1.0 \
     --fp16 \
     --checkpoint-activations \
-    --position-embedding-type rotary \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
