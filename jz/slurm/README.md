@@ -18,7 +18,7 @@ Combos:
 CPU-only nodes: `--account=six@cpu`
 
 - `-p cpu_p1`:  up to 100h: this is the default partition for `--account=six@cpu`
-only 20h by default, add `--qos=qos_cpu-t4` to use 100h
+only 20h by default, add `--qos=qos_cpu-t4` to use 100h (only available if no more than 4 nodes are used).
 
 **Important: having `#SBATCH --gres=gpu:0` in a slurm file forces gpu allocations as well, ignoring the account specification. So remove those**
 
@@ -68,8 +68,8 @@ Full info: http://www.idris.fr/eng/jean-zay/gpu/jean-zay-gpu-exec_partition_slur
 
 Currently on Jean Zay:
 
-1. 69.4% of the priority depends directly of the chosen QoS
-2. 27.8% is the fairshare (`idr_compuse`)
+1. 69.4% of the priority depends directly on the chosen QoS
+2. 27.8% is the "fairshare" (see `idr_compuse` for the value)
 3. and only 2.8% is the job age in queue
 
 
