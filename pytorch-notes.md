@@ -33,3 +33,5 @@ export LAUNCHER="python -u -m torch.distributed.run \
     --max_restarts 0 \
     "
 ```
+
+Note: If you're using the `deepspeed` launcher (which we can't use in the slurm environment), it should continue working as before with either pytorch version.
