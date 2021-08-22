@@ -34,4 +34,6 @@ export LAUNCHER="python -u -m torch.distributed.run \
     "
 ```
 
+For full details see: https://pytorch.org/docs/1.9.0/elastic/quickstart.html
+
 Note: If you're using the `deepspeed` launcher (which we can't use in the slurm environment), it should continue working as before with either pytorch version.
