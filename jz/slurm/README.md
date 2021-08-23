@@ -5,15 +5,15 @@
 
 GPU-nodes: `--account=six@gpu`
 
-- `-p gpu_p1`: 4x v100-32gb
-- `-p gpu_p2`: 8x v100-32gb
-- `-p gpu_p3`: 4x v100-16gb
-- `-p gpu_p4`: 8x A100-40gb / 48cpu cores (only 3 nodes)
+- `-p gpu_p1`: 4x v100-32GB
+- `-p gpu_p2`: 8x v100-32GB
+- `-p gpu_p3`: 4x v100-16GB
+- `-p gpu_p4`: 8x A100-40GB / 48cpu cores (only 3 nodes)
 - `-p prepost`: 1x V100-16GB + network
 
 Combos:
 
-- `-p gpu_p13` - all 4x nodes combined - i.e. when either 16gb or 32gb will do
+- `-p gpu_p13` - all 4x nodes combined - i.e. when either 16GB or 32GB will do
 
 CPU-only nodes: `--account=six@cpu`
 
@@ -27,7 +27,7 @@ The following CPU-only partitions time on which isn't deducted from allocation:
 - `-p prepost`: up to 20h - for pre/post-processing + has internet!
 - `-p visu`:    up to 4h  - for visualization
 - `-p archive`: up to 20h - for archiving
-- `-p compil`:  up to 20h - for compilation
+- `-p compil`:  up to 20h - for compilation + has internet!
 
 
 **Constraints**:

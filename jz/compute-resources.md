@@ -34,12 +34,26 @@ There are 4 boxes, so `jean-zay-pp1`, ..., `jean-zay-pp4`. It's possible that la
 
 In this case there is no need to do SLURM,
 
+Note: `--partition=compil` too has internet
+
 
 ## GPU Instances
 
 - No network to outside world
 - 160 GB of usable memory. The memory allocation is 4 GB per reserved CPU core if hyperthreading is deactivated (`--hint=nomultithread`). So max per node is `--cpus-per-task=40`
 
+
+## CPU Instances
+
+- All cpus of the same partition are the same
+- Different partitions are likely to have different cpus
+
+For example on `gpu_p1` partitions (4x v100-32gb)
+
+```
+$ lscpu | grep name
+Model name:          Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz
+```
 
 ## Quotas
 
