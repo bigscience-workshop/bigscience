@@ -3,9 +3,10 @@
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time=0:30:00               # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --partition=compil
+#SBATCH --account=six@cpu
 
 # do not set -e - we must run all of it
 # set -x -e
