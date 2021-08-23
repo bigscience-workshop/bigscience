@@ -11,6 +11,7 @@
 
 echo "START TIME: $(date)"
 
+source $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B
 module load git-lfs
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B
