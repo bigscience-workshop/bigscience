@@ -4,9 +4,10 @@
 #SBATCH --nodes=1                    # number of nodes
 #SBATCH --cpus-per-task=1            # number of cores per task
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time=2:00:00               # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --partition=prepost
+#SBATCH --account=six@cpu
 
 echo "START TIME: $(date)"
 
