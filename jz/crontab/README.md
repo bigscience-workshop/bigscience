@@ -51,9 +51,10 @@ $ cat $six_ALL_CCFRWORK/cron/cron.daily/mlocate-update.slurm
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:0                 # number of gpus
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time=1:00:00               # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --partition=compil
+#SBATCH --account=six@cpu
 
 set -e
 date
@@ -81,4 +82,4 @@ The scheduler runs with Unix permissions of the person who launched the SLRUM cr
 
 ## TODO
 
-XXX: need to have a facility to report failures. Which is tricky because the job has to run on a SLURM partition that has Internet and that's just `--partition=prepost`
+XXX: need to have a facility to report failures. Which is tricky because the job has to run on a SLURM partition that has Internet and that's just `--partition=prepost` and `--partition=compil`
