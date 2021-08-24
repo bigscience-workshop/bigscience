@@ -84,7 +84,7 @@ GPT_ARGS=" \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
-    --rampup-batch-size 16 16 2_000_000 \
+    --rampup-batch-size 32 16 2_000_000 \
     --train-samples $TRAIN_ITER \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path google/mt5-base \
