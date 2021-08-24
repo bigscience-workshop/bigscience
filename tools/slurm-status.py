@@ -25,7 +25,7 @@ SLURM_GROUP_NAME = "six"
 
 # this needs to be an actual email subscribed to bigscience-jean-zay@groups.google.com
 FROM_ADDR = "bigscience-bot@huggingface.co"
-TO_ADDRS = ["stas@stason.org"] # wants a list
+TO_ADDRS = ["bigscience-jean-zay@groups.google.com", "stas@stason.org"] # wants a list
 # when ready switch to target ["bigscience-jean-zay@groups.google.com"]
 
 def send_email(subject, body):
