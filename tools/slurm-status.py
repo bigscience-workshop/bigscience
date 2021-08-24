@@ -63,7 +63,8 @@ Launching training: https://github.com/bigscience-workshop/bigscience/tree/maste
 
 def check_running_on_jean_zay():
     fqdn = socket.getfqdn()
-    if "idris.fr" not in fqdn:
+    # sometimes it gives fqdn, other times it doesn't, so try to use both patterns
+    if not ("idris.fr" in fqdn or "idrsrv" in fqdn):
         raise ValueError("This script relies on JZ's specific environment and won't work elsewhere. "
         f"You're attempting to run it on '{fqdn}'.")
 
