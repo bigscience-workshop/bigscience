@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=350M.slurm
+#SBATCH --job-name=1B3-v2.slurm
 #SBATCH --qos=qos_gpu-t3
-#SBATCH --nodes=4
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -17,7 +17,7 @@ set -x -e
 ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$SCRATCH/synched_exps/tr3c-350M/
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr3d-1B3-more-warmup/
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/Megatron-DeepSpeed
 
 if [[ ${TESTING} == 1 ]]; then
@@ -45,19 +45,19 @@ MASTER_PORT=6000
 
 # XXX: edit me
 GPUS_PER_NODE=4
-NNODES=4
-PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
+NNODES=16
+PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
-MICRO_BATCH_SIZE=4
-GLOBAL_BATCH_SIZE=256
+MICRO_BATCH_SIZE=8
+GLOBAL_BATCH_SIZE=512
 TRAIN_ITER=146_484_375
 
 NLAYERS=24
-NHIDDEN=1024
+NHIDDEN=2048
 NHEADS=16
-FFN_HIDDEN_SIZE=4096
+FFN_HIDDEN_SIZE=8192
 SEQ_LEN=2048
 
 if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10
@@ -70,7 +70,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.999 \
     --adam-eps 1e-8 \
-    --lr 3e-4 \
+    --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
     --lr-decay-samples 126_953_125 \
@@ -92,12 +92,14 @@ GPT_ARGS=" \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
+    --rampup-batch-size 16 16 2_000_000 \
     --train-samples $TRAIN_ITER \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path t5-small \
     --loss-scale 12 \
     --clip-grad 1.0 \
     --fp16 \
+    --checkpoint-activations \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
@@ -145,6 +147,7 @@ DEEPSPEED_ARGS=" \
     --deepspeed \
     --deepspeed_config ${config_json} \
     --zero-stage ${ZERO_STAGE} \
+    --deepspeed-activation-checkpointing \
     "
 
 export LAUNCHER="python -u -m torch.distributed.launch \
@@ -177,4 +180,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee OUTPUT_PATH/logs/tr3c-350M-modeling-baseline.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr3d-1B3-more warmup.$SLURM_JOBID.out

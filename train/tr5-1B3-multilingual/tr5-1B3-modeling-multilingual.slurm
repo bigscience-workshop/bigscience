@@ -42,8 +42,8 @@ PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
-MICRO_BATCH_SIZE=16
-GLOBAL_BATCH_SIZE=1024
+MICRO_BATCH_SIZE=8
+GLOBAL_BATCH_SIZE=512
 TRAIN_ITER=146_484_375
 
 NLAYERS=24
@@ -62,7 +62,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.999 \
     --adam-eps 1e-8 \
-    --lr 1e-4 \
+    --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
     --lr-decay-samples 126_953_125 \
@@ -84,6 +84,7 @@ GPT_ARGS=" \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
+    --rampup-batch-size 16 16 2_000_000 \
     --train-samples $TRAIN_ITER \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path google/mt5-base \

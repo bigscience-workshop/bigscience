@@ -161,6 +161,7 @@ export CMD=" \
     $GPT_ARGS \
     $OUTPUT_ARGS \
     --save $OUTPUT_PATH/checkpoints \
+    --load $OUTPUT_PATH/checkpoints \
     --data-path $DATA_PATH \
     --data-impl mmap \
     --split 949,50,1 \
