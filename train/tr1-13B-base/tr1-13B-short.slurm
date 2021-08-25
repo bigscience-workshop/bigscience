@@ -108,13 +108,12 @@ GPT_ARGS=" \
     $EXIT_OPTS \
     "
 
-# codecarbon isn't ready, will enable once it's working
-#    --codecarbon-dir $CODECARBON_PATH \
 OUTPUT_ARGS=" \
     --log-interval 10 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 1000 \
     --eval-iters 5 \
+    --codecarbon-dir $CODECARBON_PATH \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
