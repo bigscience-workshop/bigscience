@@ -49,7 +49,7 @@ DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatic
 
 MICRO_BATCH_SIZE=8
 GLOBAL_BATCH_SIZE=512
-TRAIN_ITER=146_484_375
+TRAIN_ITER=73_242_187 #150B tokens
 
 NLAYERS=24
 NHIDDEN=2048
@@ -70,7 +70,7 @@ OPTIMIZER_ARGS=" \
     --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 126_953_125 \
+    --lr-decay-samples 73_242_187 \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
