@@ -25,6 +25,12 @@ Use `idracct six` to see which username belongs to which real person.
 
 Add this to your `~/.bashrc` and run `bash` for the changes to take effect.
 ```
+# Log in with correct group
+if [[ $(id -gn) != "six" ]]
+then
+    newgrp - six
+    exit
+fi
 
 # start production environment:
 # this loads modules, conda and sets all the relevant env vars
@@ -50,7 +56,6 @@ export PROD=$six_ALL_CCFRWORK
 
 # handy shortcuts
 alias myjobs="squeue -u `whoami`"
-
 ```
 
 Also since most of our work is at `$six_ALL_CCFRWORK` you may want to add symlinks:
