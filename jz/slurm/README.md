@@ -64,6 +64,11 @@ http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-exec_alloc-mem-eng.html
 Full info: http://www.idris.fr/eng/jean-zay/gpu/jean-zay-gpu-exec_partition_slurm-eng.html
 
 
+**Important**: when running non-primary training jobs please use: `--nice=10000` in the slurm instructions to allow the main job to get highest priority.
+
+Detailed explanation: using `--nice=10000` for the test jobs should work fine as long as you use the same QoS as the production jobs (`qos_gpu-t3`, if you use the `qos_gpu-dev` partition then the test jobs will always have higher priority). The nice value is chosen so that it always cancels the age factor, since the fairshare is common to all your jobs it should be enough to ensure that jobs with `--nice=10000` always have a lower priority than your other jobs with the same QoS. Since the age factor is only 3% of the priority, it should hurt the priority too much compared to other users. (edited)
+
+
 **How the job priority is computed**
 
 Currently on Jean Zay:

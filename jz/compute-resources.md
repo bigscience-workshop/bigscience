@@ -25,16 +25,26 @@ to request:
 srun --pty --partition=prepost --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:0 --hint=nomultithread --time=1:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
-or to work interactively there, could ssh directly to that partition via:
+or to work interactively there, `srun` into the box (though no control which of the 4 you get):
+
+```
+srun -p prepost -A six@cpu --time=20:00:00 --pty bash
+```
+
+To choose a specific box (if some are too overload by other users), one could ssh directly to that partition via:
 ```
 ssh jean-zay-pp          # from inside
 ssh jean-zay-pp.idris.fr # from outside
 ```
 There are 4 boxes, so `jean-zay-pp1`, ..., `jean-zay-pp4`. It's possible that larger numbers have less users, but not necessarily.
 
-In this case there is no need to do SLURM,
+In this case there is no need to do SLURM.
 
-Note: `--partition=compil` too has internet
+But in this approach only 30min will be given before any running process will be killed. Just like the login shell. I think the only difference is more CPU usage is given here before the process is killed than on the login shell.
+
+Note: `--partition=compil` too has internet, but can't ssh there.
+
+In general the `compil` partition is usually less busy than `prepost`.
 
 
 ## GPU Instances

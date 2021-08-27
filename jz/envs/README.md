@@ -24,8 +24,9 @@ Use `idracct six` to see which username belongs to which real person.
 ## First time setup
 
 Add this to your `~/.bashrc` and run `bash` for the changes to take effect.
+
 ```
-# Log in with correct group
+# Log in with correct group - relevant to users with multiple groups
 if [[ $(id -gn) != "six" ]]
 then
     newgrp - six
