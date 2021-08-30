@@ -29,7 +29,7 @@ Add this to your `~/.bashrc` and run `bash` for the changes to take effect.
 # Log in with correct group - relevant to all users as we have multiple groups we belong to
 if [[ $(id -gn) != "six" ]]
 then
-    newgrp - six
+    newgrp six
     exit
 fi
 
@@ -58,6 +58,8 @@ export PROD=$six_ALL_CCFRWORK
 # handy shortcuts
 alias myjobs="squeue -u `whoami`"
 ```
+
+note: wrt `newgrp six` - if you want to use it elsewhere and not `~/.bashrc` you may use this `newgrp - six` syntax instead, but don't use it in `~/.bashrc` or it will break many things.
 
 Also since most of our work is at `$six_ALL_CCFRWORK` you may want to add symlinks:
 ```
