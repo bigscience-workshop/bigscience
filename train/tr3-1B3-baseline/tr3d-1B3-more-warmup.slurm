@@ -94,8 +94,8 @@ GPT_ARGS=" \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
     --train-samples $TRAIN_ITER \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path t5-small \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
     --loss-scale 12 \
     --clip-grad 1.0 \
     --fp16 \

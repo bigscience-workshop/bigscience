@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --time=100:00:00             # maximum execution time (HH:MM:SS)
+#SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@cpu
 #SBATCH --partition=cpu_p1
@@ -23,3 +23,4 @@ export TRANSFORMERS_OFFLINE=1
 # use SCRATCH for building as it's much faster
 cd $six_ALL_CCFRSCRATCH/datasets/oscar-small
 $six_ALL_CCFRWORK/code/bigscience/data/oscar/oscar-to-jsonl.py
+
