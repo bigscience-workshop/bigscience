@@ -20,14 +20,9 @@ TESTING=0
 OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr3d-1B3-more-warmup/
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/Megatron-DeepSpeed
 
-if [[ ${TESTING} == 1 ]]; then
-    # testing on 10k
-    DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/c4_preprocessing/c4_100k_text_document
-else
-    # production on full 304M records
-    DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/c4_preprocessing/c4_en_train_text_document
-
-fi
+VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
+MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 source $six_ALL_CCFRWORK/start-prod
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
