@@ -76,6 +76,14 @@ cd $PROD
 
 Some users prefer to use the env vars, so let's try to not expect the symlinks to be there for everybody.
 
+If you intend to use `gsutil`, add the following lines:
+
+```
+if [ -f '/gpfsssd/worksf/projects/rech/six/commun/lib/google-cloud-sdk/path.bash.inc' ]; then . '/gpfsssd/worksf/projects/rech/six/commun/lib/google-cloud-sdk/path.bash.inc'; fi
+if [ -f '/gpfsssd/worksf/projects/rech/six/commun/lib/google-cloud-sdk/completion.bash.inc' ]; then . '/gpfsssd/worksf/projects/rech/six/commun/lib/google-cloud-sdk/completion.bash.inc'; fi
+```
+
+Without them, `gsutil` on Jean Zay fails with a hard-to-debug `TypeError: argument should be integer or bytes-like object, not 'str'` error.
 
 ## Production environment
 
