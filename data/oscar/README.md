@@ -186,11 +186,10 @@ cp -r oscar-en-10k $six_ALL_CCFRWORK/datasets-custom
 cp -r oscar-en-10k $six_ALL_CCFRSTORE/datasets-custom
 ```
 
-Tar/gz `oscar-shuffled.jsonl` and the dataset files to STORE:
+Tar/gz `oscar-shuffled.jsonl` and the dataset files to STORE, using [oscar-to-backup-tgz.slurm](./oscar-to-backup-tgz.slurm):
 
 ```
-
-
+sbatch oscar-to-backup-tgz.slurm
 ```
 
 6. Estimate total number of tokens
