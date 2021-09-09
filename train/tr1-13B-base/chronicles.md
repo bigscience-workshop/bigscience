@@ -314,15 +314,87 @@ When a job gets queued we often see 3 days expected wait time before yielding, b
 
 Another problem is that within a project we don't have a way to give the main training job a higher priority than other jobs that we run in parallel on various experiments and small trainings. There really should be a way for a user to say, this is a high priority job amongst all other jobs of the same group. But we didn't find a way to do that.
 
-## Test suite
+## Test suite added
 
-A test suite was finally added. It was odd Megatron-LM didn't have one in the first place, so we had to create our own.
+A `Megatron-Deepspeed` test suite was finally added. It was odd Megatron-LM didn't have one in the first place, so we had to create our own.
 
 Now need to find some hardware with 2 gpus to create a CI.
 
+## Reduced evaluation iterations
 
+Noticed that somehow it was configured to run eval for 100 iterations, after discussion reduced it to 5, thus saving some resources. While validation iterations are much faster than training, this wasn't really needed.
+
+## NNODES=128
+
+Taking advantage of August's holiday in France was able to switch to 128 nodes.
+
+Observed a further drop in TFLOPs, since now we had even less microbatches to go around. This is because Global BS remained the same (GBS=1024) and we currently use 2 nodes for a single replica (TP=2 * TP=4). So with 128 nodes, we have 64 replicas, which leaves only GAS=16 per replica, and that's too little for an efficient pipeline. The idle bubble is too big.
+
+The benchmarking/tune up was done with GAS=128 (GBS=1024/8) and that's where we were getting high TFLops.
+
+Nevertheless, the training is going much faster now and we will catch up lost time quickly.
+
+## NCCL experiments
+
+It was suggested that newer NCCL will lead to faster inter-node communication.
+
+
+hypothesis that newer nccl should be faster on JZ, but the short experiments I run didn't support it. I get the same throughput with:
+
+1. pt=1.8.1, cuda=11.1, nccl=2708
+2. pt=1.9.0, cuda=11.1, nccl=2708
+3. pt=1.10.0.dev20210821, cuda=11.3, nccl=(2, 10, 3)
+
+The experiment was run on the same 4-node allocation with GBS=64, but otherwise everything else was the same as the current training script. The speed was 17-17.5 secs per iteration. Did about 100 iterations.
+So we will stick to pt=1.8.1 for now until a need arises to change that.
+
+## SLURM Job Arrays and Dependency
+
+Switched to using SLURM Job Arrays and Dependency to schedule jobs. Since our account has a huge allocation we were able to start new 20h jobs with no delay.
+
+If this approach is not used even a tiny delay between finishing one job and scheduling the next one often lead to 1-30 hours of wait time in the queue. This is because the scheduler was quick to allocate other jobs in the first few seconds of finishing the currently running job.
+
+The problem remained if something goes wrong - e.g. a mistake in a script or some hardware issue, would lead to a delay in staring new jobs and a long long wait time.
+
+This training was getting its software updated a lot as missing features were added, so it wasn't a super-stable polished production environment.
+
+So as long as we had a stable setup using SLURM Job Arrays and Dependency chaining things went well. When we couldn't use those SLURM was delaying our training sometimes by a lot.
+
+Also since we run secondary trainings we learned to use `--nice=10000` for those trainings. Without this method all slurm jobs of the same account had the same priority.
+
+## Added an alert email notification
+
+Previously implemented watchdog now got hooked up to email notifications, so if it detected that no job was running or scheduled it'd let the group know.
+
+## Checkpoint bloat fixed
+
+The Deepspeed team fixed the bloat in the checkpoints, so new checkpoints were taking 10x less space for layer weights.
+
+I then processed all the old checkpoints to remove the bloat using:
+
+```
+srun -p prepost  -A six@cpu --time=20:00:00 --pty bash
+wget https://raw.githubusercontent.com/stas00/toolbox/master/pytorch/pt-checkpoint-shrink.py
+chmod a+x pt-checkpoint-shrink.py
+cd checkpoints
+find -type d -name "global_step*" -exec pt-checkpoint-shrink.py --checkpoint_dir {} --patterns "layer*pt" \;
+```
+
+## CI was added
+
+A CI was implemented using EC2 instance on demand. With the help of https://github.com/machulav/ec2-github-runner
+
+
+## Training completed
+
+On Sep 6th we reached the 300B tokens and on Sep 7th we stopped the training - It took some ~5 weeks to complete.
+
+
+## Checkpoint conversion
+
+We still need to figure out how to make the checkpoint available in the HF `transformers` format. This is a work in progress.
 
 
 XXX: to be continued
 
-stopped at Date: 2021-08-14
+stopped at Date: 2021-09-09
