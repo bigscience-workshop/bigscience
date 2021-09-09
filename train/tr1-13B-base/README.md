@@ -284,6 +284,9 @@ Megatron-LM resumes from the most recent checkpoint by default. Does it need the
 Remi suggests 100TB on SCRATCH shouldn't be a problem.
 
 
+
+
+
 ## Optimizer
 
 - AdamW,  β1=0.9, β2=0.999 eps=1e−8
@@ -528,7 +531,6 @@ tr1-13B-slurm-status.slurm
 The first 2 sync log files to the hub and the last one monitors the health of the training and alerts of any problems.
 
 
-
 ## Estimated run time
 
 Best case scenario when training 24/7 on 64 nodes with 4 gpus each:
@@ -560,6 +562,57 @@ Total: 234GB (18*13) plus activations and temps memory. So we are close to 256GB
 
 Activation memory would have been much much bigger if it weren't for activation checkpointing.
 
+
+## Checkpoint Back Up
+
+To copy multiple checkpoints excluding optimizer states. First move the desired checkpoints to back up to some dedicated dir, e.g. `tr1-13B-round2/checkpoints`, then copy just the needed files:
+
+```
+srun -p prepost  -A six@cpu --time=20:00:00 --pty bash
+mkdir to-upload
+rsync -acvhu --no-compress --info=progress2 --exclude "zero*pt" tr1-13B-round2/checkpoints/ to-upload
+```
+
+then to back those up:
+
+```
+cp -arun $six_ALL_CCFRSCRATCH/checkpoints/to-upload/* $six_ALL_CCFRSTORE/checkpoints/tr1-13B
+```
+
+
+**Final checkpoint with optimizer states:**
+
+```
+mkdir $six_ALL_CCFRSTORE/checkpoints/tr1-13B-with-optim
+cp -arun $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/checkpoints/global_step168000 $six_ALL_CCFRSTORE/checkpoints/tr1-13B-with-optim/
+```
+
+This is the final checkpoint, that can be resumed from at will:
+
+```
+$six_ALL_CCFRSTORE/checkpoints/tr1-13B-with-optim/global_step168000
+```
+
+Here is the corresponding log:
+```
+ iteration   168000/  311541 | consumed samples:    153013584 | elapsed time per iteration (ms): 13248.2 | learning rate: 1.000E-05 | global batch size:  1024 | lm loss: 2.376641E+00 | loss scale: 131072.0 | grad norm: 19767.052 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+--------------------------------------------------------------------------------------------------
+ validation loss at iteration 168000 | lm loss value: 2.342049E+00 | lm loss PPL: 1.040253E+01 |
+--------------------------------------------------------------------------------------------------
+```
+
+## Other backups
+
+Logs:
+
+```
+mkdir $six_ALL_CCFRSTORE/checkpoints/tr1-13B-logs/
+tar -zcvf $six_ALL_CCFRSTORE/checkpoints/tr1-13B-logs/tensorboard.tgz $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/tensorboard
+tar -zcvf $six_ALL_CCFRSTORE/checkpoints/tr1-13B-logs/logs.tgz $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs
+```
+
+note: codecarbon wasn't ready during this training, so nothing to back up there.
 
 
 ## Exports
