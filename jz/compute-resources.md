@@ -22,7 +22,7 @@ Activated with `--partition=prepost`
 
 to request:
 ```
-srun --pty --partition=prepost --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:0 --hint=nomultithread --time=1:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty --partition=prepost --account=six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:0 --hint=nomultithread --time=1:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 or to work interactively there, `srun` into the box (though no control which of the 4 you get):
@@ -172,12 +172,12 @@ tar -cvf $six_ALL_CCFRSTORE/datasets/openwebtext.tar openwebtext
 
 e.g. w/ gzip for non-binary data
 ```
-tar -czvf $six_ALL_CCFRSTORE/datasets/openwebtext.tar openwebtext
+tar -czvf $six_ALL_CCFRSTORE/datasets/openwebtext.tgz openwebtext
 ```
 
 If the file is large and takes some resources to build, `tar` will get killed, in such case you can't do it from the login instance and have to use one of the beefier instances. e.g.:
 ```
-srun --pty --nodes=1 --ntasks=1 --cpus-per-task=32 --gres=gpu:0 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty --nodes=1 --ntasks=1 -A six@cpu --cpus-per-task=40 --hint=nomultithread --time=2:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 tar ...
 ```
 and if that's not enough do a slurm job
