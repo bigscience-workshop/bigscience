@@ -47,3 +47,17 @@ echo "($MSIZE*4*2*1024*$MICRO_BATCH_SIZE*$DP_SIZE*$GAS)/($THROUGHPUT*$NNODES*4*1
 ```
 find . -type f -name "*out" -exec perl -lne 'm|elapsed time per iteration .ms.: ([\d\.]+)| &&  do {$x+=$1; $c++}; END { print "$ARGV " . ($c ? int($x/$c/1000) : "fail")}' {} \; | sort | grep -v fail
 ```
+
+## Calculate model size
+
+```
+NHIDDEN=4096
+NLAYERS=36
+SEQ_LEN=512
+VOCAB_SIZE=50257
+python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + s*h + 2*h) / 10**9 :.0f}B')"
+```
+
+
+
+For full details see [Calculate model size](./experiments/gpt2-utils.md).
