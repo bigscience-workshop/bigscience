@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=tr1-13B-round3
 #SBATCH --constraint=v100-32g
-#SBATCH --nodes=64
+#SBATCH --nodes=128
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -36,7 +36,7 @@ MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; 
 MASTER_PORT=6000
 
 GPUS_PER_NODE=4
-NNODES=64    # switch to 64
+NNODES=128   # switch to 128
 TP_SIZE=2    # always fixed to the size of a single node
 PP_SIZE=4    # NLAYERS must be a multiple of PP_SIZE here
 #DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
