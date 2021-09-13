@@ -44,6 +44,11 @@ The result is 5 files `oscar-[0-4].jsonl` of about 250GB each.
 Runtime: 2-3h to download, ~2h to build, ~8h to filter, ~1.5h to write shards out
 
 
+Update: `datasets` added multiproc `to_json` support:
+https://github.com/huggingface/datasets/pull/2747
+so it is in master, or after next after 1.11 version is released.
+
+
 2. Concatenate
 
 ```
