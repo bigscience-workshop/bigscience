@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=125M-v2.slurm
+#SBATCH --job-name=350M-pile.slurm
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -17,12 +17,12 @@ set -x -e
 ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr3i-125M-v2/
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr3k-350M-pile/
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/Megatron-DeepSpeed
 
 VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
 MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets/pile/pile_text_document
 
 source $six_ALL_CCFRWORK/start-prod
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
@@ -49,10 +49,10 @@ MICRO_BATCH_SIZE=8
 GLOBAL_BATCH_SIZE=512
 TRAIN_ITER=73_242_187
 
-NLAYERS=12
-NHIDDEN=768
+NLAYERS=24
+NHIDDEN=1024
 NHEADS=16
-FFN_HIDDEN_SIZE=3072
+FFN_HIDDEN_SIZE=4096
 SEQ_LEN=2048
 
 if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10
@@ -65,7 +65,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.999 \
     --adam-eps 1e-8 \
-    --lr 6e-4 \
+    --lr 3e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
     --lr-decay-samples 73_242_187 \
@@ -175,4 +175,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr3i-125M-v2.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr3k-350M-pile.$SLURM_JOBID.out

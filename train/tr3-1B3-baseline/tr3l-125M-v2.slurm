@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=125M-v2.slurm
+#SBATCH --job-name=125M-pile.slurm
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -17,12 +17,12 @@ set -x -e
 ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr3i-125M-v2/
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr3l-125M-pile/
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/Megatron-DeepSpeed
 
 VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
 MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets/pile/pile_text_document
 
 source $six_ALL_CCFRWORK/start-prod
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
@@ -175,4 +175,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr3i-125M-v2.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr3l-125M-pile.$SLURM_JOBID.out
