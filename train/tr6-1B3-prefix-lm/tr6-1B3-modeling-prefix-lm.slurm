@@ -165,6 +165,7 @@ export CMD=" \
     --data-impl mmap \
     --split 949,50,1 \
     --distributed-backend nccl \
+    --loss-on-targets-only \
      $DEEPSPEED_ARGS \
     "
 
