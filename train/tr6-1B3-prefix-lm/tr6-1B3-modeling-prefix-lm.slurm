@@ -7,7 +7,7 @@
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=%x-%j.out           # output file name
+#SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --account=six@gpu
 
 # This is compared with tr3d-1B3-more-warmup.slurm
@@ -21,8 +21,8 @@ TESTING=0
 OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr6-1B3-prefix-lm
 MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
 
-VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
-MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+VOCAB_FILE=$OUTPUT_PATH/data/gpt2-vocab.json
+MERGE_FILE=$OUTPUT_PATH/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 source $six_ALL_CCFRWORK/start-prod
