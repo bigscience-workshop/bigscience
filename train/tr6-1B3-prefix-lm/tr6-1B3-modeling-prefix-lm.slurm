@@ -1,16 +1,16 @@
 #!/bin/bash
-#!/bin/bash
-#SBATCH --job-name=350M-rotary.slurm
-#SBATCH --nodes=4
+#SBATCH --job-name=prefix-lm-1B3.slurm
+#SBATCH --qos=qos_gpu-t3
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=logs/%x-%j.out           # output file name
+#SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@gpu
 
-# This is compared with tr3h-350M-v2.slurm
+# This is compared with tr3d-1B3-more-warmup.slurm
 
 set -x -e
 
@@ -18,11 +18,11 @@ set -x -e
 ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr4b-350M-rotary
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr6-1B3-prefix-lm
 MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
 
-VOCAB_FILE=$OUTPUT_PATH/data/gpt2-vocab.json
-MERGE_FILE=$OUTPUT_PATH/data/gpt2-merges.txt
+VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
+MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 source $six_ALL_CCFRWORK/start-prod
@@ -41,8 +41,8 @@ MASTER_PORT=6000
 
 # XXX: edit me
 GPUS_PER_NODE=4
-NNODES=4
-PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
+NNODES=16
+PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
@@ -51,9 +51,9 @@ GLOBAL_BATCH_SIZE=512
 TRAIN_ITER=73_242_187
 
 NLAYERS=24
-NHIDDEN=1024
+NHIDDEN=2048
 NHEADS=16
-FFN_HIDDEN_SIZE=4096
+FFN_HIDDEN_SIZE=8192
 SEQ_LEN=2048
 
 if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10
@@ -66,7 +66,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.999 \
     --adam-eps 1e-8 \
-    --lr 3e-4 \
+    --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
     --lr-decay-samples 73_242_187 \
@@ -85,7 +85,7 @@ GPT_ARGS=" \
     --num-attention-heads $NHEADS \
     --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --seq-length $SEQ_LEN \
-    --position-embedding-type rotary\
+    --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
@@ -154,7 +154,7 @@ export LAUNCHER="python -u -m torch.distributed.launch \
     "
 
 export CMD=" \
-    `pwd`/pretrain_gpt.py \
+    `pwd`/pretrain_prefix_lm.py \
     --tensor-model-parallel-size $TP_SIZE \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
@@ -176,4 +176,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr4b-350M.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr6-1B3-prefix-lm.$SLURM_JOBID.out
