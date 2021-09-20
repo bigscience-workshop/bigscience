@@ -1,12 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-alibi.slurm
-#SBATCH --qos=qos_gpu-t3
-#SBATCH --nodes=16
+#SBATCH --job-name=350M-alibi.slurm
+#SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
-#SBATCH --time 00:15:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.out          # output file name
 #SBATCH --error=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.err           # error file name
 #SBATCH --account=six@gpu
@@ -17,7 +16,7 @@ set -x -e
 ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr6-1B3-alibi/
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr6b-350M-alibi
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/repos/Megatron-DeepSpeed
 
 VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
@@ -40,8 +39,8 @@ MASTER_PORT=6000
 
 # XXX: edit me
 GPUS_PER_NODE=4
-NNODES=16
-PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
+NNODES=4
+PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
@@ -50,9 +49,9 @@ GLOBAL_BATCH_SIZE=512
 TRAIN_ITER=73_242_187
 
 NLAYERS=24
-NHIDDEN=2048
+NHIDDEN=1024
 NHEADS=16
-FFN_HIDDEN_SIZE=8192
+FFN_HIDDEN_SIZE=4096
 SEQ_LEN=2048
 
 if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10
@@ -65,7 +64,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.999 \
     --adam-eps 1e-8 \
-    --lr 2e-4 \
+    --lr 3e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
     --lr-decay-samples 73_242_187 \
@@ -175,4 +174,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr6-1B3-alibi.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr6b-350M-alibi.$SLURM_JOBID.out
