@@ -17,7 +17,7 @@ set -x -e
 ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr6-1B3-alibi/
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr7-1B3-alibi
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/repos/Megatron-DeepSpeed
 
 VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
@@ -175,4 +175,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr6-1B3-alibi.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr7-1B3-alibi.$SLURM_JOBID.out
