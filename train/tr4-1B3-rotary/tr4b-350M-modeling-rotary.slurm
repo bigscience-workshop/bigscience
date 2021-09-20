@@ -1,6 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-rotary.slurm
-#SBATCH --nodes=16
+#!/bin/bash
+#SBATCH --job-name=350M-rotary.slurm
+#SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -8,31 +9,28 @@
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --account=six@gpu
-#SBATCH --array=1-10%1
 
 set -x -e
-source $six_ALL_CCFRWORK/start-prod
+
 
 ROUND=2
 TESTING=0
 
-# Prevent internet access
-export HF_DATASETS_OFFLINE=1
-export TRANSFORMERS_OFFLINE=1
-
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr4-1B3-rotary
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr4b-350M-rotary
 MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
 
-if [[ ${TESTING} == 1 ]]; then
-    # testing on 10k
-    DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/c4_preprocessing/c4_100k_text_document
-else
-    # production on full 304M records
-    DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/c4_preprocessing/c4_en_train_text_document
+VOCAB_FILE=$OUTPUT_PATH/data/gpt2-vocab.json
+MERGE_FILE=$OUTPUT_PATH/data/gpt2-merges.txt
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
-fi
-
-pushd $MEGATRON_DEEPSPEED_REPO
+source $six_ALL_CCFRWORK/start-prod
+export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
+export HF_DATASETS_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+cd $MEGATRON_DEEPSPEED_REPO
 
 MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
 MASTER_PORT=6000
@@ -41,19 +39,19 @@ MASTER_PORT=6000
 
 # XXX: edit me
 GPUS_PER_NODE=4
-NNODES=16
-PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
+NNODES=4
+PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=8
 GLOBAL_BATCH_SIZE=512
-TRAIN_ITER=73_242_187 #150B tokens
+TRAIN_ITER=73_242_187
 
 NLAYERS=24
-NHIDDEN=2048
+NHIDDEN=1024
 NHEADS=16
-FFN_HIDDEN_SIZE=8192
+FFN_HIDDEN_SIZE=4096
 SEQ_LEN=2048
 
 if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10
@@ -66,7 +64,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.999 \
     --adam-eps 1e-8 \
-    --lr 2e-4 \
+    --lr 3e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
     --lr-decay-samples 73_242_187 \
@@ -85,17 +83,17 @@ GPT_ARGS=" \
     --num-attention-heads $NHEADS \
     --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --seq-length $SEQ_LEN \
+    --position-embedding-type rotary\
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
     --train-samples $TRAIN_ITER \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path t5-small \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
     --loss-scale 12 \
     --clip-grad 1.0 \
     --fp16 \
     --checkpoint-activations \
-    --position-embedding-type rotary \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
@@ -176,4 +174,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr3-1B3-modeling-baseline.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr4b-350M.$SLURM_JOBID.out
