@@ -366,6 +366,8 @@ CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
     --codecarbon-dir $CODECARBON_PATH \
 ```
 
+
+
 **Training logs**
 
 All training logs are piped into `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs/main_log.txt`.
@@ -726,6 +728,22 @@ print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
 https://huggingface.co/bigscience/tr1-13B-logs/resolve/main/main_log.txt
 ```
 Currently the updates happen hourly, so this is a delayed version of `tail -f`.
+
+
+## CodeCarbon
+
+
+CodeCarbon wasn't ready until the training was over so we only did an additional 10h run to measure with and the to extrapolate to the whole training.
+
+https://huggingface.co/bigscience/tr1-13B-codecarbon
+
+This set of records captures the startup time and 2499 iterations in 2 records per gpu, since there was also an intermediary checkpoint saved half-way and we flush the CC records on each checkpoint saving.
+
+The training had 168000 iterations. Therefore multiply the reported data by 67. This would be quite approximate since we were using 16 nodes when doing the ramp up, then 64 and only the last 3 weeks 128 nodes.
+
+Caveat emptor: I'm not sure whether CC-reports overlap since each report is per gpu and I think they may be measuring the same thing, other than the gpu itself. So this requires research.
+
+Each csv file contains a report for a single gpu/process. There are 512 reports.
 
 
 ## Extras
