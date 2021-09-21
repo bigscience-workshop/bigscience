@@ -38,8 +38,6 @@ https://huggingface.co/bigscience/tr1-13B-logs/resolve/main/main_log.txt
 
 ### Train 3
 
-# Arch/Scaling baselines (tr3)
-
 Architecture and scaling baseline runs: no fancy tricks, just GPT2. Here are links to the respective tensorboards:
 
 | Size                	| 1B3 	| 760M 	| 350M 	| 125M 	|
