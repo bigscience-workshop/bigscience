@@ -3,10 +3,12 @@
 
 ## 104B Training
 
-
+```
 VOCAB_SIZE=50257 NLAYERS=32 NHIDDEN=16384 NHEADS=32 SEQ_LEN=2048; python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"
 104B
+```
 
+```
 SEQLEN=2048
 
 VOCAB_SIZE=50257
