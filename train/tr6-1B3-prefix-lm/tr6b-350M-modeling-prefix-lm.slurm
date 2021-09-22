@@ -12,13 +12,6 @@
 
 set -x -e
 
-source ~/.bash_profile
-bigscience
-conda activate big_science
-
-module purge
-module load cuda/10.2
-
 ROUND=2
 TESTING=0
 
@@ -29,7 +22,9 @@ VOCAB_FILE=$OUTPUT_PATH/data/gpt2-vocab.json
 MERGE_FILE=$OUTPUT_PATH/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
-# source $six_ALL_CCFRWORK/start-prod
+source $six_ALL_CCFRWORK/start-prod
+conda activate thomas_prefix_lm # Debug deepspeed temporarily
+
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
