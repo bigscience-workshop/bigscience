@@ -31,6 +31,7 @@ SEQ_LEN=2048
     --weight-decay 1e-1 \
 ```
 
+comparison with tr1-13B:
 - changed model shape/size
 - double GBS
 - changed lr and min-lr
