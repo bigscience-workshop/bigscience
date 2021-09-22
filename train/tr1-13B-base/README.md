@@ -604,6 +604,42 @@ time (ms)
 --------------------------------------------------------------------------------------------------
 ```
 
+## Checkpoint Conversion and Upload
+
+
+Open a long running interactive shell:
+```
+srun -p compil --cpus-per-task=40 -A six@cpu --time=6:00:00 --pty bash
+```
+then convert:
+
+```
+cd $six_ALL_CCFRSCRATCH/checkpoints/to-upload
+time find * -maxdepth 0 -type d -name "global_step*" -exec $six_ALL_CCFRWORK/code/Megatron-DeepSpeed/tools/convert_checkpoint/deepspeed_to_transformers.py --input_folder {} --output_folder hf/{} \;
+```
+
+It takes about 100sec per 26GB checkpoint.
+
+The results will be all under `hf/`.
+
+Now to uploading to the hub.
+
+Prepare the target dir:
+
+```
+git clone https://huggingface.co/bigscience/tr1-13B-checkpoints/
+cd tr1-13B-checkpoints
+transformers-cli lfs-enable-largefiles .
+```
+We are going to put each checkpoint into its own branch with the same name.
+
+```
+mv ../hf/global_step* .
+find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout -b {} \; -exec git add {} \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \;
+
+```
+
+
 ## Other backups
 
 Logs:
