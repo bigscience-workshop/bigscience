@@ -46,3 +46,23 @@ SEQ_LEN=2048
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
 ```
+
+
+
+## log files
+
+```
+cd $six_ALL_CCFRSCRATCH//checkpoints/tr8-104B
+mkdir checkpoints
+git clone https://huggingface.co/bigscience/tr8-104B-data
+cd tr8-104B-data
+mkdir tensorboard codecarbon logs
+```
+
+
+
+## Running
+
+```
+sbatch --array=1-10%1 tr8-104B.slurm
+```

@@ -12,18 +12,17 @@
 
 set -x -e
 
-source $six_ALL_CCFRWORK/code/tr1-13b/bigscience/train/tr8-104B-wide/start-tr8-104B
+source $six_ALL_CCFRWORK/code/tr8-104B/bigscience/train/tr8-104B-wide/start-tr8-104B
 
 echo "START TIME: $(date)"
 
-
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8-104B
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
-CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
-LOGS_PATH=$DATA_OUTPUT_PATH/logs
+TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tr8-104B-data/tensorboard
+CODECARBON_PATH=$DATA_OUTPUT_PATH/tr8-104B-data/codecarbon
+LOGS_PATH=$DATA_OUTPUT_PATH/tr8-104B-data/logs
 
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8-104B/Megatron-DeepSpeed-tr1-13B/
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8-104B/Megatron-DeepSpeed-tr8-104B
 
 VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
 MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
@@ -69,10 +68,9 @@ OPTIMIZER_ARGS=" \
     "
 
 EXIT_OPTS=" \
-    --exit-duration-in-mins 40 \
+    --exit-duration-in-mins 1190 \
     "
 
-#    --rampup-batch-size 16 16 6_000_000 \
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
@@ -81,6 +79,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
+    --rampup-batch-size 16 16 6_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples 300_000_000 \
     --vocab-file $VOCAB_FILE \
