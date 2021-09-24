@@ -144,6 +144,7 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--job-name", type=str, required=True, help="slurm job name")
     parser.add_argument("-d", "--debug", action='store_true', help="enable debug")
+    parser.add_argument("--no-email", action='store_true', help="do not email alerts")
     return parser.parse_args()
 
 
@@ -167,7 +168,8 @@ def main():
     if not in_the_system:
         preamble = get_preamble()
         print(f"{preamble} ***ALERT: {args.job_name} is not RUNNING or SCHEDULED! Alert someone at Eng WG***")
-        send_email_alert_job_not_scheduled(args.job_name)
+        if not args.no_email:
+            send_email_alert_job_not_scheduled(args.job_name)
 
 
 if __name__ == "__main__":
