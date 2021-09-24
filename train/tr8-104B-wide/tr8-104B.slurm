@@ -1,76 +1,69 @@
 #!/bin/bash
-#!/bin/bash
-#SBATCH --job-name=350M-rotary.slurm
-#SBATCH --nodes=4
+#SBATCH --job-name=tr8-104B
+#SBATCH --constraint=v100-32g
+#SBATCH --nodes=128
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=40         # number of cores per tasks
+#SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=logs/%x-%j.out           # output file name
+#SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@gpu
-
-# This is compared with tr3h-350M-v2.slurm
 
 set -x -e
 
+source $six_ALL_CCFRWORK/code/tr8-104B/bigscience/train/tr8-104B-wide/start-tr8-104B
 
-ROUND=2
-TESTING=0
+echo "START TIME: $(date)"
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr4b-350M-rotary
-MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8-104B
+CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
+REPO_PATH=$DATA_OUTPUT_PATH/tr8-104B-logs
+TENSORBOARD_PATH=$REPO_PATH/tensorboard
+CODECARBON_PATH=$REPO_PATH/codecarbon
+LOGS_PATH=$REPO_PATH/logs
 
-VOCAB_FILE=$OUTPUT_PATH/data/gpt2-vocab.json
-MERGE_FILE=$OUTPUT_PATH/data/gpt2-merges.txt
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8-104B/Megatron-DeepSpeed-tr8-104B
+
+VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
+MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
-source $six_ALL_CCFRWORK/start-prod
-export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
-export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
-export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
-export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
-export HF_DATASETS_OFFLINE=1
-export TRANSFORMERS_OFFLINE=1
 cd $MEGATRON_DEEPSPEED_REPO
 
 MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
 MASTER_PORT=6000
 
-# adjust depending on the number of the nodes
-
-# XXX: edit me
 GPUS_PER_NODE=4
-NNODES=4
-PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
-TP_SIZE=4 # always fixed to the size of a single node
-DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
+NNODES=128   # switch to 128
+TP_SIZE=4    # always fixed to the size of a single node
+PP_SIZE=8   # NLAYERS must be a multiple of PP_SIZE here
+#DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
 
-MICRO_BATCH_SIZE=8
-GLOBAL_BATCH_SIZE=512
-TRAIN_ITER=73_242_187
+# GLOBAL_BATCH_SIZE has to be divisible by MICRO_BATCH_SIZE*DP_size
+# GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$GAS*$DP_SIZE)) - GAS is auto-derived by deepspeed
+MICRO_BATCH_SIZE=1
+GLOBAL_BATCH_SIZE=2048
 
-NLAYERS=24
-NHIDDEN=1024
-NHEADS=16
-FFN_HIDDEN_SIZE=4096
+NLAYERS=32
+NHIDDEN=16384
+NHEADS=32
+FFN_HIDDEN_SIZE=20480
 SEQ_LEN=2048
+VOCAB_SIZE=50257
 
-if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10
-elif [[ ${ROUND} == 2 ]]; then  SAVE_INTERVAL=1500
-else echo "invalid ROUND: $ROUND"
-fi
+SAVE_INTERVAL=1500
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
     --adam-beta2 0.999 \
     --adam-eps 1e-8 \
-    --lr 3e-4 \
-    --min-lr 1e-5 \
+    --lr 6e-5 \
+    --min-lr 6e-6 \
     --lr-decay-style cosine \
-    --lr-decay-samples 73_242_187 \
-    --lr-warmup-samples 183_105 \
+    --lr-decay-samples 126_953_125 \
+    --lr-warmup-samples 216_320 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
@@ -82,30 +75,32 @@ EXIT_OPTS=" \
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
-    --num-attention-heads $NHEADS \
     --ffn-hidden-size $FFN_HIDDEN_SIZE \
+    --num-attention-heads $NHEADS \
     --seq-length $SEQ_LEN \
-    --position-embedding-type rotary\
+    --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
+    --rampup-batch-size 16 16 6_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
-    --rampup-batch-size 32 32 2_000_000 \
-    --train-samples $TRAIN_ITER \
+    --train-samples 300_000_000 \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
     --loss-scale 12 \
     --clip-grad 1.0 \
     --fp16 \
     --checkpoint-activations \
+    --seed 42
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
 
 OUTPUT_ARGS=" \
-    --log-interval 200 \
+    --log-interval 10 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 1000 \
-    --eval-iters 100 \
-    --tensorboard-dir $OUTPUT_PATH/tensorboard \
+    --eval-iters 5 \
+    --codecarbon-dir $CODECARBON_PATH \
+    --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
     --log-batch-size-to-tensorboard \
@@ -159,8 +154,8 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
-    --save $OUTPUT_PATH/checkpoints \
-    --load $OUTPUT_PATH/checkpoints \
+    --save $CHECKPOINT_PATH \
+    --load $CHECKPOINT_PATH \
     --data-path $DATA_PATH \
     --data-impl mmap \
     --split 949,50,1 \
@@ -168,12 +163,11 @@ export CMD=" \
      $DEEPSPEED_ARGS \
     "
 
-
-# # clear old checkpoint as it'd mismatch while we sort things out
-#     rm -rf $SAVE_CHECKPOINT_PATH
-
-
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr4b-350M.$SLURM_JOBID.out
+clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
+
+echo "END TIME: $(date)"
+
+#

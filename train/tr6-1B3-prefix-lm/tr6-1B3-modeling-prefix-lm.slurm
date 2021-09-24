@@ -1,30 +1,32 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-alibi.slurm
+#SBATCH --job-name=prefix-lm-1B3.slurm
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
-#SBATCH --time 00:15:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.out          # output file name
-#SBATCH --error=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.err           # error file name
+#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --account=six@gpu
 
-set -x -e
+# This is compared with tr3d-1B3-more-warmup.slurm
 
+set -x -e
 
 ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr7-1B3-alibi
-MEGATRON_DEEPSPEED_REPO=$SCRATCH/repos/Megatron-DeepSpeed
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr6-1B3-prefix-lm
+MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
 
-VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
-MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+VOCAB_FILE=$OUTPUT_PATH/data/gpt2-vocab.json
+MERGE_FILE=$OUTPUT_PATH/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 source $six_ALL_CCFRWORK/start-prod
+conda activate thomas_prefix_lm # Debug deepspeed temporarily
+
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
@@ -95,7 +97,6 @@ GPT_ARGS=" \
     --clip-grad 1.0 \
     --fp16 \
     --checkpoint-activations \
-    --position-embedding-type alibi \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
@@ -154,7 +155,7 @@ export LAUNCHER="python -u -m torch.distributed.launch \
     "
 
 export CMD=" \
-    `pwd`/pretrain_gpt.py \
+    `pwd`/pretrain_prefix_lm.py \
     --tensor-model-parallel-size $TP_SIZE \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
@@ -165,8 +166,10 @@ export CMD=" \
     --data-impl mmap \
     --split 949,50,1 \
     --distributed-backend nccl \
+    --loss-on-targets-only \
      $DEEPSPEED_ARGS \
     "
+
 
 # # clear old checkpoint as it'd mismatch while we sort things out
 #     rm -rf $SAVE_CHECKPOINT_PATH
@@ -175,4 +178,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr7-1B3-alibi.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr6-1B3-prefix-lm.$SLURM_JOBID.out

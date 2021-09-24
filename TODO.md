@@ -84,9 +84,6 @@ keep rampup
 
 
 
-- index files from 13B training
-
-
 
 - test too deep model same layers as in 200B but smaller - 96 layers
 

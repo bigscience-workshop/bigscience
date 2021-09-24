@@ -124,11 +124,37 @@ def get_untracked_files(local_dir) -> List[str]:
 
 def get_modified_files(local_dir) -> List[str]:
     """
-    Returns a list of untracked files in the working directory
+    Returns a list of modified files in the working directory
     """
     key = "modified"
     files_by_status = get_git_files_by_status(local_dir)
     return files_by_status[key] if key in files_by_status else []
+
+
+def get_new_and_modified_files(local_dir) -> List[str]:
+    """
+    Returns a list of untracked and modified files in the working directory recursively.
+    It will include relative path for files under sub-dirs that are untracked.
+    """
+
+    try:
+        cmd = "git ls-files --modified --others --exclude-standard".split()
+        output = subprocess.run(
+            cmd,
+            stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            check=True,
+            encoding="utf-8",
+            cwd=local_dir,
+        ).stdout.strip()
+    except subprocess.CalledProcessError as exc:
+        raise EnvironmentError(exc.stderr)
+
+    if len(output) == 0:
+        return []
+
+    return [f.strip() for f in output.split("\n")]
+
 
 def run_cmd(cmd, local_dir):
     try:
@@ -226,8 +252,7 @@ def main():
     files_dict = get_git_files_by_status(args.repo_path)
 
     # we want untracked and modified files
-    uncommitted_files = get_untracked_files(args.repo_path)
-    uncommitted_files.extend(get_modified_files(args.repo_path))
+    uncommitted_files = get_new_and_modified_files(args.repo_path)
 
     total_to_commit = 0
     if len(uncommitted_files) > 0:
