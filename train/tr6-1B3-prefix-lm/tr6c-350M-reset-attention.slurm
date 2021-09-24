@@ -1,6 +1,6 @@
 #!/bin/bash
-#!/bin/bash
-#SBATCH --job-name=350M-rotary.slurm
+#SBATCH --job-name=prefix-lm-350M.slurm
+#SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
@@ -10,15 +10,12 @@
 #SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --account=six@gpu
 
-# This is compared with tr3h-350M-v2.slurm
-
 set -x -e
-
 
 ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr4b-350M-rotary
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr6c-350M-prefix-lm-reset-attention-mask
 MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
 
 VOCAB_FILE=$OUTPUT_PATH/data/gpt2-vocab.json
@@ -26,6 +23,8 @@ MERGE_FILE=$OUTPUT_PATH/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 source $six_ALL_CCFRWORK/start-prod
+conda activate thomas_prefix_lm # Debug deepspeed temporarily
+
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
@@ -42,7 +41,7 @@ MASTER_PORT=6000
 # XXX: edit me
 GPUS_PER_NODE=4
 NNODES=4
-PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
+PP_SIZE=1 # 2 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
@@ -85,7 +84,7 @@ GPT_ARGS=" \
     --num-attention-heads $NHEADS \
     --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --seq-length $SEQ_LEN \
-    --position-embedding-type rotary\
+    --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
@@ -154,7 +153,7 @@ export LAUNCHER="python -u -m torch.distributed.launch \
     "
 
 export CMD=" \
-    `pwd`/pretrain_gpt.py \
+    `pwd`/pretrain_prefix_lm.py \
     --tensor-model-parallel-size $TP_SIZE \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
@@ -165,6 +164,8 @@ export CMD=" \
     --data-impl mmap \
     --split 949,50,1 \
     --distributed-backend nccl \
+    --loss-on-targets-only \
+    --reset-attention-mask \
      $DEEPSPEED_ARGS \
     "
 
@@ -176,4 +177,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr4b-350M.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr6c-350M-reset_attention_mask.$SLURM_JOBID.out

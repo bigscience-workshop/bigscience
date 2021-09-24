@@ -366,6 +366,8 @@ CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
     --codecarbon-dir $CODECARBON_PATH \
 ```
 
+
+
 **Training logs**
 
 All training logs are piped into `$six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs/main_log.txt`.
@@ -602,6 +604,56 @@ time (ms)
 --------------------------------------------------------------------------------------------------
 ```
 
+## Checkpoint Conversion and Upload
+
+
+Open a long running interactive shell:
+```
+srun -p compil --cpus-per-task=40 -A six@cpu --time=6:00:00 --pty bash
+```
+then convert:
+
+```
+cd $six_ALL_CCFRSCRATCH/checkpoints/to-upload
+time find * -maxdepth 0 -type d -name "global_step*" -exec $six_ALL_CCFRWORK/code/Megatron-DeepSpeed/tools/convert_checkpoint/deepspeed_to_transformers.py --input_folder {} --output_folder hf/{} \;
+```
+
+It takes about 100sec per 26GB checkpoint.
+
+The results will be all under `hf/`.
+
+Now to uploading to the hub.
+
+Prepare the target dir:
+
+```
+#git -c http.extraHeader="Authorization: Basic " clone https://huggingface.co/bigscience/tr1-13B-checkpoints/
+
+cd tr1-13B-checkpoints
+
+
+transformers-cli lfs-enable-largefiles .
+
+git config --unset user.email
+~/prod/code/bigscience/tools/hub-sync.py --repo-path . --patterns '*bogus*'
+```
+We are going to put each checkpoint into its own branch with the same name.
+
+```
+mv ../hf/global_step* .
+time find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout -b {} \; -exec git add {} \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \;
+git checkout main
+```
+
+Fixing up failed pushes / verifying that all pushes went through, re-pushing if needed
+
+```
+git branch | perl -lne 'm|(global_step\d+)| && print qx[git checkout $1; git push --set-upstream origin $1]'
+```
+
+If `git push` fails re-run with: `GIT_TRACE=1 GIT_TRANSFER_TRACE=1 GIT_CURL_VERBOSE=1 git push` to see what the actual error is.
+
+
 ## Other backups
 
 Logs:
@@ -721,11 +773,27 @@ tail -f $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs/main_log.txt
 
 Outside of JZ:
 ```
-perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/x-linked-size: (\d+)/; \
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
 print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
 https://huggingface.co/bigscience/tr1-13B-logs/resolve/main/main_log.txt
 ```
 Currently the updates happen hourly, so this is a delayed version of `tail -f`.
+
+
+## CodeCarbon
+
+
+CodeCarbon wasn't ready until the training was over so we only did an additional 10h run to measure with and the to extrapolate to the whole training.
+
+https://huggingface.co/bigscience/tr1-13B-codecarbon
+
+This set of records captures the startup time and 2499 iterations in 2 records per gpu, since there was also an intermediary checkpoint saved half-way and we flush the CC records on each checkpoint saving.
+
+The training had 168000 iterations. Therefore multiply the reported data by 67. This would be quite approximate since we were using 16 nodes when doing the ramp up, then 64 and only the last 3 weeks 128 nodes.
+
+Caveat emptor: I'm not sure whether CC-reports overlap since each report is per gpu and I think they may be measuring the same thing, other than the gpu itself. So this requires research.
+
+Each csv file contains a report for a single gpu/process. There are 512 reports.
 
 
 ## Extras
