@@ -26,6 +26,9 @@ Use `idracct six` to see which username belongs to which real person.
 Add this to your `~/.bashrc` and run `bash` for the changes to take effect.
 
 ```
+# ~/.bashrc: executed by bash(1) for non-login shells.
+[[ $- != *i* ]] && return
+
 # Log in with correct group - relevant to all users as we have multiple groups we belong to
 if [[ $(id -gn) != "six" ]]
 then
