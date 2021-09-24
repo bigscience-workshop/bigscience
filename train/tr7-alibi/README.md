@@ -22,3 +22,6 @@ To sync tensorboard:
 ```
 $SCRATCH/repos/bigscience/tools/hub-sync.py --repo-path  $ALL_CCFRSCRATCH/synched_exps/tr7a-1B3-alibi/tr7a-1B3-alibi-logs/ --patterns '*tfevents*' -d
 ```
+
+Nodelist
+- Job 1: `r11i0n[3-8],r11i1n[0-7],r13i3n[1-2]`
