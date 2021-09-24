@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
-#SBATCH --time 00:15:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.out          # output file name
 #SBATCH --error=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.err           # error file name
 #SBATCH --account=six@gpu
@@ -178,4 +178,4 @@ export CMD=" \
 echo $CMD
 
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $LOGS_PATH/tr7a-1B3-alibi.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/tr7a-1B3-alibi.$SLURM_JOBID.out
