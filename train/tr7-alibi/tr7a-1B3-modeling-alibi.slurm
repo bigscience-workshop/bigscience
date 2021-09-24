@@ -162,8 +162,8 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
-    --save $CHECKPOINTS_PATH \
-    --load $CHECKPOINTS_PATH \
+    --save $CHECKPOINT_PATH \
+    --load $CHECKPOINT_PATH \
     --data-path $DATA_PATH \
     --data-impl mmap \
     --split 949,50,1 \
