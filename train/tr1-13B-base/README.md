@@ -627,17 +627,31 @@ Now to uploading to the hub.
 Prepare the target dir:
 
 ```
-git clone https://huggingface.co/bigscience/tr1-13B-checkpoints/
+#git -c http.extraHeader="Authorization: Basic " clone https://huggingface.co/bigscience/tr1-13B-checkpoints/
+
 cd tr1-13B-checkpoints
+
+
 transformers-cli lfs-enable-largefiles .
+
+git config --unset user.email
+~/prod/code/bigscience/tools/hub-sync.py --repo-path . --patterns '*bogus*'
 ```
 We are going to put each checkpoint into its own branch with the same name.
 
 ```
 mv ../hf/global_step* .
-find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout -b {} \; -exec git add {} \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \;
+time find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout -b {} \; -exec git add {} \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \;
+git checkout main
+```
+
+Fixing up failed pushes / verifying that all pushes went through, re-pushing if needed
 
 ```
+git branch | perl -lne 'm|(global_step\d+)| && print qx[git checkout $1; git push --set-upstream origin $1]'
+```
+
+If `git push` fails re-run with: `GIT_TRACE=1 GIT_TRANSFER_TRACE=1 GIT_CURL_VERBOSE=1 git push` to see what the actual error is.
 
 
 ## Other backups
@@ -759,7 +773,7 @@ tail -f $six_ALL_CCFRSCRATCH/checkpoints/tr1-13B/logs/main_log.txt
 
 Outside of JZ:
 ```
-perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/x-linked-size: (\d+)/; \
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
 print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
 https://huggingface.co/bigscience/tr1-13B-logs/resolve/main/main_log.txt
 ```
