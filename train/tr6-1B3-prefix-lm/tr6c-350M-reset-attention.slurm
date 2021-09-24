@@ -165,6 +165,7 @@ export CMD=" \
     --split 949,50,1 \
     --distributed-backend nccl \
     --loss-on-targets-only \
+    --reset-attention-mask \
      $DEEPSPEED_ARGS \
     "
 
