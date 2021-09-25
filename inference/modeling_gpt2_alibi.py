@@ -198,7 +198,13 @@ class GPT2Attention(nn.Module):
                 device=torch.cuda.current_device())
         else:
             matmul_result = alibi[:output_size[0]*output_size[1], :, :output_size[3]]
-
+            
+        # [sq, b, np, hn] -> [sq, b * np, hn]
+        query = query.view(output_size[2],
+                                       output_size[0] * output_size[1], -1)
+        # [sk, b, np, hn] -> [sk, b * np, hn]
+        key = key.view(output_size[3],
+                                   output_size[0] * output_size[1], -1)
         # Raw attention scores. [b * np, sq, sk]
         attn_weights = torch.baddbmm(
             matmul_result,
