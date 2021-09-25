@@ -13,7 +13,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""PyTorch OpenAI GPT-2 model."""
+"""PyTorch OpenAI GPT-2 model with AliBi."""
+
+## integrating some AliBi code from https://github.com/bigscience-workshop/Megatron-DeepSpeed/blob/c839a8aa30731f71b3738d56009be9668508e366/megatron/model/transformer.py
+# I am keeping the name of the classes as GPT2 because some of transformer's code like pipeline classes check class names in order to do things, and
+# creating a new class that have different names sometimes break things.
 
 import os
 from dataclasses import dataclass
@@ -24,34 +28,35 @@ import torch.utils.checkpoint
 from torch import nn
 from torch.nn import CrossEntropyLoss, MSELoss
 
-from ...activations import ACT2FN
-from ...file_utils import (
+from transformers.activations import ACT2FN
+from transformers.file_utils import (
     ModelOutput,
     add_code_sample_docstrings,
     add_start_docstrings,
     add_start_docstrings_to_model_forward,
     replace_return_docstrings,
 )
-from ...modeling_outputs import (
+from transformers.modeling_outputs import (
     BaseModelOutputWithPastAndCrossAttentions,
     CausalLMOutputWithCrossAttentions,
     SequenceClassifierOutputWithPast,
     TokenClassifierOutput,
 )
-from ...modeling_utils import (
+from transformers.modeling_utils import (
     Conv1D,
     PreTrainedModel,
     SequenceSummary,
     find_pruneable_heads_and_indices,
     prune_conv1d_layer,
 )
-from ...utils import logging
-from ...utils.model_parallel_utils import assert_device_map, get_device_map
-from .configuration_gpt2 import GPT2Config
+from transformers.utils import logging
+from transformers.utils.model_parallel_utils import assert_device_map, get_device_map
+from transformers.model.gpt2.configuration_gpt2 import GPT2Config
 
 
 logger = logging.get_logger(__name__)
 
+# need to change the checkpoints to be the bigscience checkpoints
 _CHECKPOINT_FOR_DOC = "gpt2"
 _CONFIG_FOR_DOC = "GPT2Config"
 _TOKENIZER_FOR_DOC = "GPT2Tokenizer"
@@ -159,6 +164,7 @@ class GPT2Attention(nn.Module):
         self.resid_dropout = nn.Dropout(config.resid_pdrop)
 
         self.pruned_heads = set()
+        self.position_embedding_type = config.position_embedding_type
 
     def prune_heads(self, heads):
         if len(heads) == 0:
@@ -176,8 +182,36 @@ class GPT2Attention(nn.Module):
         self.pruned_heads = self.pruned_heads.union(heads)
 
     def _attn(self, query, key, value, attention_mask=None, head_mask=None):
-        attn_weights = torch.matmul(query, key.transpose(-1, -2))
+        
+        # [b, np, sq, sk]
+        output_size = (query.size(1),
+                       query.size(2),
+                       key.size(0),
+                       key.size(0))
+        # preallocting result tensor: [b * np, sq, sk]
+        if alibi is None:
+            matmul_result = torch.empty(
+                output_size[0]*output_size[1],
+                output_size[2],
+                output_size[3],
+                dtype=query_layer.dtype,
+                device=torch.cuda.current_device())
+        else:
+            matmul_result = alibi[:output_size[0]*output_size[1], :, :output_size[3]]
 
+        # Raw attention scores. [b * np, sq, sk]
+        attn_weights = torch.baddbmm(
+            matmul_result,
+            query_layer.transpose(0, 1),   # [b * np, sq, hn]
+            key_layer.transpose(0, 1).transpose(-1, -2),  # [b * np, hn, sk]
+            beta=0.0 if alibi is None else 1.0, alpha=(1.0/self.norm_factor))
+        
+        #attn_weights = torch.matmul(query, key.transpose(-1, -2))
+
+        # change view to [b, np, sq, sk]
+        attn_weights = attn_weights.view(*output_size)
+
+        # do we need this scaling. does the alpha do the scaling as above?
         if self.scale_attn_weights:
             attn_weights = attn_weights / (float(value.size(-1)) ** 0.5)
 
@@ -226,8 +260,10 @@ class GPT2Attention(nn.Module):
         head_mask=None,
         encoder_hidden_states=None,
         encoder_attention_mask=None,
+        alibi=None,
         use_cache=False,
         output_attentions=False,
+        
     ):
         if encoder_hidden_states is not None:
             if not hasattr(self, "q_attn"):
@@ -310,6 +346,7 @@ class GPT2Block(nn.Module):
         head_mask=None,
         encoder_hidden_states=None,
         encoder_attention_mask=None,
+        alibi=None,
         use_cache=False,
         output_attentions=False,
     ):
@@ -320,6 +357,7 @@ class GPT2Block(nn.Module):
             layer_past=layer_past,
             attention_mask=attention_mask,
             head_mask=head_mask,
+            alibi=alibi,
             use_cache=use_cache,
             output_attentions=output_attentions,
         )
@@ -343,6 +381,7 @@ class GPT2Block(nn.Module):
                 head_mask=head_mask,
                 encoder_hidden_states=encoder_hidden_states,
                 encoder_attention_mask=encoder_attention_mask,
+                alibi=alibi,
                 output_attentions=output_attentions,
             )
             attn_output = cross_attn_outputs[0]
@@ -379,6 +418,7 @@ class GPT2PreTrainedModel(PreTrainedModel):
     def __init__(self, *inputs, **kwargs):
         super().__init__(*inputs, **kwargs)
 
+            
     def _init_weights(self, module):
         """Initialize the weights."""
         if isinstance(module, (nn.Linear, Conv1D)):
@@ -400,10 +440,12 @@ class GPT2PreTrainedModel(PreTrainedModel):
             module.gradient_checkpointing = value
 
 
+
 @dataclass
 class GPT2DoubleHeadsModelOutput(ModelOutput):
     """
     Base class for outputs of models predicting if two sentences are consecutive or not.
+
     Args:
         loss (:obj:`torch.FloatTensor` of shape :obj:`(1,)`, `optional`, returned when ``labels`` is provided):
             Language modeling loss.
@@ -416,15 +458,18 @@ class GPT2DoubleHeadsModelOutput(ModelOutput):
         past_key_values (:obj:`Tuple[Tuple[torch.Tensor]]`, `optional`, returned when ``use_cache=True`` is passed or when ``config.use_cache=True``):
             Tuple of length :obj:`config.n_layers`, containing tuples of tensors of shape :obj:`(batch_size, num_heads,
             sequence_length, embed_size_per_head)`).
+
             Contains pre-computed hidden-states (key and values in the attention blocks) that can be used (see
             :obj:`past_key_values` input) to speed up sequential decoding.
         hidden_states (:obj:`tuple(torch.FloatTensor)`, `optional`, returned when ``output_hidden_states=True`` is passed or when ``config.output_hidden_states=True``):
             Tuple of :obj:`torch.FloatTensor` (one for the output of the embeddings + one for the output of each layer)
             of shape :obj:`(batch_size, sequence_length, hidden_size)`.
+
             Hidden-states of the model at the output of each layer plus the initial embedding outputs.
         attentions (:obj:`tuple(torch.FloatTensor)`, `optional`, returned when ``output_attentions=True`` is passed or when ``config.output_attentions=True``):
             Tuple of :obj:`torch.FloatTensor` (one for each layer) of shape :obj:`(batch_size, num_heads,
             sequence_length, sequence_length)`.
+
             GPT2Attentions weights after the attention softmax, used to compute the weighted average in the
             self-attention heads.
     """
@@ -439,12 +484,15 @@ class GPT2DoubleHeadsModelOutput(ModelOutput):
 
 
 GPT2_START_DOCSTRING = r"""
+
     This model inherits from :class:`~transformers.PreTrainedModel`. Check the superclass documentation for the generic
     methods the library implements for all its model (such as downloading or saving, resizing the input embeddings,
     pruning heads etc.)
+
     This model is also a PyTorch `torch.nn.Module <https://pytorch.org/docs/stable/nn.html#torch.nn.Module>`__
     subclass. Use it as a regular PyTorch Module and refer to the PyTorch documentation for all matter related to
     general usage and behavior.
+
     Parameters:
         config (:class:`~transformers.GPT2Config`): Model configuration class with all the parameters of the model.
             Initializing with a config file does not load the weights associated with the model, only the
@@ -458,11 +506,14 @@ GPT2_INPUTS_DOCSTRING = r"""
             :obj:`input_ids_length` = ``sequence_length`` if :obj:`past_key_values` is ``None`` else
             ``past_key_values[0][0].shape[-2]`` (``sequence_length`` of input past key value states). Indices of input
             sequence tokens in the vocabulary.
+
             If :obj:`past_key_values` is used, only ``input_ids`` that do not have their past calculated should be
             passed as ``input_ids``.
+
             Indices can be obtained using :class:`~transformers.GPT2Tokenizer`. See
             :meth:`transformers.PreTrainedTokenizer.encode` and :meth:`transformers.PreTrainedTokenizer.__call__` for
             details.
+
             `What are input IDs? <../glossary.html#input-ids>`__
         past_key_values (:obj:`Tuple[Tuple[torch.Tensor]]` of length :obj:`config.n_layers`):
             Contains precomputed hidden-states (key and values in the attention blocks) as computed by the model (see
@@ -471,27 +522,35 @@ GPT2_INPUTS_DOCSTRING = r"""
             computed.
         attention_mask (:obj:`torch.FloatTensor` of shape :obj:`(batch_size, sequence_length)`, `optional`):
             Mask to avoid performing attention on padding token indices. Mask values selected in ``[0, 1]``:
+
             - 1 for tokens that are **not masked**,
             - 0 for tokens that are **masked**.
+
             `What are attention masks? <../glossary.html#attention-mask>`__
         token_type_ids (:obj:`torch.LongTensor` of shape :obj:`(batch_size, input_ids_length)`, `optional`):
             Segment token indices to indicate first and second portions of the inputs. Indices are selected in ``[0,
             1]``:
+
             - 0 corresponds to a `sentence A` token,
             - 1 corresponds to a `sentence B` token.
+
             `What are token type IDs? <../glossary.html#token-type-ids>`_
         position_ids (:obj:`torch.LongTensor` of shape :obj:`(batch_size, sequence_length)`, `optional`):
             Indices of positions of each input sequence tokens in the position embeddings. Selected in the range ``[0,
             config.max_position_embeddings - 1]``.
+
             `What are position IDs? <../glossary.html#position-ids>`_
         head_mask (:obj:`torch.FloatTensor` of shape :obj:`(num_heads,)` or :obj:`(num_layers, num_heads)`, `optional`):
             Mask to nullify selected heads of the self-attention modules. Mask values selected in ``[0, 1]``:
+
             - 1 indicates the head is **not masked**,
             - 0 indicates the head is **masked**.
+
         inputs_embeds (:obj:`torch.FloatTensor` of shape :obj:`(batch_size, sequence_length, hidden_size)`, `optional`):
             Optionally, instead of passing :obj:`input_ids` you can choose to directly pass an embedded representation.
             This is useful if you want more control over how to convert :obj:`input_ids` indices into associated
             vectors than the model's internal embedding lookup matrix.
+
             If :obj:`past_key_values` is used, optionally only the last :obj:`inputs_embeds` have to be input (see
             :obj:`past_key_values`).
         use_cache (:obj:`bool`, `optional`):
@@ -508,22 +567,28 @@ GPT2_INPUTS_DOCSTRING = r"""
 """
 PARALLELIZE_DOCSTRING = r"""
     This is an experimental feature and is a subject to change at a moment's notice.
+
     Uses a device map to distribute attention modules of the model across several devices. If no device map is given,
     it will evenly distribute blocks across all devices.
+
     Args:
         device_map (:obj:`Dict[int, list]`, optional, defaults to None):
             A dictionary that maps attention modules to devices. Note that the embedding module and LMHead are always
             automatically mapped to the first device (for esoteric reasons). That means that the first device should
             have fewer attention modules mapped to it than other devices. For reference, the gpt2 models have the
             following number of attention modules:
+
                 - gpt2: 12
                 - gpt2-medium: 24
                 - gpt2-large: 36
                 - gpt2-xl: 48
+
     Example::
+
             # Here is an example of a device map on a machine with 4 GPUs using gpt2-xl, which has a total of 48 attention modules:
             model = GPT2LMHeadModel.from_pretrained('gpt2-xl')
             device_map = {0: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+
                           1: [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
                           2: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
                           3: [35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]}
@@ -531,10 +596,13 @@ PARALLELIZE_DOCSTRING = r"""
 """
 DEPARALLELIZE_DOCSTRING = r"""
     Moves the model to cpu from a model parallel state.
+
     Example::
+
         # On a 4 GPU machine with gpt2-large:
         model = GPT2LMHeadModel.from_pretrained('gpt2-large')
         device_map = {0: [0, 1, 2, 3, 4, 5, 6, 7],
+
                     1: [8, 9, 10, 11, 12, 13, 14, 15],
                     2: [16, 17, 18, 19, 20, 21, 22, 23],
                     3: [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]}
@@ -568,6 +636,37 @@ class GPT2Model(GPT2PreTrainedModel):
         self.model_parallel = False
         self.device_map = None
         self.gradient_checkpointing = False
+        config = kwargs.get('config',inputs[0])
+        if args.position_embedding_type == PositionEmbeddingType.alibi:
+            self.alibi = self._build_alibi_tensor(args.seq_length, args.num_attention_heads, args.micro_batch_size).to(torch.cuda.current_device())
+            if args.params_dtype == torch.float16:
+                self.alibi = self.alibi.to(torch.float16)
+            elif args.params_dtype == torch.bfloat16:
+                self.alibi = self.alibi.to(torch.bfloat16)
+        else:
+            self.alibi = None
+
+    @staticmethod
+    def _build_alibi_tensor(max_seq_len, num_attention_heads, batch_size):
+        # Based on https://github.com/ofirpress/attention_with_linear_biases/blob/a35aaca144e0eb6b789dfcb46784c4b8e31b7983/fairseq/models/transformer.py#L742
+        """Returns tensor shaped (batch_size * num_attention_heads, 1, max_seq_len)"""
+        def get_slopes(n):
+            def get_slopes_power_of_2(n):
+                start = (2 ** (-2 ** -(math.log2(n) - 3)))
+                ratio = start
+                return [start * ratio ** i for i in range(n)]
+
+            if math.log2(n).is_integer():
+                return get_slopes_power_of_2(n)
+            else:
+                closest_power_of_2 = 2 ** math.floor(math.log2(n))
+                return get_slopes_power_of_2(closest_power_of_2) + get_slopes(2 * closest_power_of_2)[0::2][
+                                                                   :n - closest_power_of_2]
+        slopes = torch.Tensor(get_slopes(num_attention_heads))
+        alibi = slopes.unsqueeze(1).unsqueeze(1) * torch.arange(max_seq_len).unsqueeze(0).unsqueeze(0).expand(num_attention_heads, -1, -1)
+        alibi = alibi.repeat(batch_size, 1, 1)
+        return alibi
+
 
     @add_start_docstrings(PARALLELIZE_DOCSTRING)
     def parallelize(self, device_map=None):
@@ -766,6 +865,7 @@ class GPT2Model(GPT2PreTrainedModel):
                     head_mask[i],
                     encoder_hidden_states,
                     encoder_attention_mask,
+                    self.alibi
                 )
             else:
                 outputs = block(
@@ -777,6 +877,7 @@ class GPT2Model(GPT2PreTrainedModel):
                     encoder_attention_mask=encoder_attention_mask,
                     use_cache=use_cache,
                     output_attentions=output_attentions,
+                    alibi=self.alibi
                 )
 
             hidden_states = outputs[0]
@@ -1097,23 +1198,33 @@ class GPT2DoubleHeadsModel(GPT2PreTrainedModel):
             Labels for computing the multiple choice classification loss. Indices should be in ``[0, ...,
             num_choices]`` where `num_choices` is the size of the second dimension of the input tensors. (see
             `input_ids` above)
+
         Return:
+
         Example::
+
             >>> import torch
             >>> from transformers import GPT2Tokenizer, GPT2DoubleHeadsModel
+
             >>> tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
             >>> model = GPT2DoubleHeadsModel.from_pretrained('gpt2')
+
             >>> # Add a [CLS] to the vocabulary (we should train it also!)
             >>> num_added_tokens = tokenizer.add_special_tokens({'cls_token': '[CLS]'})
+
             >>> embedding_layer = model.resize_token_embeddings(len(tokenizer))  # Update the model embeddings with the new vocabulary size
+
             >>> choices = ["Hello, my dog is cute [CLS]", "Hello, my cat is cute [CLS]"]
             >>> encoded_choices = [tokenizer.encode(s) for s in choices]
             >>> cls_token_location = [tokens.index(tokenizer.cls_token_id) for tokens in encoded_choices]
+
             >>> input_ids = torch.tensor(encoded_choices).unsqueeze(0)  # Batch size: 1, number of choices: 2
             >>> mc_token_ids = torch.tensor([cls_token_location])  # Batch size: 1
+
             >>> outputs = model(input_ids, mc_token_ids=mc_token_ids)
             >>> lm_logits = outputs.logits
             >>> mc_logits = outputs.mc_logits
+
         """
         return_dict = return_dict if return_dict is not None else self.config.use_return_dict
 
@@ -1184,8 +1295,10 @@ class GPT2DoubleHeadsModel(GPT2PreTrainedModel):
 @add_start_docstrings(
     """
     The GPT2 Model transformer with a sequence classification head on top (linear layer).
+
     :class:`~transformers.GPT2ForSequenceClassification` uses the last token in order to do the classification, as
     other causal models (e.g. GPT-1) do.
+
     Since it does classification on the last token, it requires to know the position of the last token. If a
     :obj:`pad_token_id` is defined in the configuration, it finds the last token that is not a padding token in each
     row. If no :obj:`pad_token_id` is defined, it simply takes the last value in each row of the batch. Since it cannot
