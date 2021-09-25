@@ -186,7 +186,7 @@ class GPT2Attention(nn.Module):
         # [b, np, sq, sk]
         output_size = (query.size(1),
                        query.size(2),
-                       key.size(0),
+                       query.size(0),
                        key.size(0))
         # preallocting result tensor: [b * np, sq, sk]
         if alibi is None:
