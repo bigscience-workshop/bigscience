@@ -99,5 +99,5 @@ sbatch --array=1-10%1 tr8-104B-64.slurm
 With dependency:
 
 ```
-sbatch --dependency=CURRENTLY_RUNNING_JOB_ID --array=1-10%1 tr8-104B-64.slurm
+sbatch --dependency=CURRENTLY_RUNNING_JOB_ID --array=1-10%1 tr8-104B.slurm
 ```

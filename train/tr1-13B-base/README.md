@@ -607,6 +607,11 @@ time (ms)
 ## Checkpoint Conversion and Upload
 
 
+**Important**: there was a bug in the converter on the transformers side, so we need this fix:
+https://github.com/huggingface/transformers/pull/13735
+if it's not merged yet, install this branch first. If it's already merged just make sure you use `transformers@master` - XXX: I will update the script to require a specific version once a new version of transformers is released.
+
+
 Open a long running interactive shell:
 ```
 srun -p compil --cpus-per-task=40 -A six@cpu --time=6:00:00 --pty bash
@@ -615,7 +620,7 @@ then convert:
 
 ```
 cd $six_ALL_CCFRSCRATCH/checkpoints/to-upload
-time find * -maxdepth 0 -type d -name "global_step*" -exec $six_ALL_CCFRWORK/code/Megatron-DeepSpeed/tools/convert_checkpoint/deepspeed_to_transformers.py --input_folder {} --output_folder hf/{} \;
+time find * -maxdepth 0 -type d -name "global_step*" -exec $six_ALL_CCFRWORK/code/Megatron-DeepSpeed/tools/convert_checkpoint/deepspeed_to_transformers.py --input_folder {} --output_folder hf-fixed/{} \;
 ```
 
 It takes about 100sec per 26GB checkpoint.

@@ -401,7 +401,7 @@ To cancel the whole array, cancel the job id as normal (the number before `_`):
 scancel 591970
 ```
 
-To cancel as specific job:
+To cancel a specific job:
 ```
 scancel 591970_2
 ```

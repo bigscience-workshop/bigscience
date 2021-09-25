@@ -59,6 +59,9 @@ general:
  iteration    49010/  311541 | consumed samples:     31167824 | elapsed time per iteration (ms): 80703.5 | learning rate: 8.745E-05 | global batch size:  1024 | lm loss: 2.597475E+00 | loss scale: 131072.0 | grad norm: 16142.646 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
 time (ms)
 ```
+
+- update deepspeed_to_transformers.py to require a specific version once a new version of transformers is released.
+
 - add codecarbon validation - emissions.csv generated to the test suite
 - add codecarbon>=2.0.0 to requirements.txt
 - adjust Meg-DS to use the correct init_method with pt-1.9+
