@@ -179,11 +179,7 @@ echo $CMD
 
 # We create the folder where the logs will be stored. This command assumes that only the last folder of the logs path
 # can be missing
-if [[ ! -d "${LOGS_PATH}" ]]
-then
-    echo "${LOGS_PATH} doesn't exists on your filesystem. We create it."
-    mkdir $LOGS_PATH
-fi
+mkdir -p $LOGS_PATH
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/tr3d-1B3-more-warmup.$SLURM_JOBID.out
