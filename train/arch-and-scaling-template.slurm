@@ -177,9 +177,10 @@ export CMD=" \
 
 echo $CMD
 
-# We create the folder where the logs will be stored. This command assumes that only the last folder of the logs path
-# can be missing
+# We create the folder where the logs and codecarbon will be stored.
 mkdir -p $LOGS_PATH
+# Uncomment if you use codecarbon
+# mkdir -p $CODECARBON_PATH
 
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
