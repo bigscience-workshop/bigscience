@@ -179,8 +179,5 @@ echo $CMD
 
 # We create the folder where the logs and codecarbon will be stored.
 mkdir -p $LOGS_PATH
-# Uncomment if you use codecarbon
-# mkdir -p $CODECARBON_PATH
-
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
