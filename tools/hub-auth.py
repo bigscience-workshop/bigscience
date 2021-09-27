@@ -8,7 +8,8 @@ import json
 from pathlib import Path
 from huggingface_hub import HfApi
 
-HUB_DATA_PATH = Path(__file__).resolve().parent / ".hub_info.json"
+HUB_DATA_PATH_SHARED = "/gpfsdswork/projects/rech/six/commun/auth/.hub_info.json"
+#HUB_DATA_PATH = Path(__file__).resolve().parent / ".hub_info.json"
 
 username = input("Hub username: ")
 password = getpass.getpass("Hub password: ")
@@ -18,5 +19,5 @@ auth_token = HfApi().login(username=username, password=password)
 data = dict(username=username, email=email, auth_token=auth_token)
 #print(data)
 
-with open(HUB_DATA_PATH, 'w') as f:
+with open(HUB_DATA_PATH_SHARED, 'w') as f:
     json.dump(data, f)

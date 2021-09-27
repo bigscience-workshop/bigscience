@@ -32,6 +32,7 @@ from typing import List, Optional, Union
 
 # normally using a globally shared hub data, but can override it with the local token if need be
 HUB_DATA_PATH_SHARED = "/gpfsdswork/projects/rech/six/commun/auth/.hub_info.json"
+# for now disabling local, since it leads to outdated auth tokens
 HUB_DATA_PATH_LOCAL = Path(__file__).resolve().parent / ".hub_info.json"
 
 # map https://git-scm.com/docs/git-status#_short_format
@@ -211,12 +212,12 @@ def get_hub_data():
     But if desired it can be overriden with a local data file at HUB_DATA_PATH_LOCAL
     """
 
-    if os.path.isfile(HUB_DATA_PATH_LOCAL):
-        hub_data_path = HUB_DATA_PATH_LOCAL
-    elif os.path.isfile(HUB_DATA_PATH_SHARED):
+    # if os.path.isfile(HUB_DATA_PATH_LOCAL):
+    #     hub_data_path = HUB_DATA_PATH_LOCAL
+    if os.path.isfile(HUB_DATA_PATH_SHARED):
         hub_data_path = HUB_DATA_PATH_SHARED
     else:
-        raise FileNotFoundError(f"Couldn't locate .hub_info.json neither at {HUB_DATA_PATH_LOCAL} nor {HUB_DATA_PATH_SHARED}. "
+        raise FileNotFoundError(f"Couldn't locate {HUB_DATA_PATH_SHARED}. "
                                 "Please run hub-auth.py first")
 
     with io.open(hub_data_path, 'r', encoding='utf-8') as f:
