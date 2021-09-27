@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-v2.slurm
+#SBATCH --job-name=1B3-rotary-oscar.slurm
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -7,17 +7,16 @@
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=%x-%j.out           # output file name
-#SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
+#SBATCH --output=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.out          # output file name
+#SBATCH --error=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.err           # error file name
 #SBATCH --account=six@gpu
 
 set -x -e
 
-
 # TODO: modify these for your training setup, just Ctrl-F replace <YOUR_TRAINING_NAME>
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/<YOUR_TRAINING_NAME>
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr4c-1B3-rotary-oscar
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/<YOUR_TRAINING_NAME>-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr4c-1B3-rotary-oscar-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
@@ -39,15 +38,15 @@ export TRANSFORMERS_OFFLINE=1
 cd $MEGATRON_DEEPSPEED_REPO
 
 # so processes know who to talk to
-MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_ADDR=$(perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print')
 MASTER_PORT=6000
 
 # TODO: this is our base config for 1B3, edit PP/TP/batch size/model config if smaller or bigger
 GPUS_PER_NODE=4
 NNODES=16
-PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
-TP_SIZE=4 # always fixed to the size of a single node
-DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
+PP_SIZE=4                                                 # NLAYERS must be a multiple of PP_SIZE here
+TP_SIZE=4                                                 # always fixed to the size of a single node
+DP_SIZE=$((NNODES * GPUS_PER_NODE / (PP_SIZE * TP_SIZE))) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=8
 GLOBAL_BATCH_SIZE=512
@@ -85,7 +84,7 @@ GPT_ARGS=" \
     --num-attention-heads $NHEADS \
     --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --seq-length $SEQ_LEN \
-    --max-position-embeddings $SEQ_LEN \
+    --position-embedding-type rotary\
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
@@ -119,7 +118,7 @@ ZERO_STAGE=1
 config_json="./ds_config.$SLURM_JOBID.json"
 
 # Deepspeed figures out GAS dynamically from dynamic GBS via set_train_batch_size()
-cat <<EOT > $config_json
+cat <<EOT >$config_json
 {
   "train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
   "train_batch_size": $GLOBAL_BATCH_SIZE,
@@ -140,7 +139,6 @@ cat <<EOT > $config_json
 }
 EOT
 
-
 DEEPSPEED_ARGS=" \
     --deepspeed \
     --deepspeed_config ${config_json} \
@@ -156,7 +154,7 @@ export LAUNCHER="python -u -m torch.distributed.launch \
     "
 
 export CMD=" \
-    `pwd`/pretrain_gpt.py \
+    $(pwd)/pretrain_gpt.py \
     --tensor-model-parallel-size $TP_SIZE \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
@@ -170,14 +168,15 @@ export CMD=" \
      $DEEPSPEED_ARGS \
     "
 
-
 # # clear old checkpoint as it'd mismatch while we sort things out
 #     rm -rf $SAVE_CHECKPOINT_PATH
-
 
 echo $CMD
 
 # We create the folder where the logs and codecarbon will be stored.
 mkdir -p $LOGS_PATH
+# Uncomment if you use codecarbon
+# mkdir -p $CODECARBON_PATH
+
 # to debug - add echo (it exits and prints what it would have launched)
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
