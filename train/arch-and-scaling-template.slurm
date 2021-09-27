@@ -161,8 +161,8 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
-    --save $CHECKPOINTS_PATH \
-    --load $CHECKPOINTS_PATH \
+    --save $CHECKPOINT_PATH \
+    --load $CHECKPOINT_PATH \
     --data-path $DATA_PATH \
     --data-impl mmap \
     --split 949,50,1 \
@@ -177,5 +177,7 @@ export CMD=" \
 
 echo $CMD
 
+# We create the folder where the logs and codecarbon will be stored.
+mkdir -p $LOGS_PATH
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $LOGS_PATH/tr3d-1B3-more-warmup.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
