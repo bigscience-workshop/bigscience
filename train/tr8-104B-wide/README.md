@@ -74,7 +74,7 @@ git clone https://huggingface.co/bigscience/tr8-104B-logs
 cd tr8-104B-logs
 mkdir tensorboard codecarbon logs
 
-transformers-cli lfs-enable-largefiles .
+huggingface-cli lfs-enable-largefiles .
 
 
 
