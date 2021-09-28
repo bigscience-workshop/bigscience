@@ -637,7 +637,7 @@ Prepare the target dir:
 cd tr1-13B-checkpoints
 
 
-transformers-cli lfs-enable-largefiles .
+huggingface-cli lfs-enable-largefiles .
 
 git config --unset user.email
 ~/prod/code/bigscience/tools/hub-sync.py --repo-path . --patterns '*bogus*'
