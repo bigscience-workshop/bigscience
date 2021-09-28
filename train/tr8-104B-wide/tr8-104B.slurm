@@ -89,7 +89,7 @@ GPT_ARGS=" \
     --clip-grad 1.0 \
     --fp16 \
     --checkpoint-activations \
-    --seed 42
+    --seed 43 \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
