@@ -27,14 +27,11 @@ Currently, the most active segments of this repo are:
 
 You can watch the training logs live by running this `tail -f` like script over remote log file that gets synced to the hub once an hour:
 ```
-perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/x-linked-size: (\d+)/; \
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
 print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
 https://huggingface.co/bigscience/tr1-13B-logs/resolve/main/main_log.txt
+
 ```
-
-### Train 2
-
-* [todo](./train/tr2/TODO.md)
 
 ### Train 3
 
@@ -47,3 +44,25 @@ Architecture and scaling baseline runs: no fancy tricks, just GPT2. Here are lin
 | C4 + high warmup    	| [e](https://huggingface.co/bigscience/tr3e-1B3-diagnostic1-warmup-c4-tensorboard)   	|      	|      	|      	|
 | OSCAR + high warmup 	| **[d (current baseline)](https://huggingface.co/bigscience/tr3d-1B3-more-warmup-tensorboard)**   	| [g](https://huggingface.co/bigscience/tr3g-760M-v2-tensorboard)    	| [h](https://huggingface.co/bigscience/tr3h-350M-v2-tensorboard)    	| [i](https://huggingface.co/bigscience/tr3i-125M-v2-tensorboard)    	|
 | Pile + high warmup  	| [m](https://huggingface.co/bigscience/tr3m-1B3-pile-tensorboard)   	| [j](https://huggingface.co/bigscience/tr3j-760M-pile-tensorboard)    	| [k](https://huggingface.co/bigscience/tr3k-350M-pile-tensorboard)    	| [l](https://huggingface.co/bigscience/tr3l-125M-pile-tensorboard)    	|
+
+
+### Train 8
+
+**This is the current main training**
+
+104B - unmodified Megatron gpt2 - with extra-wide hidden size to learn how to deal with training instabilities
+
+* [the full spec and discussions](./train/tr8-104B-wide)
+* [the training script](./train/tr8-104B-wide/tr8-104B.slurm)
+* checkpoints and logs:
+   - [tensorboard](https://huggingface.co/bigscience/tr8-104B-logs/tensorboard)
+   - [logs](https://huggingface.co/bigscience/tr8-104B-logs/tree/main/logs)
+   - [codecarbon](https://huggingface.co/bigscience/tr8-104B-logs/tree/main/codecarbon)
+* [chronicles](./train/tr8-104B-wide/chronicles.md)
+
+You can watch the training logs live by running this `tail -f` like script over remote log file that gets synced to the hub once an hour:
+```
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
+print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
+https://huggingface.co/bigscience/tr8-104B-logs/resolve/main/logs/main_log.txt
+```

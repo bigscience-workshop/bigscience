@@ -60,7 +60,7 @@ general:
 time (ms)
 ```
 
-- update deepspeed_to_transformers.py to require a specific version once a new version of transformers is released.
+- update deepspeed_to_transformers.py to require a specific version once a new version of transformers is released and then update the doc https://github.com/bigscience-workshop/bigscience/tree/master/train/tr1-13B-base#checkpoint-conversion-and-upload
 
 - add codecarbon validation - emissions.csv generated to the test suite
 - add codecarbon>=2.0.0 to requirements.txt
@@ -68,6 +68,8 @@ time (ms)
 https://github.com/pytorch/pytorch/issues/63874#issuecomment-904899656
 - see if can speed up the meg cuda kernels building
 https://huggingface.slack.com/archives/C01NHER1JLS/p1630520151064500?thread_ts=1630473623.060700&cid=C01NHER1JLS
+
+- since we are starting to tweak the seed, we should start logging the ranges of iteration for each seed, so that down the road we could reproduce the data.
 
 data:
 - extract the source text based on a range of sample ids: created an issue:

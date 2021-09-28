@@ -659,6 +659,41 @@ git branch | perl -lne 'm|(global_step\d+)| && print qx[git checkout $1; git pus
 If `git push` fails re-run with: `GIT_TRACE=1 GIT_TRANSFER_TRACE=1 GIT_CURL_VERBOSE=1 git push` to see what the actual error is.
 
 
+OK, the branch-per-checkpoint hub repo proved to be very difficult to upload and even more so using it after the upload.
+
+So let's try GCS bucket:
+
+```
+gcloud auth login
+gcloud config set project bigscience
+gsutil cp -r hf-fixed/* gs://bigscience-backups/tr1-13B/checkpoints/
+
+```
+or via rsync:
+```
+gsutil -m rsync -r hf-fixed/* gs://bigscience-backups/tr1-13B/checkpoints/
+```
+
+```
+start-prod
+cd /gpfsssd/scratch/rech/six/commun/checkpoints/to-upload/
+gsutil -m rsync -r hf-fixed1/* gs://bigscience-backups/tr1-13B/checkpoints/
+
+```
+
+or if needed to speed up the upload via multiple parallel copies open 2 `srun` instances and in one:
+```
+gsutil cp -r hf-fixed1/* gs://bigscience-backups/tr1-13B/checkpoints/
+```
+and in another:
+```
+gsutil cp -r hf-fixed2/* gs://bigscience-backups/tr1-13B/checkpoints/
+```
+
+can't use `rsync` with multiple sources - can only rsync a single dir.
+
+
+
 ## Other backups
 
 Logs:

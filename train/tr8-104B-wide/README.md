@@ -85,7 +85,13 @@ transformers-cli lfs-enable-largefiles .
 
 ## Running
 
-For 64 nodes (not under git)
+With dependency and array (remove unneeded parts)
+
+```
+sbatch --dependency=CURRENTLY_RUNNING_JOB_ID --array=1-10%1 tr8-104B.slurm
+```
+
+For 64 nodes (not under git, local copy)
 
 ```
 sbatch --array=1-10%1 tr8-104B.slurm
@@ -94,10 +100,4 @@ sbatch --array=1-10%1 tr8-104B.slurm
 For 64 nodes (not under git)
 ```
 sbatch --array=1-10%1 tr8-104B-64.slurm
-```
-
-With dependency:
-
-```
-sbatch --dependency=CURRENTLY_RUNNING_JOB_ID --array=1-10%1 tr8-104B.slurm
 ```
