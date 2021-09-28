@@ -90,7 +90,7 @@ According to Conglong Li 25k and 29k are close enough based to their study. Quot
 
 > In our study of [1.5B gpt-2](https://arxiv.org/pdf/2108.06084.pdf), we used 3K LR warmup and here you can see the grad variance norm (left) only reach bottom at 8K+ steps, and baseline's grad var max is unstable during first 10K+ steps:
 
-![step-wise-adam-variance](images/step-wise-adam-variance.png)
+![step-wise-adam-variance](images/step-wise-adam-variance-1.png)
 
 So it looks that now we have 3 documented glitches that all are related to the end of the LR warm up end.
 
