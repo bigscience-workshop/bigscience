@@ -52,12 +52,12 @@ FFN_HIDDEN_SIZE=20480
 SEQ_LEN=2048
 VOCAB_SIZE=50257
 
-SAVE_INTERVAL=1500
+SAVE_INTERVAL=300
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
-    --adam-beta2 0.999 \
+    --adam-beta2 0.95 \
     --adam-eps 1e-8 \
     --lr 6e-5 \
     --min-lr 6e-6 \
@@ -94,12 +94,12 @@ GPT_ARGS=" \
     $EXIT_OPTS \
     "
 
+#    --codecarbon-dir $CODECARBON_PATH \
 OUTPUT_ARGS=" \
-    --log-interval 10 \
+    --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 1000 \
     --eval-iters 5 \
-    --codecarbon-dir $CODECARBON_PATH \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
