@@ -28,21 +28,40 @@ Somewhere between iteration 7000 and 7010 lm loss jumped from 6.4 to 14 and then
 ```
 
 
-Training more hasn't helped at all
+Training more hasn't helped at all.
 
 Solution:
 - roll back to the last good checkpoint `global_step6210`
 - change seed. New seed `43`.
 
 Rollback:
-1. moved all checkpoints after `global_step6210` to another dir
+1. checkpoints:
+```
+cd /gpfsscratch/rech/six/commun/checkpoints/tr8-104B/checkpoints
+```
+
+moved all checkpoints after `global_step6210` to another dir
+
+fixed the `latest*` files to point to the checkpoint of our choice:
+
+```
+cat latest
+perl -pi -e 's|\d+|6210|' latest*
+```
+check it's correct:
+```
+cat latest
+cat latest_checkpointed_iteration.txt
+```
+
+
 2. couldn't leave tensorboard files from the unrolled section as is, so fixed tensorboard by first copying all the existing events log files to a new dir
 ```
 cd /gpfsscratch/rech/six/commun/checkpoints/tr8-104B/tr8-104B-logs/tensorboard
 mkdir tb-7k-glitch
 cp events* tb-7k-glitch
 git add tb-7k-glitch
-git commit -am "saved the original tensorboard logs"
+git commit -m "saved the original tensorboard logs" tb-7k-glitch
 git push
 ```
 now checking the timestamp of the last checkpoint `global_step6210` we are rolling from and now manually removing all event log files from the main log whose timestamp is newer than the checkpoint `global_step6210`
@@ -86,7 +105,7 @@ Moreover, we reviewed the tr1-13B training and we had a huge glitch there from w
 
 There the LR rampup stopped around 25k, and the first huge glitch occurred at around 29k iteration
 https://huggingface.co/bigscience/tr1-13B-tensorboard/tensorboard
-According to Conglong Li 25k and 29k are close enough based to their study. Quoting him:
+According to Conglong Li 25k and 29k are close enough based on their study. Quoting Conglong:
 
 > In our study of [1.5B gpt-2](https://arxiv.org/pdf/2108.06084.pdf), we used 3K LR warmup and here you can see the grad variance norm (left) only reach bottom at 8K+ steps, and baseline's grad var max is unstable during first 10K+ steps:
 
@@ -94,10 +113,18 @@ According to Conglong Li 25k and 29k are close enough based to their study. Quot
 
 So it looks that now we have 3 documented glitches that all are related to the end of the LR warm up end.
 
-
 We are not yet excluding the case that something is wrong with the data. Going to look into it next.
 
+After some more iterations this training went belly up in the same way via a second smaller glitch followed by loss going to NaN. Same as the first one just at a slightly different iteration.
 
+Stopped this training.
+
+So rolling back tensorboard and checkpoints again as described in the previous section
+
+Also until we figure out the stability going to switch to a much more frequent checkpoint saving so it's much faster continue from the last good iteration. Let's try 300.
+```
+SAVE_INTERVAL=300
+```
 
 XXX: to be continued
 

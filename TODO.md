@@ -59,6 +59,7 @@ general:
  iteration    49010/  311541 | consumed samples:     31167824 | elapsed time per iteration (ms): 80703.5 | learning rate: 8.745E-05 | global batch size:  1024 | lm loss: 2.597475E+00 | loss scale: 131072.0 | grad norm: 16142.646 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
 time (ms)
 ```
+- possible recover TFLOPS reports per iteration that were there in DSE before Megatron-Deepspeed MSFT repo was created. It got lost in the shuffle. Or may be we just need to enable tflops in DS config file?
 
 - update deepspeed_to_transformers.py to require a specific version once a new version of transformers is released and then update the doc https://github.com/bigscience-workshop/bigscience/tree/master/train/tr1-13B-base#checkpoint-conversion-and-upload
 

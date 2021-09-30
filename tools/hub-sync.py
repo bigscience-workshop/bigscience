@@ -35,6 +35,8 @@ HUB_DATA_PATH_SHARED = "/gpfsdswork/projects/rech/six/commun/auth/.hub_info.json
 # for now disabling local, since it leads to outdated auth tokens
 HUB_DATA_PATH_LOCAL = Path(__file__).resolve().parent / ".hub_info.json"
 
+HUB_AUTH_TOKEN_PATH = "/gpfsdswork/projects/rech/six/commun/auth/.hub_auth"
+
 # map https://git-scm.com/docs/git-status#_short_format
 #
 

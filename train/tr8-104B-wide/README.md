@@ -73,11 +73,9 @@ mkdir checkpoints
 git clone https://huggingface.co/bigscience/tr8-104B-logs
 cd tr8-104B-logs
 mkdir tensorboard codecarbon logs
-
+git lfs track "*.csv"
+git lfs track "*.txt"
 huggingface-cli lfs-enable-largefiles .
-
-
-
 ```
 
 
