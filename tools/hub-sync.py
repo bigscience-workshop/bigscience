@@ -243,6 +243,8 @@ def main():
     if len(args.patterns) == 0:
         raise ValueError("At least one --pattern is required.")
 
+    print(f"* Processing {args.repo_path}")
+
     if args.debug:
         print(f"Tracking {len(args.patterns)} patterns:")
         print(''.join(f"- {x}\n" for x in args.patterns))

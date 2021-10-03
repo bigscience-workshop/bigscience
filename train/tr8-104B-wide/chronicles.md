@@ -234,6 +234,16 @@ cat latest_checkpointed_iteration.txt
 
 
 
+# Try 5
+
+
+
+
+# Try 6
+
+going to use NLAYERS=64 NHIDDEN=11600 with the ratio 180 (in the megatron's paper the ratio grows from 150 to 200 as the model grows) (edited)
+
+
 
 
 XXX: to be continued

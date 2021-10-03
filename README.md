@@ -64,5 +64,5 @@ You can watch the training logs live by running this `tail -f` like script over 
 ```
 perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
 print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
-https://huggingface.co/bigscience/tr8-104B-logs/resolve/main/logs/main_log.txt
+https://cdn-lfs.huggingface.co/bigscience/tr8-104B-logs/b2cc478d5ae7c9ec937ea2db1d2fe09de593fa2ec38c171d6cc5dca094cd79f9
 ```

@@ -247,11 +247,11 @@ alias myjobs-pending="squeue -u `whoami` --start"
 alias idle-nodes="sinfo -p gpu_p13 -o '%A'"
 ```
 
-more informative all-in-one myjobs that includes the projected start time for pending jobs
+more informative all-in-one myjobs that includes the projected start time for pending jobs and requested time limit:
 
 ```
-alias myjobs='squeue -u `whoami` -o "%.10i %.9P %.20j %.8T %.10M %.6D %.20S %R"'
-alias groupjobs='squeue -u $(getent group six | cut -d: -f4) -o "%.10i %.9P %.20j %.8T %.10M %.6D %.20S %R"'
+alias myjobs='squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"'
+alias groupjobs='squeue -u $(getent group six | cut -d: -f4) -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"'
 ```
 
 
