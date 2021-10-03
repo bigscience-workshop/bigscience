@@ -45,10 +45,9 @@ PP_SIZE=8   # NLAYERS must be a multiple of PP_SIZE here
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=2048
 
-NLAYERS=64
-NHIDDEN=11600
+NLAYERS=32
+NHIDDEN=16384
 NHEADS=32
-FFN_HIDDEN_SIZE=46400
 SEQ_LEN=2048
 VOCAB_SIZE=50257
 
@@ -75,7 +74,6 @@ EXIT_OPTS=" \
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
-    --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --num-attention-heads $NHEADS \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
