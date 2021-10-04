@@ -37,7 +37,7 @@ MASTER_PORT=6000
 GPUS_PER_NODE=4
 NNODES=128   # switch to 128
 TP_SIZE=4    # always fixed to the size of a single node
-PP_SIZE=8   # NLAYERS must be a multiple of PP_SIZE here
+PP_SIZE=32   # NLAYERS must be a multiple of PP_SIZE here
 #DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
 
 # GLOBAL_BATCH_SIZE has to be divisible by MICRO_BATCH_SIZE*DP_size
@@ -78,7 +78,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
-    --rampup-batch-size 16 16 6_000_000 \
+    --rampup-batch-size 32 32 6_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples 300_000_000 \
     --vocab-file $VOCAB_FILE \
