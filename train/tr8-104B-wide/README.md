@@ -1,6 +1,6 @@
 # Train 8 - 104B - unmodified Megatron gpt2 - baseline - monolingual
 
-Note that you will find extensive notes on how to do almost anything in [tr1-13B-base](../tr1-13B-base), here we only list what's different.
+Note that since this is a very stop-n-go experimental training with no intention to complete it, you will find extensive notes on how to do almost anything in [tr1-13B-base](../tr1-13B-base), here we only list what's different.
 
 ## Intention
 
@@ -14,8 +14,10 @@ For this experiment we chose to 'go wide' and thus made the hidden size extra wi
 
 ## Environment
 
-For now using the same `tr1-13B` conda env and made a copy of `$six_ALL_CCFRWORK/code/tr1-13B` to `$six_ALL_CCFRWORK/code/tr1-104B`
-
+For this training currently :
+- using the same `tr1-13B` conda env
+- made a copy of `$six_ALL_CCFRWORK/code/tr1-13B` to `$six_ALL_CCFRWORK/code/tr1-104B`
+- copied `tr1-13B` branch of Meg-DS to `tr8-104B` branch (and later made some changes to it - see Corby's PR below)
 the setup is the same as fully documented in  [tr1-13B-base](../tr1-13B-base).
 
 ## Memory usage
@@ -63,6 +65,12 @@ Comparison with [tr1-13B-base](../tr1-13B-base):
 - doubled GBS (Global batch size)
 - changed lr and min-lr
 - doubled batch size rampup to 32 from 16, since PP=32 and we can't stretch bs=16 over 32 gpus.
+
+Later during experiments changed to `--adam-beta2 0.95` as it proved to train faster.
+
+Additionally Corby Rosset suggested we try a more numerically stable self-attention version, which was implemented [here](https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/118). Note, that hasn't been merged into the `main` tree, it's currently only in the `tr8-104B` branch of Meg-DS
+
+
 
 everything else is the same.
 
