@@ -1,23 +1,72 @@
 # Train 8 - 104B - unmodified Megatron gpt2 - baseline - monolingual
 
+Note that you will find extensive notes on how to do almost anything in [tr1-13B-base](../tr1-13B-base), here we only list what's different.
+
 ## Intention
 
 While waiting for the main new features to be developed and tested this training is an experiment at a much bigger model size and we are likely to start encountering training instabilities at the 100+B range.
 
 It was suggested that there are 2 ways to get to possible instabilities:
 - go deep (many layers)
-- go wide (wide model)
+- go wide (huge hidden size)
 
-For this experiment we chose to 'go wide' and thus made the hidden size extra wide and had to adjust depth to still remain at 104B.
+For this experiment we chose to 'go wide' and thus made the hidden size extra wide and had to adjust depth to still remain at 104B. Using the hidden/layers ration of 512 instead of the usual 150-200.
+
+## Environment
+
+For now using the same `tr1-13B` conda env and made a copy of `$six_ALL_CCFRWORK/code/tr1-13B` to `$six_ALL_CCFRWORK/code/tr1-104B`
+
+the setup is the same as fully documented in  [tr1-13B-base](../tr1-13B-base).
+
+## Memory usage
+
+
+```
+# Let h = hidden size, n = num_layers, k = num_heads, s = sequence length, v = vocabulary size
+total_params = n * (12h^2 + 13h) + (v * h) + (s * h) + 2*h
+```
+
+- 0.8x times layers=32 than 13B (40)
+- 3.2x times NHIDDEN=16384 than 13B (5120)
+
+While the 104B model is 8x times bigger than 13B param-wise, the model grows quadratically with NHIDDEN size, so each layer will require ~10x (3.2**2) more gpu memory plus more memory per activations. We double TP from 2 to 4 as 4 is a max we can use on a 4-gpu node. So we have to 5x the PP then, so we need at least PP=20, and to work with NLAYERS=32, it takes us to PP=32.
+
+So:
+```
+TP_SIZE=4
+PP_SIZE=32
+```
+
+so 13B took 8 gpus for a single replica, and 104B needs 128 gpus (16x times)
+
+
+During training currently we use 32 nodes or 4096GB (128x 32GB gpus) per each full replica (TP=4 + PP=16), the rest are ZeRO-DP. So if we throw x times more GPUs we just speed things up by having more 32-node replicas.
+
+The required memory breakdown:
+
+1. 4B for fp32 weights
+2. 2B for fp16 weights
+3. 8B for optimizer states.
+4. 4B for gradients (we don't save these in the checkpoint)
+5. plus memory for activations and temps, which total majorly depends on the seqlen and mini batch size - and since we use activation checkpointing this memory need is quite small.
+
+Total: 1872GB (18*104) plus activations and temps memory. The param-needed memory is much less than 4096GB, because we don't need that much memory, but because we have to double memory for each increment we go from PP=16 to PP=32, whereas PP=20 should have been enough.
+
+Activation memory would have been much much bigger if it weren't for activation checkpointing.
+
 
 
 ## 104B Training
 
 Comparison with [tr1-13B-base](../tr1-13B-base):
-- changed model shape/size
-- doubled GBS
+- changed model shape/size to be extra wide NHIDDEN=16384, which makes the hidden/layers ratio of 512 (the normal ratio in Megatron paper is 150-200)
+- doubled GBS (Global batch size)
 - changed lr and min-lr
+- doubled batch size rampup to 32 from 16, since PP=32 and we can't stretch bs=16 over 32 gpus.
 
+everything else is the same.
+
+Let's check the model size:
 
 ```
 VOCAB_SIZE=50257 NLAYERS=32 NHIDDEN=16384 NHEADS=32 SEQ_LEN=2048; python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l * (12*h**2 + 13*h) + (v * h) + (s * h) ) / 10**9 :.0f}B')"
@@ -32,7 +81,7 @@ NLAYERS=32
 NHIDDEN=16384
 NHEADS=32
 SEQ_LEN=2048
-    --rampup-batch-size 16 16 6_000_000 \
+    --rampup-batch-size 32 32 6_000_000 \
     --global-batch-size 2048 \
     --optimizer adam \
     --adam-beta1 0.9 \
@@ -46,6 +95,10 @@ SEQ_LEN=2048
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
 ```
+
+Saving checkpoints every 300 iterations so that if we have to recover a training we don't have to roll back far.
+
+Switched to logging on every single iteration, in case we need to remap samples to text to find a really bad text input in case of a huge glitch in lm loss.
 
 
 
@@ -89,13 +142,26 @@ With dependency and array (remove unneeded parts)
 sbatch --dependency=CURRENTLY_RUNNING_JOB_ID --array=1-10%1 tr8-104B.slurm
 ```
 
-For 64 nodes (not under git, local copy)
-
 ```
 sbatch --array=1-10%1 tr8-104B.slurm
 ```
 
-For 64 nodes (not under git)
+For 64 nodes (not under git, local adjusted copy)
+
 ```
 sbatch --array=1-10%1 tr8-104B-64.slurm
 ```
+
+
+## Syncing / monitoring
+
+```
+cd $six_ALL_CCFRWORK/cron/cron.hourly
+ls -1 tr8*slurm
+tr8-104B-hub-sync-logs.slurm
+tr8-104B-slurm-status.slurm
+```
+
+Here is the slurm script to sync the tensorboard/codecarbon/logs data: [tr1-104B-hub-sync-logs.slurm](./tr1-104B-hub-sync-logs.slurm)
+
+SLURM status and alerts script: [tr8-104B-slurm-status.slurm](tr8-104B-slurm-status.slurm)

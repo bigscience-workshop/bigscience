@@ -6,7 +6,7 @@ To follow the training progress charts, see:  [tensorboard](https://huggingface.
 
 To follow the raw training logs see: [logs](https://huggingface.co/bigscience/tr8-104B-logs/tree/main/logs)
 
-# Try 1
+# Experiment 1
 
 - Nodes: `64`
 - Seed: `42`
@@ -72,7 +72,7 @@ Having a new seed forced regeneration of `.pny` files which re-randomized the or
 
 Started a new training from the last good checkpoint and it run until we run into a similar glitch even sooner.
 
-# Try 2
+# Experiment 2
 
 
 - Nodes: `64`
@@ -127,7 +127,7 @@ SAVE_INTERVAL=300
 ```
 
 
-# Try 3
+# Experiment 3
 
 Corby Rosset suggested we try a more numerically stable self-attention version, which was implemented [here](https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/118)
 
@@ -165,13 +165,13 @@ the issue is alpha is multiplied after the matrix-matrix mul is done so it can c
 
 Also codecarbon has been ignoring the `log_level="error"` setting and bombarding the main log with thousands of warnings, which also indicate that it misses a lot of measurements, so turning it off as the measurements will be wrong anyway.
 
-Try 3 failed in a very similar way as try 2
+Experiment 3 failed in a very similar way as experiment 2
 
 ![tr8-104B-glitch-3.png](images/tr8-104B-glitch-3.png)
 
 
 
-# Try 4
+# Experiment 4
 
 Iz Beltagy compiled a list of suggestions to try next. Quoting Iz:
 
@@ -202,7 +202,7 @@ Samyam Rajbhandari seconded Iz's proposal:
 
 I second @Iz Beltagy’s suggestion to use beta2=0.95. We have seen it stabilize very similar spiky loss in several cases.    My feeling is that it might be ok even without a full restart. But restarting early would be helpful. Depending on how long it takes, I feel like 6K, 4K and 3K would be good candidates to restart in an increasing order of preference.
 
-So stopped the last experiment and started a new one - identical to Try 3, but:
+So stopped the last experiment and started a new one - identical to Experiment 3, but:
 
 - rolled back to iteration 3k - so earlier than 6210, as suggested that it might be too close to the blow up and we should try to make things better before that
 - `--adam-beta2 0.95` - it should make the training slower but more stable
@@ -233,19 +233,64 @@ cat latest_checkpointed_iteration.txt
 2. tensorboard, similar to the previous tries.
 
 
+![tr8-104B-glitch-4.png](images/tr8-104B-glitch-4.png)
 
-# Try 5
+It went in the wrong direction around iteration 5k - stopped this experiment.
+
+
+# Experiment 5
+
+Same as Experiment 4, but rolling back to iteration 0.
+
+
+![tr8-104B-glitch-5.png](images/tr8-104B-glitch-5.png)
+
+It trained faster but still went in the wrong direction around iteration 5k - stopped this experiment.
+
+
+# Experiment 6
+
+Discovered a really bad mistake in the setup that impacted all the previous experiments that failed.
+ When changing from 13B to 104B I did not update `FFN_HIDDEN_SIZE` and it remained `20480` when it should have become `65536`, so it has been a very lopsided 58B model instead of 104B all along.
+
+Lesson learned: I'm going to change the slurm script to not explicitly set `FFN_HIDDEN_SIZE` and let Megatron automatically set `FFN_HIDDEN_SIZE = 4 * HIDDEN_SIZE` to avoid similar errors in the future.
+
+Additionally, because `FFN_HIDDEN_SIZE` was so small, the fixed setup required re-tune up of the training setup - as a lot more nodes are now required.
+
+So let's look at the math:
+
+```
+# Let h = hidden size, n = num_layers, k = num_heads, s = sequence length, v = vocabulary size
+total_params = n * (12h^2 + 13h) + (v * h) + (s * h) + 2*h
+```
+
+the correct 104B is:
+- 0.8x times layers=32 than 13B (40)
+- 3.2x times NHIDDEN=16384 than 13B (5120)
+
+While the 104B model is 8x times bigger than 13B param-wise, the model grows quadratically with NHIDDEN size, so each layer will require ~10x (3.2**2) more gpu memory plus more memory per activations. We double TP from 2 to 4 as 4 is a max we can use on a 4-gpu node. So we have to 5x the PP then, so we need at least PP=20, and to work with NLAYERS=32, it takes us to PP=32.
+
+So the needed config is:
+```
+TP_SIZE=4
+PP_SIZE=32
+```
+
+so 13B took 8 gpus for a single replica, and 104B needs 128 gpus (16x times)
+
+which also means we have to switch the ramup to
+
+I'm going to repeat try 6 with fixed FFN_HIDDEN_SIZE
 
 
 
+# Experiment 7
 
-# Try 6
-
-going to use NLAYERS=64 NHIDDEN=11600 with the ratio 180 (in the megatron's paper the ratio grows from 150 to 200 as the model grows) (edited)
+if needed: going to use NLAYERS=64 NHIDDEN=11600 with the ratio 180 (in the megatron's paper the ratio grows from 150 to 200 as the model grows) (edited)
 
 
 
 
 XXX: to be continued
 
-stopped at Date: 2021-09-30
+stopped at Date: 2021-10-04

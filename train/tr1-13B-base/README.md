@@ -773,7 +773,7 @@ When a person is on call, they need to watch that the training is either running
 ***ALERT: tr1-13B-round3.slurm is not RUNNING or SCHEDULED! Alert someone at Eng WG***
 ```
 
-XXX: will soon add an email alert as well. bigscience-jean-zay@groups.google.com
+An email alert is sent as well to `bigscience-jean-zay@groups.google.com`.
 
 
 The next section explains how to watch the logs.
