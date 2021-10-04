@@ -60,4 +60,4 @@ python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size
 
 
 
-For full details see [Calculate model size](./experiments/gpt2-utils.md).
+For full details see [Calculate model size](../experiments/gpt2-utils.md).
