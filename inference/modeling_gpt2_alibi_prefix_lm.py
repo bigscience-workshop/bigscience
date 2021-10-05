@@ -965,6 +965,7 @@ class GPT2Model(GPT2PreTrainedModel):
         output_attentions=None,
         output_hidden_states=None,
         return_dict=None,
+        prefix_lm_token_id = None
     ):
         output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
         output_hidden_states = (
@@ -1006,6 +1007,11 @@ class GPT2Model(GPT2PreTrainedModel):
             if batch_size <= 0:
                 raise ValueError("batch_size has to be defined and > 0")
             attention_mask = attention_mask.view(batch_size, -1)
+            # do prefix_lm masking if we have input_ids. We find the prefix_lm_toke_id token as the prefix_lm boundry.
+            if prefix_lm_token_id is not None and input_ids is not None:
+                for attention_mask_row, input_ids_row in zip(attention_mask, input_ids): # do this in the bs dimension
+                    attention_mask_row[: (input_ids_row == prefix_lm_token_id).nonzero(as_tuple=True)[0], :] = 1.0 # is this right?
+                
             # We create a 3D attention mask from a 2D tensor mask.
             # Sizes are [batch_size, 1, 1, to_seq_length]
             # So we can broadcast to [batch_size, num_heads, from_seq_length, to_seq_length]
