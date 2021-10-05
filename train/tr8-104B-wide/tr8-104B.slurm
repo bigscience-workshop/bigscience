@@ -78,7 +78,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
-    --rampup-batch-size 32 32 6_000_000 \
+    --rampup-batch-size 16 16 6_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples 300_000_000 \
     --vocab-file $VOCAB_FILE \
