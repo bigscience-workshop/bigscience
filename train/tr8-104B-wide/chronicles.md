@@ -278,9 +278,17 @@ PP_SIZE=32
 
 so 13B took 8 gpus for a single replica, and 104B needs 128 gpus (16x times)
 
-which also means we have to switch the ramup to
+I also switcheed to `--rampup-batch-size 32 32 6_000_000`, because of PP=32 (but that wasn't needed since it's the number of replicas that matters. there needs to be enough batch size to go over replicas, so `BS>n_replicas` and `BS` has to be divisible by `n_replicas`. Corrected this in the following experiment.)
 
-I'm going to repeat Experiment 5 with fixed `FFN_HIDDEN_SIZE`
+I'm going to repeat Experiment 5 with :
+
+- fixed `FFN_HIDDEN_SIZE` (so that it's `4 * HIDDEN_SIZE`)
+-  `--rampup-batch-size 32 32 6_000_000`
+
+And the outcome is very similar to Exp 4 and 5 despite the corrected model shape:
+
+![tr8-104B-glitch-5.png](images/tr8-104B-glitch-5.png)
+
 
 
 # Future Experiments
