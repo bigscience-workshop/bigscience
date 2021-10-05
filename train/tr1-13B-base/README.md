@@ -692,6 +692,17 @@ gsutil cp -r hf-fixed2/* gs://bigscience-backups/tr1-13B/checkpoints/
 
 can't use `rsync` with multiple sources - can only rsync a single dir.
 
+Later fixing `config.json` to include the correct `gelu_fast` activation correction and rsyncing the GCS bucket.
+
+(moved all the hf-fixed sub-dirs into a new folder `checkpoints`)
+
+```
+start-prod
+cd /gpfsssd/scratch/rech/six/commun/checkpoints/to-upload/
+perl -pi -e 's|gelu|gelu_fast|' checkpoints/*/config.json
+gsutil -m rsync -x ".*bin$" -r checkpoints gs://bigscience-backups/tr1-13B/checkpoints
+```
+this is really fast since we exclude the checkpoint files (`-x ".*bin$"`)
 
 
 ## Other backups

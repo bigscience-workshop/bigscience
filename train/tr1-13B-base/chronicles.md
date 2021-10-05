@@ -384,6 +384,8 @@ find -type d -name "global_step*" -exec pt-checkpoint-shrink.py --checkpoint_dir
 
 A CI was implemented using EC2 instance on demand. With the help of https://github.com/machulav/ec2-github-runner
 
+Eventually it proved to be not usable for PRs made from the forks, as EC2 needs secrets that github actions won't give to PRs not originating from the origin. So this CI is not very useful.
+
 
 ## Training completed
 
@@ -394,7 +396,30 @@ On Sep 6th we reached the 300B tokens and on Sep 7th we stopped the training - I
 
 We still need to figure out how to make the checkpoint available in the HF `transformers` format. This is a work in progress.
 
+Update: This has been done. All checkpoints converted to HF format and uploaded to HUB.
 
-XXX: to be continued
+See [README.md](README.md) for nuances of the conversion.
 
-stopped at Date: 2021-09-09
+Made a mistake in the activation function setting when writing the HF model after the conversion. It proved to be a complex situation but it needs to be `gelu_fast` on the HF side since we are using `args.openai_gelu = False; args.bias_gelu_res = True`. So applied fixes to the models on the HUB using the following:
+
+```
+cd /gpfsssd/scratch/rech/six/commun/experiments/fix-config/
+export GIT_LFS_SKIP_SMUDGE=1
+git clone https://huggingface.co/bigscience/tr3e-1B3-c4-checkpoints
+cd tr3e-1B3-c4-checkpoints
+~/prod/code/bigscience/tools/hub-sync.py --repo-path . --patterns '*bogus*'
+set +H
+git branch -a | sort -V | perl -lne 'm|(global_step\d+)| && print qx[git checkout $1; perl -pi -e "s/gelu(?!_)/gelu_fast/" $1/config.json; git commit -m "gelu_fast is the correct activation_function" .; git push --set-upstream origin $1]'
+export GIT_LFS_SKIP_SMUDGE=0
+```
+Note using the trick of not checkout out LFS files since we only need to modify `config.json` which is a normal file - this is thousands times faster than normal checkout.
+
+
+
+and for GCS:
+```
+start-prod
+cd /gpfsssd/scratch/rech/six/commun/checkpoints/to-upload/
+perl -pi -e 's|gelu|gelu_fast|' checkpoints/*/config.json
+gsutil -m rsync -x ".*bin$" -r checkpoints gs://bigscience-backups/tr1-13B/checkpoints
+```

@@ -280,17 +280,55 @@ so 13B took 8 gpus for a single replica, and 104B needs 128 gpus (16x times)
 
 which also means we have to switch the ramup to
 
-I'm going to repeat try 6 with fixed FFN_HIDDEN_SIZE
+I'm going to repeat Experiment 5 with fixed `FFN_HIDDEN_SIZE`
 
+
+# Future Experiments
+
+1. if it doesn’t work, change model design to one with a reasonable ratio between depth/width - currently it's 512. Try 256? (going for the opposite of very deep and shallow won't be learning much)
+
+2. get back to beta2=0.999 (with spikes) and try fp32. If Corby’s self-attn version made a difference, then maybe it is an fp16 instability issue.
+   note: This will require approximately 30% more RAM for activation memory - so to run this experiment we have to first test that we can fit it.
+```
+perl -pi -e 's|--adam-beta2 0.95|--adam-beta2 0.95|' *slurm
+```
+
+3. try lower learning rate (half the LR and longer warmup) - ideally wait for CongLong
+   - try lower target learning rate 2.5e-5 - longer ramp up - past 10k iterations (Samyam)
+   - max lr the same - twice as long ramp up, half as long, (Stella)
+   - Curriculum Learning should fix all these lr-related problem (waiting for CL implementation)
+
+4. reduce SEQLEN 1024K? 512?
+
+5. Switch to LAMB? But we haven't discussed that in details.
 
 
 # Experiment 7
 
-if needed: going to use NLAYERS=64 NHIDDEN=11600 with the ratio 180 (in the megatron's paper the ratio grows from 150 to 200 as the model grows) (edited)
+Same as Exp 6 with the following changes:
+
+1. Trying width/depth ration of 180 instead of 512. Which puts it into a normal range and it's no longer an unusually wide model (in the megatron's paper the ratio grows from 150 to 200 as the model grows)
+
+```
+NLAYERS=64
+NHIDDEN=11600
+```
+
+```
+perl -pi -e 's|NHIDDEN=16384|NHIDDEN=11600|' *slurm
+perl -pi -e 's|NLAYERS=32|NLAYERS=64|' *slurm
+```
+
+Note: this should use less gpu memory too, but if it's another short experiment there is no need to re-tune the training setup.
+
+2. reverted back to `--rampup-batch-size 16 16 6_000_000`. We were fine with BS increments of 16 since we can't fit too many replicas anyway. Since currently each replica is 32 nodes, with 64 or 128 nodes we will be using only 2 or 4 replicas, therefore no problem to run BS=16 increments.
+
+
+
 
 
 
 
 XXX: to be continued
 
-stopped at Date: 2021-10-04
+stopped at Date: 2021-10-05

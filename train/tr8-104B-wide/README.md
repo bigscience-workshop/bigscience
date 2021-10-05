@@ -63,7 +63,7 @@ Activation memory would have been much much bigger if it weren't for activation 
 Comparison with [tr1-13B-base](../tr1-13B-base):
 - changed model shape/size to be extra wide NHIDDEN=16384, which makes the hidden/layers ratio of 512 (the normal ratio in Megatron paper is 150-200)
 - doubled GBS (Global batch size)
-- changed lr and min-lr
+- changed lr and min-lr from --lr 1e-4 --min-lr 1e-5 to --lr 6e-5 --min-lr 6e-6
 - doubled batch size rampup to 32 from 16, since PP=32 and we can't stretch bs=16 over 32 gpus.
 
 Later during experiments changed to `--adam-beta2 0.95` as it proved to train faster.
