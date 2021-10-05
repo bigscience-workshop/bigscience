@@ -48,7 +48,6 @@ GLOBAL_BATCH_SIZE=2048
 NLAYERS=32
 NHIDDEN=16384
 NHEADS=32
-FFN_HIDDEN_SIZE=20480
 SEQ_LEN=2048
 VOCAB_SIZE=50257
 
@@ -75,7 +74,6 @@ EXIT_OPTS=" \
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
-    --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --num-attention-heads $NHEADS \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
