@@ -310,6 +310,7 @@ perl -pi -e 's|--adam-beta2 0.95|--adam-beta2 0.95|' *slurm
 
 5. Switch to LAMB? But we haven't discussed that in details.
 
+6. Change number of HEADS to 80 to go along similar setup, even though some research suggests that it doesn't matter much https://blog.ml.cmu.edu/2020/03/20/are-sixteen-heads-really-better-than-one/
 
 # Experiment 7
 
@@ -320,14 +321,19 @@ Same as Exp 6 with the following changes:
 ```
 NLAYERS=64
 NHIDDEN=11600
+NHEADS=40
 ```
+
 
 ```
 perl -pi -e 's|NHIDDEN=16384|NHIDDEN=11600|' *slurm
 perl -pi -e 's|NLAYERS=32|NLAYERS=64|' *slurm
+perl -pi -e 's|NHEADS=32|NHEADS=40|' *slurm
 ```
 
 Note: this should use less gpu memory too, but if it's another short experiment there is no need to re-tune the training setup.
+
+We don't know whether it was a good idea to change `NHEADS` - it doesn't change the model size, and there is [research](https://blog.ml.cmu.edu/2020/03/20/are-sixteen-heads-really-better-than-one/) that shows that nheads doesn't quite matter. We could have kept `NHEADS=32` and used `NHIDDEN=11616` to keep the model of the same size (tiny change). The two have to respect`NHIDDEN % NHEADS = 0` rule.
 
 2. reverted back to `--rampup-batch-size 16 16 6_000_000`. We were fine with BS increments of 16 since we can't fit too many replicas anyway. Since currently each replica is 32 nodes, with 64 or 128 nodes we will be using only 2 or 4 replicas, therefore no problem to run BS=16 increments.
 
