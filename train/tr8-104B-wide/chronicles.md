@@ -310,25 +310,24 @@ perl -pi -e 's|--adam-beta2 0.95|--adam-beta2 0.95|' *slurm
 
 5. Switch to LAMB? But we haven't discussed that in details.
 
-6. Change number of HEADS to 80 to go along similar setup, even though some research suggests that it doesn't matter much https://blog.ml.cmu.edu/2020/03/20/are-sixteen-heads-really-better-than-one/
 
 # Experiment 7
 
 Same as Exp 6 with the following changes:
 
-1. Trying width/depth ration of 180 instead of 512. Which puts it into a normal range and it's no longer an unusually wide model (in the megatron's paper the ratio grows from 150 to 200 as the model grows)
+1. Trying width/depth ration of 180 instead of 512. Which puts it into a normal range and it's no longer an unusually wide model (in the megatron's paper the ratio grows from 150 to 200 as the model grows). Also raising heads to 80 to again be in the ballpark of normal ratio.
 
 ```
 NLAYERS=64
 NHIDDEN=11600
-NHEADS=40
+NHEADS=80
 ```
 
 
 ```
 perl -pi -e 's|NHIDDEN=16384|NHIDDEN=11600|' *slurm
 perl -pi -e 's|NLAYERS=32|NLAYERS=64|' *slurm
-perl -pi -e 's|NHEADS=32|NHEADS=40|' *slurm
+perl -pi -e 's|NHEADS=32|NHEADS=80|' *slurm
 ```
 
 Note: this should use less gpu memory too, but if it's another short experiment there is no need to re-tune the training setup.

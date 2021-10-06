@@ -60,6 +60,8 @@ Activation memory would have been much much bigger if it weren't for activation 
 
 ## 104B Training
 
+XXX: a lot of the following is no longer correct as we are changing the model a lot due to instabilities, so need to review once we have it sorted out. [chronicles.md](chronicles.md) keeps track of the changes and of course the latest setup is reflected in [tr8-104B.slurm](tr8-104B.slurm).
+
 Comparison with [tr1-13B-base](../tr1-13B-base):
 - changed model shape/size to be extra wide NHIDDEN=16384, which makes the hidden/layers ratio of 512 (the normal ratio in Megatron paper is 150-200)
 - doubled GBS (Global batch size)
