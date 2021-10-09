@@ -141,7 +141,7 @@ cat <<EOT > $config_json
     "max_difficulty": $SEQ_LEN,
     "schedule_type": "fixed_linear",
     "schedule_config": {
-      "total_curriculum_step": 75_000,
+      "total_curriculum_step": 36_000,
       "difficulty_step": 8
     }
   },
