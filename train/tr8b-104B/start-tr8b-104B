@@ -1,0 +1,58 @@
+# This is a python production script for JZ / xxx training
+#
+# Activate with:
+#
+# source ./start-tr8b-104B
+#
+#
+
+# # if this session isn't run via a login shell, which is the case when running a
+# # command which is not shell via ssh, the bash function `module` will be missing.
+# # so work around it by emulating part of the login shell that loads modules environment
+# if [ -z $(type -t module) ]
+# then
+#    . /etc/profile.d/z_modules.sh
+# fi
+module purge
+module load pytorch-gpu/py3/1.8.1
+module load nvtop git-lfs github-cli mc
+
+# git prompt
+export GIT_PROMPT_ONLY_IN_REPO=0;
+export GIT_PROMPT_THEME="JZPRod"
+source $six_ALL_CCFRWORK/envs/.bash-git-prompt/gitprompt.sh
+
+# We are using common disk spaces for datasets, caches, and experiment dumps:
+#
+#- Code, cache and datasets -> `$six_ALL_CCFRWORK/cache_dir` and ``$six_ALL_CCFRWORK/datasets`
+#- Experiment dumps -> `$six_ALL_CCFRWORK/experiments`
+
+# specific caches
+
+export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
+
+export DATASETS_CUSTOM=$six_ALL_CCFRWORK/datasets-custom
+
+### CONDA ###
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/profile.d/conda.sh" ]; then
+        . "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/profile.d/conda.sh"
+    else
+        export PATH="/gpfslocalsup/pub/anaconda-py3/2020.02/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
+conda activate cutting-edge
+
