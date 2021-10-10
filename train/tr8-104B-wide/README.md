@@ -175,3 +175,36 @@ tr8-104B-slurm-status.slurm
 Here is the slurm script to sync the tensorboard/codecarbon/logs data: [tr1-104B-hub-sync-logs.slurm](./tr1-104B-hub-sync-logs.slurm)
 
 SLURM status and alerts script: [tr8-104B-slurm-status.slurm](tr8-104B-slurm-status.slurm)
+
+
+## Curriculum learning
+
+For full details see:
+- [guide](https://github.com/bigscience-workshop/Megatron-DeepSpeed/blob/main/examples/curriculum_learning/README.md)
+- [paper](https://arxiv.org/abs/2108.06084)
+
+Transitioning from a BS-rampup based setup like tr1-13B
+
+Changes to cl args:
+
+1. remove --rampup-batch-size
+2. if possible to increase your micro batch size if it fits at max seqlen/gbs - but needs to be tested w/o CL enabled, otherwise a false lower memory usage may occur under early steps of CL
+3. add --train-tokens n_samples * SEQ_LEN
+4. double --train-samples
+5. add --lr-decay-tokens: SEQ_LEN * --lr-decay-samples
+
+Changes to DS config file:
+
+1. `total_curriculum_step` - recommendation: `~TRAIN_TOKENS/GLOBAL_BATCH_SIZE/SEQ_LEN/2`
+
+the last `/2` is a rough approximation.
+
+Here total iterations `300B/2K/2K = 71525` steps. So `total_curriculum_step ~= 36_000`
+
+4. `min_difficulty` 64 (recommended for large model)
+
+3. `max_difficulty`: $SEQ_LEN (always)
+
+also an important constraint `min_difficulty % 8 = 0` (to enable Tensor Core acceleration)
+
+4. `difficulty_step` is 8 (always)
