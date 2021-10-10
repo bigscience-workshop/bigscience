@@ -337,8 +337,14 @@ We don't know whether it was a good idea to change `NHEADS` - it doesn't change 
 2. reverted back to `--rampup-batch-size 16 16 6_000_000`. We were fine with BS increments of 16 since we can't fit too many replicas anyway. Since currently each replica is 32 nodes, with 64 or 128 nodes we will be using only 2 or 4 replicas, therefore no problem to run BS=16 increments.
 
 
+# Experiment 8
 
+half lr, and 1/3 longer warm up:
 
+```
+    --lr 3e-5 \
+    --lr-warmup-samples 300_000 \
+```
 
 
 

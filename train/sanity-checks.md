@@ -42,3 +42,5 @@ NLAYERS % PP_SIZE == 0
 5. Curriculum Learning Constraints
 
 - min_difficulty % 8 = 0 (to enable Tensor Core acceleration)
+
+- json ds config can't have numbers with '_' in them - invalid json - careful with substitutions.

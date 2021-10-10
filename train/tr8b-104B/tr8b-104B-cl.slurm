@@ -56,7 +56,7 @@ SAVE_INTERVAL=300
 
 LR_WARMUP_SAMPLES=216_320
 LR_DECAY_SAMPLES=126_953_125
-LR_DECAY_TOKENS=$(($LR_DECAY_SAMPLES*$SEQ_LEN))
+LR_DECAY_TOKENS=$(perl -e "print $LR_DECAY_SAMPLES*$SEQ_LEN")
 
 TRAIN_SAMPLES=600_000_000
 TRAIN_TOKENS=300_000_000_000
@@ -143,7 +143,7 @@ cat <<EOT > $config_json
     "max_difficulty": $SEQ_LEN,
     "schedule_type": "fixed_linear",
     "schedule_config": {
-      "total_curriculum_step": 36_000,
+      "total_curriculum_step": 36000,
       "difficulty_step": 8
     }
   },
