@@ -12,7 +12,7 @@
 
 set -x -e
 
-source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8-104B-wide/start-tr8b-104B
+source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8b-104B/start-tr8b-104B
 
 echo "START TIME: $(date)"
 
