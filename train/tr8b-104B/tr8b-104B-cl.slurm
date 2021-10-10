@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr8-104B
+#SBATCH --job-name=tr8b-104B
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=128
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -12,18 +12,19 @@
 
 set -x -e
 
-source $six_ALL_CCFRWORK/code/tr8-104B/bigscience/train/tr8-104B-wide/start-tr8-104B
+source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8-104B-wide/start-tr8b-104B
 
 echo "START TIME: $(date)"
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8-104B
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8b-104B
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr8-104B-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr8b-104B-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
+mkdir -p $LOGS_PATH
 
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8-104B/Megatron-DeepSpeed-tr8-104B
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed-tr8b-104B
 
 VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
 MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
@@ -53,6 +54,7 @@ VOCAB_SIZE=50257
 
 SAVE_INTERVAL=300
 
+LR_WARMUP_SAMPLES=216_320
 LR_DECAY_SAMPLES=126_953_125
 LR_DECAY_TOKENS=$(($LR_DECAY_SAMPLES*$SEQ_LEN))
 
@@ -66,9 +68,9 @@ OPTIMIZER_ARGS=" \
     --adam-eps 1e-8 \
     --lr 6e-5 \
     --min-lr 6e-6 \
-    --lr-decay-style cosine \
+    --lr-warmup-samples $LR_WARMUP_SAMPLES \
     --lr-decay-tokens $LR_DECAY_TOKENS \
-    --lr-warmup-samples 216_320 \
+    --lr-decay-style cosine \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
