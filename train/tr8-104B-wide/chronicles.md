@@ -287,7 +287,7 @@ I'm going to repeat Experiment 5 with :
 
 And the outcome is very similar to Exp 4 and 5 despite the corrected model shape:
 
-![tr8-104B-glitch-5.png](images/tr8-104B-glitch-5.png)
+![tr8-104B-glitch-6.png](images/tr8-104B-glitch-6.png)
 
 
 
@@ -336,10 +336,13 @@ We don't know whether it was a good idea to change `NHEADS` - it doesn't change 
 
 2. reverted back to `--rampup-batch-size 16 16 6_000_000`. We were fine with BS increments of 16 since we can't fit too many replicas anyway. Since currently each replica is 32 nodes, with 64 or 128 nodes we will be using only 2 or 4 replicas, therefore no problem to run BS=16 increments.
 
+This one failed too:
+
+![tr8-104B-glitch-7.png](images/tr8-104B-glitch-7.png)
 
 # Experiment 8
 
-half lr, and 1/3 longer warm up:
+Half lr, and 1/3 longer warm up:
 
 ```
     --lr 3e-5 \
@@ -350,4 +353,4 @@ half lr, and 1/3 longer warm up:
 
 XXX: to be continued
 
-stopped at Date: 2021-10-05
+stopped at Date: 2021-10-11
