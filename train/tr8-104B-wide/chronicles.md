@@ -349,8 +349,24 @@ Half lr, and 1/3 longer warm up:
     --lr-warmup-samples 300_000 \
 ```
 
+The failure is very similar to Exp 7
+
+![tr8-104B-glitch-8.png](images/tr8-104B-glitch-8.png)
+
+
+# Experiment 9
+
+
+Trying much longer warmup:
+
+```
+    --lr 3e-5 \
+    --lr-warmup-samples 1_000_000 \
+```
+
+
 
 
 XXX: to be continued
 
-stopped at Date: 2021-10-11
+stopped at Date: 2021-10-12
