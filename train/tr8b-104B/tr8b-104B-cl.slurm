@@ -94,9 +94,9 @@ GPT_ARGS=" \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
     --loss-scale 12 \
-    --clip-grad 1.0 \
     --fp16 \
     --checkpoint-activations \
+    --no-masked-softmax-fusion \
     --seed 43 \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
