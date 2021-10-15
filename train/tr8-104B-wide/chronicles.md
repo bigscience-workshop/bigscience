@@ -364,9 +364,72 @@ Trying much longer warmup:
     --lr-warmup-samples 1_000_000 \
 ```
 
+Very similar failure to Exp 8
+
+![tr8-104B-glitch-9.png](images/tr8-104B-glitch-9.png)
+
+
+
+# Future Experiments: Set 2
+
+Actionable proposals:
+
+1. restart Exp 9 from 7k with `lr=1e-5`
+2. investigate weight initialization
+3. double check that gradient clipping is working
+4. try shorter seqlen (`seqlen=512`, 4x the batch size, everything else similar to exp 8)
+5. if promising, try curriculum learning to reach the largest seqlen
+6. try smaller models instead of the 8x jump from 13B
+7. train in full fp32: remove `--fp16`
+8. train parts in fp32: add `--attention-softmax-in-fp32`
+
+Exp 8 has given us the best lm loss, so we are using it as the new baseline for other experiments.
+
+fp16 is less likely to be an issue, because usually it becomes one after you train for hundreds of thousands of gradient updates where the model weights grow and become large that they overflow the fp16 (example of T5 models that were pre-trained on bf16 and they weren't aware that the weights were huge).
+
+
+
+Proposals that needs work:
+
+3. CL (not ready yet, breaks)
+
+Proposals that need research and/or code:
+
+* study weight init
+   - in particular word embedding matrix init (@thom)
+   - weight initialization for the Transformer blocks that T5 used (@Sidd Karamcheti)
+   - T5's weight initialization is coupled to the optimizer used for T5 (Adafactor). Adafactor's initialization and optimization tricks are very good for stability. They're all in the adafactor paper (and in the mesh tf adafactor implementation) (@Colin Raffel)
+
+* ScaleNorm paper which discussed different ways they stabilized and sped up training including an analysis of weight init on stability. https://arxiv.org/abs/1910.05895 (@Huu Nguyen)
+
+
+Deepspeed side:
+
+Shaden:
+> We might try to prescale gradients instead of postscaling them during the data-parallel averaging. What DP dimension are we using in these experiments? I think there is a small amount of code needed for the zero codepath.
+Jeff:
+> I think we are already prescaling gradients in this zero code path. I am also curious what DP size is. We have sometimes seen for really large DP sizes sometimes prescaling by world size is too much and essentially zeros out the grads. In that case we could do a combo of pre/post scaling via a pre-devide factor.
+
+
+# Experiment 10
+
+```
+perl -pi -e 's|--lr 3e-5|--lr 1e-5|' *slurm
+```
+
+Same as Exp 9 but with `lr=1e-5`,
+
+Initially the plan was to restart Exp 9 from step 6900, but Meg didn't accept the change and crashed with:
+```
+AnnealingLR: class input value 1e-05 and checkpointvalue 3e-05 for learning rate do not match
+```
+
+So had to start from scratch.
+
+This will be the last experiment that plays with a different max LR value.
 
 
 
 XXX: to be continued
 
-stopped at Date: 2021-10-12
+stopped at Date: 2021-10-14
