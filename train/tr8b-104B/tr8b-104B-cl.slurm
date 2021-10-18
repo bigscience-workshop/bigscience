@@ -94,6 +94,7 @@ GPT_ARGS=" \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
     --loss-scale 12 \
+    --init-method-std 0.006 \
     --fp16 \
     --checkpoint-activations \
     --no-masked-softmax-fusion \
