@@ -49,6 +49,7 @@ probably need to find out the right env var (best) or ~/.condarc (less good) and
 # TODO
 
 general:
+- don't generate 'latest' file when under deepspeed - otherwise it's hard to tell which is the real tagging file
 - update chronicles
 - check if --jobid=$SLURM_JOB is actually needed in the slurm script - especially when doing it interactively
 - Set up a basic MLflow setup when Canwen installs ML server https://github.com/bigscience-workshop/Megatron-DeepSpeed/issues/87

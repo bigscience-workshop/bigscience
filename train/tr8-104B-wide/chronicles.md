@@ -2,9 +2,13 @@
 
 Notes on the training progress with a particular focus on any encountered problems and their diagnosis and solutions/prevention.
 
+The timeline is from the top-down, more recent events are documented last.
+
 To follow the training progress charts, see:  [tensorboard](https://huggingface.co/bigscience/tr8-104B-logs/tensorboard)
 
 To follow the raw training logs see: [logs](https://huggingface.co/bigscience/tr8-104B-logs/tree/main/logs)
+
+The currently used SLURM script is at [tr8-104B.slurm](tr8-104B.slurm).
 
 ## Experiment 1
 
@@ -370,12 +374,65 @@ Very similar failure to Exp 8
 
 
 
+## Experiment 10
+
+```
+perl -pi -e 's|--lr 3e-5|--lr 1e-5|' *slurm
+```
+
+Same as Exp 9 but with `lr=1e-5`,
+
+Initially the plan was to restart Exp 9 from step 6900, but Meg didn't accept the change and crashed with:
+```
+AnnealingLR: class input value 1e-05 and checkpointvalue 3e-05 for learning rate do not match
+```
+
+So had to start from scratch.
+
+This will be the last experiment that plays with a different max LR value.
+
+The outcome is very similar to the previous 3 experiments around LR modifications.
+
+![tr8-104B-glitch-10.png](images/tr8-104B-glitch-10.png)
+
+
+
+## Experiments 7-10
+
+
+Here is the summary of the 4 experiments (7-10) around LR tweaks:
+
+| Exp |   lr | lr-warmup |
+| --: | ---: | --------: |
+|   7 | 6e-5 | 0.26M     |
+|   8 | 3e-5 | 0.3M      |
+|   9 | 3e-5 | 1M        |
+|  10 | 1e-5 | 1M        |
+
+All 4 had a very similar behavior just the learning stopped and divergence started at progressively later stage.
+
+
+Ok, so Exp 7, 8, 9, 10 with lr and lr warmup tweaks all had an identical behavior - just delayed - the divergence happened in a very similar fashion
+
+
+Here is the summary of the 4 experiments (7-10) around LR tweaks:
+| Exp |   lr | lr-warmup |
+| --: | ---: | --------: |
+|   7 | 6e-5 | 0.26M     |
+|   8 | 3e-5 | 0.3M      |
+|   9 | 3e-5 | 1M        |
+|  10 | 1e-5 | 1M        |
+
+![tr8-104B-glitch-7-10.png](images/tr8-104B-glitch-7-10.png)
+
+
 ## Future Experiments: Set 2
 
 Actionable proposals:
 
 1. restart Exp 9 from 7k with `lr=1e-5`
 2. investigate weight initialization
+   530B uses `--init-method-std 0.004` - probably will try that
 3. double check that gradient clipping is working
 4. try shorter seqlen (`seqlen=512`, 4x the batch size, everything else similar to exp 8)
 5. if promising, try curriculum learning to reach the largest seqlen
@@ -409,32 +466,6 @@ Shaden:
 > We might try to prescale gradients instead of postscaling them during the data-parallel averaging. What DP dimension are we using in these experiments? I think there is a small amount of code needed for the zero codepath.
 Jeff:
 > I think we are already prescaling gradients in this zero code path. I am also curious what DP size is. We have sometimes seen for really large DP sizes sometimes prescaling by world size is too much and essentially zeros out the grads. In that case we could do a combo of pre/post scaling via a pre-devide factor.
-
-
-## Experiment 10
-
-```
-perl -pi -e 's|--lr 3e-5|--lr 1e-5|' *slurm
-```
-
-Same as Exp 9 but with `lr=1e-5`,
-
-Initially the plan was to restart Exp 9 from step 6900, but Meg didn't accept the change and crashed with:
-```
-AnnealingLR: class input value 1e-05 and checkpointvalue 3e-05 for learning rate do not match
-```
-
-So had to start from scratch.
-
-This will be the last experiment that plays with a different max LR value.
-
-
-
-## Experiment 11
-
-
-TODO: First roll back to Exp 8 config as we got the best loss there.
-
 
 ## Renaming event names in the old tensorboard to match the new ones
 
@@ -518,9 +549,71 @@ It surely can be made more efficient by rewriting each file only once, but that'
 
 
 
+## Megatron-Turing NLG 530B
 
+A timely blog post from MSFT about their successful training of a 530B model which also use Megatron-Deepspeed:
+https://www.microsoft.com/en-us/research/blog/using-deepspeed-and-megatron-to-train-megatron-turing-nlg-530b-the-worlds-largest-and-most-powerful-generative-language-model/
+
+One key difference with our current experiment is that they use higher quality datasets, (as we have discovered OSCAR is full of garbage randomly generated data), and they have further filtered it out to leave only very high quality content.
+
+Apparently the training configuration was the same as Megatron-LM's published paper - the table at:
+https://github.com/NVIDIA/Megatron-LM#readme
+
+Reconstructing the published details to Megatron script:
+
+```
+NLAYERS=105
+NHIDDEN=20480
+NHEADS=128
+
+SEQ_LEN=2048
+
+MICRO_BATCH_SIZE=1
+GLOBAL_BATCH_SIZE=1920
+
+TP_SIZE=8
+PP_SIZE=35
+
+    --rampup-batch-size 32 32 6_000_000 (over 12B tokens, 6M samples)
+    --lr-warmup-samples 500_000 (1B tokens, 500M samples)
+
+```
+
+
+
+
+
+## Experiment 11
+
+
+First roll back to Exp 8 config as we got the best loss there.
+
+
+```
+    --lr 3e-5 \
+    --lr-warmup-samples 300_000 \
+```
+
+This experiment tests the `--init-method-std` - until now we were using the default setting of `0.02`.
+
+`--init-method-std 0.006`
+
+We derived this from:
+
+`0.00587220219514703 = sqrt(2/(11600*5))` (from the ScaleNorm paper)
+
+inject a new setting:
+```
+perl -pi -e 's|--loss-scale 12|--loss-scale 12 \\\n    --init-method-std 0.006|msg' *slurm
+```
+
+revert parts to Exp 8:
+```
+perl -pi -e 's|--lr 1e-5|--lr 3e-5|' *slurm
+perl -pi -e 's|--lr-warmup-samples 1_000_000|--lr-warmup-samples 300_000|' *slurm
+```
 
 
 XXX: to be continued
 
-stopped at Date: 2021-10-14
+stopped at Date: 2021-10-17

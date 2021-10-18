@@ -58,11 +58,11 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 1e-5 \
+    --lr 3e-5 \
     --min-lr 6e-6 \
     --lr-decay-style cosine \
     --lr-decay-samples 126_953_125 \
-    --lr-warmup-samples 1_000_000 \
+    --lr-warmup-samples 300_000 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
@@ -84,6 +84,7 @@ GPT_ARGS=" \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
     --loss-scale 12 \
+    --init-method-std 0.006 \
     --fp16 \
     --checkpoint-activations \
     --seed 43 \
