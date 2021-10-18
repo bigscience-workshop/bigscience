@@ -1,1 +1,1 @@
-Submit job in `$six_ALL_CCFRSCRATCH/checkpoints/tr5-1B3-multilingual` in order for logging to work.
+`generate_dataset_probabilities.py` is deprecated; the new way to generate probabilities is at `/data/sampling_probs/calc_iterator_prob.py`.
