@@ -12,6 +12,7 @@ Currently, the most active segments of this repo are:
 - [JZ](./jz/) - Lots of information about our work environment which helps evaluate, plan and get things done
 - [Experiments](./experiments) - many experiments are being done. Documentation, result tables, scripts and logs are all there
 - [Datasets info](./data/)
+- (Train)(./train) - all the information about the current trainings (see below for the most important ones)
 
 
 ## Trainings
