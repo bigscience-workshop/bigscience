@@ -411,18 +411,6 @@ Here is the summary of the 4 experiments (7-10) around LR tweaks:
 
 All 4 had a very similar behavior just the learning stopped and divergence started at progressively later stage.
 
-
-Ok, so Exp 7, 8, 9, 10 with lr and lr warmup tweaks all had an identical behavior - just delayed - the divergence happened in a very similar fashion
-
-
-Here is the summary of the 4 experiments (7-10) around LR tweaks:
-| Exp |   lr | lr-warmup |
-| --: | ---: | --------: |
-|   7 | 6e-5 | 0.26M     |
-|   8 | 3e-5 | 0.3M      |
-|   9 | 3e-5 | 1M        |
-|  10 | 1e-5 | 1M        |
-
 ![tr8-104B-glitch-7-10.png](images/tr8-104B-glitch-7-10.png)
 
 
