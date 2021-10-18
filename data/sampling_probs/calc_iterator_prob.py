@@ -23,7 +23,7 @@ def calc_multinomial_sampling_prob_with_penalty(dataset_size, alpha=.5):
         tot_pen_prob += (prob**alpha)
     sum_ = 0.0
     for lang, prob in probs.items():
-        pen_prob[lang] =  (prob**alpha)/tot_pen_prob
+        pen_prob[lang] = (prob**alpha)/tot_pen_prob
         sum_ += pen_prob[lang]
     assert math.fabs(1-sum_) < 1e-6
     return pen_prob
@@ -104,9 +104,13 @@ def main():
     print("-"*50)
     print("Total size : {}".format(total_contrib))
 
-    open(os.path.join(args.output_dir, 'iterator_selection_prob.{}.{}.json'.format(args.alpha, args.name_prefix)), "w").write(
+    open(os.path.join(args.output_dir, 'iterator_selection_prob.{}.json'.format(args.alpha)), "w").write(
         json.dumps(sampling_probability, indent=4)
     )
+
+    with open(os.path.join(args.output_dir, "dataset_probabilities.{}".format(args.alpha)), "w") as fout:
+        fout.write(" ".join([f"{prob} {path}" for path, prob in sampling_probability.items()]))
+    pass
 
 
 
