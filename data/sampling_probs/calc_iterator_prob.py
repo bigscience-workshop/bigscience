@@ -108,8 +108,8 @@ def main():
         json.dumps(sampling_probability, indent=4)
     )
 
-    with open(os.path.join(args.output_dir, "dataset_probabilities.{}".format(args.alpha)), "w") as fout:
-        fout.write(" ".join([f"{prob} {path}" for path, prob in sampling_probability.items()]))
+    with open(os.path.join(args.output_dir, "dataset_probabilities.{}.txt".format(args.alpha)), "w") as fout:
+        fout.write(" ".join([f"{prob[0]} {path}" for path, prob in sampling_probability.items()]))
     pass
 
 
