@@ -280,7 +280,7 @@ TP_SIZE=4
 PP_SIZE=32
 ```
 
-so 13B took 8 gpus for a single replica, and 104B needs 128 gpus (16x times)
+so 13B took 8 gpus for a single replica, and 104B needs 128 gpus (16x times more)
 
 I also switcheed to `--rampup-batch-size 32 32 6_000_000`, because of PP=32 (but that wasn't needed since it's the number of replicas that matters. there needs to be enough batch size to go over replicas, so `BS>n_replicas` and `BS` has to be divisible by `n_replicas`. Corrected this in the following experiment.)
 
@@ -397,7 +397,7 @@ The outcome is very similar to the previous 3 experiments around LR modification
 
 
 
-## Experiments 7-10
+## Experiments 7-10 Summary
 
 
 Here is the summary of the 4 experiments (7-10) around LR tweaks:

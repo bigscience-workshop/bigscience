@@ -15,7 +15,7 @@
 # fi
 module purge
 module load pytorch-gpu/py3/1.8.1
-module load nvtop git-lfs github-cli mc
+module load nvtop git git-lfs github-cli mc
 
 # git prompt
 export GIT_PROMPT_ONLY_IN_REPO=0;
@@ -55,4 +55,3 @@ unset __conda_setup
 
 export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 conda activate cutting-edge
-
