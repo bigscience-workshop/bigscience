@@ -69,6 +69,11 @@ def print_stat(args, lang_size_dict, value_name='size'):
     print("-"*20)
     print("Total size : {}".format(total_size))
 
+def removesuffix(string, suffix):
+    if string.endswith(suffix):
+        string = string[:-len(suffix)]
+    return string
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -109,7 +114,7 @@ def main():
     )
 
     with open(os.path.join(args.output_dir, "dataset_probabilities.{}.txt".format(args.alpha)), "w") as fout:
-        fout.write(" ".join([f"{prob[0]} {path}" for path, prob in sampling_probability.items()]))
+        fout.write(" ".join([f"{prob[0]} {removesuffix(path, '.bin')}" for path, prob in sampling_probability.items()]))
     pass
 
 
