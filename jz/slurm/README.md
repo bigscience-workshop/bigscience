@@ -170,6 +170,17 @@ salloc --account=six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --hint=nomultit
 ```
 edit `--cpus-per-task` if more cpu cores are needed.
 
+Actually, if this is just one node, then it's even easier to not use `salloc` but to use `srun` in the first place, which will both allocate and give you the shell to use:
+```
+srun  --account=six@gpu  --pty --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
+
+And to use a cpu-only node:
+```
+srun --account=six@cpu --pty --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:0 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
+The `--rcfile` part is optional if you want to pre-run something.
+
 
 ## Re-use allocation
 

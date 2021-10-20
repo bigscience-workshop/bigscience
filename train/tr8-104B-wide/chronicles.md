@@ -595,7 +595,7 @@ This experiment tests the `--init-method-std` - until now we were using the defa
 
 We derived this from:
 
-`0.00587220219514703 = sqrt(2/(11600*5))` (from the ScaleNorm paper)
+`0.00587220219514703 = sqrt(2/(11600*5))` (from the ScaleNorm paper https://arxiv.org/abs/1910.05895)
 
 inject a new setting:
 ```
@@ -609,6 +609,27 @@ perl -pi -e 's|--lr-warmup-samples 1_000_000|--lr-warmup-samples 300_000|' *slur
 ```
 
 
+
+## Adding support for an 8-bit optimizer: bitsandbytes
+
+Seungju Han integrated the 8-bit optimizer into Meg-DS:
+
+* paper https://arxiv.org/abs/2110.02861
+* library https://github.com/facebookresearch/bitsandbytes
+* video https://www.youtube.com/watch?v=IxrlHAJtqKE
+
+Not sure about the exact percentage of memory it should save - it takes us from 8 bytes to 2 bytes for Adam states (x params). As there are 2 state variables of 4 bytes each, and then each is reduced to 1 byte. So going from needing 18 bytes per param for optim/grad/weights (training) to 12 bytes. And the paper says it manages to do the optim work faster than fp32.
+
+To activate it just add `--use-bnb-optimizer` after manually installing `pip install bitsandbytes-cuda113` after editing the install line to use the correct cuda version for your system.
+
+Sam Shleifer adds on twitter:
+
+> I think it also has a regularizing effect/might need higher learning rate, but haven't investigated this thoroughly enough to include in the paper.
+
+
+
+
+
 XXX: to be continued
 
-stopped at Date: 2021-10-17
+stopped at Date: 2021-10-19
