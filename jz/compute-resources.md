@@ -99,8 +99,9 @@ alias dfi=' \
 echo \"*** Total \(six\) ***\"; \
 idrquota -w -p six; \
 idrquota -s -p six; \
-echo WORKSF: $(du -hs /gpfsssd/worksf/projects/rech/six/commun | cut -f1); \
-echo WORKSF: $(du -hs --inodes /gpfsssd/worksf/projects/rech/six/commun | cut -f1) inodes; \
+echo SCRATCH: $(du -hs $six_ALL_CCFRSCRATCH | cut -f1) \(out of 400TB\); \
+echo WORKSF: $(du -hs /gpfsssd/worksf/projects/rech/six/commun | cut -f1) \(out of 1TB\); \
+echo WORKSF: $(du -hs --inodes /gpfsssd/worksf/projects/rech/six/commun | cut -f1) inodes \(out of 3M\); \
 echo; \
 echo \"*** Personal ***\"; \
 idrquota -m; \
