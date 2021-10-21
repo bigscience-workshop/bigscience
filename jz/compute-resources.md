@@ -69,9 +69,10 @@ Model name:          Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz
 
 Group/project (`six`):
 
-- `$six_ALL_CCFRSCRATCH` - no quota fastest (full SSD),  →  files removed after 30 days without access
-- `$six_ALL_CCFRWORK` - 5TB / 500k inodes (slower than SCRATCH) → sources, constantly used input/output files
+- `$six_ALL_CCFRSCRATCH` - 400TB / ??? inodes fastest (full SSD),  →  files removed after 30 days without access
+- `$six_ALL_CCFRWORK` - 25TB / 500k inodes (slower than SCRATCH) → sources, constantly used input/output files
 - `$six_ALL_CCFRSTORE` - 50TB / 100k inodes (slow) → for long term storage in tar files (very few inodes!)
+- `/gpfsssd/worksf/projects/rech/six/commun/` - 1TB / 3M inodes → for conda and python git clones that take tens of thousands of inodes
 
 Personal:
 
