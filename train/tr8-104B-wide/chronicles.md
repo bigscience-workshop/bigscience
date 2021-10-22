@@ -551,6 +551,8 @@ https://www.microsoft.com/en-us/research/blog/using-deepspeed-and-megatron-to-tr
 
 One key difference with our current experiment is that they use higher quality datasets, (as we have discovered OSCAR is full of garbage randomly generated data), and they have further filtered it out to leave only very high quality content.
 
+The other important difference is that bf16 mixed precision was used instead of fp16, which lends to a much more stable training.
+
 Apparently the training configuration was the same as Megatron-LM's published paper - the table at:
 https://github.com/NVIDIA/Megatron-LM#readme
 
