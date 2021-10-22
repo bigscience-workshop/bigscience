@@ -97,7 +97,6 @@ GPT_ARGS=" \
     --init-method-std 0.006 \
     --fp16 \
     --checkpoint-activations \
-    --no-masked-softmax-fusion \
     --seed 43 \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
