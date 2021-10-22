@@ -610,7 +610,7 @@ perl -pi -e 's|--lr-warmup-samples 1_000_000|--lr-warmup-samples 300_000|' *slur
 
 So far it looks like a breakthrough and we are training well and have already gone through 3 spikes from which it quickly recovered!
 
-![tr8-104B-glitch-11.png](images/tr8-104B-glitch-11.png)
+![tr8-104B-exp-11.png](images/tr8-104B-exp-11.png)
 
 
 
