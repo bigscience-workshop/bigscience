@@ -608,6 +608,10 @@ perl -pi -e 's|--lr 1e-5|--lr 3e-5|' *slurm
 perl -pi -e 's|--lr-warmup-samples 1_000_000|--lr-warmup-samples 300_000|' *slurm
 ```
 
+So far it looks like a breakthrough and we are training well and have already gone through 3 spikes from which it quickly recovered!
+
+![tr8-104B-glitch-11.png](images/tr8-104B-glitch-11.png)
+
 
 
 ## Adding support for an 8-bit optimizer: bitsandbytes
