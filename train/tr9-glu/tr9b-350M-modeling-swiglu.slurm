@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-v2.slurm
+#SBATCH --job-name=350M-swiglu.slurm
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -7,30 +7,29 @@
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=%x-%j.out           # output file name
-#SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
+#SBATCH --output=logs/%x-%j.out           # output file name
+#SBATCH --error=logs/%x-%j.out            # error file name (same to watch just one file)
 #SBATCH --account=six@gpu
 
 set -x -e
 
-
 # TODO: modify these for your training setup, just Ctrl-F replace <YOUR_TRAINING_NAME>
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/<YOUR_TRAINING_NAME>
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr9b-350M-swiglu
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/<YOUR_TRAINING_NAME>-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr9b-350M-swiglu-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
-# You need to git clone the Megatron-DeepSpeed
 MEGATRON_DEEPSPEED_REPO=$DATA_OUTPUT_PATH/code/Megatron-DeepSpeed
 
 # TODO: you may change the dataset, some examples are at tr3-1B3-baseline (tr3 = c4 + t5-tokenizer, tr3m = the Pile)
-VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
-MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+VOCAB_FILE=$DATA_OUTPUT_PATH/data/gpt2-vocab.json
+MERGE_FILE=$DATA_OUTPUT_PATH/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 # defining the right environment variables
 source $six_ALL_CCFRWORK/start-prod
+
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
@@ -55,9 +54,13 @@ GLOBAL_BATCH_SIZE=512
 TRAIN_ITER=73_242_187
 
 NLAYERS=24
-NHIDDEN=2048
+NHIDDEN=1024
 NHEADS=16
-FFN_HIDDEN_SIZE=8192
+# 2728 = (4096 * (2/3)) // 8 * 8
+#   - 2/3 is linked to glu;
+#   - //8 * 8 is to have multiples of 8 so that it's fast. Something about tensorcores
+#     https://developer.nvidia.com/blog/optimizing-gpu-performance-tensor-cores/
+FFN_HIDDEN_SIZE=2728
 SEQ_LEN=2048
 
 SAVE_INTERVAL=1500
@@ -90,6 +93,10 @@ GPT_ARGS=" \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
+
+    --no-bias-gelu-fusion \
+    --glu-activation swiglu \
+
     --train-samples $TRAIN_ITER \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
