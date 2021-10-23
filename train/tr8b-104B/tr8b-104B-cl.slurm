@@ -54,7 +54,7 @@ VOCAB_SIZE=50257
 
 SAVE_INTERVAL=300
 
-LR_WARMUP_SAMPLES=216_320
+LR_WARMUP_SAMPLES=3_750_000
 LR_DECAY_SAMPLES=126_953_125
 LR_DECAY_TOKENS=$(perl -e "print $LR_DECAY_SAMPLES*$SEQ_LEN")
 
@@ -66,7 +66,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 6e-5 \
+    --lr 1e-4 \
     --min-lr 6e-6 \
     --lr-warmup-samples $LR_WARMUP_SAMPLES \
     --lr-decay-tokens $LR_DECAY_TOKENS \
@@ -106,7 +106,7 @@ GPT_ARGS=" \
 OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 1000 \
+    --eval-interval 150 \
     --eval-iters 5 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
