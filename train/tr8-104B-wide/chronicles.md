@@ -615,6 +615,50 @@ So far it looks like a breakthrough and we are training well and have already go
 ![tr8-104B-exp-11.png](images/tr8-104B-exp-11.png)
 
 
+### Analyzing Spike
+
+At iteration 11447 we registered a huge spike:
+```
+ iteration    11446/  159576 | consumed samples:      1255856 | elapsed time per iteration (ms): 80367.0 | learning rate: 3.000E-05 | global batch size:   432 | lm loss: 3.062589E+00 | loss scale: 65536.0 | grad norm: 12952.562 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration    11447/  159576 | consumed samples:      1256288 | elapsed time per iteration (ms): 78599.8 | learning rate: 3.000E-05 | global batch size:   432 | lm loss: 3.114286E+00 | loss scale: 65536.0 | grad norm: 262623.331 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration    11448/  159576 | consumed samples:      1256720 | elapsed time per iteration (ms): 76051.2 | learning rate: 3.000E-05 | global batch size:   432 | lm loss: 7.712340E+00 | loss scale: 65536.0 | grad norm: 254699.302 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+```
+which is now taking a long time to come down from.
+
+To retrieve data around that spike (3 before, 1 after):
+
+```
+source $six_ALL_CCFRWORK/code/tr8-104B/bigscience/train/tr8-104B-wide/start-tr8-104B
+
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8-104B/Megatron-DeepSpeed-tr8-104B
+
+VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
+MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
+
+SEQ_LEN=2048
+python tools/sample_idxs_to_text.py \
+    --print-text \
+    --sample-id-range 1255424 1257152 \
+    --seed 43 \
+    --train-samples 300_000_000 \
+    --seq-length $SEQ_LEN \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --tokenizer-type GPT2BPETokenizer \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --output-file exp11-spike-data-300000000ns_2048sl_43s-1255424-1257152.txt
+```
+and to run:
+```
+bash extract.sh
+```
+
+
 
 ## Adding support for an 8-bit optimizer: bitsandbytes
 
@@ -633,8 +677,43 @@ Sam Shleifer adds on twitter:
 > I think it also has a regularizing effect/might need higher learning rate, but haven't investigated this thoroughly enough to include in the paper.
 
 
+## Expert wisdom
+
+Conglong Li: The first `LR warmup*3` steps is always unstable for large pretraining (w/ or w/o CL).
+
+
+## 2M backslash-only samples in our dataset
+
+Huu Nguyen discovered that there are huge records with just backslashes in OSCAR-en. So we set out to look at their occurence:
+
+```
+$ gunzip -c oscar-en-shuffled.jsonl.gz | fgrep '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\' | tee data-with-many-slashes.txt
+$ wc -l data-with-many-slashes.txt
+6318 data-with-many-slashes.txt
+```
+
+So 6318 records with long sections of backslashes. Some of them are 1M character long!
+
+Let's look closely:
+
+```
+$ perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes.txt | wc -l4245
+4245
+$ perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes.txt | grep 1048574 | wc -l
+3835
+```
+
+So, 4245 records with 10k+ of backslashes, and 3835 records with 1M backslashes.
+
+Remember that this then gets split up into `SEQLEN=2048` chunks, so each 1M-long record becomes 512 samples of 2048 tokens. Thus there are at least 2M samples in the Meg-LM pre-processed OSCAR-en dataset that are made of pure backslashes.
+
+My suspicion is that OSCAR downloaded a single webpage which was comprised of say 4B backslashes. It then happily sliced it into 1M-long records (which I deduce is its max doc length) and thus introduced thousands of records of just backslashes.
+
+
 
 ## Experiment 12
+
+(not yet running)
 
 Experiment 11 was a breakthrough, now we want to see if we can use a higher max LR, so that we could train faster. Therefore for this experiment we are going back to the same settings as 13B for these 2 settings:
 ```
@@ -651,6 +730,8 @@ perl -pi -e 's|--lr-warmup-samples 300_000|--lr-warmup-samples 216_320|' *slurm
 
 
 
+
+
 XXX: to be continued
 
-stopped at Date: 2021-10-19
+stopped at Date: 2021-10-22

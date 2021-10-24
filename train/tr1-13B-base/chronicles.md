@@ -178,7 +178,7 @@ time (ms)
 
 You can see the spike at https://huggingface.co/bigscience/tr1-13B-tensorboard/tensorboard
 
-It took some 500 iteration to recover.
+It took some 500 iterations to recover.
 
 There was a second spike a bit later, half the first one this time and recovered very quickly.
 
