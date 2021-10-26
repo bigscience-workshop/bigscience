@@ -735,7 +735,7 @@ so getting the same result as shuffled, so we indeed know the issue is with the 
 perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes.txt | sort -V
 ```
 
-The largest number this time is `524287` - half the one from the shuffled dataset `1048574`. I wonder if the encoding got messed up on the way, and we got instead of the escaped backslash escaped the escapes and thus got twice as many backslashes. Perhaps it has to do with `-a` of `grep`.
+The largest number this time is `524287` - half the one from the shuffled dataset `1048574`. I wonder if the encoding got messed up on the way, and we got instead of the escaped backslash escaped the escapes and thus got twice as many backslashes. Investigating.
 
 
 
