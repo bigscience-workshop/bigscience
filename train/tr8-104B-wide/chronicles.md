@@ -735,9 +735,16 @@ so getting the same result as shuffled, so we indeed know the issue is with the 
 perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes.txt | sort -V
 ```
 
-The largest number this time is `524287` - half the one from the shuffled dataset `1048574`. I wonder if the encoding got messed up on the way, and we got instead of the escaped backslash escaped the escapes and thus got twice as many backslashes. Investigating.
+The largest number this time is `524287` - half the one from the shuffled dataset `1048574`.
 
+I first thought it was a bug somewhere, but this is just json encoding, so it escapes each backslash. That's why in the original it's 0.5M backslashes and in the processed jsonl files it's 1M backslashes.
 
+```
+$ echo 'this is \\\\ test' > in
+$ python -c 'import json; f = open("in", "r"); t="".join([l for l in f]); print(t); print(json.dumps(t))'
+this is \\\\ test
+"this is \\\\\\\\ test\n"
+```
 
 
 ## Experiment 12
