@@ -724,7 +724,7 @@ cd cache/downloads
 find . -type f -size +50k | xargs -n1  gunzip -c | fgrep -a '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\' | tee data-with-many-slashes.txt
 ```
 
-- Validate
+- Validate:
 
 ```
 $ perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes-*.txt | wc -l
@@ -745,6 +745,8 @@ $ python -c 'import json; f = open("in", "r"); t="".join([l for l in f]); print(
 this is \\\\ test
 "this is \\\\\\\\ test\n"
 ```
+
+So then we only have 1M backslash-only samples in our dataset and not 2M.
 
 
 ## Experiment 12
