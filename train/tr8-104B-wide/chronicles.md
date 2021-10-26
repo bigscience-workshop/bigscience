@@ -681,6 +681,7 @@ Sam Shleifer adds on twitter:
 
 Conglong Li: The first `LR warmup*3` steps is always unstable for large pretraining (w/ or w/o CL).
 
+> First, we observed that the l1 norm and max element of Adam's variance term are correlated with training stability. Second, we observed that the variance term only becomes stable after around LR warmup *3 steps. An example is in our paper https://arxiv.org/pdf/2108.06084.pdf figure 3e 3f, where the LR warmup is 3K step. Not in the paper, but we also measured the variance term for another model with different LR warmup, and the observation is consistent.
 
 ## 2M backslash-only samples in our dataset
 
@@ -697,7 +698,7 @@ So 6318 records with long sections of backslashes. Some of them are 1M character
 Let's look closely:
 
 ```
-$ perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes.txt | wc -l4245
+$ perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes.txt | wc -l
 4245
 $ perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes.txt | grep 1048574 | wc -l
 3835
@@ -708,6 +709,34 @@ So, 4245 records with 10k+ of backslashes, and 3835 records with 1M backslashes.
 Remember that this then gets split up into `SEQLEN=2048` chunks, so each 1M-long record becomes 512 samples of 2048 tokens. Thus there are at least 2M samples in the Meg-LM pre-processed OSCAR-en dataset that are made of pure backslashes.
 
 My suspicion is that OSCAR downloaded a single webpage which was comprised of say 4B backslashes. It then happily sliced it into 1M-long records (which I deduce is its max doc length) and thus introduced thousands of records of just backslashes.
+
+
+Checking that the original indeed contains these records:
+
+- Download the dataset
+```
+python -c "from datasets import load_dataset; load_dataset('oscar', 'unshuffled_deduplicated_en', split='train', keep_in_memory=False, cache_dir='cache')"
+```
+
+- Check the original records:
+```
+cd cache/downloads
+find . -type f -size +50k | xargs -n1  gunzip -c | fgrep -a '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\' | tee data-with-many-slashes.txt
+```
+
+- Validate
+
+```
+$ perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes-*.txt | wc -l
+4245
+```
+so getting the same result as shuffled, so we indeed know the issue is with the original dataset.
+```
+perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes.txt | sort -V
+```
+
+The largest number this time is `524287` - half the one from the shuffled dataset `1048574`. I wonder if the encoding got messed up on the way, and we got instead of the escaped backslash escaped the escapes and thus got twice as many backslashes. Perhaps it has to do with `-a` of `grep`.
+
 
 
 
