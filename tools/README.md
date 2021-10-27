@@ -33,7 +33,7 @@ We are going to put each checkpoint into its own branch with the same name.
 
 ```
 mv ../hf_fixed/global_step* .
-time find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout -b {} \; -exec git add {} \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \;
+time find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout -b {} \; -exec mv {}/config.json . \; -exec mv {}/pytorch_model.bin . \; -exec git add config.json pytorch_model.bin \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \;
 git checkout main
 ```
 ## Fast branch switching in case you messed up and want to fix all your checkpoints
