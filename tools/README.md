@@ -1,9 +1,15 @@
 ## Instrumenting your run
+We assume you're following the structure of the [arch-and-scaling template](https://github.com/bigscience-workshop/bigscience/blob/master/train/arch-and-scaling-template.slurm)
+Go to https://huggingface.co/ and create two models (currently, under your icon on the top right/new model)
+- <YOUR_MODEL_NAME>-checkpoints
+- <YOUR_MODEL_NAME>-logs
+in your output path (DATA_OUTPUT_PATH in the arch-and-scaling template), `git clone` the logs repo and rename the folder to `logs` (mv `<YOUR_MODEL_NAME>-logs` `logs`)
 
 ## How to synch your logs with the hub
+`python tools/hub-sync.py --repo-path <DATA_OUTPUT_PATH>/logs/tensorboard/ --patterns "*tfevent*"`
 
 ## How to synch your checkpoints with the hub
-Latest version of what was used in [https://github.com/bigscience-workshop/bigscience/tree/master/train/tr1-13B-base](training 1).
+Latest version of what was used in [training 1](https://github.com/bigscience-workshop/bigscience/tree/master/train/tr1-13B-base).
 
 Go to your `checkpoints` folder, which should contain a bunch of `global_stepXXXXXX` folders. Open a long running interactive shell:
 ```
