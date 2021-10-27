@@ -14,6 +14,9 @@ Currently, the most active segments of this repo are:
 - [Datasets info](./data/)
 - (Train)(./train) - all the information about the current trainings (see below for the most important ones)
 
+We have READMEs for specific aspects, such as:
+- [hub integration](./tools/README.md)
+
 
 ## Trainings
 
