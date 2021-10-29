@@ -46,7 +46,7 @@ MASTER_PORT=6000
 GPUS_PER_NODE=4
 NNODES=4
 PP_SIZE=1 # 2 # NLAYERS must be a multiple of PP_SIZE here
-TP_SIZE=1 # 4 # always fixed to the size of a single node
+TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=8
