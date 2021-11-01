@@ -17,11 +17,16 @@ set -x -e
 ROUND=2
 TESTING=0
 
-OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr6-1B3-prefix-lm
-MEGATRON_DEEPSPEED_REPO=$OUTPUT_PATH/code/Megatron-DeepSpeed
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr6-1B3-prefix-lm
+CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
+REPO_PATH=$DATA_OUTPUT_PATH/tr6-1B3-prefix-lm-unbiased-loss-logs
+TENSORBOARD_PATH=$REPO_PATH/tensorboard
+CODECARBON_PATH=$REPO_PATH/codecarbon
+LOGS_PATH=$REPO_PATH/logs
+MEGATRON_DEEPSPEED_REPO=$DATA_OUTPUT_PATH/code/Megatron-DeepSpeed
 
-VOCAB_FILE=$OUTPUT_PATH/data/gpt2-vocab.json
-MERGE_FILE=$OUTPUT_PATH/data/gpt2-merges.txt
+VOCAB_FILE=$DATA_OUTPUT_PATH/data/gpt2-vocab.json
+MERGE_FILE=$DATA_OUTPUT_PATH/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 source $six_ALL_CCFRWORK/start-prod
@@ -106,7 +111,7 @@ OUTPUT_ARGS=" \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 1000 \
     --eval-iters 100 \
-    --tensorboard-dir $OUTPUT_PATH/tensorboard \
+    --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
     --log-batch-size-to-tensorboard \
@@ -160,8 +165,8 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
-    --save $OUTPUT_PATH/checkpoints \
-    --load $OUTPUT_PATH/checkpoints \
+    --save $CHECKPOINT_PATH \
+    --load $CHECKPOINT_PATH \
     --data-path $DATA_PATH \
     --data-impl mmap \
     --split 949,50,1 \
@@ -177,5 +182,7 @@ export CMD=" \
 
 echo $CMD
 
+# We create the folder where the logs and codecarbon will be stored.
+mkdir -p $LOGS_PATH
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr6-1B3-prefix-lm.$SLURM_JOBID.out
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
