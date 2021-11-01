@@ -14,7 +14,7 @@
 set -x -e
 
 # TODO: modify these for your training setup, just Ctrl-F replace <YOUR_TRAINING_NAME>
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr9b-1B3-swiglu
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr9-1B3-swiglu
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 REPO_PATH=$DATA_OUTPUT_PATH/tr9-1B3-swiglu-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
