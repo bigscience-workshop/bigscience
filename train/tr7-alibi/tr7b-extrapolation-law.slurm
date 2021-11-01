@@ -1,17 +1,16 @@
 #!/bin/bash
-#SBATCH --job-name=350M-alibi-check-eval-2-seq.slurm
+#SBATCH --job-name=350M-alibi-extrapolation
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
-#SBATCH --time 02:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.out          # output file name
 #SBATCH --error=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.err           # error file name
 #SBATCH --account=six@gpu
 
 set -x -e
-
 
 ROUND=2
 TESTING=0
@@ -32,7 +31,7 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 cd $MEGATRON_DEEPSPEED_REPO
 
-MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_ADDR=$(perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print')
 MASTER_PORT=6000
 
 # adjust depending on the number of the nodes
@@ -40,9 +39,9 @@ MASTER_PORT=6000
 # XXX: edit me
 GPUS_PER_NODE=4
 NNODES=4
-PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
-TP_SIZE=4 # always fixed to the size of a single node
-DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
+PP_SIZE=2                                                 # NLAYERS must be a multiple of PP_SIZE here
+TP_SIZE=4                                                 # always fixed to the size of a single node
+DP_SIZE=$((NNODES * GPUS_PER_NODE / (PP_SIZE * TP_SIZE))) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=8
 GLOBAL_BATCH_SIZE=512
@@ -53,11 +52,13 @@ NHIDDEN=1024
 NHEADS=16
 FFN_HIDDEN_SIZE=4096
 SEQ_LEN=2048
-SEQ_LEN_2=$((10+$SEQ_LEN))
 
-if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10
-elif [[ ${ROUND} == 2 ]]; then  SAVE_INTERVAL=1500
-else echo "invalid ROUND: $ROUND"
+if [[ ${ROUND} == 1 ]]; then
+    EXIT_INTERVAL=100 SAVE_INTERVAL=10
+elif [[ ${ROUND} == 2 ]]; then
+    SAVE_INTERVAL=1500
+else
+    echo "invalid ROUND: $ROUND"
 fi
 
 OPTIMIZER_ARGS=" \
@@ -79,8 +80,11 @@ EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
 
+for increment in {100..2000..100}; do
+    SEQ_LEN_2=$(($increment + $SEQ_LEN))
+    echo "***** Extrapolation for a seq length of $SEQ_LEN_2 *****"
 
-GPT_ARGS=" \
+    GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \
@@ -102,7 +106,7 @@ GPT_ARGS=" \
     $EXIT_OPTS \
     "
 
-OUTPUT_ARGS=" \
+    OUTPUT_ARGS=" \
     --log-interval 200 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 1000 \
@@ -114,49 +118,48 @@ OUTPUT_ARGS=" \
     --log-validation-ppl-to-tensorboard \
     "
 
-ZERO_STAGE=1
+    ZERO_STAGE=1
 
-config_json="./ds_config.$SLURM_JOBID.json"
+    config_json="./ds_config.$SLURM_JOBID.json"
 
-# Deepspeed figures out GAS dynamically from dynamic GBS via set_train_batch_size()
-cat <<EOT > $config_json
+    # Deepspeed figures out GAS dynamically from dynamic GBS via set_train_batch_size()
+    cat <<EOT >$config_json
 {
-  "train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
-  "train_batch_size": $GLOBAL_BATCH_SIZE,
-  "gradient_clipping": 1.0,
-  "zero_optimization": {
+"train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
+"train_batch_size": $GLOBAL_BATCH_SIZE,
+"gradient_clipping": 1.0,
+"zero_optimization": {
     "stage": $ZERO_STAGE
-  },
-  "fp16": {
+},
+"fp16": {
     "enabled": true,
     "loss_scale": 0,
     "loss_scale_window": 500,
     "hysteresis": 2,
     "min_loss_scale": 1,
     "initial_scale_power": 12
-  },
-  "steps_per_print": 2000,
-  "wall_clock_breakdown": false
+},
+"steps_per_print": 2000,
+"wall_clock_breakdown": false
 }
 EOT
 
-
-DEEPSPEED_ARGS=" \
+    DEEPSPEED_ARGS=" \
     --deepspeed \
     --deepspeed_config ${config_json} \
     --zero-stage ${ZERO_STAGE} \
     --deepspeed-activation-checkpointing \
     "
 
-export LAUNCHER="python -u -m torch.distributed.launch \
+    export LAUNCHER="python -u -m torch.distributed.launch \
     --nproc_per_node $GPUS_PER_NODE \
     --nnodes $NNODES \
     --master_addr $MASTER_ADDR \
     --master_port $MASTER_PORT \
     "
 
-export CMD=" \
-    `pwd`/pretrain_gpt.py \
+    export CMD=" \
+    $(pwd)/pretrain_gpt.py \
     --tensor-model-parallel-size $TP_SIZE \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
@@ -167,14 +170,14 @@ export CMD=" \
     --data-impl mmap \
     --split 949,50,1 \
     --distributed-backend nccl \
-     $DEEPSPEED_ARGS \
+    $DEEPSPEED_ARGS \
     "
 
-# # clear old checkpoint as it'd mismatch while we sort things out
-#     rm -rf $SAVE_CHECKPOINT_PATH
+    # # clear old checkpoint as it'd mismatch while we sort things out
+    #     rm -rf $SAVE_CHECKPOINT_PATH
 
+    echo $CMD
 
-echo $CMD
-
-# to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/validation/logs/tr7b-350M-alibi.$SLURM_JOBID.out
+    # to debug - add echo (it exits and prints what it would have launched)
+    srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $OUTPUT_PATH/validation/logs/tr7b-350M-alibi-extrapolation.$SLURM_JOBID.out
+done
