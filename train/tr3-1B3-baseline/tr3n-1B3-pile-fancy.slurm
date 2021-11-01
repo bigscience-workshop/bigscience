@@ -1,12 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=tr5b-1B3-multilingual-oscar.slurm
+#SBATCH --job-name=1B3-pile-fancy.slurm
 #SBATCH --qos=qos_gpu-t3
-#SBATCH --partition=gpu_p2
-#SBATCH --nodes=8
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=16         # number of cores per tasks
+#SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --gres=gpu:8                 # number of gpus
+#SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
@@ -15,17 +14,16 @@
 set -x -e
 
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5b-1B3-multilingual-oscar
-CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr5b-1B3-multilingual-oscar-logs
-TENSORBOARD_PATH=$REPO_PATH/tensorboard
-CODECARBON_PATH=$REPO_PATH/codecarbon
-LOGS_PATH=$REPO_PATH/logs
+ROUND=2
+TESTING=0
+
+OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr3n-1B3-pile-fancy/
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/Megatron-DeepSpeed
 
-DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/dataset_probabilities.0.3.txt`
+VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
+MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+DATA_PATH=$six_ALL_CCFRWORK/datasets/pile/pile_text_document
 
-# defining the right environment variables
 source $six_ALL_CCFRWORK/start-prod
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
@@ -35,19 +33,21 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 cd $MEGATRON_DEEPSPEED_REPO
 
-# so processes know who to talk to
 MASTER_ADDR=`scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1`
 MASTER_PORT=6000
 
-GPUS_PER_NODE=8
-NNODES=8
+# adjust depending on the number of the nodes
+
+# XXX: edit me
+GPUS_PER_NODE=4
+NNODES=16
 PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
-TP_SIZE=8 # always fixed to the size of a single node
+TP_SIZE=4 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=8
 GLOBAL_BATCH_SIZE=512
-TRAIN_ITER=73_242_187
+TRAIN_ITER=146_484_375
 
 NLAYERS=24
 NHIDDEN=2048
@@ -55,7 +55,10 @@ NHEADS=16
 FFN_HIDDEN_SIZE=8192
 SEQ_LEN=2048
 
-SAVE_INTERVAL=1500
+if   [[ ${ROUND} == 1 ]]; then  EXIT_INTERVAL=100    SAVE_INTERVAL=10
+elif [[ ${ROUND} == 2 ]]; then  SAVE_INTERVAL=1500
+else echo "invalid ROUND: $ROUND"
+fi
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \
@@ -65,7 +68,7 @@ OPTIMIZER_ARGS=" \
     --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 73_242_187 \
+    --lr-decay-samples 146_484_375 \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
@@ -86,8 +89,8 @@ GPT_ARGS=" \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
     --train-samples $TRAIN_ITER \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path google/mt5-base \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
     --loss-scale 12 \
     --clip-grad 1.0 \
     --fp16 \
@@ -101,7 +104,7 @@ OUTPUT_ARGS=" \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 1000 \
     --eval-iters 100 \
-    --tensorboard-dir $TENSORBOARD_PATH \
+    --tensorboard-dir $OUTPUT_PATH/tensorboard \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
     --log-batch-size-to-tensorboard \
@@ -155,8 +158,8 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
-    --save $CHECKPOINT_PATH \
-    --load $CHECKPOINT_PATH \
+    --save $OUTPUT_PATH/checkpoints \
+    --load $OUTPUT_PATH/checkpoints \
     --data-path $DATA_PATH \
     --data-impl mmap \
     --split 949,50,1 \
@@ -171,7 +174,5 @@ export CMD=" \
 
 echo $CMD
 
-# We create the folder where the logs and codecarbon will be stored.
-mkdir -p $LOGS_PATH
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee $OUTPUT_PATH/logs/tr3n-1B3-pile-fancy.$SLURM_JOBID.out

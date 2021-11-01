@@ -12,5 +12,5 @@
 
 for filename in *; do
     tar -cvf "$filename.tar" "$filename"
-    mv "$filename.tar" $ALL_CCFRSTORE/tr3_experiments_store/"$filename.tar"
+    mv "$filename.tar" $ALL_CCFRSTORE/arch_scaling_experiments_store/"$filename.tar"
 done
