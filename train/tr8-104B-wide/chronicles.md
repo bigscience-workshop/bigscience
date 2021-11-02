@@ -639,6 +639,8 @@ VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
 MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
+cd $MEGATRON_DEEPSPEED_REPO
+
 SEQ_LEN=2048
 python tools/sample_idxs_to_text.py \
     --print-text \
@@ -727,7 +729,7 @@ find . -type f -size +50k | xargs -n1  gunzip -c | fgrep -a '\\\\\\\\\\\\\\\\\\\
 - Validate:
 
 ```
-$ perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes-*.txt | wc -l
+$ perl -lne 'm|(\\{10000,})| && print length $1' data-with-many-slashes.txt | wc -l
 4245
 ```
 so getting the same result as shuffled, so we indeed know the issue is with the original dataset.
@@ -747,6 +749,129 @@ this is \\\\ test
 ```
 
 So then we only have 1M backslash-only samples in our dataset and not 2M.
+
+
+## Analysing the spikes with custom data
+
+
+We are going to take the last checkpoint just before the spike (`global_step11100`) and try to feed it small custom-made subset datasets from the range of data that we know that caused the spike.
+
+First we need to hack Megatron to allow us to do that:
+
+```
+diff --git a/megatron/checkpointing.py b/megatron/checkpointing.py
+index f7328dc..7b5f0ed 100644
+--- a/megatron/checkpointing.py
++++ b/megatron/checkpointing.py
+@@ -362,6 +362,9 @@ def load_checkpoint(model, optimizer, lr_scheduler, load_arg='load', strict=True
+     else:
+         print_rank_0('could not find arguments in the checkpoint ...')
+
++    args.consumed_train_samples = 0
++    args.consumed_valid_samples = 0
++    iteration = 0
+```
+
+Now for example we can extract just the backslash records (done earlier), make a new dataset:
+
+
+We can also create one dataset with 0.5M backslashes each:
+```
+perl -le 'BEGIN{$x="\\"x524286} for (1..4000) { print qq[{"id": $_, "text": "$x"}] }' > data-with-only-slashes.jsonl
+```
+now to preprocess:
+```
+input=data/data-with-only-slashes.jsonl
+python tools/preprocess_data.py \
+    --input $input \
+    --output-prefix data/data-with-only-slashes \
+    --dataset-impl mmap \
+    --tokenizer-type GPT2BPETokenizer \
+    --merge-file data/gpt2-merges.txt \
+    --vocab data/gpt2-vocab.json \
+    --append-eod \
+    --workers 4
+
+```
+
+Now we have to set the `latest` to the checkpoint of our desire `global_step11100`, so that it'll resume from it.
+
+Now we use the same slurm script, but we have to tweak it to manually set GBS at the time of this iteration which we can see from the log file (`384`), we should also disable the batch size rampup. Finally we set the `train-samples` to a much lower number - say `3000`, which should give us a few iterations of runway.
+
+So:
+```
+-GLOBAL_BATCH_SIZE=2048
++GLOBAL_BATCH_SIZE=384
+-    --rampup-batch-size 16 16 6_000_000 \
+-    --train-samples 300_000_000 \
++    --train-samples 3000 \
+```
+
+Finally, we just need to tweak the script to not overwrite our normal checkpoints when saving, so we will set it save elsewhere. Same goes for the logs and tensorboard files.
+
+```
+PREFIX=data-with-only-slashes
+
+CHECKPOINT_LOAD_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8-104B-data-study/checkpoints
+
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8-104B-data-study/$PREFIX
+CHECKPOINT_SAVE_PATH=$DATA_OUTPUT_PATH/checkpoints
+REPO_PATH=$DATA_OUTPUT_PATH/tr8-104B-logs
+TENSORBOARD_PATH=$REPO_PATH/tensorboard
+LOGS_PATH=$REPO_PATH/logs
+mkdir -p $LOGS_PATH
+
+VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
+MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/${PREFIX}_text_document
+[...]
+
+    --save $CHECKPOINT_SAVE_PATH \
+    --load $CHECKPOINT_LOAD_PATH \
+```
+
+
+
+To peek inside a specific iteration we just do a dump of that sample range as before. Let's get the 3rd iteration here:
+
+```
+source $six_ALL_CCFRWORK/code/tr8-104B/bigscience/train/tr8-104B-wide/start-tr8-104B
+
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8-104B/Megatron-DeepSpeed-tr8-104B-data-study
+
+PREFIX=data-with-only-slashes
+
+VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
+MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/${PREFIX}_text_document
+
+cd $MEGATRON_DEEPSPEED_REPO
+
+SEQ_LEN=2048
+python tools/sample_idxs_to_text.py \
+    --print-text \
+    --sample-id-range 768 1152\
+    --seed 43 \
+    --train-samples 3000 \
+    --seq-length $SEQ_LEN \
+    --data-path $DATA_PATH \
+    --data-impl mmap \
+    --tokenizer-type GPT2BPETokenizer \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
+    --output-file ${PREFIX}-3000ns_2048sl_43s-768-1152.txt
+```
+
+XXX: run an experiment on the sample range where the spike has occurred, but alone. 1256288-1256720.
+
+the spike iteration consumed 1256720 samples, so we need to hack Meg to set the consumed samples to 1256288
+and set GBS=432 and run from there. We hope to reproduce the same spike but force it earlier.
+
+```
+    args.consumed_train_samples = 1256288
+```
+so probably need to add a new cl arg `--override-consumed-train-samples`.
+
 
 
 ## Experiment 12
