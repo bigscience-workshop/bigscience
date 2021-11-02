@@ -38,7 +38,7 @@ export TRANSFORMERS_OFFLINE=1
 cd $MEGATRON_DEEPSPEED_REPO
 
 # so processes know who to talk to
-MASTER_ADDR=$(perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print')
+MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
 # TODO: this is our base config for 1B3, edit PP/TP/batch size/model config if smaller or bigger
