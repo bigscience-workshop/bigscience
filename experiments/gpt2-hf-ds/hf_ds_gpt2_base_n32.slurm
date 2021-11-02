@@ -26,7 +26,7 @@ export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 
 DATASET="stas/openwebtext-10k"
 
-MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
 # adjust depending on the number of the nodes

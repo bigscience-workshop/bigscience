@@ -36,7 +36,7 @@ if this test is run a bit longer, it drops to 600 Gbps.
 
 ```
 export NCCL_DEBUG=info
-export MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 srun --jobid $SLURM_JOBID bash -c 'python -m torch.distributed.launch --nnodes 16 --nproc_per_node=4 --node_rank $SLURM_PROCID --master_addr $MASTER_ADDR --master_port 12345 all_reduce_bench.py'  2>&1 | tee n16_32gb_all_reduce_bench.txt
 ```
 Results:

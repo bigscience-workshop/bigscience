@@ -30,7 +30,7 @@ DATA_PATH=`cat $OUTPUT_PATH/dataset_probabilities.txt`
 
 pushd $MEGATRON_DEEPSPEED_REPO
 
-MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
 # adjust depending on the number of the nodes

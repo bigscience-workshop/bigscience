@@ -21,7 +21,7 @@ source $six_ALL_CCFRWORK/start-prod
 cd $six_ALL_CCFRWORK/code/transformers
 export PYTHONPATH=$six_ALL_CCFRWORK/code/transformers
 
-MASTER_ADDR=`perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'`
+MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=13370
 
 export LAUNCHER=" \
