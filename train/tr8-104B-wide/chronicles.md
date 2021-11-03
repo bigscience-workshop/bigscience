@@ -873,10 +873,21 @@ and set GBS=432 and run from there. We hope to reproduce the same spike but forc
 so probably need to add a new cl arg `--override-consumed-train-samples`.
 
 
+### Additional sub-experiments to run on Exp 11
+
+
+
+Exp 11:
+- instrument Meg to skip data
+- do an experiment with skipping some iterations and resume from there - see if the spike repeats
+- do an experiment with the same data and see if it's reproducible
+- would be interesting to find which batches are causing this; the ones at the spike or the ones before it
+
+
 
 ## Experiment 12
 
-(not yet running)
+(not yet running, not sure if we will have resources/time to do that - perhaps after the CL experiment is over)
 
 Experiment 11 was a breakthrough, now we want to see if we can use a higher max LR, so that we could train faster. Therefore for this experiment we are going back to the same settings as 13B for these 2 settings:
 ```

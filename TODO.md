@@ -3,7 +3,8 @@
 
 ## CI
 
-- fix CI
+- replace CI with constantly running GCP instance
+
 
 
 ## TODO
