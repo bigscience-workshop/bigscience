@@ -1,10 +1,13 @@
 # Chronicles
 
-Same as tr8-104B but using Curriculum Learning (CL)
+Same as tr8-104B but using new additions such as:
+
+1. Curriculum Learning (CL) https://arxiv.org/abs/2108.06084
+2. BitsNBytes (BNB) https://github.com/facebookresearch/bitsandbytes
 
 https://huggingface.co/bigscience/tr8b-104B-logs/tensorboard
 
-# Experiment 1
+## CL Experiment 1
 
 Trying to figure out good baseline settings for CL
 
@@ -16,9 +19,9 @@ Stopped training at iter 500:
 ![tr8b-104B-exp-01.png](images/tr8b-104B-exp-01.png)
 
 
-# Experiment 2
+## CL Experiment 2
 
-Need to finetune for more optimal performance
+finetuned exp 1 for more optimal performance
 
 > Conglong Li
 
@@ -38,3 +41,6 @@ perl -pi -e 's|--eval-interval 1000|--eval-interval 150|' *slurm
 ```
 
 [script](https://github.com/bigscience-workshop/bigscience/blob/d5fc4b22d7e88e87b4b9ec610b6c522b9a8c7a8d/train/tr8b-104B/tr8b-104B-cl.slurm)
+
+
+## BNB Experiment 1
