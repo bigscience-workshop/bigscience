@@ -34,13 +34,13 @@ The factor of 4 is when used with activation check-pointing,
 otherwise it will be 3, but for 200B model, activation check-pointing will always be on.
 
 ```
-perl -le '$ng=64; $ms=52; $gbs=1024; $sp=127; print $ms*4*2*1024*$gbs / ( $sp * $ng * 1e3)'
+perl -le '$ng=64; $ms=52; $gbs=1024; $sp=127; $seqlen=2048; print $ms*4*2*$seqlen*$gbs / ( $sp * $ng * 1e3)'
 ```
 (ng = total gpus, ms = model size in B, gbs = global batch size, sp = throughput in seconds)
 
 same with bash env vars and broken down GBS into mbs*dp*gas (gas=pp_chunks):
 ```
-echo "($MSIZE*4*2*1024*$MICRO_BATCH_SIZE*$DP_SIZE*$GAS)/($THROUGHPUT*$NNODES*4*1000)" | bc -l
+echo "($MSIZE*4*2*SEQLEN*$MICRO_BATCH_SIZE*$DP_SIZE*$GAS)/($THROUGHPUT*$NNODES*4*1000)" | bc -l
 ```
 
 - Automatically process slurm/ megatron log files, average the throughput (prints 'fail' on when the training failed w/o producing a single iteration stat):
