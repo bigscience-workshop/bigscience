@@ -38,7 +38,7 @@ MASTER_PORT=6000
 
 GPUS_PER_NODE=4
 NNODES=128   # switch to 128
-TP_SIZE=4    # always fixed to the size of a single node
+TP_SIZE=2    # always fixed to the size of a single node
 PP_SIZE=32   # NLAYERS must be a multiple of PP_SIZE here
 #DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
 
