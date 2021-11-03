@@ -20,7 +20,6 @@ DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8-104B
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 REPO_PATH=$DATA_OUTPUT_PATH/tr8-104B-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
-CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
 mkdir -p $LOGS_PATH
 
@@ -93,7 +92,6 @@ GPT_ARGS=" \
     $EXIT_OPTS \
     "
 
-#    --codecarbon-dir $CODECARBON_PATH \
 OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \

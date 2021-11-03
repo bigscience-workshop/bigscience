@@ -128,6 +128,7 @@ cat <<EOT > $config_json
     "min_loss_scale": 1,
     "initial_scale_power": 12
   },
+  "zero_allow_untested_optimizer": true,
   "steps_per_print": 2000,
   "wall_clock_breakdown": false
 }
