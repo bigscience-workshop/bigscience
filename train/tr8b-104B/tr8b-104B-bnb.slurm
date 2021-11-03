@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr8b-104B
+#SBATCH --job-name=tr8b-104B-bnb
 #SBATCH --constraint=v100-32g
 #SBATCH --nodes=128
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -16,9 +16,9 @@ source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8b-104B/start-tr8b-10
 
 echo "START TIME: $(date)"
 
-VARIANT=cl
+VARIANT=bnb
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8b-104B
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8b-104B/
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$VARIANT
 REPO_PATH=$DATA_OUTPUT_PATH/tr8b-104B-logs/
 TENSORBOARD_PATH=$REPO_PATH/tensorboard/$VARIANT
@@ -55,23 +55,17 @@ VOCAB_SIZE=50257
 
 SAVE_INTERVAL=300
 
-LR_WARMUP_SAMPLES=3_750_000
-LR_DECAY_SAMPLES=126_953_125
-LR_DECAY_TOKENS=$(perl -e "print $LR_DECAY_SAMPLES*$SEQ_LEN")
-
-TRAIN_SAMPLES=600_000_000
-TRAIN_TOKENS=300_000_000_000
-
 OPTIMIZER_ARGS=" \
+    --use-bnb-optimizer \
     --optimizer adam \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 1e-4 \
+    --lr 6e-5 \
     --min-lr 6e-6 \
-    --lr-warmup-samples $LR_WARMUP_SAMPLES \
-    --lr-decay-tokens $LR_DECAY_TOKENS \
     --lr-decay-style cosine \
+    --lr-decay-samples 126_953_125 \
+    --lr-warmup-samples 216_320 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
@@ -80,8 +74,6 @@ EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
 
-#    --rampup-batch-size 16 16 6_000_000 \
-
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
@@ -89,9 +81,9 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
+    --rampup-batch-size 16 16 6_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
-    --train-samples $TRAIN_SAMPLES \
-    --train-tokens $TRAIN_TOKENS \
+    --train-samples 300_000_000 \
     --vocab-file $VOCAB_FILE \
     --merge-file $MERGE_FILE \
     --loss-scale 12 \
@@ -106,7 +98,7 @@ GPT_ARGS=" \
 OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 150 \
+    --eval-interval 1000 \
     --eval-iters 5 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
@@ -135,17 +127,6 @@ cat <<EOT > $config_json
     "hysteresis": 2,
     "min_loss_scale": 1,
     "initial_scale_power": 12
-  },
-  "curriculum_learning": {
-    "enabled": true,
-    "curriculum_type": "seqlen",
-    "min_difficulty": 64,
-    "max_difficulty": $SEQ_LEN,
-    "schedule_type": "fixed_linear",
-    "schedule_config": {
-      "total_curriculum_step": 36000,
-      "difficulty_step": 8
-    }
   },
   "steps_per_print": 2000,
   "wall_clock_breakdown": false
@@ -188,5 +169,3 @@ echo $CMD
 clear; srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
 
 echo "END TIME: $(date)"
-
-#
