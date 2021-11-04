@@ -10,16 +10,14 @@
 #SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --account=six@gpu
 
-# This is compared with tr3d-1B3-more-warmup.slurm
-
 set -x -e
 
 ROUND=2
 TESTING=0
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr6e-1B3-pile
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr6f-1B3-oscar-no-loss-on-targets-only
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr6e-1B3-pile-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr6f-1B3-oscar-no-loss-on-targets-only-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
@@ -27,7 +25,7 @@ MEGATRON_DEEPSPEED_REPO=$DATA_OUTPUT_PATH/code/Megatron-DeepSpeed
 
 VOCAB_FILE=$DATA_OUTPUT_PATH/data/gpt2-vocab.json
 MERGE_FILE=$DATA_OUTPUT_PATH/data/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRWORK/datasets/pile/pile_text_document
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 source $six_ALL_CCFRWORK/start-prod
 conda activate thomas_prefix_lm # Debug deepspeed temporarily
@@ -54,7 +52,7 @@ DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatic
 
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=512
-TRAIN_ITER=146_484_375
+TRAIN_ITER=73_242_187
 
 NLAYERS=24
 NHIDDEN=2048
@@ -75,7 +73,7 @@ OPTIMIZER_ARGS=" \
     --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 146_484_375 \
+    --lr-decay-samples 73_242_187 \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
@@ -171,7 +169,6 @@ export CMD=" \
     --data-impl mmap \
     --split 949,50,1 \
     --distributed-backend nccl \
-    --loss-on-targets-only \
      $DEEPSPEED_ARGS \
     "
 
