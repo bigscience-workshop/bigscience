@@ -7,7 +7,7 @@ When to use DP:
  - It does have a negative impact if the number `$GBS / $MBS` is close to DP as you end up losing pipeline efficiency
 
 When to use TP:
- - When a single layer does not fit in a single gpu.
+ - When the largest layer does not fit into a single gpu (along with all the activation, optimizer states and gradient memory).
  - TP is communication heavy, so you should never go beyond the number of gpus available in a single node
 
 When to use PP:
