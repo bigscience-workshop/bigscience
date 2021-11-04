@@ -19,7 +19,7 @@ The recipe goes as follow:
        1) The factor in model size should be roughly the same as the factor in gpus
     2) Empiric rule: model_size*18 < 75% of gpu (to take in account additional activation memory)
        1) If that is `True` then you don't need any model parallelism
-    3) Test different configurations with a single replica starting from TP=1/PP=1 with a single replicate (DP=1) until you don't have OOM errors
+    3) Test different configurations with a single replica starting from TP=1/PP=1 with a single replica (DP=1) until you don't have OOM errors
  2) You usually want PP=$MP unless a single layer doesn't fit in a single gpu in which case TP is necessary:
     1) You can use the rule the empiric rule in 1.ii for single layers to get an idea if you need TP or not.
 
