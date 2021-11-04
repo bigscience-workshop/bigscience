@@ -23,4 +23,11 @@ The recipe goes as follow:
  2) You usually want PP=$MP unless a single layer doesn't fit in a single gpu in which case TP is necessary:
     1) You can use the rule the empiric rule in 1.ii for single layers to get an idea if you need TP or not.
 
-Bear in mind that the recipe is not perfect, and the best thing would be to run configuration individually and benchmark
+Bear in mind that this is just guidelines that will help you to quickly narrow down the configuration options. But you should still try a few different configurations and see which one gives the best throughput.
+
+Also watch the gpu memory usage by logging into one of the nodes. You don't want it to be too close to the max. And also you don't want to have a lot of free gpu memory available. If there is then you can tune things up more to squeeze a higher gpu utilization. e.g. you can benchmark raising MBS to use the free memory. But test the impact, since it doesn't always make things faster.
+
+Additionally, be aware of [the different constraints](https://github.com/bigscience-workshop/bigscience/blob/master/train/sanity-checks.md).
+
+Here is [how to calculate TFLOPs](https://github.com/bigscience-workshop/bigscience/tree/master/math#calculate-tflops).
+
