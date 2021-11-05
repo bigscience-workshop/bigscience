@@ -16,7 +16,7 @@ https://github.com/bigscience-workshop/bigscience/blob/82fe642fb1eedd0361bac6899
 
 Stopped training at iter 500:
 
-![tr8b-104B-exp-01.png](images/tr8b-104B-exp-01.png)
+![tr8b-104B-cl-exp-01.png](images/tr8b-104B-cl-exp-01.png)
 
 
 ## CL Experiment 2
@@ -44,3 +44,72 @@ perl -pi -e 's|--eval-interval 1000|--eval-interval 150|' *slurm
 
 
 ## BNB Experiment 1
+
+[script](https://github.com/bigscience-workshop/bigscience/blob/7a1481355a1abe097a9fb2c9021c292cb9971da3/train/tr8b-104B/tr8b-104B-bnb.slurm)
+
+![tr8b-104B-bnb-exp-01.png](images/tr8b-104B-bnb-exp-01.png)
+
+Tim:
+
+what I have seen before with linear quantization, is that a smaller Adam eps is needed for stability. I never see this to be required for 8-bit Adam with dynamic quantization, but in the beginning of training the optimizer is a bit more unstable
+
+For linear I found that stability started from 1e-6
+
+I think 1e-5 degraded performance quite a bit, so I would try 1e-6 and 1e-7
+
+I am not sure how the initialization is done. It could be that the initial initialization for the embedding layer is overwritten and that may cause instabilities
+￼￼
+I also see that you are using weight decay. I have not run many experiments with that and so unsure how the behavior is. For weight decay the AdamW formulation is used
+
+When I tried 8-bit adam with fully sharded parallelism by just replacing the optimizer it did not work for me and I actually had a similar behavior as you see. Short decrease in loss and then stagnation. I think this could be related to the quantization statistics which are not properly synchronized across shards. But this is just a hunch. I think this could be tested by running a small model (maybe something like 500M params) and see if 8-bit Adam works there. If it does not work, it might be related to the quantization statistics
+￼￼
+So with xavier the max value for the embedding layer is 0.0106 and the 99% percentile value for N(0, 0.006) is 0.18 which is much larger. So it could just be the initialization
+￼￼
+I think 0.006 is still very high for the embedding layer. So that might be the issue, but could also the other things mentioned. I would leave the init value for the other layers if that worked for you
+
+Stas:
+
+I will add an experiment to leave the default init for the embed layer, and keep our 0.006 for the rest.
+
+## BNB Experiment 2
+
+So trying lower Adam eps:
+
+```
+--adam-eps 1e-6 \
+```
+
+```
+perl -pi -e 's|--adam-eps 1e-8|--adam-eps 1e-6|' *bnb*.slurm
+```
+
+this made no difference, got an identical loss as exp 1
+
+
+## BNB Experiment 3
+
+rollback to exp1, restore `--adam-eps`
+
+```
+perl -pi -e 's|--adam-eps 1e-6|--adam-eps 1e-8|' *bnb*.slurm
+```
+
+Try to turn optimizer sharding off - turn off ZeRO-1 - perhaps it doesn't work well with the 8-bit optimizer.
+
+```
+perl -pi -e 's|ZERO_STAGE=1|ZERO_STAGE=0|' *bnb*.slurm
+```
+
+Not sure if the setup won't OOM now. Got 31.7GB memory - it's borderline OOM.
+
+no change, same trajectory
+
+ZeRO-1's optim state sharding should be totally transparent, since it unshards the states before the optimizer gets to see them. But it was good to validate that in an experiment.
+
+## BNB Experiment 4
+
+Let's do a quick test with `--init-method-std 0.02` - we know it's not good for most of the model, but let's see if it impacts for the better the really early issue with BNB. If it does make things better then we can do the different init for different layers, so changing:
+
+```
+perl -pi -e 's|--init-method-std 0.006|--init-method-std 0.02|' *bnb*.slurm
+```
