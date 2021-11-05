@@ -52,7 +52,6 @@ if __name__ == "__main__":
         for file, weight in file_weights:
             eval_strings[0] += f" {weight} {valid_split_string} {file},"
             language_code = file[prefix:suffix]
-            print(language_code)
             eval_strings.append(f"valid_{language_code}: 1 {valid_split_string} {file}")
         eval_string = " ".join([finalize_dataset_string(eval_string) for eval_string in eval_strings])
         with open(os.path.join(args.input_files_dir, f"eval_data_string.{alpha}.txt"), "w") as f:
@@ -62,7 +61,6 @@ if __name__ == "__main__":
         for file, weight in file_weights:
             test_strings[0] += f" {weight} {test_split_string} {file},"
             language_code = file[prefix:suffix]
-            print(language_code)
             test_strings.append(f"test_{language_code}: 1 {test_split_string} {file}")
         test_string = " ".join([finalize_dataset_string(test_string) for test_string in test_strings])
         with open(os.path.join(args.input_files_dir, f"test_data_string.{alpha}.txt"), "w") as f:
