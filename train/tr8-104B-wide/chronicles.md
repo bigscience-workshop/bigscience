@@ -887,9 +887,9 @@ Exp 11:
 
 ## Experiment 12
 
-(not yet running, not sure if we will have resources/time to do that - perhaps after the CL experiment is over)
+Experiment 11 was a breakthrough, now we want to see if we can use a higher max LR, so that we could train faster. And also to be able to compare to the 13B scaling laws.
 
-Experiment 11 was a breakthrough, now we want to see if we can use a higher max LR, so that we could train faster. Therefore for this experiment we are going back to the same settings as 13B for these 2 settings:
+Therefore for this experiment we are going back to the same settings as 13B for these 2 settings:
 ```
     --lr 6e-5 \
     --lr-warmup-samples 216_320 \
@@ -908,4 +908,4 @@ perl -pi -e 's|--lr-warmup-samples 300_000|--lr-warmup-samples 216_320|' *slurm
 
 XXX: to be continued
 
-stopped at Date: 2021-10-22
+stopped at Date: 2021-11-04
