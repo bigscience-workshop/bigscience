@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-v2.slurm
+#SBATCH --job-name=1B3.slurm
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -46,11 +46,11 @@ MASTER_PORT=6000
 # TODO: this is our base config for 1B3, edit PP/TP/batch size/model config if smaller or bigger
 GPUS_PER_NODE=4
 NNODES=16
-PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
-TP_SIZE=4 # always fixed to the size of a single node
+PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
+TP_SIZE=1 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
-MICRO_BATCH_SIZE=8
+MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=512
 TRAIN_ITER=73_242_187
 
@@ -70,7 +70,6 @@ OPTIMIZER_ARGS=" \
     --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 73_242_187 \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
