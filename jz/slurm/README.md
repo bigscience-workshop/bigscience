@@ -471,7 +471,6 @@ now the test slurm script - use a few minutes time for this test so that SLURM y
 ```
 #!/bin/bash
 #SBATCH --job-name=dummy.slurm
-#SBATCH --qos=qos_gpu-t3
 #SBATCH --partition=gpu_p13
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -480,7 +479,6 @@ now the test slurm script - use a few minutes time for this test so that SLURM y
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 0:05:00               # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
 #SBATCH --account=six@gpu
 
 source $six_ALL_CCFRWORK/start-prod
