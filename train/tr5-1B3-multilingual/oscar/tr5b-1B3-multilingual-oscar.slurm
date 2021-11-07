@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
-#SBATCH --time 00:45:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
 #SBATCH --account=six@gpu
@@ -23,7 +23,7 @@ LOGS_PATH=$REPO_PATH/logs
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/Megatron-DeepSpeed
 
 TRAIN_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/train_data_string.0.3.txt`
-VALID_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/eval_data_string.0.3.txt`
+VALID_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/valid_data_string.0.3.txt`
 TEST_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/test_data_string.0.3.txt`
 
 # defining the right environment variables

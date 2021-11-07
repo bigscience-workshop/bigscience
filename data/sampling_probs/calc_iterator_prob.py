@@ -4,6 +4,10 @@ import json
 import argparse
 import subprocess
 from collections import OrderedDict
+from new_to_old_format_data_path import output_sampling_probs_new_format
+
+SPLIT = [0, 0.949, 0.999, 1.0]
+
 
 def calc_multinomial_sampling_prob_with_penalty(dataset_size, alpha=.5):
     """
@@ -15,17 +19,17 @@ def calc_multinomial_sampling_prob_with_penalty(dataset_size, alpha=.5):
     for lang, size in dataset_size.items():
         tot_size += size
     for lang, size in dataset_size.items():
-        probs[lang] = size/tot_size
+        probs[lang] = size / tot_size
 
     pen_prob = OrderedDict()
     tot_pen_prob = 0.0
     for lang, prob in probs.items():
-        tot_pen_prob += (prob**alpha)
+        tot_pen_prob += (prob ** alpha)
     sum_ = 0.0
     for lang, prob in probs.items():
-        pen_prob[lang] = (prob**alpha)/tot_pen_prob
+        pen_prob[lang] = (prob ** alpha) / tot_pen_prob
         sum_ += pen_prob[lang]
-    assert math.fabs(1-sum_) < 1e-6
+    assert math.fabs(1 - sum_) < 1e-6
     return pen_prob
 
 
@@ -47,10 +51,10 @@ def get_size_stats(args):
             elif args.size_format == 'MB':
                 _conv = 1024
             elif args.size_format == 'GB':
-                _conv = 1024*1024
+                _conv = 1024 * 1024
             elif args.size_format == 'TB':
-                _conv = 1024*1024*1024
-            lang_size_ = round(lang_size/float(_conv), 2)
+                _conv = 1024 * 1024 * 1024
+            lang_size_ = round(lang_size / float(_conv), 2)
             lang_size_dict[full_file_path] = lang_size_
     return lang_size_dict
 
@@ -59,15 +63,16 @@ def print_stat(args, lang_size_dict, value_name='size'):
     """
     Print size statistics.
     """
-    lang_list = sorted([(k,v) for k, v in lang_size_dict.items()], key=lambda tup: tup[1])
+    lang_list = sorted([(k, v) for k, v in lang_size_dict.items()], key=lambda tup: tup[1])
     total_size = 0
     print("\nLanguage : ({})".format(value_name))
-    print("-"*20)
+    print("-" * 20)
     for lang, size in lang_list:
         print("{} :   {}".format(lang, size))
         total_size += size
-    print("-"*20)
+    print("-" * 20)
     print("Total size : {}".format(total_size))
+
 
 def removesuffix(string, suffix):
     if string.endswith(suffix):
@@ -90,6 +95,8 @@ def main():
                         help='File name prefix to match. Combination of `--name-prefix` and --extension-name will be used to select file.')
     parser.add_argument('--extension-name', type=str, required=True,
                         help='Extension of the file to match. Combination of `--name-prefix` and --extension-name will be used to select file')
+    parser.add_argument('--old-format', action="store_true",
+                        help='Extension of the file to match. Combination of `--name-prefix` and --extension-name will be used to select file')
 
     args = parser.parse_args()
     size_dict = get_size_stats(args)
@@ -100,24 +107,26 @@ def main():
     print_stat(args, sampling_probability, 'probability')
     total_contrib = 0
     print("\nLanguage : Per epoch contribution in {}".format(args.size_format))
-    print("-"*50)
+    print("-" * 50)
     for lang, prob in sampling_probability.items():
         sampling_probability[lang] = (prob, size_dict[lang])
-        lang_contrib_size = round(size_dict[lang]*prob, 2)
+        lang_contrib_size = round(size_dict[lang] * prob, 2)
         print("{} :   {}  ({}  ->  {})".format(lang, prob, size_dict[lang], lang_contrib_size))
         total_contrib += lang_contrib_size
-    print("-"*50)
+    print("-" * 50)
     print("Total size : {}".format(total_contrib))
 
     open(os.path.join(args.output_dir, 'iterator_selection_prob.{}.json'.format(args.alpha)), "w").write(
         json.dumps(sampling_probability, indent=4)
     )
 
-    with open(os.path.join(args.output_dir, "dataset_probabilities.{}.txt".format(args.alpha)), "w") as fout:
-        fout.write(" ".join([f"{prob[0]} {removesuffix(path, '.bin')}" for path, prob in sampling_probability.items()]))
-    pass
-
-
+    if args.old_format:
+        with open(os.path.join(args.output_dir, "dataset_probabilities.{}.txt".format(args.alpha)), "w") as fout:
+            fout.write(
+                " ".join([f"{prob[0]} {removesuffix(path, '.bin')}" for path, prob in sampling_probability.items()]))
+        pass
+    else:
+        output_sampling_probs_new_format(sampling_probability, args.output_dir, args.alpha)
 
 if __name__ == '__main__':
     main()
