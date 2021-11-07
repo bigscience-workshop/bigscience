@@ -480,14 +480,15 @@ now the test slurm script - use a few minutes time for this test so that SLURM y
 source $six_ALL_CCFRWORK/start-prod
 srun --jobid $SLURM_JOBID ./test-nodes.py
 ```
-one it runs check the logs.
-
+once it runs check the logs to see if any reported `False`.
 
 Now once the faulty node(s) is found, feed it to `sbatch`:
 ```
 sbatch --exclude=hostname1,hostname2 ...
 ```
-and sbatch will exclude the requested nodes from the allocation.
+and `sbatch` will exclude the bad nodes from the allocation.
+
+Additionally please report the faulty nodes to `assist@idris.fr` so that they reboot the machine.
 
 
 ## TODO
