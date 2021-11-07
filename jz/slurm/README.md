@@ -426,6 +426,39 @@ If it's important to have the log-file contain the array id, add `%A_%a`:
 More details https://slurm.schedmd.com/job_array.html
 
 
+## Find faulty nodes and exclude them
+
+Sometimes a node is broken, which prevents one from training, especially since restarting the job often hits the same set of nodes. So one needs to be able to isolate the bad node(s) and exclude it from `sbatch`.
+
+To find a faulty node, write a small script that reports back the status of the desired check.
+
+For example to test if cuda is available on all nodes:
+```
+python -c 'import torch, socket; print(f"{socket.gethostname()}: {torch.cuda.is_available()}")'
+```
+
+and to only report the nodes that fail:
+```
+python -c 'import torch, socket; torch.cuda.is_available() or print(f"Broken node: {socket.gethostname()}") '
+```
+
+Of course, the issue could be different - e.g. gpu can't allocate memory, so change the test script to do a small allocation on cuda.
+
+But since we need to run it on all nodes the slurm script needs to run this instead:
+
+```
+srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
+```
+
+You can always convert the one liner into a real script and then there is no issue with quotes.
+
+Now once the faulty node(s) is found, feed it to `sbatch`:
+```
+sbatch --exclude=hostname1,hostname2 ...
+```
+and sbatch will exclude the requested nodes from the allocation.
+
+
 ## TODO
 
 absorb more goodies from here: https://ubccr.freshdesk.com/support/solutions/articles/5000686861-how-do-i-check-the-status-of-my-job-s-
