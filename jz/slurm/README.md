@@ -442,13 +442,19 @@ and to only report the nodes that fail:
 python -c 'import torch, socket; torch.cuda.is_available() or print(f"Broken node: {socket.gethostname()}") '
 ```
 
-Of course, the issue could be different - e.g. gpu can't allocate memory, so change the test script to do a small allocation on cuda.
+Of course, the issue could be different - e.g. gpu can't allocate memory, so change the test script to do a small allocation on cuda. Here is one way:
 
-But since we need to run it on all nodes the slurm script needs to run this instead:
+```
+python -c "import torch; torch.ones(1000,1000).cuda()"
+```
+
+But since we need to run the test script on all nodes and not just the first node, the slurm script needs to run it via `srun`. So our first diagnostics script can be written as:
 
 ```
 srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
 ```
+
+I slightly changed it, due to an issue with quotes.
 
 You can always convert the one liner into a real script and then there is no issue with quotes.
 
