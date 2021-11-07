@@ -452,6 +452,37 @@ srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket
 
 You can always convert the one liner into a real script and then there is no issue with quotes.
 
+```
+$ cat <<EOT >> test-nodes.py
+#!/usr/bin/env python
+import torch, socket
+print(socket.gethostname(), torch.cuda.is_available())
+EOT
+$ chmod a+x ./test-nodes.py
+```
+
+now the test slurm script - use a few minutes time for this test so that SLURM yields it faster:
+```
+#!/bin/bash
+#SBATCH --job-name=dummy.slurm
+#SBATCH --qos=qos_gpu-t3
+#SBATCH --partition=gpu_p13
+#SBATCH --nodes=4
+#SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
+#SBATCH --cpus-per-task=40           # number of cores per tasks
+#SBATCH --hint=nomultithread         # we get physical cores not logical
+#SBATCH --gres=gpu:4                 # number of gpus
+#SBATCH --time 0:05:00               # maximum execution time (HH:MM:SS)
+#SBATCH --output=%x-%j.out           # output file name
+#SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
+#SBATCH --account=six@gpu
+
+source $six_ALL_CCFRWORK/start-prod
+srun --jobid $SLURM_JOBID ./test-nodes.py
+```
+one it runs check the logs.
+
+
 Now once the faulty node(s) is found, feed it to `sbatch`:
 ```
 sbatch --exclude=hostname1,hostname2 ...
