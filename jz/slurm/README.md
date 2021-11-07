@@ -470,7 +470,7 @@ $ chmod a+x ./test-nodes.py
 Now let's create a driver slurm script. Use a few minutes time for this test so that SLURM yields it faster:
 ```
 #!/bin/bash
-#SBATCH --job-name=dummy.slurm
+#SBATCH --job-name=test-nodes.slurm
 #SBATCH --partition=gpu_p13
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
