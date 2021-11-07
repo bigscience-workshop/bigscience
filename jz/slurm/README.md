@@ -459,7 +459,7 @@ I slightly changed it, due to an issue with quotes.
 You can always convert the one liner into a real script and then there is no issue with quotes.
 
 ```
-$ cat <<EOT >> test-nodes.py
+$ cat << EOT >> test-nodes.py
 #!/usr/bin/env python
 import torch, socket
 print(socket.gethostname(), torch.cuda.is_available())
@@ -467,7 +467,7 @@ EOT
 $ chmod a+x ./test-nodes.py
 ```
 
-now the test slurm script - use a few minutes time for this test so that SLURM yields it faster:
+Now let's create a driver slurm script. Use a few minutes time for this test so that SLURM yields it faster:
 ```
 #!/bin/bash
 #SBATCH --job-name=dummy.slurm
@@ -484,7 +484,7 @@ now the test slurm script - use a few minutes time for this test so that SLURM y
 source $six_ALL_CCFRWORK/start-prod
 srun --jobid $SLURM_JOBID ./test-nodes.py
 ```
-once it runs check the logs to see if any reported `False`.
+Once it runs check the logs to see if any reported `False`, those are the nodes you want to exclude.
 
 Now once the faulty node(s) is found, feed it to `sbatch`:
 ```
