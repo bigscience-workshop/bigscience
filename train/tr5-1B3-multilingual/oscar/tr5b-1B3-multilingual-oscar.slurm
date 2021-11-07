@@ -1,13 +1,12 @@
 #!/bin/bash
 #SBATCH --job-name=tr5b-1B3-multilingual-oscar.slurm
-#SBATCH --qos=qos_gpu-t3
-#SBATCH --partition=gpu_p2
-#SBATCH --nodes=8
+#SBATCH --partition=gpu_p13
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=16         # number of cores per tasks
+#SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --gres=gpu:8                 # number of gpus
-#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --gres=gpu:4                 # number of gpus
+#SBATCH --time 00:45:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
 #SBATCH --account=six@gpu
@@ -23,10 +22,12 @@ CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
 MEGATRON_DEEPSPEED_REPO=$SCRATCH/Megatron-DeepSpeed
 
-DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/dataset_probabilities.0.3.txt`
+TRAIN_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/train_data_string.0.3.txt`
+VALID_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/eval_data_string.0.3.txt`
+TEST_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/test_data_string.0.3.txt`
 
 # defining the right environment variables
-source $six_ALL_CCFRWORK/start-prod
+source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8b-104B/start-tr8b-104B
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
@@ -35,17 +36,20 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 cd $MEGATRON_DEEPSPEED_REPO
 
+# testing for potential faulty nodes
+srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
+
 # so processes know who to talk to
 MASTER_ADDR=`scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1`
 MASTER_PORT=6000
 
-GPUS_PER_NODE=8
-NNODES=8
-PP_SIZE=4 # NLAYERS must be a multiple of PP_SIZE here
-TP_SIZE=8 # always fixed to the size of a single node
+GPUS_PER_NODE=4
+NNODES=16
+PP_SIZE=8 # NLAYERS must be a multiple of PP_SIZE here
+TP_SIZE=1 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
-MICRO_BATCH_SIZE=8
+MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=512
 TRAIN_ITER=73_242_187
 
@@ -157,7 +161,9 @@ export CMD=" \
     $OUTPUT_ARGS \
     --save $CHECKPOINT_PATH \
     --load $CHECKPOINT_PATH \
-    --data-path $DATA_PATH \
+    --train-weighted-split-paths "$TRAIN_DATA_PATH" \
+    --valid-weighted-split-paths "$VALID_DATA_PATH" \
+    --test-weighted-split-paths "$TEST_DATA_PATH" \
     --data-impl mmap \
     --split 949,50,1 \
     --distributed-backend nccl \

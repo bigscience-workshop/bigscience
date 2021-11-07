@@ -48,14 +48,14 @@ if __name__ == "__main__":
         with open(os.path.join(args.input_files_dir, f"train_data_string.{alpha}.txt"), "w") as f:
             f.write(train_string)
 
-        eval_strings = ["all_valid:"]
+        valid_strings = ["all_valid:"]
         for file, weight in file_weights:
-            eval_strings[0] += f" {weight} {valid_split_string} {file},"
+            valid_strings[0] += f" {weight} {valid_split_string} {file},"
             language_code = file[prefix:suffix]
-            eval_strings.append(f"valid_{language_code}: 1 {valid_split_string} {file}")
-        eval_string = " ".join([finalize_dataset_string(eval_string) for eval_string in eval_strings])
-        with open(os.path.join(args.input_files_dir, f"eval_data_string.{alpha}.txt"), "w") as f:
-            f.write(eval_string)
+            valid_strings.append(f"valid_{language_code}: 1 {valid_split_string} {file}")
+        valid_string = " ".join([finalize_dataset_string(valid_string) for valid_string in valid_strings])
+        with open(os.path.join(args.input_files_dir, f"valid_data_string.{alpha}.txt"), "w") as f:
+            f.write(valid_string)
 
         test_strings = ["all_test:"]
         for file, weight in file_weights:

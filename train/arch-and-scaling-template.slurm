@@ -39,6 +39,9 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 cd $MEGATRON_DEEPSPEED_REPO
 
+# testing for potential faulty nodes
+srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
+
 # so processes know who to talk to
 MASTER_ADDR=`scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1`
 MASTER_PORT=6000
