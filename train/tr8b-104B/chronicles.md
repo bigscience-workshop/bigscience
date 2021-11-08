@@ -88,7 +88,7 @@ this made no difference, got an identical loss as exp 1
 
 ## BNB Experiment 3
 
-rollback to exp1, restore `--adam-eps`
+Rollback to Exp 01, restore `--adam-eps`
 
 ```
 perl -pi -e 's|--adam-eps 1e-6|--adam-eps 1e-8|' *bnb*.slurm
@@ -108,8 +108,22 @@ ZeRO-1's optim state sharding should be totally transparent, since it unshards t
 
 ## BNB Experiment 4
 
+Rollback to Exp 01,
+
 Let's do a quick test with `--init-method-std 0.02` - we know it's not good for most of the model, but let's see if it impacts for the better the really early issue with BNB. If it does make things better then we can do the different init for different layers, so changing:
 
 ```
 perl -pi -e 's|--init-method-std 0.006|--init-method-std 0.02|' *bnb*.slurm
 ```
+
+Something is wrong there, as it very quickly stopped improving and got stuck at loss 8
+
+![tr8b-104B-bnb-exp-01.png](images/tr8b-104B-bnb-exp-01.png)
+
+
+
+## BNB Experiment 5
+
+Discovered `StableEmbedding` wasn't integrated correctly in the original BNB PR, as it wasn't doing the right thing for split word embedding under TP>1, so fixing it in [PR182](https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/182).
+
+Rollback to Exp 01, no config change this time around.

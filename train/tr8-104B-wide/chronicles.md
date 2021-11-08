@@ -515,6 +515,8 @@ https://stackoverflow.com/a/60080531/9201239
 I modified it to work on the files directly which is much easier to feed to `find` and process multiple sub-dirs.
 [tb-rename-events.py](./tb-rename-events.py)
 
+If `$six_ALL_CCFRWORK/bin` is in your `$PATH` the script is already there.
+
 ```
 find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "iteration-time" "iteration-time/iteration-time" \;
 find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "iteration-time vs samples" "iteration-time/iteration-time vs samples" \;
@@ -548,7 +550,9 @@ Important: This script wants CUDA or it'll fail! So run it on pre-post And it al
 srun --partition=prepost --cpus-per-task=10 -A six@cpu --time=3:00:00 --pty bash --rcfile $six_ALL_CCFRWORK/start-prod
 tb-rename-events.py ...
 ```
-/gpfsdswork/projects/rech/six/commun/bin
+
+The script itself is extremely slow. It could be optimized to run faster to do all conversions at once, so loading each file just once.
+
 
 ## Megatron-Turing NLG 530B
 
