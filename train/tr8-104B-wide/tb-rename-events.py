@@ -14,6 +14,7 @@
 #
 # this script is derived from https://stackoverflow.com/a/60080531/9201239
 #
+# Important: this script requires CUDA environment.
 
 import sys
 from pathlib import Path

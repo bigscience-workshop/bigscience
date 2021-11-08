@@ -543,6 +543,12 @@ find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss valid
 It surely can be made more efficient by rewriting each file only once, but that's good enough for an occasional use.
 
 
+Important: This script wants CUDA or it'll fail! So run it on pre-post And it also needs a recent `tensorboard`, so use `start-prod`.
+```
+srun --partition=prepost --cpus-per-task=10 -A six@cpu --time=3:00:00 --pty bash --rcfile $six_ALL_CCFRWORK/start-prod
+tb-rename-events.py ...
+```
+/gpfsdswork/projects/rech/six/commun/bin
 
 ## Megatron-Turing NLG 530B
 

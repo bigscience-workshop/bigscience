@@ -53,7 +53,7 @@ Tim:
 
 what I have seen before with linear quantization, is that a smaller Adam eps is needed for stability. I never see this to be required for 8-bit Adam with dynamic quantization, but in the beginning of training the optimizer is a bit more unstable
 
-For linear I found that stability started from 1e-6
+For linear I found that stability started from `adam-eps=1e-6`
 
 I think 1e-5 degraded performance quite a bit, so I would try 1e-6 and 1e-7
 
