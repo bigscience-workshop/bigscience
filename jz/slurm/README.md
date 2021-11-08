@@ -494,6 +494,61 @@ and `sbatch` will exclude the bad nodes from the allocation.
 
 Additionally please report the faulty nodes to `assist@idris.fr` so that they reboot the machine.
 
+If you're testing something that requires distributed setup, it's a bit more complex. Here is a slurm script that tests that NCCL works. It sets up NCCL and checks that barrier works:
+
+```
+#!/bin/bash
+#SBATCH --job-name=test-nodes-nccl.slurm
+#SBATCH --partition=gpu_p13
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
+#SBATCH --cpus-per-task=40           # number of cores per tasks
+#SBATCH --hint=nomultithread         # we get physical cores not logical
+#SBATCH --gres=gpu:4                 # number of gpus
+#SBATCH --time 0:05:00               # maximum execution time (HH:MM:SS)
+#SBATCH --output=%x-%j.out           # output file name
+#SBATCH --account=six@gpu
+
+source $six_ALL_CCFRWORK/start-prod
+
+NNODES=2
+
+GPUS_PER_NODE=4
+MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
+MASTER_PORT=6000
+
+export LAUNCHER="python -u -m torch.distributed.launch \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --master_addr $MASTER_ADDR \
+    --master_port $MASTER_PORT \
+    "
+
+export SCRIPT=test-nodes-nccl.py
+
+cat << EOT > $SCRIPT
+#!/usr/bin/env python
+import torch.distributed as dist
+import torch
+import socket
+import os
+local_rank = int(os.environ["LOCAL_RANK"])
+torch.cuda.set_device(local_rank)
+dist.init_process_group("nccl")
+header = f"{socket.gethostname()}-{local_rank}"
+try:
+    dist.barrier()
+    print(f"{header}: NCCL {torch.cuda.nccl.version()} is OK")
+except:
+    print(f"{header}: NCCL {torch.cuda.nccl.version()} is broken")
+    raise
+EOT
+
+echo $LAUNCHER --node_rank $SLURM_PROCID $SCRIPT
+
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $SCRIPT'
+```
+
 
 ## TODO
 
