@@ -902,10 +902,35 @@ perl -pi -e 's|--lr 3e-5|--lr 6e-5|' *slurm
 perl -pi -e 's|--lr-warmup-samples 300_000|--lr-warmup-samples 216_320|' *slurm
 ```
 
+there was a similar spike to Exp 11 but some 2.5k iterations sooner:
+```
+iteration     8738/  159576 | consumed samples:       488048 | elapsed time per iteration (ms): 61947.6 | learning rate: 6.000E-05 | global batch size:   176 | lm loss: 3.317482E+00 | loss scale: 65536.0 | grad norm: 231817.368 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration     8739/  159576 | consumed samples:       488224 | elapsed time per iteration (ms): 59158.7 | learning rate: 6.000E-05 | global batch size:   176 | lm loss: 3.417051E+00 | loss scale: 65536.0 | grad norm: 89608.482 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration     8740/  159576 | consumed samples:       488400 | elapsed time per iteration (ms): 59665.7 | learning rate: 6.000E-05 | global batch size:   176 | lm loss: 3.682950E+00 | loss scale: 65536.0 | grad norm: 1490753.218 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration     8741/  159576 | consumed samples:       488576 | elapsed time per iteration (ms): 60924.4 | learning rate: 6.000E-05 | global batch size:   176 | lm loss: 7.267764E+00 | loss scale: 65536.0 | grad norm: 3273877.676 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration     8742/  159576 | consumed samples:       488752 | elapsed time per iteration (ms): 61784.1 | learning rate: 6.000E-05 | global batch size:   176 | lm loss: 4.130868E+00 | loss scale: 65536.0 | grad norm: 1839649.510 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration     8743/  159576 | consumed samples:       488928 | elapsed time per iteration (ms): 61656.6 | learning rate: 6.000E-05 | global batch size:   176 | lm loss: 7.596509E+00 | loss scale: 65536.0 | grad norm: 1369067.435 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+```
 
+
+and then training diverged:
+```
+ iteration     9026/  159576 | consumed samples:       540464 | elapsed time per iteration (ms): 62075.5 | learning rate: 6.000E-05 | global batch size:   192 | lm loss: 7.024580E+00 | loss scale: 16384.0 | grad norm: 20609.780 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+ iteration     9027/  159576 | consumed samples:       540656 | elapsed time per iteration (ms): 63274.6 | learning rate: 6.000E-05 | global batch size:   192 | loss scale: 8192.0 | grad norm: 20609.780 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 |
+time (ms)
+```
+
+![tr8-104B-exp-12.png](images/tr8-104B-exp-12.png)
 
 
 
 XXX: to be continued
 
-stopped at Date: 2021-11-04
+stopped at Date: 2021-11-07
