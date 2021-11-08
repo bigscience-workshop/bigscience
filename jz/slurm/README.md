@@ -532,15 +532,26 @@ import torch.distributed as dist
 import torch
 import socket
 import os
+import fcntl
+
+def printflock(*msgs):
+    """ print """
+    with open(__file__, "r") as fh:
+        fcntl.flock(fh, fcntl.LOCK_EX)
+        try:
+            print(*msgs)
+        finally:
+            fcntl.flock(fh, fcntl.LOCK_UN)
+
 local_rank = int(os.environ["LOCAL_RANK"])
 torch.cuda.set_device(local_rank)
 dist.init_process_group("nccl")
 header = f"{socket.gethostname()}-{local_rank}"
 try:
     dist.barrier()
-    print(f"{header}: NCCL {torch.cuda.nccl.version()} is OK")
+    printflock(f"{header}: NCCL {torch.cuda.nccl.version()} is OK")
 except:
-    print(f"{header}: NCCL {torch.cuda.nccl.version()} is broken")
+    printflock(f"{header}: NCCL {torch.cuda.nccl.version()} is broken")
     raise
 EOT
 
@@ -548,6 +559,7 @@ echo $LAUNCHER --node_rank $SLURM_PROCID $SCRIPT
 
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $SCRIPT'
 ```
+The script uses `printflock` to solve the interleaved print outputs issue.
 
 
 ## TODO
