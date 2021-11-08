@@ -118,7 +118,7 @@ perl -pi -e 's|--init-method-std 0.006|--init-method-std 0.02|' *bnb*.slurm
 
 Something is wrong there, as it very quickly stopped improving and got stuck at loss 8
 
-![tr8b-104B-bnb-exp-01.png](images/tr8b-104B-bnb-exp-01.png)
+![tr8b-104B-bnb-exp-04.png](images/tr8b-104B-bnb-exp-04.png)
 
 
 
