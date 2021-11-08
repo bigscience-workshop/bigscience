@@ -494,6 +494,10 @@ and `sbatch` will exclude the bad nodes from the allocation.
 
 Additionally please report the faulty nodes to `assist@idris.fr` so that they reboot the machine.
 
+Here are a few more situations and how to find the bad nodes in those cases:
+
+### Broken NCCL
+
 If you're testing something that requires distributed setup, it's a bit more complex. Here is a slurm script that tests that NCCL works. It sets up NCCL and checks that barrier works:
 
 ```
@@ -560,6 +564,38 @@ echo $LAUNCHER --node_rank $SLURM_PROCID $SCRIPT
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $SCRIPT'
 ```
 The script uses `printflock` to solve the interleaved print outputs issue.
+
+
+### Broken Network
+
+Yet another issue with a node is when its network is broken and other nodes fail to connect to it.
+
+You're likely to experience it with an error similar to:
+```
+work = default_pg.barrier(opts=opts)
+RuntimeError: NCCL error in: /opt/conda/conda-bld/pytorch_1616554793803/work/torch/lib/c10d/ProcessGroupNCCL.cpp:825, unhandled system error, NCCL version 2.7.8
+ncclSystemError: System call (socket, malloc, munmap, etc) failed.
+```
+Here is how to debug this issue:
+
+1. Add:
+```
+export NCCL_DEBUG=INFO
+```
+before the `srun` command and re-run your slurm script.
+
+2. Now study the logs. If you find:
+```
+r11i6n2:486514:486651 [1] include/socket.h:403 NCCL WARN Connect to 10.148.3.247<56821> failed : Connection refused
+```
+Let's see which node refuses to accept connections. We get the IP address from the error above and reverse resolve it to its name:
+```
+nslookup 10.148.3.247
+247.3.148.10.in-addr.arpa       name = r10i6n5.ib0.xa.idris.fr.
+```
+
+Add `--exclude=r10i6n5` to your `sbatch` command and report it to JZ admins.
+
 
 
 ## TODO
