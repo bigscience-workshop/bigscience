@@ -13,7 +13,6 @@
 
 set -x -e
 
-
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5b-1B3-multilingual-oscar
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 REPO_PATH=$DATA_OUTPUT_PATH/tr5b-1B3-multilingual-oscar-logs
@@ -27,7 +26,7 @@ VALID_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/valid_data_string.0.3.txt`
 TEST_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/test_data_string.0.3.txt`
 
 # defining the right environment variables
-source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8b-104B/start-tr8b-104B
+source $six_ALL_CCFRWORK/start-prod
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
 export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
@@ -51,7 +50,7 @@ DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatic
 
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=512
-TRAIN_ITER=73_242_187
+TRAIN_ITER=146_484_375
 
 NLAYERS=24
 NHIDDEN=2048
@@ -69,7 +68,7 @@ OPTIMIZER_ARGS=" \
     --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 73_242_187 \
+    --lr-decay-samples 146_484_375 \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
@@ -161,11 +160,10 @@ export CMD=" \
     $OUTPUT_ARGS \
     --save $CHECKPOINT_PATH \
     --load $CHECKPOINT_PATH \
-    --train-weighted-split-paths "$TRAIN_DATA_PATH" \
-    --valid-weighted-split-paths "$VALID_DATA_PATH" \
-    --test-weighted-split-paths "$TEST_DATA_PATH" \
+    --train-weighted-split-paths $TRAIN_DATA_PATH \
+    --valid-weighted-split-paths $VALID_DATA_PATH \
+    --test-weighted-split-paths $TEST_DATA_PATH \
     --data-impl mmap \
-    --split 949,50,1 \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
     "
@@ -180,4 +178,4 @@ echo $CMD
 # We create the folder where the logs and codecarbon will be stored.
 mkdir -p $LOGS_PATH
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
+srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
