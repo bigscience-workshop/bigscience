@@ -4,3 +4,4 @@ This folder gathers training scripts for the different arch/scaling and engineer
 
 Some tips:
  - [TFlops optimization](https://github.com/bigscience-workshop/bigscience/blob/master/train/tflops_optimization.md): How to make sure that given a set of hardware you optimize the speed at which you train.
+ - [Instrumentation](https://github.com/bigscience-workshop/bigscience/blob/master/tools/README.md): How to sync with the hub
