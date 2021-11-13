@@ -19,8 +19,7 @@ SLURM_GROUP_NAME = "six"
 
 # this needs to be an actual email subscribed to bigscience-jean-zay@groups.google.com
 FROM_ADDR = "bigscience-bot@huggingface.co"
-#TO_ADDRS = ["bigscience-jean-zay@googlegroups.com", "stas@stason.org"] # wants a list
-TO_ADDRS = ["stas@stason.org"] # wants a list
+TO_ADDRS = ["bigscience-jean-zay@googlegroups.com", "stas@stason.org"] # wants a list
 
 def send_email(subject, body):
     message = f"""\
@@ -38,9 +37,9 @@ Subject: {subject}
 
 def send_email_alert(msg):
 
-    subject = f"[ALERT] JZ filesystem is getting close to full"
+    subject = f"[ALERT] JZ filesystem is getting close to being full"
     body = f"""
-***ALERT: One or more partitions at JZ are getting close to full! Alert someone at Eng WG***
+***ALERT: One or more partitions at JZ are getting close to being full! Alert someone at Eng WG***
 
 {msg}
 
@@ -138,19 +137,19 @@ def main():
 
     # WORK and STORE partitions stats can be accessed much faster through `idrquota`, and it already
     # includes the quota info
-    analyse_partition_idrquota(partition_name="WORK", partition_flag="-w", alert_bytes_threshold=0.85, alert_inodes_threshold=0.25)
-    analyse_partition_idrquota(partition_name="STORE", partition_flag="-s", alert_bytes_threshold=0.85, alert_inodes_threshold=0.25)
+    analyse_partition_idrquota(partition_name="WORK", partition_flag="-w", alert_bytes_threshold=0.85, alert_inodes_threshold=0.85)
+    analyse_partition_idrquota(partition_name="STORE", partition_flag="-s", alert_bytes_threshold=0.85, alert_inodes_threshold=0.85)
 
-    # SCRATCH - check only bytes w/ a hard quota of 400TB - alert on lower threshold that other
-    # partitions due to it filling up at a faster rate
-    analyse_partition_bytes(partition_name="SCRATCH", partition_path="/gpfsssd/scratch/rech/six/commun/", hard_limit_bytes=400*2**40, alert_bytes_threshold=0.25)
+    # SCRATCH - check only bytes w/ a hard quota of 400TB - alert on lower threshold than other
+    # partitions due to it filling up at a faster rate (dumping huge checkpoints)
+    analyse_partition_bytes(partition_name="SCRATCH", partition_path="/gpfsssd/scratch/rech/six/commun/", hard_limit_bytes=400*2**40, alert_bytes_threshold=0.75)
 
     # WORKFS - check both bytes and inodes w/ hard quotas of 2TB / 3M
-    analyse_partition_bytes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/commun", hard_limit_bytes=2*2**40, alert_bytes_threshold=0.25)
-    analyse_partition_inodes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/commun", hard_limit_inodes=3*10**6, alert_inodes_threshold=0.25)
+    analyse_partition_bytes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/commun", hard_limit_bytes=2*2**40, alert_bytes_threshold=0.85)
+    analyse_partition_inodes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/commun", hard_limit_inodes=3*10**6, alert_inodes_threshold=0.85)
 
     if len(alerts) > 0 :
-        print(f"{preamble} ***ALERT: {args.job_name} is not RUNNING or SCHEDULED! Alert someone at Eng WG***")
+        print(f"[ALERT] JZ filesystem is getting close to being full")
         msg = "\n".join(alerts)
         print(msg)
 
