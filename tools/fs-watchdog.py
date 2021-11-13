@@ -124,10 +124,10 @@ def main():
             print(f"{partition_name} inodes: {inodes_percent}%")
 
         msg = []
-        if alert_bytes_threshold > bytes_percent/100:
+        if bytes_percent/100 > alert_bytes_threshold:
             msg.append(f"{partition_name} is at {bytes_percent:.2f}% bytes usage")
 
-        if alert_inodes_threshold > inodes_percent/100:
+        if inodes_percent/100 > alert_inodes_threshold:
             msg.append(f"{partition_name} is at {inodes_percent:.2f}% inodes usage")
 
         if len(msg) > 0:
