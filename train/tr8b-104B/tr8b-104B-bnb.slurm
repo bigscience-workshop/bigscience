@@ -25,7 +25,7 @@ TENSORBOARD_PATH=$REPO_PATH/tensorboard/$VARIANT
 LOGS_PATH=$REPO_PATH/logs/$VARIANT
 mkdir -p $LOGS_PATH
 
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed-tr8b-104B
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed-bnb
 
 VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
 MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
@@ -38,7 +38,7 @@ MASTER_PORT=6000
 
 GPUS_PER_NODE=4
 NNODES=128   # switch to 128
-TP_SIZE=2    # always fixed to the size of a single node
+TP_SIZE=4    # always fixed to the size of a single node
 PP_SIZE=32   # NLAYERS must be a multiple of PP_SIZE here
 #DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
 
