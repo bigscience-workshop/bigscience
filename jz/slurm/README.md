@@ -3,12 +3,14 @@
 
 ## Partitions
 
+All types of nodes have 40 CPU cores per node, unless specified differently.
+
 GPU-nodes: `--account=six@gpu`
 
 - `-p gpu_p1`: 4x v100-32GB
 - `-p gpu_p2`: 8x v100-32GB
 - `-p gpu_p3`: 4x v100-16GB
-- `-p gpu_p4`: 8x A100-40GB / 48cpu cores (only 3 nodes)
+- `-p gpu_p4`: 8x A100-40GB / 48 CPU cores (only 3 nodes)
 - `-p prepost`: 1x V100-16GB + network
 
 Combos:
