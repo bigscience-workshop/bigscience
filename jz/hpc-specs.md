@@ -25,7 +25,12 @@ Due to the hypercube topology used on JZ reaching two nodes on different racks m
 
 ## JZ3
 
-coming:
+coming in Jan 2022:
 
-- 416 GPUs A100 80GB
-- 8 GPUs per nodes connected with InfiniBand -> 640 GB of memory per machine
+- GPUs: 416 A100 80GB GPUs (52 nodes of 8 gpus each)
+- 8 GPUs per node Using NVLink 4 inter-gpu connects
+- CPU: AMD
+- CPU memory: 640 GB per node
+- Inter-node connect: Omni-Path Architecture (OPA)
+- NCCL-communications network: a fully dedicated subnet
+- Disc IO network: shared network with other types of nodes
