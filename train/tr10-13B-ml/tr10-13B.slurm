@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=tr10-13B
 #SBATCH --constraint=v100-32g
-#SBATCH --nodes=128
+#SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -12,7 +12,7 @@
 
 set -x -e
 
-source $six_ALL_CCFRWORK/code/tr10-13b/bigscience/train/tr10-13B-ml/start-tr10-13B
+source $six_ALL_CCFRWORK/code/tr10-13B/bigscience/train/tr10-13B-ml/start-tr10-13B
 
 echo "START TIME: $(date)"
 
@@ -23,11 +23,10 @@ TENSORBOARD_PATH=$REPO_PATH/tensorboard
 LOGS_PATH=$REPO_PATH/logs
 mkdir -p $LOGS_PATH
 
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr10-13B/Megatron-DeepSpeed-tr10-13B
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr10-13B/Megatron-DeepSpeed
 
-VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
-MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
-DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
+TOKENIZER_NAME=teven/test_150k_vocab_tokenizer
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/150k_vocab_size_test/c4_10k_samples_150k_vocab_size
 
 cd $MEGATRON_DEEPSPEED_REPO
 
@@ -35,21 +34,18 @@ MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
 GPUS_PER_NODE=4
-NNODES=128   # switch to 128
+NNODES=4   # switch to 128
 TP_SIZE=4    # always fixed to the size of a single node
-PP_SIZE=32   # NLAYERS must be a multiple of PP_SIZE here
-#DP_SIZE=$NNODES*$GPUS_PER_NODE/($PP_SIZE*$TP_SIZE) # will get derived automatically by trainer
+PP_SIZE=4   # NLAYERS must be a multiple of PP_SIZE here
 
-# GLOBAL_BATCH_SIZE has to be divisible by MICRO_BATCH_SIZE*DP_size
-# GLOBAL_BATCH_SIZE=$(($MICRO_BATCH_SIZE*$GAS*$DP_SIZE)) - GAS is auto-derived by deepspeed
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=2048
 
-NLAYERS=64
-NHIDDEN=11600
-NHEADS=80
+NLAYERS=40
+NHIDDEN=5120
+NHEADS=32
 SEQ_LEN=2048
-VOCAB_SIZE=50257
+VOCAB_SIZE=150000
 
 SAVE_INTERVAL=300
 
@@ -71,6 +67,7 @@ EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
 
+
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
@@ -81,10 +78,10 @@ GPT_ARGS=" \
     --rampup-batch-size 16 16 6_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples 300_000_000 \
-    --vocab-file $VOCAB_FILE \
-    --merge-file $MERGE_FILE \
+    --tokenizer-type PretrainedFromHF \
+    --tokenizer-name-or-path $TOKENIZER_NAME \
     --loss-scale 12 \
-    --init-method-std 0.006 \
+    --init-method-std 0.00884 \
     --fp16 \
     --checkpoint-activations \
     --seed 43 \

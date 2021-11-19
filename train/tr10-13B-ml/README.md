@@ -44,6 +44,8 @@ Env setup script to be `source start-tr10-13B` [start-tr10-13B](./start-tr10-13B
 
 
 
+
+
 tokenizer
 
 It's at https://huggingface.co/teven/test_150k_vocab_tokenizer/tree/main !
@@ -60,7 +62,16 @@ You should run with:
 --tokenizer-name-or-path teven/test_150k_vocab_tokenizer \
 ```
 ￼￼
-I preprocessed a c4 10k samples, you can use it with
+Preprocessed a c4 10k samples, you can use it with:
+```
+DATA_PATH=$six_ALL_CCFRSCRATCH/datasets-custom/150k_vocab_size_test/c4_10k_samples_150k_vocab_size
+```
 
-DATA_PATH=/gpfsscratch/rech/six/commun/datasets-custom/150k_vocab_size_test/c4_10k_samples_150k_vocab_size
-￼￼
+## Config
+
+
+`--init-method-std 0.00884`
+
+We derived this from: `NHIDDEN=5120`
+
+`0.00884 = sqrt(2/(5120*5))` (from the ScaleNorm paper https://arxiv.org/abs/1910.05895)
