@@ -109,3 +109,50 @@ XXX: create a slurm script for codecarbon when it starts operating
 XXX: create a slurm script for checkpoints once we figure out how to share those
 
 XXX: concern: if this is run from `cron.hourly` what if the first `git push` is still uploading when the next round is pushed?
+
+## Large Text files
+
+Normally `*txt` files aren't LFS tracked, so if your log file gets synced to he hub an it has grown over 10M you will get the next push fail with:
+
+```
+* Pushing 1 files
+remote: -------------------------------------------------------------------------
+remote: Your push was rejected because it contains files larger than 10M.
+remote: Please use https://git-lfs.github.com/ to store larger files.
+remote: -------------------------------------------------------------------------
+remote: Offending files:
+remote:  - logs/main_log.txt (ref: refs/heads/main)
+To https://huggingface.co/bigscience/tr3n-1B3-pile-fancy-logs
+ ! [remote rejected] main -> main (pre-receive hook declined)
+error: failed to push some refs to 'https://bigscience-bot:api_gyGezHBUDEGfyBxlAYTHCxQIbkjMUUEpaK@huggingface.co/bigscience/tr3n-1B3-pile-fancy-logs'
+```
+
+So you need to do the following from the cloned repo dir in question:
+
+1. Unstage the commits that weren't pushed:
+
+```
+git reset --soft origin/HEAD
+```
+
+2. Add `*txt` to LFS-tracking
+
+```
+git lfs track "**.txt"
+```
+
+this will automatically switch to LFS on the next commit
+
+3. commit/push normally
+
+```
+git commit -m "update file" logs/main_log.txt
+git push
+```
+
+In order to avoid this issue in the first place, it's best to set it up to:
+
+```
+git lfs track "**.txt"
+```
+when you first setup the repo clone.
