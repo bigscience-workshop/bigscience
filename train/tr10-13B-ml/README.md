@@ -8,31 +8,39 @@ srun --constraint=v100-32g --account=six@gpu  --pty --nodes=4 --ntasks=4 --cpus-
 ```
 
 
+Conda setup:
+
 ```
 export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
-conda create -y -n tr10-13b python=3.8
-conda activate tr10-13b
+conda create -y -n tr10-13B python=3.8
+conda activate tr10-13B
 
 pip3 install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
+mkdir $six_ALL_CCFRWORK/code/tr10-13B
+cd $six_ALL_CCFRWORK/code/tr10-13B
+
+cd $six_ALL_CCFRWORK/code/tr10-13B/apex
+./build.sh
+
 pip install deepspeed
 
-mkdir $six_ALL_CCFRWORK/code/tr10-13b
+cd $six_ALL_CCFRWORK/code/tr10-13B/DeepSpeed
+./build.sh
 
-cd $six_ALL_CCFRWORK/code/transformers
-pip install -e .[dev]
+pip install transformers
 
-cd $six_ALL_CCFRWORK/code/megatron-lm
+cd $six_ALL_CCFRWORK/code/tr10-13B/transformers
+pip install -e .
+
+cd $six_ALL_CCFRWORK/code/tr10-13B/megatron-lm
 pip install -r requirements.txt
-
-cd $six_ALL_CCFRWORK/code/apex
-./build.sh
-
-cd $six_ALL_CCFRWORK/code/deepspeed
-./build.sh
-
 ```
+
+Env setup script to be `source start-tr10-13B` [start-tr10-13B](./start-tr10-13B)
+
+
 
 
 
