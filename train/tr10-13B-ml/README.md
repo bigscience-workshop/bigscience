@@ -88,8 +88,14 @@ we don’t have a conclusive answer yet but both shouldn’t affect model size. 
 (4) Activation. We need to evaluate the GeGLU run. GeGLU would bring a significant change to the size of the MLPs, which would be significant for your benchmark.
 it shouldn’t change the overall model size but will change the size of some of the FF layers so might change how TP works
 
+### `--init-method-std`
+
 `--init-method-std 0.00884`
 
 We derived this from: `NHIDDEN=5120`
 
 `0.00884 = sqrt(2/(5120*5))` (from the ScaleNorm paper https://arxiv.org/abs/1910.05895)
+
+### `NHEADS`
+
+NHEADS=40, why...
