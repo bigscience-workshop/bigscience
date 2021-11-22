@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-pile-fancy.slurm
+#SBATCH --job-name=1B3-pile-no-dropout.slurm
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=64
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -19,7 +19,7 @@ set -x -e
 ROUND=2
 TESTING=0
 
-EXPERIMENT_NAME=tr3n-1B3-pile-fancy
+EXPERIMENT_NAME=tr3o-1B3-pile-no-dropout
 OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/$EXPERIMENT_NAME/
 CHECKPOINT_PATH=$OUTPUT_PATH/checkpoints
 REPO_PATH=$OUTPUT_PATH/$EXPERIMENT_NAME-logs
@@ -82,6 +82,8 @@ OPTIMIZER_ARGS=" \
     --lr-decay-samples 146_484_375 \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
+    --hidden-dropout 0.0 \
+    --attention-dropout 0.0 \
     --weight-decay 1e-1 \
     "
 
