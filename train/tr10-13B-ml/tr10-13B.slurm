@@ -16,6 +16,9 @@ source $six_ALL_CCFRWORK/code/tr10-13B/bigscience/train/tr10-13B-ml/start-tr10-1
 
 echo "START TIME: $(date)"
 
+export HF_DATASETS_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr10-13B
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 REPO_PATH=$DATA_OUTPUT_PATH/tr10-13B-logs
@@ -35,7 +38,7 @@ MASTER_PORT=6000
 
 GPUS_PER_NODE=4
 NNODES=4   # switch to 128
-TP_SIZE=4    # always fixed to the size of a single node
+TP_SIZE=2    # always fixed to the size of a single node
 PP_SIZE=4   # NLAYERS must be a multiple of PP_SIZE here
 
 MICRO_BATCH_SIZE=1
@@ -152,7 +155,7 @@ export CMD=" \
     --load $CHECKPOINT_PATH \
     --data-path $DATA_PATH \
     --data-impl mmap \
-    --split 949,50,1 \
+    --split 900,100,0 \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
     "

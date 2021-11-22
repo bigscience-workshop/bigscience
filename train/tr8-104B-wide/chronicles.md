@@ -941,6 +941,32 @@ time (ms)
 
 
 
+## Things to try
+
+
+1. Trying layernorm in Embedding.forward, since we saw a much more stable training with BNB which does that.
+
+but this can't be done once the training has started, since we don't have the weights for layer norm.
+
+2. residual fp32
+
+The proposed `--fp32-residual-connection` can't be enabled once the training started
+
+3. Samyam:
+
+- linear layers in fp16 which is the where the most fp16 speed saving is happening.
+
+But it'd be very cheap to switch:
+
+- logits to softmax in fp32
+- attention softmax in fp32
+
+The proposed `--attention-softmax-in-fp32` requires `--no-query-key-layer-scaling`
+
+The proposed `--accumulate-allreduce-grads-in-fp32` - waiting to be tested
+
+
+
 XXX: to be continued
 
 stopped at Date: 2021-11-07

@@ -21,6 +21,7 @@ general:
 
 - adjust Meg-DS to use the correct init_method with pt-1.9+
 https://github.com/pytorch/pytorch/issues/63874#issuecomment-904899656
+
 - see if can speed up the meg cuda kernels building
 https://huggingface.slack.com/archives/C01NHER1JLS/p1630520151064500?thread_ts=1630473623.060700&cid=C01NHER1JLS
 
