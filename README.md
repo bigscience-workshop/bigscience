@@ -61,7 +61,6 @@ Architecture and scaling baseline runs: no fancy tricks, just GPT2. Here are lin
 * checkpoints and logs:
    - [tensorboard](https://huggingface.co/bigscience/tr8-104B-logs/tensorboard)
    - [logs](https://huggingface.co/bigscience/tr8-104B-logs/tree/main/logs)
-   - [codecarbon](https://huggingface.co/bigscience/tr8-104B-logs/tree/main/codecarbon)
 * [chronicles](./train/tr8-104B-wide/chronicles.md)
 
 You can watch the training logs live by running this `tail -f` like script over remote log file that gets synced to the hub once an hour:
@@ -70,3 +69,16 @@ perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/;
 print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
 https://cdn-lfs.huggingface.co/bigscience/tr8-104B-logs/b2cc478d5ae7c9ec937ea2db1d2fe09de593fa2ec38c171d6cc5dca094cd79f9
 ```
+
+### Train 10
+
+**This is the next main training not yet started**
+
+13B-ml
+
+* [the full spec and discussions](./train/tr10-13B-ml/)
+* [the training script](./train/tr10-13B-ml/tr10-13B.slurm)
+* checkpoints and logs:
+   - [tensorboard](https://huggingface.co/bigscience/tr10-13B-logs/tensorboard)
+   - [logs](https://huggingface.co/bigscience/tr10-13B-logs/tree/main/logs)
+* [chronicles](./train/tr10-13B-ml/chronicles.md)
