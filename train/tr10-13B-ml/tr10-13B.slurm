@@ -102,6 +102,8 @@ OUTPUT_ARGS=" \
     --log-timers-to-tensorboard \
     --log-batch-size-to-tensorboard \
     --log-validation-ppl-to-tensorboard \
+    --log-level info \
+    --log-level-replica error \
     "
 
 ZERO_STAGE=1
