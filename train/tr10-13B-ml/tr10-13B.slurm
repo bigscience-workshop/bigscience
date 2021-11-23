@@ -140,11 +140,19 @@ DEEPSPEED_ARGS=" \
     --deepspeed-activation-checkpointing \
     "
 
-export LAUNCHER="python -u -m torch.distributed.launch \
+# export LAUNCHER="python -u -m torch.distributed.launch \
+#     --nproc_per_node $GPUS_PER_NODE \
+#     --nnodes $NNODES \
+#     --master_addr $MASTER_ADDR \
+#     --master_port $MASTER_PORT \
+#     "
+
+export LAUNCHER="python -u -m torch.distributed.run \
     --nproc_per_node $GPUS_PER_NODE \
     --nnodes $NNODES \
-    --master_addr $MASTER_ADDR \
-    --master_port $MASTER_PORT \
+    --rdzv_endpoint $MASTER_ADDR:$MASTER_PORT \
+    --rdzv_backend c10d \
+    --max_restarts 0 \
     "
 
 export CMD=" \
@@ -161,6 +169,8 @@ export CMD=" \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
     "
+
+export OMP_NUM_THREADS=1 # shut up the launcher warnings
 
 echo $CMD
 
