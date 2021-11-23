@@ -166,7 +166,7 @@ export CMD=" \
     --load $CHECKPOINT_PATH \
     --data-path $DATA_PATH \
     --data-impl mmap \
-    --split 900,100,0 \
+    --split 950,50,0 \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
     "
