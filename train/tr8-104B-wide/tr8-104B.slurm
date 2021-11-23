@@ -85,6 +85,7 @@ GPT_ARGS=" \
     --merge-file $MERGE_FILE \
     --loss-scale 12 \
     --init-method-std 0.006 \
+    --embed-layernorm \
     --fp16 \
     --checkpoint-activations \
     --seed 43 \
