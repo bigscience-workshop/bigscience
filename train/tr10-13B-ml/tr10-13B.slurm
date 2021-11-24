@@ -50,6 +50,9 @@ NHEADS=40
 SEQ_LEN=2048
 VOCAB_SIZE=150000
 
+TRAIN_TOKENS=300_000_000_000
+TRAIN_SAMPLES=$(python -c "print($TRAIN_TOKENS // $SEQ_LEN)")
+
 SAVE_INTERVAL=300
 
 OPTIMIZER_ARGS=" \
@@ -81,7 +84,7 @@ GPT_ARGS=" \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --rampup-batch-size 16 16 6_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
-    --train-samples $((300_000_000_000 / $SEQ_LEN + 1)) \
+    --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path $TOKENIZER_NAME \
     --loss-scale 12 \
