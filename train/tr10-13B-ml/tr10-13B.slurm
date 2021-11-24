@@ -81,7 +81,7 @@ GPT_ARGS=" \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --rampup-batch-size 16 16 6_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
-    --train-samples $((3000000000 / $SEQ_LEN + 1)) \
+    --train-samples $((300_000_000_000 / $SEQ_LEN + 1)) \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path $TOKENIZER_NAME \
     --loss-scale 12 \
