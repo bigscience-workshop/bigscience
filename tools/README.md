@@ -30,10 +30,24 @@ git config --unset user.email
 ~/prod/code/bigscience/tools/hub-sync.py --repo-path . --patterns '*bogus*'
 ```
 We are going to put each checkpoint into its own branch with the same name.
+- If you have added tokenizer files:
 
 ```
 mv ../hf_fixed/global_step* .
-time find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout -b {} \; -exec mv {}/config.json . \; -exec mv {}/pytorch_model.bin . \; -exec git add config.json pytorch_model.bin \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \;
+time find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout -b {} \; -exec mv {}/config.json . \; -exec mv {}/pytorch_model.bin . \; -exec git add config.json pytorch_model.bin <TOKENIZER_FILES> \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \; --exec mv config.json {}/ --exec mv pytorch_model.bin {}/;
+git checkout main
+```
+- If you just want to add the checkpoints, without tokenizer files:
+
+```
+mv ../hf_fixed/global_step* .
+time find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout -b {} \; -exec mv {}/config.json . \; -exec mv {}/pytorch_model.bin . \; -exec git add config.json pytorch_model.bin \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \; --exec mv config.json {}/ --exec mv pytorch_model.bin {}/
+git checkout main
+```
+- If you want to add tokenizer files later:
+
+```
+time find * -maxdepth 0 -type d -name "global_step*" -exec git checkout main \; -exec git checkout {} \; -exec git add <TOKENIZER_FILES> \; -exec git commit -m "add {}" \; -exec git push --set-upstream origin {} \;
 git checkout main
 ```
 ## Fast branch switching in case you messed up and want to fix all your checkpoints
