@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr5b-bnb-1B3-multilingual-oscar.slurm
+#SBATCH --job-name=tr5a-bnb-1B3-multilingual-mt5tok.slurm
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --partition=gpu_p13
 #SBATCH --nodes=16
@@ -15,9 +15,9 @@
 set -x -e
 
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5b-bnb-1B3-multilingual-oscar
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5a-bnb-1B3-multilingual-mt5tok
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr5b-bnb-1B3-multilingual-oscar-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr5a-bnb-1B3-multilingual-mt5tok-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
@@ -65,7 +65,7 @@ OPTIMIZER_ARGS=" \
     --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 73_242_187 \
+    --lr-decay-samples $TRAIN_ITER \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
@@ -87,6 +87,7 @@ GPT_ARGS=" \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
     --train-samples $TRAIN_ITER \
+    --dataloader-type cyclic \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path google/mt5-base \
     --loss-scale 12 \

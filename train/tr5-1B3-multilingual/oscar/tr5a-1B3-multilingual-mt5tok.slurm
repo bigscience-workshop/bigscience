@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr5b-1B3-multilingual-oscar.slurm
+#SBATCH --job-name=tr5a-1B3-multilingual-mt5tok.slurm
 #SBATCH --partition=gpu_p13
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -13,13 +13,13 @@
 
 set -x -e
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5b-1B3-multilingual-oscar
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5a-1B3-multilingual-mt5tok
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr5b-1B3-multilingual-oscar-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr5a-1B3-multilingual-mt5tok-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
-MEGATRON_DEEPSPEED_REPO=$SCRATCH/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=$ALL_CCFRWORK/code/Megatron-DeepSpeed
 
 TRAIN_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/train_data_string.0.3.txt`
 VALID_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/valid_data_string.0.3.txt`
