@@ -148,4 +148,6 @@ python -c "import torch; x = torch.ones(1).cuda(); import time; time.sleep(100)"
 ```
 
 V100 16GB 1113MiB
-V100 32GB
+V100 32GB 1113MiB
+
+(same memory!)
