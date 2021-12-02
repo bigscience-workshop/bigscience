@@ -20,8 +20,8 @@ for language in hi ur bn id ca ar pt vi eu
 # for language in fr es
 # for language in zh
 do
-    input=$six_ALL_CCFRSCRATCH/datasets/oscar-multilingual/oscar_$language.jsonl
-    output=$six_ALL_CCFRSCRATCH/datasets/oscar-multilingual/oscar_$language_alpha
+    input=$six_ALL_CCFRSCRATCH/datasets-custom/oscar-multilingual/oscar_$language.jsonl
+    output=$six_ALL_CCFRSCRATCH/datasets-custom/oscar-multilingual/oscar_${language}_alpha
 
 cd $SCRATCH/Megatron-DeepSpeed
 /usr/bin/time -v python tools/preprocess_data.py \
