@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=1B3-pile-emb-norm
-#SBATCH --constraint=v100-32g
+#SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
@@ -10,7 +10,7 @@
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@gpu
 
-###SBATCH --qos=qos_gpu-t3
+
 
 set -x -e
 
