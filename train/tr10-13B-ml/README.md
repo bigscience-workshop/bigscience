@@ -105,3 +105,7 @@ NHEADS=40, why...
 We want this because it solved the problems with the 104B training instabilities.
 
 If we choose to train with it, we will need to add the additional code to for the HF GPT2 converted model.
+
+### `--partition-activations`
+
+can be used to shard activations across gpus to save more gpu memory
