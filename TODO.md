@@ -19,9 +19,6 @@ general:
 
 - update deepspeed_to_transformers.py to require a specific version once a new version of transformers is released and then update the doc https://github.com/bigscience-workshop/bigscience/tree/master/train/tr1-13B-base#checkpoint-conversion-and-upload
 
-- adjust Meg-DS to use the correct init_method with pt-1.9+
-https://github.com/pytorch/pytorch/issues/63874#issuecomment-904899656
-
 - see if can speed up the meg cuda kernels building
 https://huggingface.slack.com/archives/C01NHER1JLS/p1630520151064500?thread_ts=1630473623.060700&cid=C01NHER1JLS
 
@@ -30,7 +27,6 @@ https://huggingface.slack.com/archives/C01NHER1JLS/p1630520151064500?thread_ts=1
 
 ## sysadmin
 
-- need a watchdog to test we aren't close to running out of disc space - especially SCRATCH and WORK
 
 
 ### conda packages
