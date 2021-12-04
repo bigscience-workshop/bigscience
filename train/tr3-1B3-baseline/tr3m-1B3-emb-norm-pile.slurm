@@ -11,7 +11,6 @@
 #SBATCH --account=six@gpu
 
 
-
 set -x -e
 
 source $six_ALL_CCFRWORK/start-prod
@@ -24,7 +23,6 @@ TESTING=0
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr3m-1B3-emb-norm-pile/
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 TENSORBOARD_PATH=$DATA_OUTPUT_PATH/tensorboard
-CODECARBON_PATH=$DATA_OUTPUT_PATH/codecarbon
 LOGS_PATH=$DATA_OUTPUT_PATH/logs
 mkdir -p $LOGS_PATH
 

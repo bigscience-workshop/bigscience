@@ -20,6 +20,9 @@ We have READMEs for specific aspects, such as:
 
 ## Trainings
 
+While we keep detailed chronicles of experiments and findings for some of the main trainings, here is a doc that contains a summary of the most important findings: [Lessons learned](train/lessons-learned.md)
+
+
 ### Train 1 - 13B - unmodified Megatron gpt2 - baseline
 
 * [the full spec and discussions](./train/tr1-13B-base)

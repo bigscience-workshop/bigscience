@@ -18,12 +18,13 @@ We derived this from:
 
 ### adding embed layernorm
 
-Emedding LayerNorm has shown to help a lot with spikes that the training can't back from:
+Embedding LayerNorm has shown to help a lot with spikes that the training can't recover from. This insight came from experimenting with https://github.com/facebookresearch/bitsandbytes which contains a `StableEmbedding` which is a normal Embedding with layernorm and it uses a uniform xavier initialization.
 
 To activate add `--embed-layernorm`
 
 Note: since this has its weights you can only add it at the beginning of the training
 
+Note: since this is not part of the normal HF GPT2, this will require a new arch or a config that adds a layer-norm to the GPT2 model.
 
 
 
