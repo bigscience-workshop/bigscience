@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr5a-1B3-multilingual-alpha.slurm
+#SBATCH --job-name=tr5b-1B3-multilingual-alpha.slurm
 #SBATCH --partition=gpu_p13
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -13,9 +13,9 @@
 
 set -x -e
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5a-1B3-multilingual-alpha
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5b-1B3-multilingual-alpha
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr5a-1B3-multilingual-alpha-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr5b-1B3-multilingual-alpha-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
