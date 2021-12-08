@@ -96,7 +96,7 @@ def main():
     parser.add_argument('--extension-name', type=str, required=True,
                         help='Extension of the file to match. Combination of `--name-prefix` and --extension-name will be used to select file')
     parser.add_argument('--old-format', action="store_true",
-                        help='Extension of the file to match. Combination of `--name-prefix` and --extension-name will be used to select file')
+                        help='Legacy option')
 
     args = parser.parse_args()
     size_dict = get_size_stats(args)
