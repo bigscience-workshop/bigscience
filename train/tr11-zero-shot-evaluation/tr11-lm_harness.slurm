@@ -24,8 +24,8 @@ ALL_CHECKPOINTS = (
 )
 CHECKPOINT=${ALL_CHECKPOINTS[${SLURM_ARRAY_TASK_ID}]}
 
-export RESULT_PATH=$EXPERIMENT_DIRECTORY/results/$CHECKPOINT
-export LOGS_PATH=$EXPERIMENT_DIRECTORY/logs/$CHECKPOINT
+export RESULTS_PATH=$EXPERIMENT_DIRECTORY/results/${CHECKPOINT}.txt
+export LOGS_PATH=$EXPERIMENT_DIRECTORY/logs/${CHECKPOINT}_.out
 
 # TODO: Fix conditions when we get checkpoints
 if [[ $CHECKPOINT = *c4 || $CHECKPOINT = *oscar ]]
@@ -45,6 +45,6 @@ python main.py \
     --model gpt2 \
     --model_args tokenizer=$TOKENIZER,pretrained=$CHECKPOINT \
     --device cuda:0 \
-    --output_path
+    --output_path $RESULTS_PATH \
     --tasks arc_challenge,arc_easy,boolq,copa,headqa,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc \
-    2>&1 | tee $LOGS_PATH/lm_eval_$CHECKPOINT.txt
+    2>&1 | tee $LOGS_PATH
