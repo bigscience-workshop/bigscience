@@ -16,4 +16,6 @@ get_branches () {
 }
 # mapfile -t -C my_callback -c 1 BRANCHES < <( get_branches ) # if you want the branches that were sent to mapfile in a new array as well
 # echo "${BRANCHES[@]}"
+
+export GIT_LFS_SKIP_SMUDGE=1
 mapfile -t -C my_callback -c 1 < <( get_branches )
