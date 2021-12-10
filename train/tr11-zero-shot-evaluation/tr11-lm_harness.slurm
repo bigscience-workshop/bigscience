@@ -64,6 +64,8 @@ mkdir -p $(dirname $LOGS_PATH)
 
 pushd $WORK/code/big_science/lm-evaluation-harness
 
+export TOKENIZERS_PARALLELISM=false
+
 python main.py \
     --model gpt2 \
     --model_args $CHECKPOINT \
