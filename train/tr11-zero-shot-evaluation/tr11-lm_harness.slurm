@@ -20,7 +20,7 @@ export TRANSFORMERS_OFFLINE=1
 
 export EXPERIMENT_DIRECTORY=$six_ALL_CCFRSCRATCH/synched_exps/tr11-zero-shot-evaluation
 
-ALL_CHECKPOINTS = (
+ALL_CHECKPOINTS=(
 pretrained=bigscience/tr3d-1B3-oscar-checkpoints,revision=global_step19500
 pretrained=bigscience/tr3d-1B3-oscar-checkpoints,revision=global_step28500
 pretrained=bigscience/tr3d-1B3-oscar-checkpoints,revision=global_step37500
