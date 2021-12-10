@@ -35,6 +35,11 @@ Note: since this has its weights you can only add it at the beginning of the tra
 Note: since this is not part of the normal HF GPT2, this will require a new arch or a config that adds a layer-norm to the GPT2 model.
 
 
+### Using a Lower LR
+
+- halving lr from 6e-5 to 3e-5 also proved fruitful, but it went through a huge spike at iteration 11.5k and took ~2k iterations to recover (exp 11) at which point it was put on hold and other approaches were experimented with.
+
+
 ### Patience
 
 In some cases in the case of a huge spike it was taking 2k iterations for a training to return to the same lm loss it spiked from. And then it'd continue training as if nothing happened.
@@ -69,8 +74,6 @@ So for example now we can rollback a bit and change LR if we need to to try to o
 - lowering `beta2` to 0.95 (from 0.999)
 
 - changing width/depth ratio
-
-- halving lr
 
 - longer lr warmup
 
