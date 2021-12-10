@@ -7,9 +7,7 @@ The following are super-brief summary notes. If you want the details with graphs
 
 104B:
 * [chronicles a](./tr8-104B-wide/chronicles.md)
-* [chronicles b](./tr8b-104B-ml/chronicles.md)
-
--
+* [chronicles b](./tr8b-104B/chronicles.md)
 
 ## How training divergences were overcome
 
