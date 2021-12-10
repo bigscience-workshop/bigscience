@@ -142,13 +142,13 @@ Re: 104B instability (https://huggingface.slack.com/archives/C01NHER1JLS/p163280
 Proposal: move the norm_factor inward, so Q and K are scaled down before matrix multiply:
 ```
 matmul_result = torch.baddbmm(
-            matmul_result,
-            1.0/math.sqrt(self.norm_factor) * query_layer.transpose(0, 1),   # [b * np, sq, hn]
-            1.0/math.sqrt(self.norm_factor) * key_layer.transpose(0, 1).transpose(1, 2),  # [b * np, hn, sk]
-            beta=0.0 if alibi is None else 1.0, alpha=1.0)
+    matmul_result,
+    1.0/math.sqrt(self.norm_factor) * query_layer.transpose(0, 1),   # [b * np, sq, hn]
+    1.0/math.sqrt(self.norm_factor) * key_layer.transpose(0, 1).transpose(1, 2),  # [b * np, hn, sk]
+    beta=0.0 if alibi is None else 1.0, alpha=1.0)
 
-        # change view to [b, np, sq, sk]
-        attention_scores = matmul_result.view(*output_size)
+# change view to [b, np, sq, sk]
+attention_scores = matmul_result.view(*output_size)
 ```
 
 To make the operation mathematically equivalent, moving the norm factor inward requires taking sqrt again
@@ -967,6 +967,7 @@ The proposed `--accumulate-allreduce-grads-in-fp32` - waiting to be tested
 
 
 
-XXX: to be continued
+Continued in the 2nd set of experiments [chronicles b](../tr8b-104B-ml/chronicles.md)
+
 
 stopped at Date: 2021-11-07
