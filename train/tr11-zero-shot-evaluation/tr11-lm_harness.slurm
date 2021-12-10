@@ -7,7 +7,7 @@
 #SBATCH --gres=gpu:1                 # number of gpus
 #SBATCH --time 10:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
-#SBATCH --array=1-33
+#SBATCH --array=0-32
 #SBATCH --account=six@gpu
 
 set -x -e
@@ -74,7 +74,7 @@ else
   exit
 fi
 
-pushd $WORK/code/bigscience/lm-evaluation-harness
+pushd $WORK/code/big_science/lm-evaluation-harness
 
 python main.py \
     --model gpt2 \
