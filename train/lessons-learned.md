@@ -36,3 +36,9 @@ How to recover from an instability without a full restart.
 
 1. Roll back to the last checkpoint before the instability
 2. skip data samples from the instability window `--skip-train-iteration-range 8401-8800 `
+
+### LR Changing
+
+Normally LR-related params can't be changed once training has started (Megatron asserts) but with `--override-lr-scheduler` we can completely rewrite them and it just works. that is megatron recalculates everything based on cmd line args and sets the LR to the right setting which can be very different from what it'd have normally been.
+
+So for example now we can rollback a bit and change LR if we need to to try to overcome some rough patch of data or some other instability.
