@@ -51,7 +51,6 @@ def main():
     final_results = {"checkpoint_steps": checkpoint_steps, "results": merged_json}
     with open(output_path, 'w') as fo:
         json.dump(final_results, fo)
-    pass
 
 if __name__ == "__main__":
     main()
