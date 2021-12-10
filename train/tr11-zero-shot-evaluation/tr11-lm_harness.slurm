@@ -62,23 +62,11 @@ export LOGS_PATH=$EXPERIMENT_DIRECTORY/logs/${CHECKPOINT}_.out
 mkdir -p $(dirname $RESULTS_PATH)
 mkdir -p $(dirname $LOGS_PATH)
 
-# TODO: Fix conditions when we get checkpoints
-if [[ $CHECKPOINT = *tr3d* || $CHECKPOINT = *tr3m* ]]
-then
-  TOKENIZER=gpt2
-elif [[ $CHECKPOINT = *tr3e* ]]
-then
-  TOKENIZER=t5-small
-else
-  echo "invalid checkpoint, Got $CHECKPOINT"
-  exit
-fi
-
 pushd $WORK/code/big_science/lm-evaluation-harness
 
 python main.py \
     --model gpt2 \
-    --model_args tokenizer=$TOKENIZER,$CHECKPOINT \
+    --model_args $CHECKPOINT \
     --device cuda \
     --output_path $RESULTS_PATH \
     --tasks arc_challenge,arc_easy,boolq,copa,headqa,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc \
