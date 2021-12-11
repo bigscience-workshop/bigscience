@@ -28,7 +28,7 @@ def main():
     for experiment in experiments:
         merged_json[experiment] = {}
         for ckpt_step in checkpoint_steps:
-            absolute_path = f"{path_base}/pretrained=bigscience/{experiment},revision=global_step{ckpt_step}.text"
+            absolute_path = f"{path_base}/pretrained=bigscience/{experiment},revision=global_step{ckpt_step}.txt"
             with open(absolute_path, 'r') as fi:
                 results = json.load(fi)["results"]
 
