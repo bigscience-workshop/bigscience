@@ -587,7 +587,7 @@ PP_SIZE=35
 ```
 
 
-
+The Megatron-Turing NLG 530B model took 3 months to train on over 2K A100 GPUs on the NVIDIA Selene Supercomputer, consuming over 3 million GPU hours.
 
 
 ## Experiment 11

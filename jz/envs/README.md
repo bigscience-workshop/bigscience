@@ -60,6 +60,9 @@ export PROD=$six_ALL_CCFRWORK
 
 # handy shortcuts
 alias myjobs="squeue -u `whoami`"
+
+# our shared conda base
+export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 ```
 
 note: wrt `newgrp six` - if you want to use it elsewhere and not `~/.bashrc` you may use this `newgrp - six` syntax instead, but don't use it in `~/.bashrc` or it will break many things.
