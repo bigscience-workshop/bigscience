@@ -184,7 +184,7 @@ Since we are going to use `~/user/...` in scripts, it now should be possible to 
 
 
 
-## Custom private env
+## Custom private conda env
 
 If wanting to work with variations of packages, create your own conda env, e.g. env `stas`:
 
