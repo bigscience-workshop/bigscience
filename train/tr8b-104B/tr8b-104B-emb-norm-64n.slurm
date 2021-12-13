@@ -16,6 +16,8 @@ source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8b-104B/start-tr8b-10
 
 echo "START TIME: $(date)"
 
+# sleep 100
+
 VARIANT=emb-norm
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr8b-104B/
@@ -74,6 +76,7 @@ EXIT_OPTS=" \
     "
 
 GPT_ARGS=" \
+    --skip-train-iteration-range 13251-14000 \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \
