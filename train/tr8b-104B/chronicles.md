@@ -43,6 +43,19 @@ perl -pi -e 's|--eval-interval 1000|--eval-interval 150|' *slurm
 [script](https://github.com/bigscience-workshop/bigscience/blob/d5fc4b22d7e88e87b4b9ec610b6c522b9a8c7a8d/train/tr8b-104B/tr8b-104B-cl.slurm)
 
 
+## CL Experiment 3
+
+Same as exp-2, but
+
+```
+    --lr 6e-5 \
+    --embed-layernorm \
+```
+
+that is activating embed LayerNorm that we found to be superior to all other experiments so far, and lowering `lr` to the same as the emb-norm experiments so that it's easier to compare the performance and quality.
+
+
+
 
 
 
@@ -200,6 +213,12 @@ dropped the learning rate to `5.842E-05` from `5.999E-05`
 ```
 
 so let's see if that makes a difference.
+
+
+Clearly LR didn't get low fast enough and it diverged too, but even sooner than bnb-exp-5!
+
+![tr8b-104B-bnb-exp-06.png](images/tr8b-104B-bnb-exp-06.png)
+
 
 
 ## Embed-Norm Experiment 1

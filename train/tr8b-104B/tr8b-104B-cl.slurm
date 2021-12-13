@@ -67,7 +67,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 1e-4 \
+    --lr 6e-5 \
     --min-lr 6e-6 \
     --lr-warmup-samples $LR_WARMUP_SAMPLES \
     --lr-decay-tokens $LR_DECAY_TOKENS \
@@ -98,6 +98,7 @@ GPT_ARGS=" \
     --init-method-std 0.006 \
     --fp16 \
     --checkpoint-activations \
+    --embed-layernorm \
     --seed 43 \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
