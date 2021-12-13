@@ -124,6 +124,16 @@ in your `~/.bashrc`.
 
 You can use it for anything but please don't install anything into it (unless coordinating with others), as we want this to be a reliable environment for all to share.
 
+Additionally you will most likely will want to do:
+
+```
+mv ~/.conda ~/.conda-old
+ln -s $six_ALL_CCFRWORK/.conda ~/.conda
+```
+
+because otherwise conda will try to use your HOME dir which is only 3GB-large. You can then nuke `~/.conda-old` or move it elsewhere.
+
+
 
 
 ## Creating production conda env
