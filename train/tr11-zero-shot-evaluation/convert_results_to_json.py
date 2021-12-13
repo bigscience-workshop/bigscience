@@ -22,6 +22,9 @@ def main():
         105000,
         114000
     ]
+    # Tokens were added by hand to the final json.
+    tokens = [10044178432, 19481362432, 28918546432, 39928594432, 49365778432, 58802962432, 69813010432, 79250194432, 88687378432, 99697426432, 109134610432]
+    assert len(tokens) == len(checkpoint_steps)
 
     # We merge all results in a single json
     merged_json = {}
@@ -48,7 +51,7 @@ def main():
             for metric in merged_json[experiment][task]:
                 assert len(merged_json[experiment][task][metric]) == len(checkpoint_steps)
 
-    final_results = {"checkpoint_steps": checkpoint_steps, "results": merged_json}
+    final_results = {"tokens": tokens, "checkpoint_steps": checkpoint_steps, "results": merged_json}
     with open(output_path, 'w') as fo:
         json.dump(final_results, fo)
 
