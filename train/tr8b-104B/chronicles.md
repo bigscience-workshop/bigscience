@@ -52,10 +52,14 @@ Same as exp-2, but
     --embed-layernorm \
 ```
 
-that is activating embed LayerNorm that we found to be superior to all other experiments so far, and lowering `lr` to the same as the emb-norm experiments so that it's easier to compare the performance and quality.
+that is activating Embed LayerNorm that we found to be superior to all other experiments so far, and lowering `lr` to the same as the emb-norm experiments so that it's easier to compare the performance and quality.
 
+```
+perl -pi -e 's|--lr 1e-4|--lr 6e-5|' *cl*slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --embed-layernorm \\|' *cl*slurm
+```
 
-
+[script](https://github.com/bigscience-workshop/bigscience/blob/5bc0d43cb782291b48c98cfba2d55ce0188f9961/train/tr8b-104B/tr8b-104B-cl.slurm)
 
 
 
