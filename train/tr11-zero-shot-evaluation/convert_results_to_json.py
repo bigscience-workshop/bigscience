@@ -1,7 +1,7 @@
 import json
 
 def main():
-    path_base = "/gpfsscratch/rech/six/commun/synched_exps/tr11-zero-shot-evaluation/results"
+    path_base = "/gpfsscratch/rech/six/commun/synched_exps/eval-tr3/results"
     output_path = f"{path_base}/final.json"
     experiments = [
         "tr3d-1B3-oscar-checkpoints",

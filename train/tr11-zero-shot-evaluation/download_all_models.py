@@ -1,9 +1,11 @@
 from multiprocessing import Pool
 
-from transformers import AutoModel
+from transformers import AutoModel, AutoTokenizer
+
 
 def _load_model(pretrain:str, revision: str):
     AutoModel.from_pretrained(pretrain, revision=revision)
+    AutoTokenizer.from_pretrained(pretrain, revision=revision)
     return f"Loaded: pretrain:{pretrain}, revision:{revision}"
 
 def load_model(kwargs):
