@@ -44,8 +44,7 @@ def normalise_scores(scores_per_task):
     normalised_scores = {}
     for key,value in scores_per_task.items():
         # We assume it exists, otherwise we need to figure out what the random baseline is
-        normalised_scores[key] = value - RANDOM_BASELINE[key]
-
+        normalised_scores[key] = (value - RANDOM_BASELINE[key]) / (1. - RANDOM_BASELINE[key])
     # TODO: we need to substract the random baseline.
     return scores_per_task
 
