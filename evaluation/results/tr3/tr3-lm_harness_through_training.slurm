@@ -26,19 +26,7 @@ tr3d-1B3-oscar-checkpoints
 tr3e-1B3-c4-checkpoints
 tr3m-1B3-pile-checkpoints
 )
-CHECKPOINT_STEPS=(
-19500
-28500
-37500
-48000
-57000
-66000
-76500
-85500
-94500
-105000
-114000
-)
+CHECKPOINT_STEPS=($(python -c "print(\" \".join([str(i) for i in range(19500, 118500, 1500)]))"))
 
 EXPERIMENTS_SIZE=${#EXPERIMENTS[@]}
 CHECKPOINT_STEPS_SIZE=${#CHECKPOINT_STEPS[@]}
