@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 from multiprocessing import Pool
 
+from requests import HTTPError
 from transformers import AutoModel, AutoTokenizer
 
 def get_args():
@@ -12,9 +13,12 @@ def get_args():
     return parser.parse_args()
 
 def _load_model(pretrain:str, revision: str):
-    AutoModel.from_pretrained(pretrain, revision=revision)
-    AutoTokenizer.from_pretrained(pretrain, revision=revision)
-    return f"Loaded: pretrain:{pretrain}, revision:{revision}"
+    try:
+        AutoModel.from_pretrained(pretrain, revision=revision)
+        AutoTokenizer.from_pretrained(pretrain, revision=revision)
+        return f"Loaded: {{pretrain:{pretrain}, revision:{revision}}}"
+    except HTTPError:
+        return f"Failed to load: {{pretrain:{pretrain}, revision:{revision}}}"
 
 def load_model(kwargs):
     return _load_model(**kwargs)
