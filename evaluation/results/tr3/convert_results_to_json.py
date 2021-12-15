@@ -1,4 +1,5 @@
 import json
+from argparse import ArgumentParser
 
 def main():
     path_base = "/gpfsscratch/rech/six/commun/synched_exps/eval-tr3/results"
@@ -31,7 +32,7 @@ def main():
     for experiment in experiments:
         merged_json[experiment] = {}
         for ckpt_step in checkpoint_steps:
-            absolute_path = f"{path_base}/pretrained=bigscience/{experiment},revision=global_step{ckpt_step}.txt"
+            absolute_path = f"{path_base}/{experiment}_{ckpt_step}.json"
             with open(absolute_path, 'r') as fi:
                 results = json.load(fi)["results"]
 
