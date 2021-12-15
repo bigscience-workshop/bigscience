@@ -1,5 +1,4 @@
 import json
-from argparse import ArgumentParser
 
 def main():
     path_base = "/gpfsscratch/rech/six/commun/synched_exps/eval-tr3/results"
