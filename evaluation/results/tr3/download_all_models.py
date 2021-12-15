@@ -25,15 +25,19 @@ def main():
     steps = args.steps
     revisions = [f"global_step{step}" for step in steps]
 
-    with Pool(10) as pool:
-        results = pool.imap(
-            load_model,
-            [{"pretrain": pretrain, "revision": revision} for pretrain in pretrains for revision in revisions],
-            chunksize=1
-        )
+    # with Pool(10) as pool:
+    #     results = pool.imap(
+    #         load_model,
+    #         [{"pretrain": pretrain, "revision": revision} for pretrain in pretrains for revision in revisions],
+    #         chunksize=1
+    #     )
+    #
+    #     for result in results:
+    #         print(result)
 
-        for result in results:
-            print(result)
+
+    for kwargs in [{"pretrain": pretrain, "revision": revision} for pretrain in pretrains for revision in revisions]:
+        print(load_model(kwargs))
 
 if __name__ == "__main__":
     main()
