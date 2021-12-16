@@ -277,6 +277,23 @@ If there are any zombies left behind across nodes, send one command to kill them
 srun pkill python
 ```
 
+## Detailed Access to SLURM Accounting
+
+`sacct` displays accounting data for all jobs and job steps in the Slurm job accounting log or Slurm database.
+
+So this is a great tool for analysing past events.
+
+For example, to see which nodes were used to run recent gpu jobs:
+
+```
+sacct -u `whoami` -A six@gpu -ojobid,start,end,state,status,exitcode --format nodelist%300
+```
+
+`%300` here tells it to use a 300 char width for the output, so that it's not truncated.
+
+See `man sacct` for more fields and info fields.
+
+
 
 ## Queue
 
