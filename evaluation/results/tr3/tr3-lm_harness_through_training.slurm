@@ -7,7 +7,7 @@
 #SBATCH --gres=gpu:1                 # number of gpus
 #SBATCH --time 10:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
-#SBATCH --array=0-32 # TODO: modify according to the number of models you want to evaluated
+#SBATCH --array=0-197 # TODO: modify according to the number of models you want to evaluated
 #SBATCH --account=six@gpu
 
 set -x -e
@@ -56,5 +56,6 @@ python main.py \
     --model_args $MODEL_ARGS \
     --device cuda \
     --output_path $RESULTS_PATH \
+    --no-cache \
     --tasks arc_challenge,arc_easy,boolq,copa,headqa,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc \
     2>&1 | tee $LOGS_PATH
