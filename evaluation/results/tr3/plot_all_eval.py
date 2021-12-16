@@ -15,12 +15,11 @@ def main():
     with open(args.input_file, "r") as fi:
         final = json.load(fi)
 
-    tokens = final["tokens"]
-    ckpt_steps = final["checkpoint_steps"]
     plots = {} # {"{EVALUATION}_{METRIC}": plt.figure}
-    for experiment_name in final["results"]:
-        for evaluation_name in final["results"][experiment_name]:
-            for metric_name in final["results"][experiment_name][evaluation_name]:
+    for experiment_name in final:
+        tokens = final[experiment_name]["tokens"]
+        for evaluation_name in final[experiment_name]["results"]:
+            for metric_name in final[experiment_name]["results"][evaluation_name]:
                 key = f"{evaluation_name}_{metric_name}"
                 if key[-7:] == "_stderr":
                     continue
@@ -33,7 +32,7 @@ def main():
 
                 plot = plots[key]
 
-                plot.plot(tokens, final["results"][experiment_name][evaluation_name][metric_name], label=experiment_name)
+                plot.plot(tokens, final[experiment_name]["results"][evaluation_name][metric_name], label=experiment_name)
 
     for plot in plots.values():
         plot.legend()

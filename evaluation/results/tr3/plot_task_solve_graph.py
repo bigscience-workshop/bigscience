@@ -49,6 +49,7 @@ def normalise_scores(scores_per_task):
     return scores_per_task
 
 def main():
+    # TODO: update to new file format
     args = get_args()
 
     with open(args.input_file, "r") as fi:
