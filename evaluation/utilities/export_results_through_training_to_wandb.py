@@ -12,9 +12,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
     with open(args.input_file) as f:
         data = json.load(f)
-    tokens = data["tokens"]
-    for run_name, results in data["results"].items():
-        run = wandb.init(project="bigscience-evaluation-through-training", entity="flukeellington", name=run_name,
+    for experiment_name, experiment in data.items():
+        results = experiment["results"]
+        tokens = experiment["tokens"]
+        run = wandb.init(project="bigscience-evaluation-through-training", entity="flukeellington", name=experiment_name,
                          reinit=True)
         for i, n_tokens in enumerate(tokens):
             all_values = []
