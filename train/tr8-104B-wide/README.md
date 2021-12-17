@@ -10,7 +10,7 @@ It was suggested that there are 2 ways to get to possible instabilities:
 - go deep (many layers)
 - go wide (huge hidden size)
 
-For this experiment we chose to 'go wide' and thus made the hidden size extra wide and had to adjust depth to still remain at 104B. Using the hidden/layers ration of 512 instead of the usual 150-200.
+For this experiment we chose to 'go wide' and thus made the hidden size extra wide and had to adjust depth to still remain at 104B. Using the hidden/layers ratio of 512 instead of the usual 150-200.
 
 ## Environment
 
