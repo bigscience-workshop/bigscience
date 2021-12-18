@@ -77,7 +77,7 @@ def main():
                 results = json.load(fi)["results"]
 
             for task in results:
-                if task not in result_json[task]:
+                if task not in result_json:
                     result_json[task] = {}
 
                 for metric in results[task]:
