@@ -72,7 +72,7 @@ def main():
         tokens = [checkpoint_step_to_tokens(checkpoint_step) for checkpoint_step in checkpoint_steps]
 
         result_json = {}
-        for absolute_path in results_file_per_checkpoint:
+        for absolute_path in absolute_paths:
             with open(absolute_path, 'r') as fi:
                 results = json.load(fi)["results"]
 
