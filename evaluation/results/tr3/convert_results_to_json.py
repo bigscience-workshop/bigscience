@@ -67,7 +67,7 @@ def main():
             if isfile(f"{path_base}/{file}") and file.startswith(experiment)
         ]
         checkpoint_steps = sorted([int(file.split("_")[-1].split(".json")[0]) for file in results_file_per_checkpoint])
-        absolute_paths = [f"{path_base}/{experiment}_{checkpoint_step}" for checkpoint_step in checkpoint_steps]
+        absolute_paths = [f"{path_base}/{experiment}_{checkpoint_step}.json" for checkpoint_step in checkpoint_steps]
         # format = "{EXPERIMENT_NAME}_{CHECKPOINT_STEP}.json"
         tokens = [checkpoint_step_to_tokens(checkpoint_step) for checkpoint_step in checkpoint_steps]
 
