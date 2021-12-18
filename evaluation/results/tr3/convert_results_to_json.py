@@ -66,7 +66,7 @@ def main():
             for file in listdir(path_base)
             if isfile(f"{path_base}/{file}") and file.startswith(experiment)
         ]
-        absolute_paths = [f"{path_base}_{file}" for file in results_file_per_checkpoint]
+        absolute_paths = [f"{path_base}/{file}" for file in results_file_per_checkpoint]
         # format = "{EXPERIMENT_NAME}_{CHECKPOINT_STEP}.json"
         checkpoint_steps = [int(file.split("_")[-1].split(".json")[0]) for file in results_file_per_checkpoint]
         tokens = [checkpoint_step_to_tokens(checkpoint_step) for checkpoint_step in checkpoint_steps]
