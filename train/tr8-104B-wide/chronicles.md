@@ -535,12 +535,12 @@ find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "num-zeros" "n
 find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "num-zeros vs samples" "num-zeros/num-zeros vs samples" \;
 find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "params-norm" "params-norm/params-norm" \;
 find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "params-norm vs samples" "params-norm/params-norm vs samples" \;
-find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation vs samples" "lm-loss-validation/lm loss validation vs samples" \;
-find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation ppl vs samples" "lm-loss-validation/lm loss validation ppl vs samples" \;
-find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation vs gigaflos" "lm-loss-validation/lm loss validation vs gigaflos" \;
-find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation ppl vs gigaflos" "lm-loss-validation/lm loss validation ppl vs gigaflos" \;
-find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation" "lm-loss-validation/lm loss validation" \;
-find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation ppl" "lm-loss-validation/lm loss validation ppl" \;
+find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation vs samples" "lm-loss-validation/valid/lm loss validation vs samples" \;
+find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation ppl vs samples" "lm-loss-validation/valid/lm loss validation ppl vs samples" \;
+find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation vs gigaflos" "lm-loss-validation/valid/lm loss validation vs gigaflos" \;
+find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation ppl vs gigaflos" "lm-loss-validation/valid/lm loss validation ppl vs gigaflos" \;
+find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation" "lm-loss-validation/valid/lm loss validation" \;
+find tensorboard -name "*.tfevents*" -exec tb-rename-events.py {} "lm loss validation ppl" "lm-loss-validation/valid/lm loss validation ppl" \;
 ```
 It surely can be made more efficient by rewriting each file only once, but that's good enough for an occasional use.
 
