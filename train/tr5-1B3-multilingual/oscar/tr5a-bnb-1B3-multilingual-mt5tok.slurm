@@ -87,7 +87,6 @@ GPT_ARGS=" \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
     --train-samples $TRAIN_ITER \
-    --dataloader-type cyclic \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path google/mt5-base \
     --loss-scale 12 \

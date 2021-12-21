@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH --job-name=tr5b-1B3-multilingual-alpha.slurm
-#SBATCH --partition=gpu_p13
+#SBATCH --job-name=tr3d-1B3-oscar.slurm
+#SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
@@ -13,17 +13,19 @@
 
 set -x -e
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5b-1B3-multilingual-alpha
+
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr3d-1B3-oscar
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr5b-1B3-multilingual-alpha-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr3d-1B3-oscar-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
-MEGATRON_DEEPSPEED_REPO=$ALL_CCFRWORK/code/Megatron-DeepSpeed
+# You need to git clone the Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=$DATA_OUTPUT_PATH/code/Megatron-DeepSpeed
 
-TRAIN_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/train_data_string.0.3.txt`
-VALID_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/valid_data_string.0.3.txt`
-TEST_DATA_PATH=`cat $DATA_OUTPUT_PATH/sampling_probs/test_data_string.0.3.txt`
+VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
+MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 # defining the right environment variables
 source $six_ALL_CCFRWORK/start-prod
@@ -50,7 +52,7 @@ DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatic
 
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=512
-TRAIN_ITER=146_484_375
+TRAIN_ITER=73_242_187
 
 NLAYERS=24
 NHIDDEN=2048
@@ -68,7 +70,6 @@ OPTIMIZER_ARGS=" \
     --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 146_484_375 \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
@@ -89,8 +90,8 @@ GPT_ARGS=" \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
     --train-samples $TRAIN_ITER \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path bigscience/oscar_13_languages_alpha_weight \
+    --vocab-file $VOCAB_FILE \
+    --merge-file $MERGE_FILE \
     --loss-scale 12 \
     --clip-grad 1.0 \
     --fp16 \
@@ -102,7 +103,7 @@ GPT_ARGS=" \
 OUTPUT_ARGS=" \
     --log-interval 200 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 10000 \
+    --eval-interval 1000 \
     --eval-iters 100 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
@@ -110,6 +111,8 @@ OUTPUT_ARGS=" \
     --log-batch-size-to-tensorboard \
     --log-validation-ppl-to-tensorboard \
     "
+# TODO: Add --codecarbon-dir $CODECARBON_PATH \ if you want to use codecarbon, not adding it for now to make the current
+# series of experiments consistent, especially speed-wise. Adding it once Tr6 and Tr7 are done
 
 ZERO_STAGE=1
 
@@ -160,10 +163,9 @@ export CMD=" \
     $OUTPUT_ARGS \
     --save $CHECKPOINT_PATH \
     --load $CHECKPOINT_PATH \
-    --train-weighted-split-paths $TRAIN_DATA_PATH \
-    --valid-weighted-split-paths $VALID_DATA_PATH \
-    --test-weighted-split-paths $TEST_DATA_PATH \
+    --data-path $DATA_PATH \
     --data-impl mmap \
+    --split 949,50,1 \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
     "
@@ -178,4 +180,4 @@ echo $CMD
 # We create the folder where the logs and codecarbon will be stored.
 mkdir -p $LOGS_PATH
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
+srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
