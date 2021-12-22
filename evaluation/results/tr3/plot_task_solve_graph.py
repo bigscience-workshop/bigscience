@@ -49,25 +49,35 @@ def normalise_scores(scores_per_task):
     return scores_per_task
 
 def main():
-    # TODO: @thomasw21 figure this one.
-    raise NotImplementedError("Given that all experiments do not have the same checkpoints, this becomes much harder as we need to find the intersection of checkpoints across experiments and then plot only those.")
     args = get_args()
 
     with open(args.input_file, "r") as fi:
         final = json.load(fi)
 
-    tokens = final["tokens"]
+    # We search for matching tokens
+    matching_tokens = set(next(iter(final.values()))["tokens"])
+    for experiment_name, experiment in final.items():
+        tokens = experiment["tokens"]
+        matching_tokens = matching_tokens & set(tokens)
+        # Make sure we don't override existing data
+        assert "token2checkpoint_step" not in experiment
+        experiment["token2checkpoint_step"] = {token: ckpt_step for token, ckpt_step in zip(tokens, experiment["checkpoints"])}
+        # Make sure we don't override existing data
+        assert "token2id" not in experiment
+        experiment["token2id"] = {token: _id for _id, token in enumerate(tokens)}
+    matching_tokens = sorted(matching_tokens)
+    print(f"Plotting only for tokens in {matching_tokens}")
+
     plots_per_keys = {}
 
-    ckpt_steps = final["checkpoint_steps"]
-    for i, token in enumerate(tokens):
-        for experiment_name in final["results"]:
-
+    for token in matching_tokens:
+        for experiment_name, experiment in final.items():
+            _id = experiment["token2id"][token]
             scores_per_task = {
                 "Average_acc": {
-                    f"{evaluation_name}_{metric_name}": values[i]
-                    for evaluation_name in final["results"][experiment_name]
-                    for metric_name, values in final["results"][experiment_name][evaluation_name].items()
+                    f"{evaluation_name}_{metric_name}": metric[_id]
+                    for evaluation_name, evaluation in experiment["results"].items()
+                    for metric_name, metric in evaluation.items()
                     if metric_name == "acc"
                 },
                 # "Average": {
@@ -81,20 +91,21 @@ def main():
             # Build plot graphs
             for key in scores_per_task:
                 if key not in plots_per_keys:
-                    plots_per_keys[key] = []
+                    plots_per_keys[key] = {}
 
-                if i != len(plots_per_keys[key]):
+                plot_per_token = plots_per_keys[key]
+                if token in plot_per_token:
                     continue
 
                 plot = plt.figure()
                 plot = plot.add_subplot(1, 1, 1)
                 plot.set_title(f"{key} - Number of tokens seen: {token}")
-                plots_per_keys[key].append(plot)
+                plot_per_token[token] = plot
 
             # Plot per steps
             for key in plots_per_keys:
                 scores = scores_per_task[key]
-                plot = plots_per_keys[key][i]
+                plot = plots_per_keys[key][token]
 
                 # Normalize score
                 normalised_scores = normalise_scores(scores)
@@ -108,8 +119,8 @@ def main():
                 plot.step(x=sorted_scores, y=y, label=experiment_name)
 
     for plots in plots_per_keys.values():
-        assert len(plots) == len(tokens)
-        for plot in plots:
+        assert len(plots) == len(matching_tokens)
+        for plot in plots.values():
             plot.legend()
     plt.show()
 

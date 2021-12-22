@@ -32,6 +32,7 @@ RANDOM_BASELINE={
     "wnli": 0.5,
     "wsc": 0.5
 }
+
 def normalise(score, task):
     return (score - RANDOM_BASELINE[task]) / (1. - RANDOM_BASELINE[task])
 

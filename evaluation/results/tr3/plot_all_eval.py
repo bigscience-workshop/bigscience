@@ -16,10 +16,10 @@ def main():
         final = json.load(fi)
 
     plots = {} # {"{EVALUATION}_{METRIC}": plt.figure}
-    for experiment_name in final:
-        tokens = final[experiment_name]["tokens"]
-        for evaluation_name in final[experiment_name]["results"]:
-            for metric_name in final[experiment_name]["results"][evaluation_name]:
+    for experiment_name, experiment in final.items():
+        tokens = experiment["tokens"]
+        for evaluation_name, evaluation in experiment["results"]:
+            for metric_name, metric in evaluation.items():
                 key = f"{evaluation_name}_{metric_name}"
                 if key[-7:] == "_stderr":
                     continue
@@ -32,7 +32,7 @@ def main():
 
                 plot = plots[key]
 
-                plot.plot(tokens, final[experiment_name]["results"][evaluation_name][metric_name], label=experiment_name)
+                plot.plot(tokens, metric, label=experiment_name)
 
     for plot in plots.values():
         plot.legend()
