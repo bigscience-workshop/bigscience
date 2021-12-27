@@ -100,7 +100,7 @@ def main():
 
     final_results = merged_json
     with open(output_path, 'w') as fo:
-        json.dump(final_results, fo)
+        json.dump(final_results, fo, indent=2)
 
 if __name__ == "__main__":
     main()
