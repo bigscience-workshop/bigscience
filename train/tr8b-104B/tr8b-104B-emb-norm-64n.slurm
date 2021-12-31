@@ -76,7 +76,7 @@ EXIT_OPTS=" \
     "
 
 GPT_ARGS=" \
-    --skip-train-iteration-range 13251-14000 \
+    --skip-train-iteration-range 13251-14000 16652-18500 \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \

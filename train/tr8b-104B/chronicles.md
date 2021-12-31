@@ -254,3 +254,16 @@ ns:   0 | number of nan iterations:   0 |
 ```
 
 so will repeat Exp 1 with `--skip-train-iteration-range 13251-14000`
+
+Worked well for a while and then started flatting out around 17k and then went on a roller coaster around 18k.
+
+![tr8b-104B-emb-norm-exp-02.png](images/tr8b-104B-emb-norm-exp-02.png)
+
+
+## Embed-Norm Experiment 3
+
+Repeat the same as last time
+
+1. Rollback to 16651 and skip data till 18500:
+
+so will repeat Exp 2 with `--skip-train-iteration-range 13251-14000 16652-18500`
