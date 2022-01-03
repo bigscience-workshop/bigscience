@@ -56,5 +56,5 @@ python main.py \
     --model_args $MODEL_ARGS \
     --device cuda \
     --output_path $RESULTS_PATH \
-    --tasks arc_challenge,arc_easy,boolq,copa,headqa,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc \
+    --tasks arc_challenge,arc_easy,boolq,copa,headqa_en,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc \
     2>&1 | tee $LOGS_PATH
