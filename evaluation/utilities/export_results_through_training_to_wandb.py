@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import wandb
 import json
@@ -38,7 +40,7 @@ def normalise(score, task):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_file", type=str, required=True)
+    parser.add_argument("--input_files", type=str, required=True)
     parser.add_argument("--all_tasks", action="store_true")
     parser.add_argument("--naive_average", action="store_true")
     parser.add_argument("--acc_average", action="store_true")
@@ -47,9 +49,12 @@ def parse_args():
 
 def main():
     args = parse_args()
-    with open(args.input_file) as f:
-        data = json.load(f)
-    for experiment_name, experiment in data.items():
+    for input_file in args.input_files:
+        assert os.path.basename(input_file).endswith("_agg.json")
+        experiment_name = os.path.basename(input_file).split("_agg.json")[0]
+        with open(input_file, "r") as fi:
+            experiment = json.load(fi)
+
         results = experiment["results"]
         tokens = experiment["tokens"]
         run = wandb.init(project="bigscience-tr3-evaluation-through-training", entity="timerobber", name=experiment_name,

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=eval-tr3
+#SBATCH --job-name=eai-eval
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=10           # number of cores per tasks
@@ -18,6 +18,7 @@ conda activate thomas_lm_eval # Debug deepspeed temporarily
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
+# TODO: Modify the path
 export EXPERIMENT_DIRECTORY=$six_ALL_CCFRSCRATCH/synched_exps/eval-tr3
 
 # TODO: Modify according to the model you want to evaluated

@@ -1,4 +1,5 @@
 import json
+import os
 from argparse import ArgumentParser
 
 from matplotlib import pyplot as plt
@@ -6,17 +7,19 @@ from matplotlib import pyplot as plt
 
 def get_args():
     parser = ArgumentParser()
-    parser.add_argument('--input-file', type=str, required=True, help='Input file that hold all evaluation metrics')
+    parser.add_argument('--input-files', type=lambda s: s.split(','), required=True, help='Input files that hold all evaluation metrics')
     return parser.parse_args()
 
 def main():
     args = get_args()
 
-    with open(args.input_file, "r") as fi:
-        final = json.load(fi)
-
     plots = {} # {"{EVALUATION}_{METRIC}": plt.figure}
-    for experiment_name, experiment in final.items():
+    for input_file in args.input_files:
+        assert os.path.basename(input_file).endswith("_agg.json")
+        experiment_name = os.path.basename(input_file).split("_agg.json")[0]
+        with open(input_file, "r") as fi:
+            experiment = json.load(fi)
+
         tokens = experiment["tokens"]
         for evaluation_name, evaluation in experiment["results"].items():
             for metric_name, metric in evaluation.items():

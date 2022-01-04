@@ -1,4 +1,5 @@
 import json
+import os
 from argparse import ArgumentParser
 
 import numpy as np
@@ -7,7 +8,7 @@ from matplotlib import pyplot as plt
 
 def get_args():
     parser = ArgumentParser()
-    parser.add_argument('--input-file', type=str, required=True, help='Input file that hold all evaluation metrics')
+    parser.add_argument('--input-files', type=lambda s: s.split(','), required=True, help='Input file that hold all evaluation metrics')
     return parser.parse_args()
 
 # TODO: fill it up
@@ -51,8 +52,12 @@ def normalise_scores(scores_per_task):
 def main():
     args = get_args()
 
-    with open(args.input_file, "r") as fi:
-        final = json.load(fi)
+    final = {}
+    for input_file in args.input_files:
+        assert os.path.basename(input_file).endswith("_agg.json")
+        experiment_name = os.path.basename(input_file).split("_agg.json")[0]
+        with open(input_file, "r") as fi:
+            final[experiment_name] = json.load(fi)
 
     # We search for matching tokens
     matching_tokens = set(next(iter(final.values()))["tokens"])
