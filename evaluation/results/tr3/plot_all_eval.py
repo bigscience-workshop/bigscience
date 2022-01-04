@@ -18,7 +18,7 @@ def main():
     plots = {} # {"{EVALUATION}_{METRIC}": plt.figure}
     for experiment_name, experiment in final.items():
         tokens = experiment["tokens"]
-        for evaluation_name, evaluation in experiment["results"]:
+        for evaluation_name, evaluation in experiment["results"].items():
             for metric_name, metric in evaluation.items():
                 key = f"{evaluation_name}_{metric_name}"
                 if key[-7:] == "_stderr":

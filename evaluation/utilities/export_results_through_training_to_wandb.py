@@ -8,11 +8,11 @@ RANDOM_BASELINE={
     "arc_easy": 0.2502, # Source: https://arxiv.org/pdf/1803.05457.pdf table 6
     "boolq": 0.5,
     "copa": 0.5,
-    "headqa": 0.25, # TODO: That's a pain as some have 4, some have 5 and nobody reports random baseline
+    "headqa": 0.25,
     "hellaswag": 0.25,
     "lambada": 0., # Safe to say that random models won't perform well at all.
     "logiqa": 0.25,
-    "mathqa": 0.25, # TODO: That's a pain as some have 4, some have 5 and nobody reports random baseline
+    "mathqa": (4360 * 1/ 5 - (4475 - 4360) * 1/ 4) / 4475,
     "mrpc": 0.5,
     "multirc": 0., # TODO: I couldn't figure it out
     "openbookqa": 0.25,
