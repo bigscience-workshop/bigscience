@@ -8,7 +8,7 @@ RANDOM_BASELINE={
     "arc_easy": 0.2502, # Source: https://arxiv.org/pdf/1803.05457.pdf table 6
     "boolq": 0.5,
     "copa": 0.5,
-    "headqa": 0.25,
+    "headqa_en": 0.25,
     "hellaswag": 0.25,
     "lambada": 0., # Safe to say that random models won't perform well at all.
     "logiqa": 0.25,
