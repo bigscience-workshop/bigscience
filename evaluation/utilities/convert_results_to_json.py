@@ -1,5 +1,6 @@
 import json
 import math
+import os
 from argparse import ArgumentParser
 from os import listdir
 from os.path import isfile
@@ -11,11 +12,11 @@ def get_args():
                         help='Experiment we want to download.')
     parser.add_argument('--result-dir', type=str, required=True,
                         help='Result directory containing all results, and to store aggregated json results.')
-    parser.add_argument('--batch-size', type=int, required=True, default=512,
+    parser.add_argument('--batch-size', type=int, default=512,
                         help='Experiment training batch size.')
-    parser.add_argument('--sequence_length', type=int, required=True, default=2048,
+    parser.add_argument('--sequence_length', type=int, default=2048,
                         help='Experiment training sequence length.')
-    parser.add_argument('--rampup-batch-size', type=lambda s: tuple(int(item) for item in s.split(',')), required=True, default=(32, 32, 2_000_000),
+    parser.add_argument('--rampup-batch-size', type=lambda s: tuple(int(item) for item in s.split(',')), default=(32, 32, 2_000_000),
                         help='Experiment training batch size rampup.')
     return parser.parse_args()
 
@@ -73,7 +74,7 @@ def main():
     results_file_per_checkpoint = [
         file
         for file in listdir(result_dir)
-        if isfile(f"{result_dir}/{file}") and file.startswith(experiment)
+        if isfile(os.path.join(result_dir, file)) and file.startswith(experiment)
     ]
     checkpoint_steps = sorted([int(file.split("_")[-1].split(".json")[0]) for file in results_file_per_checkpoint])
     absolute_paths = [f"{result_dir}/{experiment}_{checkpoint_step}.json" for checkpoint_step in checkpoint_steps]
@@ -101,7 +102,7 @@ def main():
         for metric in result_json[task]:
             assert len(result_json[task][metric]) == len(checkpoint_steps)
 
-    output_path = f"{result_dir}/{experiment}_agg.json"
+    output_path = os.path.join(result_dir, f"{experiment}_agg.json")
     print(f"Printing results to {output_path}")
     with open(output_path, 'w') as fo:
         json.dump({"tokens": tokens, "checkpoints": checkpoint_steps, "results": result_json}, fo, indent=2)
