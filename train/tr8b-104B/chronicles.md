@@ -267,3 +267,18 @@ Repeat the same as last time
 1. Rollback to 16651 and skip data till 18500:
 
 so will repeat Exp 2 with `--skip-train-iteration-range 13251-14000 16652-18500`
+
+Actually got the same problem as exp 2 but arriving even sooner:
+
+
+![tr8b-104B-emb-norm-exp-03.png](images/tr8b-104B-emb-norm-exp-03.png)
+
+
+
+## Embed-Norm Experiment 4
+
+Repeat the same as last time but let's try another data range. Seeing how the rollercoaster started around 18k, let's go for 19500.
+
+1. Rollback to 16651 and skip data till 18500:
+
+so will repeat Exp 2 with `--skip-train-iteration-range 13251-14000 16651-19500`
