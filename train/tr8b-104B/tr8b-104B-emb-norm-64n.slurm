@@ -72,7 +72,7 @@ OPTIMIZER_ARGS=" \
     "
 
 EXIT_OPTS=" \
-    --exit-duration-in-mins 1190 \
+    --exit-duration-in-mins 1185 \
     "
 
 GPT_ARGS=" \
