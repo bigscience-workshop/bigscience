@@ -20,7 +20,7 @@ REPO_PATH=$DATA_OUTPUT_PATH/tr7d-1B3-alibi-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
-MEGATRON_DEEPSPEED_REPO=$SCRATCH/repos/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=$DATA_OUTPUT_PATH/code/Megatron-DeepSpeed
 
 # TODO: you may change the dataset, some examples are at tr3-1B3-baseline (tr3 = c4 + t5-tokenizer, tr3m = the Pile)
 VOCAB_FILE=$DATA_OUTPUT_PATH/data/gpt2-vocab.json
