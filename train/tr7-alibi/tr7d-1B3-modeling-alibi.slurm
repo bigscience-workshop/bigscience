@@ -48,7 +48,7 @@ PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
 TP_SIZE=1 # always fixed to the size of a single node
 DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
-MICRO_BATCH_SIZE=4
+MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=512
 TRAIN_ITER=73_242_187
 
