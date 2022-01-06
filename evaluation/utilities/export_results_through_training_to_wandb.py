@@ -40,7 +40,7 @@ def normalise(score, task):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_files", type=str, required=True)
+    parser.add_argument("--input_files", type=lambda s: s.split(','), required=True)
     parser.add_argument("--all_tasks", action="store_true")
     parser.add_argument("--naive_average", action="store_true")
     parser.add_argument("--acc_average", action="store_true")
