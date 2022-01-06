@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=eval-tr3
+#SBATCH --job-name=eai-eval
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=10           # number of cores per tasks
@@ -18,6 +18,7 @@ conda activate thomas_lm_eval # Debug deepspeed temporarily
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
+# TODO: Modify the path
 export EXPERIMENT_DIRECTORY=$six_ALL_CCFRSCRATCH/synched_exps/eval-tr3
 
 # TODO: Modify according to the model you want to evaluated
@@ -56,5 +57,5 @@ python main.py \
     --model_args $MODEL_ARGS \
     --device cuda \
     --output_path $RESULTS_PATH \
-    --tasks arc_challenge,arc_easy,boolq,copa,headqa,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc \
+    --tasks arc_challenge,arc_easy,boolq,copa,headqa_en,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc \
     2>&1 | tee $LOGS_PATH
