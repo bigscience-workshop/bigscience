@@ -16,11 +16,14 @@
 #
 # Important: this script requires CUDA environment.
 
+import shlex
 import sys
 from pathlib import Path
 import os
-# Use this if you want to avoid using the GPU
-os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+# avoid using the GPU
+os.environ['CUDA_VISIBLE_DEVICES'] = ''
+# disable logging
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 from tensorflow.core.util.event_pb2 import Event
 
@@ -34,9 +37,11 @@ def rename_events(input_file, old_tags, new_tag):
             ev = Event()
             ev.MergeFromString(rec.numpy())
             # Check if it is a summary
+            #print(ev)
             if ev.summary:
                 # Iterate summary values
                 for v in ev.summary.value:
+                    #print(v)
                     # Check if the tag should be renamed
                     if v.tag in old_tags:
                         # Rename with new tag name
@@ -54,6 +59,6 @@ if __name__ == '__main__':
               file=sys.stderr)
         sys.exit(1)
     input_file, old_tags, new_tag = sys.argv[1:]
+    print(input_file, shlex.quote(old_tags), shlex.quote(new_tag))
     old_tags = old_tags.split(';')
     rename_events_dir(input_file, old_tags, new_tag)
-    print('Done')
