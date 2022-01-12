@@ -279,6 +279,61 @@ Actually got the same problem as exp 2 but arriving even sooner:
 
 Repeat the same as last time but let's try another data range. Seeing how the rollercoaster started around 18k, let's go for 19500.
 
-1. Rollback to 16651 and skip data till 18500:
+1. Rollback to 16651 and skip data till 19500:
 
 so will repeat Exp 2 with `--skip-train-iteration-range 13251-14000 16651-19500`
+
+It didn't help. It exhibited the same behavior as Exp 2 and 3.
+
+![tr8b-104B-emb-norm-exp-04.png](images/tr8b-104B-emb-norm-exp-04.png)
+
+Next, will try to reset the optimizer.
+
+
+## Embed-Norm Experiment 5
+
+So 2 data skipping attempts didn't help. Let's try resetting the optimizer states next.
+
+Half-way optimizer reset method:
+
+- reset optimizer - don't load the previous states from the checkpoint with the help of `--no-load-optim`﻿
+- since we can't do lr warm up half-way through the training we will cheat and simply run the optimizer w/o updates to the weights by setting `lr=0` - now let it train for this number of iterations to emulate warm up (1/(1-0.95)) * 5 = 100 (beta2 = 0.95)
+- XXX: counters for bias correction have to be reset ???
+- then resume normal training, after restoring the setup to normal
+
+1. Rollback to 16800 (last stable low loss point)
+2. Calculate how to get the framework to run for 100 extra iterations and stop
+```
+
+ iteration    16800/  159576 | consumed samples:      7594208 | consumed tokens:  15552937984 | elapsed time per iteration (ms): 384505.8 | learning rate: 5.955E-05 | global batch size:  2048 | lm loss: 2.682074E+00 | loss scale: 524288.0 | grad norm: 180376.315 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 35.24 |
+ iteration    16801/  159576 | consumed samples:      7596256 | consumed tokens:  15557132288 | elapsed time per iteration (ms): 400291.6 | learning rate: 5.955E-05 | global batch size:  2048 | lm loss: 2.657616E+00 | loss scale: 524288.0 | grad norm: 226760.401 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 33.85 |
+```
+
+
+so each iteration is 2048 samples at this point and thus we want to run for an additional 204800 samples, and thus we know we want to stop at 7799008 (7594208+204800) 7594208 was consumed samples at iteration 16800. i.e. the new setting is `--train-samples 7799008`
+
+For the optimizer reset run we need to add:
+```
+    --no-load-optim \
+    --override-lr-scheduler \
+```
+and change:
+```
+    --lr 0 \
+    --min-lr 0 \
+    --train-samples 7799008 \
+```
+
+Automating the change:
+```
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --no-load-optim \\|' tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|--lr 6e-5|--lr 0|' tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|--min-lr 6e-6|--min-lr 0|' tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|--train-samples 300_000_000|--train-samples 7799008|' tr8b-104B-emb-norm-64n.slurm
+```
+
+1. Now run this job once
+2. and the next job restore the slurm script to the original as the optimizer should have been warmed up
+
+(ideally we should reset to the 16800 checkpoint in `last` for after optim warm up is over, but then we don't have a way to get the new optim state)
