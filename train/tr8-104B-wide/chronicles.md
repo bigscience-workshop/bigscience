@@ -211,7 +211,13 @@ So stopped the last experiment and started a new one - identical to Experiment 3
 - rolled back to iteration 3k - so earlier than 6210, as suggested that it might be too close to the blow up and we should try to make things better before that
 - `--adam-beta2 0.95` - it should make the training slower but more stable
 
+Mohammad Shoeybi notes:
 
+* With respect to reproducibility, we have done a lot of work to make sure Megatron is reproducible, meaning that if you resume from an earlier checkpoint and run on the same number of GPUs, you should see EXACTLY the same behaviour. This implies that dataloaders are also reproducible.
+* The spikes sometimes happen during the training and if the loss quickly recovers, it is generally ok. Sometimes it might be due to a set of bad samples but most of the time it is due to optimizers being in a bad state and having values that might underflow in the gradients. What we found that was helpful is to use a lower beta2 in the adam optimizer. Basically the closer beta2 is to beta1, the less chances of these spikes happening. Definitely we don’t want to use a very low value for beta2 (for example beta2=beta1=0.9) as it will slow down the convergence.
+* Large learning rate can cause instabilities in the fp16 training (fp16 training is more sensitive to learning rate). I don’t have a solid explanation for this but we found this empirically.
+* We also found that the larger the model, the lower the initialization std should be. A rule of thumb is to scale it down to sqrt of hidden size. This also helps with the stability.
+* With respect to getting input text from iteration, we report the number of samples consumed, You can  instantiate dataset (for example here) and get the sample number directly
 
 Rollback performed:
 
@@ -302,7 +308,7 @@ And the outcome is very similar to Exp 4 and 5 despite the corrected model shape
 2. get back to beta2=0.999 (with spikes) and try fp32. If Corby’s self-attn version made a difference, then maybe it is an fp16 instability issue.
    note: This will require approximately 30% more RAM for activation memory - so to run this experiment we have to first test that we can fit it.
 ```
-perl -pi -e 's|--adam-beta2 0.95|--adam-beta2 0.95|' *slurm
+perl -pi -e 's|--adam-beta2 0.95|--adam-beta2 0.999|' *slurm
 ```
 
 3. try lower learning rate (half the LR and longer warmup) - ideally wait for CongLong
