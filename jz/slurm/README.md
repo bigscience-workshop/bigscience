@@ -286,7 +286,7 @@ So this is a great tool for analysing past events.
 For example, to see which nodes were used to run recent gpu jobs:
 
 ```
-sacct -u `whoami` -A six@gpu -ojobid,start,end,state,status,exitcode --format nodelist%300
+sacct -u `whoami` -A six@gpu -ojobid,start,end,state,exitcode --format nodelist%300
 ```
 
 `%300` here tells it to use a 300 char width for the output, so that it's not truncated.
