@@ -336,4 +336,18 @@ perl -pi -e 's|--train-samples 300_000_000|--train-samples 7799008|' tr8b-104B-e
 1. Now run this job once
 2. and the next job restore the slurm script to the original as the optimizer should have been warmed up
 
+once (1) started running, back it up and restore the original:
+```
+cp tr8b-104B-emb-norm-64n.slurm tr8b-104B-emb-norm-64n.slurm.reset-optim
+git checkout tr8b-104B-emb-norm-64n.slurm
+```
+but the checkpoint will now have wrong lr info, so we again need to tell megatron to ignore it and use the normal lr setup:
+
+```
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr8b-104B-emb-norm-64n.slurm
+```
+
+once (2) has started running and all looks good we can then reset it to remove `--override-lr-scheduler`
+
+
 (ideally we should reset to the 16800 checkpoint in `last` for after optim warm up is over, but then we don't have a way to get the new optim state)
