@@ -84,7 +84,7 @@ GPT_ARGS=" \
     --num-attention-heads $NHEADS \
     --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --seq-length $SEQ_LEN \
-    --position-embedding-type rotary\
+    --position-embedding-type rotary \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
