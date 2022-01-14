@@ -8,7 +8,10 @@ Some tips:
 
 ## Stored checkpoints
 
-Location of the checkpoints of the trained models
+Location of the checkpoints of the trained models plus logs and anything else of importance - e.g. eval harness results:
+
+- tr1-13B: `/gpfsdsstore/projects/rech/six/commun/checkpoints/tr1-13B`
+- tr3m-1B3-emb-norm-pile: `/gpfsdsstore/projects/rech/six/commun/checkpoints/tr3m-1B3-emb-norm-pile`
 
 - tr4c-1B3-rotary-oscar: `/gpfsdsstore/projects/rech/six/commun/checkpoints/tr4c-1B3-rotary-oscar`
 - tr7a-1B3-alibi (not a real alibi pos embedding experiment - the alibi matrix were not used in this experiment): `/gpfsdsstore/projects/rech/six/commun/checkpoints/tr7a-1B3-alibi`
