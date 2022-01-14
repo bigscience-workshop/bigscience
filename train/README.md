@@ -5,3 +5,11 @@ This folder gathers training scripts for the different arch/scaling and engineer
 Some tips:
  - [TFlops optimization](https://github.com/bigscience-workshop/bigscience/blob/master/train/tflops_optimization.md): How to make sure that given a set of hardware you optimize the speed at which you train.
  - [Instrumentation](https://github.com/bigscience-workshop/bigscience/blob/master/tools/README.md): How to sync with the hub
+
+## Stored checkpoints
+
+Location of the checkpoints of the trained models
+
+- tr4c-1B3-rotary-oscar: `/gpfsdsstore/projects/rech/six/commun/checkpoints/tr4c-1B3-rotary-oscar`
+- tr7a-1B3-alibi (not a real alibi pos embedding experiment - the alibi matrix were not used in this experiment): `/gpfsdsstore/projects/rech/six/commun/checkpoints/tr7a-1B3-alibi`
+- tr7b-350-alibi (not a real alibi pos embedding experiment - the alibi matrix were not used in this experiment): `/gpfsdsstore/projects/rech/six/commun/checkpoints/tr7b-350M-alibi`
