@@ -215,7 +215,7 @@ pip install -r requirements.txt
 cd ~/user/code/apex
 ./build.sh
 
-cd ~/user/code/deepspeed-big-science
+cd ~/user/code/deepspeed
 ./build.sh
 ```
 
@@ -347,7 +347,7 @@ Quick instructions (detailed listing follow):
 export TMPDIR=$six_ALL_CCFRWORK/tmp
 mkdir -p $TMPDIR
 
-cd $six_ALL_CCFRWORK/code/deepspeed-big-science
+cd $six_ALL_CCFRWORK/code/deepspeed
 ./build.sh
 
 cd $six_ALL_CCFRWORK/code/apex
@@ -358,20 +358,12 @@ cd $six_ALL_CCFRWORK/code/apex
 ### deepspeed
 
 
-We are using a special branch maintained for us:
-```
-cd $six_ALL_CCFRWORK/code/
-git clone https://github.com/microsoft/deepspeed deepspeed-big-science
-cd deepspeed-big-science
-git checkout big-science
-```
-
 To pre-build deepspeed (as compared to have it built via JIT at runtime):
 
 ```
 export TMPDIR=$six_ALL_CCFRWORK/tmp
 mkdir -p $TMPDIR
-cd $six_ALL_CCFRWORK/code/deepspeed-big-science
+cd $six_ALL_CCFRWORK/code/deepspeed
 ./build.sh
 ```
 
