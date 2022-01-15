@@ -294,7 +294,7 @@ Next, will try to reset the optimizer.
 
 So 2 data skipping attempts didn't help. Let's try resetting the optimizer states next.
 
-Half-way optimizer reset method:
+**Half-way optimizer reset method**:
 
 - reset optimizer - don't load the previous states from the checkpoint with the help of `--no-load-optim`﻿
 - since we can't do lr warm up half-way through the training we will cheat and simply run the optimizer w/o updates to the weights by setting `lr=0` - now let it train for this number of iterations to emulate warm up (1/(1-0.95)) * 5 = 100 (beta2 = 0.95)
@@ -334,9 +334,10 @@ perl -pi -e 's|--min-lr 6e-6|--min-lr 0|' tr8b-104B-emb-norm-64n.slurm
 perl -pi -e 's|--train-samples 300_000_000|--train-samples 7799008|' tr8b-104B-emb-norm-64n.slurm
 ```
 
-1. Run the optimiser reset job once
 
-2. The next job restore the slurm script to the original as the optimizer should have been warmed up
+1. Run the optimizer reset job once as set up above
+
+2. The next job should run mostly on the normal slurm script to the original as the optimizer should have been warmed up
 
 once (1) started running, back it up and restore the original:
 ```
@@ -350,6 +351,59 @@ perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|
 ```
 
 3. Once (2) has started running and all looks good we can then fully reset it to normal to remove `--override-lr-scheduler`
+
+```
+git checkout tr8b-104B-emb-norm-64n.slurm
+```
+
+After 100 iterations on lr=0 after reset, resume started with a spike, started recovering from it but started diverging again.
+
+![tr8b-104B-emb-norm-exp-05.png](images/tr8b-104B-emb-norm-exp-05.png)
+
+
+
+## Embed-Norm Experiment 6
+
+We continue with the optimizer reset experiment.
+
+Let's try 100 additional steps on lr=0 to make the reset optimizer warm up longer.
+
+Steps:
+
+1. Rollback tb/checkpoint to 16900 (100 iterations after reset)
+2. Calculate how to get the framework to run for 100 extra iterations and stop
+
+Repeating from previous step we know we want to stop at 8003808 (7594208+204800*2).
+
+For the optimizer reset run we need to add:
+```
+    --override-lr-scheduler \
+```
+and change:
+```
+    --lr 0 \
+    --min-lr 0 \
+    --train-samples 8_003_808 \
+```
+
+Automating the change:
+```
+git checkout tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|--lr 6e-5|--lr 0|' tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|--min-lr 6e-6|--min-lr 0|' tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|--train-samples 300_000_000|--train-samples 8_003_808|' tr8b-104B-emb-norm-64n.slurm
+```
+
+Once this 1st job is running, the next 2nd job is just to override the lr-scheduler:
+
+```
+cp tr8b-104B-emb-norm-64n.slurm tr8b-104B-emb-norm-64n.slurm.reset-optim-try-2
+git checkout tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr8b-104B-emb-norm-64n.slurm
+```
+
+and once the 2nd job starts, and it looks good we can then resume normally from the checkpoint for the subsequent job:
 
 ```
 git checkout tr8b-104B-emb-norm-64n.slurm
