@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-pile-emb-norm
+#SBATCH --job-name=1B3-pile-emb-norm-optim-reset
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -69,7 +69,6 @@ OPTIMIZER_ARGS=" \
     --lr-decay-style cosine \
     --lr-decay-samples 73_242_187 \
     --lr-warmup-samples 183_105 \
-    --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
 
