@@ -145,15 +145,15 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n hf-prod python=3.8
 conda activate hf-prod
-conda install pytorch torchvision cudatoolkit=11.1 -c pytorch-lts -c nvidia
-# pip doesn't seem to produce the right package - missing libnvrtc
-# pip3 install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
+
+# pt-1.10.1
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 pip install deepspeed
 
 cd $six_ALL_CCFRWORK/code/transformers
 pip install -e .[dev]
 
-cd $six_ALL_CCFRWORK/code/megatron-lm
+cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 pip install -r requirements.txt
 
 cd $six_ALL_CCFRWORK/code/apex
@@ -203,7 +203,7 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n stas python=3.8
 conda activate stas
-conda install pytorch torchvision cudatoolkit=11.1 -c pytorch-lts -c nvidia
+conda install pytorch torchvision cudatoolkit=11.3 -c pytorch-lts -c nvidia
 pip install deepspeed
 
 cd ~/user/code/transformers
@@ -333,7 +333,12 @@ srun --pty -p compil --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRW
 
 but if it has to be really fast, use a dedicated instance with pre-allocated cpu cores:
 ```
-srun --pty --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty -A six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:0 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
+
+same with 1 gpu if the build env requires one:
+```
+srun --pty -A six@gpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 
