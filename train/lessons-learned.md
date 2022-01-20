@@ -21,7 +21,9 @@ e.g. for `NHIDDEN*5=11600` we used  `--init-method-std 0.006`
 
 We derived this from:
 
-`0.00587220219514703 = sqrt(2/(11600*5))` (from the ScaleNorm paper https://arxiv.org/abs/1910.05895)
+`0.00587220219514703 = sqrt(2/(11600*5))` (from the "Transformers without Tears" paper https://arxiv.org/abs/1910.05895)
+
+
 
 
 ### Adding embed layernorm
