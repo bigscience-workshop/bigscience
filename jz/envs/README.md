@@ -138,26 +138,27 @@ because otherwise conda will try to use your HOME dir which is only 3GB-large. Y
 
 ## Creating production conda env
 
-this should be done on a login instance, since we need the network
+**Do not run any of the instructions in this section**. Please co-ordinate any changes to this environment on #bigscience-jz on slack since many users use it for their experiments. If you want to create your custom conda env, please read the following sections instead.
+
+If the production environment got broken, here is how it can be re-built.
+
+This should be done on a login instance, since we need the network.
 
 ```
 export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n hf-prod python=3.8
 conda activate hf-prod
-conda install pytorch torchvision cudatoolkit=11.1 -c pytorch-lts -c nvidia
-# pip doesn't seem to produce the right package - missing libnvrtc
-# pip3 install torch==1.8.1+cu111 torchvision==0.9.1+cu111 -f https://download.pytorch.org/whl/lts/1.8/torch_lts.html
+
+# pt-1.10.1 / cuda 11.3
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 pip install deepspeed
 
 cd $six_ALL_CCFRWORK/code/transformers
 pip install -e .[dev]
 
-cd $six_ALL_CCFRWORK/code/megatron-lm
+cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 pip install -r requirements.txt
-
-cd $six_ALL_CCFRWORK/code/apex
-./build.sh
 
 cd $six_ALL_CCFRWORK/code/deepspeed
 ./build.sh
@@ -165,6 +166,16 @@ cd $six_ALL_CCFRWORK/code/deepspeed
 ```
 
 while we are going to override some of these with our custom installs, we first install these normally to get all the dependencies right.
+
+Then finally to build apex you need a non-login instance since it is very demanding on resources and such build on the login instance will get killed:
+
+```
+srun --pty -A six@gpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+cd $six_ALL_CCFRWORK/code/apex
+./build.sh
+```
+XXX: do we need a cuda env to build apex? perhaps `-A six@cpu --gres=gpu:0` is sufficient - need to check.
+
 
 
 
@@ -203,7 +214,7 @@ export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
 
 conda create -y -n stas python=3.8
 conda activate stas
-conda install pytorch torchvision cudatoolkit=11.1 -c pytorch-lts -c nvidia
+conda install pytorch torchvision cudatoolkit=11.3 -c pytorch-lts -c nvidia
 pip install deepspeed
 
 cd ~/user/code/transformers
@@ -212,13 +223,14 @@ pip install -e .[dev]
 cd ~/user/code/Megatron-Deepspeed
 pip install -r requirements.txt
 
-cd ~/user/code/apex
+cd ~/user/code/deepspeed
 ./build.sh
 
-cd ~/user/code/deepspeed
+cd ~/user/code/apex
 ./build.sh
 ```
 
+See a special note on how to build apex in [Creating production conda env](creating-production-conda-env).
 
 
 ## Login node
@@ -333,10 +345,13 @@ srun --pty -p compil --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRW
 
 but if it has to be really fast, use a dedicated instance with pre-allocated cpu cores:
 ```
-srun --pty --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty -A six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:0 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
-
+same with 1 gpu if the build env requires one:
+```
+srun --pty -A six@gpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
 
 `/tmp` is tiny on gpu instances, at least apex needs a big `/tmp` folder:
 

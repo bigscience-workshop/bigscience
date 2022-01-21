@@ -384,18 +384,18 @@ There was a bug in deepspeed that wasn't saving/restoring optimizer's `group['st
 
 So let's try again with the fixed deepspeed and will do a longer warmup.
 
-
 Let's 300 steps on lr=0 to make the reset optimizer warm up longer.
 
 Steps:
 
 1. Rollback tb/checkpoint to 16800 (like exp 6)
-2. Calculate how to get the framework to run for 300 extra iterations and stop
+2. Calculate how to get the framework to run for 300 iterations and stop
 
 Repeating from previous step we know we want to stop at 8208608 (7594208+204800*3).
 
 For the optimizer reset run we need to add:
 ```
+    --no-load-optim \
     --override-lr-scheduler \
 ```
 and change:
@@ -408,6 +408,7 @@ and change:
 Automating the change:
 ```
 git checkout tr8b-104B-emb-norm-64n.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --no-load-optim \\|' tr8b-104B-emb-norm-64n.slurm
 perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr8b-104B-emb-norm-64n.slurm
 perl -pi -e 's|--lr 6e-5|--lr 0|' tr8b-104B-emb-norm-64n.slurm
 perl -pi -e 's|--min-lr 6e-6|--min-lr 0|' tr8b-104B-emb-norm-64n.slurm
@@ -422,8 +423,146 @@ git checkout tr8b-104B-emb-norm-64n.slurm
 perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr8b-104B-emb-norm-64n.slurm
 ```
 
-and once the 2nd job starts, and it looks good we can then resume normally from the checkpoint for the subsequent job:
+And once the 2nd job starts, and it looks good we can then resume normally from the checkpoint for the subsequent job:
 
 ```
 git checkout tr8b-104B-emb-norm-64n.slurm
+```
+
+Actually due to SLURM and not being able to be awake 24/7, I managed to get the first step to run for iterations 16801-17059 - so 259 warmup iterations instead of planned 300, so this is close enough for the sake of the experiment. And thus the resume with the warmed up optimizer happened at iteration 17060.
+
+After warm up, just like with the 100-iteration long optimizer reset/warmup there was a spike but much smaller this time - only 2.7 to 4.4 and then quickly recovering to 2.7:
+```
+ iteration    17060/  159576 | consumed samples:      8126688 | consumed tokens:  16643457024 | elapsed time per iteration (ms): 573125.8 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 2.665295E+00 | loss scale: 1048576.0 | grad norm: 453082.517 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.004 | TFLOPs: 23.64 |
+ iteration    17061/  159576 | consumed samples:      8128736 | consumed tokens:  16647651328 | elapsed time per iteration (ms): 423042.3 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 2.667121E+00 | loss scale: 1048576.0 | grad norm: 464441.887 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 32.03 |
+[2022-01-19 13:09:13,305] [INFO] [stage_1_and_2.py:1644:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 1048576.0, reducing to 1048576.0
+ iteration    17062/  159576 | consumed samples:      8130784 | consumed tokens:  16651845632 | elapsed time per iteration (ms): 422832.0 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 4.374269E+00 | loss scale: 1048576.0 | grad norm: 464441.887 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 32.04 |
+[2022-01-19 13:16:17,683] [INFO] [stage_1_and_2.py:1644:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 1048576.0, reducing to 524288.0
+ iteration    17063/  159576 | consumed samples:      8132832 | consumed tokens:  16656039936 | elapsed time per iteration (ms): 424377.8 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 4.365822E+00 | loss scale: 524288.0 | grad norm: 464441.887 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 31.93 |
+[2022-01-19 13:23:19,412] [INFO] [stage_1_and_2.py:1644:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 524288.0, reducing to 262144.0
+ iteration    17064/  159576 | consumed samples:      8134880 | consumed tokens:  16660234240 | elapsed time per iteration (ms): 421729.4 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 4.391485E+00 | loss scale: 262144.0 | grad norm: 464441.887 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 32.13 |
+[2022-01-19 13:30:23,180] [INFO] [stage_1_and_2.py:1644:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 262144.0, reducing to 131072.0
+ iteration    17065/  159576 | consumed samples:      8136928 | consumed tokens:  16664428544 | elapsed time per iteration (ms): 423768.1 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 4.404639E+00 | loss scale: 131072.0 | grad norm: 464441.887 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 31.97 |
+ iteration    17066/  159576 | consumed samples:      8138976 | consumed tokens:  16668622848 | elapsed time per iteration (ms): 421634.1 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 4.398458E+00 | loss scale: 131072.0 | grad norm: 879946.622 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 32.13 |
+[2022-01-19 13:44:28,157] [INFO] [stage_1_and_2.py:1644:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 131072.0, reducing to 65536.0
+ iteration    17067/  159576 | consumed samples:      8141024 | consumed tokens:  16672817152 | elapsed time per iteration (ms): 423342.2 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 4.096038E+00 | loss scale: 65536.0 | grad norm: 879946.622 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 32.00 |
+[2022-01-19 13:51:30,908] [INFO] [stage_1_and_2.py:1644:step] [deepscale] OVERFLOW! Rank 0 Skipping step. Attempted loss scale: 65536.0, reducing to 32768.0
+ iteration    17068/  159576 | consumed samples:      8143072 | consumed tokens:  16677011456 | elapsed time per iteration (ms): 422752.4 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 4.137348E+00 | loss scale: 32768.0 | grad norm: 879946.622 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 32.05 |
+```
+
+
+## On the importance of saving and restoring the optimizer step counter
+
+Since SLURM limits us to 20h-runs we have to save the optim states and everything else at the end of each run and then resume from the checkpoint on the next run. What happens if some things fail to be restored on resume?
+
+While investigating the optimizer reset I've found a bug in Deepspeed (on its own and as part of Meg-DS). As it doesn't saves/restores `group['step']` and so` bias_correction` is not done according to the algorithm.
+
+In pytorch's `Adam`, step is part of a param's `state_dict` and so it gets saved and restored with the `state_dict`:
+https://github.com/pytorch/pytorch/blob/b7bda236d18815052378c88081f64935427d7716/torch/optim/adamw.py#L81-L85
+
+In apex's `FusedAdam`, which is what we use now, `step` is not part of the each param's state, but wisely is maintained only in one global copy per param group:
+https://github.com/NVIDIA/apex/blob/b88c507edb0d067d5570f7a8efe03a90664a3d16/apex/optimizers/fused_adam.py#L111-L114
+
+The problem is that because it isn't part of the param's state it doesn't get saved and restored.
+
+So on every resume one starts with `step=1` and not `step=iteration`. I verified that empirically by dumping `optimizer.optimizer.param_groups[0]['step']`
+
+It's pretty clear that Deepspeed itself isn't aware of this state variable:
+https://github.com/microsoft/DeepSpeed/blob/3293cf72a0abd5cf77a831996bd054bc908476a6/deepspeed/runtime/zero/stage_1_and_2.py#L1958-L1980
+
+Which leads us to:
+```
+bias_correction1 = 1 - beta1 ** state['step']
+bias_correction2 = 1 - beta2 ** state['step']
+```
+so on each resume we end up with a smaller bias_correction than it should normally be. since `beta2**1 >> beta2**150000` or `0.95 >> 0`
+So typically `bias_correction` becomes `1` in about 1k iterations, but here it's not and on every resume there is a `bias_correction` of `[0.1,0.05]` in the first iteration after resume.
+
+This bug has been fixed in Deepspeed here: https://github.com/microsoft/DeepSpeed/pull/1525 and the
+fix should be available in DeepSpeed v0.5.10+.
+
+Follow up notes from Tim Dettmers:
+
+> I wonder if this a confounding factor for the "decrease learning rate from checkpoint" experiments. The bias corrections are there to have the adam states move more quickly away from zero at the start from training. However, if you reload and optimizer and the gradient has similar magnitude as the adam state (this would be expected in most cases) then learning rate is increased by 2.2x - 1.15x for the first 5 iterations and it stabilizes around less extreme values after 10 iterations. Not sure if that initial high learning rate could move the weights into a space of instability
+
+
+## 1.3B optim-reset experiment
+
+Let's train a very small model and see how optimizer reset goes there in various stages.
+
+1. Train from scratch for 5M samples w/ beta2=0.95 to match our 104B experiment
+
+This will run iterations till iteration 19686
+
+train/tr3-1B3-baseline/tr3m-1B3-emb-norm-pile-optim-reset.slurm
+
+lm loss: 2.134260E+00
+
+
+2. optimizer reset and 100 iterations warmup (beta2=0.95)
+
+100 iterations @ bs=512 51_200 samples: 5_000_000+51_200=5_051_200
+
+```
+git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --no-load-optim \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|--lr 2e-4|--lr 0|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|--min-lr 1e-5|--min-lr 0|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=5_051_200|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+```
+
+This will run iterations 19687 - 19786
+
+3. resume after reset - let's do 1000 iterations +512_000 samples: 5_563_200
+
+
+```
+git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=5_563_200|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+```
+
+This will run iterations 19786 - 20786
+
+4. restore to normal once the above completes
+
+
+```
+git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
+```
+
+
+5. Let's train some longer - to 20M samples and repeat the rest at a different point in the training curve
+
+```
+git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=20_000_000|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+```
+
+6. repeat reset and warm up
+
+and 100 iterations warmup (beta2=0.95)
+
+100 iterations @ bs=512 51_200 samples: 20_000_000+51_200=20_051_200
+
+
+```
+git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --no-load-optim \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|--lr 2e-4|--lr 0|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|--min-lr 1e-5|--min-lr 0|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=20_051_200|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+```
+
+This will run iterations 48984 - 49084
+
+7. resume after reset - let's do 1000 iterations +512_000 samples: 20_563_200
+
+
+```
+git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=20_563_200|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
 ```
