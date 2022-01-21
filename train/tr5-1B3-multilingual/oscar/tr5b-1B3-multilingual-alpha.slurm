@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=tr5b-1B3-multilingual-alpha.slurm
-#SBATCH --partition=gpu_p13
+#SBATCH --constraint=v100-16g
 #SBATCH --nodes=64
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
@@ -8,7 +8,6 @@
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --error=%x-%j.out            # error file name (same to watch just one file)
 #SBATCH --account=six@gpu
 
 set -x -e
