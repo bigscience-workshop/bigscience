@@ -139,6 +139,7 @@ git reset --soft origin/HEAD
 
 ```
 git lfs track "**.txt"
+gc -am text .gitattributes
 ```
 
 this will automatically switch to LFS on the next commit
@@ -154,5 +155,6 @@ In order to avoid this issue in the first place, it's best to set it up to:
 
 ```
 git lfs track "**.txt"
+gc -am text .gitattributes
 ```
 when you first setup the repo clone.
