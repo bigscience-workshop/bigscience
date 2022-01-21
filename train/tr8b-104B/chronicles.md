@@ -525,9 +525,44 @@ perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=5_563_200|' tr3m-1B3-emb-norm-pil
 
 This will run iterations 19786 - 20786
 
-4. Let's train some longer - to 20M samples
+4. restore to normal once the above completes
+
+
+```
+git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
+```
+
+
+5. Let's train some longer - to 20M samples and repeat the rest at a different point in the training curve
 
 ```
 git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
 perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=20_000_000|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+```
+
+6. repeat reset and warm up
+
+and 100 iterations warmup (beta2=0.95)
+
+100 iterations @ bs=512 51_200 samples: 20_000_000+51_200=20_051_200
+
+
+```
+git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --no-load-optim \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|--lr 2e-4|--lr 0|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|--min-lr 1e-5|--min-lr 0|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=20_051_200|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+```
+
+This will run iterations 48984 - 49084
+
+7. resume after reset - let's do 1000 iterations +512_000 samples: 20_563_200
+
+
+```
+git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
+perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=20_563_200|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
 ```
