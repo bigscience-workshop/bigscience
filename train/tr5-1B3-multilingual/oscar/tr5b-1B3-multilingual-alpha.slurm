@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=tr5b-1B3-multilingual-alpha.slurm
 #SBATCH --partition=gpu_p13
-#SBATCH --nodes=16
+#SBATCH --nodes=64
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40         # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -43,14 +43,19 @@ MASTER_ADDR=`scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1`
 MASTER_PORT=6000
 
 GPUS_PER_NODE=4
-NNODES=16
-PP_SIZE=2 # NLAYERS must be a multiple of PP_SIZE here
-TP_SIZE=1 # always fixed to the size of a single node
-DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
+NNODES=64
+
+# 1. going to start with PP=8/MBS=1 which is 20% slower than PP=2, but allowing 4x more resources due to bs increments of 32 in `--rampup-batch-size 32 32` - PP=8 gives us a replica of 8 gpus, so we can do 256 gpus: math: 256/8=32 32/32=1
+# 2. once BS=512 is reached can switch back to PP=2 and MBS=4: math: 256/2=128 and 512/128=4 to regain the highest TFLOPs
+#
+
+PP_SIZE=8
+TP_SIZE=1
+#DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=512
-TRAIN_ITER=146_484_375
+TRAIN_SAMPLES=195_312_500 # 400B tokens
 
 NLAYERS=24
 NHIDDEN=2048
@@ -68,8 +73,8 @@ OPTIMIZER_ARGS=" \
     --lr 2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
-    --lr-decay-samples 146_484_375 \
-    --lr-warmup-samples 183_105 \
+    --lr-decay-samples 169_270_83 \
+    --lr-warmup-samples 216_320 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
@@ -88,7 +93,7 @@ GPT_ARGS=" \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
-    --train-samples $TRAIN_ITER \
+    --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path bigscience/oscar_13_languages_alpha_weight \
     --loss-scale 12 \
