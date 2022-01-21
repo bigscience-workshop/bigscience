@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr5b-1B3-multilingual-alpha.slurm
+#SBATCH --job-name=tr5b-1B3-multilingual-alpha
 #SBATCH --constraint=v100-16g
 #SBATCH --nodes=64
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
