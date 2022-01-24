@@ -43,3 +43,15 @@ rsync might be a better way to sync files when they are large and the client kee
 gsutil -m rsync -r "gs://bigscience/mc4_preprocessing" mc4_preprocessing
 ```
 note that `gsutil` keeps track of what it failed to do and tries to re-do it even if you manually fetched a large file and inserted it into the right location, it'll ignore its appearance, will delete it and will attempt to fetch it a new. Not really great `rsync` feature, if you're used to the normal `rsync(1)` tool.
+
+## moving multiple folders
+
+
+`gsutil mv` is supposed to support globbing, but it doesn't. so here is a poor man's workaround:
+
+e.g. to move `"gs://bigscience-backups/tr1-13B/global_step*"` to  `"gs://bigscience-backups/tr1-13B/checkpoints-bak/"`
+
+```
+for x in `gsutil ls "gs://bigscience-backups/tr1-13B"`; do y=$(basename -- "$x");echo gsutil mv ${x} gs://bigscience-backups/tr1-13B/checkpoints-bak/${y}; done > cmd
+```
+edit `cmd` to your liking to remove any folders that shouldn't be moved. surely can be further improved to filter out the wanted pattern, but the principle is clear.
