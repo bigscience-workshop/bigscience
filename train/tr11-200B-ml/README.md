@@ -61,6 +61,7 @@ Checking the actual GPU allocations (nvidia-smi) - also need to take into accoun
 
 ## Hardware
 
+384 A100s 80GB / 8 gpus per node
 
 We can plan to use 384 gpus out of 416 as 4 nodes of 8 gpus need to remain reserved for when some nodes happen to be down.
 
