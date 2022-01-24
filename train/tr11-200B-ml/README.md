@@ -23,24 +23,9 @@ Formula to get model size, used 150k dict roughly - need to update:
 NHIDDEN=12288;NLAYERS=112;SEQ_LEN=2048;VOCAB_SIZE=150257; python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + s*h + 2*h) / 10**9 :.0f}B')"
 ```
 
-## Hardware
+### 104B topology / memory usage
 
-
-We can plan to use 384 gpus out of 416 as 4 nodes of 8 gpus need to remain reserved for when some nodes happen to be down.
-
-Initially we will have only 144 gpus and then around mid-Feb we should have the rest.
-
-## Possible config:
-
-So a possible config is
-
-- a single replica needs to fit 96 gpus and then we can do DP=4 to a full 384 gpus
-
-- extrapolating from the current 104B setup we can have: TP=4/PP=24 @ 80GB + 150K vocab size (which is different from the 50k vocab in 104B - 3x bigger embed matrix plus bigger hidden size.
-
-- most likely the embedding layer now will need to be partitioned together with the transformer blocks to do a good balancing of resources. e.g. in the current 1.3B ml setup, the 1st and last gpus use all of DRAM, but the rest of gpus use only 1/2 DRAM - and TLOPs are ~21 which is very underutilized.
-
-104B:
+Looking at the current 104B topology to try to estimate the 200B model, though many things are different.
 
 ```
 NLAYERS=64
@@ -50,15 +35,9 @@ SEQ_LEN=2048
 VOCAB_SIZE=50257
 ```
 
-206B:
+32 GB gpus.
 
-```
-NLAYERS=96
-NHIDDEN=13312
-NHEADS=XXX
-SEQ_LEN=2048
-VOCAB_SIZE=150_000
-```
+TP=4, PP=32
 
 breakdown:
 
@@ -80,12 +59,43 @@ Checking the actual GPU allocations (nvidia-smi) - also need to take into accoun
 - 22GB (w/  embed) (4GB activations memory)
 - 18GB (w/o embed) (2GB activations memory)
 
+## Hardware
 
-### 200B
 
-now let's estimate the same for 200B:
+We can plan to use 384 gpus out of 416 as 4 nodes of 8 gpus need to remain reserved for when some nodes happen to be down.
 
-* TP=4
+Initially we will have only 144 gpus and then around mid-Feb we should have the rest.
+
+## Possible config:
+
+So a possible config is
+
+- a single replica needs to fit 96 gpus and then we can do DP=4 to a full 384 gpus
+
+- extrapolating from the current 104B setup we can have: TP=4/PP=24 @ 80GB + 150K vocab size (which is different from the 50k vocab in 104B - 3x bigger embed matrix plus bigger hidden size.
+
+- most likely the embedding layer now will need to be partitioned together with the transformer blocks to do a good balancing of resources. e.g. in the current 1.3B ml setup, the 1st and last gpus use all of DRAM, but the rest of gpus use only 1/2 DRAM - and TLOPs are ~21 which is very underutilized.
+
+
+### Possible topologies for 200B
+
+206B:
+
+```
+NLAYERS=96
+NHIDDEN=13312
+NHEADS=XXX
+SEQ_LEN=2048
+VOCAB_SIZE=150_000
+```
+
+Overall we know that DP is the fastest, then PP, then TP - but for PP to be efficient we need a big bs.
+
+The following math is trying various topologies to fit into 80GB gpus
+
+
+
+* TP=4, PP=24
 
 - embedding size: v*h: 150257*13312 = 2_000_221_184 / 4 (TP=4) =>  500_055_296 params per gpu for embedding
 - one layer size: 12*h**2 + 13*h:     2_126_685_184 / 4 (TP=4)  => 531_671_296 params per gpu per layer
@@ -105,9 +115,11 @@ plus activations memory
 40GB A100 takes 1573MiB for cuda kernels (probably about the same for 80GB? may be a bit larger)
 `python -c "import torch; import time; torch.ones(1).cuda(); time.sleep(30)"` + check `nvidia-smi` output.
 
-* TP=1
 
-2. ~2B params per layer w/o TP, or 38GB (2.12*18) per layer.
+
+* TP=1, PP=96
+
+~2B params per layer w/o TP, or 38GB (2.12*18) per layer.
 
 but DS breaks if there isn't at least one transformer block per gpu :(
 otherwise could do a very efficient:
@@ -117,12 +129,18 @@ otherwise could do a very efficient:
 emb | transf | transf ....| transf | emb
 ```
 
-So in this scenario no TP is needed, which should make the assembly much faster. But will require DS fixing their side.
+So in this scenario no TP is needed, which should make the assembly much faster. But will require DS fixing their side. or perhaps we could somehow hack on a dummy layer which will be like transformers? e.g. if it's the first or last layer it'd be an identity forward.
 
 Also the pipeline will be super long here, which to make efficient will require a huge global batch size.
+
+
 
 * with TP=2, PP=48
 
 1_063_342_592 params per layer, 19_140_166_656 bytes (19GB) per layer
 
-perhaps could squeeze 3 layers per gpu - then
+perhaps could squeeze 3 layers per gpu - but of course each gpu will be less efficient since it will have to do 3 pipe stages.
+
+* Other considerations
+
+Of course, we could make the model wider and shallower so for example with TP=1 perhaps we could fit a bit more width and use less layers. e.g. 530B model was NLAYERS=105, NHIDDEN=20480 - so it's much wider.
