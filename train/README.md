@@ -10,7 +10,7 @@ Some tips:
 
 Location of the checkpoints of the trained models plus logs and anything else of importance - e.g. eval harness results:
 
-- tr1-13B: `$six_ALL_CCFRSTORE/checkpoints/tr1-13B`
+- tr1-13B: `gs://bigscience-backups/tr1-13B/`
 
 - tr3m-1B3-emb-norm-pile: `$six_ALL_CCFRSTORE/checkpoints/tr3m-1B3-emb-norm-pile`
 
