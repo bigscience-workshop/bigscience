@@ -51,13 +51,45 @@ find . -type f -name "*out" -exec perl -lne 'm|elapsed time per iteration .ms.: 
 ## Calculate model size
 
 ```
-NHIDDEN=4096
-NLAYERS=36
-SEQ_LEN=512
-VOCAB_SIZE=50257
-python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + s*h + 2*h) / 10**9 :.0f}B')"
+NHIDDEN=4096; NLAYERS=36; SEQ_LEN=512; VOCAB_SIZE=50257; python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + s*h + 2*h) / 10**9 :.0f}B, ratio={int(h/l)}')"
 ```
 
 
 
 For full details see [Calculate model size](../experiments/gpt2-utils.md).
+
+
+## Estimate total training time
+
+Training Time Estimates. Given these throughputs, we can also estimate the total amount of time needed for end-to-end training on 𝑇 tokens. Training requires 𝐼 = 𝑇 /(𝐵 · 𝑠) iterations. Using the value of 𝐹 from equation (3) and empirical end-to-end throughputs from Table 1 (denoted by 𝑋), we can estimate total training time. We note that for the configurations in Table 1, we have 6ℎ ≫ 𝑠, 16𝑙ℎ ≫ (𝑉 + 𝑠), and 12𝑙ℎ ≫ 𝑉 . Combining these observations with equations (2) and (3), we arrive at:
+
+End-to-end training time (seconds) ≈ 8𝑇𝑃/𝑛𝑋
+
+Let us consider the GPT-3 model with 𝑃 =175 billion parameters as an example. This model was trained on 𝑇 = 300 billion tokens. On 𝑛 = 1024 A100 GPUs using batch size 1536, we achieve 𝑋 = 140 teraFLOP/s per GPU. As a result, the time required to train this model is 34 days. For the 1 trillion parameter model, we assume that 450 billion tokens are needed for end-to-end training. With 3072 A100 GPUs, we can achieve a per-GPU throughput of 163 teraFLOP/s, and end-to-end training time of 84 days. We believe these training times (using a reasonable number of GPUs) are practical.
+
+
+This math and discussion is quoted from [Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM](https://arxiv.org/abs/2104.04473).
+
+Let's explain the formula: `8𝑇𝑃/𝑛𝑋`
+
+In the formula:
+
+- T: number of tokens used for training in Billions
+- P: number of parameters in normal numbers
+- n: number of GPUs
+- X: throughput per GPU in secs
+- The result is in seconds so divide by 3600*24 to get days
+
+Example:
+
+- T = 300B
+- P = 200_000_000
+- X = 150 TFLOPs (more or less the best one can get on an efficient setup on A100)
+- n = 350
+
+gives us:
+
+```
+$ python -c 'print(f"{8*300*200_000_000/(350*150)/(3600*24):0.2f}", "days")'
+105.82 days
+```
