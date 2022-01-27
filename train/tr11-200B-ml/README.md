@@ -302,6 +302,8 @@ $ python -c 'print(f"{8*300*200_000_000/(350*150)/(3600*24):0.2f}", "days")'
 
 so 3.5 months in the best case scenario. But more likely 150-200 days since it'll be less of everything plus potential issues. We will know more once we get access to 1 replica as then we should get a much better TFLOPs estimation, which will then be less for DP>1.
 
+And this estimate is w/o encountering any problems, which is unlikely, so add more overhead for rollbacks and restarts.
+
 See [Estimate total training time](../../math#estimate-total-training-time) for details of the math.
 
 XXX: actually are we training for 300B or 400B tokens because of Multi-Lingual? in which case it'll be 1/3 longer!
