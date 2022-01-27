@@ -287,4 +287,18 @@ This might be a better fit memory-wise if the one above is too close to being fu
 It also uses the full 384 gpu allocation in a snag way.
 
 
--------------
+
+## Train time estimation
+
+So A100 spec is 312 TFLOPS for BF16, so probably the best would be 50% of that so 150 TFLOPs (which we probably won't reach, but let's see), so yes I agree 150 is a bit too optimistic, but let's use it as the best case scenario
+
+Also we still don't know how many gpus we will end up using, but let's say we use them all - 350. Once we decide on the topology we will be able to replace 350 with the actual number of gpus we plan to use.
+
+```
+$ python -c 'print(f"{8*300*200_000_000/(350*150)/(3600*24):0.2f}", "days")'
+105.82 days
+```
+
+so 3.5 months in the best case scenario. But more likely 150-200 days since it'll be less of everything plus potential issues. We will know more once we get access to 1 replica as then we should get a much better TFLOPs estimation, which will then be less for DP>1.
+
+See [Estimate total training time](../../math#estimate-total-training-time) for details of the math.
