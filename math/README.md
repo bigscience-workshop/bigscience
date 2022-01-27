@@ -77,8 +77,8 @@ In the formula:
 - T: number of tokens used for training in Billions
 - P: number of parameters in normal numbers
 - n: number of GPUs
-- X: throughput per GPU in secs
-- The result is in seconds so divide by 3600*24 to get days
+- X: throughput per GPU in TFlops
+- The result is in seconds, so divide by 3600*24 to get days
 
 Example:
 
