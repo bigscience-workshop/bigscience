@@ -304,6 +304,8 @@ so 3.5 months in the best case scenario. But more likely 150-200 days since it'l
 
 And this estimate is w/o encountering any problems, which is unlikely, so add more overhead for rollbacks and restarts.
 
+Additionally this number is too optimistic since we won't have the full number of GPUs till about some time in end of February.
+
 See [Estimate total training time](../../math#estimate-total-training-time) for details of the math.
 
 XXX: actually are we training for 300B or 400B tokens because of Multi-Lingual? in which case it'll be 1/3 longer!
@@ -321,3 +323,9 @@ python -c 'print(f"{8*300*200_000_000/150/3600:0.2f}", "compute hours")'
 888888.89 compute hours
 ```
 So if it takes 2x longer than the best case scenario, then we say need about 2M hours, so we are fine there.
+
+Important nuance:
+
+We will have an exclusive access only till May, and in May we will have to share with others.
+
+So at the moment we will have only about 2 months of having access to all gpus.
