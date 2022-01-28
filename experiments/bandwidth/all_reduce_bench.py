@@ -7,6 +7,8 @@ import argparse
 import os
 import fcntl
 
+# note: this benchmark doesn't care how many gpus per node one has
+
 TRIALS = 5
 
 N = 500000
@@ -26,8 +28,8 @@ def timed_allreduce(mat, global_rank):
     dist.all_reduce(mat)
     printflock(f"ignore me {int(mat[0][0])}")  # required due to lazy evaluation
     duration = time.perf_counter() - pre
-    tput = ((M*N*4*2)/duration)*8
-    size = M * N * 4
+    tput = ((M*N*4*2)/duration)*8 # *2 is for send + receive, *8 for gigabits/second
+    size = M * N * 4 # 4 is fp32
     n = dist.get_world_size()
     busbw = (size / duration) * (2 * (n - 1) / n) * 8
     printflock(f"{global_rank}:\n",
