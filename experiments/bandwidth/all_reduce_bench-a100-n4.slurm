@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:8                 # number of gpus
-#SBATCH --time 0:10:00               # maximum execution time (HH:MM:SS)
+#SBATCH --time 0:05:00               # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@gpu
 
