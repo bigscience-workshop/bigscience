@@ -32,7 +32,7 @@ if this test is run a bit longer, it drops to 600 Gbps.
 
 
 
-## 16 nodes 32GB V100
+## 16 nodes V100 32GB
 
 ```
 export NCCL_DEBUG=info
@@ -48,17 +48,38 @@ If the test is run much longer it fluctuates between 44 and 57 Gbps.
 Currently we have an issue with nccl that doesn't fully utilize Intel OPA full bandwidth. Which is supposed to be 400Gbps max.
 
 
-## 4 nodes A100 80GB
+## 4 nodes V100 32GB
 
-[all_reduce_bench.slurm](./all_reduce_bench.slurm)
+Here is a recent re-run - jan 2022:
+
+script: [all_reduce_bench-32gb-n4.slurm](./all_reduce_bench-32gb-n4.slurm)
+
 
 ```
-sbatch all_reduce_bench.slurm
+sbatch all_reduce_bench-32gb-n4.slurm
 ```
 
 Results:
 
-- [80gb](./n4_a100_all_reduce_bench.txt) - `algo throughput: 27.2761 to 42.5218 Gbps`
+[all_reduce_bench-32gb-n4.txt](./all_reduce_bench-32gb-n4.txt) - `algo throughput: 30 to 90 Gbps`
+
+
+
+
+## 4 nodes A100 80GB
+
+
+script: [all_reduce_bench-a100-n4.slurm](./all_reduce_bench-a100-n4.slurm)
+
+
+```
+sbatch all_reduce_bench-a100-n4.slurm
+```
+
+Results:
+
+[all_reduce_bench-a100-n4.txt](./all_reduce_bench-a100-n4.txt) - `algo throughput: 15 to 42 Gbps`
+
 
 
 
