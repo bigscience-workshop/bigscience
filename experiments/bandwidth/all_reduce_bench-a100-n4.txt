@@ -1,0 +1,1424 @@
+/gpfswork/rech/six/commun/conda/hf-prod/lib/python3.8/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+/gpfswork/rech/six/commun/conda/hf-prod/lib/python3.8/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+/gpfswork/rech/six/commun/conda/hf-prod/lib/python3.8/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+/gpfswork/rech/six/commun/conda/hf-prod/lib/python3.8/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+local_rank: 1
+local_rank: 3
+local_rank: 5
+local_rank: 6
+local_rank: 7
+local_rank: 2
+local_rank: 2
+local_rank: 3
+local_rank: 2
+local_rank: 1
+local_rank: 0
+local_rank: 2
+local_rank: 0
+local_rank: 0
+local_rank: 5
+local_rank: 1
+local_rank: 4
+local_rank: 3
+local_rank: 7
+local_rank: 7
+local_rank: 6
+local_rank: 6
+local_rank: 4
+local_rank: 5
+local_rank: 5
+local_rank: 1
+local_rank: 3
+local_rank: 4
+local_rank: 6
+local_rank: 7
+local_rank: 0
+local_rank: 4
+0 data size: 4.0 GB
+1 data size: 4.0 GB
+5 data size: 4.0 GB
+20 data size: 4.0 GB
+30 data size: 4.0 GB
+3 data size: 4.0 GB
+12 data size: 4.0 GB
+21 data size: 4.0 GB
+28 data size: 4.0 GB
+17 data size: 4.0 GB
+2 data size: 4.0 GB
+25 data size: 4.0 GB
+19 data size: 4.0 GB
+22 data size: 4.0 GB
+16 data size: 4.0 GB
+15 data size: 4.0 GB
+26 data size: 4.0 GB
+27 data size: 4.0 GB
+6 data size: 4.0 GB
+24 data size: 4.0 GB
+9 data size: 4.0 GB
+29 data size: 4.0 GB
+23 data size: 4.0 GB
+31 data size: 4.0 GB
+14 data size: 4.0 GB
+7 data size: 4.0 GB
+18 data size: 4.0 GB
+8 data size: 4.0 GB
+11 data size: 4.0 GB
+10 data size: 4.0 GB
+13 data size: 4.0 GB
+4 data size: 4.0 GB
+jean-zay-iam37:261379:261379 [0] NCCL INFO Bootstrap : Using ib0:10.148.8.203<0>
+jean-zay-iam37:261379:261379 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam37:261379:261379 [0] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.203<0>
+jean-zay-iam37:261379:261379 [0] NCCL INFO Using network IB
+NCCL version 2.10.3+cuda11.3
+jean-zay-iam37:261380:261380 [1] NCCL INFO Bootstrap : Using ib0:10.148.8.203<0>
+jean-zay-iam37:261383:261383 [4] NCCL INFO Bootstrap : Using ib0:10.148.8.203<0>
+jean-zay-iam37:261384:261384 [5] NCCL INFO Bootstrap : Using ib0:10.148.8.203<0>
+jean-zay-iam37:261386:261386 [7] NCCL INFO Bootstrap : Using ib0:10.148.8.203<0>
+jean-zay-iam37:261381:261381 [2] NCCL INFO Bootstrap : Using ib0:10.148.8.203<0>
+jean-zay-iam37:261382:261382 [3] NCCL INFO Bootstrap : Using ib0:10.148.8.203<0>
+jean-zay-iam41:276753:276753 [7] NCCL INFO Bootstrap : Using ib0:10.148.8.206<0>
+jean-zay-iam41:276748:276748 [2] NCCL INFO Bootstrap : Using ib0:10.148.8.206<0>
+jean-zay-iam41:276747:276747 [1] NCCL INFO Bootstrap : Using ib0:10.148.8.206<0>
+jean-zay-iam41:276752:276752 [6] NCCL INFO Bootstrap : Using ib0:10.148.8.206<0>
+jean-zay-iam41:276750:276750 [4] NCCL INFO Bootstrap : Using ib0:10.148.8.206<0>
+jean-zay-iam41:276751:276751 [5] NCCL INFO Bootstrap : Using ib0:10.148.8.206<0>
+jean-zay-iam41:276746:276746 [0] NCCL INFO Bootstrap : Using ib0:10.148.8.206<0>
+jean-zay-iam41:276749:276749 [3] NCCL INFO Bootstrap : Using ib0:10.148.8.206<0>
+jean-zay-iam37:261384:261384 [5] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam52:263016:263016 [1] NCCL INFO Bootstrap : Using ib0:10.148.8.217<0>
+jean-zay-iam52:263017:263017 [2] NCCL INFO Bootstrap : Using ib0:10.148.8.217<0>
+jean-zay-iam52:263018:263018 [3] NCCL INFO Bootstrap : Using ib0:10.148.8.217<0>
+jean-zay-iam52:263021:263021 [6] NCCL INFO Bootstrap : Using ib0:10.148.8.217<0>
+jean-zay-iam52:263019:263019 [4] NCCL INFO Bootstrap : Using ib0:10.148.8.217<0>
+jean-zay-iam52:263015:263015 [0] NCCL INFO Bootstrap : Using ib0:10.148.8.217<0>
+jean-zay-iam52:263020:263020 [5] NCCL INFO Bootstrap : Using ib0:10.148.8.217<0>
+jean-zay-iam52:263022:263022 [7] NCCL INFO Bootstrap : Using ib0:10.148.8.217<0>
+jean-zay-iam37:261386:261386 [7] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam37:261381:261381 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam37:261380:261380 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam37:261383:261383 [4] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam40:289973:289973 [6] NCCL INFO Bootstrap : Using ib0:10.148.8.205<0>
+jean-zay-iam40:289967:289967 [0] NCCL INFO Bootstrap : Using ib0:10.148.8.205<0>
+jean-zay-iam40:289969:289969 [2] NCCL INFO Bootstrap : Using ib0:10.148.8.205<0>
+jean-zay-iam40:289971:289971 [4] NCCL INFO Bootstrap : Using ib0:10.148.8.205<0>
+jean-zay-iam40:289970:289970 [3] NCCL INFO Bootstrap : Using ib0:10.148.8.205<0>
+jean-zay-iam40:289972:289972 [5] NCCL INFO Bootstrap : Using ib0:10.148.8.205<0>
+jean-zay-iam40:289968:289968 [1] NCCL INFO Bootstrap : Using ib0:10.148.8.205<0>
+jean-zay-iam40:289974:289974 [7] NCCL INFO Bootstrap : Using ib0:10.148.8.205<0>
+jean-zay-iam37:261382:261382 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam41:276751:276751 [5] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam41:276749:276749 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam41:276746:276746 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam41:276753:276753 [7] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam41:276748:276748 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam41:276752:276752 [6] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam41:276747:276747 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam41:276750:276750 [4] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam52:263017:263017 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam52:263016:263016 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam40:289968:289968 [1] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam40:289974:289974 [7] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam52:263021:263021 [6] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam52:263015:263015 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam52:263019:263019 [4] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam52:263020:263020 [5] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam40:289973:289973 [6] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam52:263018:263018 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam52:263022:263022 [7] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam40:289972:289972 [5] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam40:289969:289969 [2] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam40:289971:289971 [4] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam40:289967:289967 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam40:289970:289970 [3] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam37:261384:261384 [5] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.203<0>
+jean-zay-iam37:261384:261384 [5] NCCL INFO Using network IB
+jean-zay-iam37:261380:261380 [1] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.203<0>
+jean-zay-iam37:261380:261380 [1] NCCL INFO Using network IB
+jean-zay-iam37:261383:261383 [4] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.203<0>
+jean-zay-iam37:261381:261381 [2] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.203<0>
+jean-zay-iam37:261386:261386 [7] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.203<0>
+jean-zay-iam37:261381:261381 [2] NCCL INFO Using network IB
+jean-zay-iam37:261383:261383 [4] NCCL INFO Using network IB
+jean-zay-iam37:261386:261386 [7] NCCL INFO Using network IB
+jean-zay-iam37:261382:261382 [3] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.203<0>
+jean-zay-iam37:261382:261382 [3] NCCL INFO Using network IB
+jean-zay-iam41:276751:276751 [5] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.206<0>
+jean-zay-iam41:276751:276751 [5] NCCL INFO Using network IB
+jean-zay-iam41:276748:276748 [2] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.206<0>
+jean-zay-iam41:276748:276748 [2] NCCL INFO Using network IB
+jean-zay-iam41:276747:276747 [1] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.206<0>
+jean-zay-iam41:276747:276747 [1] NCCL INFO Using network IB
+jean-zay-iam41:276752:276752 [6] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.206<0>
+jean-zay-iam41:276746:276746 [0] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.206<0>
+jean-zay-iam41:276749:276749 [3] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.206<0>
+jean-zay-iam41:276753:276753 [7] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.206<0>
+jean-zay-iam41:276749:276749 [3] NCCL INFO Using network IB
+jean-zay-iam41:276750:276750 [4] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.206<0>
+jean-zay-iam41:276746:276746 [0] NCCL INFO Using network IB
+jean-zay-iam41:276753:276753 [7] NCCL INFO Using network IB
+jean-zay-iam41:276752:276752 [6] NCCL INFO Using network IB
+jean-zay-iam41:276750:276750 [4] NCCL INFO Using network IB
+jean-zay-iam52:263022:263022 [7] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.217<0>
+jean-zay-iam52:263022:263022 [7] NCCL INFO Using network IB
+jean-zay-iam52:263019:263019 [4] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.217<0>
+jean-zay-iam52:263019:263019 [4] NCCL INFO Using network IB
+jean-zay-iam52:263021:263021 [6] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.217<0>
+jean-zay-iam52:263021:263021 [6] NCCL INFO Using network IB
+jean-zay-iam52:263017:263017 [2] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.217<0>
+jean-zay-iam52:263017:263017 [2] NCCL INFO Using network IB
+jean-zay-iam52:263020:263020 [5] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.217<0>
+jean-zay-iam52:263020:263020 [5] NCCL INFO Using network IB
+jean-zay-iam52:263015:263015 [0] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.217<0>
+jean-zay-iam52:263018:263018 [3] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.217<0>
+jean-zay-iam52:263015:263015 [0] NCCL INFO Using network IB
+jean-zay-iam52:263018:263018 [3] NCCL INFO Using network IB
+jean-zay-iam52:263016:263016 [1] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.217<0>
+jean-zay-iam52:263016:263016 [1] NCCL INFO Using network IB
+jean-zay-iam40:289968:289968 [1] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.205<0>
+jean-zay-iam40:289968:289968 [1] NCCL INFO Using network IB
+jean-zay-iam40:289972:289972 [5] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.205<0>
+jean-zay-iam40:289972:289972 [5] NCCL INFO Using network IB
+jean-zay-iam40:289969:289969 [2] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.205<0>
+jean-zay-iam40:289969:289969 [2] NCCL INFO Using network IB
+jean-zay-iam40:289973:289973 [6] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.205<0>
+jean-zay-iam40:289973:289973 [6] NCCL INFO Using network IB
+jean-zay-iam40:289970:289970 [3] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.205<0>
+jean-zay-iam40:289970:289970 [3] NCCL INFO Using network IB
+jean-zay-iam40:289967:289967 [0] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.205<0>
+jean-zay-iam40:289967:289967 [0] NCCL INFO Using network IB
+jean-zay-iam40:289974:289974 [7] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.205<0>
+jean-zay-iam40:289971:289971 [4] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.205<0>
+jean-zay-iam40:289974:289974 [7] NCCL INFO Using network IB
+jean-zay-iam40:289971:289971 [4] NCCL INFO Using network IB
+jean-zay-iam37:261385:261385 [6] NCCL INFO Bootstrap : Using ib0:10.148.8.203<0>
+jean-zay-iam37:261385:261385 [6] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+jean-zay-iam37:261385:261385 [6] NCCL INFO NET/IB : Using [0]hfi1_1:1/IB [1]hfi1_0:1/IB [2]hfi1_2:1/IB [3]hfi1_3:1/IB ; OOB ib0:10.148.8.203<0>
+jean-zay-iam37:261385:261385 [6] NCCL INFO Using network IB
+jean-zay-iam52:263016:263142 [1] NCCL INFO Trees [0] 26/-1/-1->25->24 [1] 26/-1/-1->25->24
+jean-zay-iam52:263016:263142 [1] NCCL INFO Setting affinity for GPU 1 to ffffffff
+jean-zay-iam52:263017:263138 [2] NCCL INFO Trees [0] 27/-1/-1->26->25 [1] 27/-1/-1->26->25
+jean-zay-iam52:263017:263138 [2] NCCL INFO Setting affinity for GPU 2 to ffffffff
+jean-zay-iam52:263018:263141 [3] NCCL INFO Trees [0] 28/-1/-1->27->26 [1] 28/-1/-1->27->26
+jean-zay-iam52:263018:263141 [3] NCCL INFO Setting affinity for GPU 3 to ffffffff
+jean-zay-iam52:263021:263137 [6] NCCL INFO Trees [0] 31/-1/-1->30->29 [1] 31/-1/-1->30->29
+jean-zay-iam52:263020:263139 [5] NCCL INFO Trees [0] 30/-1/-1->29->28 [1] 30/-1/-1->29->28
+jean-zay-iam52:263021:263137 [6] NCCL INFO Setting affinity for GPU 6 to ff,00000000
+jean-zay-iam52:263020:263139 [5] NCCL INFO Setting affinity for GPU 5 to ff,00000000
+jean-zay-iam52:263019:263136 [4] NCCL INFO Trees [0] 29/-1/-1->28->27 [1] 29/-1/-1->28->27
+jean-zay-iam52:263022:263135 [7] NCCL INFO Trees [0] -1/-1/-1->31->30 [1] -1/-1/-1->31->30
+jean-zay-iam52:263019:263136 [4] NCCL INFO Setting affinity for GPU 4 to ff,00000000
+jean-zay-iam52:263022:263135 [7] NCCL INFO Setting affinity for GPU 7 to ff,00000000
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 00/02 :    0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19
+jean-zay-iam37:261381:261500 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 01/02 :    0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19
+jean-zay-iam37:261379:261471 [0] NCCL INFO Trees [0] 1/16/-1->0->-1 [1] 1/-1/-1->0->8
+jean-zay-iam37:261380:261497 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0
+jean-zay-iam37:261381:261500 [2] NCCL INFO Setting affinity for GPU 2 to ffffffff
+jean-zay-iam37:261379:261471 [0] NCCL INFO Setting affinity for GPU 0 to ffffffff
+jean-zay-iam37:261380:261497 [1] NCCL INFO Setting affinity for GPU 1 to ffffffff
+jean-zay-iam41:276749:276869 [3] NCCL INFO Trees [0] 20/-1/-1->19->18 [1] 20/-1/-1->19->18
+jean-zay-iam41:276751:276865 [5] NCCL INFO Trees [0] 22/-1/-1->21->20 [1] 22/-1/-1->21->20
+jean-zay-iam41:276749:276869 [3] NCCL INFO Setting affinity for GPU 3 to ffffffff
+jean-zay-iam41:276750:276871 [4] NCCL INFO Trees [0] 21/-1/-1->20->19 [1] 21/-1/-1->20->19
+jean-zay-iam41:276752:276872 [6] NCCL INFO Trees [0] 23/-1/-1->22->21 [1] 23/-1/-1->22->21
+jean-zay-iam52:263015:263140 [0] NCCL INFO Trees [0] 25/-1/-1->24->16 [1] 25/8/-1->24->-1
+jean-zay-iam52:263015:263140 [0] NCCL INFO Setting affinity for GPU 0 to ffffffff
+jean-zay-iam40:289974:290092 [7] NCCL INFO Trees [0] -1/-1/-1->15->14 [1] -1/-1/-1->15->14
+jean-zay-iam41:276751:276865 [5] NCCL INFO Setting affinity for GPU 5 to ff,00000000
+jean-zay-iam41:276750:276871 [4] NCCL INFO Setting affinity for GPU 4 to ff,00000000
+jean-zay-iam41:276752:276872 [6] NCCL INFO Setting affinity for GPU 6 to ff,00000000
+jean-zay-iam41:276753:276870 [7] NCCL INFO Trees [0] -1/-1/-1->23->22 [1] -1/-1/-1->23->22
+jean-zay-iam41:276753:276870 [7] NCCL INFO Setting affinity for GPU 7 to ff,00000000
+jean-zay-iam40:289974:290092 [7] NCCL INFO Setting affinity for GPU 7 to ff,00000000
+jean-zay-iam41:276747:276867 [1] NCCL INFO Trees [0] 18/8/-1->17->16 [1] 18/-1/-1->17->16
+jean-zay-iam41:276748:276866 [2] NCCL INFO Trees [0] 19/-1/-1->18->17 [1] 19/-1/-1->18->17
+jean-zay-iam41:276746:276868 [0] NCCL INFO Trees [0] 17/24/-1->16->0 [1] 17/-1/-1->16->9
+jean-zay-iam41:276748:276866 [2] NCCL INFO Setting affinity for GPU 2 to ffffffff
+jean-zay-iam41:276746:276868 [0] NCCL INFO Setting affinity for GPU 0 to ffffffff
+jean-zay-iam41:276747:276867 [1] NCCL INFO Setting affinity for GPU 1 to ffffffff
+jean-zay-iam37:261382:261501 [3] NCCL INFO Trees [0] 4/-1/-1->3->2 [1] 4/-1/-1->3->2
+jean-zay-iam37:261382:261501 [3] NCCL INFO Setting affinity for GPU 3 to ffffffff
+jean-zay-iam37:261383:261499 [4] NCCL INFO Trees [0] 5/-1/-1->4->3 [1] 5/-1/-1->4->3
+jean-zay-iam37:261383:261499 [4] NCCL INFO Setting affinity for GPU 4 to ff,00000000
+jean-zay-iam37:261385:261506 [6] NCCL INFO Trees [0] 7/-1/-1->6->5 [1] 7/-1/-1->6->5
+jean-zay-iam37:261385:261506 [6] NCCL INFO Setting affinity for GPU 6 to ff,00000000
+jean-zay-iam37:261384:261496 [5] NCCL INFO Trees [0] 6/-1/-1->5->4 [1] 6/-1/-1->5->4
+jean-zay-iam37:261384:261496 [5] NCCL INFO Setting affinity for GPU 5 to ff,00000000
+jean-zay-iam37:261386:261498 [7] NCCL INFO Trees [0] -1/-1/-1->7->6 [1] -1/-1/-1->7->6
+jean-zay-iam37:261386:261498 [7] NCCL INFO Setting affinity for GPU 7 to ff,00000000
+jean-zay-iam40:289967:290091 [0] NCCL INFO Trees [0] 9/-1/-1->8->17 [1] 9/0/-1->8->24
+jean-zay-iam40:289967:290091 [0] NCCL INFO Setting affinity for GPU 0 to ffffffff
+jean-zay-iam40:289969:290087 [2] NCCL INFO Trees [0] 11/-1/-1->10->9 [1] 11/-1/-1->10->9
+jean-zay-iam40:289970:290090 [3] NCCL INFO Trees [0] 12/-1/-1->11->10 [1] 12/-1/-1->11->10
+jean-zay-iam40:289968:290086 [1] NCCL INFO Trees [0] 10/-1/-1->9->8 [1] 10/16/-1->9->8
+jean-zay-iam40:289973:290089 [6] NCCL INFO Trees [0] 15/-1/-1->14->13 [1] 15/-1/-1->14->13
+jean-zay-iam40:289969:290087 [2] NCCL INFO Setting affinity for GPU 2 to ffffffff
+jean-zay-iam40:289970:290090 [3] NCCL INFO Setting affinity for GPU 3 to ffffffff
+jean-zay-iam40:289973:290089 [6] NCCL INFO Setting affinity for GPU 6 to ff,00000000
+jean-zay-iam40:289968:290086 [1] NCCL INFO Setting affinity for GPU 1 to ffffffff
+jean-zay-iam40:289972:290088 [5] NCCL INFO Trees [0] 14/-1/-1->13->12 [1] 14/-1/-1->13->12
+jean-zay-iam40:289971:290093 [4] NCCL INFO Trees [0] 13/-1/-1->12->11 [1] 13/-1/-1->12->11
+jean-zay-iam40:289972:290088 [5] NCCL INFO Setting affinity for GPU 5 to ff,00000000
+jean-zay-iam40:289971:290093 [4] NCCL INFO Setting affinity for GPU 4 to ff,00000000
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 00 : 31[cb000] -> 0[7000] [receive] via NET/IB/1
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 00 : 7[cb000] -> 8[7000] [receive] via NET/IB/1
+jean-zay-iam52:263015:263140 [0] NCCL INFO Channel 00 : 23[cb000] -> 24[7000] [receive] via NET/IB/1
+jean-zay-iam52:263016:263142 [1] NCCL INFO Channel 00 : 25[b000] -> 26[48000] via P2P/IPC/read
+jean-zay-iam52:263017:263138 [2] NCCL INFO Channel 00 : 26[48000] -> 27[4c000] via P2P/IPC/read
+jean-zay-iam52:263018:263141 [3] NCCL INFO Channel 00 : 27[4c000] -> 28[88000] via P2P/IPC/read
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 00 : 15[cb000] -> 16[7000] [receive] via NET/IB/1
+jean-zay-iam52:263020:263139 [5] NCCL INFO Channel 00 : 29[8b000] -> 30[c8000] via P2P/IPC/read
+jean-zay-iam40:289974:290092 [7] NCCL INFO Channel 00 : 15[cb000] -> 16[7000] [send] via NET/IB/3
+jean-zay-iam41:276752:276872 [6] NCCL INFO Channel 00 : 22[c8000] -> 23[cb000] via P2P/IPC/read
+jean-zay-iam52:263019:263136 [4] NCCL INFO Channel 00 : 28[88000] -> 29[8b000] via P2P/IPC/read
+jean-zay-iam52:263021:263137 [6] NCCL INFO Channel 00 : 30[c8000] -> 31[cb000] via P2P/IPC/read
+jean-zay-iam52:263016:263142 [1] NCCL INFO Channel 01 : 25[b000] -> 26[48000] via P2P/IPC/read
+jean-zay-iam41:276750:276871 [4] NCCL INFO Channel 00 : 20[88000] -> 21[8b000] via P2P/IPC/read
+jean-zay-iam52:263015:263140 [0] NCCL INFO Channel 01 : 23[cb000] -> 24[7000] [receive] via NET/IB/1
+jean-zay-iam52:263017:263138 [2] NCCL INFO Channel 01 : 26[48000] -> 27[4c000] via P2P/IPC/read
+jean-zay-iam41:276751:276865 [5] NCCL INFO Channel 00 : 21[8b000] -> 22[c8000] via P2P/IPC/read
+jean-zay-iam52:263022:263135 [7] NCCL INFO Channel 00 : 31[cb000] -> 0[7000] [send] via NET/IB/3
+jean-zay-iam41:276749:276869 [3] NCCL INFO Channel 00 : 19[4c000] -> 20[88000] via P2P/IPC/read
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 01 : 31[cb000] -> 0[7000] [receive] via NET/IB/1
+jean-zay-iam37:261381:261500 [2] NCCL INFO Channel 00 : 2[48000] -> 3[4c000] via P2P/IPC/read
+jean-zay-iam52:263018:263141 [3] NCCL INFO Channel 01 : 27[4c000] -> 28[88000] via P2P/IPC/read
+jean-zay-iam41:276747:276867 [1] NCCL INFO Channel 00 : 17[b000] -> 18[48000] via P2P/IPC/read
+jean-zay-iam41:276748:276866 [2] NCCL INFO Channel 00 : 18[48000] -> 19[4c000] via P2P/IPC/read
+jean-zay-iam52:263020:263139 [5] NCCL INFO Channel 01 : 29[8b000] -> 30[c8000] via P2P/IPC/read
+jean-zay-iam37:261380:261497 [1] NCCL INFO Channel 00 : 1[b000] -> 2[48000] via P2P/IPC/read
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 01 : 15[cb000] -> 16[7000] [receive] via NET/IB/1
+jean-zay-iam37:261382:261501 [3] NCCL INFO Channel 00 : 3[4c000] -> 4[88000] via P2P/IPC/read
+jean-zay-iam37:261385:261506 [6] NCCL INFO Channel 00 : 6[c8000] -> 7[cb000] via P2P/IPC/read
+jean-zay-iam41:276752:276872 [6] NCCL INFO Channel 01 : 22[c8000] -> 23[cb000] via P2P/IPC/read
+jean-zay-iam52:263019:263136 [4] NCCL INFO Channel 01 : 28[88000] -> 29[8b000] via P2P/IPC/read
+jean-zay-iam52:263021:263137 [6] NCCL INFO Channel 01 : 30[c8000] -> 31[cb000] via P2P/IPC/read
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 01 : 7[cb000] -> 8[7000] [receive] via NET/IB/1
+jean-zay-iam40:289968:290086 [1] NCCL INFO Channel 00 : 9[b000] -> 10[48000] via P2P/IPC/read
+jean-zay-iam52:263015:263140 [0] NCCL INFO Channel 00 : 24[7000] -> 25[b000] via P2P/IPC/read
+jean-zay-iam41:276753:276870 [7] NCCL INFO Channel 00 : 23[cb000] -> 24[7000] [send] via NET/IB/3
+jean-zay-iam41:276750:276871 [4] NCCL INFO Channel 01 : 20[88000] -> 21[8b000] via P2P/IPC/read
+jean-zay-iam40:289970:290090 [3] NCCL INFO Channel 00 : 11[4c000] -> 12[88000] via P2P/IPC/read
+jean-zay-iam40:289969:290087 [2] NCCL INFO Channel 00 : 10[48000] -> 11[4c000] via P2P/IPC/read
+jean-zay-iam40:289973:290089 [6] NCCL INFO Channel 00 : 14[c8000] -> 15[cb000] via P2P/IPC/read
+jean-zay-iam40:289972:290088 [5] NCCL INFO Channel 00 : 13[8b000] -> 14[c8000] via P2P/IPC/read
+jean-zay-iam37:261386:261498 [7] NCCL INFO Channel 00 : 7[cb000] -> 8[7000] [send] via NET/IB/3
+jean-zay-iam41:276751:276865 [5] NCCL INFO Channel 01 : 21[8b000] -> 22[c8000] via P2P/IPC/read
+jean-zay-iam41:276749:276869 [3] NCCL INFO Channel 01 : 19[4c000] -> 20[88000] via P2P/IPC/read
+jean-zay-iam40:289974:290092 [7] NCCL INFO Channel 01 : 15[cb000] -> 16[7000] [send] via NET/IB/3
+jean-zay-iam40:289971:290093 [4] NCCL INFO Channel 00 : 12[88000] -> 13[8b000] via P2P/IPC/read
+jean-zay-iam41:276747:276867 [1] NCCL INFO Channel 01 : 17[b000] -> 18[48000] via P2P/IPC/read
+jean-zay-iam41:276748:276866 [2] NCCL INFO Channel 01 : 18[48000] -> 19[4c000] via P2P/IPC/read
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 00 : 16[7000] -> 17[b000] via P2P/IPC/read
+jean-zay-iam37:261383:261499 [4] NCCL INFO Channel 00 : 4[88000] -> 5[8b000] via P2P/IPC/read
+jean-zay-iam52:263022:263135 [7] NCCL INFO Channel 01 : 31[cb000] -> 0[7000] [send] via NET/IB/3
+jean-zay-iam37:261384:261496 [5] NCCL INFO Channel 00 : 5[8b000] -> 6[c8000] via P2P/IPC/read
+jean-zay-iam40:289968:290086 [1] NCCL INFO Channel 01 : 9[b000] -> 10[48000] via P2P/IPC/read
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 00 : 8[7000] -> 9[b000] via P2P/IPC/read
+jean-zay-iam40:289970:290090 [3] NCCL INFO Channel 01 : 11[4c000] -> 12[88000] via P2P/IPC/read
+jean-zay-iam40:289969:290087 [2] NCCL INFO Channel 01 : 10[48000] -> 11[4c000] via P2P/IPC/read
+jean-zay-iam40:289972:290088 [5] NCCL INFO Channel 01 : 13[8b000] -> 14[c8000] via P2P/IPC/read
+jean-zay-iam40:289973:290089 [6] NCCL INFO Channel 01 : 14[c8000] -> 15[cb000] via P2P/IPC/read
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 00 : 0[7000] -> 1[b000] via P2P/IPC/read
+jean-zay-iam37:261381:261500 [2] NCCL INFO Channel 01 : 2[48000] -> 3[4c000] via P2P/IPC/read
+jean-zay-iam40:289971:290093 [4] NCCL INFO Channel 01 : 12[88000] -> 13[8b000] via P2P/IPC/read
+jean-zay-iam37:261380:261497 [1] NCCL INFO Channel 01 : 1[b000] -> 2[48000] via P2P/IPC/read
+jean-zay-iam37:261382:261501 [3] NCCL INFO Channel 01 : 3[4c000] -> 4[88000] via P2P/IPC/read
+jean-zay-iam37:261385:261506 [6] NCCL INFO Channel 01 : 6[c8000] -> 7[cb000] via P2P/IPC/read
+jean-zay-iam37:261386:261498 [7] NCCL INFO Channel 01 : 7[cb000] -> 8[7000] [send] via NET/IB/3
+jean-zay-iam41:276753:276870 [7] NCCL INFO Channel 01 : 23[cb000] -> 24[7000] [send] via NET/IB/3
+jean-zay-iam52:263015:263140 [0] NCCL INFO Channel 01 : 24[7000] -> 25[b000] via P2P/IPC/read
+jean-zay-iam37:261383:261499 [4] NCCL INFO Channel 01 : 4[88000] -> 5[8b000] via P2P/IPC/read
+jean-zay-iam37:261384:261496 [5] NCCL INFO Channel 01 : 5[8b000] -> 6[c8000] via P2P/IPC/read
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 01 : 8[7000] -> 9[b000] via P2P/IPC/read
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 01 : 16[7000] -> 17[b000] via P2P/IPC/read
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 01 : 0[7000] -> 1[b000] via P2P/IPC/read
+jean-zay-iam52:263017:263138 [2] NCCL INFO Connected all rings
+jean-zay-iam41:276753:276870 [7] NCCL INFO Connected all rings
+jean-zay-iam52:263018:263141 [3] NCCL INFO Connected all rings
+jean-zay-iam52:263015:263140 [0] NCCL INFO Connected all rings
+jean-zay-iam52:263019:263136 [4] NCCL INFO Connected all rings
+jean-zay-iam37:261386:261498 [7] NCCL INFO Connected all rings
+jean-zay-iam41:276751:276865 [5] NCCL INFO Connected all rings
+jean-zay-iam40:289967:290091 [0] NCCL INFO Connected all rings
+jean-zay-iam52:263020:263139 [5] NCCL INFO Connected all rings
+jean-zay-iam40:289974:290092 [7] NCCL INFO Connected all rings
+jean-zay-iam41:276750:276871 [4] NCCL INFO Connected all rings
+jean-zay-iam41:276746:276868 [0] NCCL INFO Connected all rings
+jean-zay-iam52:263022:263135 [7] NCCL INFO Connected all rings
+jean-zay-iam37:261379:261471 [0] NCCL INFO Connected all rings
+jean-zay-iam41:276748:276866 [2] NCCL INFO Connected all rings
+jean-zay-iam41:276749:276869 [3] NCCL INFO Connected all rings
+jean-zay-iam52:263021:263137 [6] NCCL INFO Connected all rings
+jean-zay-iam40:289973:290089 [6] NCCL INFO Connected all rings
+jean-zay-iam40:289969:290087 [2] NCCL INFO Connected all rings
+jean-zay-iam52:263015:263140 [0] NCCL INFO Channel 00 : 16[7000] -> 24[7000] [receive] via NET/IB/1
+jean-zay-iam41:276753:276870 [7] NCCL INFO Channel 00 : 23[cb000] -> 22[c8000] via P2P/IPC/read
+jean-zay-iam37:261381:261500 [2] NCCL INFO Connected all rings
+jean-zay-iam40:289972:290088 [5] NCCL INFO Connected all rings
+jean-zay-iam52:263016:263142 [1] NCCL INFO Connected all rings
+jean-zay-iam52:263022:263135 [7] NCCL INFO Channel 00 : 31[cb000] -> 30[c8000] via P2P/IPC/read
+jean-zay-iam41:276752:276872 [6] NCCL INFO Connected all rings
+jean-zay-iam40:289970:290090 [3] NCCL INFO Connected all rings
+jean-zay-iam40:289971:290093 [4] NCCL INFO Connected all rings
+jean-zay-iam37:261386:261498 [7] NCCL INFO Channel 00 : 7[cb000] -> 6[c8000] via P2P/IPC/read
+jean-zay-iam37:261382:261501 [3] NCCL INFO Connected all rings
+jean-zay-iam40:289974:290092 [7] NCCL INFO Channel 00 : 15[cb000] -> 14[c8000] via P2P/IPC/read
+jean-zay-iam41:276747:276867 [1] NCCL INFO Connected all rings
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 01 : 0[7000] -> 8[7000] [receive] via NET/IB/1
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 01 : 9[b000] -> 16[7000] [receive] via NET/IB/1
+jean-zay-iam37:261384:261496 [5] NCCL INFO Connected all rings
+jean-zay-iam37:261383:261499 [4] NCCL INFO Connected all rings
+jean-zay-iam40:289968:290086 [1] NCCL INFO Connected all rings
+jean-zay-iam37:261385:261506 [6] NCCL INFO Connected all rings
+jean-zay-iam52:263022:263135 [7] NCCL INFO Channel 01 : 31[cb000] -> 30[c8000] via P2P/IPC/read
+jean-zay-iam41:276753:276870 [7] NCCL INFO Channel 01 : 23[cb000] -> 22[c8000] via P2P/IPC/read
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 01 : 0[7000] -> 8[7000] [send] via NET/IB/1
+jean-zay-iam52:263017:263138 [2] NCCL INFO Channel 00 : 26[48000] -> 25[b000] via P2P/IPC/read
+jean-zay-iam37:261380:261497 [1] NCCL INFO Connected all rings
+jean-zay-iam40:289974:290092 [7] NCCL INFO Channel 01 : 15[cb000] -> 14[c8000] via P2P/IPC/read
+jean-zay-iam52:263018:263141 [3] NCCL INFO Channel 00 : 27[4c000] -> 26[48000] via P2P/IPC/read
+jean-zay-iam52:263019:263136 [4] NCCL INFO Channel 00 : 28[88000] -> 27[4c000] via P2P/IPC/read
+jean-zay-iam52:263020:263139 [5] NCCL INFO Channel 00 : 29[8b000] -> 28[88000] via P2P/IPC/read
+jean-zay-iam41:276751:276865 [5] NCCL INFO Channel 00 : 21[8b000] -> 20[88000] via P2P/IPC/read
+jean-zay-iam41:276747:276867 [1] NCCL INFO Channel 00 : 8[7000] -> 17[b000] [receive] via NET/IB/1
+jean-zay-iam37:261386:261498 [7] NCCL INFO Channel 01 : 7[cb000] -> 6[c8000] via P2P/IPC/read
+jean-zay-iam41:276750:276871 [4] NCCL INFO Channel 00 : 20[88000] -> 19[4c000] via P2P/IPC/read
+jean-zay-iam52:263017:263138 [2] NCCL INFO Channel 01 : 26[48000] -> 25[b000] via P2P/IPC/read
+jean-zay-iam52:263021:263137 [6] NCCL INFO Channel 00 : 30[c8000] -> 29[8b000] via P2P/IPC/read
+jean-zay-iam41:276748:276866 [2] NCCL INFO Channel 00 : 18[48000] -> 17[b000] via P2P/IPC/read
+jean-zay-iam41:276749:276869 [3] NCCL INFO Channel 00 : 19[4c000] -> 18[48000] via P2P/IPC/read
+jean-zay-iam40:289968:290086 [1] NCCL INFO Channel 01 : 9[b000] -> 16[7000] [send] via NET/IB/1
+jean-zay-iam52:263018:263141 [3] NCCL INFO Channel 01 : 27[4c000] -> 26[48000] via P2P/IPC/read
+jean-zay-iam52:263019:263136 [4] NCCL INFO Channel 01 : 28[88000] -> 27[4c000] via P2P/IPC/read
+jean-zay-iam52:263020:263139 [5] NCCL INFO Channel 01 : 29[8b000] -> 28[88000] via P2P/IPC/read
+jean-zay-iam52:263016:263142 [1] NCCL INFO Channel 00 : 25[b000] -> 24[7000] via P2P/IPC/read
+jean-zay-iam41:276751:276865 [5] NCCL INFO Channel 01 : 21[8b000] -> 20[88000] via P2P/IPC/read
+jean-zay-iam41:276750:276871 [4] NCCL INFO Channel 01 : 20[88000] -> 19[4c000] via P2P/IPC/read
+jean-zay-iam41:276752:276872 [6] NCCL INFO Channel 00 : 22[c8000] -> 21[8b000] via P2P/IPC/read
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 00 : 16[7000] -> 0[7000] [receive] via NET/IB/1
+jean-zay-iam41:276748:276866 [2] NCCL INFO Channel 01 : 18[48000] -> 17[b000] via P2P/IPC/read
+jean-zay-iam41:276749:276869 [3] NCCL INFO Channel 01 : 19[4c000] -> 18[48000] via P2P/IPC/read
+jean-zay-iam52:263021:263137 [6] NCCL INFO Channel 01 : 30[c8000] -> 29[8b000] via P2P/IPC/read
+jean-zay-iam40:289973:290089 [6] NCCL INFO Channel 00 : 14[c8000] -> 13[8b000] via P2P/IPC/read
+jean-zay-iam41:276752:276872 [6] NCCL INFO Channel 01 : 22[c8000] -> 21[8b000] via P2P/IPC/read
+jean-zay-iam40:289969:290087 [2] NCCL INFO Channel 00 : 10[48000] -> 9[b000] via P2P/IPC/read
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 00 : 8[7000] -> 17[b000] [send] via NET/IB/1
+jean-zay-iam40:289970:290090 [3] NCCL INFO Channel 00 : 11[4c000] -> 10[48000] via P2P/IPC/read
+jean-zay-iam40:289972:290088 [5] NCCL INFO Channel 00 : 13[8b000] -> 12[88000] via P2P/IPC/read
+jean-zay-iam40:289971:290093 [4] NCCL INFO Channel 00 : 12[88000] -> 11[4c000] via P2P/IPC/read
+jean-zay-iam37:261381:261500 [2] NCCL INFO Channel 00 : 2[48000] -> 1[b000] via P2P/IPC/read
+jean-zay-iam52:263016:263142 [1] NCCL INFO Channel 01 : 25[b000] -> 24[7000] via P2P/IPC/read
+jean-zay-iam37:261382:261501 [3] NCCL INFO Channel 00 : 3[4c000] -> 2[48000] via P2P/IPC/read
+jean-zay-iam37:261385:261506 [6] NCCL INFO Channel 00 : 6[c8000] -> 5[8b000] via P2P/IPC/read
+jean-zay-iam37:261384:261496 [5] NCCL INFO Channel 00 : 5[8b000] -> 4[88000] via P2P/IPC/read
+jean-zay-iam40:289973:290089 [6] NCCL INFO Channel 01 : 14[c8000] -> 13[8b000] via P2P/IPC/read
+jean-zay-iam40:289969:290087 [2] NCCL INFO Channel 01 : 10[48000] -> 9[b000] via P2P/IPC/read
+jean-zay-iam40:289968:290086 [1] NCCL INFO Channel 01 : 16[7000] -> 9[b000] [receive] via NET/IB/1
+jean-zay-iam37:261383:261499 [4] NCCL INFO Channel 00 : 4[88000] -> 3[4c000] via P2P/IPC/read
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 00 : 0[7000] -> 16[7000] [send] via NET/IB/1
+jean-zay-iam40:289970:290090 [3] NCCL INFO Channel 01 : 11[4c000] -> 10[48000] via P2P/IPC/read
+jean-zay-iam40:289972:290088 [5] NCCL INFO Channel 01 : 13[8b000] -> 12[88000] via P2P/IPC/read
+jean-zay-iam40:289971:290093 [4] NCCL INFO Channel 01 : 12[88000] -> 11[4c000] via P2P/IPC/read
+jean-zay-iam37:261380:261497 [1] NCCL INFO Channel 00 : 1[b000] -> 0[7000] via P2P/IPC/read
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 01 : 24[7000] -> 8[7000] [receive] via NET/IB/1
+jean-zay-iam37:261381:261500 [2] NCCL INFO Channel 01 : 2[48000] -> 1[b000] via P2P/IPC/read
+jean-zay-iam37:261382:261501 [3] NCCL INFO Channel 01 : 3[4c000] -> 2[48000] via P2P/IPC/read
+jean-zay-iam37:261385:261506 [6] NCCL INFO Channel 01 : 6[c8000] -> 5[8b000] via P2P/IPC/read
+jean-zay-iam37:261384:261496 [5] NCCL INFO Channel 01 : 5[8b000] -> 4[88000] via P2P/IPC/read
+jean-zay-iam37:261383:261499 [4] NCCL INFO Channel 01 : 4[88000] -> 3[4c000] via P2P/IPC/read
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 00 : 16[7000] -> 24[7000] [send] via NET/IB/1
+jean-zay-iam37:261380:261497 [1] NCCL INFO Channel 01 : 1[b000] -> 0[7000] via P2P/IPC/read
+jean-zay-iam41:276753:276870 [7] NCCL INFO Connected all trees
+jean-zay-iam41:276753:276870 [7] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam41:276753:276870 [7] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam52:263022:263135 [7] NCCL INFO Connected all trees
+jean-zay-iam52:263022:263135 [7] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam52:263022:263135 [7] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276747:276867 [1] NCCL INFO Channel 00 : 17[b000] -> 8[7000] [send] via NET/IB/1
+jean-zay-iam40:289974:290092 [7] NCCL INFO Connected all trees
+jean-zay-iam40:289974:290092 [7] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam40:289974:290092 [7] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam52:263018:263141 [3] NCCL INFO Connected all trees
+jean-zay-iam52:263018:263141 [3] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam52:263018:263141 [3] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 01 : 8[7000] -> 24[7000] [send] via NET/IB/1
+jean-zay-iam52:263019:263136 [4] NCCL INFO Connected all trees
+jean-zay-iam52:263019:263136 [4] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam52:263019:263136 [4] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam37:261386:261498 [7] NCCL INFO Connected all trees
+jean-zay-iam37:261386:261498 [7] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam37:261386:261498 [7] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276750:276871 [4] NCCL INFO Connected all trees
+jean-zay-iam41:276750:276871 [4] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam41:276750:276871 [4] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 00 : 0[7000] -> 16[7000] [receive] via NET/IB/1
+jean-zay-iam41:276749:276869 [3] NCCL INFO Connected all trees
+jean-zay-iam41:276749:276869 [3] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam41:276749:276869 [3] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276752:276872 [6] NCCL INFO Connected all trees
+jean-zay-iam41:276752:276872 [6] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam52:263021:263137 [6] NCCL INFO Connected all trees
+jean-zay-iam41:276752:276872 [6] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam52:263021:263137 [6] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam52:263021:263137 [6] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276751:276865 [5] NCCL INFO Connected all trees
+jean-zay-iam41:276751:276865 [5] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam41:276751:276865 [5] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam52:263015:263140 [0] NCCL INFO Channel 01 : 8[7000] -> 24[7000] [receive] via NET/IB/1
+jean-zay-iam52:263020:263139 [5] NCCL INFO Connected all trees
+jean-zay-iam52:263020:263139 [5] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam52:263020:263139 [5] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam52:263017:263138 [2] NCCL INFO Connected all trees
+jean-zay-iam52:263017:263138 [2] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam52:263017:263138 [2] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam40:289973:290089 [6] NCCL INFO Connected all trees
+jean-zay-iam40:289973:290089 [6] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam40:289973:290089 [6] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam40:289970:290090 [3] NCCL INFO Connected all trees
+jean-zay-iam40:289970:290090 [3] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam40:289970:290090 [3] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 00 : 16[7000] -> 0[7000] [send] via NET/IB/1
+jean-zay-iam40:289971:290093 [4] NCCL INFO Connected all trees
+jean-zay-iam40:289971:290093 [4] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam40:289971:290093 [4] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam40:289972:290088 [5] NCCL INFO Connected all trees
+jean-zay-iam40:289972:290088 [5] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam40:289972:290088 [5] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam52:263015:263140 [0] NCCL INFO Channel 01 : 24[7000] -> 8[7000] [send] via NET/IB/1
+jean-zay-iam37:261385:261506 [6] NCCL INFO Connected all trees
+jean-zay-iam37:261385:261506 [6] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam37:261385:261506 [6] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam37:261382:261501 [3] NCCL INFO Connected all trees
+jean-zay-iam37:261382:261501 [3] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam37:261382:261501 [3] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam37:261383:261499 [4] NCCL INFO Connected all trees
+jean-zay-iam37:261383:261499 [4] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam37:261383:261499 [4] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam37:261384:261496 [5] NCCL INFO Connected all trees
+jean-zay-iam37:261384:261496 [5] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam37:261384:261496 [5] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 00 : 24[7000] -> 16[7000] [receive] via NET/IB/1
+jean-zay-iam37:261381:261500 [2] NCCL INFO Connected all trees
+jean-zay-iam37:261381:261500 [2] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam37:261381:261500 [2] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam37:261379:261471 [0] NCCL INFO Channel 01 : 8[7000] -> 0[7000] [receive] via NET/IB/1
+jean-zay-iam52:263015:263140 [0] NCCL INFO Channel 00 : 24[7000] -> 16[7000] [send] via NET/IB/1
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 00 : 17[b000] -> 8[7000] [receive] via NET/IB/1
+jean-zay-iam41:276747:276867 [1] NCCL INFO Channel 00 : 17[b000] -> 16[7000] via P2P/IPC/read
+jean-zay-iam41:276747:276867 [1] NCCL INFO Channel 01 : 17[b000] -> 16[7000] via P2P/IPC/read
+jean-zay-iam52:263015:263140 [0] NCCL INFO Connected all trees
+jean-zay-iam52:263015:263140 [0] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam52:263015:263140 [0] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam40:289967:290091 [0] NCCL INFO Channel 01 : 8[7000] -> 0[7000] [send] via NET/IB/1
+jean-zay-iam41:276746:276868 [0] NCCL INFO Channel 01 : 16[7000] -> 9[b000] [send] via NET/IB/1
+jean-zay-iam52:263016:263142 [1] NCCL INFO Connected all trees
+jean-zay-iam52:263016:263142 [1] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam52:263016:263142 [1] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam52:263019:263136 [4] NCCL INFO comm 0x14b1a8002fb0 rank 28 nranks 32 cudaDev 4 busId 88000 - Init COMPLETE
+jean-zay-iam52:263020:263139 [5] NCCL INFO comm 0x151418002fb0 rank 29 nranks 32 cudaDev 5 busId 8b000 - Init COMPLETE
+jean-zay-iam52:263016:263142 [1] NCCL INFO comm 0x145588002fb0 rank 25 nranks 32 cudaDev 1 busId b000 - Init COMPLETE
+jean-zay-iam52:263015:263140 [0] NCCL INFO comm 0x14c858002fb0 rank 24 nranks 32 cudaDev 0 busId 7000 - Init COMPLETE
+jean-zay-iam52:263017:263138 [2] NCCL INFO comm 0x14e858002fb0 rank 26 nranks 32 cudaDev 2 busId 48000 - Init COMPLETE
+jean-zay-iam52:263018:263141 [3] NCCL INFO comm 0x150208002fb0 rank 27 nranks 32 cudaDev 3 busId 4c000 - Init COMPLETE
+jean-zay-iam52:263021:263137 [6] NCCL INFO comm 0x151df8002fb0 rank 30 nranks 32 cudaDev 6 busId c8000 - Init COMPLETE
+jean-zay-iam52:263022:263135 [7] NCCL INFO comm 0x152728002fb0 rank 31 nranks 32 cudaDev 7 busId cb000 - Init COMPLETE
+jean-zay-iam41:276748:276866 [2] NCCL INFO Connected all trees
+jean-zay-iam41:276748:276866 [2] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam41:276748:276866 [2] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam40:289968:290086 [1] NCCL INFO Channel 00 : 9[b000] -> 8[7000] via P2P/IPC/read
+jean-zay-iam40:289968:290086 [1] NCCL INFO Channel 01 : 9[b000] -> 8[7000] via P2P/IPC/read
+jean-zay-iam37:261379:261471 [0] NCCL INFO Connected all trees
+jean-zay-iam37:261379:261471 [0] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam37:261379:261471 [0] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276746:276868 [0] NCCL INFO Connected all trees
+jean-zay-iam41:276746:276868 [0] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam41:276746:276868 [0] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam37:261380:261497 [1] NCCL INFO Connected all trees
+jean-zay-iam37:261380:261497 [1] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam37:261380:261497 [1] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam37:261380:261497 [1] NCCL INFO comm 0x151790002fb0 rank 1 nranks 32 cudaDev 1 busId b000 - Init COMPLETE
+jean-zay-iam37:261379:261471 [0] NCCL INFO comm 0x151f24002fb0 rank 0 nranks 32 cudaDev 0 busId 7000 - Init COMPLETE
+jean-zay-iam37:261382:261501 [3] NCCL INFO comm 0x14a538002fb0 rank 3 nranks 32 cudaDev 3 busId 4c000 - Init COMPLETE
+jean-zay-iam37:261381:261500 [2] NCCL INFO comm 0x151028002fb0 rank 2 nranks 32 cudaDev 2 busId 48000 - Init COMPLETE
+jean-zay-iam37:261383:261499 [4] NCCL INFO comm 0x152340002fb0 rank 4 nranks 32 cudaDev 4 busId 88000 - Init COMPLETE
+jean-zay-iam37:261384:261496 [5] NCCL INFO comm 0x14d048002fb0 rank 5 nranks 32 cudaDev 5 busId 8b000 - Init COMPLETE
+jean-zay-iam37:261379:261379 [0] NCCL INFO Launch mode Parallel
+jean-zay-iam37:261386:261498 [7] NCCL INFO comm 0x1519b0002fb0 rank 7 nranks 32 cudaDev 7 busId cb000 - Init COMPLETE
+jean-zay-iam37:261385:261506 [6] NCCL INFO comm 0x14bd98002fb0 rank 6 nranks 32 cudaDev 6 busId c8000 - Init COMPLETE
+jean-zay-iam41:276747:276867 [1] NCCL INFO Connected all trees
+jean-zay-iam41:276747:276867 [1] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam41:276747:276867 [1] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276749:276869 [3] NCCL INFO comm 0x14d508002fb0 rank 19 nranks 32 cudaDev 3 busId 4c000 - Init COMPLETE
+jean-zay-iam40:289967:290091 [0] NCCL INFO Connected all trees
+jean-zay-iam41:276748:276866 [2] NCCL INFO comm 0x14ae78002fb0 rank 18 nranks 32 cudaDev 2 busId 48000 - Init COMPLETE
+jean-zay-iam40:289967:290091 [0] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam40:289967:290091 [0] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam41:276747:276867 [1] NCCL INFO comm 0x14d928002fb0 rank 17 nranks 32 cudaDev 1 busId b000 - Init COMPLETE
+jean-zay-iam41:276750:276871 [4] NCCL INFO comm 0x146d68002fb0 rank 20 nranks 32 cudaDev 4 busId 88000 - Init COMPLETE
+jean-zay-iam41:276753:276870 [7] NCCL INFO comm 0x1523f8002fb0 rank 23 nranks 32 cudaDev 7 busId cb000 - Init COMPLETE
+jean-zay-iam41:276746:276868 [0] NCCL INFO comm 0x152f60002fb0 rank 16 nranks 32 cudaDev 0 busId 7000 - Init COMPLETE
+jean-zay-iam41:276751:276865 [5] NCCL INFO comm 0x14c788002fb0 rank 21 nranks 32 cudaDev 5 busId 8b000 - Init COMPLETE
+jean-zay-iam41:276752:276872 [6] NCCL INFO comm 0x14e538002fb0 rank 22 nranks 32 cudaDev 6 busId c8000 - Init COMPLETE
+jean-zay-iam40:289968:290086 [1] NCCL INFO Connected all trees
+jean-zay-iam40:289968:290086 [1] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam40:289968:290086 [1] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam40:289969:290087 [2] NCCL INFO Connected all trees
+jean-zay-iam40:289969:290087 [2] NCCL INFO threadThresholds 8/8/64 | 256/8/64 | 8/8/512
+jean-zay-iam40:289969:290087 [2] NCCL INFO 2 coll channels, 2 p2p channels, 1 p2p channels per peer
+jean-zay-iam40:289969:290087 [2] NCCL INFO comm 0x154f98002fb0 rank 10 nranks 32 cudaDev 2 busId 48000 - Init COMPLETE
+jean-zay-iam40:289971:290093 [4] NCCL INFO comm 0x1529e8002fb0 rank 12 nranks 32 cudaDev 4 busId 88000 - Init COMPLETE
+jean-zay-iam40:289970:290090 [3] NCCL INFO comm 0x14ee38002fb0 rank 11 nranks 32 cudaDev 3 busId 4c000 - Init COMPLETE
+jean-zay-iam40:289973:290089 [6] NCCL INFO comm 0x145bb0002fb0 rank 14 nranks 32 cudaDev 6 busId c8000 - Init COMPLETE
+jean-zay-iam40:289972:290088 [5] NCCL INFO comm 0x14d508002fb0 rank 13 nranks 32 cudaDev 5 busId 8b000 - Init COMPLETE
+jean-zay-iam40:289968:290086 [1] NCCL INFO comm 0x14d558002fb0 rank 9 nranks 32 cudaDev 1 busId b000 - Init COMPLETE
+jean-zay-iam40:289974:290092 [7] NCCL INFO comm 0x1494b8002fb0 rank 15 nranks 32 cudaDev 7 busId cb000 - Init COMPLETE
+jean-zay-iam40:289967:290091 [0] NCCL INFO comm 0x14aa40002fb0 rank 8 nranks 32 cudaDev 0 busId 7000 - Init COMPLETE
+ignore me 17
+6:
+ duration: 3.9563 sec
+ algo throughput: 16176643777.3540 bps, 16.1766 Gbps
+ busbw: 15.6711  Gbps
+ignore me 17
+7:
+ duration: 4.1011 sec
+ algo throughput: 15605538666.8284 bps, 15.6055 Gbps
+ busbw: 15.1179  Gbps
+ignore me 17
+5:
+ duration: 4.0281 sec
+ algo throughput: 15888388696.7879 bps, 15.8884 Gbps
+ busbw: 15.3919  Gbps
+ignore me 17
+ignore me 17
+27:
+ duration: 4.1446 sec
+ algo throughput: 15441789907.3424 bps, 15.4418 Gbps
+ busbw: 14.9592  Gbps
+4:
+ duration: 4.1584 sec
+ algo throughput: 15390377253.3963 bps, 15.3904 Gbps
+ busbw: 14.9094  Gbps
+ignore me 17
+ignore me 17
+28:
+ duration: 4.0857 sec
+ignore me 17
+ algo throughput: 15664581341.3504 bps, 15.6646 Gbps
+ busbw: 15.1751  Gbps
+26:
+ duration: 4.1296 sec
+ algo throughput: 15497834133.7166 bps, 15.4978 Gbps
+ busbw: 15.0135  Gbps
+3:
+ duration: 4.1508 sec
+ algo throughput: 15418582053.9969 bps, 15.4186 Gbps
+ busbw: 14.9368  Gbps
+ignore me 17
+ignore me 17
+8:
+ duration: 4.2224 sec
+ algo throughput: 15157302718.4214 bps, 15.1573 Gbps
+ busbw: 14.6836  Gbps
+ignore me 17
+29:
+ duration: 4.0621 sec
+ algo throughput: 15755272218.1164 bps, 15.7553 Gbps
+ busbw: 15.2629  Gbps
+25:
+ duration: 4.1516 sec
+ algo throughput: 15415828590.9963 bps, 15.4158 Gbps
+ busbw: 14.9341  Gbps
+ignore me 17
+ignore me 17
+9:
+ duration: 4.0906 sec
+ algo throughput: 15645779547.2488 bps, 15.6458 Gbps
+ busbw: 15.1568  Gbps
+ignore me 17
+ignore me 17
+ignore me 17
+ignore me 17
+23:
+ duration: 4.1569 sec
+30:
+ duration: 4.0722 sec
+ algo throughput: 15716173146.2812 bps, 15.7162 Gbps
+1:
+ duration: 4.0663 sec
+ algo throughput: 15396140153.8145 bps, 15.3961 Gbps
+ busbw: 14.9150  Gbps
+ algo throughput: 15739134214.8659 bps, 15.7391 Gbps
+ busbw: 15.2473  Gbps
+ busbw: 15.2250  Gbps
+22:
+ duration: 4.0428 sec
+ algo throughput: 15830448441.2183 bps, 15.8304 Gbps
+ busbw: 15.3357  Gbps
+ignore me 17
+2:
+ duration: 4.1513 sec
+ algo throughput: 15416737873.4375 bps, 15.4167 Gbps
+ busbw: 14.9350  Gbps
+ignore me 17
+ignore me 17
+10:
+ duration: 4.1135 sec
+24:
+ duration: 4.0613 sec
+ algo throughput: 15758479220.2859 bps, 15.7585 Gbps
+ busbw: 15.2660  Gbps
+ algo throughput: 15558588332.8945 bps, 15.5586 Gbps
+ busbw: 15.0724  Gbps
+ignore me 17
+31:
+ duration: 4.1502 sec
+ algo throughput: 15420839540.9777 bps, 15.4208 Gbps
+ busbw: 14.9389  Gbps
+21:
+ duration: 4.1419 sec
+ algo throughput: 15451690470.9343 bps, 15.4517 Gbps
+ busbw: 14.9688  Gbps
+ignore me 17
+ignore me 17
+ignore me 17
+11:
+ duration: 4.0492 sec
+ algo throughput: 15805693708.4176 bps, 15.8057 Gbps
+20:
+ duration: 4.0993 sec
+ algo throughput: 15612440511.8644 bps, 15.6124 Gbps
+ busbw: 15.1246  Gbps
+0:
+ duration: 4.0120 sec
+ algo throughput: 15952303597.3018 bps, 15.9523 Gbps
+ busbw: 15.3118  Gbps
+ busbw: 15.4538  Gbps
+ignore me 17
+ignore me 17
+12:
+ duration: 4.1850 sec
+ algo throughput: 15292749814.3865 bps, 15.2927 Gbps
+ busbw: 14.8149  Gbps
+19:
+ duration: 4.0412 sec
+ algo throughput: 15836843924.5534 bps, 15.8368 Gbps
+ busbw: 15.3419  Gbps
+ignore me 17
+13:
+ duration: 4.0840 sec
+ algo throughput: 15670769926.9476 bps, 15.6708 Gbps
+ busbw: 15.1811  Gbps
+ignore me 17
+18:
+ duration: 4.1647 sec
+ algo throughput: 15367278261.5983 bps, 15.3673 Gbps
+ busbw: 14.8871  Gbps
+ignore me 17
+14:
+ duration: 4.0438 sec
+ algo throughput: 15826582974.8276 bps, 15.8266 Gbps
+ busbw: 15.3320  Gbps
+ignore me 17
+ignore me 17
+17:
+ duration: 4.1553 sec
+ algo throughput: 15401946302.4121 bps, 15.4019 Gbps
+15:
+ duration: 4.1608 sec
+ algo throughput: 15381558817.4705 bps, 15.3816 Gbps
+ busbw: 14.9206  Gbps
+ busbw: 14.9009  Gbps
+ignore me 17
+16:
+ duration: 4.0474 sec
+ algo throughput: 15812815660.2083 bps, 15.8128 Gbps
+ busbw: 15.3187  Gbps
+ignore me 555
+23:
+ duration: 1.5186 sec
+ algo throughput: 42143980222.5332 bps, 42.1440 Gbps
+ignore me 555
+ busbw: 40.8270  Gbps
+9:
+ duration: 1.5187 sec
+ algo throughput: 42140589448.6002 bps, 42.1406 Gbps
+ busbw: 40.8237  Gbps
+ignore me 555
+22:
+ duration: 1.5187 sec
+ algo throughput: 42140378571.5530 bps, 42.1404 Gbps
+ignore me 555
+ busbw: 40.8235  Gbps
+24:
+ duration: 1.5187 sec
+ algo throughput: 42142240285.3888 bps, 42.1422 Gbps
+ busbw: 40.8253  Gbps
+ignore me 555
+7:
+ duration: 1.5199 sec
+ algo throughput: 42108029847.7049 bps, 42.1080 Gbps
+ busbw: 40.7922  Gbps
+ignore me 555
+ignore me 555
+10:
+ duration: 1.5188 sec
+ algo throughput: 42138916267.0821 bps, 42.1389 Gbps
+ busbw: 40.8221  Gbps
+8:
+ duration: 1.5192 sec
+ algo throughput: 42126338602.2545 bps, 42.1263 Gbps
+ busbw: 40.8099  Gbps
+ignore me 555
+ignore me 555
+ignore me 555
+21:
+ duration: 1.5188 sec
+ algo throughput: 42139898494.4063 bps, 42.1399 Gbps
+ busbw: 40.8230  Gbps
+25:
+ duration: 1.5192 sec
+ algo throughput: 42127092502.8457 bps, 42.1271 Gbps
+ busbw: 40.8106  Gbps
+6:
+ duration: 1.5202 sec
+ algo throughput: 42099423136.7009 bps, 42.0994 Gbps
+ busbw: 40.7838  Gbps
+ignore me 555
+11:
+ duration: 1.5187 sec
+ algo throughput: 42141289163.4721 bps, 42.1413 Gbps
+ignore me 555
+ busbw: 40.8244  Gbps
+20:
+ duration: 1.5188 sec
+ algo throughput: 42139687792.2383 bps, 42.1397 Gbps
+ busbw: 40.8228  Gbps
+ignore me 555
+26:
+ duration: 1.5197 sec
+ algo throughput: 42113294024.4995 bps, 42.1133 Gbps
+ busbw: 40.7973  Gbps
+ignore me 555
+ignore me 555
+5:
+ duration: 1.5202 sec
+ algo throughput: 42100022978.8723 bps, 42.1000 Gbps
+ busbw: 40.7844  Gbps
+12:
+ duration: 1.5187 sec
+ algo throughput: 42141483180.7297 bps, 42.1415 Gbps
+ busbw: 40.8246  Gbps
+ignore me 555
+19:
+ duration: 1.5188 sec
+ algo throughput: 42139070669.3367 bps, 42.1391 Gbps
+ busbw: 40.8222  Gbps
+ignore me 555
+ignore me 555
+13:
+ duration: 1.5187 sec
+ algo throughput: 42140413754.7281 bps, 42.1404 Gbps
+27:
+ duration: 1.5202 sec
+ algo throughput: 42099139976.4359 bps, 42.0991 Gbps
+ busbw: 40.7835  Gbps
+ busbw: 40.8235  Gbps
+ignore me 555
+4:
+ duration: 1.5203 sec
+ algo throughput: 42097969076.0652 bps, 42.0980 Gbps
+ busbw: 40.7824  Gbps
+ignore me 555
+18:
+ duration: 1.5187 sec
+ algo throughput: 42141134996.9228 bps, 42.1411 Gbps
+ busbw: 40.8242  Gbps
+ignore me 555
+28:
+ duration: 1.5203 sec
+ algo throughput: 42097422955.6261 bps, 42.0974 Gbps
+ignore me 555
+ busbw: 40.7819  Gbps
+ignore me 555
+14:
+ duration: 1.5188 sec
+ algo throughput: 42139893361.7641 bps, 42.1399 Gbps
+ busbw: 40.8230  Gbps
+3:
+ duration: 1.5203 sec
+ algo throughput: 42097598433.0412 bps, 42.0976 Gbps
+ busbw: 40.7820  Gbps
+ignore me 555
+17:
+ duration: 1.5188 sec
+ algo throughput: 42139267495.6574 bps, 42.1393 Gbps
+ busbw: 40.8224  Gbps
+ignore me 555
+ignore me 555
+29:
+ duration: 1.5203 sec
+ algo throughput: 42096144082.6273 bps, 42.0961 Gbps
+ignore me 555
+ busbw: 40.7806  Gbps
+15:
+ duration: 1.5188 sec
+ algo throughput: 42137175969.6847 bps, 42.1372 Gbps
+ignore me 555
+ busbw: 40.8204  Gbps
+16:
+ duration: 1.5186 sec
+ algo throughput: 42144770940.2506 bps, 42.1448 Gbps
+ busbw: 40.8277  Gbps
+2:
+ duration: 1.5201 sec
+ algo throughput: 42101391688.1200 bps, 42.1014 Gbps
+ busbw: 40.7857  Gbps
+ignore me 555
+ignore me 555
+30:
+ duration: 1.5203 sec
+ algo throughput: 42096228974.3786 bps, 42.0962 Gbps
+ busbw: 40.7807  Gbps
+1:
+ duration: 1.5204 sec
+ algo throughput: 42095494315.5608 bps, 42.0955 Gbps
+ busbw: 40.7800  Gbps
+ignore me 555
+31:
+ duration: 1.5203 sec
+ algo throughput: 42096577970.2344 bps, 42.0966 Gbps
+ busbw: 40.7811  Gbps
+ignore me 555
+0:
+ duration: 1.5203 sec
+ algo throughput: 42097401467.1174 bps, 42.0974 Gbps
+ busbw: 40.7819  Gbps
+ignore me 17760
+19:
+ duration: 1.5271 sec
+ algo throughput: 41910600634.9022 bps, 41.9106 Gbps
+ busbw: 40.6009  Gbps
+ignore me 17760
+ignore me 17760
+18:
+ duration: 1.5270 sec
+ algo throughput: 41911582289.7142 bps, 41.9116 Gbps
+ busbw: 40.6018  Gbps
+20:
+ duration: 1.5276 sec
+ algo throughput: 41894987422.3905 bps, 41.8950 Gbps
+ busbw: 40.5858  Gbps
+ignore me 17760
+ignore me 17760
+17:
+ duration: 1.5270 sec
+ algo throughput: 41913406576.8859 bps, 41.9134 Gbps
+ busbw: 40.6036  Gbps
+ignore me 17760
+21:
+ duration: 1.5280 sec
+ algo throughput: 41885069299.4918 bps, 41.8851 Gbps
+ busbw: 40.5762  Gbps
+ignore me 17760
+14:
+ duration: 1.5272 sec
+ algo throughput: 41907314947.6113 bps, 41.9073 Gbps
+ busbw: 40.5977  Gbps
+15:
+ duration: 1.5270 sec
+ algo throughput: 41913242272.3447 bps, 41.9132 Gbps
+ busbw: 40.6035  Gbps
+ignore me 17760
+ignore me 17760
+13:
+ duration: 1.5277 sec
+ algo throughput: 41893273876.8880 bps, 41.8933 Gbps
+ busbw: 40.5841  Gbps
+ignore me 17760
+16:
+ duration: 1.5271 sec
+ algo throughput: 41909230280.3461 bps, 41.9092 Gbps
+ busbw: 40.5996  Gbps
+22:
+ duration: 1.5286 sec
+ algo throughput: 41869319488.2197 bps, 41.8693 Gbps
+ busbw: 40.5609  Gbps
+ignore me 17760
+ignore me 17760
+23:
+ duration: 1.5289 sec
+ algo throughput: 41861290350.4216 bps, 41.8613 Gbps
+12:
+ duration: 1.5281 sec
+ algo throughput: 41882850453.1701 bps, 41.8829 Gbps
+ busbw: 40.5740  Gbps
+ busbw: 40.5531  Gbps
+ignore me 17760
+11:
+ duration: 1.5286 sec
+ algo throughput: 41868966830.1641 bps, 41.8690 Gbps
+ busbw: 40.5606  Gbps
+ignore me 17760
+ignore me 17760
+24:
+ duration: 1.5291 sec
+ algo throughput: 41854797523.2289 bps, 41.8548 Gbps
+10:
+ duration: 1.5290 sec
+ algo throughput: 41858049187.4726 bps, 41.8580 Gbps
+ busbw: 40.5468  Gbps
+ busbw: 40.5500  Gbps
+ignore me 17760
+25:
+ duration: 1.5291 sec
+ algo throughput: 41855697296.6685 bps, 41.8557 Gbps
+ busbw: 40.5477  Gbps
+ignore me 17760
+ignore me 17760
+ignore me 17760
+9:
+ duration: 1.5296 sec
+ algo throughput: 41841767653.6339 bps, 41.8418 Gbps
+ busbw: 40.5342  Gbps
+6:
+ duration: 1.5292 sec
+ algo throughput: 41851931325.8954 bps, 41.8519 Gbps
+ busbw: 40.5441  Gbps
+7:
+ duration: 1.5294 sec
+ algo throughput: 41846364025.0241 bps, 41.8464 Gbps
+ busbw: 40.5387  Gbps
+ignore me 17760
+26:
+ duration: 1.5290 sec
+ algo throughput: 41856070811.5191 bps, 41.8561 Gbps
+ busbw: 40.5481  Gbps
+ignore me 17760
+ignore me 17760
+5:
+ duration: 1.5291 sec
+ algo throughput: 41855875143.2076 bps, 41.8559 Gbps
+ busbw: 40.5479  Gbps
+8:
+ duration: 1.5295 sec
+ algo throughput: 41843741534.2125 bps, 41.8437 Gbps
+ busbw: 40.5361  Gbps
+ignore me 17760
+27:
+ duration: 1.5290 sec
+ algo throughput: 41856588048.6577 bps, 41.8566 Gbps
+ busbw: 40.5486  Gbps
+ignore me 17760
+4:
+ duration: 1.5290 sec
+ algo throughput: 41856245346.9914 bps, 41.8562 Gbps
+ busbw: 40.5482  Gbps
+ignore me 17760
+28:
+ duration: 1.5290 sec
+ algo throughput: 41858071525.4799 bps, 41.8581 Gbps
+ busbw: 40.5500  Gbps
+ignore me 17760
+3:
+ duration: 1.5290 sec
+ algo throughput: 41857294677.8322 bps, 41.8573 Gbps
+ busbw: 40.5493  Gbps
+ignore me 17760
+29:
+ duration: 1.5289 sec
+ algo throughput: 41859219678.2562 bps, 41.8592 Gbps
+ busbw: 40.5511  Gbps
+ignore me 17760
+2:
+ duration: 1.5289 sec
+ algo throughput: 41859941759.2278 bps, 41.8599 Gbps
+ busbw: 40.5518  Gbps
+ignore me 17760
+30:
+ duration: 1.5289 sec
+ algo throughput: 41858890268.6218 bps, 41.8589 Gbps
+ busbw: 40.5508  Gbps
+ignore me 17760
+1:
+ duration: 1.5290 sec
+ algo throughput: 41856634528.5093 bps, 41.8566 Gbps
+ busbw: 40.5486  Gbps
+ignore me 17760
+31:
+ duration: 1.5290 sec
+ algo throughput: 41858450586.8372 bps, 41.8585 Gbps
+ busbw: 40.5504  Gbps
+ignore me 17760
+0:
+ duration: 1.5289 sec
+ algo throughput: 41860374323.0033 bps, 41.8604 Gbps
+ busbw: 40.5522  Gbps
+ignore me 568326
+18:
+ duration: 1.5292 sec
+ algo throughput: 41851192689.6061 bps, 41.8512 Gbps
+ busbw: 40.5433  Gbps
+ignore me 568326
+19:
+ duration: 1.5296 sec
+ algo throughput: 41840982602.8527 bps, 41.8410 Gbps
+ busbw: 40.5335  Gbps
+ignore me 568326
+17:
+ duration: 1.5292 sec
+ algo throughput: 41851389273.1359 bps, 41.8514 Gbps
+ busbw: 40.5435  Gbps
+ignore me 568326
+ignore me 568326
+ignore me 568326
+14:
+ duration: 1.5293 sec
+ algo throughput: 41850546358.8408 bps, 41.8505 Gbps
+ busbw: 40.5427  Gbps
+20:
+ duration: 1.5296 sec
+ algo throughput: 41841711605.3523 bps, 41.8417 Gbps
+15:
+ duration: 1.5292 sec
+ algo throughput: 41850900844.4322 bps, 41.8509 Gbps
+ busbw: 40.5342  Gbps
+ busbw: 40.5431  Gbps
+ignore me 568326
+ignore me 568326
+13:
+ duration: 1.5293 sec
+16:
+ duration: 1.5292 sec
+ algo throughput: 41851732548.4344 bps, 41.8517 Gbps
+ busbw: 40.5439  Gbps
+ algo throughput: 41849491619.2404 bps, 41.8495 Gbps
+ busbw: 40.5417  Gbps
+ignore me 568326
+21:
+ duration: 1.5296 sec
+ algo throughput: 41841051125.8787 bps, 41.8411 Gbps
+ busbw: 40.5335  Gbps
+ignore me 568326
+12:
+ duration: 1.5293 sec
+ algo throughput: 41848837733.7002 bps, 41.8488 Gbps
+ busbw: 40.5411  Gbps
+ignore me 568326
+ignore me 568326
+22:
+ duration: 1.5295 sec
+ algo throughput: 41842526390.1754 bps, 41.8425 Gbps
+11:
+ duration: 1.5292 sec
+ algo throughput: 41851402077.7964 bps, 41.8514 Gbps
+ busbw: 40.5349  Gbps
+ busbw: 40.5435  Gbps
+ignore me 568326
+ignore me 568326
+25:
+ duration: 1.5289 sec
+ algo throughput: 41860057899.5817 bps, 41.8601 Gbps
+ busbw: 40.5519  Gbps
+23:
+ duration: 1.5296 sec
+ algo throughput: 41841328471.6004 bps, 41.8413 Gbps
+ busbw: 40.5338  Gbps
+ignore me 568326
+ignore me 568326
+10:
+ duration: 1.5293 sec
+ algo throughput: 41850492064.7668 bps, 41.8505 Gbps
+ignore me 568326
+ busbw: 40.5427  Gbps
+26:
+ duration: 1.5289 sec
+ algo throughput: 41861009756.5066 bps, 41.8610 Gbps
+ busbw: 40.5529  Gbps
+24:
+ duration: 1.5293 sec
+ algo throughput: 41848595317.3039 bps, 41.8486 Gbps
+ busbw: 40.5408  Gbps
+ignore me 568326
+5:
+ duration: 1.5289 sec
+ algo throughput: 41860676073.0211 bps, 41.8607 Gbps
+ignore me 568326
+ busbw: 40.5525  Gbps
+ignore me 568326
+27:
+ duration: 1.5288 sec
+ algo throughput: 41861710376.5379 bps, 41.8617 Gbps
+ busbw: 40.5535  Gbps
+ignore me 568326
+6:
+ duration: 1.5292 sec
+ algo throughput: 41852910485.9393 bps, 41.8529 Gbps
+ busbw: 40.5450  Gbps
+ignore me 568326
+9:
+ duration: 1.5292 sec
+ algo throughput: 41850873996.3972 bps, 41.8509 Gbps
+ignore me 568326
+ busbw: 40.5430  Gbps
+4:
+ duration: 1.5288 sec
+ algo throughput: 41861534698.9598 bps, 41.8615 Gbps
+ busbw: 40.5534  Gbps
+7:
+ duration: 1.5293 sec
+ algo throughput: 41849369678.9657 bps, 41.8494 Gbps
+ busbw: 40.5416  Gbps
+ignore me 568326
+28:
+ duration: 1.5289 sec
+ algo throughput: 41861383911.2504 bps, 41.8614 Gbps
+ busbw: 40.5532  Gbps
+ignore me 568326
+ignore me 568326
+8:
+ duration: 1.5293 sec
+ algo throughput: 41848441035.8316 bps, 41.8484 Gbps
+3:
+ duration: 1.5289 sec
+ algo throughput: 41861481198.7633 bps, 41.8615 Gbps
+ busbw: 40.5533  Gbps
+ busbw: 40.5407  Gbps
+ignore me 568326
+29:
+ duration: 1.5289 sec
+ algo throughput: 41861138665.5933 bps, 41.8611 Gbps
+ busbw: 40.5530  Gbps
+ignore me 568326
+2:
+ duration: 1.5289 sec
+ algo throughput: 41861040340.5475 bps, 41.8610 Gbps
+ busbw: 40.5529  Gbps
+ignore me 568326
+30:
+ duration: 1.5289 sec
+ algo throughput: 41861393521.7231 bps, 41.8614 Gbps
+ignore me 568326
+ busbw: 40.5532  Gbps
+1:
+ duration: 1.5288 sec
+ algo throughput: 41863250360.5825 bps, 41.8633 Gbps
+ busbw: 40.5550  Gbps
+ignore me 568326
+31:
+ duration: 1.5289 sec
+ algo throughput: 41860930490.0206 bps, 41.8609 Gbps
+ busbw: 40.5528  Gbps
+ignore me 568326
+0:
+ duration: 1.5289 sec
+ algo throughput: 41861381313.3954 bps, 41.8614 Gbps
+ busbw: 40.5532  Gbps
+ignore me 18186434
+18:
+ duration: 1.5304 sec
+ algo throughput: 41819308451.5824 bps, 41.8193 Gbps
+ busbw: 40.5125  Gbps
+ignore me 18186434
+19:
+ duration: 1.5304 sec
+ algo throughput: 41819374415.9696 bps, 41.8194 Gbps
+ busbw: 40.5125  Gbps
+ignore me 18186434
+17:
+ duration: 1.5304 sec
+ algo throughput: 41819400154.7344 bps, 41.8194 Gbps
+ busbw: 40.5125  Gbps
+ignore me 18186434
+ignore me 18186434
+15:
+ duration: 1.5303 sec
+ algo throughput: 41821175681.0869 bps, 41.8212 Gbps
+20:
+ duration: 1.5304 sec
+ algo throughput: 41820265560.0101 bps, 41.8203 Gbps
+ busbw: 40.5134  Gbps
+ busbw: 40.5143  Gbps
+ignore me 18186434
+14:
+ duration: 1.5305 sec
+ algo throughput: 41817412474.7738 bps, 41.8174 Gbps
+ busbw: 40.5106  Gbps
+ignore me 18186434
+16:
+ duration: 1.5304 sec
+ algo throughput: 41820405171.5425 bps, 41.8204 Gbps
+ busbw: 40.5135  Gbps
+ignore me 18186434
+ignore me 18186434
+21:
+ duration: 1.5304 sec
+ algo throughput: 41820211341.2948 bps, 41.8202 Gbps
+ busbw: 40.5133  Gbps
+13:
+ duration: 1.5305 sec
+ algo throughput: 41815893542.3173 bps, 41.8159 Gbps
+ busbw: 40.5091  Gbps
+ignore me 18186434
+ignore me 18186434
+22:
+ duration: 1.5304 sec
+ algo throughput: 41819993958.8392 bps, 41.8200 Gbps
+ busbw: 40.5131  Gbps
+12:
+ duration: 1.5305 sec
+ algo throughput: 41816988451.4211 bps, 41.8170 Gbps
+ busbw: 40.5102  Gbps
+ignore me 18186434
+23:
+ duration: 1.5304 sec
+ algo throughput: 41820013685.7934 bps, 41.8200 Gbps
+ busbw: 40.5131  Gbps
+ignore me 18186434
+11:
+ duration: 1.5306 sec
+ algo throughput: 41813631070.6557 bps, 41.8136 Gbps
+ busbw: 40.5070  Gbps
+ignore me 18186434
+10:
+ duration: 1.5306 sec
+ algo throughput: 41813136230.6469 bps, 41.8131 Gbps
+ busbw: 40.5065  Gbps
+ignore me 18186434
+24:
+ duration: 1.5306 sec
+ algo throughput: 41813362805.8615 bps, 41.8134 Gbps
+ busbw: 40.5067  Gbps
+ignore me 18186434
+ignore me 18186434
+9:
+ duration: 1.5306 sec
+ algo throughput: 41814612837.9065 bps, 41.8146 Gbps
+25:
+ duration: 1.5311 sec
+ algo throughput: 41801050732.9013 bps, 41.8011 Gbps
+ busbw: 40.4948  Gbps
+ busbw: 40.5079  Gbps
+ignore me 18186434
+ignore me 18186434
+6:
+ duration: 1.5307 sec
+ algo throughput: 41811611108.9466 bps, 41.8116 Gbps
+ busbw: 40.5050  Gbps
+7:
+ duration: 1.5305 sec
+ algo throughput: 41815091867.5771 bps, 41.8151 Gbps
+ busbw: 40.5084  Gbps
+ignore me 18186434
+8:
+ duration: 1.5304 sec
+ algo throughput: 41818224707.1108 bps, 41.8182 Gbps
+ busbw: 40.5114  Gbps
+ignore me 18186434
+26:
+ duration: 1.5311 sec
+ algo throughput: 41799543931.1436 bps, 41.7995 Gbps
+ busbw: 40.4933  Gbps
+ignore me 18186434
+5:
+ duration: 1.5311 sec
+ algo throughput: 41800540982.4688 bps, 41.8005 Gbps
+ busbw: 40.4943  Gbps
+ignore me 18186434
+27:
+ duration: 1.5311 sec
+ algo throughput: 41798734639.3871 bps, 41.7987 Gbps
+ busbw: 40.4925  Gbps
+ignore me 18186434
+4:
+ duration: 1.5311 sec
+ algo throughput: 41799893567.7921 bps, 41.7999 Gbps
+ busbw: 40.4936  Gbps
+ignore me 18186434
+28:
+ duration: 1.5312 sec
+ algo throughput: 41798021113.2911 bps, 41.7980 Gbps
+ busbw: 40.4918  Gbps
+ignore me 18186434
+3:
+ duration: 1.5311 sec
+ algo throughput: 41799656984.3057 bps, 41.7997 Gbps
+ busbw: 40.4934  Gbps
+ignore me 18186434
+29:
+ duration: 1.5312 sec
+ignore me 18186434
+ algo throughput: 41797483455.9485 bps, 41.7975 Gbps
+ busbw: 40.4913  Gbps
+2:
+ duration: 1.5312 sec
+ algo throughput: 41797889916.8612 bps, 41.7979 Gbps
+ busbw: 40.4917  Gbps
+ignore me 18186434
+30:
+ duration: 1.5312 sec
+ algo throughput: 41797399459.7577 bps, 41.7974 Gbps
+ busbw: 40.4912  Gbps
+ignore me 18186434
+1:
+ duration: 1.5312 sec
+ algo throughput: 41796838922.8479 bps, 41.7968 Gbps
+ busbw: 40.4907  Gbps
+ignore me 18186434
+31:
+ duration: 1.5312 sec
+ algo throughput: 41798535248.2715 bps, 41.7985 Gbps
+ busbw: 40.4923  Gbps
+ignore me 18186434
+0:
+ duration: 1.5312 sec
+ algo throughput: 41797155891.1448 bps, 41.7972 Gbps
+ busbw: 40.4910  Gbps
