@@ -50,6 +50,8 @@ Currently we have an issue with nccl that doesn't fully utilize Intel OPA full b
 
 ## 4 nodes A100 80GB
 
+[all_reduce_bench.slurm](./all_reduce_bench.slurm)
+
 ```
 sbatch all_reduce_bench.slurm
 ```
