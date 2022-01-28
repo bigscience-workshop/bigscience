@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=all_reduce_bench-a100-4n
+#SBATCH --job-name=all_reduce_bench-a100-n4
 #SBATCH --partition=gpu_p5
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
