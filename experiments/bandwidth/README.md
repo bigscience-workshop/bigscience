@@ -6,7 +6,7 @@ https://gist.github.com/stas00/ec5e197b15e2e7aea0153f54d2f97c15
 
 Probably need to adjust `TRIALS` to a higher number to get the more realistic results (after the interconnects is saturated).
 
-## Single node
+## Single node V100
 
 ssh into a desired node and then:
 ```
@@ -15,8 +15,8 @@ python -m torch.distributed.launch --nproc_per_node=4 all_reduce_bench.py 2>&1 |
 ```
 
 Results:
-- [16gp](./n1_16gb_all_reduce_bench.txt) - `algo throughput: 1329.4242 Gbps`
-- [32gp](./n1_32gb_all_reduce_bench.txt) - `algo throughput: 1323.6244 Gbps`
+- [16gb](./n1_16gb_all_reduce_bench.txt) - `algo throughput: 1329.4242 Gbps`
+- [32gb](./n1_32gb_all_reduce_bench.txt) - `algo throughput: 1323.6244 Gbps`
 
 Here we have NVLink gen 2
 
@@ -32,7 +32,7 @@ if this test is run a bit longer, it drops to 600 Gbps.
 
 
 
-## 16 nodes
+## 16 nodes 32GB V100
 
 ```
 export NCCL_DEBUG=info
@@ -41,11 +41,23 @@ srun --jobid $SLURM_JOBID bash -c 'python -m torch.distributed.launch --nnodes 1
 ```
 Results:
 
-- [32gp](./n16_32gb_all_reduce_bench.txt) - `algo throughput: 55.0766 Gbps`
+- [32gp](./n16_32gb_all_reduce_bench.txt) - `algo throughput: 23.2939 to 55.0766 Gbps`
 
 If the test is run much longer it fluctuates between 44 and 57 Gbps.
 
 Currently we have an issue with nccl that doesn't fully utilize Intel OPA full bandwidth. Which is supposed to be 400Gbps max.
+
+
+## 4 nodes A100 80GB
+
+```
+sbatch all_reduce_bench.slurm
+```
+
+Results:
+
+- [80gb](./n4_a100_all_reduce_bench.txt) - `algo throughput: 27.2761 to 42.5218 Gbps`
+
 
 
 ## NCCL tests
