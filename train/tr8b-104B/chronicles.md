@@ -450,6 +450,15 @@ After warm up, just like with the 100-iteration long optimizer reset/warmup ther
  iteration    17068/  159576 | consumed samples:      8143072 | consumed tokens:  16677011456 | elapsed time per iteration (ms): 422752.4 | learning rate: 5.948E-05 | global batch size:  2048 | lm loss: 4.137348E+00 | loss scale: 32768.0 | grad norm: 879946.622 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.005 | TFLOPs: 32.05 |
 ```
 
+This attempt failed too - the model had a huge spike and diverged into NaN loss.
+
+![tr8b-104B-emb-norm-exp-07.png](images/tr8b-104B-emb-norm-exp-07.png)
+
+So at this moment we are stopping this experiment as we must focus on the 200B setup and we are going to use bf16 there and hope that things will be much better with that dtype.
+
+
+
+
 
 ## On the importance of saving and restoring the optimizer step counter
 
@@ -566,3 +575,5 @@ git checkout tr3m-1B3-emb-norm-pile-optim-reset.slurm
 perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --override-lr-scheduler \\|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
 perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=20_563_200|' tr3m-1B3-emb-norm-pile-optim-reset.slurm
 ```
+
+This seems to have worked just fine in both cases, the model just continued training normally, w/o any spikes or lost progress.
