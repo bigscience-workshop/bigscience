@@ -450,7 +450,7 @@ More details https://slurm.schedmd.com/job_array.html
 In this recipe we accomplish 2 things:
 
 1. Allow modification to the next job's slurm script
-2. Allow suspending and resuming job arrays w/o losing the place in the queue when not being to continue running a job
+2. Allow suspending and resuming job arrays w/o losing the place in the queue when not being ready to continue running a job
 
 SLURM is a very unforgiving environment where a small mistake can cost days of waiting time. But there are strategies to mitigate some of this harshness.
 
