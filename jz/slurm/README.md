@@ -445,7 +445,77 @@ If it's important to have the log-file contain the array id, add `%A_%a`:
 More details https://slurm.schedmd.com/job_array.html
 
 
-## Find faulty nodes and exclude them
+## Job Array Trains and their Suspend and Release
+
+In this recipe we accomplish 2 things:
+
+1. Allow modification to the next job's slurm script
+2. Allow suspending and resuming job arrays w/o losing the place in the queue when not being to continue running a job
+
+SLURM is a very unforgiving environment where a small mistake can cost days of waiting time. But there are strategies to mitigate some of this harshness.
+
+SLURM jobs have a concept of "age" in the queue which besides project priority governs when a job gets scheduled to run. If your have just scheduled a new job it has no "age" and will normally be put to run last compared to jobs that have entered the queue earlier. Unless of course this new job comes from a high priority project in which case it'll progress faster.
+
+So here is how one can keep the "age" and not lose it when needing to fix something in the running script or for example to switch over to another script.
+
+The idea is this:
+
+1. `sbatch` a long job array, e.g., `-array=1-50%1`
+2. inside the slurm script don't have any code other than `source another-script.slurm` - so now you can modify the target script or symlink to another script before the next job starts
+3. if you need to stop the job array train - don't cancel it, but suspend it without losing your place in a queue
+4. when ready to continue - unsuspend the job array - only the time while it was suspended is not counted towards its age, but all the previous age is retained.
+
+The only limitation of this recipe is that you can't change the number of nodes, time and hardware and partition constraints once the job array was launched.
+
+Here is an example:
+
+Create a job script:
+
+```
+$ cat train-64n.slurm
+#!/bin/bash
+#SBATCH --job-name=tr8-104B
+#SBATCH --constraint=v100-32g
+#SBATCH --nodes=64
+#SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
+#SBATCH --cpus-per-task=40           # number of cores per tasks
+#SBATCH --hint=nomultithread         # we get physical cores not logical
+#SBATCH --gres=gpu:4                 # number of gpus
+#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --output=%x-%j.out           # output file name
+#SBATCH --account=six@gpu
+
+source tr8-104B-64.slurm
+```
+Start it as:
+```
+sbatch --array=1-50%1 train-64.slurm
+```
+
+Now you can easily edit `tr8-104B-64.slurm` before the next job run and either let the current job finish if it's desired or if you need to abort it, just kill the currently running job, e.g. `1557903_5` (not job array `1557903`) and have the train pick up where it left, but with the edited script.
+
+The nice thing is that this requires no changes to the original script (`tr8-104B-64.slurm` in this example), and the latter can still be started on its own.
+
+Now, what if something is wrong and you need 10min or 10h to fix something. In this case we suspend the train using:
+
+```
+scontrol hold <jobid>
+```
+
+with <jobid> being either a "normal" job, the id of a job array or the id for a job array step
+
+and then when ready to continue release the job:
+
+```
+scontrol release <jobid>
+```
+
+
+
+## Troubleshooting
+
+
+### Find faulty nodes and exclude them
 
 Sometimes a node is broken, which prevents one from training, especially since restarting the job often hits the same set of nodes. So one needs to be able to isolate the bad node(s) and exclude it from `sbatch`.
 
