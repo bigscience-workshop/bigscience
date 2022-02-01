@@ -28,7 +28,7 @@ Due to the hypercube topology used on JZ reaching two nodes on different racks m
 coming in Jan 2022:
 
 - GPUs: 416 A100 80GB GPUs (52 nodes of 8 gpus each)
-- 8 GPUs per node Using NVLink 4 inter-gpu connects
+- 8 GPUs per node Using NVLink 4 inter-gpu connects, 4 IB links
 - CPU: AMD
 - CPU memory: 512GB per node
 - Inter-node connect: Omni-Path Architecture (OPA)
