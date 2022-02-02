@@ -51,14 +51,14 @@ breakdown:
 
 104B:
 
-- embedding size: v*h: 50257*11600 = 582_981_200 / 4 (TP=4) => 145_745_300 params per gpu for embedding
-- one layer size: 12*h**2 + 13*h:  1_614_870_800 / 4 (TP=4) => 403_717_700 params per gpu per layer
+- embedding size: `v*h`: `50257*11600` = 582_981_200 / 4 (TP=4) => 145_745_300 params per gpu for embedding
+- one layer size: `12*h**2 + 13*h`:  1_614_870_800 / 4 (TP=4) => 403_717_700 params per gpu per layer
 
 64 layers over PP=32 => 2 layers per gpu
 
 Total params per gpu:
-- gpu w/  emb: 2*403_717_700 + 145_745_300 = 953_180_700 params * 18 bytes = 17_157_252_600 bytes (17GB)
-- gpu w/o emb: 2*403_717_700               = 807_435_400 params * 18 bytes = 14_533_837_200 (15GB)
+- gpu w/  emb: `2*403_717_700 + 145_745_300` = 953_180_700 params * 18 bytes = 17_157_252_600 bytes (17GB)
+- gpu w/o emb: `2*403_717_700`               = 807_435_400 params * 18 bytes = 14_533_837_200 (15GB)
 
 plus activations memory
 
@@ -105,10 +105,10 @@ The following math is trying various topologies to fit into 80GB gpus
 
 * TP=4, PP=24
 
-- embedding size: v*h: 150257*13312 = 2_000_221_184 / 4 (TP=4) =>  500_055_296 params per gpu for embedding
-- one layer size: 12*h**2 + 13*h:     2_126_685_184 / 4 (TP=4)  => 531_671_296 params per gpu per layer
+- embedding size: `v*h: 150257*13312` = `2_000_221_184 / 4` (TP=4) =>  500_055_296 params per gpu for embedding
+- one layer size: `12*h**2 + 13*h`:     `2_126_685_184 / 4` (TP=4)  => 531_671_296 params per gpu per layer
 
-In other words 2B params per layer w/o TP, or 38GB (2.12*18) per layer.
+In other words 2B params per layer w/o TP, or 38GB (`2.12*18`) per layer.
 
 So here we definitely need to balance embedding layer with transformer layers as they are of the same size, so overall 2+layers blocks to balance - and the constraint won't be Layers % PP = 0 but Layers+2 % PP = 0
 
@@ -117,7 +117,7 @@ So probably should do 94 layers?
 94+2 layers over PP=24 => 4 layers per gpu
 
 Total params per gpu (considering emb layer on par with transformers block):
-- 4*531_671_296 = 2_126_685_184 params * 18 = 38_280_333_312 bytes
+- `4*531_671_296` = `2_126_685_184 params * 18` = 38_280_333_312 bytes
 plus activations memory
 
 40GB A100 takes 1573MiB for cuda kernels (probably about the same for 80GB? may be a bit larger)
@@ -127,7 +127,7 @@ plus activations memory
 
 * TP=1, PP=96
 
-~2B params per layer w/o TP, or 38GB (2.12*18) per layer.
+~2B params per layer w/o TP, or 38GB (`2.12*18`) per layer.
 
 but DS breaks if there isn't at least one transformer block per gpu :(
 otherwise could do a very efficient:
@@ -190,7 +190,7 @@ blk size: 1812.10M/32617.78GB, per gpu 226.51M/4077.22GB
 
 MP=64: TP=8, PP=8: one replica 64 gpus
 
-so 80/8=10 PP stages per gpu: 10*4 =40GB of weights/optim states/grads per gpu
+so 80/8=10 PP stages per gpu: `10*4` =40GB of weights/optim states/grads per gpu
 
 
 * 310B meg-lm
@@ -208,7 +208,7 @@ emb size: 823.41M/14821.39GB, per gpu 102.93M/1852.67GB
 blk size: 3221.44M/57985.89GB, per gpu 402.68M/7248.24GB
 ```
 
-so 96/16=6 PP stages per gpu: 6*7.3 ~44GB of weights/optim states/grads per gpu
+so `96/16=6` PP stages per gpu: `6*7.3` ~44GB of weights/optim states/grads per gpu
 
 * 530B msft
 
@@ -229,10 +229,10 @@ emb size: 1029.26M/18526.74GB, per gpu 128.66M/2315.84GB
 blk size: 5033.43M/90601.76GB, per gpu 629.18M/11325.22GB
 ```
 
-so 105/35=3 PP stages per gpu: 6*7.3 ~33.9GB of weights/optim states/grads per gpu
+so 105/35=3 PP stages per gpu: `6*7.3` = ~33.9GB of weights/optim states/grads per gpu
 
 
-To summarize we can see the setup is so that about half the gpu is loaded with weights / optim states / grad *18)
+To summarize we can see the setup is so that about half the gpu is loaded with weights / optim states / grad `*18`)
 
 ## Possible 200B models
 
@@ -328,4 +328,4 @@ Important nuance:
 
 We will have an exclusive access only till May, and in May we will have to share with others.
 
-So at the moment we will have only about 2 months of having access to all gpus.
+So at the moment we will have only about 3 months of having access to all gpus.
