@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --job-name=oscar-jsonl-to-meg-mt5 # job name
+#SBATCH --job-name=oscar-jsonl-to-meg-equal # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --time=100:00:00             # maximum execution time (HH:MM:SS)
-#SBATCH --qos=qos_cpu-t4
+#SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
+#SBATCH --qos=qos_cpu-t3
 #SBATCH --output=%x-%j.out          # output file name
 #SBATCH --account=six@cpu
 #SBATCH --partition=cpu_p1
@@ -16,12 +16,8 @@ source $six_ALL_CCFRWORK/start-prod
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
-for language in hi ur bn id ca ar pt vi eu
-# for language in fr es
-# for language in zh
-do
-    input=$six_ALL_CCFRSCRATCH/datasets-custom/oscar-multilingual/oscar_$language.jsonl
-    output=$six_ALL_CCFRSCRATCH/datasets-custom/oscar-multilingual/oscar_${language}_alpha
+input=$six_ALL_CCFRWORK/datasets-custom/oscar-multilingual/oscar_$1.jsonl
+output=$six_ALL_CCFRWORK/datasets-custom/oscar-multilingual-${1}-tok/oscar_${1}_${2}
 
 cd $SCRATCH/Megatron-DeepSpeed
 /usr/bin/time -v python tools/preprocess_data.py \
@@ -29,7 +25,7 @@ cd $SCRATCH/Megatron-DeepSpeed
        --output-prefix $output \
        --dataset-impl mmap \
        --tokenizer-type PretrainedFromHF \
-       --tokenizer-name-or-path bigscience/oscar_13_languages_alpha_weight \
+       --tokenizer-name-or-path bigscience/oscar_13_languages_${2}_weight \
        --append-eod \
        --workers 25
 done
