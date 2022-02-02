@@ -19,7 +19,7 @@ export TRANSFORMERS_OFFLINE=1
 input=$six_ALL_CCFRWORK/datasets-custom/oscar-multilingual/oscar_${1}.jsonl
 output=$six_ALL_CCFRWORK/datasets-custom/oscar-multilingual-${2}-tok/oscar_${1}_${2}
 
-cd $SCRATCH/Megatron-DeepSpeed
+cd $ALL_CCFRWORK/code/Megatron-DeepSpeed
 /usr/bin/time -v python tools/preprocess_data.py \
        --input $input \
        --output-prefix $output \
