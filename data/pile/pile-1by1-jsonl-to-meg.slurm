@@ -17,7 +17,7 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
 input=$six_ALL_CCFRSCRATCH/datasets-custom/pile/train/$1.jsonl
-output=$six_ALL_CCFRSCRATCH/datasets-custom/pile/train/pile-$1-alpha
+output=$six_ALL_CCFRSCRATCH/datasets-custom/pile/processed/pile-$1-alpha
 
 cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 /usr/bin/time -v python tools/preprocess_data.py \
