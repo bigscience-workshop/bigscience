@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=oscar-jsonl-to-meg-mt5 # job name
+#SBATCH --job-name=pile-jsonl-to-meg-alpha # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=40           # number of cores per tasks
@@ -17,7 +17,7 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
 input=$six_ALL_CCFRWORK/datasets-custom/pile/train/pile_train.jsonl
-output==$six_ALL_CCFRWORK/datasets-custom/pile/train/pile_train_alpha
+output=$six_ALL_CCFRWORK/datasets-custom/pile/train/pile_train_alpha
 
 cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 /usr/bin/time -v python tools/preprocess_data.py \
@@ -29,3 +29,4 @@ cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
        --append-eod \
        --workers 25
 done
+
