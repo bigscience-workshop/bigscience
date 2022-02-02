@@ -19,7 +19,7 @@ export TRANSFORMERS_OFFLINE=1
 input=$six_ALL_CCFRWORK/datasets-custom/pile/train/pile_train.jsonl
 output==$six_ALL_CCFRWORK/datasets-custom/pile/train/pile_train_alpha
 
-cd $SCRATCH/Megatron-DeepSpeed
+cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 /usr/bin/time -v python tools/preprocess_data.py \
        --input $input \
        --output-prefix $output \
