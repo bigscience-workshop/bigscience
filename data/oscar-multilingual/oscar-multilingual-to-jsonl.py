@@ -39,21 +39,20 @@ split = ReadInstruction("train", to=0.1 if args.subset else 100, unit="%")
 # Once this part of the process completes it gets cached, so on subsequent runs it'll be much faster
 
 language_subsets = {
-    # "unshuffled_deduplicated_hi",
+    "unshuffled_deduplicated_hi",
     "unshuffled_deduplicated_ur",
-    # "unshuffled_deduplicated_bn",
+    "unshuffled_deduplicated_bn",
     "unshuffled_deduplicated_id",
-    # "unshuffled_deduplicated_am",
-    # "unshuffled_deduplicated_ca",
-    # "unshuffled_deduplicated_ru",
-    # "unshuffled_deduplicated_ar",
-    # "unshuffled_deduplicated_sw",
-    # "unshuffled_deduplicated_zh",
-    # "unshuffled_deduplicated_en",
-    # "unshuffled_deduplicated_fr",
-    # "unshuffled_deduplicated_pt",
-    # "unshuffled_deduplicated_es",
-    # "unshuffled_deduplicated_ja",
+    "unshuffled_deduplicated_ca",
+    "unshuffled_deduplicated_eu",
+    "unshuffled_deduplicated_ar",
+    "unshuffled_deduplicated_sw",
+    "unshuffled_deduplicated_zh",
+    "unshuffled_deduplicated_en",
+    "unshuffled_deduplicated_fr",
+    "unshuffled_deduplicated_pt",
+    "unshuffled_deduplicated_es",
+    "unshuffled_deduplicated_vi",
 }
 sharded_languages = {
     "unshuffled_deduplicated_en",
@@ -96,8 +95,8 @@ def process_shard(dataset, n_shards, idx, language_subset):
     ds_shard.to_json(export_filename, orient="records", lines=True, force_ascii=False)
 
 for language_subset in language_subsets:
+    dataset = load_dataset(DATASET_NAME, language_subset, split=split, keep_in_memory=False, ignore_verifications=True)
     n_shards = N_SHARDS if language_subset in sharded_languages else 1
-    dataset = load_dataset(DATASET_NAME, language_subset, split=split, keep_in_memory=False, cache_dir='cache', ignore_verifications=True)
     queue = Queue()
     processes = [Process(target=process_shard, args=(dataset, n_shards, idx, language_subset,)) for idx in range(n_shards)]
     for p in processes:
