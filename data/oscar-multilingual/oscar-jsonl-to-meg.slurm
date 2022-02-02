@@ -16,8 +16,8 @@ source $six_ALL_CCFRWORK/start-prod
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
-input=$six_ALL_CCFRWORK/datasets-custom/oscar-multilingual/oscar_$1.jsonl
-output=$six_ALL_CCFRWORK/datasets-custom/oscar-multilingual-${1}-tok/oscar_${1}_${2}
+input=$six_ALL_CCFRWORK/datasets-custom/oscar-multilingual/oscar_${1}.jsonl
+output=$six_ALL_CCFRWORK/datasets-custom/oscar-multilingual-${2}-tok/oscar_${1}_${2}
 
 cd $SCRATCH/Megatron-DeepSpeed
 /usr/bin/time -v python tools/preprocess_data.py \
