@@ -28,4 +28,3 @@ cd $ALL_CCFRWORK/code/Megatron-DeepSpeed
        --tokenizer-name-or-path bigscience/oscar_13_languages_${2}_weight \
        --append-eod \
        --workers 25
-done
