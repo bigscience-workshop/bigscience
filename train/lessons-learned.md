@@ -23,6 +23,11 @@ We derived this from:
 
 `0.00587220219514703 = sqrt(2/(11600*5))` (from the "Transformers without Tears" paper https://arxiv.org/abs/1910.05895)
 
+If you are wondering why the depth of the model is not included in this month, it's then used by the framework internally via a [second std init function](https://github.com/bigscience-workshop/Megatron-DeepSpeed/blob/40e8b2a086f98920de692ebc4081bf4229bfa81a/megatron/model/utils.py#L33-L40) which rescales the std of the second layer in the MLP and the output layer of the attention with:
+```
+std = sigma / math.sqrt(2.0 * num_layers)
+```
+where `sigma` is the `--init-method-std` argument.
 
 
 
