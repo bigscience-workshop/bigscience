@@ -1,6 +1,6 @@
 # tr11 200B ML
 
-final size to be defined
+final size is to be defined
 
 
 ## Size
