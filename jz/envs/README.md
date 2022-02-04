@@ -207,6 +207,8 @@ Since we are going to use `~/user/...` in scripts, it now should be possible to 
 
 ## Custom private conda env
 
+First follow the instructions for [Production environment](production-environment) which should have already set up most things to make it very easy to add your custom conda env.
+
 If wanting to work with variations of packages, create your own conda env, e.g. env `stas`:
 
 ```
