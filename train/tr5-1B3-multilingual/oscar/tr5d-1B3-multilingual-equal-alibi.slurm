@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr5c-1B3-multilingual-equal-alibi
+#SBATCH --job-name=tr5d-1B3-multilingual-equal-alibi
 #SBATCH --constraint=v100-16g
 #SBATCH --nodes=64
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -12,9 +12,9 @@
 
 set -x -e
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5c-1B3-multilingual-equal-alibi
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5d-1B3-multilingual-equal-alibi
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr5c-1B3-multilingual-equal-alibi-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr5d-1B3-multilingual-equal-alibi-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
