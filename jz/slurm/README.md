@@ -510,7 +510,11 @@ and then when ready to continue release the job:
 scontrol release <jobid>
 ```
 
-## Kill Switch
+
+## Troubleshooting
+
+
+### Kill Switch
 
 Since SLURM doesn't allow one user to kill another user's SLURM job or cancel a job array, we need a way to be able to have the program abort itself quickly in situations where one user started a job and has gone away and the group needs to restart it. For example, this is needed when a model gets started by someone in North America, and while they are asleep, someone in Europe may need to handle a problem with the training and can't wait for the submitter of the job to wake up.
 
@@ -537,10 +541,6 @@ To deactivate and let new instances of a job run normally:
 ```
 rm  /tmp/kill-switch-tr11-200B-exp1
 ```
-
-
-
-## Troubleshooting
 
 
 ### Find faulty nodes and exclude them
