@@ -510,6 +510,34 @@ and then when ready to continue release the job:
 scontrol release <jobid>
 ```
 
+## Kill Switch
+
+Since SLURM doesn't allow one user to kill another user's SLURM job or cancel a job array, we need a way to be able to have the program abort itself quickly in situations where one user started a job and has gone away and the group needs to restart it. For example, this is needed when a model gets started by someone in North America, and while they are asleep, someone in Europe may need to handle a problem with the training and can't wait for the submitter of the job to wake up.
+
+So we had a kill-switch feature implemented in Megatron-Deepspeed. When a file gets created at a pre-determined location, the software will stop its run. Instead of trying to implement a complex thread that will run only one of the dozens of nodes, we simply added a check in 2 strategic locations:
+
+1. startup - to deal with job arrays
+2. before each iteration of the train loop - to deal with the current run
+
+Since multiple jobs use the same Megatron-Deepspeed repo clone this kill switch can't be hardcoded, and thus each job needs to "arm" the kill switch and must use a unique path so that unintentionally other instances won't get killed.
+
+To arm:
+
+```
+python pretrain_gpt.py ... --kill-switch-path /tmp/kill-switch-tr11-200B-exp1
+```
+
+To trigger:
+```
+touch /tmp/kill-switch-tr11-200B-exp1
+```
+
+To deactivate and let new instances of a job run normally:
+
+```
+rm  /tmp/kill-switch-tr11-200B-exp1
+```
+
 
 
 ## Troubleshooting
