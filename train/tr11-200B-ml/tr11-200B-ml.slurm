@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=tr11-200B-ml
 #SBATCH --partition=gpu_p5
-#SBATCH --nodes=10
+#SBATCH --nodes=28
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -43,31 +43,34 @@ export TRANSFORMERS_OFFLINE=1
 # testing for potential faulty nodes
 # srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
 
+
 # so processes know who to talk to
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
 GPUS_PER_NODE=8
-NNODES=10
+NNODES=28
 
-# 1. going to start with PP=8/MBS=1 which is 20% slower than PP=2, but allowing 4x more resources due to bs increments of 32 in `--rampup-batch-size 32 32` - PP=8 gives us a replica of 8 gpus, so we can do 256 gpus: math: 256/8=32 32/32=1
-# 2. once BS=512 is reached can switch back to PP=2 and MBS=4: math: 256/2=128 and 512/128=4 to regain the highest TFLOPs
-#
-
-PP_SIZE=10
+PP_SIZE=14
 TP_SIZE=8
 #DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=1
-GLOBAL_BATCH_SIZE=512
+GLOBAL_BATCH_SIZE=2048
 TRAIN_SAMPLES=195_312_500 # 400B tokens
 
 NLAYERS=80
-NHIDDEN=14336
-NHEADS=64 # XXX: fixme
+#NHIDDEN=14336
+NHIDDEN=14400
+#NHEADS=64 # XXX: fixme
+#SEQ_LEN=2048
+
+#NLAYERS=112
+#NHIDDEN=11600
+NHEADS=80
 SEQ_LEN=2048
 
-SAVE_INTERVAL=1500
+SAVE_INTERVAL=100
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \
@@ -89,6 +92,7 @@ EXIT_OPTS=" \
 
 # XXX: fix init-method-std
 #    --rampup-batch-size 32 32 2_000_000 \
+#    --bf16 \
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
@@ -103,15 +107,17 @@ GPT_ARGS=" \
     --init-method-std 0.005 \
     --loss-scale 12 \
     --clip-grad 1.0 \
+    --embed-layernorm \
     --fp16 \
-    --checkpoint-activations \
+    --seed 42 \
     --position-embedding-type alibi \
+    --checkpoint-activations \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
 
 OUTPUT_ARGS=" \
-    --log-interval 200 \
+    --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 10000 \
     --eval-iters 100 \
@@ -136,12 +142,7 @@ cat <<EOT > $config_json
     "stage": $ZERO_STAGE
   },
   "fp16": {
-    "enabled": true,
-    "loss_scale": 0,
-    "loss_scale_window": 500,
-    "hysteresis": 2,
-    "min_loss_scale": 1,
-    "initial_scale_power": 12
+    "enabled": true
   },
   "steps_per_print": 2000,
   "wall_clock_breakdown": false
@@ -186,7 +187,14 @@ export CMD=" \
 
 echo $CMD
 
+# for debug
+#export CUDA_LAUNCH_BLOCKING=1
+
+#srun --jobid $SLURM_JOBID bash -c 'free -m'
+#srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID /gpfswork/rech/six/commun/code/tr8b-104B/bigscience/train/tr11-200B-ml/test.py" 2>&1 | tee -a $LOGS_PATH/main_log.txt
+#asdlkjds
+
 # We create the folder where the logs and codecarbon will be stored.
 mkdir -p $LOGS_PATH
 # to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
+clear; srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
