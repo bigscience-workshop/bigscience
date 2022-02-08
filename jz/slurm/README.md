@@ -554,6 +554,35 @@ NNODES=64
 
 This won't work. They have to match.
 
+You can add a sanity check to your script:
+
+```
+#!/bin/bash
+#SBATCH --job-name=test-mismatch
+#SBATCH --constraint=v100-16g
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
+#SBATCH --cpus-per-task=40           # number of cores per tasks
+#SBATCH --hint=nomultithread         # we get physical cores not logical
+#SBATCH --gres=gpu:4                 # number of gpus
+#SBATCH --time 0:05:00               # maximum execution time (HH:MM:SS)
+#SBATCH --output=%x-%j.out           # output file name
+#SBATCH --account=six@gpu
+
+[...]
+
+NNODES=2
+
+# sanity check for having NNODES and `#SBATCH --nodes` match, assuming you use NNODES variable
+if [ "$NNODES" != "$SLURM_NNODES" ]; then
+    echo "Misconfigured script: NNODES=$NNODES != SLURM_NNODES=$SLURM_NNODES"
+    exit 1
+fi
+
+[...]
+
+```
+
 
 ### Find faulty nodes and exclude them
 
@@ -599,7 +628,7 @@ $ chmod a+x ./test-nodes.py
 Now let's create a driver slurm script. Use a few minutes time for this test so that SLURM yields it faster:
 ```
 #!/bin/bash
-#SBATCH --job-name=test-nodes.slurm
+#SBATCH --job-name=test-nodes
 #SBATCH --partition=gpu_p13
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -631,7 +660,7 @@ If you're testing something that requires distributed setup, it's a bit more com
 
 ```
 #!/bin/bash
-#SBATCH --job-name=test-nodes-nccl.slurm
+#SBATCH --job-name=test-nodes-nccl
 #SBATCH --partition=gpu_p13
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
