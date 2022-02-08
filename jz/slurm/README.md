@@ -542,6 +542,18 @@ To deactivate and let new instances of a job run normally:
 rm  /tmp/kill-switch-tr11-200B-exp1
 ```
 
+### Mismatching node number
+
+If the pytorch launcher fails it often means that the number of SLURM nodes and the launcher nodes are mismatching, e.g.:
+
+```
+grep -ir nodes= tr123-test.slurm
+#SBATCH --nodes=40
+NNODES=64
+```
+
+This won't work. They have to match.
+
 
 ### Find faulty nodes and exclude them
 
