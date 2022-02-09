@@ -310,8 +310,11 @@ So 2 data skipping attempts didn't help. Let's try resetting the optimizer state
 
 - reset optimizer - don't load the previous states from the checkpoint with the help of `--no-load-optim`﻿
 - since we can't do lr warm up half-way through the training we will cheat and simply run the optimizer w/o updates to the weights by setting `lr=0` - now let it train for this number of iterations to emulate warm up (1/(1-0.95)) * 5 = 100 (beta2 = 0.95)
-- XXX: counters for bias correction have to be reset ???
 - then resume normal training, after restoring the setup to normal
+
+Note:
+- Make sure the `step` counter for bias correction are reset when starting the optimizer from scratch - checked that apex's `FusedAdam` does that already.
+
 
 Steps:
 
