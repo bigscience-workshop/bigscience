@@ -22,7 +22,7 @@ Activated with `--partition=prepost`
 
 to request:
 ```
-srun --pty --partition=prepost --account=six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:0 --hint=nomultithread --time=1:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty --partition=prepost --account=six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10  --hint=nomultithread --time=1:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 or to work interactively there, `srun` into the box (though no control which of the 4 you get):

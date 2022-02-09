@@ -179,7 +179,7 @@ srun  --account=six@gpu  --pty --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gp
 
 And to use a cpu-only node:
 ```
-srun --account=six@cpu --pty --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:0 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --account=six@cpu --pty --nodes=1 --ntasks=1 --cpus-per-task=40 --hint=nomultithread --time=6:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 The `--rcfile` part is optional if you want to pre-run something.
 
@@ -402,7 +402,6 @@ Here is toy slurm script, which can be used to see how it works:
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=1            # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --gres=gpu:0                 # number of gpus
 #SBATCH --time 00:02:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --error=%x-%j.out            # error file name (same to watch just one file)

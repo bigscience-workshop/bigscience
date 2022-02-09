@@ -170,12 +170,15 @@ while we are going to override some of these with our custom installs, we first 
 Then finally to build apex you need a non-login instance since it is very demanding on resources and such build on the login instance will get killed:
 
 ```
-srun --pty -A six@gpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty -A six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
 cd $six_ALL_CCFRWORK/code/apex
 ./build.sh
 ```
-XXX: do we need a cuda env to build apex? perhaps `-A six@cpu --gres=gpu:0` is sufficient - need to check.
+Note: if using a no-gpu instance to build `apex` it will warn that it can't detect any GPUs but will cross-compile for several archs. But you could also tell it to build for V100 and A100 explicitly by simply adding the desired archs:
 
+```
+TORCH_CUDA_ARCH_LIST="7.0 8.6" pip install ...
+```
 
 
 
@@ -347,10 +350,10 @@ srun --pty -p compil --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRW
 
 but if it has to be really fast, use a dedicated instance with pre-allocated cpu cores:
 ```
-srun --pty -A six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:0 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty -A six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
-same with 1 gpu if the build env requires one:
+same with 1 gpu if the build env requires one (neither `apex` nor `deepspeed` require one):
 ```
 srun --pty -A six@gpu --nodes=1 --ntasks=1 --cpus-per-task=10 --gres=gpu:1 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
