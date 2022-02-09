@@ -52,6 +52,8 @@ In general the `compil` partition is usually less busy than `prepost`.
 - No network to outside world
 - 160 GB of usable memory. The memory allocation is 4 GB per reserved CPU core if hyperthreading is deactivated (`--hint=nomultithread`). So max per node is `--cpus-per-task=40`
 
+To select this type of partition use `--account=six@gpu`.
+
 
 ## CPU Instances
 
@@ -64,6 +66,9 @@ For example on `gpu_p1` partitions (4x v100-32gb)
 $ lscpu | grep name
 Model name:          Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz
 ```
+
+To select this type of partition use `--account=six@cpu`.
+
 
 ## Quotas
 

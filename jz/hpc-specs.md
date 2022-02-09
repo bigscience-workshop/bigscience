@@ -1,5 +1,7 @@
 # Specs of Jean Zay
 
+- 261 nodes, with V100 32 GB GPUs: total 1044 GPUs
+- 351 nodes, with V100 16 GB GPUs: total 1404 GPUs
 
 ## Disc Partitions
 
