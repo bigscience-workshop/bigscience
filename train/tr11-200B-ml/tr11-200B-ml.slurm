@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=tr11-200B-ml
 #SBATCH --partition=gpu_p5
-#SBATCH --nodes=28
+#SBATCH --nodes=32
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -22,6 +22,8 @@ REPO_PATH=$DATA_OUTPUT_PATH/tr11-200B-ml
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 LOGS_PATH=$REPO_PATH/logs
 mkdir -p $LOGS_PATH
+
+KILL_SWITCH_PATH=/tmp/kill-switch-tr11-200B-exp1
 
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed-tr8b-104B
 cd $MEGATRON_DEEPSPEED_REPO
@@ -49,11 +51,10 @@ MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
 GPUS_PER_NODE=8
-NNODES=28
+NNODES=$SLURM_NNODES
 
-PP_SIZE=14
+PP_SIZE=16
 TP_SIZE=8
-#DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=2048
@@ -64,11 +65,6 @@ NLAYERS=80
 NHIDDEN=14400
 NHEADS=96 # XXX: 32x (32|64|96) from (HEADS/TP)*MBS % 4 = 0
 SEQ_LEN=2048
-
-#NLAYERS=112
-#NHIDDEN=11600
-#NHEADS=80
-#SEQ_LEN=2048
 
 SAVE_INTERVAL=50
 
@@ -112,6 +108,8 @@ GPT_ARGS=" \
     --seed 42 \
     --position-embedding-type alibi \
     --checkpoint-activations \
+    --abort-on-unmet-fused-kernel-constraints \
+    --kill-switch-path $KILL_SWITCH_PATH \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
@@ -141,8 +139,16 @@ cat <<EOT > $config_json
   "zero_optimization": {
     "stage": $ZERO_STAGE
   },
+  "bf16": {
+    "enabled": false
+  },
   "fp16": {
-    "enabled": true
+    "enabled": true,
+    "loss_scale": 0,
+    "loss_scale_window": 500,
+    "hysteresis": 2,
+    "min_loss_scale": 1,
+    "initial_scale_power": 12
   },
   "steps_per_print": 2000,
   "wall_clock_breakdown": false
@@ -157,12 +163,20 @@ DEEPSPEED_ARGS=" \
     --deepspeed-activation-checkpointing \
     "
 
-export LAUNCHER="python -u -m torch.distributed.launch \
+export LAUNCHER="python -u -m torch.distributed.run \
     --nproc_per_node $GPUS_PER_NODE \
     --nnodes $NNODES \
-    --master_addr $MASTER_ADDR \
-    --master_port $MASTER_PORT \
+    --rdzv_endpoint $MASTER_ADDR:$MASTER_PORT \
+    --rdzv_backend c10d \
+    --max_restarts 0 \
     "
+
+#export LAUNCHER="python -u -m torch.distributed.launch \
+#    --nproc_per_node $GPUS_PER_NODE \
+#    --nnodes $NNODES \
+#    --master_addr $MASTER_ADDR \
+#    --master_port $MASTER_PORT \
+#    "
 
 export CMD=" \
     `pwd`/pretrain_gpt.py \
@@ -194,7 +208,5 @@ echo $CMD
 #srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID /gpfswork/rech/six/commun/code/tr8b-104B/bigscience/train/tr11-200B-ml/test.py" 2>&1 | tee -a $LOGS_PATH/main_log.txt
 #asdlkjds
 
-# We create the folder where the logs and codecarbon will be stored.
-mkdir -p $LOGS_PATH
 # to debug - add echo (it exits and prints what it would have launched)
 clear; srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
