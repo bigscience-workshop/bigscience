@@ -14,7 +14,8 @@
 #    . /etc/profile.d/z_modules.sh
 # fi
 module purge
-module load pytorch-gpu/py3/1.8.1
+module load cuda/11.4.3
+#module load pytorch-gpu/py3/1.8.1
 module load nvtop git git-lfs github-cli mc
 
 # git prompt
