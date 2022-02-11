@@ -143,7 +143,7 @@ This is very useful for running repetitive interactive experiments - so one does
 
 set `--time` to the desired window (e.g. 6h):
 ```
-salloc --account=six@gpu --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash
+salloc --account=six@gpu --nodes=1 --ntasks-per-node=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash
 salloc: Pending job allocation 1732778
 salloc: job 1732778 queued and waiting for resources
 salloc: job 1732778 has been allocated resources
@@ -151,7 +151,7 @@ salloc: Granted job allocation 1732778
 ```
 now use this reserved node to run a job multiple times, by passing the job id of `salloc`:
 ```
-srun --jobid $SLURM_JOBID --pty --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --jobid $SLURM_JOBID --pty bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 if run from inside `bash` started via `salloc`. But it can be started from another shell, but then explicitly set `--jobid`.
 
@@ -579,8 +579,18 @@ if [ "$NNODES" != "$SLURM_NNODES" ]; then
 fi
 
 [...]
-
 ```
+
+or you could just do:
+
+```bash
+#SBATCH --nodes=2
+[...]
+NNODES=$SLURM_NNODES
+```
+
+and then it will always be correct
+
 
 
 ### Find faulty nodes and exclude them
@@ -721,6 +731,34 @@ echo $LAUNCHER --node_rank $SLURM_PROCID $SCRIPT
 srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $SCRIPT'
 ```
 The script uses `printflock` to solve the interleaved print outputs issue.
+
+
+### GPU Memory Check
+
+
+This tests if each GPU on the allocated nodes can successfully allocate 77Gb (e.g. to test 80GB A100s) (have to subtract a few GBs for cuda kernels).
+
+
+```python
+import torch, os
+import time
+import socket
+hostname = socket.gethostname()
+
+local_rank = int(os.environ["LOCAL_RANK"]);
+
+gbs = 77
+try:
+    torch.ones((gbs*2**28)).cuda(local_rank).contiguous() # alloc on cpu, then move to gpu
+    print(f"{local_rank} {hostname} is OK")
+except:
+    print(f"{local_rank} {hostname} failed to allocate {gbs}GB DRAM")
+    pass
+
+time.sleep(5)
+
+
+```
 
 
 ### Broken Network
