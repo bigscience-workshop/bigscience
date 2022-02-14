@@ -42,6 +42,7 @@ perl -pi -e 's|--eval-interval 1000|--eval-interval 150|' *slurm
 
 [script](https://github.com/bigscience-workshop/bigscience/blob/d5fc4b22d7e88e87b4b9ec610b6c522b9a8c7a8d/train/tr8b-104B/tr8b-104B-cl.slurm)
 
+we paused here and decided to change a few things to better match other experiments and thus be able to compare CL's impact against the baseline. So the next experiment started from scratch.
 
 ## CL Experiment 3
 
@@ -61,6 +62,12 @@ perl -pi -e 's|(--checkpoint-activations \\)|$1\n    --embed-layernorm \\|' *cl*
 
 [script](https://github.com/bigscience-workshop/bigscience/blob/5bc0d43cb782291b48c98cfba2d55ce0188f9961/train/tr8b-104B/tr8b-104B-cl.slurm)
 
+
+Additionally, at iteration 15k the training was duplicated and one set of gpus continued running on V100 32GB and another set was run on A100 80GB gpus. Everything was identical - the seed, the topology. The 2 runs proved to be dramatically different from each other, though both eventually diverged as all other experiments in this series, we couldn't break the 18k iteration barrier and didn't have time to continue experimenting as we had to move to final model training.
+
+So the graphs show both V100 and A100 tracks.
+
+![tr8b-104B-cl-exp-03.png](images/tr8b-104B-cl-exp-03.png)
 
 
 ## BNB Experiment 1
@@ -580,3 +587,10 @@ perl -pi -e 's|TRAIN_ITER=5_000_000|TRAIN_ITER=20_563_200|' tr3m-1B3-emb-norm-pi
 ```
 
 This seems to have worked just fine in both cases, the model just continued training normally, w/o any spikes or lost progress.
+
+
+## Conclusion
+
+It took several months of experiments with the 104B "training wheels" model during which we had 3 difficult instability encounters. We managed to overcome the first two (1) fixing std init (2) adding embed norm and stopped the training at the 3rd instability since we didn't have time to continue experimenting as we had to move to final model training.
+
+Unfortunately the CL experiments were inconclusive since we didn't progress far enough to be able to compare its relative performance to the baseline. To remind CL progressively grows its seqlen from 32 to 2048, so until the seqlen is close to 2048 it's not easy to compare it to the baseline which always has seqlen of 2048.
