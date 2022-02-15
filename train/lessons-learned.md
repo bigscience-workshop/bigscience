@@ -29,6 +29,7 @@ std = sigma / math.sqrt(2.0 * num_layers)
 ```
 where `sigma` is the `--init-method-std` argument.
 
+Note that Megatron-Deepspeed 530B Training used an even smaller init of `sqrt(1/(NHIDDEN*3))`. [Reference](https://arxiv.org/abs/2201.11990). (so their co-efficient under `sqrt` is 0.333 and ours is 0.4).
 
 
 ### Adding embed layernorm
