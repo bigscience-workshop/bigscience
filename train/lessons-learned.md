@@ -17,7 +17,7 @@ The following are techniques that have to be done before the training starts.
 
 Setting `--init-method-std` to `sqrt(2/(NHIDDEN*5))` has made a huge difference to the training stability.
 
-e.g. for `NHIDDEN*5=11600` we used  `--init-method-std 0.006`
+e.g. for `NHIDDEN=11600` we used  `--init-method-std 0.006`
 
 We derived this from:
 
