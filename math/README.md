@@ -48,11 +48,15 @@ echo "($MSIZE*4*2*SEQLEN*$MICRO_BATCH_SIZE*$DP_SIZE*$GAS)/($THROUGHPUT*$NNODES*4
 find . -type f -name "*out" -exec perl -lne 'm|elapsed time per iteration .ms.: ([\d\.]+)| &&  do {$x+=$1; $c++}; END { print "$ARGV " . ($c ? int($x/$c/1000) : "fail")}' {} \; | sort | grep -v fail
 ```
 
-## Calculate model size
+## Model sizing
+
+### Params as a function of the network size hyperparams
 
 ```
 NHIDDEN=4096; NLAYERS=36; SEQ_LEN=512; VOCAB_SIZE=50257; python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + s*h + 2*h) / 10**9 :.0f}B, ratio={int(h/l)}')"
 ```
+
+For full details see [Calculate model size](../experiments/gpt2-utils.md).
 
 ### Width-depth tradeoff
 
@@ -62,8 +66,6 @@ From [The Depth-to-Width Interplay in Self-Attention](https://arxiv.org/abs/2006
 NLAYERS=70; python -c "import math; l=$NLAYERS; a = 5.039; b = 5.55e-2; print(f'Optimal n_params: {12 * l * math.exp(2*a) * math.exp(2*b*l) / 10**9 :.0f}B')"
 ```
 This seems less important as the number of parameters scales up, but is useful to ground the discussion.
-
-For full details see [Calculate model size](../experiments/gpt2-utils.md).
 
 
 ## Estimate total training time
