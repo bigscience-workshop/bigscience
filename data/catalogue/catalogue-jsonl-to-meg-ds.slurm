@@ -336,7 +336,7 @@ else
     DATASET_NAME=$DATASET_PATH
 fi
 
-TOKENIZER_NAME_OR_PATH= # TODO: Set it correctly
+TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/test_fix_empty_string_replacement # TODO: Set it correctly
 
 input=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/jsonl/$DATASET_NAME/data.jsonl
 output=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/meg-ds/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"
