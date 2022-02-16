@@ -38,6 +38,7 @@ fi
 
 echo "Downloading ${DATASET_NAME}"
 export HF_DATASETS_OFFLINE=1
+export TOKENIZERS_PARALLELISM=false
 
 TOKENIZER_NAME_OR_PATH= # TODO: Set it correctly
 
