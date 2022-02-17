@@ -170,14 +170,14 @@ while we are going to override some of these with our custom installs, we first 
 Then finally to build apex you need a non-login instance since it is very demanding on resources and such build on the login instance will get killed:
 
 ```
-srun --pty -A six@cpu --nodes=1 --ntasks=1 --cpus-per-task=10 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty -A six@cpu --qos=qos_cpu-dev --nodes=1 --ntasks=1 --cpus-per-task=10 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
 cd $six_ALL_CCFRWORK/code/apex
 ./build.sh
 ```
 Note: if using a no-gpu instance to build `apex` it will warn that it can't detect any GPUs but will cross-compile for several archs. But you could also tell it to build for V100 and A100 explicitly by simply adding the desired archs:
 
 ```
-TORCH_CUDA_ARCH_LIST="7.0 8.6" pip install ...
+TORCH_CUDA_ARCH_LIST="7.0 8.0" pip install ...
 ```
 
 
@@ -394,7 +394,7 @@ $ cat build.sh
 
 rm -rf build
 
-time TORCH_CUDA_ARCH_LIST="7.0" DS_BUILD_CPU_ADAM=1 DS_BUILD_UTILS=1 pip install -e . --global-option="build_ext" --global-option="-j8" --no-cache -v --disable-pip-version-check 2>&1 | tee build.log
+time TORCH_CUDA_ARCH_LIST="7.0 8.0" DS_BUILD_CPU_ADAM=1 DS_BUILD_UTILS=1 pip install -e . --global-option="build_ext" --global-option="-j8" --no-cache -v --disable-pip-version-check 2>&1 | tee build.log
 ```
 
 ### apex

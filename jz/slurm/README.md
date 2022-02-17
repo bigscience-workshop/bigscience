@@ -56,6 +56,12 @@ http://www.idris.fr/eng/jean-zay/cpu/jean-zay-cpu-exec_alloc-mem-eng.html
 - GPU: http://www.idris.fr/eng/jean-zay/gpu/jean-zay-gpu-exec_partition_slurm-eng.html
 
 
+To see all available partitions and their total/idle status:
+
+```
+sinfo
+```
+
 ## Priorities
 
 - `--qos=qos_gpu-t3` 20h / 512gpus (default priority)
