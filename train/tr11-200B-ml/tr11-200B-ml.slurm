@@ -1,18 +1,21 @@
 #!/bin/bash
 #SBATCH --job-name=tr11-200B-ml
 #SBATCH --partition=gpu_p5
-#SBATCH --nodes=32
+#SBATCH --constraint=a100
+#SBATCH --nodes=10
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=40           # number of cores per tasks
+#SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:8                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --account=six@gpu
+#SBATCH --account=six@a100
 
 set -x -e
 
-source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8b-104B/start-tr8b-104B
+#source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8b-104B/start-tr8b-104B
+#source $six_ALL_CCFRWORK/start-py38-pt110
+source $six_ALL_CCFRWORK/start-py38-pt111
 
 echo "START TIME: $(date)"
 
@@ -53,7 +56,7 @@ MASTER_PORT=6000
 GPUS_PER_NODE=8
 NNODES=$SLURM_NNODES
 
-PP_SIZE=16
+PP_SIZE=10
 TP_SIZE=8
 
 MICRO_BATCH_SIZE=1
@@ -66,7 +69,7 @@ NHIDDEN=14400
 NHEADS=96 # XXX: 32x (32|64|96) from (HEADS/TP)*MBS % 4 = 0
 SEQ_LEN=2048
 
-SAVE_INTERVAL=50
+SAVE_INTERVAL=2
 
 OPTIMIZER_ARGS=" \
     --optimizer adam \
@@ -137,7 +140,8 @@ cat <<EOT > $config_json
   "train_batch_size": $GLOBAL_BATCH_SIZE,
   "gradient_clipping": 1.0,
   "zero_optimization": {
-    "stage": $ZERO_STAGE
+    "stage": $ZERO_STAGE,
+    "move_params_to_cpu_during_init": false
   },
   "bf16": {
     "enabled": false
@@ -150,6 +154,7 @@ cat <<EOT > $config_json
     "min_loss_scale": 1,
     "initial_scale_power": 12
   },
+  "checkpoint_comm_enabled": false,
   "steps_per_print": 2000,
   "wall_clock_breakdown": false
 }
@@ -207,6 +212,9 @@ echo $CMD
 #srun --jobid $SLURM_JOBID bash -c 'free -m'
 #srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID /gpfswork/rech/six/commun/code/tr8b-104B/bigscience/train/tr11-200B-ml/test.py" 2>&1 | tee -a $LOGS_PATH/main_log.txt
 #asdlkjds
+
+# XXX: remove for main training!!!
+#export CUDA_LAUNCH_BLOCKING=1
 
 # to debug - add echo (it exits and prints what it would have launched)
 clear; srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
