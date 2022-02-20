@@ -48,8 +48,8 @@ NNODES=64
 # 2. once BS=512 is reached can switch back to PP=2 and MBS=4: math: 256/2=128 and 512/128=4 to regain the highest TFLOPs
 #
 
-PP_SIZE=4
-TP_SIZE=2
+PP_SIZE=8
+TP_SIZE=1
 #DP_SIZE=$((NNODES*GPUS_PER_NODE/(PP_SIZE*TP_SIZE))) # will get derived automatically by trainer
 
 MICRO_BATCH_SIZE=1
