@@ -333,3 +333,17 @@ NHIDDEN=14336 / NLAYERS=6 / GBS=512
 |     1 | 18B  |      6 |  8 |  1 |   2 | 2048 | 54GB | 119.19 | 157.02 | 02-21 |
 |     1 | 18B  |     10 |  8 |  1 |   1 | 2048 | 80GB | 205.52 | 142.59 | 02-21 |
 |       |      |        |    |    |     |      |      |        |        |       |
+
+Trying with ZeRO_STAGE=0
+
+NHIDDEN=14336 / NLAYERS=72
+
+| Nodes | Size | ZS | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 181B |  1 |  4 |  8 | 12 |   2 | 2048 | 37GB | 120.29 | 134.02 | 02-21 |
+|    48 | 181B |  0 |  4 |  8 | 12 |   2 | 2048 | 72GB | 137.34 | 113.02 | 02-21 |
+|       |      |    |    |    |    |     |      |      |        |        |       |
+
+* ZS = ZERO_STAGE
+
+XXX: currently can't test `ZeRO_STAGE=0` on master, or `ZeRO_STAGE=1` on the special branch - so need to retest the above on the same branch.
