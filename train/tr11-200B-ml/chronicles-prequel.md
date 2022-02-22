@@ -254,7 +254,7 @@ XXX: This is a total guestimate - need proper math
 |    40 | 187B |   13824 |  4 |  8 | 10 |   1 | 2048 | 33GB | 160.29 | 120.05 | 02-20 |
 |    40 | 187B |   13824 |  4 |  8 | 10 |   2 | 2048 | 39GB | 151.07 | 127.38 | 02-20 |
 |    40 | 187B |   13824 |  4 |  8 | 10 |   4 | 2048 | 53GB | 147.43 | 130.53 | 02-20 |
-|    40 | 187B |   13824 |  4 |  8 | 10 |   4 | 2048 | 73GB | 152.51 | 126.18 | 02-20 |
+|    40 | 187B |   13824 |  4 |  8 | 10 |   8 | 2048 | 73GB | 152.51 | 126.18 | 02-20 |
 |       |      |         |    |    |    |     |      |      |        |        |       |
 
 
@@ -271,20 +271,51 @@ So from here on all the TLOPs reports will be about 3% higher - so can't exactly
 
 So we have 2 set ups that fit well into 48 nodes - and that's PP=6/DP=8 or PP=12/DP=4
 
+NHIDDEN=14336 / NLAYERS=72
 
 | Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
 | ----: | ---: | -: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
-|    48 | 181B |  4 |  8 | 12 |   1 | 2048 | GB   |        |        | 02-20 |
-|    48 | 181B |  4 |  8 | 12 |   2 | 2048 | GB   |        |        | 02-20 |
-|    48 | 181B |  4 |  8 | 12 |   4 | 2048 | 49GB | 123.69 | 130.34 | 02-20 |
-|    48 | 181B |  4 |  8 | 12 |   8 | 2048 | 69GB | 129.26 | 124.72 | 02-20 |
+|    48 | 181B |  4 |  8 | 12 |   1 | 2048 | 29GB | 143.31 | 112.49 | 02-21 |
+|    48 | 181B |  4 |  8 | 12 |   2 | 2048 | 37GB | 120.29 | 134.02 | 02-21 |
+|    48 | 181B |  4 |  8 | 12 |   4 | 2048 | 49GB | 123.69 | 130.34 | 02-21 |
+|    48 | 181B |  4 |  8 | 12 |   8 | 2048 | 69GB | 129.26 | 124.72 | 02-21 |
 |       |      |    |    |    |     |      |      |        |        |       |
 
+| Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 181B |  8 |  8 |  6 |   1 | 2048 | 38GB | 139.82 | 115.31 | 02-21 |
+|    48 | 181B |  8 |  8 |  6 |   2 | 2048 | 44GB | 131.02 | 123.05 | 02-21 |
+|    48 | 181B |  8 |  8 |  6 |   4 | 2048 | 56GB | 121.48 | 132.71 | 02-21 |
+|       |      |    |    |    |     |      |      |        |        |       |
+
+For longer pipeline MBS=2 gives better throughput than MBS=4 since is has a smaller bubble. That's why for PP=12 we use MBS=2, for PP=6 we use MBS=4. But PP=12 also uses significantly less memory for these winning settings.
+
+So it's either:
+
+* DP=4, PP=12, MBS=2: 120 secs/it | 134 TFLOPS
+* DP=8, PP=06, MBS=4: 121 secs/it | 133 TFLOPS
+
+Let's compare again with another setup:
+
+NHIDDEN=13824 / NLAYERS=84
 
 | Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
 | ----: | ---: | -: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
-|    48 | 181B |  8 |  8 |  6 |   1 | 2048 | GB   |        |        | 02-20 |
-|    48 | 181B |  8 |  8 |  6 |   2 | 2048 | GB   |        |        | 02-20 |
-|    48 | 181B |  8 |  8 |  6 |   4 | 2048 | GB   |        |        | 02-20 |
-|    48 | 181B |  8 |  8 |  6 |   8 | 2048 | GB   |        |        | 02-20 |
+|    48 | 196B |  4 |  8 | 12 |   2 | 2048 | 39GB | 143.89 | 121.45 | 02-21 |
+|    48 | 196B |  4 |  8 | 12 |   4 | 2048 | 52GB | 133.12 | 131.27 | 02-21 |
+|    48 | 196B |  8 |  8 |  6 |   2 | 2048 | 65GB | 141.41 | 123.58 | 02-21 |
+|    48 | 196B |  8 |  8 |  6 |   4 | 2048 | 56GB | 130.31 | 134.11 | 02-21 |
+|       |      |    |    |    |     |      |      |        |        |       |
+
+This one has 15% more layers than the previous tables, so here the less-PP-stages setup wins, that is:
+
+* DP=8, PP=06, MBS=4: 130.31 secs/it | 134.11 TFLOPS
+
+The following has so far given the highest TFLOPs, as we are packing more into less GPUs so 64 gpus are left out, and of course the total speed for iteration is much slower. So the key is the iteration speed and not TFLOPs.
+
+NHIDDEN=13824 / NLAYERS=80
+
+| Nodes | Size | DP | TP | PP | MBS | GBS  | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | --:  | ---: | -----: | -----: | ----: |
+|    40 | 187B | 8  | 8  | 10 | 4   | 2048 | GB   | 147.04 | 135.92 | 02-21 |
 |       |      |    |    |    |     |      |      |        |        |       |
