@@ -295,6 +295,8 @@ So it's either:
 * DP=4, PP=12, MBS=2: 120 secs/it | 134 TFLOPS
 * DP=8, PP=06, MBS=4: 121 secs/it | 133 TFLOPS
 
+
+
 Let's compare again with another setup:
 
 NHIDDEN=13824 / NLAYERS=84
@@ -319,3 +321,15 @@ NHIDDEN=13824 / NLAYERS=80
 | ----: | ---: | -: | -: | -: | --: | --:  | ---: | -----: | -----: | ----: |
 |    40 | 187B | 8  | 8  | 10 | 4   | 2048 | GB   | 147.04 | 135.92 | 02-21 |
 |       |      |    |    |    |     |      |      |        |        |       |
+
+
+Max possible TFLOPs check for `NHIDDEN=14336`:
+
+NHIDDEN=14336 / NLAYERS=6 / GBS=512
+
+| Nodes | Size | Layers | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -----: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
+|     1 | 18B  |      6 |  8 |  1 |   2 | 2048 | 54GB | 130.43 | 143.48 | 02-21 |
+|     1 | 18B  |      6 |  8 |  1 |   2 | 2048 | 54GB | 119.19 | 157.02 | 02-21 |
+|     1 | 18B  |     10 |  8 |  1 |   1 | 2048 | 80GB | 205.52 | 142.59 | 02-21 |
+|       |      |        |    |    |     |      |      |        |        |       |
