@@ -6,6 +6,8 @@ https://gist.github.com/stas00/ec5e197b15e2e7aea0153f54d2f97c15
 
 Probably need to adjust `TRIALS` to a higher number to get the more realistic results (after the interconnects is saturated).
 
+Note: tried a larger number but got the same results.
+
 ## Single node V100
 
 ssh into a desired node and then:
@@ -80,7 +82,7 @@ Results:
 
 [all_reduce_bench-a100-n4.txt](./all_reduce_bench-a100-n4.txt) - `algo throughput: 15 to 42 Gbps`
 
-
+As a reference Azure has [ND A100 v4-series](https://docs.microsoft.com/en-us/azure/virtual-machines/nda100-v4-series) w/ 1.6 Tb/s of interconnect bandwidth per VM. And Jeff Rasley clocked ~1.5Tb/s with this `all_reduce_bench` script.
 
 
 ## NCCL tests
