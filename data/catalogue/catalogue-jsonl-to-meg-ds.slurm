@@ -7,7 +7,7 @@
 #SBATCH --time=10:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/catalogue-jsonl-to-meg-ds/%x-%j.out          # output file name
 #SBATCH --account=six@cpu
-#SBATCH --array=0-491
+#SBATCH --array=0-509
 #SBATCH --partition=cpu_p1
 
 set -x -e
@@ -21,7 +21,7 @@ conda activate thomas_data_tooling
 CATALOGUE_DATA_REPO=$WORK/code/big_science/catalogue_data
 pushd $CATALOGUE_DATA_REPO
 
-DATASET_PATH=$(python get_dataset_path.py --dataset-ratios-file tokenizer_dataset_ratios.json --index $SLURM_ARRAY_TASK_ID)
+DATASET_PATH=$(python get_dataset_path.py --dataset-ratios-file training_dataset_ratios.json --index $SLURM_ARRAY_TASK_ID)
 echo "Converting $DATASET_PATH to json"
 
 if [[ $DATASET_PATH == /gpfswork/rech/six/uty16tp/dataset/tokenization/* ]]
