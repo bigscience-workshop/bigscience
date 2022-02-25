@@ -53,7 +53,7 @@ export TRANSFORMERS_OFFLINE=1
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
-# Expected Throughput: 130.21 TFLOPS, Speed: 124.75 Sec/it
+# Expected Throughput > 130.21 TFLOPS, Speed > 124.75 Sec/it
 GPUS_PER_NODE=8
 NNODES=$SLURM_NNODES  # Should be 48
 
@@ -61,7 +61,7 @@ PP_SIZE=6
 TP_SIZE=8
 
 MICRO_BATCH_SIZE=4
-GLOBAL_BATCH_SIZE=1568  # 3.21M tokens. TODO: check this number doesn't break constraints
+GLOBAL_BATCH_SIZE=2048  # 4.2M tokens. It is larger than the initial plan of 3.2M tokens to get higher throughput
 
 NLAYERS=78
 NHIDDEN=13824  # NHIDDEN / NLAYERS = 177
@@ -104,6 +104,7 @@ EXIT_OPTS=" \
 # Notes:
 # --rampup-batch-size 16 16 5_859_375  # starts with gbs=16 then linearly increase by 16 until reaching gbs=1568 over
 #                                      # 5_859_375 samples x 2048 = 12B tokens
+#                                      # TODO: update number of samples to take into account the larger GLOBAL_BATCH_SIZE
 
 
 GPT_ARGS=" \
