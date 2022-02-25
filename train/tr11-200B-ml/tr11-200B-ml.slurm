@@ -55,13 +55,13 @@ MASTER_PORT=6000
 
 # Expected Throughput: 130.21 TFLOPS, Speed: 124.75 Sec/it
 GPUS_PER_NODE=8
-NNODES=$SLURM_NNODES  # This should be 48
+NNODES=$SLURM_NNODES  # Should be 48
 
 PP_SIZE=6
 TP_SIZE=8
 
 MICRO_BATCH_SIZE=4
-GLOBAL_BATCH_SIZE=2048
+GLOBAL_BATCH_SIZE=1568  # 3.21M tokens. TODO: check this number doesn't break constraints
 
 NLAYERS=78
 NHIDDEN=13824  # NHIDDEN / NLAYERS = 177
@@ -71,8 +71,8 @@ SEQ_LEN=2048
 SAVE_INTERVAL=2
 
 TRAIN_SAMPLES=220_000_000  # 450B tokens
-LR_DECAY_SAMPLES=200_000_000  # Decay for the first 410B tokens, then continue at fixed --min-lr
-LR_WARMUP_SAMPLES=216_320  # TODO: double check the math. First 375M tokens. It is not 375M / 2048 because --rampup-batch-size
+LR_DECAY_SAMPLES=200_000_000  # Decay for the first 410B tokens then continue at fixed --min-lr
+LR_WARMUP_SAMPLES=183_105  # 375M tokens. We used to use 216_320, not clear why
 
 
 # Notes:
@@ -100,7 +100,10 @@ EXIT_OPTS=" \
 #    --init-method-std \
 #    --bf16 \
 #    --tokenizer-name-or-path bigscience/oscar_13_languages_alpha_weight \
-#    --rampup-batch-size 16 16 6_000_000 \
+
+# Notes:
+# --rampup-batch-size 16 16 5_859_375  # starts with gbs=16 then linearly increase by 16 until reaching gbs=1568 over
+#                                      # 5_859_375 samples x 2048 = 12B tokens
 
 
 GPT_ARGS=" \
@@ -110,6 +113,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
+    --rampup-batch-size 16 16 5_859_375 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
