@@ -1,0 +1,2042 @@
+[
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_wikiversity_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.691875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_arabench/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 9.79671e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_qedcorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.327757375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.528164375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.7650375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_habibi/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.78221875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_wikinews_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.743979625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_labr/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.774058e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.068468e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00011588256
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00011683391625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_kalimat/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001184072975
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_osac/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00029752700625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_brad_2/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00049584355875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_ksucca/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00057504777125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_sanad/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00072744890875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_tashkeela/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00135138779625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0015702285125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_pseudocrawl-filtered_595_mawdoo3_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_multi_un_2/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0033377189025
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00365578064
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0046148741925
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_uncorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0064668915775
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_openiti_proc/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.017767498275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_arabic_billion_words/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.02108780772625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ar_openiti/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0217520028
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_xquad_ca/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.7012e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_sts_ca/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.98505e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_vilaquad/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.0197025e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_viquiquad/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.1891925e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_wikimedia_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.48725875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_enriched_conllu_ancora_for_ml_training/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.548045e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_teca/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.35118375e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.278352875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.29268675e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.65600075e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_wikinews_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.0913655e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.550010875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_tv3_parla/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.13810575e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.7150375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_parlament_parla/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.752261125e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_ca_text_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00010192912625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00011603867
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00026969955125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_catalan_government_crawling/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003227843425
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_tecla/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000403045095
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00227820519625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_catalan_general_crawling/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00336176773625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_ca_catalan_textual_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01361343229
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_book_dash_books/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.100875e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_scielo/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.4819075e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_odiencorp/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.059587625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.592519e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_339_www_actasanitaria_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.25e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_488_dailyvanity_sg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.25e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_500_www_asiaone_com_singapore/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.5e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.188879875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_483_alvinology_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_502_www_ricemedia_co/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_wikinews_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001049799125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_619_www_qut_edu_au/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_499_www_today_com_news/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_492_www_vivawoman_net/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_485_blog_moneysmart_sg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00015
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_548_remezcla_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_qedcorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00017320044625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_696_www_oercommons_org/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000175
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_470_forums_hardwarezone_com_sg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000175
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_395_www_evwind_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_534_www_nairaland_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_159_www_postcrescent_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_487_thesmartlocal_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_wikivoyage_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000333508795
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_wikiversity_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003825180775
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_501_theindependent_sg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_the_pile_europarl/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004182461375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_royal_society_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00050465844
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0005049204975
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_304_www_semana_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0005375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_498_www_channelnewsasia_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00087220638125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_638_globalvoices_org/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000925
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_497_www_straitstimes_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0017375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_510_timesofindia_indiatimes_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.002675
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_multi_un_2/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00320605413375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pseudocrawl-filtered_689_www_abc_net_au/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0035
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00476741347375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_uncorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00569845604875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_no_code_stackexchange/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00729157783375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01092716445
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01092716445
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_project_gutenberg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01092716445
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_the_pile_uspto/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01092716445
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_s2orc_ai2_abstracts/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01092716445
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_pmc/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01092716445
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_arxiv/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01092716445
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_en_s2orc_ai2_pdf_parses/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01092716445
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.42264375e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_wikiversity_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.6292045e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.7239175e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_scielo/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.85405325e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_qedcorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.495480125e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_wikinews_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.326580625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_wikivoyage_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.457019125e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.425376375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001280949275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_244_www_df_cl/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00025
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_62_www_lapagina_com_sv/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00025
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_280_salamancartvaldia_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00025
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_32_www_elexpresso_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_30_www_radiocable_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_158_www_diariodeleon_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_219_www_aguasresiduales_info/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_153_financialfood_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_56_www_eluniverso_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_207_elimpulso_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_125_www_noticiasde_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_420_www_retema_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_374_www_talcualdigital_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_182_correodelsur_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000325
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_118_www_elheraldo_hn/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_386_www_prensalibre_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_233_www_dinero_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_254_diario_mx/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_294_www_laopinion_com_co/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00035
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_project_gutenberg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00036213489875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_23_www_elconfidencialdigital_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_286_www_nacion_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_422_www_formulatv_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_417_www_radiolaprimerisima_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_406_www_americaeconomia_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_367_elcorreoweb_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_276_radio_uchile_cl/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_231_ojo_pe/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_223_www_eltambor_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_325_www_laprensa_hn/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000425
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_250_www_cooperativa_cl/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000425
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_246_www_eldiarionuevodia_com_ar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000425
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_34_www_losandes_com_ar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_the_pile_europarl/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000444995095
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_277_www_entornointeligente_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00045
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_172_www_rionegro_com_ar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00045
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_167_www_ambientum_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00045
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_21_www_elperiodicodearagon_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00045
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_116_www_latribuna_hn/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_53_www_expreso_ec/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_404_www_telam_com_ar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_315_lasillavacia_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000525
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_431_www_elperiodicoextremadura_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000525
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_91_www_diario26_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0005375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_392_www_muypymes_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0005625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_169_www_el_carabobeno_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0005625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_320_www_paginasiete_bo/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000575
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_90_peru_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0005875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00059021416
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_232_tn_com_ar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_44_ladiaria_com_uy/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_220_www_vanguardia_com_mx/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_130_www_elperiodicomediterraneo_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_376_www_elpopular_com_ar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_229_www_expansion_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_253_www_debate_com_mx/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_28_www_fayerwayer_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00065
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_78_www_listindiario_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_359_www_efeverde_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000675
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_256_www_laprovincia_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000675
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_226_www_ole_com_ar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_317_diariocorreo_pe/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_165_www_ticbeat_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_401_www_elperiodicodemexico_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_675_www_elespectador_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0007375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_257_www_diaridetarragona_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0007375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_213_www_hola_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0007625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_203_www_que_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000775
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_405_www_emol_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000775
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_67_www_elpais_cr/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0007875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_430_www_eldiario_ec/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0008
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_324_gestion_pe/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0008
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_288_www_marca_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0008125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_71_www_rtve_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000825
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_381_www_cuartopoder_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000825
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_209_misionesonline_net/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0008375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_86_www_motorpasion_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0008875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_373_www_farodevigo_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0008875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_287_www_cibercuba_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0009125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_249_www_telecinco_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0009375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_79_www_laopiniondemurcia_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000975
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_299_www_lne_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0010125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_641_es_globalvoices_org/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001025
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_58_www_levante_emv_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0010625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_157_www_elsoldemexico_com_mx/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0011125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_237_www_cronista_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001175
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_245_www_noticiasdenavarra_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001175
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_518_www_elcolombiano_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_248_www_telesurtv_net/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00129835145875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_136_valenciaplaza_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0013
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_103_www_elmostrador_cl/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0015125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_189_www_eleconomista_com_mx/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00155
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_429_cadenaser_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_146_www_perfil_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0016375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_215_www_lainformacion_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001725
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_198_www_eleconomista_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0017375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_409_www_proceso_com_mx/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0017375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_263_www_lasexta_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00175
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_354_www_lagaceta_com_ar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0018
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_181_noticiassin_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001825
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_267_www_elperiodico_com_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0019375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_211_www_elcomercio_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.002
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_349_www_eltiempo_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0022
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_333_www_elmundo_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0022875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_255_elcomercio_pe/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0024625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_63_www_lanacion_com_ar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0026875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_424_www_lavanguardia_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0027375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_multi_un_2/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0028721478725
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_20_www_clarin_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0033125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00339539403625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_341_es_cointelegraph_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.003425
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_396_www_eldiario_es/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0037375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_pseudocrawl-filtered_100_www_aporrea_org/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0043
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_uncorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00580752637
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_es_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00883149999
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 9.7700875e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.9444925e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.556932625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.955311375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.809668375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.08267775e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.130443625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_pseudocrawl-filtered_563_ahotsak_eus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_pseudocrawl-filtered_506_goiena_eus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_pseudocrawl-filtered_637_www_argia_eus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_pseudocrawl-filtered_635_www_berria_eus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000612341775
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_eu_bsbasque/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00138149072375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_book_dash_books/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.53675e-08
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.50072125e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_qedcorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.03527625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_ester/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.645500375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.352059e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_wikivoyage_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.61401575e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_wikinews_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.3164875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000102246775
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_wikiversity_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00016120149375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000181407485
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_the_pile_europarl/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00047131104875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_pseudocrawl-filtered_599_fr_globalvoices_org/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_pseudocrawl-filtered_530_www_mediapart_fr/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_bnl_historical_newspapers/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0010729113525
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_project_gutenberg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00164683313875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00315538912
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_multi_un_2/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00333125837625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00420319737
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00451071561
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_pseudocrawl-filtered_550_www_lemonde_fr/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_uncorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00666625718375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01607992917375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_fr_hal_archives_ouvertes/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0750097400275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_indonesian_frog_storytelling_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.83215e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.9276375e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.1117025e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_indonli/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.90236875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_recibrew/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.10245875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_wikimedia_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.954270875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.087914625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.9219355e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.237624375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001101830075
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_indosum/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00025744289375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_pseudocrawl-filtered_512_kumparan_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_indonesian_news_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000295392045
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00032803414625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_pseudocrawl-filtered_545_www_detik_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00040505542375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_pseudocrawl-filtered_549_www_cnnindonesia_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000675
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_pseudocrawl-filtered_572_tirto_id/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000775
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00090802459625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_indonesian_news_articles_2017/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001040013645
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_id_indo4b/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.06032440410875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-as_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.225e-09
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-as_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.5495e-08
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-as_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.398674375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-as_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.4471405e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-as_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.8282215e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-as_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002770573975
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.2104225e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_mkb/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.74111875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.4891775e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_bangla_sentiment_classification_datasets/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.28251e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.96239375e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_wikivoyage_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 9.17373625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.629063625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_bengali_question_answering/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.962593625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.755397375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.3561135e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0002255876875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00096323548125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00107855474625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0019535106
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00366000941625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-bn_bangla_lm/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.017889145955
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.011e-08
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.96887625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_mkb/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.00249375e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.03617125e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.72840125e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.005374625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.016626375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00014619588
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00027440289375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00047461524375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-gu_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0022623949075
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_wikimedia_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.2109125e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.2146875e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_mkb/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.6018375e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_wikiversity_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.66661375e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_wikivoyage_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.6253675e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_qedcorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.9658075e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.653865e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.185803e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.74169875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.332871e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001126808775
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001163870275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001421613075
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_hi_pseudocrawl-filtered_515_www_aajtak_in/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0006125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00076926151375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0008846629225
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_hi_pseudocrawl-filtered_667_www_bhaskar_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0018125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00246400941375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_iitb_english_hindi_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.012138482975
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-hi_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.01770979596625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-kn_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.21625e-09
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-kn_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.5027125e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-kn_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.81053e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-kn_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.8330475e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-kn_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.74970325e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-kn_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00045300633125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-kn_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00056158041375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-kn_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0007441521125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-kn_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00411723771875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.5995e-08
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_mkb/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.8758225e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.45941625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.75110625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.030715e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.56238175e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.122861375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.60505875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00019153891375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00049732573
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000550153845
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00110847200625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ml_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0049902936225
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.588375e-08
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.24675e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_mkb/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.88440625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.712615e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.81408875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.66330875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.22179e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.78526825e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00028539034
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004249632175
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00062817388
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-mr_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0029983709275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ne_unsupervised_cross_lingual_representation_learning_at_scale/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00511214718875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.98125e-09
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_mkb/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.372125e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.62114e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_odiencorp/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.4340715e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.530612e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.63287825e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.37833125e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 9.05530075e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00017755631
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-or_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001078851425
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.30375e-09
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.516e-08
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.4492e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.41175875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.11819275e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.979265e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001673102925
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001917061125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00060293772875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-pa_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00270438801125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.465125e-08
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_mkb/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.45459875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 3.8843725e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.66757625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.38766625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 9.06282625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_wikinews_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.444968875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.03180325e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.268550375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00032457074875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00092409963125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0010088089025
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.002254218155
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ta_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00956196234
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.55e-10
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_mkb/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.57985e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.94494e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.2828975e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.592985e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.3326925e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.32671125e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.589961875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000117079555
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00075679323625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00082147490625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_samanantar/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0008974331125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-te_indic_nlp_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.004541545305
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.385e-08
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_mkb/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.196825e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.125755e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.78323875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.634245e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.2346675e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 9.15779625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_pib/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.005080125e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000211454335
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0004031070825
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_leipzig_wortschatz_urdu_newscrawl_2016_sentences/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0008080916925
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_urdu-monolingual-corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000997839205
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_indic-ur_leipzig_wortschatz_urdu-pk_web_2019_sentences/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00223259706625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.8077625e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_wikimedia_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.07976875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_wikivoyage_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.515058375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_qedcorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.944751e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.835676375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_wikiversity_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.089948125e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.35737975e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.595794375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_wikinews_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001129621075
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_project_gutenberg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001366335475
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00013998053375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000223696975
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_pseudocrawl-filtered_672_pt_globalvoices_org/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00034553775875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_the_pile_europarl/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00044991173375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_scielo/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00061299921375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0013564514125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0047934569875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_pt_brwac/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0223637073125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.514375e-08
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_uit_vsmec/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.765875e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_vietnamese_students_feedback/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.09213375e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.56383375e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_vinbigdata_asr_vlsp_2020/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.3774035e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_wikivoyage_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.391110125e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_opus100/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.84750775e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.33474325e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.988168375e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_data_on_covid_19_news_coverage_in_vietnam/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001014859725
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_vietnamese_poetry/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0001335617175
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00016148947375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_wikisource_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00019998639875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000259210445
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_vntq_corpus_big/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003199359275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_vinbigdata_mt_vlsp_2020/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.000437222125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00061728186875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_vietai_sat/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00091488902375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_vinbigdata_monolingual_vlsp_2020/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00465444051875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_vi_binhvq_news_corpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.03740583620125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_bloom/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.8375e-09
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_wikiquote_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.79723425e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_wikivoyage_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.681918e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_wikiversity_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.367086625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_wikibooks_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.4126835e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_wikinews_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.1000725e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_ted_talks_iwslt/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.48533225e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_pseudocrawl-filtered_674_ai_baidu_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 7.5e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_project_gutenberg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00020870598125
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_pseudocrawl-filtered_503_www_zaobao_com_sg/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00035
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_wiktionary_filtered/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00067276259875
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_open_subtitles/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0011166223325
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_multi_un_2/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0017166293275
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_uncorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00286957682375
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_du_reader/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0042566495075
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh_wudaocorpora/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.1131651659525
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zhs_qedcorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 6.79343875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zht_qedcorpus/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.78471e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh-cn_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.00117547734
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_zh-tw_wikipedia/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.001176313685
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_code_stackexchange/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.03684902152625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_code_github-no-gpl/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.08785053610625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-sw_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 0.0003300454625
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-yo_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.754906125e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-rw_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.268242625e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-xh_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.80849175e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-ig_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.56504825e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-zu_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.119948875e-05
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-sn_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 9.36170125e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-lg_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 5.673215e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-wo_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.40850875e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-rn_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.020025e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-fon_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.46738625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-nso_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.4159425e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-ln_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.03906e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-tn_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.916385e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-tw_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.5524225e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-ny_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 1.49293625e-06
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-st_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 9.4256875e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-ts_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 9.06725e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-ak_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 8.3769625e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-bm_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.818125e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-ki_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 4.5293125e-07
+  },
+  {
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_nigercongo-tum_aggregated/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "ratio": 2.244825e-07
+  }
+]
