@@ -276,7 +276,7 @@ NHIDDEN=14336 / NLAYERS=72
 | Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
 | ----: | ---: | -: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
 |    48 | 181B |  4 |  8 | 12 |   1 | 2048 | 29GB | 143.31 | 112.49 | 02-21 |
-|    48 | 181B |  4 |  8 | 12 |   2 | 2048 | 37GB | 120.29 | 134.02 | 02-21 |
+|    48 | 181B |  4 |  8 | 12 |   2 | 2048 | 37GB | 134.02 | 120.29 | 02-21 |
 |    48 | 181B |  4 |  8 | 12 |   4 | 2048 | 49GB | 123.69 | 130.34 | 02-21 |
 |    48 | 181B |  4 |  8 | 12 |   8 | 2048 | 69GB | 129.26 | 124.72 | 02-21 |
 |       |      |    |    |    |     |      |      |        |        |       |
@@ -288,14 +288,11 @@ NHIDDEN=14336 / NLAYERS=72
 |    48 | 181B |  8 |  8 |  6 |   4 | 2048 | 56GB | 121.48 | 132.71 | 02-21 |
 |       |      |    |    |    |     |      |      |        |        |       |
 
-For longer pipeline MBS=2 gives better throughput than MBS=4 since is has a smaller bubble. That's why for PP=12 we use MBS=2, for PP=6 we use MBS=4. But PP=12 also uses significantly less memory for these winning settings.
 
 So it's either:
 
-* DP=4, PP=12, MBS=2: 120 secs/it | 134 TFLOPS
+* DP=4, PP=12, MBS=4: 123 secs/it | 130 TFLOPS
 * DP=8, PP=06, MBS=4: 121 secs/it | 133 TFLOPS
-
-
 
 Let's compare again with another setup:
 
@@ -334,7 +331,7 @@ NHIDDEN=14336 / NLAYERS=6 / GBS=512
 |     1 | 18B  |     10 |  8 |  1 |   1 | 2048 | 80GB | 205.52 | 142.59 | 02-21 |
 |       |      |        |    |    |     |      |      |        |        |       |
 
-Trying with ZeRO_STAGE=0
+Trying with ZeRO_STAGE=0/1
 
 NHIDDEN=14336 / NLAYERS=72
 
@@ -347,3 +344,141 @@ NHIDDEN=14336 / NLAYERS=72
 * ZS = ZERO_STAGE
 
 XXX: currently can't test `ZeRO_STAGE=0` on master, or `ZeRO_STAGE=1` on the special branch - so need to retest the above on the same branch.
+
+
+## Final round comparison
+
+all NHEADS=64 (above too)
+
+NHIDDEN=14336 / NLAYERS=72
+
+| Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 181B |  4 |  8 | 12 |   4 | 2048 | GB   | 123.79 | 130.24 | 02-23 |
+|    48 | 181B |  8 |  8 |  6 |   4 | 2048 | GB   | 120.85 | 133.40 | 02-23 |
+|       |      |    |    |    |     |      |      |        |        |       |
+
+NHIDDEN=13312 / NLAYERS=84
+
+| Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 182B |  4 |  8 | 12 |   4 | 2048 | GB   | 125.52 | 129.29 | 02-23 |
+|    48 | 182B |  8 |  8 |  6 |   2 | 2048 | GB   | 135.55 | 119.72 | 02-23 |
+|    48 | 182B |  8 |  8 |  6 |   4 | 2048 | GB   | 122.93 | 132.00 | 02-23 |
+|       |      |    |    |    |     |      |      |        |        |       |
+
+NHIDDEN=13824 / NLAYERS=78
+
+| Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 182B |  8 |  8 |  6 |   4 | 2048 | GB   | 121.28 | 133.93 | 02-23 |
+|       |      |    |    |    |     |      |      |        |        |       |
+
+NHIDDEN=12288 / NLAYERS=96
+
+| Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 177B |  8 |  8 |  6 |   2 | 2048 | GB   | 136.73 | 115.73 | 02-23 |
+|    48 | 177B |  8 |  8 |  6 |   4 | 2048 | GB   | 122.96 | 128.69 | 02-23 |
+|       |      |    |    |    |     |      |      |        |        |       |
+
+
+## NHEADs comparison
+
+NHIDDEN=14336 / NLAYERS=72
+
+not many variations around 100 as `14336 = 2**11*7` and the constraint is `(HEADS/TP)*MBS % 4 = 0` or for `MBS=4, TP=8` `HEADS % 16 = 0`
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 181B |  8 |  8 |  6 |   4 |     16 | 2048 | 54GB | 121.03 | 133.20 | 02-24 |
+|    48 | 181B |  8 |  8 |  6 |   4 |     32 | 2048 | 55GB | 124.01 | 130.00 | 02-23 |
+|    48 | 181B |  8 |  8 |  6 |   4 |     64 | 2048 | 55GB | 120.18 | 134.15 | 02-23 |
+|    48 | 181B |  8 |  8 |  6 |   4 |    112 | 2048 | 53GB | 138.72 | 116.21 | 02-23 |
+|    48 | 181B |  8 |  8 |  6 |   4 |    128 | 2048 | 55GB | 124.89 | 129.08 | 02-23 |
+|    48 | 181B |  8 |  8 |  6 |   4 |    256 | 2048 | 54GB | 132.85 | 121.35 | 02-24 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
+
+
+
+NHIDDEN=13824 / NLAYERS=78
+
+here `13824 = 2**9*3**3`
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 182B |  8 |  8 |  6 |   4 |     64 | 2048 | GB   | 121.28 | 133.93 | 02-23 |
+|    48 | 182B |  8 |  8 |  6 |   4 |     96 | 2048 | 59GB | 124.75 | 130.21 | 02-23 |
+|    48 | 182B |  8 |  8 |  6 |   4 |    128 | 2048 | 54GB | 162.72 |  99.82 | 02-23 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
+
+NHEADS=108 breaks constraints for invoking optimized fused softmax kernel
+
+
+NHIDDEN=13312 / NLAYERS=84
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 182B |  8 |  8 |  6 |   4 |     64 | 2048 | GB   | 122.93 | 132.00 | 02-23 |
+|    48 | 182B |  8 |  8 |  6 |   4 |    128 | 2048 | GB   | 129.17 | 125.63 | 02-23 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
+
+
+NHIDDEN=12288 / NLAYERS=96
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 177B |  8 |  8 |  6 |   4 |     64 | 2048 | GB   | 122.96 | 128.69 | 02-24 |
+|    48 | 177B |  8 |  8 |  6 |   4 |     96 | 2048 | GB   | 145.40 | 108.83 | 02-24 |
+|    48 | 177B |  8 |  8 |  6 |   4 |    128 | 2048 | GB   | 129.42 | 122.27 | 02-24 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
+
+
+## GBS Variations
+
+Note: A100s PCI-Express/NUMA was improved today so all TFLOPs have changed for the better (1-5%) - thus do not compare today's numbers to yesterday's.
+
+NLAYERS=72
+NHIDDEN=14336
+NHEADS=64
+
+| Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | ---: | ---: | -----: | -----: | ----: |
+|    48 | 181B |  8 |  8 |  6 |   4 | 1568 | 56GB | 113.01 | 109.22 | 02-25 |
+|    48 | 181B |  8 |  8 |  6 |   4 | 2048 | 55GB | 114.11 | 141.27 | 02-25 |
+|    48 | 181B |  8 |  8 |  6 |   6 | 2016 | 66GB | 123.57 | 128.43 | 02-25 |
+|    48 | 181B |  4 |  8 | 12 |   4 | 1568 | GB   |  92.75 | 133.08 | 02-25 |
+|    48 | 181B |  4 |  8 | 12 |   4 | 2048 | 49GB | 117.07 | 137.70 | 02-25 |
+|    48 | 181B |  4 |  8 | 12 |   2 | 1568 | GB   |  99.93 | 123.51 | 02-25 |
+|    48 | 181B |  4 |  8 | 12 |   2 | 2048 | GB   | 128.82 | 125.15 | 02-25 |
+|       |      |    |    |    |     |      |      |        |        |       |
+|       |      |    |    |    |     |      |      |        |        |       |
+
+some more configs with lower PP:
+
+| Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | ---: | ---: | -----: | -----: | ----: |
+|    48 | 181B |  6 |  8 |  8 |   4 | 2016 | 52GB | 113.16 | 140.24 | 02-25 |
+|    48 | 181B | 12 |  8 |  4 |   2 | 2016 | 53GB | 125.52 | 126.43 | 02-25 |
+|    48 | 181B | 12 |  8 |  4 |   4 | 2016 | 59GB | 114.81 | 138.22 | 02-25 |
+|    48 | 181B | 24 |  8 |  2 |   1 | 2016 | 65GB | 145.45 | 109.11 | 02-25 |
+|    48 | 181B | 24 |  8 |  2 |   2 | 2016 | 76GB | 136.13 | 116.58 | 02-25 |
+|    48 | 181B | 48 |  8 |  1 |   1 | 2016 | OOM  |        |        | 02-25 |
+|       |      |    |    |    |     |      |      |        |        |       |
+
+Tweaking TP for the first time from the TP=8 is best assumption. But if the model fits into smaller TP it should be faster!
+
+| Nodes | Size | DP | TP | PP | MBS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | ---: | ---: | -----: | -----: | ----: |
+|    48 | 181B |  8 |  4 | 12 |   4 | 2048 | 60GB | 111.89 | 144.08 | 02-25 |
+|    48 | 181B |  8 |  4 | 12 |   2 | 2048 | 44GB | 110.48 | 145.92 | 02-25 |
+|    48 | 181B |  8 |  4 | 12 |   2 | 2048 | 38GB | 113.54 | 141.99 | 02-25 |
+|    48 | 181B | 16 |  4 |  6 |   4 | 2048 | 75GB | 117.11 | 137.66 | 02-25 |
+|    48 | 181B | 16 |  4 |  6 |   2 | 2048 | 57GB | 111.71 | 144.31 | 02-25 |
+|    48 | 181B | 16 |  2 | 12 |   2 | 2048 | 63GB | 112.50 | 143.30 | 02-25 |
+|    48 | 181B | 32 |  2 |  6 |   2 | 2048 | OOM  |        |        | 02-25 |
+|    48 | 181B | 32 |  2 |  6 |   1 | 2048 | OOM  |        |        | 02-25 |
+|    48 | 181B |  8 |  2 | 24 |   1 | 2048 | 44GB | 119.53 | 134.88 | 02-25 |
+|    48 | 181B |  8 |  2 | 24 |   2 | 2048 | 53GB | 122.75 | 131.33 | 02-25 |
+|    48 | 181B |  8 |  1 | 48 |   1 | 2048 | fail |        |        | 02-25 |
+|       |      |    |    |    |     |      |      |        |        |       |
