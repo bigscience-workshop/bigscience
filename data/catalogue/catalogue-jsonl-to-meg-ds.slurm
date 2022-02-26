@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --time=10:00:00             # maximum execution time (HH:MM:SS)
+#SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/catalogue-jsonl-to-meg-ds/%x-%j.out          # output file name
 #SBATCH --account=six@cpu
 #SBATCH --array=0-509
