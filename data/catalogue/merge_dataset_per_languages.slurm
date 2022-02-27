@@ -40,9 +40,13 @@ pushd $MEG_DS_REPO
 
 readarray -t MERGE_ARGUMENTS < <(python -c "
 import json
+from pathlib import Path
 
 with open(\"$LANGUAGE_RATIOS_PATH\", \"r\") as fi:
     data = json.load(fi)
+
+for elt in data:
+    Path(elt['dataset_path']).parent.mkdir(parents=True)
 
 print('\n'.join([f\"--datasets {' '.join(elt['original_datasets'])} --output-prefix {elt['dataset_path']}\" for elt in data]))
 ")
@@ -51,6 +55,6 @@ echo $MERGE_ARGUMENTS
 
 for MERGE_ARGUMENT in "${MERGE_ARGUMENTS[@]}"
 do
-	/usr/bin/time -v python tools/merge_preprocessed_data.py \
+	/usr/bin/time -v python -m tools.merge_preprocessed_data \
         $MERGE_ARGUMENT
 done
