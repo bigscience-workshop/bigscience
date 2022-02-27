@@ -102,9 +102,9 @@ EXIT_OPTS=" \
 #    --tokenizer-name-or-path bigscience/oscar_13_languages_alpha_weight \
 
 # Notes:
-# --rampup-batch-size 16 16 5_859_375  # starts with gbs=16 then linearly increase by 16 until reaching gbs=1568 over
-#                                      # 5_859_375 samples x 2048 = 12B tokens
-#                                      # TODO: update number of samples to take into account the larger GLOBAL_BATCH_SIZE
+# --rampup-batch-size 16 16 9_765_625  # starts with gbs=16 then linearly increase by 16 until reaching gbs=1568 over
+#                                      # 9_765_625 samples x 2048 = 20B tokens
+#                                      # Use 20B tokens (not 12B) because we are using a large GLOBAL_BATCH_SIZE than prior work
 
 
 GPT_ARGS=" \
@@ -114,7 +114,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
-    --rampup-batch-size 16 16 5_859_375 \
+    --rampup-batch-size 16 16 9_765_625 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
