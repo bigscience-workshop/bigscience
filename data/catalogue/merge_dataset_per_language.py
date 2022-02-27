@@ -58,7 +58,7 @@ def main():
     language_ds_ratios = [
         {
             "ratio": sum([elt["ratio"] for elt in datasets]),
-            "dataset_path": args.med_ds_dataset_prefix.format(lang=lang),
+            "dataset_path": args.meg_ds_dataset_prefix.format(lang=lang),
             # Additional field to store in case we want to know what's in there.
             "original_datasets": [
                 dataset["dataset_path"]
