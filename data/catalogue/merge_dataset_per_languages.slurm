@@ -18,26 +18,6 @@ conda activate thomas_data_tooling
 BATCH_ID=0
 TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles
 
-# ======= Get dataset names ======
-
-CATALOGUE_DATA_REPO=$WORK/code/big_science/catalogue_data
-pushd $CATALOGUE_DATA_REPO
-
-DATASET_PATH=$(python get_dataset_path.py --dataset-ratios-file training_dataset_ratios.json --index $SLURM_ARRAY_TASK_ID)
-echo "Converting $DATASET_PATH to json"
-
-if [[ $DATASET_PATH == /gpfswork/rech/six/uty16tp/dataset/tokenization/* ]]
-then
-    if [[ $DATASET_PATH == */data ]]
-    then
-        DATASET_NAME=${DATASET_PATH:48:-5}
-    else
-        DATASET_NAME=${DATASET_PATH:48}
-    fi
-else
-    DATASET_NAME=$DATASET_PATH
-fi
-
 # ======= Generate language ratio file ======
 
 BIGSCIENCE_REPO=$WORK/code/big_science/bigscience
