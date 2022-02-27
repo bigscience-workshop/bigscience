@@ -41,7 +41,7 @@ MERGE_ARGUMENTS=(
 $(python -c "
 import json
 
-with open($LANGUAGE_RATIOS_PATH, 'r') as fi:
+with open('$LANGUAGE_RATIOS_PATH', 'r') as fi:
     data = json.load(fi)
 
 print('\n'.join(
