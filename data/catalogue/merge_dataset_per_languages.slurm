@@ -46,7 +46,7 @@ with open(\"$LANGUAGE_RATIOS_PATH\", \"r\") as fi:
     data = json.load(fi)
 
 for elt in data:
-    Path(elt['dataset_path']).parent.mkdir(parents=True)
+    Path(elt['dataset_path']).parent.mkdir(parents=True, exist_ok=True)
 
 print('\n'.join([f\"--datasets {' '.join(elt['original_datasets'])} --output-prefix {elt['dataset_path']}\" for elt in data]))
 ")
