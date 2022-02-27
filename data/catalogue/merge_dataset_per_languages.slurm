@@ -37,18 +37,15 @@ python $BIGSCIENCE_REPO/data/catalogue/merge_dataset_per_language.py \
 
 MEG_DS_REPO=$WORK/code/big_science/Megatron-DeepSpeed
 pushd $MEG_DS_REPO
-MERGE_ARGUMENTS=(
-$(python -c "
+
+readarray -t MERGE_ARGUMENTS < <(python -c "
 import json
 
-with open('$LANGUAGE_RATIOS_PATH', 'r') as fi:
+with open(\"$LANGUAGE_RATIOS_PATH\", \"r\") as fi:
     data = json.load(fi)
 
-print('\n'.join(
-    [f\"--datasets {' '.join(elt['original_datasets'])} --output-prefix elt['dataset_path']\" for elt in data]
-))
+print('\n'.join([f\"--datasets {' '.join(elt['original_datasets'])} --output-prefix {elt['dataset_path']}\" for elt in data]))
 ")
-)
 
 echo $MERGE_ARGUMENTS
 
@@ -57,4 +54,3 @@ do
 	/usr/bin/time -v python tools/merge_preprocessed_data.py \
         $MERGE_ARGUMENT
 done
-
