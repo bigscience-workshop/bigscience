@@ -53,12 +53,12 @@ export TRANSFORMERS_OFFLINE=1
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
-# Expected Throughput > 130.21 TFLOPS, Speed > 124.75 Sec/it
+# Expected Throughput ~ 151.64 TFLOPS, Speed ~ 107.12 Sec/it
 GPUS_PER_NODE=8
 NNODES=$SLURM_NNODES  # Should be 48
 
-PP_SIZE=6
-TP_SIZE=8
+PP_SIZE=12
+TP_SIZE=4
 
 MICRO_BATCH_SIZE=4
 GLOBAL_BATCH_SIZE=2048  # 4.2M tokens. It is larger than the initial plan of 3.2M tokens to get higher throughput
