@@ -45,7 +45,7 @@ with open($LANGUAGE_RATIOS_PATH, 'r') as fi:
     data = json.load(fi)
 
 print('\n'.join(
-    [f\"--datasets {' '.join(elt['original_datasets'])} --output-prefix dataset['dataset_path']\" for lang, dataset in data.]
+    [f\"--datasets {' '.join(elt['original_datasets'])} --output-prefix dataset['dataset_path']\" for lang, dataset in data.items()]
 ))
 "
 )
