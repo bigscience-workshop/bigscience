@@ -30,12 +30,12 @@ mkdir -p $(dirname $MEG_DS_DATASET_PREFIX)
 python $BIGSCIENCE_REPO/data/catalogue/merge_dataset_per_language.py \
     --dataset-ratios-path $BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_batch_$BATCH_ID.json \
     --split train \
-    --meg-ds-dataset-prefix MEG_DS_DATASET_PREFIX \
+    --meg-ds-dataset-prefix $MEG_DS_DATASET_PREFIX \
     --output-ratio-file $LANGUAGE_RATIOS_PATH
 
 # ======= Generate merged files ======
 
-MEG_DS_REPO=$WORK/code/big_science/Megatron-Deepspeed
+MEG_DS_REPO=$WORK/code/big_science/Megatron-DeepSpeed
 pushd $MEG_DS_REPO
 MERGE_ARGUMENTS=(
 python -c "

@@ -52,7 +52,13 @@ def main():
             ds_ratio["lang"] = "indic-hi"
         else:
             ds_ratio["lang"] = candidate_lang
-        datasets_per_language[ds_ratio["lang"]].append(ds_ratio)
+
+        merged_language = ds_ratio["lang"].split("-")[0]
+        # Merge zh languages
+        if candidate_lang in ["zhs", "zht"]:
+            merged_language = "zh"
+
+        datasets_per_language[merged_language].append(ds_ratio)
 
     # save ratio result into a file (in json format, you can use `load_ratios_meg_ds_format` for get the meg_ds format)
     language_ds_ratios = [
