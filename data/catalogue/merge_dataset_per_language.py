@@ -68,7 +68,7 @@ def main():
         for lang, datasets in datasets_per_language.items()
     ]
 
-    with open(args.output_ratio_file, "r") as fi:
+    with open(args.output_ratio_file, "w") as fi:
         json.dump(language_ds_ratios, fi, indent=2)
 
 if __name__ == "__main__":

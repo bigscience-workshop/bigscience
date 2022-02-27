@@ -42,7 +42,7 @@ def main():
         list_string.append(elt_string)
 
     # TODO: you can add some extra dataset names for validation/test
-    with open(args.output_meg_ds_ratio_file, "r") as fi:
+    with open(args.output_meg_ds_ratio_file, "w") as fi:
         fi.write(f"\"{args.split}: " + ", ".join(list_string) + "\"")
 
 if __name__ == "__main__":
