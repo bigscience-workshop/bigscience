@@ -2,12 +2,12 @@
 #SBATCH --job-name=tr11-200B-ml
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
-#SBATCH --nodes=10
+#SBATCH --nodes=48
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:8                 # number of gpus
-#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS). TODO: update to 100 hours
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
 
@@ -31,7 +31,7 @@ KILL_SWITCH_PATH=/tmp/kill-switch-tr11-200B-exp1
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed-tr8b-104B
 cd $MEGATRON_DEEPSPEED_REPO
 
-# XXX: fix me
+# TODO: point to the actual dataset path
 DATA_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5c-1B3-multilingual-alpha-alibi
 TRAIN_DATA_PATH=$(cat $DATA_PATH/sampling_probs/train_data_string.0.3.txt)
 VALID_DATA_PATH=$(cat $DATA_PATH/sampling_probs/valid_data_string.0.3.txt)
@@ -53,34 +53,41 @@ export TRANSFORMERS_OFFLINE=1
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
+# Expected Throughput ~ 151.64 TFLOPS, Speed ~ 107.12 Sec/it
 GPUS_PER_NODE=8
-NNODES=$SLURM_NNODES
+NNODES=$SLURM_NNODES  # Should be 48
 
-PP_SIZE=10
-TP_SIZE=8
+PP_SIZE=12
+TP_SIZE=4
 
-MICRO_BATCH_SIZE=1
-GLOBAL_BATCH_SIZE=2048
-TRAIN_SAMPLES=195_312_500 # 400B tokens
+MICRO_BATCH_SIZE=4
+GLOBAL_BATCH_SIZE=2048  # 4.2M tokens. It is larger than the initial plan of 3.2M tokens to get higher throughput
 
-NLAYERS=80
-#NHIDDEN=14336
-NHIDDEN=14400
-NHEADS=96 # XXX: 32x (32|64|96) from (HEADS/TP)*MBS % 4 = 0
+NLAYERS=78
+NHIDDEN=13824  # NHIDDEN / NLAYERS = 177
+NHEADS=96  # NHIDDEN / NHEADS =144
 SEQ_LEN=2048
 
 SAVE_INTERVAL=2
 
+TRAIN_SAMPLES=220_000_000  # 450B tokens
+LR_DECAY_SAMPLES=200_000_000  # Decay for the first 410B tokens then continue at fixed --min-lr
+LR_WARMUP_SAMPLES=183_105  # 375M tokens. We used to use 216_320, not clear why
+
+
+# Notes:
+# "--adam-beta1 0.9  --adam-beta2 0.95  --adam-eps 1e-8"  are from the 104B experiment
+
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
-    --adam-beta2 0.999 \
+    --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 2e-4 \
-    --min-lr 1e-5 \
+    --lr 6e-5 \
+    --min-lr 6e-6 \
     --lr-decay-style cosine \
-    --lr-decay-samples $TRAIN_SAMPLES \
-    --lr-warmup-samples 216_320 \
+    --lr-decay-samples $LR_DECAY_SAMPLES \
+    --lr-warmup-samples $LR_WARMUP_SAMPLES \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
@@ -89,9 +96,17 @@ EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
 
-# XXX: fix init-method-std
-#    --rampup-batch-size 32 32 2_000_000 \
+# TODO: fix
+#    --init-method-std \
 #    --bf16 \
+#    --tokenizer-name-or-path bigscience/oscar_13_languages_alpha_weight \
+
+# Notes:
+# --rampup-batch-size 16 16 5_859_375  # starts with gbs=16 then linearly increase by 16 until reaching gbs=1568 over
+#                                      # 5_859_375 samples x 2048 = 12B tokens
+#                                      # TODO: update number of samples to take into account the larger GLOBAL_BATCH_SIZE
+
+
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
@@ -99,13 +114,13 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
+    --rampup-batch-size 16 16 5_859_375 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path bigscience/oscar_13_languages_alpha_weight \
     --init-method-std 0.005 \
     --loss-scale 12 \
-    --clip-grad 1.0 \
     --embed-layernorm \
     --fp16 \
     --seed 42 \
