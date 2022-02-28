@@ -65,7 +65,7 @@ From [The Depth-to-Width Interplay in Self-Attention](https://arxiv.org/abs/2006
 ```
 NLAYERS=70; python -c "import math; l=$NLAYERS; a = 5.039; b = 5.55e-2; print(f'Optimal n_params: {12 * l * math.exp(2*a) * math.exp(2*b*l) / 10**9 :.0f}B')"
 ```
-This seems less important as the number of parameters scales up, but is useful to ground the discussion.
+This seems to be less important as the number of parameters scales up, but is useful to ground the discussion.
 
 
 ## Estimate total training time

@@ -345,7 +345,12 @@ The building should happen on a beefy instance - or things just get killed
 Normally use the free `-p compil` partition:
 
 ```
-srun --pty -p compil --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty -A six@cpu -p compil --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
+
+if it doesn't yield use `idrsrv` ones by adding `-c 10` (10 cpu cores)
+```
+srun --pty -A six@cpu -p compil -c 10 --hint=nomultithread --time=60 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 but if it has to be really fast, use a dedicated instance with pre-allocated cpu cores:
@@ -446,6 +451,34 @@ function get_master_address() {
 perl -le '$_=$ENV{"SLURM_JOB_NODELIST"}; s/,.*//; s/-.*//; s/\[//; print'
 }
 ```
+
+Better solutions for the same as above:
+
+```
+# autogenerate the hostfile for deepspeed
+# 1. deals with: SLURM_JOB_NODELIST in either of 2 formats:
+# r10i1n8,r10i2n0
+# r10i1n[7-8]
+# 2. and relies on SLURM_STEP_GPUS=0,1,2... to get how many gpu slots per node
+#
+# usage:
+# makehostfile > hostfile
+function makehostfile() {
+perl -e '$slots=split /,/, $ENV{"SLURM_STEP_GPUS"};
+$slots=8 if $slots==0; # workaround 8 gpu machines
+@nodes = split /\n/, qx[scontrol show hostnames $ENV{"SLURM_JOB_NODELIST"}];
+print map { "$b$_ slots=$slots\n" } @nodes'
+}
+```
+
+```
+# auto-extract the master node's address from: SLURM_JOB_NODELIST1 which may contain r10i1n3,r10i1n[5-8],r10i1n7
+# so here we want r10i1n3
+function get_master_address() {
+echo $(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
+}
+```
+
 
 ## Troubleshooting
 

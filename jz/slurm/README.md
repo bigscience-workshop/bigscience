@@ -798,6 +798,38 @@ nslookup 10.148.3.247
 Add `--exclude=r10i6n5` to your `sbatch` command and report it to JZ admins.
 
 
+### Run py-spy or any other monitor program across all nodes
+
+When dealing with hanging, here is how to automatically log `py-spy` traces for each process.
+
+Of course, this same process can be used to run some command for all nodes of a given job. i.e. it can be used to run something during the normal run - e.g. dump all the memory usage in each process via `nvidia-smi` or whatever other program is needed to be run.
+
+
+
+```
+cd ~/prod/code/tr8b-104B/bigscience/train/tr11-200B-ml/
+
+salloc --partition=gpu_p5 --constraint=a100 --nodes=40 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
+
+bash 200B-n40-bf16-mono.slurm
+```
+
+In another shell get the JOBID for the above `salloc`:
+```
+squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"
+```
+adjust jobid per above and the nodes count (XXX: probably can remove `--nodes=40` altogether and rely on `salloc` config):
+```
+srun --jobid=2180718 --gres=gpu:0 --nodes=40 --tasks-per-node=1 --output=trace-%N.out sh -c 'ps aux | grep python | egrep -v "grep|srun" | grep `whoami` | awk "{print \$2}" | xargs -I {} py-spy dump --native --pid {}' || echo "failed"
+```
+now all `py-spy` traces go into the `trace-$nodename.out` files under `cwd`.
+
+The key is to use `--gres=gpu:0` or otherwise the 2nd `srun` will block waiting for the first one to release the gpus.
+
+Also the assumption is that some conda env that has `py-spy` installed got activated in `~/.bashrc`. If yours doesn't already do that, add the instruction to load the env to the above command, before the `py-spy` command - it'll fail to find it otherwise.
+
+Don't forget to manually release the allocation when this process is done.
+
 
 ## TODO
 
