@@ -160,6 +160,13 @@ pip install -e .[dev]
 cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 pip install -r requirements.txt
 
+cd $six_ALL_CCFRWORK/code/deepspeed
+./build.sh
+
+# to build custom tokenizers make sure that if run on JZ your `~/.cargo/config.toml` contains the following:
+[net]
+git-fetch-with-cli = true
+
 # if needed first:
 # git clone https://github.com/huggingface/tokenizers $six_ALL_CCFRWORK/code/tokenizers
 cd $six_ALL_CCFRWORK/code/tokenizers
@@ -167,23 +174,9 @@ git checkout bigscience_fork
 module load rust
 pip install setuptools_rust
 pip install -e bindings/python
-
-cd $six_ALL_CCFRWORK/code/deepspeed
-./build.sh
-
 ```
 
 while we are going to override some of these with our custom installs, we first install these normally to get all the dependencies right.
-
-`tokenizers` requires to be downloaded from source:
- - It requires you to download rust: https://github.com/huggingface/tokenizers/tree/bigscience_fork/bindings/python#from-sources
- - For JZ installation: one needs to update `~/.cargo/config.toml` to contain the following:
- ```
-[net]
-git-fetch-with-cli = true
- ```
- - You might need to upgrade you `transformers` installation `pip install --upgrade transformers`
-
 
 Then finally to build apex you need a non-login instance since it is very demanding on resources and such build on the login instance will get killed:
 
