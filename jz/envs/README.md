@@ -188,7 +188,16 @@ Note: if using a no-gpu instance to build `apex` it will warn that it can't dete
 TORCH_CUDA_ARCH_LIST="7.0 8.0" pip install ...
 ```
 
+## Installation notes
 
+`tokenizers` requires to be download from source:
+ - It requires you to download rust: https://github.com/huggingface/tokenizers/tree/bigscience_fork/bindings/python#from-sources
+ - For JZ installation: one needs to update `~/.cargo/config.toml` to contain the following:
+ ```
+[net]
+git-fetch-with-cli = true
+ ```
+ - You might need to upgrade you `transformers` installation `pip install --upgrade transformers`
 
 ## Personal environment
 
