@@ -161,6 +161,7 @@ cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 pip install -r requirements.txt
 
 cd $six_ALL_CCFRWORK/code/tokenizers
+git checkout bigscience_fork
 module load rust
 pip install setuptools_rust
 pip install -e bindings/python
