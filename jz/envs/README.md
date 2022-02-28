@@ -175,6 +175,16 @@ cd $six_ALL_CCFRWORK/code/deepspeed
 
 while we are going to override some of these with our custom installs, we first install these normally to get all the dependencies right.
 
+`tokenizers` requires to be downloaded from source:
+ - It requires you to download rust: https://github.com/huggingface/tokenizers/tree/bigscience_fork/bindings/python#from-sources
+ - For JZ installation: one needs to update `~/.cargo/config.toml` to contain the following:
+ ```
+[net]
+git-fetch-with-cli = true
+ ```
+ - You might need to upgrade you `transformers` installation `pip install --upgrade transformers`
+
+
 Then finally to build apex you need a non-login instance since it is very demanding on resources and such build on the login instance will get killed:
 
 ```
@@ -187,17 +197,6 @@ Note: if using a no-gpu instance to build `apex` it will warn that it can't dete
 ```
 TORCH_CUDA_ARCH_LIST="7.0 8.0" pip install ...
 ```
-
-## Installation notes
-
-`tokenizers` requires to be download from source:
- - It requires you to download rust: https://github.com/huggingface/tokenizers/tree/bigscience_fork/bindings/python#from-sources
- - For JZ installation: one needs to update `~/.cargo/config.toml` to contain the following:
- ```
-[net]
-git-fetch-with-cli = true
- ```
- - You might need to upgrade you `transformers` installation `pip install --upgrade transformers`
 
 ## Personal environment
 
