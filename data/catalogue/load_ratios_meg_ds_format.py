@@ -43,7 +43,7 @@ def main():
 
     # TODO: you can add some extra dataset names for validation/test
     with open(args.output_meg_ds_ratio_file, "w") as fi:
-        fi.write(f"\"{args.split}: " + ", ".join(list_string) + "\"")
+        fi.write(f"\"{args.split}: " + ", ".join(list_string) + "\"\n")
 
 if __name__ == "__main__":
     main()
