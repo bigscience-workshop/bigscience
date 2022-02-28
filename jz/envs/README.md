@@ -160,6 +160,11 @@ pip install -e .[dev]
 cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 pip install -r requirements.txt
 
+cd $six_ALL_CCFRWORK/code/tokenizers
+module load rust
+pip install setuptools_rust
+pip install -e bindings/python
+
 cd $six_ALL_CCFRWORK/code/deepspeed
 ./build.sh
 
