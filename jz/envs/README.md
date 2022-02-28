@@ -163,6 +163,17 @@ pip install -r requirements.txt
 cd $six_ALL_CCFRWORK/code/deepspeed
 ./build.sh
 
+# to build custom tokenizers make sure that if run on JZ your `~/.cargo/config.toml` contains the following:
+[net]
+git-fetch-with-cli = true
+
+# if needed first:
+# git clone https://github.com/huggingface/tokenizers $six_ALL_CCFRWORK/code/tokenizers
+cd $six_ALL_CCFRWORK/code/tokenizers
+git checkout bigscience_fork
+module load rust
+pip install setuptools_rust
+pip install -e bindings/python
 ```
 
 while we are going to override some of these with our custom installs, we first install these normally to get all the dependencies right.
@@ -179,8 +190,6 @@ Note: if using a no-gpu instance to build `apex` it will warn that it can't dete
 ```
 TORCH_CUDA_ARCH_LIST="7.0 8.0" pip install ...
 ```
-
-
 
 ## Personal environment
 
