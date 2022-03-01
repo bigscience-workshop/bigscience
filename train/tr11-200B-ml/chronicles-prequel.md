@@ -603,6 +603,12 @@ NHIDDEN=13312; NLAYERS=82; Model size: 178B, ratio=162
 |    48 | 178B |  8 |  4 | 12 |   4 |     64 | 2048 | 74GB | 104.82 | 151.18 | 02-28 |
 |       |      |    |    |    |     |        |      |      |        |        |       |
 
+NHIDDEN=13312; NLAYERS=94 Model size: 203B, ratio=141
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS | GBS  | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: | --:  | ---: | -----: | -----: | ----: |
+| 48    | 203B | 8  | 4  | 12 | 2   | 128    | 2048 | 67GB | 124.10 | 146.12 | 02-28 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
 
 NHIDDEN=14336; NLAYERS=70; Model size: 176B, ratio=204
 
@@ -614,6 +620,14 @@ NHIDDEN=14336; NLAYERS=70; Model size: 176B, ratio=204
 |    48 | 176B |  8 |  4 | 12 |   2 |    128 | 2048 | 60GB | 105.89 | 148.08 | 02-28 |
 |    48 | 176B |  8 |  4 | 12 |   4 |     64 | 2048 | 73GB | 102.27 | 153.33 | 02-28 |
 |       |      |    |    |    |     |        |      |      |        |        |       |
+
+NHIDDEN=14336; NLAYERS=82; Model size: 206B, ratio=174
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS | GBS  | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: | --:  | ---: | -----: | -----: | ----: |
+| 48    | 206B | 8  | 4  | 12 | 2   | 128    | 2048 | OOM  |        |        | 02-28 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
+
 
 
 (was quickly getting the memory snapshot with: `pdsh -w jean-zay-iam01 "source ~/.pdshrc; nvidia-smi"`)
