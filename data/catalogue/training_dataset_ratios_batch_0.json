@@ -1300,7 +1300,7 @@
     "ratio": 0.0001421613075
   },
   {
-    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/lm_hi_pseudocrawl-filtered_515_www_aajtak_in/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/lm_indic-hi_pseudocrawl-filtered_515_www_aajtak_in/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
     "ratio": 0.0006125
   },
   {
@@ -1312,7 +1312,7 @@
     "ratio": 0.0008846629225
   },
   {
-    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/lm_hi_pseudocrawl-filtered_667_www_bhaskar_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/meg-ds/bigscience-catalogue-lm-data/lm_indic-hi_pseudocrawl-filtered_667_www_bhaskar_com/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles_shard_0_8_text_document",
     "ratio": 0.0018125
   },
   {

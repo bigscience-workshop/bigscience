@@ -5,7 +5,7 @@ import json
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--dataset_ratios_path",
+        "--dataset-ratios-path",
         type=str,
         required=True,
         help="path to JSON file containing input dataset ratios. Values ares dictionary: {'dataset_path': str, 'ratio': float}",
@@ -13,7 +13,12 @@ def get_args():
     parser.add_argument(
         "--split",
         choices=["train", "valid", "test"]
-
+    )
+    parser.add_argument(
+        "--output-meg-ds-ratio-file",
+        type=str,
+        required=True,
+        help="path to output the language ratio file",
     )
     return parser.parse_args()
 
@@ -37,8 +42,8 @@ def main():
         list_string.append(elt_string)
 
     # TODO: you can add some extra dataset names for validation/test
-    print(f"\"{args.split}: " + ", ".join(list_string) + "\"")
-
+    with open(args.output_meg_ds_ratio_file, "w") as fi:
+        fi.write(f"\"{args.split}: " + ", ".join(list_string) + "\"\n")
 
 if __name__ == "__main__":
     main()
