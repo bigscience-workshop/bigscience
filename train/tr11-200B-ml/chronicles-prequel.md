@@ -555,10 +555,65 @@ NHIDDEN=13824 / NLAYERS=78
 |    48 | 182B | 16 |  4 |  6 |   4 |     96 | 2048 | 75GB | 115.55 | 140.57 | 02-27 |
 |       |      |    |    |    |     |        |      |      |        |        |       |
 
-
 HIDDEN=12288; NLAYERS=106; regex partition_method='type:transformer|embed')
 
-| Nodes | Size | DP | TP | PP | MBS | NHEADS | GBS  | Mem  | Sec/it | TFLOPs | Notes |
-| ----: | ---: | -: | -: | -: | --: | -----: | --:  | ---: | -----: | -----: | ----: |
-| 48    | 195B | 8  | 4  | 12 | 2   | 96     | 2048 | 44GB | 112.69 | 154.86 | 02-27 |
+| Nodes | Size | DP | TP | PP | MBS | NHEADS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 195B |  8 |  4 | 12 |   2 |     96 | 2048 | 44GB | 112.69 | 154.86 | 02-27 |
+|    48 | 195B |  8 |  4 | 12 |   2 |     64 | 2048 | GB   | 110.96 | 157.27 | 02-27 |
 |       |      |    |    |    |     |        |      |      |        |        |       |
+
+## Rebalancing layers
+
+Do not compare these numbers to the previous ones. For 2 reasons:
+
+- First, from now on the testing is happening with BF16 optimizer that was just written to accumulate gradients in fp32, so it is more memory heavy and is a bit slower - this is compared to fp16 which grad accumulates in fp16. The additional memory usage is 4bytes x params and it's not sharded across gpus.
+- I implemented and enabled `--pp-partition-method 'type:transformer|embedding'` so we use 2 layers less, to match `2+nlayers*PP` math to get a perfect balance giving each embedding layer its own slot on par with transformer layers. This is because 250k embedding matrix takes as much space as a single transformer layer.
+
+HIDDEN=12288; NLAYERS=106; Model size: 195B, ratio=115
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 195B |  8 |  4 | 12 |   2 |     64 | 2048 | 67GB | 116.54 | 149.75 | 02-27 |
+|    48 | 195B |  8 |  4 | 12 |   2 |     96 | 2048 | 65GB | 118.79 | 146.90 | 02-27 |
+|    48 | 195B |  8 |  4 | 12 |   2 |    128 | 2048 | 67GB | 121.42 | 143.73 | 02-27 |
+|    48 | 195B |  8 |  4 | 12 |   4 |     96 | 2048 | 79GB | 120.34 | 145.01 | 02-27 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
+
+
+HIDDEN=12288; NLAYERS=100; Model size: 184B, ratio=122
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 184B | 16 |  4 |  6 |   2 |     64 | 2048 | OOM  | x      | x      | 02-27 |
+|    48 | 184B | 16 |  4 |  6 |   1 |     64 | 2048 | OOM  | x      | x      | 02-27 |
+|    48 | 184B |  8 |  8 |  6 |   2 |     64 | 2048 | 61GB | 139.72 | 117.91 | 02-27 |
+|    48 | 184B |  8 |  8 |  6 |   4 |     64 | 2048 | 72GB | 120.96 | 136.20 | 02-27 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
+
+
+NHIDDEN=13312; NLAYERS=82; Model size: 178B, ratio=162
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 178B |  4 |  8 | 12 |   4 |     64 | 2048 | 52GB | 111.79 | 141.76 | 02-27 |
+|    48 | 178B |  8 |  4 | 12 |   2 |     64 | 2048 | 63GB | 104.45 | 151.71 | 02-27 |
+|    48 | 178B |  8 |  4 | 12 |   2 |    104 | 2048 | 62GB | 123.71 | 128.10 | 02-27 |
+|    48 | 178B |  8 |  4 | 12 |   2 |    128 | 2048 | 60GB | 108.78 | 145.68 | 02-27 |
+|    48 | 178B |  8 |  4 | 12 |   4 |     64 | 2048 | 74GB | 104.82 | 151.18 | 02-27 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
+
+
+NHIDDEN=14336; NLAYERS=70; Model size: 176B, ratio=204
+
+| Nodes | Size | DP | TP | PP | MBS | NHEADS |  GBS | Mem  | Sec/it | TFLOPs | Notes |
+| ----: | ---: | -: | -: | -: | --: | -----: |  --: | ---: | -----: | -----: | ----: |
+|    48 | 176B |  4 |  8 | 12 |   2 |     64 | 2048 | 40GB | 121.63 | 128.92 | 02-27 |
+|    48 | 176B |  8 |  4 | 12 |   2 |     64 | 2048 | 59GB | 102.03 | 153.68 | 02-27 |
+|    48 | 176B |  8 |  4 | 12 |   2 |    112 | 2048 | 59GB | 104.50 | 150.05 | 02-27 |
+|    48 | 176B |  8 |  4 | 12 |   2 |    128 | 2048 | 60GB | 105.89 | 148.08 | 02-27 |
+|    48 | 176B |  8 |  4 | 12 |   4 |     64 | 2048 | 73GB | 102.27 | 153.33 | 02-27 |
+|       |      |    |    |    |     |        |      |      |        |        |       |
+
+
+(was quickly getting the memory snapshot with: `pdsh -w jean-zay-iam01 "source ~/.pdshrc; nvidia-smi"`)
