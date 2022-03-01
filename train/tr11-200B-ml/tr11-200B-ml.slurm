@@ -31,11 +31,18 @@ cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
 
-# TODO: point to the actual dataset path
-DATA_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5c-1B3-multilingual-alpha-alibi
-TRAIN_DATA_PATH=$(cat $DATA_PATH/sampling_probs/train_data_string.0.3.txt)
-VALID_DATA_PATH=$(cat $DATA_PATH/sampling_probs/valid_data_string.0.3.txt)
-TEST_DATA_PATH=$(cat $DATA_PATH/sampling_probs/test_data_string.0.3.txt)
+
+# TODO: fix data settings
+BIGSCIENCE_REPO=/gpfswork/rech/six/uty16tp/code/big_science/bigscience
+TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits.txt
+VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits.txt
+TEST_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/test-splits.txt
+CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_batch_0_per_language.json
+LOAD_RATIOS_SCRIPT=$BIGSCIENCE_REPO/data/catalogue/load_ratios_meg_ds_format.py
+python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split train --output-meg-ds-ratio-file $TRAIN_DATA_PATH
+python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split valid --output-meg-ds-ratio-file $VALID_DATA_PATH
+python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split test --output-meg-ds-ratio-file $TEST_DATA_PATH
+
 
 # defining the right environment variables
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
@@ -191,9 +198,9 @@ export CMD=" \
     $OUTPUT_ARGS \
     --save $CHECKPOINT_PATH \
     --load $CHECKPOINT_PATH \
-    --train-weighted-split-paths $TRAIN_DATA_PATH \
-    --valid-weighted-split-paths $VALID_DATA_PATH \
-    --test-weighted-split-paths  $TEST_DATA_PATH \
+    --train-weighted-split-paths-path $TRAIN_DATA_PATH \
+    --valid-weighted-split-paths-path $VALID_DATA_PATH \
+    --test-weighted-split-paths-path $TEST_DATA_PATH \
     --data-impl mmap \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
