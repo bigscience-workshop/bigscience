@@ -20,7 +20,7 @@ TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no
 
 # ======= Generate language ratio file ======
 
-BIGSCIENCE_REPO=$WORK/code/big_science/bigscience
+BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/bigscience
 
 LANGUAGE_RATIOS_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_batch_${BATCH_ID}_per_language.json
 MEG_DS_DATASET_PREFIX=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/meg-ds-per-lang/{lang}/"${TOKENIZER_NAME_OR_PATH//\//_}"_batch_${BATCH_ID}_text_document
@@ -35,7 +35,7 @@ python $BIGSCIENCE_REPO/data/catalogue/merge_dataset_per_language.py \
 
 # ======= Generate merged files ======
 
-MEG_DS_REPO=$WORK/code/big_science/Megatron-DeepSpeed
+MEG_DS_REPO=$six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 pushd $MEG_DS_REPO
 
 readarray -t MERGE_ARGUMENTS < <(python -c "

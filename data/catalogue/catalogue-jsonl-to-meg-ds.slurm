@@ -18,7 +18,7 @@ conda activate thomas_data_tooling
 
 # Get dataset names
 
-CATALOGUE_DATA_REPO=$WORK/code/big_science/catalogue_data
+CATALOGUE_DATA_REPO=$six_ALL_CCFRWORK/code/catalogue_data
 pushd $CATALOGUE_DATA_REPO
 
 DATASET_PATH=$(python get_dataset_path.py --dataset-ratios-file training_dataset_ratios.json --index $SLURM_ARRAY_TASK_ID)
