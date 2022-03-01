@@ -26,10 +26,10 @@ TENSORBOARD_PATH=$REPO_PATH/tensorboard
 LOGS_PATH=$REPO_PATH/logs
 mkdir -p $LOGS_PATH
 
-KILL_SWITCH_PATH=/tmp/kill-switch-tr11-200B-exp1
-
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed-tr8b-104B
 cd $MEGATRON_DEEPSPEED_REPO
+
+KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
 
 # TODO: point to the actual dataset path
 DATA_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr5c-1B3-multilingual-alpha-alibi
@@ -53,22 +53,21 @@ export TRANSFORMERS_OFFLINE=1
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
 
-# Expected Throughput ~ 151.64 TFLOPS, Speed ~ 107.12 Sec/it
 GPUS_PER_NODE=8
-NNODES=$SLURM_NNODES  # Should be 48
+NNODES=$SLURM_NNODES
 
-PP_SIZE=12
 TP_SIZE=4
+PP_SIZE=12
 
-MICRO_BATCH_SIZE=4
+MICRO_BATCH_SIZE=2
 GLOBAL_BATCH_SIZE=2048  # 4.2M tokens. It is larger than the initial plan of 3.2M tokens to get higher throughput
 
-NLAYERS=78
-NHIDDEN=13824  # NHIDDEN / NLAYERS = 177
-NHEADS=96  # NHIDDEN / NHEADS =144
+NHIDDEN=14336
+NLAYERS=70     # NHIDDEN / NLAYERS = ?
+NHEADS=112     # NHIDDEN / NHEADS = ?
 SEQ_LEN=2048
 
-SAVE_INTERVAL=2
+SAVE_INTERVAL=50
 
 TRAIN_SAMPLES=220_000_000  # 450B tokens
 LR_DECAY_SAMPLES=200_000_000  # Decay for the first 410B tokens then continue at fixed --min-lr
@@ -97,9 +96,7 @@ EXIT_OPTS=" \
     "
 
 # TODO: fix
-#    --init-method-std \
-#    --bf16 \
-#    --tokenizer-name-or-path bigscience/oscar_13_languages_alpha_weight \
+#    --init-method-std \  # sqrt(0.33333333333/14336)
 
 # Notes:
 # --rampup-batch-size 16 16 9_765_625  # starts with gbs=16 then linearly increase by 16 until reaching gbs=1568 over
@@ -108,6 +105,7 @@ EXIT_OPTS=" \
 
 
 GPT_ARGS=" \
+    --pp-partition-method 'type:transformer|embedding' \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \
@@ -118,11 +116,10 @@ GPT_ARGS=" \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path bigscience/oscar_13_languages_alpha_weight \
-    --init-method-std 0.005 \
-    --loss-scale 12 \
+    --tokenizer-name-or-path bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-nfkc-250k \
+    --init-method-std 0.0048 \
     --embed-layernorm \
-    --fp16 \
+    --bf16 \
     --seed 42 \
     --position-embedding-type alibi \
     --checkpoint-activations \
@@ -132,11 +129,13 @@ GPT_ARGS=" \
     $EXIT_OPTS \
     "
 
+# TODO: decide on efficient eval-interval + eval-iters
+
 OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 10000 \
-    --eval-iters 100 \
+    --eval-interval 1000 \
+    --eval-iters 10 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
@@ -144,7 +143,7 @@ OUTPUT_ARGS=" \
     --log-validation-ppl-to-tensorboard \
     "
 
-ZERO_STAGE=1
+ZERO_STAGE=0 # important: bf16 must use z0! it implements its own zero stage 1 equivalent
 
 config_json="./ds_config.$SLURM_JOBID.json"
 
@@ -159,15 +158,7 @@ cat <<EOT > $config_json
     "move_params_to_cpu_during_init": false
   },
   "bf16": {
-    "enabled": false
-  },
-  "fp16": {
-    "enabled": true,
-    "loss_scale": 0,
-    "loss_scale_window": 500,
-    "hysteresis": 2,
-    "min_loss_scale": 1,
-    "initial_scale_power": 12
+    "enabled": true
   },
   "checkpoint_comm_enabled": false,
   "steps_per_print": 2000,
@@ -189,14 +180,8 @@ export LAUNCHER="python -u -m torch.distributed.run \
     --rdzv_endpoint $MASTER_ADDR:$MASTER_PORT \
     --rdzv_backend c10d \
     --max_restarts 0 \
+    --tee 3 \
     "
-
-#export LAUNCHER="python -u -m torch.distributed.launch \
-#    --nproc_per_node $GPUS_PER_NODE \
-#    --nnodes $NNODES \
-#    --master_addr $MASTER_ADDR \
-#    --master_port $MASTER_PORT \
-#    "
 
 export CMD=" \
     `pwd`/pretrain_gpt.py \
@@ -208,28 +193,18 @@ export CMD=" \
     --load $CHECKPOINT_PATH \
     --train-weighted-split-paths $TRAIN_DATA_PATH \
     --valid-weighted-split-paths $VALID_DATA_PATH \
-    --test-weighted-split-paths $TEST_DATA_PATH \
+    --test-weighted-split-paths  $TEST_DATA_PATH \
     --data-impl mmap \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
     "
 
-
-# # clear old checkpoint as it'd mismatch while we sort things out
-#     rm -rf $SAVE_CHECKPOINT_PATH
-
-
 echo $CMD
 
-# for debug
-#export CUDA_LAUNCH_BLOCKING=1
+# do not remove or the training will hang and nodes will be lost w/o this workaround
+export CUDA_LAUNCH_BLOCKING=1
 
-#srun --jobid $SLURM_JOBID bash -c 'free -m'
-#srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID /gpfswork/rech/six/commun/code/tr8b-104B/bigscience/train/tr11-200B-ml/test.py" 2>&1 | tee -a $LOGS_PATH/main_log.txt
-#asdlkjds
+# hide duplicated errors using this hack - will be properly fixed in pt-1.12
+export TORCHELASTIC_ERROR_FILE=/tmp/torch-elastic-error.json
 
-# XXX: remove for main training!!!
-#export CUDA_LAUNCH_BLOCKING=1
-
-# to debug - add echo (it exits and prints what it would have launched)
 clear; srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
