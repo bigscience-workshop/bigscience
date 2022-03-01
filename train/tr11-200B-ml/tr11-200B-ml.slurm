@@ -132,6 +132,7 @@ GPT_ARGS=" \
     --checkpoint-activations \
     --abort-on-unmet-fused-kernel-constraints \
     --kill-switch-path $KILL_SWITCH_PATH \
+    --pad-vocab-size-to 250880 \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
     "
