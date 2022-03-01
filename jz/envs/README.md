@@ -498,6 +498,114 @@ If it's trying to install into your local `~/.local` folder it's because `pip` i
 
 
 
+## Quering many running nodes at once
+
+To do some monitoring...
+
+
+```
+cd ~/prod/code/tr8b-104B/bigscience/train/tr11-200B-ml/
+
+salloc --partition=gpu_p5 --constraint=a100 --nodes=40 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
+
+bash 200B-n40-bf16-mono.slurm
+
+
+# in another shell
+squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"
+# adjust jobid
+srun --jobid=2180718 --gres=gpu:0 --nodes=40 --tasks-per-node=1 --output=trace-%N.out sh -c 'ps aux | grep python | egrep -v "grep|srun" | grep `whoami` | awk "{print \$2}" | xargs -I {} py-spy dump --native --pid {}' || echo "failed"
+
+```
+
+
+# using ds_ssh
+
+It's a bit tricky and doesn't work for `py-spy`
+
+
+```
+salloc --partition=gpu_p5 --constraint=a100 --nodes=2 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
+```
+
+```
+bash 20B-n2-fp16.slurm
+```
+
+```
+function makehostfile() {
+perl -e '$slots=split /,/, $ENV{"SLURM_STEP_GPUS"};
+$slots=8 if $slots==0; # workaround 8 gpu machines
+@nodes = split /\n/, qx[scontrol show hostnames $ENV{"SLURM_JOB_NODELIST"}];
+print map { "$b$_ slots=$slots\n" } @nodes'
+}
+makehostfile > hostfile
+```
+
+```
+ds_ssh -f hostfile "source ~/.pdshrc; nvidia-smi"
+```
+
+the tricky part is to get the remote env loaded, I have a mostly ok hack, but which doesn't work for `py-spy` - something is wrong in the env.
+
+So the special env-loading file is:
+```
+$ cat ~/.pdshrc
+
+source /etc/profile.d/z_modules.sh;
+
+#source ~/.bashrc
+
+module purge
+#module load pytorch-gpu/py3/1.8.1
+module load nvtop git git-lfs github-cli mc
+
+# specific caches
+
+export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
+export DATASETS_CUSTOM=$six_ALL_CCFRWORK/datasets-custom
+
+### CONDA ###
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/gpfslocalsup/pub/anaconda-py3/2020.02/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/profile.d/conda.sh" ]; then
+        . "/gpfslocalsup/pub/anaconda-py3/2020.02/etc/profile.d/conda.sh"
+    else
+        export PATH="/gpfslocalsup/pub/anaconda-py3/2020.02/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+conda activate base
+conda activate /gpfswork/rech/six/commun/conda/py38-pt111
+```
+
+`ds_ssh` uses pdsh behind the scenes.
+
+Note that `py-spy` works just fine when actually ssh'ed to the compute node:
+
+```
+ps aux | grep python | egrep -v '(srun|grep)' | grep `whoami` | awk '{print $2}' | xargs -I {} py-spy dump --pid {}
+```
+
+# using pdsh
+
+To access just one running node it's simpler to just use `pdsh` directly.
+
+```
+pdsh -w jean-zay-iam01 "source ~/.pdshrc; nvidia-smi"
+```
+
+
 ## Older info
 
 Probably of no use any longer, but still here in case it is needed (might move to another file).
