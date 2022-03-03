@@ -55,4 +55,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
+conda activate base
 conda activate cutting-edge
