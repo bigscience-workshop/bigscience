@@ -159,7 +159,6 @@ cat <<EOT > $config_json
   "bf16": {
     "enabled": true
   },
-  "checkpoint_comm_enabled": false,
   "steps_per_print": 2000,
   "wall_clock_breakdown": false
 }
