@@ -23,6 +23,8 @@ source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-t
 
 ### Packages
 
+- `deepspeed` uses the `olruwase/bf16-updates` branch at the moment - XXX: hopefully it should be merged soon.
+
 - pytorch-1.11-to-be (using a release candidate and will update to final release when it's out) - we must use it for its NCCL version which supports BF16 comms (the NCCL version that comes with pt-1.10 doesn't)
 
 - `tokenizers` requires a special branch `bigscience_fork` which also requires manual building:
