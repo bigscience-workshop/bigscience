@@ -426,7 +426,7 @@ Actionable proposals:
 
 1. restart Exp 9 from 7k with `lr=1e-5`
 2. investigate weight initialization
-   530B uses `--init-method-std 0.004` - probably will try that
+   530B uses `--init-method-std 0.004` - probably will try that (need to calculate from NHIDDEN)
 3. double check that gradient clipping is working
 4. try shorter seqlen (`seqlen=512`, 4x the batch size, everything else similar to exp 8)
 5. if promising, try curriculum learning to reach the largest seqlen

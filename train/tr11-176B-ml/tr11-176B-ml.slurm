@@ -81,9 +81,6 @@ LR_DECAY_SAMPLES=200_000_000  # Decay for the first 410B tokens then continue at
 LR_WARMUP_SAMPLES=183_105  # 375M tokens. We used to use 216_320, not clear why
 
 
-# Notes:
-# "--adam-beta1 0.9  --adam-beta2 0.95  --adam-eps 1e-8"  are from the 104B experiment
-
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
