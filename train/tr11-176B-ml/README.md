@@ -8,6 +8,15 @@ Auto-regressive objective using regular Megatron-LM GPT2 language model w/o mult
 
 Model size: 176B
 
+
+## Main info
+
+- [tensorboard](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard)
+- [log file](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs)
+ or on JZ: `tail -F $six_ALL_CCFRSCRATCH//checkpoints/tr11-176B-ml/tr11-176B-ml-logs/logs/main_log.txt`
+- [slurm script](./tr11-176B-ml.slurm)
+
+
 ## Environment
 
 To launch the environment use [start-tr11-176B-ml](./start-tr11-176B-ml)
@@ -17,12 +26,6 @@ XXX: I need to prepare it
 ```
 source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
 ```
-
-## Logs
-
-- [tensorboard](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard)
-- [log file](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs)
- or on JZ: `tail -F $six_ALL_CCFRSCRATCH//checkpoints/tr11-176B-ml/tr11-176B-ml-logs/logs/main_log.txt`
 
 
 ## Model Setup
