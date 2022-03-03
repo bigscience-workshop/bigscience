@@ -22,12 +22,12 @@ echo "START TIME: $(date)"
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr11-176B-ml
+REPO_PATH=$DATA_OUTPUT_PATH/tr11-176B-ml-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 LOGS_PATH=$REPO_PATH/logs
 mkdir -p $LOGS_PATH
 
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed-tr8b-104B
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
@@ -99,9 +99,6 @@ OPTIMIZER_ARGS=" \
 EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
-
-# TODO: fix
-#    --init-method-std \  # sqrt(0.33333333333/14336)
 
 GPT_ARGS=" \
     --pp-partition-method 'type:transformer|embedding' \

@@ -18,6 +18,12 @@ XXX: I need to prepare it
 source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
 ```
 
+## Logs
+
+- [tensorboard](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard)
+- [log file](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs)
+ or on JZ: `tail -F $six_ALL_CCFRSCRATCH//checkpoints/tr11-176B-ml/tr11-176B-ml-logs/logs/main_log.txt`
+
 
 ## Model Setup
 
@@ -196,7 +202,7 @@ We use the added by us AliBi implementation:
     --position-embedding-type alibi \
 ```
 
-We use the added by us embedding norm which makes the training more stable at a small training slowdown cost and a tiny additional amount of memory.
+We use the added by us embedding layer norm which makes the training more stable at a small training slowdown cost and a tiny additional amount of memory.
 
 ```
     --embed-layernorm \
@@ -341,7 +347,7 @@ rm  $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 ```
 
 
-### launcher
+### Launcher
 
 We are using the latest elastic-based launcher with `c10d` backend.
 
@@ -365,3 +371,10 @@ export LAUNCHER="python -u -m torch.distributed.run \
 ```
 grep `[default7]` main_log.txt
 ```
+
+
+# TODO
+
+- document hub-sync `tr11-176B-ml-hub-sync-logs.slurm`
+- enable/document the watchdog once we start the actual training
+- add to the front page
