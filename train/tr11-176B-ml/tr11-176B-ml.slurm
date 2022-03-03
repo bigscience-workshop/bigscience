@@ -105,12 +105,6 @@ EXIT_OPTS=" \
 # TODO: fix
 #    --init-method-std \  # sqrt(0.33333333333/14336)
 
-# Notes:
-# --rampup-batch-size 16 16 9_765_625  # starts with gbs=16 then linearly increase by 16 until reaching gbs=1568 over
-#                                      # 9_765_625 samples x 2048 = 20B tokens
-#                                      # Use 20B tokens (not 12B) because we are using a large GLOBAL_BATCH_SIZE than prior work
-
-
 GPT_ARGS=" \
     --pp-partition-method 'type:transformer|embedding' \
     --num-layers $NLAYERS \
