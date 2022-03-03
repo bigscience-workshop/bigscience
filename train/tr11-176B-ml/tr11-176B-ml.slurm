@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr11-200B-ml
+#SBATCH --job-name=tr11-176B-ml
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
 #SBATCH --qos=qos_gpu-gc             # up to 100h
@@ -14,15 +14,15 @@
 
 set -x -e
 
-#source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8b-104B/start-tr8b-104B
 #source $six_ALL_CCFRWORK/start-py38-pt110
 source $six_ALL_CCFRWORK/start-py38-pt111
+#source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
 
 echo "START TIME: $(date)"
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11-200B-ml
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
-REPO_PATH=$DATA_OUTPUT_PATH/tr11-200B-ml
+REPO_PATH=$DATA_OUTPUT_PATH/tr11-176B-ml
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 LOGS_PATH=$REPO_PATH/logs
 mkdir -p $LOGS_PATH
@@ -30,7 +30,7 @@ mkdir -p $LOGS_PATH
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed-tr8b-104B
 cd $MEGATRON_DEEPSPEED_REPO
 
-KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
+KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 
 
 # TODO: fix data settings

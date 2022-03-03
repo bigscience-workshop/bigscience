@@ -10,16 +10,41 @@ Model size: 176B
 
 ## Environment
 
-To launch the environment use [start-tr11](./start-tr11)
+To launch the environment use [start-tr11-176B-ml](./start-tr11-176B-ml)
 
-XXX: setup
+XXX: I need to prepare it
 
 ```
-source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11
+source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
 ```
 
 
 ## Model Setup
+
+### Packages
+
+- pytorch-1.11-to-be (using a release candidate and will update to final release when it's out) - we must use it for its NCCL version which supports BF16 comms (the NCCL version that comes with pt-1.10 doesn't)
+
+- `tokenizers` requires a special branch `bigscience_fork` which also requires manual building:
+
+```
+# to build custom tokenizers make sure that if run on JZ your `~/.cargo/config.toml` contains the following:
+[net]
+git-fetch-with-cli = true
+
+# if needed first:
+# git clone https://github.com/huggingface/tokenizers $six_ALL_CCFRWORK/code/tokenizers
+cd $six_ALL_CCFRWORK/code/tokenizers
+git checkout bigscience_fork
+module load rust
+pip install setuptools_rust
+pip install -e bindings/python
+```
+- `transformers` - any version
+
+- `datasets` - any version
+
+- `apex` - any version
 
 
 ### Architecture
@@ -59,19 +84,27 @@ SEQ_LEN=2048
 
 
 
-
-### Global batch size
+### Replica setup
 
 GPUs = 384 (48 nodes of 8)
 
+```
 TP=4
 PP=12
 DP=8
 MBS=2
+```
 
-One replica is 48 GPUs -> 8 replicas -> with MBS=2 (8*2) can do GBS increments of 16 (2 samples per replica).
+One replica is 48 GPUs (`TP*PP=4*12`)
+
+MBS=2 performs the fastest in this setup w/o using too much additional memory.
+
+
+### Global batch size
 
 GBS = Global Batch Size
+
+8 replicas -> with MBS=2 (8*2) can do GBS increments of 16 (2 samples per replica).
 
 Use a schedule:
 
@@ -80,7 +113,6 @@ Use a schedule:
 - then continue at 4.2M tokens/step (GBS=2048) for 210M samples (430B tokens / ~102K steps)
 
 Total: 450B tokens / 220M samples
-
 
 syntax:
 ```
@@ -200,20 +232,44 @@ python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split te
 
 ### Data type
 
+We are using `bfloat16` since it's supposed to be more stable than `float16`
+
 ```
     --bf16 \
 ```
+and the rest is in the Deepspeed config
 
 
 ### Deepspeed config
 
 
-the new `BF16_Optimizer` implements its own ZeRO Stage 1, hence until it gets its own stage number, we must use:
+The new `BF16_Optimizer` implements its own ZeRO Stage 1, hence until it gets its own stage number, we must use:
 ```
 ZERO_STAGE=0
+config_json="./ds_config.$SLURM_JOBID.json"
+
+# Deepspeed figures out GAS dynamically from dynamic GBS via set_train_batch_size()
+cat <<EOT > $config_json
+{
+  "train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
+  "train_batch_size": $GLOBAL_BATCH_SIZE,
+  "gradient_clipping": 1.0,
+  "zero_optimization": {
+    "stage": $ZERO_STAGE
+  },
+  "bf16": {
+    "enabled": true
+  },
+  "steps_per_print": 2000,
+  "wall_clock_breakdown": false
+}
+EOT
+
 ```
 
-Using Deepspeed's activation checkpointing to use a lot less GPU memory
+The new `BF16_Optimizer` accumulates grads in fp32. It doesn't shard the static buffer it reuses, which consumes 4 bytes * params additional memory, but since it's not sharding it saves on comms. Down the road, it'll be expanded to support sharding on demand.
+
+Using Deepspeed's activation checkpointing to use a lot less GPU memory:
 
 ```
     --deepspeed-activation-checkpointing \
@@ -265,7 +321,7 @@ XXX: sync to the final path
 To arm:
 
 ```
-KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
+KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 
     --kill-switch-path $KILL_SWITCH_PATH \
 ```
@@ -273,11 +329,37 @@ KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
 To trigger:
 
 ```
-touch $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
+touch $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 ```
 
 To deactivate and let new instances of a job run normally:
 
 ```
-rm  $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
+rm  $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
+```
+
+
+### launcher
+
+We are using the latest elastic-based launcher with `c10d` backend.
+
+```
+MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
+MASTER_PORT=6000
+GPUS_PER_NODE=8
+NNODES=$SLURM_NNODES
+
+export LAUNCHER="python -u -m torch.distributed.run \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --rdzv_endpoint $MASTER_ADDR:$MASTER_PORT \
+    --rdzv_backend c10d \
+    --max_restarts 0 \
+    --tee 3 \
+    "
+```
+
+`--tee 3` prefixes all logs with the local rank, which helps to unravel interleaved error messages by grepping for one of the local rank prefixes, e.g.:
+```
+grep `[default7]` main_log.txt
 ```
