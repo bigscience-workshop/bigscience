@@ -45,7 +45,7 @@ Model size: 176B, hidden/layers ratio: 204, hidden/heads ratio: 128
 
 
 
-## Sequence Length
+### Sequence Length
 
 Default Megatron-LM language model with 2048 tokens sequence length
 
@@ -60,7 +60,7 @@ SEQ_LEN=2048
 
 
 
-## Global batch size
+### Global batch size
 
 GPUs = 384 (48 nodes of 8)
 
@@ -103,7 +103,7 @@ Notes:
 
 
 
-## Optimizer
+### Optimizer
 
 - AdamW, β1=0.9, β2=0.95, eps=1e−8
 - learning rate:
@@ -133,7 +133,7 @@ LR_WARMUP_SAMPLES=183_105  # 375M tokens
     --weight-decay 1e-1 \
 ```
 
-## std Init
+### std Init
 
 This proved to be a very crucial setting in our 104B experiments and we couldn't break past the first few thousands iterations until we figured out the 0.02 default `--init-method-std` was a way too big.
 
@@ -151,4 +151,133 @@ Thus: `sqrt(1/(14336*3)) = 0.00482197968631537`
 
 ```
     --init-method-std 0.0048 \
+```
+
+### Misc features
+
+
+We use the added by us AliBi implementation:
+
+```
+    --position-embedding-type alibi \
+```
+
+We use the added by us embedding norm which makes the training more stable at a small training slowdown cost and a tiny additional amount of memory.
+
+```
+    --embed-layernorm \
+```
+
+
+### Tokenizer
+
+
+```
+    --tokenizer-type PretrainedFromHF \
+    --tokenizer-name-or-path bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-nfkc-250k \
+```
+
+
+
+### Data
+
+
+XXX: needs cleanup and notes to where and why
+
+```
+# TODO: fix data settings
+BIGSCIENCE_REPO=/gpfswork/rech/six/uty16tp/code/big_science/bigscience
+TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits.txt
+VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits.txt
+TEST_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/test-splits.txt
+CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_batch_0_per_language.json
+LOAD_RATIOS_SCRIPT=$BIGSCIENCE_REPO/data/catalogue/load_ratios_meg_ds_format.py
+python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split train --output-meg-ds-ratio-file $TRAIN_DATA_PATH
+python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split valid --output-meg-ds-ratio-file $VALID_DATA_PATH
+python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split test --output-meg-ds-ratio-file $TEST_DATA_PATH
+```
+
+
+### Data type
+
+```
+    --bf16 \
+```
+
+
+### Deepspeed config
+
+
+the new `BF16_Optimizer` implements its own ZeRO Stage 1, hence until it gets its own stage number, we must use:
+```
+ZERO_STAGE=0
+```
+
+Using Deepspeed's activation checkpointing to use a lot less GPU memory
+
+```
+    --deepspeed-activation-checkpointing \
+```
+
+
+
+### Important environment variables
+
+The usual set to tell where things are and that we are working w/o internet on the compute nodes:
+
+```
+export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
+export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
+export HF_DATASETS_OFFLINE=1
+export TRANSFORMERS_OFFLINE=1
+
+```
+
+
+There is some complex hanging problem that occurs under certain conditions with 40+ nodes, which the following settings solves:
+
+```
+export CUDA_LAUNCH_BLOCKING=1
+```
+in theory it should make everything much slower but makes a tiny impact or no impact at all to the throughput.
+
+
+To hide duplicated errors using this hack - will be properly fixed in pt-1.12
+
+```
+export TORCHELASTIC_ERROR_FILE=/tmp/torch-elastic-error.json
+```
+using `/tmp/` on purpose here so that each node will have a different target.
+
+
+
+
+### Kill Switch
+
+This is a feature that allows us to "kill" a SLURM job started by a user who isn't around at the moment, since SLURM doesn't support groups and we don't have `sudo` access. But basically we get the program to poll for a file at startup and before each iteration and it'll quit if it finds this file.
+
+For an explanation on how it works see: [Kill Switch](../../jz/slurm/README.md#kill-switch)
+
+XXX: sync to the final path
+
+To arm:
+
+```
+KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
+
+    --kill-switch-path $KILL_SWITCH_PATH \
+```
+
+To trigger:
+
+```
+touch $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
+```
+
+To deactivate and let new instances of a job run normally:
+
+```
+rm  $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-200B-exp1
 ```
