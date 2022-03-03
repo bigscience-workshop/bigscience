@@ -154,8 +154,7 @@ cat <<EOT > $config_json
   "train_batch_size": $GLOBAL_BATCH_SIZE,
   "gradient_clipping": 1.0,
   "zero_optimization": {
-    "stage": $ZERO_STAGE,
-    "move_params_to_cpu_during_init": false
+    "stage": $ZERO_STAGE
   },
   "bf16": {
     "enabled": true
