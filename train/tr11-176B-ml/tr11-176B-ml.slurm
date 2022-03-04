@@ -8,7 +8,7 @@
 #SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:8                 # number of gpus
-#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS). TODO: update to 100 hours
+#SBATCH --time 100:00:00             # maximum execution time (HH:MM:SS). TODO: update to 100 hours
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
 
@@ -20,11 +20,13 @@ source $six_ALL_CCFRWORK/start-py38-pt111
 
 echo "START TIME: $(date)"
 
+variant=main
+
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml
-CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
+CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
 REPO_PATH=$DATA_OUTPUT_PATH/tr11-176B-ml-logs
-TENSORBOARD_PATH=$REPO_PATH/tensorboard
-LOGS_PATH=$REPO_PATH/logs
+TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
+LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
 
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr8b-104B/Megatron-DeepSpeed
@@ -56,7 +58,6 @@ export TRANSFORMERS_OFFLINE=1
 # testing for potential faulty nodes
 # srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
 
-
 # so processes know who to talk to
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
@@ -71,11 +72,11 @@ MICRO_BATCH_SIZE=2
 GLOBAL_BATCH_SIZE=2048  # 4.2M tokens. It is larger than the initial plan of 3.2M tokens to get higher throughput
 
 NHIDDEN=14336
-NLAYERS=70     # NHIDDEN / NLAYERS = ?
-NHEADS=112     # NHIDDEN / NHEADS = ?
+NLAYERS=70
+NHEADS=112
 SEQ_LEN=2048
 
-SAVE_INTERVAL=50
+SAVE_INTERVAL=250
 
 TRAIN_SAMPLES=220_000_000  # 450B tokens
 LR_DECAY_SAMPLES=200_000_000  # Decay for the first 410B tokens then continue at fixed --min-lr
@@ -95,9 +96,10 @@ OPTIMIZER_ARGS=" \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
-
+# for 20h 1190, for 100h 5990
+#    --exit-duration-in-mins 1190 \
 EXIT_OPTS=" \
-    --exit-duration-in-mins 1190 \
+    --exit-duration-in-mins 5990 \
     "
 
 GPT_ARGS=" \
@@ -108,7 +110,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
-    --rampup-batch-size 16 16 9_765_625 \
+    --rampup-batch-size 384 16 9_765_625 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
