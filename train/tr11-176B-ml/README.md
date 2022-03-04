@@ -140,6 +140,48 @@ TRAIN_SAMPLES=220_000_000
     --global-batch-size $GLOBAL_BATCH_SIZE \
 ```
 
+
+This means it will start with global batch size 16 and over 127 (`(2048-16)/16`) intervals will increase the
+batch size by 16 linearly to 2048.
+
+76894 (`9_765_625/127`) is the number of samples before the next GBS increment. That is we run at GBS=16 for 76894 samples, or 4805 steps (`76894/16`). Then we run at GBS=32 for 76894 samples, or 2402 steps (`76894/32`). Then 1600 steps at GBS=48, 1200 at GBS=64, etc....
+
+To calculate how many steps it'll take to reach a specific GBS, use this one-liner. For example to reach GBS=384:
+```
+perl -le '$x+=76894/(16*$_) for 1..$ARGV[0]/16; print int $x' 384
+18146
+```
+
+To run to completion the slowest GBS=16, which will take 4805 steps, with 15 sec/step (8 TFLOPs) for GBS=16 (measured on our setup)
+```
+python -c 'print(f"{4805*15/3660:.2f}h")'
+19.69h
+```
+
+the data comes from:
+```
+iteration     3707/  128728 | consumed samples:        59312 | consumed tokens:    121470976 | elapsed time per iteration (s): 15.23 | learning rate: 1.944E-05 | global batch size:    16 | lm loss: 5.396257E+00 | grad norm: 0.765 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 1.051 | TFLOPs: 8.04 |
+```
+
+The next step still remains at about the same speed, even though it processes 2x data:
+```
+python -c 'print(f"{2402*15/3660:.2f}h")'
+9.84h
+```
+
+That is it'll take about 30h to get to GBS=48.
+
+So we have 18146 to reach gbs=384, and keeping the same speed until the pipeline is filled:
+
+```
+python -c 'print(f"{18146*15/3660:.2f}h")'
+74.37h
+```
+so more than 3 days at slow speed.
+
+So it'll take several days of very inefficient run. We know we get 113 TFLOPs at iteration 512, and since PP=12 and MBS=2, only at 384 `12*2*16` it'll be the first time all pipeline stages will be filled and that's when the performance should be much better, probably around 90 TFLOPs.
+
+
 Notes:
 * `--rampup-batch-size` requires the use of `--train-samples` and can't be used with `--train-iters`.
 * global batch size has to be divisible by micro-batch-size * DP_SIZE
@@ -381,3 +423,4 @@ grep `[default7]` main_log.txt
 - document hub-sync `tr11-176B-ml-hub-sync-logs.slurm`
 - enable/document the watchdog once we start the actual training
 - add to the front page
+- `--pp-partition-method 'type:transformer|embedding'`
