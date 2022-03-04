@@ -1,26 +1,17 @@
 # The final training
 
-Trials and Tribulations during the training.
+Trials and Tribulations during the 176B 250k multi-lingual training.
 
-- nheads - take ratio from gpt3 -
+## main-1
 
-- add CL to the experiment
+While the final data is being cleaned up we are doing a few preliminary runs with data that still has some issues.
 
-- experiment with TFLOPs with CL - step each iteration in difficulty and check TFLOPs
+GBS ramp up of `--rampup-batch-size 16 16 9_765_625` - the first few stages starting with GBS=16 are really slow (8 TFLOPs). The pipeline doesn't have enough data to even fill all the stages once, so it's super inefficient and it'll take days until we start hitting 100 TFLOPs.
 
-- try torch.adam -
-
-
+But there were no spikes during this brief experiment.
 
 
-*** hanging:
 
-- try ssh to all nodes
+## main-2
 
-- dist.broadcast - log tp rank
-
-mapping between ranks and pid => save to file
-
-then use info from the file
-
-pdsh to all gpus and get py-spy on each process
+Trying `--rampup-batch-size 384 16 9_765_625` since 384 is the first GBS where the pipe is filled up fully for the first time. `12*2*4=384` (`PP*MBS*DP`). The throughput start at 100 TFLOPs right away (and it should be 150 TFLOPS once we reach GBS=2048).

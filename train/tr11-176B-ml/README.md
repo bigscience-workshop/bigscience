@@ -14,8 +14,8 @@ Model size: 176B
 - [tensorboard](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard)
 - [log file](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs/main)
  or on JZ: `tail -F $six_ALL_CCFRSCRATCH//checkpoints/tr11-176B-ml/tr11-176B-ml-logs/logs/main/main_log.txt`
-- [slurm script](./tr11-176B-ml.slurm)
-- [hub sync script][./tr11-176B-ml-hub-sync-logs.slurm) which lives at `$six_ALL_CCFRWORK//cron/cron.hourly`
+- [training slurm script](./tr11-176B-ml.slurm)
+- [hub sync script](./tr11-176B-ml-hub-sync-logs.slurm) which lives at `$six_ALL_CCFRWORK//cron/cron.hourly`
 
 
 ## Environment
