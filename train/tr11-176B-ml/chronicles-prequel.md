@@ -960,3 +960,221 @@ NHIDDEN=14336; NLAYERS=82; Model size: 206B, ratio=174
 
 
 (was quickly getting the memory snapshot with: `pdsh -w jean-zay-iam01 "source ~/.pdshrc; nvidia-smi"`)
+
+
+## Hanging Issue
+
+Here we are dealing with 320-384 A100 GPUs working in ensemble.
+
+It appears that the system can't handle heavy NCCL traffic or something of sorts. It can handle less than 100B model over 40nodes (TP=8/PP=10/DP=4). It can handle 200B over 10 nodes. At 100B over 20-40 nodes random GPUs start not to respond and the whole system hangs until it times out. I was able to test with the same NHIDDEN and growing the model on the layer dimension:
+
+- 10 layers - 25B works
+- 20 layers - 50B works
+- 40 layers - 100B hangs after succeeding iteration 1
+
+I was just starting to diagnose on the hidden dimension and now 13/52 nodes are down and so I can't continue with this line of work, since 40 nodes gave me a reliable failure and 20 nodes is intermittent failure, so it's not good for diagnosing.
+
+This is for a single replica of 10 nodes with 200B model + 250k vocab.
+
+I think the failed nodes that crashed and didn't recover are high suspects for having internal problems. Even though when I tested in groups of 10 nodes everything was dandy - note - the same 200B model.
+One more data point - Deepspeed ZeRO shards data over all gpus - so the more GPUs are involved the more communication happens. This is totally orthogonal to DP.
+
+The next day:
+
+Most of the nodes have come back this morning so continuing the dimensional growing experiments.
+To remind, growing on the layer dimension and keeping hidden at 1024*14 worked until 40 layers were reached where it was hanging. So it couldn't handle 100B model in this dimension.
+Now I'm keeping the layers dimension frozen to 80 and growing the nhidden dimension, starting from 1024*4 - proving that it works and then incrementing the size until it hangs:
+
+- `1024*10` works (100B model)
+- `1024*12` hangs (145B model)
+
+So these 2 experiments both show that when the inter-node traffic exceeds certain level - the system is fails.
+
+So it's not the size of each `all_reduce`/`broadcast` packet since at full NHIDDEN but only 1/4 of layers everything is just fine.
+
+And BTW to get a quick success/failure indication I'm working with `GLOBAL_BATCH_SIZE=64` so PP is very inefficient, but it doesn't matter for the purpose of this experiment.
+
+Using `py-spy` on the processes to dump python call stacks I have derived the same story on each node:
+
+On each node with TP=8 - i.e. each node is only TP - the same situation: (checked nodes 0 and 1 only)
+
+6 processes are in:
+
+```
+Thread 835990 (active): "MainThread"
+    train (megatron/training.py:915)
+    pretrain (megatron/training.py:187)
+    <module> (pretrain_gpt.py:239)
+```
+2 processes are in:
+```
+Thread 835995 (active): "MainThread"
+    broadcast (torch/distributed/distributed_c10d.py:1191)
+    _aggregate_total_loss (deepspeed/runtime/pipe/engine.py:540)
+    train_batch (deepspeed/runtime/pipe/engine.py:330)
+    train_step (megatron/training.py:436)
+    train (megatron/training.py:851)
+    pretrain (megatron/training.py:187)
+    <module> (pretrain_gpt.py:239)
+```
+
+so 6 processes finished `train_step` and now are trying to:
+```
+            torch.distributed.all_reduce(
+                done_cuda, op=torch.distributed.ReduceOp.MAX)
+```
+but for some reason 2 processes never finished the `train_step` and are stuck broadcasting I presume to the other 6 processes, which have long gone.
+
+So this hanging happens partially in Deepspeed and partially in Megatron-LM, somehow processes get out of sync even though everything works just fine on a smaller scale. But the issue could be brought on by apex's `FusedAdam` as we have dealt with a serious issue in it as well a week earlier, but it could also be pytorch, NCCL or some internal system issue. It's very hard to find the cause.
+
+As I shared earlier the problem doesn't exist or goes away if either of 2 things happens:
+
+- the model is under 100B (short stack of layer or narrow hidden) and 20 or more nodes are used in a single job
+- `CUDA_LAUNCH_BLOCKING=1`
+
+Topology is TP=8, PP=10, DP=4
+
+It has been very difficult to work on diagnosing this issue since every time I run the hanging setup I would lose a few nodes and since I'm 10h behind JeanZay, nobody is around there to reboot the nodes.
+
+So first of all it appears that `CUDA_LAUNCH_BLOCKING=1` removes the hanging issue and I did several performance checks and it surprising has no impact on this framework at this scale. Normally, it should make things much slower as it makes CUDA ops synchronous.
+
+### py-spying all processes
+
+After discussing this issue with Samyam I first run `py-spy` on all processes, but alas several processes weren't responding, so we had no idea how to tell where they were hanging.
+
+For posterity here is the process:
+
+
+In one console, first allocate the gpus:
+```
+salloc --partition=gpu_p5 --constraint=a100 --nodes=2 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
+```
+We are doing that so that if SLURM kills the processes we could still access those.
+
+Now run the training job, which calls the main `srun` with all the gpus:
+```
+bash 200B-n40-bf16-mono.slurm
+```
+
+Wait till the program hangs.
+
+Now in another console get the `SLURM_JOBID` (or get it from `salloc` log):
+```
+squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"
+```
+
+Adjust jobid with `SLURM_JOBID` from above:
+```
+srun --jobid=2180718 --gres=gpu:0 --nodes=40 --tasks-per-node=1 --output=trace-%N.out sh -c 'ps aux | grep python | egrep -v "grep|srun" | grep `whoami` | awk "{print \$2}" | xargs -I {} py-spy dump --native --pid {}' || echo "failed"
+```
+
+Must use `--gres=gpu:0` for the monitor `srun` or otherwise it will block until the first `srun` exits
+
+I also attempted using `pdsh` via `ds_ssh`, but somehow I wasn't able to run `py-spy` remotely - the main issue was that remote `ssh` command wasn't giving the same env as when I was logged in interactively via `ssh`. But if you have `sudo` access on the compute nodes than you could do:
+
+First prepare `hostfile`:
+```
+function makehostfile() {
+perl -e '$slots=split /,/, $ENV{"SLURM_STEP_GPUS"};
+$slots=8 if $slots==0; # workaround 8 gpu machines
+@nodes = split /\n/, qx[scontrol show hostnames $ENV{"SLURM_JOB_NODELIST"}];
+print map { "$b$_ slots=$slots\n" } @nodes'
+}
+makehostfile > hostfile
+```
+
+Now run the `py-spy` extraction command over all nodes:
+```
+ds_ssh -f hostfile "source ~/.pdshrc; ps aux | grep python | grep -v grep | grep `whoami` | awk '{print \$2}' | xargs -I {} sudo py-spy dump --pid {} "
+```
+
+### python trace
+
+So next came the idea of tracing all calls like one does with `strace(1)`, I researched python calls tracing facilities and have discovered that python has a `trace` sub-system.
+
+This code will trace all python calls and log them to the console and into a dedicated per process log file, via a custom `Tee` module I added.
+
+This then can help to understand where some processes stopped responding, since we will have the log of the last call before it went unresponsive.
+
+```
+$ cat pretrain_gpt.py
+[...]
+
+def main():
+    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+             args_defaults={'tokenizer_type': 'GPT2BPETokenizer'})
+
+import re
+class Tee:
+    """
+    A helper class to tee print's output into a file.
+    Usage:
+    sys.stdout = Tee(filename)
+    """
+
+    def __init__(self, filename):
+        self.stdout = sys.stdout
+        self.file = open(filename, "a")
+
+    def __getattr__(self, attr):
+        return getattr(self.stdout, attr)
+
+    def write(self, msg):
+        self.stdout.write(msg)
+        self.file.write(msg)
+        self.file.flush()
+
+    def flush(self):
+        self.stdout.flush()
+        self.file.flush()
+
+if __name__ == "__main__":
+
+    import sys
+    import trace
+    import socket
+    import os
+
+    # enable to trace
+    if 0:
+        cwd = os.path.realpath('.')
+        pid = os.getpid()
+        hostname = socket.gethostname()
+        local_rank = int(os.environ["LOCAL_RANK"])
+        trace_output_file = f"{cwd}/trace-{hostname}-{local_rank}-{pid}.txt"
+
+        # create a Trace object, telling it what to ignore, and whether to
+        # do tracing or line-counting or both.
+        tracer = trace.Trace(
+            ignoredirs=[sys.prefix, sys.exec_prefix],
+            trace=1,
+            count=1,
+        )
+        #    outfile=trace_output_file)
+
+        # run the new command using the given tracer
+        sys.stdout = Tee(trace_output_file)
+        tracer.run('main()')
+    else:
+        main()
+
+```
+
+This code doesn't require any special handing other than enabling the trace by changing `if 0` to `if 1`.
+
+Of course, this will now dump all python calls. I was worried that the slowdown will mask the issue causing the hanging, but surprisingly it didn't.
+
+I got 14GB (!) of data logged of just python calls from 320 processes.
+
+In retrospect I probably should have started the tracing at a later place, probably just before `train_step` - otherwise we have gotten a lot of useless traces of the dataloader and other preliminary code.
+
+I wish I could tell `trace` which packages to follow, but alas it only supports dirs to ignore, which is much more difficult to set, and thus you end up with a lot more data than one needs. But still this is a super useful tool for debugging hanging processes.
+
+
+### To be continued
+
+We needed to do some more tweaks to get to the root of it.
+
+Unfortunately I had to pause here, since I had to switch to testing the final version of the code and I couldn't risk losing nodes.
+
+With having `CUDA_LAUNCH_BLOCKING=1` workaround providing a robust solution we will use that for a time being.
