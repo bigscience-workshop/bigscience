@@ -73,15 +73,15 @@ print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
 https://cdn-lfs.huggingface.co/bigscience/tr8-104B-logs/b2cc478d5ae7c9ec937ea2db1d2fe09de593fa2ec38c171d6cc5dca094cd79f9
 ```
 
-### Train 10
+### Train 11
 
-**This is the next main training not yet started**
 
-13B-ml
+tr11-176B-ml
 
-* [the full spec and discussions](./train/tr10-13B-ml/)
-* [the training script](./train/tr10-13B-ml/tr10-13B.slurm)
+* [the full spec and discussions](./train/tr11-176B-ml/)
+* [the training script](./train/tr11-176B-ml/tr11-176B-ml.slurm)
 * checkpoints and logs:
-   - [tensorboard](https://huggingface.co/bigscience/tr10-13B-logs/tensorboard)
-   - [logs](https://huggingface.co/bigscience/tr10-13B-logs/tree/main/logs)
-* [chronicles](./train/tr10-13B-ml/chronicles.md)
+   - [tensorboard](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard)
+   - [logs](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs/main)
+* [chronicles-prequel](./train/tr11-176B-ml/chronicles-prequel.md)
+* [chronicles](./train/tr11-176B-ml/chronicles.md)
