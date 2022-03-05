@@ -10,6 +10,7 @@
 #SBATCH --gres=gpu:8                 # number of gpus
 #SBATCH --time 100:00:00             # maximum execution time (HH:MM:SS). TODO: update to 100 hours
 #SBATCH --output=%x-%j.out           # output file name
+#SBATCH --error=%x-%j.err           # error file name
 #SBATCH --account=six@a100
 
 set -x -e
