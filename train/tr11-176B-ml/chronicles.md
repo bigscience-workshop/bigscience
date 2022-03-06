@@ -121,13 +121,15 @@ mkdir b; mv debug-* b
 I basically dumped weights for all ranks before and after train_step
 
 Now let's compared them all. Comparing:
-1. the after iteration of the last step before save
-2. the before iteration step after the load (on restart)
+1. the after iteration of the last step before save (iteration 805 in this example)
+2. the before iteration step after the load (on restart) (iteration 806 in this example)
 
 with the help of:
 ```
 perl -le 'print qx[diff -u a/debug-805-*global$_-after-iteration-*.txt b/debug-806-*-global$_-before-iteration-*.txt] for 0..383'
 ```
+
+Result: all `a/debug-805-pp11-*-after-iteration-*.txt` and corresponding `b/debug-806-pp11-*-before-iteration-*.txt` mismatch.
 
 so here is a sample diff:
 ```
