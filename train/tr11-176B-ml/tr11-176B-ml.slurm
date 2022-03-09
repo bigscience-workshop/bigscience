@@ -15,8 +15,8 @@
 set -x -e
 
 #source $six_ALL_CCFRWORK/start-py38-pt110
-source $six_ALL_CCFRWORK/start-py38-pt111
-#source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
+#source $six_ALL_CCFRWORK/start-py38-pt111
+source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
 
 echo "START TIME: $(date)"
 
