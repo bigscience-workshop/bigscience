@@ -68,7 +68,8 @@ NNODES=$SLURM_NNODES
 TP_SIZE=4
 PP_SIZE=12
 
-MICRO_BATCH_SIZE=2
+# XXX: switch to MBS=2 after GBS reaches 768 or higher
+MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=2048  # 4.2M tokens. It is larger than the initial plan of 3.2M tokens to get higher throughput
 
 NHIDDEN=14336
@@ -110,7 +111,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
-    --rampup-batch-size 384 16 9_765_625 \
+    --rampup-batch-size 192 16 9_765_625 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \

@@ -172,3 +172,39 @@ so here is a sample diff:
 ## main-5
 
 trying a new baseline with rampup starting from 192
+
+
+
+## main-6
+
+trying https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/260 - comparing with main-5
+
+tracks exactly main-5 - merged.
+
+
+## main-7
+
+Running with https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/261
+
+Don't allocate embed LN on pp rank -1, - different checkpoint
+
+still spikes on restart
+
+
+# main-no-emb-norm
+
+disable `--embed-layernorm` completely, check if spikes on restart
+
+no spikes on restart
+
+## main-8
+
+1. test https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/262
+
+2. At 1438 switched to deepspeed@ab61edb02a137d91b61bd416b4e8d3eb287b0eba of olruwase/bf16-updates - let's see if it tracks still the previous runs - yes it does.
+
+So the restart spike's cause was this: the framework was putting `LayerNorm` that I added for the embedding layr into the wrong param group [here](https://github.com/bigscience-workshop/Megatron-DeepSpeed/blob/dd06ea32e014d8db6cdaf5e6839071d6523ca83c/megatron/optimizer/__init__.py#L31-L45).
+
+it should have been in `no_weight_decay_params` but ended up in `weight_decay_params` because in this module `LayerNorm` is an alias for `MixedFusedLayerNorm`, so if `isinstance(module_, LayerNorm)` was `False`.
+
+So if we want to use `torch.nn.LayerNorm` we have to change the code above to additionally check for ` or isinstance(module_, torch.nn.LayerNorm).`

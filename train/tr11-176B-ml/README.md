@@ -370,6 +370,8 @@ This is a feature that allows us to "kill" a SLURM job started by a user who isn
 
 For an explanation on how it works see: [Kill Switch](../../jz/slurm/README.md#kill-switch)
 
+Note that it saves the checkpoint before exiting, so nothing gets lost.
+
 XXX: sync to the final path
 
 To arm:
@@ -416,6 +418,68 @@ export LAUNCHER="python -u -m torch.distributed.run \
 `--tee 3` prefixes all logs with the local rank, which helps to unravel interleaved error messages by grepping for one of the local rank prefixes, e.g.:
 ```
 grep `[default7]` main_log.txt
+```
+
+
+## Environment setup
+
+Please do not run any of these instructions unless you know what you're doing. The environment has already been set up and the information below is for fixes/updates/rebuilding env.
+
+
+
+To launch the environment use [start-tr11-176B-ml](./start-tr11-176B-ml)
+
+XXX: I need to prepare it
+
+```
+source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
+```
+
+The clones that we install or run from are under `$six_ALL_CCFRWORK/code/tr11-176B-ml/`
+
+
+```
+export CONDA_ENVS_PATH=$six_ALL_CCFRWORK/conda
+
+conda create -y -n tr11-176B-ml python=3.8
+conda activate tr11-176B-ml
+
+pip install transformers
+
+# switch to a node where we don't get killed
+srun --pty -A six@cpu -p compil --hint=nomultithread --time=60 bash
+
+conda activate tr11-176B-ml
+
+# pt-1.11.0 / cuda 11.5
+pip install --pre torch torchvision torchaudio -f https://download.pytorch.org/whl/test/cu115/torch_test.html -U
+
+# will change on Mar-11
+# conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+
+pip install deepspeed
+cd $six_ALL_CCFRWORK/code/tr11-176B-ml/DeepSpeed
+./build.sh
+
+cd $six_ALL_CCFRWORK/code/tr11-176B-ml/Megatron-DeepSpeed
+pip install -r requirements.txt
+
+cd $six_ALL_CCFRWORK/code/tr11-176B-ml/apex
+./build.sh
+
+# to build custom tokenizers make sure that if run on JZ your `~/.cargo/config.toml` contains the following:
+[net]
+git-fetch-with-cli = true
+
+# if needed first:
+# git clone https://github.com/huggingface/tokenizers $six_ALL_CCFRWORK/code/tr11-176B-ml/tokenizers
+cd $six_ALL_CCFRWORK/code/tr11-176B-ml/tokenizers
+git checkout bigscience_fork
+module load rust
+pip install setuptools_rust
+pip install -e bindings/python
+
+
 ```
 
 
