@@ -11,10 +11,10 @@
 
 echo "START TIME: $(date)"
 
-source $six_ALL_CCFRWORK/code/tr8b-104B/bigscience/train/tr8b-104B/start-tr8b-104B
+source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
 module load git-lfs
 
-BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/tr8b-104B/bigscience
+BIG_SCIENCE_REPO_PATH=$six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs
 
 $BIG_SCIENCE_REPO_PATH/tools/hub-sync.py --repo-path $DATA_OUTPUT_PATH --patterns 'tensorboard/*/*tfevents*' 'logs/*/*.txt' -d

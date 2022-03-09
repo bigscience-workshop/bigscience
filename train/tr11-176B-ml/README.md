@@ -22,12 +22,11 @@ Model size: 176B
 
 To launch the environment use [start-tr11-176B-ml](./start-tr11-176B-ml)
 
-XXX: I need to prepare it
-
 ```
 source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
 ```
 
+See [Environment setup](#environment-setup) for how it was set up.
 
 ## Model Setup
 
@@ -475,7 +474,6 @@ module load rust
 pip install setuptools_rust
 pip install -e bindings/python
 
-
 ```
 
 
@@ -483,5 +481,4 @@ pip install -e bindings/python
 
 - document hub-sync `tr11-176B-ml-hub-sync-logs.slurm`
 - enable/document the watchdog once we start the actual training
-- add to the front page
 - `--pp-partition-method 'type:transformer|embedding'`
