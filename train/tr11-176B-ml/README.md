@@ -425,17 +425,13 @@ grep `[default7]` main_log.txt
 
 Please do not run any of these instructions unless you know what you're doing. The environment has already been set up and the information below is for fixes/updates/rebuilding env.
 
-
-
 To launch the environment use [start-tr11-176B-ml](./start-tr11-176B-ml)
-
-XXX: I need to prepare it
 
 ```
 source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
 ```
 
-The clones that we install or run from are under `$six_ALL_CCFRWORK/code/tr11-176B-ml/`
+The git clones that we install or run from are under `$six_ALL_CCFRWORK/code/tr11-176B-ml/`.
 
 
 ```
@@ -446,7 +442,7 @@ conda activate tr11-176B-ml
 
 pip install transformers
 
-# switch to a node where we don't get killed
+# switch to a `compil` interactive node where we don't get killed by cgroups
 srun --pty -A six@cpu -p compil --hint=nomultithread --time=60 bash
 
 conda activate tr11-176B-ml
@@ -454,7 +450,7 @@ conda activate tr11-176B-ml
 # pt-1.11.0 / cuda 11.5
 pip install --pre torch torchvision torchaudio -f https://download.pytorch.org/whl/test/cu115/torch_test.html -U
 
-# will change on Mar-11
+# XXX: will change on Mar-11
 # conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 
 pip install deepspeed
