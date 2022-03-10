@@ -7,7 +7,7 @@
 #SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/catalogue-jsonl-to-meg-ds/%x-%j.out          # output file name
 #SBATCH --account=six@cpu
-#SBATCH --array=0-509
+#SBATCH --array=0-501
 #SBATCH --partition=cpu_p1
 
 set -x -e
@@ -36,7 +36,7 @@ else
     DATASET_NAME=$DATASET_PATH
 fi
 
-TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles
+TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
 
 input=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/jsonl_8_shards/$DATASET_NAME/data_0_8.jsonl
 output=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/meg-ds/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"_shard_0_8
