@@ -17,11 +17,11 @@ conda activate thomas_data_tooling
 
 # ======= Generate json file ======
 
-DATASET_PATHS=($(ls -d /gpfswork/rech/six/commun/bigscience-training/clean_v2/bigscience-catalogue-lm-data/* /gpfsscratch/rech/six/commun/bigscience-datasets/oscar_dedup/*))
+DATASET_PATHS=($(ls -d $six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/clean_v2/bigscience-catalogue-lm-data/* /gpfsscratch/rech/six/commun/bigscience-datasets/oscar_dedup/*))
 DATASET_PATH=${DATASET_PATHS[$SLURM_ARRAY_TASK_ID]}
 
 BIGSCIENCE_REPO=$WORK/code/big_science/bigscience
-SAVE_JSON_DATASET_PATH_PREFIX=$six_ALL_CCFRWORK/bigscience-training/jsonl_v2
+SAVE_JSON_DATASET_PATH_PREFIX=$six_ALL_CCFRSCRATCH/bigscience-datasets/jsonl_v2
 mkdir -p $SAVE_JSON_DATASET_PATH_PREFIX
 
 python $BIGSCIENCE_REPO/data/catalogue/sample_and_convert_to_jsonl.py \
