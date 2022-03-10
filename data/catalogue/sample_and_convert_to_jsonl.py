@@ -614,7 +614,7 @@ def main():
     # load_dataset
     logger.info(f"Loading {args.dataset_path}")
     if args.dataset_path in CATALOGUE_DATASETS:
-        ds = load_from_disk(args.dataset_path / "final")
+        ds = load_from_disk(Path(args.dataset_path) / "final")
     elif args.dataset_path in OSCAR_DATASETS:
         ds = load_from_disk(args.dataset_path)
     else:
