@@ -593,6 +593,23 @@ def main():
     args = get_args()
     logger.info(f"** The job is runned with the following arguments: **\n{args}\n **** ")
 
+    # Compute save path
+    save_path: Path
+    if args.dataset_path in CATALOGUE_DATASETS:
+        lang = get_catalogue_language(args.dataset_path)
+        filename = f"{normalise_catalogue_dataset_name_regex.match(args.dataset_path).group(1)}.jsonl"
+        save_path = args.save_jsonl_dataset_path_prefix / lang / filename
+    elif args.dataset_path in OSCAR_DATASETS:
+        lang = get_oscar_language(args.dataset_path)
+        save_path = args.save_jsonl_dataset_path_prefix / lang / f"lm_{lang}_oscar.jsonl"
+    else:
+        raise NotImplementedError
+
+    # Saved dataset don't require us to re-run de pipeline
+    if not save_path.exists():
+        logger.info(f"{save_path} already exists. Exiting early.")
+        return
+
     # load_dataset
     logger.info(f"Loading {args.dataset_path}")
     if args.dataset_path in CATALOGUE_DATASETS:
@@ -618,16 +635,6 @@ def main():
         raise NotImplementedError
 
     # save to json
-    save_path: Path
-    if args.dataset_path in CATALOGUE_DATASETS:
-        lang = get_catalogue_language(args.dataset_path)
-        filename = f"{normalise_catalogue_dataset_name_regex.match(args.dataset_path).group(1)}.jsonl"
-        save_path = args.save_jsonl_dataset_path_prefix / lang / filename
-    elif args.dataset_path in OSCAR_DATASETS:
-        lang = get_oscar_language(args.dataset_path)
-        save_path = args.save_jsonl_dataset_path_prefix / lang / f"lm_{lang}_oscar.jsonl"
-    else:
-        raise NotImplementedError
     logger.info(f"Saving to {save_path}")
     tmp_save_path = Path(save_path.parent, f"tmp-{save_path.name}")
     tmp_save_path.parent.mkdir(parents=True)
