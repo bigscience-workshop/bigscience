@@ -638,7 +638,7 @@ def main():
     # save to json
     logger.info(f"Saving to {save_path}")
     tmp_save_path = Path(save_path.parent, f"tmp-{save_path.name}")
-    tmp_save_path.parent.mkdir(parents=True)
+    tmp_save_path.parent.mkdir(parents=True, exist_ok=True)
     ds.to_json(
         tmp_save_path,
         num_proc=args.num_proc,
