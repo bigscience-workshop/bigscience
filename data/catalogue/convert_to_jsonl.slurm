@@ -1,14 +1,14 @@
 #!/bin/bash
-#SBATCH --job-name=catalogue-jsonl-to-meg-ds # job name
+#SBATCH --job-name=convert_datasets_to_jsonl # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=10           # number of cores per tasks
+#SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
-#SBATCH --output=logs/merge-meg-ds/%x-%j.out          # output file name
+#SBATCH --output=logs/convert_to_jsonl/%x-%j.out          # output file name
 #SBATCH --array=0-501
 #SBATCH --account=six@cpu
-#SBATCH --partition=compil
+#SBATCH --partition=cpu_p1
 
 set -x -e
 
