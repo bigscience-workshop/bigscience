@@ -22,7 +22,7 @@ DATASET_PATH=${DATASET_PATHS[$SLURM_ARRAY_TASK_ID]}
 
 BIGSCIENCE_REPO=$WORK/code/big_science/bigscience
 SAVE_JSON_DATASET_PATH_PREFIX=$six_ALL_CCFRWORK/bigscience-training/jsonl_v2
-mkdir -p $SAVE_JSON_DATASET_PATH
+mkdir -p $SAVE_JSON_DATASET_PATH_PREFIX
 
 python $BIGSCIENCE_REPO/data/catalogue/sample_and_convert_to_jsonl.py \
     --dataset-path $DATASET_PATH\

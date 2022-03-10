@@ -16,25 +16,10 @@ source $six_ALL_CCFRWORK/start-prod
 # We need a specific installation of tokenizers so that it works with bytefallback
 conda activate thomas_data_tooling
 
-# Get dataset names
+# ======= Generate meg-ds file ======
 
-CATALOGUE_DATA_REPO=$six_ALL_CCFRWORK/code/catalogue_data
-pushd $CATALOGUE_DATA_REPO
-
-DATASET_PATH=$(python get_dataset_path.py --dataset-ratios-file training_dataset_ratios.json --index $SLURM_ARRAY_TASK_ID)
-echo "Converting $DATASET_PATH to json"
-
-if [[ $DATASET_PATH == /gpfswork/rech/six/uty16tp/dataset/tokenization/* ]]
-then
-    if [[ $DATASET_PATH == */data ]]
-    then
-        DATASET_NAME=${DATASET_PATH:48:-5}
-    else
-        DATASET_NAME=${DATASET_PATH:48}
-    fi
-else
-    DATASET_NAME=$DATASET_PATH
-fi
+DATASET_PATHS=($(ls -d $six_ALL_CCFRWORK/bigscience-training/jsonl_v2/**/*))
+DATASET_PATH=${DATASET_PATHS[$SLURM_ARRAY_TASK_ID]}
 
 TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
 
