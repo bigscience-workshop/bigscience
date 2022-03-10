@@ -514,11 +514,12 @@ OSCAR_DATASETS = {
     "/gpfsscratch/rech/six/commun/bigscience-datasets/oscar_dedup/vi": 1,
     "/gpfsscratch/rech/six/commun/bigscience-datasets/oscar_dedup/zh": 1
 }
+assert set(OSCAR_DATASETS.keys()).isdisjoint(set(CATALOGUE_DATASETS.keys()))
 
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--dataset-path", choices=list([Path(path) for path in (set(CATALOGUE_DATASETS.keys()) | set(OSCAR_DATASETS.keys()))]), type=Path, required=True,
+        "--dataset-path", choices=list(set(CATALOGUE_DATASETS.keys()) | set(OSCAR_DATASETS.keys())), type=str, required=True,
         help="Dataset path."
     )
     parser.add_argument(
@@ -598,10 +599,10 @@ def main():
     if args.dataset_path in CATALOGUE_DATASETS:
         lang = get_catalogue_language(args.dataset_path)
         filename = f"{normalise_catalogue_dataset_name_regex.match(args.dataset_path).group(1)}.jsonl"
-        save_path = args.save_jsonl_dataset_path_prefix / lang / filename
+        save_path = Path(args.save_jsonl_dataset_path_prefix) / lang / filename
     elif args.dataset_path in OSCAR_DATASETS:
         lang = get_oscar_language(args.dataset_path)
-        save_path = args.save_jsonl_dataset_path_prefix / lang / f"lm_{lang}_oscar.jsonl"
+        save_path = Path(args.save_jsonl_dataset_path_prefix) / lang / f"lm_{lang}_oscar.jsonl"
     else:
         raise NotImplementedError
 
