@@ -518,7 +518,7 @@ OSCAR_DATASETS = {
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--dataset-path", choices=list(set(CATALOGUE_DATASETS.keys()) | set(OSCAR_DATASETS.keys())), type=Path, required=True,
+        "--dataset-path", choices=list([Path(path) for path in (set(CATALOGUE_DATASETS.keys()) | set(OSCAR_DATASETS.keys()))), type=Path, required=True,
         help="Dataset path."
     )
     parser.add_argument(
