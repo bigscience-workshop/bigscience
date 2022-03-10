@@ -625,7 +625,7 @@ def main():
         save_path = args.save_jsonl_dataset_path_prefix / lang / filename
     elif args.dataset_path in OSCAR_DATASETS:
         lang = get_oscar_language(args.dataset_path)
-        save_path = args.save_jsonl_dataset_path_prefix / lang / "oscar.jsonl"
+        save_path = args.save_jsonl_dataset_path_prefix / lang / f"lm_{lang}_oscar.jsonl"
     else:
         raise NotImplementedError
     logger.info(f"Saving to {save_path}")

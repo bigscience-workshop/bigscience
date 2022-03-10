@@ -18,30 +18,30 @@ conda activate thomas_data_tooling
 
 # ======= Generate meg-ds file ======
 
-DATASET_PATHS=($(ls -d $six_ALL_CCFRWORK/bigscience-training/jsonl_v2/**/*))
+DATASET_PATHS=($(ls -d $six_ALL_CCFRWORK/bigscience-training/jsonl_v2/**/*.jsonl))
 DATASET_PATH=${DATASET_PATHS[$SLURM_ARRAY_TASK_ID]}
 
 TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
 
-input=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/jsonl_8_shards/$DATASET_NAME/data_0_8.jsonl
-output=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/meg-ds/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"_shard_0_8
+DATASET_NAME=$(basename $DATASET_PATH)
 
-mkdir -p $(dirname $output)
+SAVE_MEG_DS_DATASET=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/meg-ds/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"
 
-if [[ -f "$output"_text_document.bin ]];
+mkdir -p $(dirname $SAVE_MEG_DS_DATASET)
+
+if [[ -f "$SAVE_MEG_DS_DATASET"_text_document.bin ]];
 then
-    echo "$output exists."
+    echo "$SAVE_MEG_DS_DATASET exists."
     exit 0
 fi
 
-echo "Downloading ${DATASET_NAME}"
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
 cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 /usr/bin/time -v python tools/preprocess_data_many_cores.py \
-       --input $input \
-       --output-prefix $output \
+       --input $DATASET_PATH \
+       --output-prefix $SAVE_MEG_DS_DATASET \
        --dataset-impl mmap \
        --tokenizer-type PretrainedFromHF \
        --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
