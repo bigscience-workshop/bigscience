@@ -523,7 +523,7 @@ def get_args():
         help="Dataset path."
     )
     parser.add_argument(
-        "--save-json-dataset-path-prefix", type=Path, required=True,
+        "--save-jsonl-dataset-path-prefix", type=Path, required=True,
         help="Where to output json file. Files will be save in `{args.save_jsonl_dataset_path_prefix}/{lang}/{dataset_name}"
     )
     parser.add_argument(

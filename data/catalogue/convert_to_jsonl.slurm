@@ -26,6 +26,6 @@ mkdir -p $SAVE_JSON_DATASET_PATH_PREFIX
 
 python $BIGSCIENCE_REPO/data/catalogue/sample_and_convert_to_jsonl.py \
     --dataset-path $DATASET_PATH\
-    --save-json-dataset-path-prefix $SAVE_JSON_DATASET_PATH_PREFIX \
+    --save-jsonl-dataset-path-prefix $SAVE_JSON_DATASET_PATH_PREFIX \
     --num-proc 10 \
     --batch-size 100
