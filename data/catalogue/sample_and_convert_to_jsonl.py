@@ -536,10 +536,10 @@ def get_args():
 
 
 catalogue_language_regex = re.compile(
-    r"^/gpfsscratch/rech/six/commun/bigscience-datasets/catalogue/clean_v2/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/lm_([^_]+)_.*$"
+    r"^/gpfsscratch/rech/six/commun/bigscience-datasets/catalogue/clean_v2/bigscience-catalogue-lm-data/lm_([^_]+)_.*$"
 )
 normalise_catalogue_dataset_name_regex = re.compile(
-    r"^/gpfsscratch/rech/six/commun/bigscience-datasets/catalogue/clean_v2/bigscience-catalogue-lm-data/bigscience-catalogue-lm-data/(.*)$"
+    r"^/gpfsscratch/rech/six/commun/bigscience-datasets/catalogue/clean_v2/bigscience-catalogue-lm-data/(.*)$"
 )
 def get_catalogue_language(dataset_name: str) -> str:
     lang_candidate = catalogue_language_regex.match(dataset_name).group(1)
