@@ -607,7 +607,7 @@ def main():
         raise NotImplementedError
 
     # Saved dataset don't require us to re-run de pipeline
-    if not save_path.exists():
+    if save_path.exists():
         logger.info(f"{save_path} already exists. Exiting early.")
         return
 
