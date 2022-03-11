@@ -7,6 +7,7 @@
 #SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/merge-meg-ds/%x-%j.out          # output file name
 #SBATCH --account=six@cpu
+#SBATCH --array=0-48
 #SBATCH --partition=compil
 
 set -x -e
