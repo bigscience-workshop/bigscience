@@ -23,9 +23,8 @@ def get_args():
     return parser.parse_args()
 
 TOKEN_RANGES={
-    "train": "0:0.949",
-    "valid": "0.949:0.999",
-    "test": "0.999:1.0"
+    "train": "0:0.950",
+    "valid": "0.950:1.0",
 }
 
 def main():
