@@ -28,5 +28,4 @@ python $BIGSCIENCE_REPO/data/catalogue/sample_and_convert_to_jsonl.py \
     --dataset-path $DATASET_PATH\
     --save-jsonl-dataset-path-prefix $SAVE_JSON_DATASET_PATH_PREFIX \
     --num-proc 10 \
-    --batch-size 100
-
+    --batch-size 10000
