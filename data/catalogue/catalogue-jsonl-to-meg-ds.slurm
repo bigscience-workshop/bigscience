@@ -18,14 +18,14 @@ conda activate thomas_data_tooling
 
 # ======= Generate meg-ds file ======
 
-DATASET_PATHS=($(ls -d $six_ALL_CCFRWORK/bigscience-training/jsonl_v2/**/*.jsonl))
+DATASET_PATHS=($(ls -d $six_ALL_CCFRSCRATCH/bigscience-datasets/jsonl_v2/**/*.jsonl))
 DATASET_PATH=${DATASET_PATHS[$SLURM_ARRAY_TASK_ID]}
 
 TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
 
 DATASET_NAME=$(basename $DATASET_PATH)
-
-SAVE_MEG_DS_DATASET=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/meg-ds/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"
+LANG=$(basename $(dirname $DATASET_PATH))
+SAVE_MEG_DS_DATASET=$six_ALL_CCFRSCRATCH/bigscience-datasets/meg-ds_v2/$LANG/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"
 
 mkdir -p $(dirname $SAVE_MEG_DS_DATASET)
 
