@@ -36,8 +36,7 @@ KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 
 
 # TODO: fix data settings
-#BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience
-BIGSCIENCE_REPO=/gpfswork/rech/six/uty16tp/code/big_science/bigscience
+BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience
 TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits.txt
 VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits.txt
 CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios.json
