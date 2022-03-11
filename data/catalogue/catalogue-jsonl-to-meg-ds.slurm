@@ -7,7 +7,7 @@
 #SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/catalogue-jsonl-to-meg-ds/%x-%j.out          # output file name
 #SBATCH --account=six@cpu
-#SBATCH --array=0-509
+#SBATCH --array=0-501
 #SBATCH --partition=cpu_p1
 
 set -x -e
@@ -16,47 +16,33 @@ source $six_ALL_CCFRWORK/start-prod
 # We need a specific installation of tokenizers so that it works with bytefallback
 conda activate thomas_data_tooling
 
-# Get dataset names
+# ======= Generate meg-ds file ======
 
-CATALOGUE_DATA_REPO=$six_ALL_CCFRWORK/code/catalogue_data
-pushd $CATALOGUE_DATA_REPO
+DATASET_PATHS=($(ls -d $six_ALL_CCFRSCRATCH/bigscience-datasets/jsonl_v2/**/*.jsonl))
+DATASET_PATH=${DATASET_PATHS[$SLURM_ARRAY_TASK_ID]}
 
-DATASET_PATH=$(python get_dataset_path.py --dataset-ratios-file training_dataset_ratios.json --index $SLURM_ARRAY_TASK_ID)
-echo "Converting $DATASET_PATH to json"
+TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
 
-if [[ $DATASET_PATH == /gpfswork/rech/six/uty16tp/dataset/tokenization/* ]]
+DATASET_NAME_WITH_JSONL=$(basename $DATASET_PATH)
+DATASET_NAME=${DATASET_NAME_WITH_JSONL:0:-6}
+LANG=$(basename $(dirname $DATASET_PATH))
+SAVE_MEG_DS_DATASET=$six_ALL_CCFRSCRATCH/bigscience-datasets/meg-ds_v2/$LANG/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"
+
+mkdir -p $(dirname $SAVE_MEG_DS_DATASET)
+
+if [[ -f "$SAVE_MEG_DS_DATASET"_text_document.bin ]];
 then
-    if [[ $DATASET_PATH == */data ]]
-    then
-        DATASET_NAME=${DATASET_PATH:48:-5}
-    else
-        DATASET_NAME=${DATASET_PATH:48}
-    fi
-else
-    DATASET_NAME=$DATASET_PATH
-fi
-
-TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v2-dedup-lines-articles
-
-input=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/jsonl_8_shards/$DATASET_NAME/data_0_8.jsonl
-output=$six_ALL_CCFRSCRATCH/bigscience-datasets/catalogue/meg-ds/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"_shard_0_8
-
-mkdir -p $(dirname $output)
-
-if [[ -f "$output"_text_document.bin ]];
-then
-    echo "$output exists."
+    echo "$SAVE_MEG_DS_DATASET exists."
     exit 0
 fi
 
-echo "Downloading ${DATASET_NAME}"
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
 cd $six_ALL_CCFRWORK/code/Megatron-DeepSpeed
 /usr/bin/time -v python tools/preprocess_data_many_cores.py \
-       --input $input \
-       --output-prefix $output \
+       --input $DATASET_PATH \
+       --output-prefix $SAVE_MEG_DS_DATASET \
        --dataset-impl mmap \
        --tokenizer-type PretrainedFromHF \
        --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
