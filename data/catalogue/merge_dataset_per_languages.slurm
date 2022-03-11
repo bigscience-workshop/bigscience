@@ -30,6 +30,8 @@ SAVE_PATH=$six_ALL_CCFRSCRATCH/bigscience-datasets/merged-meg-ds_v2/$LANG/"${TOK
 # fancy way of collecting all datasets within a folder
 DATASETS=$(ls $six_ALL_CCFRSCRATCH/bigscience-datasets/meg-ds_v2/$LANG/**/*.bin | xargs -I {} python -c "print('{}'[:-4])")
 
+mkdir -p $(dirname $SAVE_PATH)
+
 /usr/bin/time -v python -m tools.merge_preprocessed_data \
     --datasets $DATASETS \
     --output-prefix $SAVE_PATH
