@@ -73,9 +73,23 @@ GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \
+    --pp-partition-method 'type:transformer|embedding' \
     [...]
     "
 ```
+
+`--pp-partition-method 'type:transformer|embedding'` tells the framework to consider the tied embedding layers for partitioning, as the latter are approximately of the same size as the transformer blocks due to the huge 250k dictionary (`250k*HIDDEN_LENTH`). So now the partitioning is:
+
+```
+pp rank 0:  [embed | 5 transformer blocks]
+pp rank 1:  [6 transformer blocks]
+pp rank 2:  [6 transformer blocks]
+[...]
+pp rank 10: [6 transformer blocks]
+pp rank 11: [5 transformer blocks | embed]
+```
+and each gpu has about the same amount of memory used. Without this rebalancing gpus for pp rank 0 and 11 were using much more gpu memory than the rest - that setup was slower too.
+
 
 Sanity check:
 ```
@@ -366,6 +380,74 @@ using `/tmp/` on purpose here so that each node will have a different target.
 
 
 
+### Launcher
+
+We are using the latest elastic-based launcher with `c10d` backend.
+
+```
+MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
+MASTER_PORT=6000
+GPUS_PER_NODE=8
+NNODES=$SLURM_NNODES
+
+export LAUNCHER="python -u -m torch.distributed.run \
+    --nproc_per_node $GPUS_PER_NODE \
+    --nnodes $NNODES \
+    --rdzv_endpoint $MASTER_ADDR:$MASTER_PORT \
+    --rdzv_backend c10d \
+    --max_restarts 0 \
+    --tee 3 \
+    "
+```
+
+`--tee 3` prefixes all logs with the local rank, which helps to unravel interleaved error messages by grepping for one of the local rank prefixes, e.g.:
+```
+grep `[default7]` main_log.txt
+```
+
+
+
+
+### Cronjobs to auto-sync the hub
+
+TB and the log files are hourly synced to https://huggingface.co/bigscience/tr11-176B-ml-logs via `$six_ALL_CCFRWORK/cron/cron.hourly/tr11-176B-ml-hub-sync-logs.slurm`.
+
+if you want to do an additional manual sync on demand at any moment you can do:
+
+```
+cd $six_ALL_CCFRWORK/cron/cron.hourly
+sh tr11-176B-ml-hub-sync-logs.slurm
+```
+
+
+
+## Dealing with 100h SLURM limit
+
+First, let's ensure we save a checkpoint just before SLURM kills the job
+
+Let's try 99:50 5990=60*100-10
+
+```
+    --exit-duration-in-mins 5990 \
+```
+
+We need about 2 min per cycle plus a few minutes to save the checkpoint.
+
+We will use job arrays, to automatically start a new job. Let's start with just 10 such jobs:
+
+```
+sbatch --array=1-10%1 tr11-176B-ml.slurm
+```
+
+`%1` limits the number of simultaneously running tasks from this job array to 1, since we want them to run in a sequence.
+
+
+As we have full control over the slurm we don't need to create the train concept to be able to modify the slurm script w/o losing a place in the queue, so just unschedule all jobs if changing the script and then re-schedule them again.
+
+Also remember that if it's not you who started the job you can't kill it. And you have to use the [kill switch](#kill-switch) workaround instead.
+
+
+
 ### Kill Switch
 
 This is a feature that allows us to "kill" a SLURM job started by a user who isn't around at the moment, since SLURM doesn't support groups and we don't have `sudo` access. But basically we get the program to poll for a file at startup and before each iteration and it'll quit if it finds this file.
@@ -395,42 +477,114 @@ rm  $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 ```
 
 
-### Launcher
 
-We are using the latest elastic-based launcher with `c10d` backend.
+### Watchdogs
 
+1. We have the filesystem watchdog running at `$six_ALL_CCFRWORK/cron/cron.daily/fs-watchdog.slurm`
+2. We have the is-training-scheduled-or-running watchdog running at `$six_ALL_CCFRWORK/cron/cron.hourly/tr11-176B-ml-slurm-status.slurm`
+
+
+
+## Estimated run time
+
+Best case scenario when training 24/7 on 48 nodes with 8 gpus each:
 ```
-MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-MASTER_PORT=6000
-GPUS_PER_NODE=8
-NNODES=$SLURM_NNODES
-
-export LAUNCHER="python -u -m torch.distributed.run \
-    --nproc_per_node $GPUS_PER_NODE \
-    --nnodes $NNODES \
-    --rdzv_endpoint $MASTER_ADDR:$MASTER_PORT \
-    --rdzv_backend c10d \
-    --max_restarts 0 \
-    --tee 3 \
-    "
+$ python -c 'Btokens=450; Bmodel=167; n_gpus=384; Tflops=150; \
+print(f"{Btokens*1e9*8*Bmodel*1e9/(n_gpus*Tflops*1e12*60*60*24):0.2f} days")'
+120.80 days
 ```
 
-`--tee 3` prefixes all logs with the local rank, which helps to unravel interleaved error messages by grepping for one of the local rank prefixes, e.g.:
+Since this doesn't include the batch size rampup when we run on average at half speed - add a few more days to that.
+
+
+
+## On Call
+
+When a person is on call, they need to watch that the training is either running or scheduled to run. If neither is happening they need to schedule a new training. When this situation occurs the log file will report:
+
 ```
-grep `[default7]` main_log.txt
+***ALERT: tr11-176B-ml is not RUNNING or SCHEDULED! Alert someone at Eng WG***
 ```
 
+An email alert is sent as well to `bigscience-jean-zay@groups.google.com`.
+
+The next section explains how to watch the logs.
+
+Other than waiting for the watchdog which runs once an hour, one can immediately see if anything is scheduled with:
+
+```
+$six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/tools/slurm-status.py --job-name tr11-176B-ml
+```
+
+To see if it's your job that's scheduled:
+
+```
+squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"
+```
+
+To see if you or anybody else in the group scheduled this job:
+```
+squeue -u $(getent group six | cut -d: -f4) -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"'
+```
+
+If you have to kill a slurm job launched or scheduled by someone else you need to read about the [kill switch](#kill-switch).
+
+If for some reason the training is not scheduled or running, to schedule a new training:
+
+```
+cd $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml
+sbatch --array=1-3%1 tr11-176B-ml.slurm
+```
+
+This will schedule a job array of 3 jobs of 100h each, so if all goes well, that's at least 12 days of not needing to do anything other than being on the lookout for potential crashes.
+
+To see the availability of the gpus, do:
+
+```
+sinfo -p gpu_p5
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+gpu_p5       up 4-04:00:00      1  drain jean-zay-iam27
+gpu_p5       up 4-04:00:00     48  alloc jean-zay-iam[01-26,28-49]
+gpu_p5       up 4-04:00:00      3   idle jean-zay-iam[50-52]
+```
+so here we have one broken node (state:`drain`), 48 being used and 3 are idle and can be used. Note that if we have less than 48 nodes we can't continue training. Notify the sysadmins if there are many unavailable gpus.
+
+XXX: need a troubleshooting section, but elsewhere in the document that is not this training specific.
+
+1. if one of the nodes gets a corrupted gpu, and the training crashes there is a risk that the next job in the training will get allocated the same node, in which case it'll crash again. We need a method to identify which node is corrupted, report that to assist@idris.fr so they know to fix it and exclude this node from the slurm job by adding a list of nodes to exclude as following:
+
+```
+sbatch --exclude=jean-zay-iam34,jean-zay-iam35 ...
+```
+or:
+```
+sbatch --exclude=jean-zay-iam[34-35] ...
+```
+
+but we currently have no way to identify which node is faulty. I think if we switch to pt-1.9.0 or higher where torch elastic replaces the usual launcher. Or we have to use dedicated log files per node via: `#SBATCH --output=%x-%j-%N.out`.
 
 
-# TODO
-
-- document hub-sync `tr11-176B-ml-hub-sync-logs.slurm`
-- enable/document the watchdog once we start the actual training
-- `--pp-partition-method 'type:transformer|embedding'`
 
 
+## Watching the training logs
 
-## Environment setup
+On JZ:
+```
+tail -F $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs/logs/main/main_log.txt
+```
+
+Outside of JZ:
+```
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
+print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
+https://cdn-lfs.huggingface.co/bigscience/tr11-176B-ml-logs/490370259b81f328bb408636cd911209e77a4c255fc0bddbf8ed5e4603a56283
+```
+Currently the updates happen hourly, so this is a delayed version of `tail -f`.
+
+
+
+
+### Environment setup
 
 Please do not run any of these instructions unless you know what you're doing. The environment has already been set up and the information below is for fixes/updates/rebuilding env.
 

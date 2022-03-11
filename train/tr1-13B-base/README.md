@@ -486,7 +486,7 @@ For more information on the pre-processing process and various estimations see: 
 
 First, let's ensure we save a checkpoint just before SLURM kills the job
 
-Let's try 19:50 1190=60*24-10
+Let's try 19:50 1190=60*20-10
 
 ```
     --exit-duration-in-mins 1190 \
