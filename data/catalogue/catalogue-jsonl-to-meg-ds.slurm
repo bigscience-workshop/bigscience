@@ -23,7 +23,8 @@ DATASET_PATH=${DATASET_PATHS[$SLURM_ARRAY_TASK_ID]}
 
 TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
 
-DATASET_NAME=$(basename $DATASET_PATH)
+DATASET_NAME_WITH_JSONL=$(basename $DATASET_PATH)
+DATASET_NAME=${DATASET_NAME_WITH_JSONL:0:-6}
 LANG=$(basename $(dirname $DATASET_PATH))
 SAVE_MEG_DS_DATASET=$six_ALL_CCFRSCRATCH/bigscience-datasets/meg-ds_v2/$LANG/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"
 
