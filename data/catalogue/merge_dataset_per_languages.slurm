@@ -8,7 +8,7 @@
 #SBATCH --output=logs/merge-meg-ds/%x-%j.out          # output file name
 #SBATCH --account=six@cpu
 #SBATCH --array=0-48
-#SBATCH --partition=compil
+#SBATCH --partition=cpu_p1
 
 set -x -e
 
