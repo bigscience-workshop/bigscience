@@ -8,7 +8,7 @@
 #SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:8                 # number of gpus
-#SBATCH --time 100:00:00             # maximum execution time (HH:MM:SS). TODO: update to 100 hours
+#SBATCH --time 100:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
 
@@ -34,8 +34,6 @@ cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 
-
-# TODO: fix data settings
 BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience
 TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits.txt
 VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits.txt

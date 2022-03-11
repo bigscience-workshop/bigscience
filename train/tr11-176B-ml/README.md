@@ -114,6 +114,9 @@ One replica is 48 GPUs (`TP*PP=4*12`)
 
 MBS=2 performs the fastest in this setup w/o using too much additional memory.
 
+Note that due to ZeRO-1 sharding if one decides to run on less GPUs (smaller DP) they may not fit into the smaller collective memory.
+
+
 
 ### Global batch size
 
@@ -191,6 +194,9 @@ Notes:
 * global batch size has to be divisible by micro-batch-size * DP_SIZE
 
 
+Update: at the end we decided to start with GBS=192 and MBS=1, as 16 was too too slow, so the current setup starts with 73 TFLOPs as compared to 8 with GBS=16.
+
+
 
 ### Optimizer
 
@@ -258,38 +264,31 @@ We use the added by us embedding layer norm which makes the training more stable
 ```
 
 
-### Tokenizer
+### Data and Tokenizer
 
 
 ```
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-nfkc-250k \
-```
-
-
-
-### Data
-
-
-XXX: needs cleanup and notes to where and why
-
-```
-# TODO: fix data settings
-BIGSCIENCE_REPO=/gpfswork/rech/six/uty16tp/code/big_science/bigscience
+BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience
 TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits.txt
 VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits.txt
-TEST_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/test-splits.txt
-CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_batch_0_per_language.json
+CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_merged_nigercongo.json
 LOAD_RATIOS_SCRIPT=$BIGSCIENCE_REPO/data/catalogue/load_ratios_meg_ds_format.py
 python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split train --output-meg-ds-ratio-file $TRAIN_DATA_PATH
 python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split valid --output-meg-ds-ratio-file $VALID_DATA_PATH
-python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split test --output-meg-ds-ratio-file $TEST_DATA_PATH
+
+TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
+
+    --tokenizer-type PretrainedFromHF \
+    --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
 ```
+
+
+
 
 
 ### Data type
 
-We are using `bfloat16` since it's supposed to be more stable than `float16`
+We are using `bfloat16` since it's supposed to deliver a training experience with less instabilities as compared to `float16`, due to the former's better numerical range (i.e. no overflow risks).
 
 ```
     --bf16 \
@@ -324,7 +323,7 @@ EOT
 
 ```
 
-The new `BF16_Optimizer` accumulates grads in fp32. It doesn't shard the static buffer it reuses, which consumes 4 bytes * params additional memory, but since it's not sharding it saves on comms. Down the road, it'll be expanded to support sharding on demand.
+The new `BF16_Optimizer` accumulates grads in fp32. It doesn't shard the static fp32 buffer it reuses, which consumes `4 bytes * params` of additional memory, but since it's not sharding it saves on communications overhead. Down the road, it'll be expanded to support sharding on demand.
 
 Using Deepspeed's activation checkpointing to use a lot less GPU memory:
 
@@ -375,8 +374,6 @@ For an explanation on how it works see: [Kill Switch](../../jz/slurm/README.md#k
 
 Note that it saves the checkpoint before exiting, so nothing gets lost.
 
-XXX: sync to the final path
-
 To arm:
 
 ```
@@ -422,6 +419,15 @@ export LAUNCHER="python -u -m torch.distributed.run \
 ```
 grep `[default7]` main_log.txt
 ```
+
+
+
+# TODO
+
+- document hub-sync `tr11-176B-ml-hub-sync-logs.slurm`
+- enable/document the watchdog once we start the actual training
+- `--pp-partition-method 'type:transformer|embedding'`
+
 
 
 ## Environment setup
@@ -479,10 +485,3 @@ pip install setuptools_rust
 pip install -e bindings/python
 
 ```
-
-
-# TODO
-
-- document hub-sync `tr11-176B-ml-hub-sync-logs.slurm`
-- enable/document the watchdog once we start the actual training
-- `--pp-partition-method 'type:transformer|embedding'`

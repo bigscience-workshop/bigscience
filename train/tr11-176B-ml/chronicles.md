@@ -208,3 +208,7 @@ So the restart spike's cause was this: the framework was putting `LayerNorm` tha
 it should have been in `no_weight_decay_params` but ended up in `weight_decay_params` because in this module `LayerNorm` is an alias for `MixedFusedLayerNorm`, so if `isinstance(module_, LayerNorm)` was `False`.
 
 So if we want to use `torch.nn.LayerNorm` we have to change the code above to additionally check for ` or isinstance(module_, torch.nn.LayerNorm).`
+
+## main-9
+
+re-running with  deepspeed@77b649d160c1cd86f33415e2a7deab50c45fba16 of olruwase/bf16-updates which fixed the tied-embedding desynchronization bug due to clip grads not running on the last pp rank for tied embeddings.
