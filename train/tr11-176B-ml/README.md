@@ -15,8 +15,8 @@ Model size: 176B
 - [log file](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs/main)
  or on JZ: `tail -F $six_ALL_CCFRSCRATCH//checkpoints/tr11-176B-ml/tr11-176B-ml-logs/logs/main/main_log.txt`
 - [training slurm script](./tr11-176B-ml.slurm)
-- [hub sync script](./tr11-176B-ml-hub-sync-logs.slurm) which lives at `$six_ALL_CCFRWORK//cron/cron.hourly`
-
+- [hub sync script](./tr11-176B-ml-hub-sync-logs.slurm) which lives at `$six_ALL_CCFRWORK/cron/cron.hourly`
+- [slurm pulse script](./tr11-176B-ml-slurm-status.slurm) which lives at `$six_ALL_CCFRWORK/cron/cron.hourly`
 
 ## Environment
 
@@ -27,6 +27,10 @@ source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-t
 ```
 
 See [Environment setup](#environment-setup) for how it was set up.
+
+There is an hourly [pulse checking script](./tr11-176B-ml-slurm-status.slurm) running that checks that the training is either running or scheduled.
+XXX: this needs to be updated since we have an exclusive access now and if the training is scheduled but not running this is no longer OK and should fire an email alert.
+
 
 ## Model Setup
 
