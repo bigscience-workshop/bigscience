@@ -23,7 +23,7 @@ Model size: 176B
 Hardware:
 
 - GPUs: 416 A100 80GB GPUs (52 nodes) - using 48 nodes and keeping 4 in reserve
-- 8 GPUs per node Using NVLink 4 inter-gpu connects, 4 IB links
+- 8 GPUs per node Using NVLink 4 inter-gpu connects, 4 OmniPath links
 - CPU: AMD
 - CPU memory: 512GB per node
 - Inter-node connect: Omni-Path Architecture (OPA)
