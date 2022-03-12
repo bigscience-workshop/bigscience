@@ -47,6 +47,22 @@ There is an hourly [pulse checking script](./tr11-176B-ml-slurm-status.slurm) ru
 XXX: this needs to be updated since we have an exclusive access now and if the training is scheduled but not running this is no longer OK and should fire an email alert.
 
 
+### Watching the training logs
+
+On JZ:
+```
+tail -F $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs/logs/main/main_log.txt
+```
+
+Outside of JZ:
+```
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
+print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
+https://cdn-lfs.huggingface.co/bigscience/tr11-176B-ml-logs/490370259b81f328bb408636cd911209e77a4c255fc0bddbf8ed5e4603a56283
+```
+Currently the updates happen hourly, so this is a delayed version of `tail -f`.
+
+
 ## Model Setup
 
 ### Packages
@@ -635,21 +651,25 @@ mv tr11-176B-ml.slurm tr11-176B-ml.slurm.bad
 git checkout tr11-176B-ml.slurm
 ```
 
+### Testing new changes to the script
 
-### Watching the training logs
+Before making changes to the main training script apply those to the 2 node script [setup-test-n2.slurm](setup-test-n2.slurm).
 
-On JZ:
+Then:
+
 ```
-tail -F $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs/logs/main/main_log.txt
+sbatch setup-test-n2.slurm
+```
+watch:
+```
+tail -F $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml-test-setup/tr11-176B-ml-logs/logs/main-test-setup/main_log.txt
+```
+then, of course, kill the 2-node job as soon as testing is complete.
+```
+squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R" | grep
+scancel jobid
 ```
 
-Outside of JZ:
-```
-perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
-print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
-https://cdn-lfs.huggingface.co/bigscience/tr11-176B-ml-logs/490370259b81f328bb408636cd911209e77a4c255fc0bddbf8ed5e4603a56283
-```
-Currently the updates happen hourly, so this is a delayed version of `tail -f`.
 
 
 ### Backups
