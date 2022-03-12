@@ -18,6 +18,20 @@ Model size: 176B
 - [hub sync script](./tr11-176B-ml-hub-sync-logs.slurm) which lives at `$six_ALL_CCFRWORK/cron/cron.hourly`
 - [slurm pulse script](./tr11-176B-ml-slurm-status.slurm) which lives at `$six_ALL_CCFRWORK/cron/cron.hourly`
 
+- each checkpoint is 2.3TB
+
+Hardware:
+
+- GPUs: 416 A100 80GB GPUs (52 nodes of 8 gpus each) - using 48 nodes and 4 in reserve
+- 8 GPUs per node Using NVLink 4 inter-gpu connects, 4 IB links
+- CPU: AMD
+- CPU memory: 512GB per node
+- Inter-node connect: Omni-Path Architecture (OPA)
+- NCCL-communications network: a fully dedicated subnet
+- Disc IO network: shared network with other types of nodes
+
+
+
 ## Environment
 
 To launch the environment use [start-tr11-176B-ml](./start-tr11-176B-ml)
