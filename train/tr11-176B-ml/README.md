@@ -22,7 +22,7 @@ Model size: 176B
 
 Hardware:
 
-- GPUs: 416 A100 80GB GPUs (52 nodes of 8 gpus each) - using 48 nodes and 4 in reserve
+- GPUs: 416 A100 80GB GPUs (52 nodes) - using 48 nodes and keeping 4 in reserve
 - 8 GPUs per node Using NVLink 4 inter-gpu connects, 4 IB links
 - CPU: AMD
 - CPU memory: 512GB per node
@@ -310,7 +310,9 @@ TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no
     --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
 ```
 
+Backups of data:
 
+- `$six_ALL_CCFRWORK/bigscience-training/merged-meg-ds_v2` is backed up at `$six_ALL_CCFRSTORE/d/datasets/merged-meg-ds_v2`. These paths are inside `data/*-splits.txt` files.
 
 
 
