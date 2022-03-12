@@ -31,6 +31,12 @@ Hardware:
 - NCCL-communications network: a fully dedicated subnet
 - Disc IO network: shared network with other types of nodes
 
+Software:
+
+- [Megatron-DeepSpeed](https://github.com/bigscience-workshop/Megatron-DeepSpeed) @ master / BigScience fork
+- [DeepSpeed](https://github.com/microsoft/DeepSpeed) @ master (soon)
+- [PyTorch](https://github.com/pytorch/pytorch)-1.11
+- [apex](https://github.com/NVIDIA/apex) @ master
 
 
 ## Environment
