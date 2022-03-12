@@ -623,6 +623,14 @@ sbatch --exclude=jean-zay-iam[34-35] ...
 but we currently have no way to identify which node is faulty. I think if we switch to pt-1.9.0 or higher where torch elastic replaces the usual launcher. Or we have to use dedicated log files per node via: `#SBATCH --output=%x-%j-%N.out`.
 
 
+When doing `git pull` or `scp`, `gsutil`, etc - anything creating or updating files and dirs, please make sure the permissions are such that they are set to be `rw` by the group and the group is set to `six` - if this is messed up others might not be able to edit files. Here is how to fix the perms [Syncing the perms](../../jz/envs#syncing-the-perms).
+
+If you found this situation where someone's files have wrong perms, often you can work around it by moving the "bad" files away and replacing those with new files with the correct permissions - e.g. via the repo. e.g. this will restore the original slurm script to the git version:
+
+```
+mv tr11-176B-ml.slurm tr11-176B-ml.slurm.bad
+git checkout tr11-176B-ml.slurm
+```
 
 
 ### Watching the training logs
