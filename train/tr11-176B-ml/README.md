@@ -13,13 +13,11 @@ The training started on March 11, 2022 11:42am PST
 ## Main info
 
 - [tensorboard](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard)
-- [log file](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs/main)
- or on JZ: `tail -F $six_ALL_CCFRSCRATCH//checkpoints/tr11-176B-ml/tr11-176B-ml-logs/logs/main/main_log.txt`
+- [log file](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs/main) or [watch it live](watching-the-training-logs)
 - [training slurm script](./tr11-176B-ml.slurm)
 - [hub sync script](./tr11-176B-ml-hub-sync-logs.slurm) which lives at `$six_ALL_CCFRWORK/cron/cron.hourly`
 - [slurm pulse script](./tr11-176B-ml-slurm-status.slurm) which lives at `$six_ALL_CCFRWORK/cron/cron.hourly`
-
-- each checkpoint is 2.3TB
+- each checkpoint with fp32 optim states and bf16+fp32 weights is 2.3TB - just the bf16 weights are 329GB.
 
 Hardware:
 
@@ -54,7 +52,7 @@ There is an hourly [pulse checking script](./tr11-176B-ml-slurm-status.slurm) ru
 XXX: this needs to be updated since we have an exclusive access now and if the training is scheduled but not running this is no longer OK and should fire an email alert.
 
 
-### Watching the training logs
+## Watching the training logs
 
 On JZ:
 ```
