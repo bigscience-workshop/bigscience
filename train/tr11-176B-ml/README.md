@@ -23,10 +23,11 @@ The training started on March 11, 2022 11:42am PST
 
 Hardware:
 
-- GPUs: 416 A100 80GB GPUs (52 nodes) - using 48 nodes and keeping 4 in reserve
+- GPUs: 416 A100 80GB GPUs (52 nodes) - using 384 gpus (48 nodes) and keeping 32 gpus (4 nodes) in reserve
 - 8 GPUs per node Using NVLink 4 inter-gpu connects, 4 OmniPath links
 - CPU: AMD
 - CPU memory: 512GB per node
+- GPU memory: 640GB per node
 - Inter-node connect: Omni-Path Architecture (OPA)
 - NCCL-communications network: a fully dedicated subnet
 - Disc IO network: shared network with other types of nodes
@@ -35,7 +36,7 @@ Software:
 
 - [Megatron-DeepSpeed](https://github.com/bigscience-workshop/Megatron-DeepSpeed) @ master / BigScience fork
 - [DeepSpeed](https://github.com/microsoft/DeepSpeed) @ master (soon)
-- [PyTorch](https://github.com/pytorch/pytorch)-1.11
+- [PyTorch](https://github.com/pytorch/pytorch)-1.11 w/ CUDA-11.5
 - [apex](https://github.com/NVIDIA/apex) @ master
 
 
