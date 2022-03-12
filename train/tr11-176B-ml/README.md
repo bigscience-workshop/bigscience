@@ -460,7 +460,7 @@ To arm:
 
 ```
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
-
+[...]
     --kill-switch-path $KILL_SWITCH_PATH \
 ```
 
@@ -493,9 +493,27 @@ If we want to save just the weights w/o optimizer states then saving just these 
 ls -l layer_* mp_*
 ```
 
+Here is the breakdown:
+
+- bf16 weights - 2 bytes per param: `176*10**9*2/2**30 = 327.82GB`
+- the whole checkpoint - 8 bytes for fp32 optim, 4+2 bytes for weights (fp32+bf16) - total 14 bytes per param: `176*10**9*14/2**30=2294.77GB`
+
+Let's validate:
+
+```
+$ cd main/global_step1000
+$ du -ch mp* layer*
+329G    total
+$ du -sh .
+2.3T
+```
+
+So it all checks out.
+
+
 Preserving checkpoints:
 
-
+The least is to store a full checkpoint every 10% of the training. More frequent than that is better, but 10% is the minimum
 
 
 
