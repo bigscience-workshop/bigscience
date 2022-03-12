@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr11-176B-ml
+#SBATCH --job-name=setup-test-n2
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
 #SBATCH --qos=qos_gpu-gc             # up to 100h
