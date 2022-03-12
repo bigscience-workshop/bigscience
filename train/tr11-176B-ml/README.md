@@ -313,7 +313,9 @@ TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no
 
 Backups of data:
 
-- `$six_ALL_CCFRWORK/bigscience-training/merged-meg-ds_v2` is backed up at `$six_ALL_CCFRSTORE/d/datasets/merged-meg-ds_v2`. These paths are inside `data/*-splits.txt` files.
+- `$six_ALL_CCFRWORK/bigscience-training/merged-meg-ds_v2` is backed up at `$six_ALL_CCFRSTORE/datasets/merged-meg-ds_v2`. These paths are inside `data/*-splits.txt` files.
+
+XXX: need to back up v3
 
 
 
@@ -650,6 +652,25 @@ https://cdn-lfs.huggingface.co/bigscience/tr11-176B-ml-logs/490370259b81f328bb40
 Currently the updates happen hourly, so this is a delayed version of `tail -f`.
 
 
+### Backups
+
+We need to back up checkpoints, logs and tensorboard files.
+
+Backing up to STORE: root dir: `$six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml`
+
+```
+cp -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step3000 $six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/checkpoints/
+```
+
+Backing up to GCS: root dir: `gs://bigscience-backups/tr11-176B-ml`
+
+
+```
+gsutil cp -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step3000 gs://bigscience-backups/tr11-176B-ml/checkpoints
+
+gusitil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs gs://bigscience-backups/tr11-176B-ml
+
+```
 
 
 ### Environment setup
