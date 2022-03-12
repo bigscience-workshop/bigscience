@@ -8,6 +8,7 @@ Auto-regressive objective using regular Megatron-LM GPT2 language model w/o mult
 
 Model size: 176B
 
+The training started on March 11, 2022 11:42am PST
 
 ## Main info
 
