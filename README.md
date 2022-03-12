@@ -55,8 +55,6 @@ Architecture and scaling baseline runs: no fancy tricks, just GPT2. Here are lin
 
 ### Train 8
 
-**This is the current main training**
-
 104B - unmodified Megatron gpt2 - with extra-wide hidden size to learn how to deal with training instabilities
 
 * [the full spec and discussions](./train/tr8-104B-wide)
@@ -75,6 +73,7 @@ https://cdn-lfs.huggingface.co/bigscience/tr8-104B-logs/b2cc478d5ae7c9ec937ea2db
 
 ### Train 11
 
+**This is the current main training**
 
 tr11-176B-ml
 
@@ -85,3 +84,10 @@ tr11-176B-ml
    - [logs](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs/main)
 * [chronicles-prequel](./train/tr11-176B-ml/chronicles-prequel.md)
 * [chronicles](./train/tr11-176B-ml/chronicles.md)
+
+You can watch the training logs live by running this `tail -f` like script over remote log file that gets synced to the hub once an hour:
+```
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
+print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
+https://cdn-lfs.huggingface.co/bigscience/tr11-176B-ml-logs/490370259b81f328bb408636cd911209e77a4c255fc0bddbf8ed5e4603a56283
+```
