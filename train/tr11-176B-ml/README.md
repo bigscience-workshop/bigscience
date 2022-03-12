@@ -12,6 +12,8 @@ The training started on March 11, 2022 11:42am PST
 
 ## Main info
 
+Important links:
+
 - [tensorboard](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard)
 - [log file](https://huggingface.co/bigscience/tr11-176B-ml-logs/tree/main/logs/main) or [watch it live](watching-the-training-logs)
 - [training slurm script](./tr11-176B-ml.slurm)
