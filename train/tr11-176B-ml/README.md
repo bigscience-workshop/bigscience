@@ -492,6 +492,10 @@ To deactivate and let new instances of a job run normally:
 rm  $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 ```
 
+So if there is an array of jobs that belong to another user, each job will now try to start and it'll abort once it detects a kill switch - this process can take a few minutes per job. If there is only one job it'll exit when it saved the checkpoint.
+
+Sometimes the job still doesn't exit after it saved the checkpoint and had so to be killed manually, which might not be possible if the job isn't yours. Then it'll eventually time out in some 15min or so and will exit.
+
 
 ### Checkpoints
 

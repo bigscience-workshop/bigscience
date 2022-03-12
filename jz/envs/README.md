@@ -23,7 +23,21 @@ Use `idracct six` to see which username belongs to which real person.
 
 ## First time setup
 
-Add this to your `~/.bashrc` and run `bash` for the changes to take effect.
+Make sure that your `~/.bashrc` is executed on login by creating if you don't already have `~/.bash_profile` with contents:
+
+```
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
+```
+
+It of course could have other contents, but make sure the above is there.
+
+Now add this to your `~/.bashrc` and run `bash` for the changes to take effect.
 
 ```
 # ~/.bashrc: executed by bash(1) for non-login shells.
