@@ -421,7 +421,7 @@ sh tr11-176B-ml-hub-sync-logs.slurm
 
 
 
-## Dealing with 100h SLURM limit
+### Dealing with 100h SLURM limit
 
 First, let's ensure we save a checkpoint just before SLURM kills the job
 
@@ -477,6 +477,27 @@ rm  $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 ```
 
 
+### Checkpoints
+
+XXX:
+During bs ramp up 250 should be ok, but once we reach GBS=2048, should save more frequently until we know the hardware holds. Just last night the training crashed loosing a few hours of work.  At full GBS=2048 we have about 2min/iteration so 250 iterations is about ~8h. So if the training crashes at 7:50, we lose 8h of work. So probably we need to create the checkpoints more frequently than that, but that also requires that we delete the many checkpoints pretty often as well. Probably every 4h is sane enough of a compromise.
+
+```
+SAVE_INTERVAL=250
+    --save-interval $SAVE_INTERVAL \
+```
+
+If we want to save just the weights w/o optimizer states then saving just these 2 groups:
+
+```
+ls -l layer_* mp_*
+```
+
+Preserving checkpoints:
+
+
+
+
 
 ### Watchdogs
 
@@ -485,7 +506,7 @@ rm  $MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
 
 
 
-## Estimated run time
+### Estimated run time
 
 Best case scenario when training 24/7 on 48 nodes with 8 gpus each:
 ```
@@ -498,7 +519,7 @@ Since this doesn't include the batch size rampup when we run on average at half 
 
 
 
-## On Call
+### On Call
 
 When a person is on call, they need to watch that the training is either running or scheduled to run. If neither is happening they need to schedule a new training. When this situation occurs the log file will report:
 
@@ -566,7 +587,7 @@ but we currently have no way to identify which node is faulty. I think if we swi
 
 
 
-## Watching the training logs
+### Watching the training logs
 
 On JZ:
 ```
