@@ -666,8 +666,8 @@ tail -F $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml-test-setup/tr11-176B-ml-lo
 ```
 then, of course, kill the 2-node job as soon as testing is complete.
 ```
-squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R" | grep
-scancel jobid
+squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R" | grep setup-test-n2
+scancel <jobid>
 ```
 
 
