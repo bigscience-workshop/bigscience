@@ -21,6 +21,8 @@ Important links:
 - [slurm pulse script](./tr11-176B-ml-slurm-status.slurm) which lives at `$six_ALL_CCFRWORK/cron/cron.hourly`
 - each checkpoint with fp32 optim states and bf16+fp32 weights is 2.3TB - just the bf16 weights are 329GB.
 
+28 Languages: ar, ca, code, en, es, eu, fr, id, indic-as, indic-bn, indic-gu, indic-hi, indic-kn, indic-ml, indic-mr, indic-ne, indic-or, indic-pa, indic-ta, indic-te, indic-ur, nigercongo-all, oscar-en, oscar-zh, pt, vi, zhs, zht
+
 Hardware:
 
 - GPUs: 416 A100 80GB GPUs (52 nodes) - using 384 gpus (48 nodes) and keeping 32 gpus (4 nodes) in reserve
