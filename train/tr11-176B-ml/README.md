@@ -252,6 +252,8 @@ Update: at the end we decided to start with GBS=192 and MBS=1, as 16 was too too
 
 ### Optimizer
 
+`apex.optimizers.FusedAdam` is used.
+
 - AdamW, β1=0.9, β2=0.95, eps=1e−8
 - learning rate:
    * peak=6e-5
@@ -280,6 +282,7 @@ LR_WARMUP_SAMPLES=183_105  # 375M tokens
     --weight-decay 1e-1 \
 ```
 
+
 ### std Init
 
 This proved to be a very crucial setting in our 104B experiments and we couldn't break past the first few thousands iterations until we figured out the 0.02 default `--init-method-std` was a way too big.
@@ -302,18 +305,30 @@ Thus: `sqrt(1/(14336*3)) = 0.00482197968631537`
 
 ### Misc features
 
+* **Positional encoding**:
 
-We use the added by us AliBi implementation:
+   We use the added by us AliBi implementation:
 
-```
-    --position-embedding-type alibi \
-```
+   ```
+       --position-embedding-type alibi \
+   ```
+Paper: [Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation](https://arxiv.org/abs/2108.12409)
 
-We use the added by us embedding layer norm which makes the training more stable at a small training slowdown cost and a tiny additional amount of memory.
+* **Embed LayerNorm**:
 
-```
-    --embed-layernorm \
-```
+   We use the added by us embedding layer norm which makes the training more stable at a small training slowdown cost and a tiny additional amount of memory.
+
+   ```
+       --embed-layernorm \
+   ```
+
+   This insight came from experimenting with https://github.com/facebookresearch/bitsandbytes which contains a `StableEmbedding` which is a normal Embedding with layernorm and it uses a uniform xavier initialization.
+
+
+* **Activation Function**:
+
+   `torch.nn.functional.gelu`
+
 
 
 ### Data and Tokenizer
@@ -693,9 +708,9 @@ Backing up to GCS: root dir: `gs://bigscience-backups/tr11-176B-ml`
 
 
 ```
-gsutil cp -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step3000 gs://bigscience-backups/tr11-176B-ml/checkpoints
+gsutil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step3000 gs://bigscience-backups/tr11-176B-ml/checkpoints/global_step3000
 
-gusitil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs gs://bigscience-backups/tr11-176B-ml
+gusitil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs gs://bigscience-backups/tr11-176B-ml/tr11-176B-ml-logs
 
 ```
 
