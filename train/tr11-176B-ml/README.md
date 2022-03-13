@@ -329,6 +329,7 @@ Paper: [Train Short, Test Long: Attention with Linear Biases Enables Input Lengt
 
    `torch.nn.functional.gelu`
 
+   Various activation functions were experimented with and GeLU was the best, when considering outcome quality and training throughput.
 
 
 ### Data and Tokenizer
@@ -698,6 +699,11 @@ scancel <jobid>
 
 We need to back up checkpoints, logs and tensorboard files.
 
+Most of the time you need to use a non-login shell to do the job or it will get killed:
+```
+srun --pty -A six@cpu -p compil --hint=nomultithread --time=06:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
+
 Backing up to STORE: root dir: `$six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml`
 
 ```
@@ -708,11 +714,11 @@ Backing up to GCS: root dir: `gs://bigscience-backups/tr11-176B-ml`
 
 
 ```
-gsutil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step3000 gs://bigscience-backups/tr11-176B-ml/checkpoints/global_step3000
+gsutil -m rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step3000 gs://bigscience-backups/tr11-176B-ml/checkpoints/global_step3000
 
 gusitil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs gs://bigscience-backups/tr11-176B-ml/tr11-176B-ml-logs
-
 ```
+
 
 
 ### Environment setup
