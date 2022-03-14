@@ -87,7 +87,6 @@ tr11-176B-ml
 
 You can watch the training logs live by running this `tail -f` like script over remote log file that gets synced to the hub once an hour:
 ```
-perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -sI $u]=~/content-length: (\d+)/; \
-print qx[curl -sr $b-$e -L $u] if $e>$b; $b=$e; sleep 300}' \
-https://cdn-lfs.huggingface.co/bigscience/tr11-176B-ml-logs/490370259b81f328bb408636cd911209e77a4c255fc0bddbf8ed5e4603a56283
+perl -e '$u=shift; $b=0; while(1){($e)=qx[curl -LsI $u]=~/2 200.*?content-length: (\d+)/s; \
+print qx[curl -Lsr $b-$e $u] if $e>$b; $b=$e; sleep 300}' https://huggingface.co/bigscience/tr11-176B-ml-logs/resolve/main/logs/main/main_log.txt
 ```
