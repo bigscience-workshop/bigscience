@@ -65,8 +65,7 @@ NNODES=$SLURM_NNODES
 TP_SIZE=4
 PP_SIZE=12
 
-# XXX: switch to MBS=2 after GBS reaches 768 or higher
-MICRO_BATCH_SIZE=1
+MICRO_BATCH_SIZE=2  # was MBS=1 till GBS=784
 GLOBAL_BATCH_SIZE=2048  # 4.2M tokens. It is larger than the initial plan of 3.2M tokens to get higher throughput
 
 NHIDDEN=14336
