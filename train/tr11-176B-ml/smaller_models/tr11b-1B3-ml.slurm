@@ -34,7 +34,7 @@ cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11b-1B3-exp1
 
-BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience
+BIGSCIENCE_REPO=$WORK/code/bigscience
 TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits-1B3.txt
 VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits-1B3.txt
 CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_merged_nigercongo_v3.json
@@ -131,7 +131,7 @@ GPT_ARGS=" \
 OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 1000 \
+    --eval-interval 100 \
     --eval-iters 1 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
