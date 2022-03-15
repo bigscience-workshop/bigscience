@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr11-176B-ml
+#SBATCH --job-name=tr11b-1B3-ml
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
 #SBATCH --qos=qos_gpu-gc             # up to 100h
@@ -22,9 +22,9 @@ echo "START TIME: $(date)"
 
 variant=main
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11b-1B3-ml
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
-REPO_PATH=$DATA_OUTPUT_PATH/tr11-176B-ml-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr11b-1B3-ml-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
 LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
@@ -32,11 +32,11 @@ mkdir -p $LOGS_PATH
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
-KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11-176B-exp1
+KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr11b-1B3-exp1
 
 BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience
-TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits.txt
-VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits.txt
+TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits-1B3.txt
+VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits-1B3.txt
 CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_merged_nigercongo_v3.json
 LOAD_RATIOS_SCRIPT=$BIGSCIENCE_REPO/data/catalogue/load_ratios_meg_ds_format.py
 python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split train --output-meg-ds-ratio-file $TRAIN_DATA_PATH
