@@ -21,8 +21,7 @@ Important links:
 - [slurm pulse script](./tr11-176B-ml-slurm-status.slurm) which lives at `$six_ALL_CCFRWORK/cron/cron.hourly`
 - each checkpoint with fp32 optim states and bf16+fp32 weights is 2.3TB - just the bf16 weights are 329GB.
 
-XXX: correct this
-Languages: ar, ca, code, en, es, eu, fr, id, indic-as, indic-bn, indic-gu, indic-hi, indic-kn, indic-ml, indic-mr, indic-ne, indic-or, indic-pa, indic-ta, indic-te, indic-ur, nigercongo-all, oscar-en, oscar-zh, pt, vi, zhs, zht
+Languages: 46 languages - [Details](#datasets)
 
 Hardware:
 
@@ -360,6 +359,22 @@ Backups of data:
 
 XXX: need to back up v3
 
+### Datasets
+
+The datasets contain 46 languages with the following proportions:
+
+* Niger-Congo Languages: Chi Tumbuka (0.00002%), Kikuyu (0.00004%), Bambara (0.00004%), Akan (0.00007%), Xitsonga (0.00007%), Sesotho (0.00007%), Chi Chewa (0.0001%), Twi (0.0001%), Setswana (0.0002%), Lingala (0.0002%), Northern Sotho (0.0002%), Fon (0.0002%), Kirundi (0.0003%), Wolof (0.0004%), Luganda (0.0004%), Chi Shona (0.001%), Isi Zulu (0.001%), Igbo (0.001%), Xhosa (0.001%), Kinyarwanda (0.003%), Yoruba (0.006%), Swahili (0.02%)
+
+* Indic languages: Assamese (0.01%), Odia (0.04%), Gujarati (0.04%), Marathi (0.05%), Punjabi (0.05%), Kannada (0.06%), Nepali (0.07%), Telugu (0.09%), Malayalam (0.1%), Urdu (0.1%), Tamil (0.2%), Bengali (0.5%), Hindi (0.7%)
+
+* Other languages: Basque (0.2%), Indonesian (1.1%), Catalan (1.1%), Vietnamese (2.5%), Arabic (3.3%), Portuguese (5%), Spanish (10.7%), Code (13%), French (13.1%), Chinese (17.7%), English (30.3%)
+
+The data came from three sources:
+1. The Data Sourcing Catalog included many primary data sources and existing NLP datasets participants wanted to have in our training corpus.
+2. Additional targeted websites identified by members of the Data Sourcing group as representative of a diversity of geographical language varieties, obtained through a pseudo crawl (i.e., by finding their data in an existing web crawl).
+3. We filtered data in our target languages from the OSCAR v2 web crawl dataset based on several language-specific data quality measures.
+
+For an indepth information of how the datasets were pre-processes see [Building a TB Scale Multilingual Dataset for Language Modeling](https://bigscience.huggingface.co/blog/building-a-tb-scale-multilingual-dataset-for-language-modeling).
 
 
 ### Data type
