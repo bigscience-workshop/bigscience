@@ -1,114 +1,114 @@
 [
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/ar/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_ar_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/ar/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_ar_text_document",
     "ratio": 0.0330676168743166
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/ca/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_ca_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/ca/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_ca_text_document",
     "ratio": 0.011242051312222764
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/code/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_code_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/code/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_code_text_document",
     "ratio": 0.13027200903379185
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/en/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_en_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/en/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_en_text_document",
     "ratio": 0.22171164529099704
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/es/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_es_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/es/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_es_text_document",
     "ratio": 0.10667815627928671
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/eu/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_eu_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/eu/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_eu_text_document",
     "ratio": 0.0015595123898173287
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/fr/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_fr_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/fr/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_fr_text_document",
     "ratio": 0.13054018439603915
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/id/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_id_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/id/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_id_text_document",
     "ratio": 0.01091803753667153
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-as/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-as_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-as/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-as_text_document",
     "ratio": 0.00011021422347108609
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-bn/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-bn_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-bn/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-bn_text_document",
     "ratio": 0.005492381453597748
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-gu/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-gu_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-gu/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-gu_text_document",
     "ratio": 0.0004021215011318779
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-hi/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-hi_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-hi/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-hi_text_document",
     "ratio": 0.007470068593492175
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-kn/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-kn_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-kn/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-kn_text_document",
     "ratio": 0.0006190467776576425
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-ml/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-ml_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-ml/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-ml_text_document",
     "ratio": 0.0010335296343329384
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-mr/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-mr_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-mr/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-mr_text_document",
     "ratio": 0.0005012010684646179
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-ne/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-ne_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-ne/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-ne_text_document",
     "ratio": 0.0006672772956128299
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-or/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-or_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-or/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-or_text_document",
     "ratio": 0.00035928138344705506
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-pa/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-pa_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-pa/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-pa_text_document",
     "ratio": 0.0005084433130291778
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-ta/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-ta_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-ta/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-ta_text_document",
     "ratio": 0.0021137328219915496
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-te/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-te_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-te/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-te_text_document",
     "ratio": 0.0009129946225980253
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/indic-ur/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-ur_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/indic-ur/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_indic-ur_text_document",
     "ratio": 0.0012454301613725426
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/nigercongo-all/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_nigercongo-all_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/nigercongo-all/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_nigercongo-all_text_document",
     "ratio": 0.00031588689199263235
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/oscar-en/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/oscar-en/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_text_document",
     "ratio": 0.08137213783015229
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/oscar-zh/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/oscar-zh/meg_ds_bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_text_document",
     "ratio": 0.055293935695898196
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/pt/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_pt_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/pt/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_pt_text_document",
     "ratio": 0.04954150576361177
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/vi/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_vi_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/vi/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_vi_text_document",
     "ratio": 0.02461641286531197
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/zhs/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_zhs_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/zhs/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_zhs_text_document",
     "ratio": 0.12091748245519074
   },
   {
-    "dataset_path": "/gpfsscratch/rech/six/commun/bigscience-datasets/merged-meg-ds_v3_pii/zht/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_zht_text_document",
+    "dataset_path": "/gpfswork/rech/six/commun/bigscience-training/merged-meg-ds_v3_pii/zht/bigscience-catalogue-data-dev_byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles_zht_text_document",
     "ratio": 0.0005177025345001541
   }
 ]
