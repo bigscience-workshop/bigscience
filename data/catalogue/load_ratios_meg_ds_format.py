@@ -39,7 +39,7 @@ def main():
     if args.split == "train":
         final_string = f"\"{args.split}: " + ", ".join(main_dataset) + "\"\n"
     elif args.split == "valid":
-        main_dataset_string = f"\"{args.split}_all: " + ", ".join(main_dataset) + "\""
+        main_dataset_string = f"\"{args.split}: " + ", ".join(main_dataset) + "\""
         additional_datasets = [f"\"valid_{ds_ratio['dataset_path'].split('/')[-2]}: 1 {token_range} {ds_ratio['dataset_path']}\"" for ds_ratio in ds_ratios]
         final_string = main_dataset_string + " " + " ".join(additional_datasets) + "\n"
     else:
