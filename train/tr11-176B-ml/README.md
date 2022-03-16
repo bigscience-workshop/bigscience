@@ -21,7 +21,9 @@ Important links:
 - [slurm pulse script](./tr11-176B-ml-slurm-status.slurm) which lives at `$six_ALL_CCFRWORK/cron/cron.hourly`
 - each checkpoint with fp32 optim states and bf16+fp32 weights is 2.3TB - just the bf16 weights are 329GB.
 
-Languages: 46 languages - [Details](#datasets)
+Datasets:
+- 46 Languages in 1.5TB of deduplicated massively cleaned up text, converted into 350B unique tokens - full [details](#datasets).
+- Vocabulary size is 250,680 tokens
 
 Hardware:
 
@@ -306,33 +308,32 @@ Thus: `sqrt(1/(14336*3)) = 0.00482197968631537`
     --init-method-std 0.0048 \
 ```
 
-### Misc features
+### Positional Encoding
 
-* **Positional encoding**:
+We use the added by us AliBi implementation:
 
-   We use the added by us AliBi implementation:
-
-   ```
-       --position-embedding-type alibi \
-   ```
+```
+    --position-embedding-type alibi \
+```
 Paper: [Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation](https://arxiv.org/abs/2108.12409)
 
-* **Embed LayerNorm**:
 
-   We use the added by us embedding layer norm which makes the training more stable at a small training slowdown cost and a tiny additional amount of memory.
+### Embed LayerNorm
 
-   ```
-       --embed-layernorm \
-   ```
+We use the added by us embedding layer norm which makes the training more stable at a small training slowdown cost and a tiny additional amount of memory.
 
-   This insight came from experimenting with https://github.com/facebookresearch/bitsandbytes which contains a `StableEmbedding` which is a normal Embedding with layernorm and it uses a uniform xavier initialization.
+```
+    --embed-layernorm \
+```
+
+This insight came from experimenting with https://github.com/facebookresearch/bitsandbytes which contains a `StableEmbedding` which is a normal Embedding with layernorm and it uses a uniform xavier initialization.
 
 
-* **Activation Function**:
+### Activation Function
 
-   `torch.nn.functional.gelu`
+`torch.nn.functional.gelu`
 
-   Various activation functions were experimented with and GeLU was the best, when considering outcome quality and training throughput.
+Various activation functions were experimented with and GeLU was the best, when considering both, the outcome quality and the training throughput.
 
 
 ### Data and Tokenizer
