@@ -601,7 +601,7 @@ The least is to store a full checkpoint every 10% of the training. More frequent
 Let's do a weight break down by component:
 
 1. Each transformer block is `12*h**2+13*h`
-2. The vocab and the rest are: `v*h + s*h + 2*h`
+2. The word embedding and the rest of weights are: `v*h + s*h + 2*h`
 
 Then in BF16 (2 bytes per param):
 
