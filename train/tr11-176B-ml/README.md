@@ -598,6 +598,19 @@ Preserving checkpoints:
 The least is to store a full checkpoint every 10% of the training. More frequent than that is better, but 10% is the minimum
 
 
+Let's do a weight break down by component:
+
+1. Each transformer block is `12*h**2+13*h`
+2. The vocab and the rest are: `v*h + s*h + 2*h`
+
+Then in BF16 (2 bytes per param):
+
+```
+NHIDDEN=14336; NLAYERS=70; SEQ_LEN=2048; VOCAB_SIZE=250680; python -c "h=$NHIDDEN; l=$NLAYERS; s=$SEQ_LEN; v=$VOCAB_SIZE; t=2*(12*h**2 + 13*h); r=2*(v*h + s*h + 2*h); print(f'BF16 Transformer block size: {t/2**30:.02f}GB, the rest is: {r/2**30:.02f}GB, total {(l*t+r)/2**30:.02f}GB')"
+BF16 Transformer block size: 4.59GB, the rest is: 6.75GB, total 328.34GB
+```
+
+
 
 ### Watchdogs
 
