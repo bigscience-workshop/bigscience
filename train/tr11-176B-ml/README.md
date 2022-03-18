@@ -251,7 +251,7 @@ Notes:
 * global batch size has to be divisible by micro-batch-size * DP_SIZE
 
 
-Update: at the end we decided to start with GBS=192 and MBS=1, as 16 was too too slow, so the current setup starts with 73 TFLOPs as compared to 8 with GBS=16.
+**Update**: at the end we decided to start with GBS=192 and MBS=1, as GBS=16/MBS=2 was too too slow, so the current setup starts with GBS=192/MBS=1 @ 73 TFLOPs as compared GBS=16/MBS=2 @ 8 TFLOPs.
 
 
 
