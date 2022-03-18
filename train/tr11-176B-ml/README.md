@@ -265,7 +265,7 @@ Update: at the end we decided to start with GBS=192 and MBS=1, as 16 was too too
    * warmup over 183_105 samples (375M tokens)
    * cosine decay for learning rate down to 10% of its value, over 410B tokens (after 410B tokens, training continues at 10% of the original learning rate, that is fixed `--min-lr`)
 - clipping by global norm of 1 (as in GPT-3)
-- weight decay of 0.1
+- weight decay of 0.1 (same as in GPT3 and 530B trainings)
 
 We need lr-decay in samples, so tokens2samples = 410B / 2048 = ~200_000_000
 

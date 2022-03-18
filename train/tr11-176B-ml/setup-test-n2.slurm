@@ -93,8 +93,10 @@ OPTIMIZER_ARGS=" \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
-# for 20h 1190, for 100h 5990
+# for 20h 1190, for 100h 5990:
 #    --exit-duration-in-mins 1190 \
+# for quick auto-exit:
+#    --exit-interval 10 \
 EXIT_OPTS=" \
     --exit-duration-in-mins 5990 \
     "
