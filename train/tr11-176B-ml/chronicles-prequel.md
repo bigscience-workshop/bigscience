@@ -1,6 +1,6 @@
 # Prequel
 
-Trials and Tribulations prior to the start of training.
+Trials and tribulations prior to the start of training.
 
 For the trials and tribulation during the training see: [chronicles](chronicles.md).
 

@@ -338,35 +338,44 @@ Various activation functions were experimented with and GeLU was the best, when 
 
 ### Data and Tokenizer
 
+**Data**:
 
 ```
 BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience
 TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits.txt
 VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits.txt
-CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_merged_nigercongo.json
+CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_merged_nigercongo_v3.json
 LOAD_RATIOS_SCRIPT=$BIGSCIENCE_REPO/data/catalogue/load_ratios_meg_ds_format.py
 python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split train --output-meg-ds-ratio-file $TRAIN_DATA_PATH
 python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split valid --output-meg-ds-ratio-file $VALID_DATA_PATH
+```
 
+Backups of data:
+
+- `$six_ALL_CCFRWORK/bigscience-training/merged-meg-ds_v2` is backed up at `$six_ALL_CCFRSTORE/datasets/merged-meg-ds_v2`.
+- `$six_ALL_CCFRWORK/bigscience-training/merged-meg-ds_v3_pii` is backed up at `$six_ALL_CCFRSTORE/datasets/merged-meg-ds_v3_pii`.
+
+These paths are inside `data/*-splits.txt` files.
+
+**Tokenizer**:
+
+```
 TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
+
+[...]
 
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
 ```
 
-Backups of data:
-
-- `$six_ALL_CCFRWORK/bigscience-training/merged-meg-ds_v2` is backed up at `$six_ALL_CCFRSTORE/datasets/merged-meg-ds_v2`. These paths are inside `data/*-splits.txt` files.
-
-XXX: need to back up v3
 
 ### Datasets
 
 The datasets contain 46 languages with the following proportions:
 
-* Niger-Congo Languages: Chi Tumbuka (0.00002%), Kikuyu (0.00004%), Bambara (0.00004%), Akan (0.00007%), Xitsonga (0.00007%), Sesotho (0.00007%), Chi Chewa (0.0001%), Twi (0.0001%), Setswana (0.0002%), Lingala (0.0002%), Northern Sotho (0.0002%), Fon (0.0002%), Kirundi (0.0003%), Wolof (0.0004%), Luganda (0.0004%), Chi Shona (0.001%), Isi Zulu (0.001%), Igbo (0.001%), Xhosa (0.001%), Kinyarwanda (0.003%), Yoruba (0.006%), Swahili (0.02%)
+* Niger-Congo Languages (0.035%) : Chi Tumbuka (0.00002%), Kikuyu (0.00004%), Bambara (0.00004%), Akan (0.00007%), Xitsonga (0.00007%), Sesotho (0.00007%), Chi Chewa (0.0001%), Twi (0.0001%), Setswana (0.0002%), Lingala (0.0002%), Northern Sotho (0.0002%), Fon (0.0002%), Kirundi (0.0003%), Wolof (0.0004%), Luganda (0.0004%), Chi Shona (0.001%), Isi Zulu (0.001%), Igbo (0.001%), Xhosa (0.001%), Kinyarwanda (0.003%), Yoruba (0.006%), Swahili (0.02%)
 
-* Indic languages: Assamese (0.01%), Odia (0.04%), Gujarati (0.04%), Marathi (0.05%), Punjabi (0.05%), Kannada (0.06%), Nepali (0.07%), Telugu (0.09%), Malayalam (0.1%), Urdu (0.1%), Tamil (0.2%), Bengali (0.5%), Hindi (0.7%)
+* Indic languages (2%): Assamese (0.01%), Odia (0.04%), Gujarati (0.04%), Marathi (0.05%), Punjabi (0.05%), Kannada (0.06%), Nepali (0.07%), Telugu (0.09%), Malayalam (0.1%), Urdu (0.1%), Tamil (0.2%), Bengali (0.5%), Hindi (0.7%)
 
 * Other languages: Basque (0.2%), Indonesian (1.1%), Catalan (1.1%), Vietnamese (2.5%), Arabic (3.3%), Portuguese (5%), Spanish (10.7%), Code (13%), French (13.1%), Chinese (17.7%), English (30.3%)
 
