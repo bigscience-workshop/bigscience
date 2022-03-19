@@ -6,13 +6,23 @@ For the trials and tribulation during the preparation stage before the launch  s
 
 ## main
 
+### 2022-03-11
+
+Launch
+
 The training launched on March 11, 2022 11:42am PST
 
-8 days later the training finished the batch size ramp up stage and we are now at full throttle of GBS=2048 and at 149-150 TFLOPs. It took us 8 days to get here.
+### 2022-03-18
 
-We consumed 20B/400B tokens
+7 days after the launch the training finished the batch size ramp up stage and we are now at full throttle of GBS=2048 and at 149-150 TFLOPs.
 
-At the current speed we need 125 days more `(115311-12695)*105/(3600*24)=124.7` to finish the plan.
+A single train iteration is about 105 secs.
+
+A single eval iteration is about 12 min (1 iteration eval on each of 29 datasets) - we perform it once every 1k iteration.
+
+We consumed 20B/450B tokens.
+
+At the current speed and no downtime we need 125 days more `(115311-12695)*105/(3600*24)=124.7` to finish the plan.
 
 the math is based on the recent log:
 
