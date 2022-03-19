@@ -12,6 +12,11 @@ Launch
 
 The training launched on March 11, 2022 11:42am PST
 
+### 2022-03-14
+
+Switched from MBS=1 to MBS=2 at GBS=784, as now there is enough microbatches in each of the 8 replicas to fill each pipeline 4 times. With MBS=2 each replica has `784/(2*8) = 49` microbatches over 12 PP stages which is already pretty efficient. (`GBS/(MBS*DP)`)
+
+
 ### 2022-03-18
 
 7 days after the launch the training finished the batch size ramp up stage and we are now at full throttle of GBS=2048 and at 149-150 TFLOPs.
