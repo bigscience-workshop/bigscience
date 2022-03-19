@@ -6,15 +6,21 @@ For the trials and tribulation during the preparation stage before the launch  s
 
 ## main
 
+
+
 ### 2022-03-11
 
 Launch
 
 The training launched on March 11, 2022 11:42am PST
 
+
+
 ### 2022-03-14
 
 Switched from MBS=1 to MBS=2 at GBS=784, as now there is enough microbatches in each of the 8 replicas to fill each pipeline 4 times. With MBS=2 each replica has `784/(2*8) = 49` microbatches over 12 PP stages which is already pretty efficient. (`GBS/(MBS*DP)`)
+
+
 
 
 ### 2022-03-18
@@ -23,7 +29,9 @@ Switched from MBS=1 to MBS=2 at GBS=784, as now there is enough microbatches in 
 
 A single train iteration is about 105 secs.
 
-A single eval iteration is about 12 min (1 iteration eval on each of 29 datasets) - we perform it once every 1k iteration.
+A single eval iteration is about 12 min (1 iteration eval on each of 29 datasets) - we perform it once every 1k iteration and it "costs" about 7 iterations or 0.7% of training.
+
+A checkpoint is saved in 40 secs, which is about 1/2 iteration duration.
 
 We consumed 20B/450B tokens.
 
