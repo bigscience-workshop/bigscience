@@ -147,8 +147,13 @@ cat <<EOT > $config_json
   "zero_optimization": {
     "stage": $ZERO_STAGE
   },
-  "bf16": {
-    "enabled": true
+  "fp16": {
+    "enabled": true,
+    "loss_scale": 0,
+    "loss_scale_window": 500,
+    "hysteresis": 2,
+    "min_loss_scale": 1,
+    "initial_scale_power": 12
   },
   "steps_per_print": 2000,
   "wall_clock_breakdown": false
