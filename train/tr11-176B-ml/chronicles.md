@@ -44,7 +44,7 @@ the math is based on the recent log:
 ```
 
 
-### What makes 176B-ml so stable
+### What makes 176B-ml so stable?
 
 To compare: at [104B-en experiments](https://huggingface.co/bigscience/tr8b-104B-logs/tensorboard) we failed to cross the 24B-tokens barrier.
 
