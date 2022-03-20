@@ -42,3 +42,18 @@ the math is based on the recent log:
 ```
  [default7]: iteration    12695/  115311 | consumed samples:      9841584 | consumed tokens:  20155564032 | elapsed time per iteration (s): 105.22 | learning rate: 5.969E-05 | global batch size:  2048 | lm loss: 2.463556E+00 | grad norm: 0.174 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 19.463 | TFLOPs: 149.02 |
 ```
+
+
+### what makes 176B so stable
+
+It's hard to tell if there is one specific improvement that made the biggest impact w/o doing ablation studies, which would be both expensive and time consuming.
+
+It's probably a combination of a few or all of the following improvements:
+
+1. Very clean data
+2. BF16 mixed precision regime
+3. FP32 grad accumulation for the pipeline
+4. Word embedding layer norm
+5. A very low standard initialization `sqrt(0.3333/NHIDDEN)`
+
+If you believe in metaphysics perhaps one more important factor is the "intentional" contribution of many thousands of ML enthusiasts around the world who want this largest open source multilingual language model training to succeed.

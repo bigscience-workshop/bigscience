@@ -77,7 +77,7 @@ SAVE_INTERVAL=250
 
 TRAIN_SAMPLES=220_000_000  # 450B tokens
 LR_DECAY_SAMPLES=200_000_000  # Decay for the first 410B tokens then continue at fixed --min-lr
-LR_WARMUP_SAMPLES=183_105  # 375M tokens. We used to use 216_320, not clear why
+LR_WARMUP_SAMPLES=183_105  # 375M tokens
 
 
 OPTIMIZER_ARGS=" \

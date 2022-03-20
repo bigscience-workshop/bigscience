@@ -743,7 +743,7 @@ We need to back up checkpoints, logs and tensorboard files.
 
 Most of the time you need to use a non-login shell to do the job or it will get killed:
 ```
-srun --pty -A six@cpu -p compil --hint=nomultithread --time=06:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
+srun --pty -A six@cpu -p compil --hint=nomultithread --time=20:00:00 bash --rcfile $six_ALL_CCFRWORK/start-prod
 ```
 
 Backing up to STORE: root dir: `$six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml`

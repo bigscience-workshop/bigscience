@@ -190,6 +190,18 @@ srun --account=six@cpu --pty --nodes=1 --ntasks=1 --cpus-per-task=40 --hint=nomu
 The `--rcfile` part is optional if you want to pre-run something.
 
 
+With A100s, it's:
+
+w/o gpus:
+```
+srun --pty --partition=gpu_p5 --constraint=a100 --nodes=1 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:0 --time=6:00:00 --account=six@a100 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
+w/ gpus:
+```
+srun --pty --partition=gpu_p5 --constraint=a100 --nodes=1 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time=6:00:00 --account=six@a100 bash --rcfile $six_ALL_CCFRWORK/start-prod
+```
+
+
 ## Re-use allocation
 
 e.g. when wanting to run various jobs on identical node allocation.
