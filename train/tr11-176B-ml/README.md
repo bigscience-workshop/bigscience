@@ -754,13 +754,25 @@ cp -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step
 
 Backing up to GCS: root dir: `gs://bigscience-backups/tr11-176B-ml`
 
+* full checkpoint (2.3TB)
 
 ```
-gsutil -m rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step3000 gs://bigscience-backups/tr11-176B-ml/checkpoints/global_step3000
-
-gusitil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs gs://bigscience-backups/tr11-176B-ml/tr11-176B-ml-logs
+gsutil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step3000 gs://bigscience-backups/tr11-176B-ml/checkpoints/global_step3000
 ```
 
+* weights only checkpoints (0.33TB)
+
+```
+gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step1000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step1000
+```
+
+* logs (tiny)
+
+```
+gsutil rsync -x ".git" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs  gs://bigscience-backups/tr11-176B-ml/tr11-176B-ml-logs
+```
+
+The schedule to follow with copy-n-paste instructions is in [backup-schedule](./backup-schedule.md).
 
 
 ### Environment setup
