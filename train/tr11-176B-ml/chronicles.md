@@ -46,6 +46,14 @@ the math is based on the recent log:
 
 ### what makes 176B so stable
 
+To compare: at [104B-en experiments](https://huggingface.co/bigscience/tr8b-104B-logs/tensorboard) we failed to cross the 24B-tokens barrier.
+
+![104B-en-24B-tokens-fail](images/104B-en-24B-tokens-fail.png)
+
+At 176B-ml we have crossed [24B-tokens barrier](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard#scalars&tagFilter=loss%20vs%20tokens&_smoothingWeight=0) w/o a single instability issue:
+
+![176B-ml-24B-tokens-succeed](images/176B-ml-24B-tokens-succeed.png)
+
 It's hard to tell if there is one specific improvement that made the biggest impact w/o doing ablation studies, which would be both expensive and time consuming.
 
 It's probably a combination of a few or all of the following improvements:
@@ -53,7 +61,7 @@ It's probably a combination of a few or all of the following improvements:
 1. Very clean data
 2. BF16 mixed precision regime
 3. FP32 grad accumulation for the pipeline
-4. Word embedding layer norm
-5. A very low standard initialization `sqrt(0.3333/NHIDDEN)`
+4. A very low standard initialization `sqrt(0.3333/NHIDDEN)` - in 104B-en used `sqrt(0.4/NHIDDEN)`
+5. Word embedding layer norm - but it was also used in 104B-en
 
 If you believe in metaphysics perhaps one more important factor is the "intentional" contribution of many thousands of ML enthusiasts around the world who want this largest open source multilingual language model training to succeed.
