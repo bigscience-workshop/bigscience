@@ -54,6 +54,10 @@ perl -le 'print qq[gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/
 ```
 # done
 
+
+# todo:
+
+
 gsutil rsync -x "bf16.*" -r /checkpoints/tr11-176B-ml/checkpoints/main/global_step3000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step3000
 gsutil rsync -x "bf16.*" -r /checkpoints/tr11-176B-ml/checkpoints/main/global_step6000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step6000
 gsutil rsync -x "bf16.*" -r /checkpoints/tr11-176B-ml/checkpoints/main/global_step9000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step9000
@@ -61,7 +65,6 @@ gsutil rsync -x "bf16.*" -r /checkpoints/tr11-176B-ml/checkpoints/main/global_st
 
 
 
-# todo:
 
 
 gsutil rsync -x "bf16.*" -r /checkpoints/tr11-176B-ml/checkpoints/main/global_step15000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step15000
