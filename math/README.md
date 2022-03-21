@@ -5,12 +5,12 @@
 
 in days:
 ```
- (X billion tokens)*(8* M billion parameters)/(N_GPUs * Achieved_TFlops * 1e12*60*60*24)
+ (X billion tokens)*(8* M billion parameters)/(N_GPUs * Achieved_TFLOPs * 1e12*60*60*24)
 ```
 
-`Achieved_TFlops` is measured by running experiments that tune up the setup for the best throughput performance.
+`Achieved_TFLOPs` is measured by running experiments that tune up the setup for the best throughput performance.
 
-For example, for a 13 billion parameter model, trained for 300 billion tokens, on 256 GPUs at 45 TFlops would take: `(300 billion)*(8*13 billion)/(256*45*1 trillion *60*60*24) = ~31 days`
+For example, for a 13 billion parameter model, trained for 300 billion tokens, on 256 GPUs at 45 TFLOPs would take: `(300 billion)*(8*13 billion)/(256*45*1 trillion *60*60*24) = ~31 days`
 
 ```
 $ python -c 'Btokens=300; Bmodel=13; n_gpus=256; Tflops=45; \
@@ -25,11 +25,11 @@ Notes:
 contributed by Samyam Rajbhandari
 
 
-## Calculate TFlops
+## Calculate TFLOPs
 
 The following is an estimation formula which slightly under-reports the real TFLOPs:
 
-TFlops: `model_size_in_B * 4 * 2 * seqlen * global_batch_size / (time_in_sec_per_interation * total_gpus * 1e3)`
+TFLOPs: `model_size_in_B * 4 * 2 * seqlen * global_batch_size / (time_in_sec_per_interation * total_gpus * 1e3)`
 
 The factor of 4 is when used with activation check-pointing,
 otherwise it will be 3, but for 200B model, activation check-pointing will always be on.
@@ -91,7 +91,7 @@ In the formula:
 - T: number of tokens used for training in Billions
 - P: number of parameters in normal numbers
 - n: number of GPUs
-- X: throughput per GPU in TFlops
+- X: throughput per GPU in TFLOPs
 - The result is in seconds, so divide by 3600*24 to get days
 
 Example:
