@@ -71,3 +71,26 @@ It's probably a combination of a few or all of the following improvements:
 5. Word embedding layer norm - but it was also used in 104B-en
 
 If you believe in metaphysics perhaps one more important factor is the "intentional" contribution of many thousands of ML enthusiasts around the world who want this largest open source multilingual language model training to succeed.
+
+
+
+### 2022-03-21
+
+One of the GPUs crashed at 2022-03-21_13:34:34 JZ time:
+
+```
+[default3]:terminate called after throwing an instance of 'c10::CUDAError'
+[default3]:  what():  CUDA error: unknown error
+[default3]:Exception raised from query at ../aten/src/ATen/cuda/CUDAEvent.h:95 (most recent call first):
+[default3]:frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x42 (0x1518a06137d2 in /gpfswork/rech/six/commun/conda/tr11-176B-ml/lib/python3.8/site-packages/torch/lib/libc10.so)
+[default3]:frame #1: c10d::ProcessGroupNCCL::WorkNCCL::finishedGPUExecutionInternal() const + 0x11a (0x15190c6c29ea in /gpfswork/rech/six/commun/conda/tr11-176B-ml/lib/python3.8/site-packages/torch/lib/libtorch_cuda_cpp.so)
+[default3]:frame #2: c10d::ProcessGroupNCCL::WorkNCCL::isCompleted() + 0x50 (0x15190c6c4fd0 in /gpfswork/rech/six/commun/conda/tr11-176B-ml/lib/python3.8/site-packages/torch/lib/libtorch_cuda_cpp.so)
+[default3]:frame #3: c10d::ProcessGroupNCCL::workCleanupLoop() + 0x145 (0x15190c6c6265 in /gpfswork/rech/six/commun/conda/tr11-176B-ml/lib/python3.8/site-packages/torch/lib/libtorch_cuda_cpp.so)
+[default3]:frame #4: <unknown function> + 0xc2ba3 (0x15191b339ba3 in /lib64/libstdc++.so.6)
+[default3]:frame #5: <unknown function> + 0x814a (0x15191c77d14a in /lib64/libpthread.so.0)
+[default3]:frame #6: clone + 0x43 (0x15191c4acdc3 in /lib64/libc.so.6)
+```
+
+we lost 7.3h of work, it failed 2 iterations before checkpoint saving time :(
+
+Will switch to more frequent checkpoint saving of 200 iterations and will lower it further if the hardware failures continue.
