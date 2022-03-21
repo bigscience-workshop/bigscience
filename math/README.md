@@ -31,8 +31,9 @@ The following is an estimation formula which slightly under-reports the real TFL
 
 TFLOPs: `model_size_in_B * 4 * 2 * seqlen * global_batch_size / (time_in_sec_per_interation * total_gpus * 1e3)`
 
-The factor of 4 is when used with activation check-pointing,
-otherwise it will be 3, but for 200B model, activation check-pointing will always be on.
+The factor of 4 is when used with activation check-pointing, otherwise it will be 3, but for 100B+ model, activation check-pointing will always be on.
+
+So the `3*2` is often called "model FLOPs" and `4*2` - "hardware FLOPs".
 
 ```
 perl -le '$ng=64; $ms=52; $gbs=1024; $sp=127; $seqlen=2048; print $ms*4*2*$seqlen*$gbs / ( $sp * $ng * 1e3)'
