@@ -73,7 +73,7 @@ NLAYERS=70
 NHEADS=112
 SEQ_LEN=2048
 
-SAVE_INTERVAL=250
+SAVE_INTERVAL=200
 
 TRAIN_SAMPLES=220_000_000  # 450B tokens
 LR_DECAY_SAMPLES=200_000_000  # Decay for the first 410B tokens then continue at fixed --min-lr
