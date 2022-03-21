@@ -4,6 +4,8 @@ Trials and tribulations during the 176B 250k multi-lingual training.
 
 For the trials and tribulation during the preparation stage before the launch  see: [chronicles-prequel](chronicles-prequel.md).
 
+The full spec is [here](README.md) and the script is [here](tr11-176B-ml.slurm).
+
 ## main
 
 

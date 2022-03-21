@@ -384,6 +384,8 @@ The data came from three sources:
 2. Additional targeted websites identified by members of the Data Sourcing group as representative of a diversity of geographical language varieties, obtained through a pseudo crawl (i.e., by finding their data in an existing web crawl).
 3. We filtered data in our target languages from the OSCAR v2 web crawl dataset based on several language-specific data quality measures.
 
+The `code` dataset includes the following programmin languages: C++, C#, Go, Java, JavaScript, Lua, PHP, Python, 2, Python, 3, Ruby, Rust, Scala, TypeScript
+
 For an indepth information of how the datasets were pre-processes see [Building a TB Scale Multilingual Dataset for Language Modeling](https://bigscience.huggingface.co/blog/building-a-tb-scale-multilingual-dataset-for-language-modeling).
 
 
