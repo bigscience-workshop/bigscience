@@ -93,4 +93,4 @@ One of the GPUs crashed at 2022-03-21_13:34:34 JZ time:
 
 we lost 7.3h of work, it failed 2 iterations before checkpoint saving time :(
 
-Will switch to more frequent checkpoint saving of 200 iterations and will lower it further if the hardware failures continue.
+Will switch to more frequent checkpoint saving of 200 iterations and will lower it further if the hardware failures continue. With 2.3TB checkpoint size and 40 secs to save a checkpoint we don't want to do it too often.

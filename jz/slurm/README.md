@@ -242,6 +242,19 @@ scontrol show -d job $SLURM_JOB_ID
 and then parse out what's needed.
 
 
+For a job that finished its run use:
+```
+sacct -j JOBID
+```
+
+e.g. with more details, depending on the partition:
+```
+sacct -u `whoami` -A six@a100 -ojobid,start,end,state,exitcode --format nodelist%300  -j JOBID
+sacct -u `whoami` -A six@gpu -ojobid,start,end,state,exitcode --format nodelist%300  -j JOBID
+```
+
+
+
 ## show my jobs
 
 ```

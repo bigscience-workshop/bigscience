@@ -382,14 +382,16 @@ The datasets contain 46 languages with the following proportions:
 
 * Indic languages (2%): Assamese (0.01%), Odia (0.04%), Gujarati (0.04%), Marathi (0.05%), Punjabi (0.05%), Kannada (0.06%), Nepali (0.07%), Telugu (0.09%), Malayalam (0.1%), Urdu (0.1%), Tamil (0.2%), Bengali (0.5%), Hindi (0.7%)
 
-* Other languages: Basque (0.2%), Indonesian (1.1%), Catalan (1.1%), Vietnamese (2.5%), Arabic (3.3%), Portuguese (5%), Spanish (10.7%), Code (13%), French (13.1%), Chinese (17.7%), English (30.3%)
+* Other languages: Basque (0.2%), Indonesian (1.1%), Catalan (1.1%), Vietnamese (2.5%), Arabic (3.3%), Portuguese (5%), Spanish (10.7%), French (13.1%), Chinese (17.7%), English (30.3%)
+
+* Non-human languages:  Code (13%)
 
 The data came from three sources:
 1. The Data Sourcing Catalog included many primary data sources and existing NLP datasets participants wanted to have in our training corpus.
 2. Additional targeted websites identified by members of the Data Sourcing group as representative of a diversity of geographical language varieties, obtained through a pseudo crawl (i.e., by finding their data in an existing web crawl).
 3. We filtered data in our target languages from the OSCAR v2 web crawl dataset based on several language-specific data quality measures.
 
-The `code` dataset includes the following programmin languages: C++, C#, Go, Java, JavaScript, Lua, PHP, Python, Ruby, Rust, Scala, TypeScript
+The `code` dataset includes the following programming languages: C++, C#, Go, Java, JavaScript, Lua, PHP, Python, Ruby, Rust, Scala, TypeScript
 
 For an indepth information of how the datasets were pre-processes see [Building a TB Scale Multilingual Dataset for Language Modeling](https://bigscience.huggingface.co/blog/building-a-tb-scale-multilingual-dataset-for-language-modeling).
 
@@ -722,6 +724,23 @@ If you found this situation where someone's files have wrong perms, often you ca
 mv tr11-176B-ml.slurm tr11-176B-ml.slurm.bad
 git checkout tr11-176B-ml.slurm
 ```
+
+### Analysing crashes
+
+
+Sometimes GPUs crash, to analyse which nodes participated in a particular run use:
+
+```
+sacct -u `whoami` -A six@a100 -ojobid,start,end,state,exitcode --format nodelist%300  -j JOBID
+```
+to get JOBID use:
+```
+grep jobid tr11-176B-ml-519443.out
+```
+where `tr11-176B-ml-519443.out` is the log file for that job and can be found in `$six_ALL_CCFRSCRATCH/code/tr11-176B-ml/bigscience/train/tr11-176B-ml` - one of the recent log files that is - well it's also in the name of the file ;)
+
+Note that if you had a job array it'll also have the job specific postfix, e.g. `519443_2`.
+
 
 ### Testing new changes to the script
 

@@ -53,7 +53,7 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
 # testing for potential faulty nodes
-# srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
+# srun --jobid $SLURM_JOB_ID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
 
 # so processes know who to talk to
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
@@ -141,7 +141,7 @@ OUTPUT_ARGS=" \
 
 ZERO_STAGE=0 # important: bf16 must use z0! it implements its own zero stage 1 equivalent
 
-config_json="./ds_config.$SLURM_JOBID.json"
+config_json="./ds_config.$SLURM_JOB_ID.json"
 
 # Deepspeed figures out GAS dynamically from dynamic GBS via set_train_batch_size()
 cat <<EOT > $config_json
@@ -200,6 +200,6 @@ export CUDA_LAUNCH_BLOCKING=1
 # hide duplicated errors using this hack - will be properly fixed in pt-1.12
 export TORCHELASTIC_ERROR_FILE=/tmp/torch-elastic-error.json
 
-clear; srun --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
+clear; srun --jobid $SLURM_JOB_ID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
 
 echo "END TIME: $(date)"
