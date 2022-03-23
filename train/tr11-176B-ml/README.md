@@ -4,7 +4,7 @@ Large multilingual language model training
 
 ## Task
 
-Auto-regressive objective using regular Megatron-LM GPT2 language model w/o multi-lingual dataset
+Auto-regressive objective using regular Megatron-LM GPT2 language model w/ multi-lingual dataset
 
 Model size: 176B
 
