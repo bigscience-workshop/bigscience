@@ -639,7 +639,7 @@ BF16 Transformer block size: 4.59GB, the rest is: 6.75GB, total 328.34GB
 
 ### Estimated run time
 
-Best case scenario when training 24/7 on 48 nodes with 8 gpus each:
+Best case scenario when training 24/7 on 48 nodes with 8 GPUs each, running at ~150 TFLOPs per GPU:
 ```
 $ python -c 'Btokens=450; Bmodel=167; n_gpus=384; Tflops=150; \
 print(f"{Btokens*1e9*8*Bmodel*1e9/(n_gpus*Tflops*1e12*60*60*24):0.2f} days")'

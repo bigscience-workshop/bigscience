@@ -27,7 +27,7 @@ Switched from MBS=1 to MBS=2 at GBS=784, as now there is enough microbatches in 
 
 ### 2022-03-18
 
-7 days after the launch the training finished the batch size ramp up stage and we are now at full throttle of GBS=2048 and at 149-150 TFLOPs.
+7 days after the launch the training finished the batch size ramp up stage and we are now at full throttle of GBS=2048 and at 149-150 TFLOPs per GPU.
 
 A single train iteration is about 105 secs.
 
@@ -94,3 +94,9 @@ One of the GPUs crashed at 2022-03-21_13:34:34 JZ time:
 we lost 7.3h of work, it failed 2 iterations before checkpoint saving time :(
 
 Will switch to more frequent checkpoint saving of 200 iterations and will lower it further if the hardware failures continue. With 2.3TB checkpoint size and 40 secs to save a checkpoint we don't want to do it too often.
+
+
+
+### 2022-03-22
+
+Switched to `SAVE_INTERVAL=100` as JeanZay had some emergency maintenance downtime and we lost some hours again, so now with 100 iterations per checkpoint we would lose at most 3h.
