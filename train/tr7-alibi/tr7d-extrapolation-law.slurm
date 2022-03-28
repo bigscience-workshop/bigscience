@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=350M-alibi-extrapolation
+#SBATCH --job-name=1B3-alibi-extrapolation
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -73,7 +73,7 @@ OPTIMIZER_ARGS=" \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
-    --eval-only \
+    --eval-only 1\
     "
 
 EXIT_OPTS=" \
