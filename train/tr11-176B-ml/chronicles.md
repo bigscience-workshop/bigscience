@@ -48,11 +48,12 @@ the math is based on the recent log:
 
 ### What makes the 176B-ml training so stable?
 
-To compare: at [104B-en experiments](https://huggingface.co/bigscience/tr8b-104B-logs/tensorboard#scalars&runSelectionState=eyJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMSI6dHJ1ZSwidGVuc29yYm9hcmQvY2wtZXhwLTAxIjpmYWxzZSwidGVuc29yYm9hcmQvY2wtZXhwLTAyIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDIiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9ibmItZXhwLTAzIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wNCI6ZmFsc2UsInRlbnNvcmJvYXJkL2Jhc2UtZXhwLTEyIjp0cnVlLCJ0ZW5zb3Jib2FyZC9ibmIiOnRydWUsInRlbnNvcmJvYXJkL2JuYi1leHAtMDUiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wMSI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDIiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTAzIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wNCI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDUiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTA2Ijp0cnVlLCJ0ZW5zb3Jib2FyZC9jbCI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWExMDAiOmZhbHNlfQ%3D%3D&tagFilter=loss%20vs%20tokens) we failed to cross the 24B-tokens barrier. You can find the indepth details in [the 104B chronicles](../tr8b-104B/chronicles.md).
+To compare: at [104B-en experiments]
+(https://huggingface.co/bigscience/tr8b-104B-logs/tensorboard?tab=scalars&runSelectionState=eyJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWV4cC0wMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWV4cC0wMiI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDEiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9ibmItZXhwLTAyIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wMyI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDQiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMiI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYiI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDUiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybSI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDEiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTAyIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wMyI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDQiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTA1Ijp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wNiI6dHJ1ZSwidGVuc29yYm9hcmQvY2wiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9jbC1hMTAwIjpmYWxzZX0%253D&tagFilter=loss%2520vs%2520tokens#scalars&runSelectionState=eyJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMSI6dHJ1ZSwidGVuc29yYm9hcmQvY2wtZXhwLTAxIjpmYWxzZSwidGVuc29yYm9hcmQvY2wtZXhwLTAyIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDIiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9ibmItZXhwLTAzIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wNCI6ZmFsc2UsInRlbnNvcmJvYXJkL2Jhc2UtZXhwLTEyIjp0cnVlLCJ0ZW5zb3Jib2FyZC9ibmIiOnRydWUsInRlbnNvcmJvYXJkL2JuYi1leHAtMDUiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wMSI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDIiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTAzIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wNCI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDUiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTA2Ijp0cnVlLCJ0ZW5zb3Jib2FyZC9jbCI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWExMDAiOmZhbHNlfQ%3D%3D&tagFilter=loss%20vs%20tokens) we failed to cross the 24B-tokens barrier. You can find the indepth details in [the 104B chronicles](../tr8b-104B/chronicles.md).
 
 ![104B-en-24B-tokens-fail](images/104B-en-24B-tokens-fail.png)
 
-At 176B-ml we have crossed [24B-tokens barrier](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard#scalars&tagFilter=loss%20vs%20tokens&_smoothingWeight=0) w/o a single instability issue:
+At 176B-ml we have crossed [24B-tokens barrier](https://huggingface.co/bigscience/tr11-176B-ml-logs/tensorboard?tab=scalars&tagFilter=loss%2520vs%2520tokens) w/o a single instability issue:
 
 ![176B-ml-24B-tokens-succeed](images/176B-ml-24B-tokens-succeed.png)
 
@@ -100,3 +101,128 @@ Will switch to more frequent checkpoint saving of 200 iterations and will lower 
 ### 2022-03-22
 
 Switched to `SAVE_INTERVAL=100` as JeanZay had some emergency maintenance downtime and we lost some hours again, so now with 100 iterations per checkpoint we would lose at most 3h.
+
+
+
+### 2022-03-24 grad clip TP sync bug fixing
+
+We discovered a bug in BF16Optimizer that didn't clip gradients in TP ranks > 1, leading to layer norm weights and biases getting out of sync. Mathematically they all should have the same layer norm weights since the TP splitting is virtual. This doesn't impact the model while it's training, as each TP rank just learns its own weights. But it will be a problem once the model training has been finished and TP ranks need to be merged from 4 to 1. Since if we use one of them or average the model's correctness will be impacted.
+
+Thomas Wang wrote a test that reproduces the problem with a small test:
+`test_layer_norm_consistent` in https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/271
+
+And the bug in BF16Optimizer was then quickly identified and fixed [here](https://github.com/microsoft/DeepSpeed/pull/1801/commits/e24814a10de04ce280efe2adb027b023e3336493).
+
+Now the challenge is how do we sync the live weights.
+
+As a temporary band-aid Thomas Wang added a code to sync bf16 layer norm weights before each forward:
+https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/272
+and we used this temporary work-around for now.
+
+last checkpoint before restart that applied this workaround: global_step17235
+
+
+### 2022-03-28 Fixing out of sync layer norms
+
+So we developed a new Deepspeed code that allows one to have accessors to the previously inaccessible fp32 and optimizer state discreet entries hidden inside the flattened 1 per param group tensor.
+
+Once this was written it was now possible to sync b16, fp32 layer norm weights on the checkpoint loading, including syncing the optimer states corresponding to layer norm params.
+https://github.com/microsoft/DeepSpeed/pull/1801/commits/4e8f7fff9a1575f16191e16d2d161af4e6b52b51
+
+Then the code was written to sync b16, fp32 and optim states for 4 types of layer norm:
+https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/274
+
+last good checkpoint before restart with the sync: global_step20448
+
+Switched to this branch:
+https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/274
+
+Restarted from it, run for 4 iterations, saved the checkpoint
+
+First checkpoint saved after restart: global_step20452
+
+Result 60% of `post_attention_layernorm.weight` are in sync across TP dimension, some layers are not in sync again - some partially - some all of TP ranks.
+
+So one bug in BF16 optimizer was solved and the live model has been fixed, but clearly there is at least one more bug somewhere. And it predates BF16 as I have discovered this same problem in all 104B checkpoints. I didn't find any problems in 13B model.
+
+So for now restarted again from the branch with per iteration bf16 layer norm weight syncing:
+https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/272
+so that we don't continue getting out of sync.
+
+
+
+### 2022-03-30
+
+At iteration 21680 switched from https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/272
+to a different version of the layer-norm auto-sync band-aid, which performs `all_reduce` with `ReduceOp.AVG` - no manual division by `TP_size=4`, which corrects the gradients back to an identity and not 1/4th. `all_reduce` is not an `AutoGrad` function, but division is.
+
+This version is slightly faster as well as it doesn't clone the tensors.
+
+```
+diff --git a/megatron/model/fused_layer_norm.py b/megatron/model/fused_layer_norm.py
+index 0ae519a..6305bcd 100644
+--- a/megatron/model/fused_layer_norm.py
++++ b/megatron/model/fused_layer_norm.py
+@@ -85,6 +85,16 @@ class MixedFusedLayerNorm(torch.nn.Module):
+
+
+   def forward(self, input):
+
+    torch.distributed.all_reduce(self.weight, op=torch.distributed.ReduceOp.AVG, group=mpu.get_tensor_model_parallel_group())
+    torch.distributed.all_reduce(self.bias, op=torch.distributed.ReduceOp.AVG, group=mpu.get_tensor_model_parallel_group())
+
+    return FusedLayerNormAffineFunction.apply(
+      input, self.weight, self.bias, self.normalized_shape, self.eps)
+```
+
+
+
+
+### 2022-03-28
+
+WIP:
+
+Installing a new NCCL plugin for OmniPath which should make the network faster
+
+
+```
+export NCCL_DEBUG=info
+```
+
+Testing with 2 nodes:
+
+```
+sbatch setup-test-n2.slurm
+```
+
+```
+[default7]: iteration        2/  429687 | consumed samples:         1024 | consumed tokens:      2097152 | elapsed time per iteration (s): 28.05 | learning rate: 3.355E-07 | global batch size:   512 | lm loss: 5.363279E+01 | grad norm: 5.703 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 18.256 | TFLOPs: 112.85 |
+[default7]: iteration        3/  429687 | consumed samples:         1536 | consumed tokens:      3145728 | elapsed time per iteration (s): 27.97 | learning rate: 5.033E-07 | global batch size:   512 | lm loss: 5.362922E+01 | grad norm: 5.710 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 18.304 | TFLOPs: 113.15 |
+[default7]: iteration        4/  429687 | consumed samples:         2048 | consumed tokens:      4194304 | elapsed time per iteration (s): 27.88 | learning rate: 6.711E-07 | global batch size:   512 | lm loss: 5.363571E+01 | grad norm: 5.757 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 18.364 | TFLOPs: 113.52 |
+```
+
+
+enabling the new plugin:
+
+
+```
+python -c 'import torch; print(f"nccl={torch.cuda.nccl.version()}")'
+nccl=(2, 10, 3)
+```
+installing the same nccl:
+```
+start-py38-pt111 # testing with another env for now
+#start-tr11-176B-ml
+conda install nccl=2.10.3.1 cudatoolkit=11.3 -c conda-forge
+```
+
+(as we changed to the final pt-1.11: rebuild deepspeed, apex)
+
+```
+export NCCL_DEBUG=info
+module load psm2-nccl
+```
+
+
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+conda install nccl=2.10.3.1 cudatoolkit=11.3 -c conda-forge

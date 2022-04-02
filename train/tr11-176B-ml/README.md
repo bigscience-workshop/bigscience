@@ -287,6 +287,13 @@ LR_WARMUP_SAMPLES=183_105  # 375M tokens
     --weight-decay 1e-1 \
 ```
 
+The default Megatron-LM dropout settings are inherited:
+
+```
+--attention-dropout 0.1
+--hidden-dropout default=0.1
+```
+
 
 ### std Init
 
