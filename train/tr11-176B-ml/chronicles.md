@@ -178,51 +178,20 @@ index 0ae519a..6305bcd 100644
 
 
 
-### 2022-03-28
+### 2022-04-04
 
-WIP:
+Switched to deepspeed@olruwase/bf16-updates 5ea1c60f8 (HEAD) - which includes a few minor fixes which don't impact the main training, but are needed if we want to resync weights or dump fp32 weights and optim states.
 
-Installing a new NCCL plugin for OmniPath which should make the network faster
-
-
-```
-export NCCL_DEBUG=info
-```
-
-Testing with 2 nodes:
-
-```
-sbatch setup-test-n2.slurm
-```
-
-```
-[default7]: iteration        2/  429687 | consumed samples:         1024 | consumed tokens:      2097152 | elapsed time per iteration (s): 28.05 | learning rate: 3.355E-07 | global batch size:   512 | lm loss: 5.363279E+01 | grad norm: 5.703 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 18.256 | TFLOPs: 112.85 |
-[default7]: iteration        3/  429687 | consumed samples:         1536 | consumed tokens:      3145728 | elapsed time per iteration (s): 27.97 | learning rate: 5.033E-07 | global batch size:   512 | lm loss: 5.362922E+01 | grad norm: 5.710 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 18.304 | TFLOPs: 113.15 |
-[default7]: iteration        4/  429687 | consumed samples:         2048 | consumed tokens:      4194304 | elapsed time per iteration (s): 27.88 | learning rate: 6.711E-07 | global batch size:   512 | lm loss: 5.363571E+01 | grad norm: 5.757 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 18.364 | TFLOPs: 113.52 |
-```
+Saved checkpoint iteration before the switch: 25956
 
 
-enabling the new plugin:
 
+### 2022-04-06
 
-```
-python -c 'import torch; print(f"nccl={torch.cuda.nccl.version()}")'
-nccl=(2, 10, 3)
-```
-installing the same nccl:
-```
-start-py38-pt111 # testing with another env for now
-#start-tr11-176B-ml
-conda install nccl=2.10.3.1 cudatoolkit=11.3 -c conda-forge
-```
+First restarted with https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/274 to sync layer norm weights and RNG states.
 
-(as we changed to the final pt-1.11: rebuild deepspeed, apex)
+Saved checkpoint iteration before the switch: 26343
 
-```
-export NCCL_DEBUG=info
-module load psm2-nccl
-```
+Then restarted after adding the RNG sync code: https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/276. But
 
-
-conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
-conda install nccl=2.10.3.1 cudatoolkit=11.3 -c conda-forge
+Saved checkpoint iteration before the switch: 26345
