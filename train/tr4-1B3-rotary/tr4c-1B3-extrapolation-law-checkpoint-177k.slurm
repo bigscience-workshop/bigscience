@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=1B3-rotary-oscar.slurm
+#SBATCH --job-name=1B3-rotary-extrapolation-checkpoint-117k
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -7,24 +7,24 @@
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.out          # output file name
-#SBATCH --error=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.err           # error file name
+#SBATCH --output=/gpfsdswork/projects/rech/six/uue59kq/logs/rotary/%x-%j.out
 #SBATCH --account=six@gpu
 
 set -x -e
 
 # TODO: modify these for your training setup, just Ctrl-F replace <YOUR_TRAINING_NAME>
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/synched_exps/tr4c-1B3-rotary-oscar
+DATA_OUTPUT_PATH=$SCRATCH/synched_exps/tr4c-1B3-rotary-oscar
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints
 REPO_PATH=$DATA_OUTPUT_PATH/tr4c-1B3-rotary-oscar-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard
 CODECARBON_PATH=$REPO_PATH/codecarbon
 LOGS_PATH=$REPO_PATH/logs
-MEGATRON_DEEPSPEED_REPO=$SCRATCH/repos/Megatron-DeepSpeed
+VAL_LOGS_PATH=$REPO_PATH/val-logs
+MEGATRON_DEEPSPEED_REPO=$SCRATCH/checkpoints/tr7d-1B3-alibi/code/Megatron-DeepSpeed # use code fixed alibi
 
 # TODO: you may change the dataset, some examples are at tr3-1B3-baseline (tr3 = c4 + t5-tokenizer, tr3m = the Pile)
-VOCAB_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-vocab.json
-MERGE_FILE=$MEGATRON_DEEPSPEED_REPO/data/gpt2-merges.txt
+VOCAB_FILE=$SCRATCH/checkpoints/tr7d-1B3-alibi/data/gpt2-vocab.json
+MERGE_FILE=$SCRATCH/checkpoints/tr7d-1B3-alibi/data/gpt2-merges.txt
 DATA_PATH=$six_ALL_CCFRWORK/datasets-custom/oscar-en/meg-gpt2_text_document
 
 # defining the right environment variables
