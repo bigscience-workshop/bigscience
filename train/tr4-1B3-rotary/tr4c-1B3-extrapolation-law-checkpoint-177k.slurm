@@ -79,7 +79,7 @@ EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
 
-for increment in {0..4000..100}; do
+for increment in {100..4000..100}; do
     SEQ_LEN_2=$(($increment + $SEQ_LEN))
     echo "***** Extrapolation for a seq length of $SEQ_LEN_2 *****"
 
