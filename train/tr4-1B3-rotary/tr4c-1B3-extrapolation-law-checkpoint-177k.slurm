@@ -90,7 +90,6 @@ for increment in {0..4000..100}; do
     --ffn-hidden-size $FFN_HIDDEN_SIZE \
     --seq-length $SEQ_LEN_2 \
     --position-embedding-type rotary \
-    --max-position-embeddings $SEQ_LEN_2 \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
