@@ -171,18 +171,14 @@ EOT
     --data-impl mmap \
     --split 949,50,1 \
     --distributed-backend nccl \
-     $DEEPSPEED_ARGS \
+    $DEEPSPEED_ARGS \
     "
 
-# # clear old checkpoint as it'd mismatch while we sort things out
-#     rm -rf $SAVE_CHECKPOINT_PATH
+    # # clear old checkpoint as it'd mismatch while we sort things out
+    #     rm -rf $SAVE_CHECKPOINT_PATH
 
-echo $CMD
+    echo $CMD
 
-# We create the folder where the logs and codecarbon will be stored.
-mkdir -p $LOGS_PATH
-# Uncomment if you use codecarbon
-# mkdir -p $CODECARBON_PATH
-
-# to debug - add echo (it exits and prints what it would have launched)
-srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $LOGS_PATH/main_log.txt
+    # to debug - add echo (it exits and prints what it would have launched)
+    srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $VAL_LOGS_PATH/tr4c-1B3-rotary-extrapolation.$SLURM_JOBID.out
+    done
