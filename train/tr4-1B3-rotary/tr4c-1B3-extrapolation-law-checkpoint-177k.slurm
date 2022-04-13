@@ -72,19 +72,25 @@ OPTIMIZER_ARGS=" \
     --lr-warmup-samples 183_105 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
+    --eval-only 1\
     "
 
 EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
 
-GPT_ARGS=" \
+for increment in {0..4000..100}; do
+    SEQ_LEN_2=$(($increment + $SEQ_LEN))
+    echo "***** Extrapolation for a seq length of $SEQ_LEN_2 *****"
+
+    GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \
     --ffn-hidden-size $FFN_HIDDEN_SIZE \
-    --seq-length $SEQ_LEN \
+    --seq-length $SEQ_LEN_2 \
     --position-embedding-type rotary \
+    --max-position-embeddings $SEQ_LEN_2 \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --rampup-batch-size 32 32 2_000_000 \
@@ -99,7 +105,7 @@ GPT_ARGS=" \
     $EXIT_OPTS \
     "
 
-OUTPUT_ARGS=" \
+    OUTPUT_ARGS=" \
     --log-interval 200 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 1000 \
