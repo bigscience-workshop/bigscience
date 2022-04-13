@@ -180,4 +180,4 @@ EOT
 
     # to debug - add echo (it exits and prints what it would have launched)
     srun --jobid $SLURM_JOBID bash -c '$LAUNCHER --node_rank $SLURM_PROCID $CMD' 2>&1 | tee -a $VAL_LOGS_PATH/tr4c-1B3-rotary-extrapolation.$SLURM_JOBID.out
-    done
+done
