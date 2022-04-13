@@ -116,51 +116,51 @@ for increment in {0..4000..100}; do
     --log-batch-size-to-tensorboard \
     --log-validation-ppl-to-tensorboard \
     "
-# TODO: Add --codecarbon-dir $CODECARBON_PATH \ if you want to use codecarbon, not adding it for now to make the current
-# series of experiments consistent, especially speed-wise. Adding it once Tr6 and Tr7 are done
+    # TODO: Add --codecarbon-dir $CODECARBON_PATH \ if you want to use codecarbon, not adding it for now to make the current
+    # series of experiments consistent, especially speed-wise. Adding it once Tr6 and Tr7 are done
 
-ZERO_STAGE=1
+    ZERO_STAGE=1
 
-config_json="./ds_config.$SLURM_JOBID.json"
+    config_json="./ds_config.$SLURM_JOBID.json"
 
-# Deepspeed figures out GAS dynamically from dynamic GBS via set_train_batch_size()
-cat <<EOT >$config_json
+    # Deepspeed figures out GAS dynamically from dynamic GBS via set_train_batch_size()
+    cat <<EOT > $config_json
 {
-  "train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
-  "train_batch_size": $GLOBAL_BATCH_SIZE,
-  "gradient_clipping": 1.0,
-  "zero_optimization": {
+"train_micro_batch_size_per_gpu": $MICRO_BATCH_SIZE,
+"train_batch_size": $GLOBAL_BATCH_SIZE,
+"gradient_clipping": 1.0,
+"zero_optimization": {
     "stage": $ZERO_STAGE
-  },
-  "fp16": {
+},
+"fp16": {
     "enabled": true,
     "loss_scale": 0,
     "loss_scale_window": 500,
     "hysteresis": 2,
     "min_loss_scale": 1,
     "initial_scale_power": 12
-  },
-  "steps_per_print": 2000,
-  "wall_clock_breakdown": false
+},
+"steps_per_print": 2000,
+"wall_clock_breakdown": false
 }
 EOT
 
-DEEPSPEED_ARGS=" \
+    DEEPSPEED_ARGS=" \
     --deepspeed \
     --deepspeed_config ${config_json} \
     --zero-stage ${ZERO_STAGE} \
     --deepspeed-activation-checkpointing \
     "
 
-export LAUNCHER="python -u -m torch.distributed.launch \
+    export LAUNCHER="python -u -m torch.distributed.launch \
     --nproc_per_node $GPUS_PER_NODE \
     --nnodes $NNODES \
     --master_addr $MASTER_ADDR \
     --master_port $MASTER_PORT \
     "
 
-export CMD=" \
-    $(pwd)/pretrain_gpt.py \
+    export CMD=" \
+    `pwd`/pretrain_gpt.py \
     --tensor-model-parallel-size $TP_SIZE \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
