@@ -213,3 +213,10 @@ While there have been a few grad norm spikes so far, this is the first time we h
 [default7]: iteration    31250/  115311 | consumed samples:     47842224 | consumed tokens:  97980874752 | elapsed time per iteration (s): 106.09 | learning rate: 5.277E-05 | global batch size:  2048 | lm loss: 2.215699E+00 | grad norm: 0.267 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 19.304 | TFLOPs: 147.80 |
 [default7]: iteration    31251/  115311 | consumed samples:     47844272 | consumed tokens:  97985069056 | elapsed time per iteration (s): 106.13 | learning rate: 5.277E-05 | global batch size:  2048 | lm loss: 2.235667E+00 | grad norm: 0.205 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 19.297 | TFLOPs: 147.75 |
 ```
+
+The before and after checkpoints have been saved at:
+
+```
+$six_ALL_CCFRWORK/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31200
+$six_ALL_CCFRWORK/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31259
+```
