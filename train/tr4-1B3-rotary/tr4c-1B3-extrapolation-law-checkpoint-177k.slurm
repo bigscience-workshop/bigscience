@@ -37,6 +37,8 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 cd $MEGATRON_DEEPSPEED_REPO
 
+mkdir -p $VAL_LOGS_PATH
+
 # so processes know who to talk to
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
@@ -79,7 +81,7 @@ EXIT_OPTS=" \
     --exit-duration-in-mins 1190 \
     "
 
-for increment in {100..4000..100}; do
+for increment in {0..4000..100}; do
     SEQ_LEN_2=$(($increment + $SEQ_LEN))
     echo "***** Extrapolation for a seq length of $SEQ_LEN_2 *****"
 
