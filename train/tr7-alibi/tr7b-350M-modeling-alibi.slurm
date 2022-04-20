@@ -8,7 +8,7 @@
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.out          # output file name
 #SBATCH --error=/gpfsdswork/projects/rech/six/uue59kq/logs/%x-%j.err           # error file name
-#SBATCH --account=six@gpu
+#SBATCH --account=six@v100
 
 set -x -e
 

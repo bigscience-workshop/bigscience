@@ -7,7 +7,7 @@
 To interactively tune up the setup:
 
 ```
-salloc --constraint=v100-32g --account=six@gpu --nodes=4 --ntasks=4 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=120 bash --rcfile $six_ALL_CCFRWORK/code/tr10-13B/bigscience/train/tr10-13B-ml/start-tr10-13B
+salloc --constraint=v100-32g --account=six@v100 --nodes=4 --ntasks=4 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=120 bash --rcfile $six_ALL_CCFRWORK/code/tr10-13B/bigscience/train/tr10-13B-ml/start-tr10-13B
 ```
 
 

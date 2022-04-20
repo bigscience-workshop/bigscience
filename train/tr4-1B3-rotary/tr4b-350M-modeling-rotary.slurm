@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
-#SBATCH --account=six@gpu
+#SBATCH --account=six@v100
 
 # This is compared with tr3h-350M-v2.slurm
 
