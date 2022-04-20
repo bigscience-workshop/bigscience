@@ -7,7 +7,7 @@
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
-#SBATCH --account=six@gpu
+#SBATCH --account=six@v100
 #SBATCH --array=1-10%1
 
 set -x -e

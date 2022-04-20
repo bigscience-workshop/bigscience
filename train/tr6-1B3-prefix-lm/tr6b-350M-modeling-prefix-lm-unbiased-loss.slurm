@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
-#SBATCH --account=six@gpu
+#SBATCH --account=six@v100
 
 # New experiment in order to check intuition behind previous failed experiment:
 # What we're exploring is the notion that the loss was originally biased to longer context (smaller prediction span)

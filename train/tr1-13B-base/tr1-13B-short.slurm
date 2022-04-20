@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:4                 # number of gpus
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --account=six@gpu
+#SBATCH --account=six@v100
 
 
 
@@ -20,7 +20,7 @@
 # Change to NNODES=1 if needed
 #
 # to allocate (change to 2 for NNODES=2)
-# salloc --constraint=v100-32g --account=six@gpu --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash
+# salloc --constraint=v100-32g --account=six@v100 --nodes=1 --ntasks=1 --cpus-per-task=40 --gres=gpu:4 --hint=nomultithread --time=6:00:00 bash
 
 source $six_ALL_CCFRWORK/code/tr1-13B/bigscience/train/tr1-13B-base/start-tr1-13B
 

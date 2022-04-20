@@ -9,7 +9,7 @@
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --error=logs/%x-%j.out            # error file name (same to watch just one file)
-#SBATCH --account=six@gpu
+#SBATCH --account=six@v100
 #SBATCH --array=1-10%1
 
 set -x -e

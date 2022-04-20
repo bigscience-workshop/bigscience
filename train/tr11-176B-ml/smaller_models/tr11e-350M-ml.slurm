@@ -9,7 +9,7 @@
 #SBATCH -C v100-32g
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --account=six@gpu
+#SBATCH --account=six@v100
 
 set -x -e
 
@@ -104,7 +104,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
-    --rampup-batch-size 192 16 9_765_625 \
+    --rampup-batch-size 192 32 9_765_625 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
