@@ -16,6 +16,13 @@ After finishing pre-processing could tarball the raw files and put them to `STOR
 
 Remember, anything on `SCRATCH` gets wiped out after 30 days of not being accessed - or immediately at midnight of the same day if the file happens to have its access timestamp set in the past!
 
+To clear out the empty dirs (ghosts of the once full dirs) run:
+
+```
+find /gpfswork/rech/six/commun/datasets/downloads/extracted -empty -type d -delete
+find /gpfswork/rech/six/commun/datasets/ -empty -type d -delete
+```
+
 
 ## Anatomy of `datasets` dataset:
 
