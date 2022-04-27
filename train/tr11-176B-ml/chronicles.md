@@ -217,6 +217,6 @@ While there have been a few grad norm spikes so far, this is the first time we h
 The before and after checkpoints have been saved at:
 
 ```
-$six_ALL_CCFRWORK/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31200
-$six_ALL_CCFRWORK/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31259
+$six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31200
+$six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31259
 ```

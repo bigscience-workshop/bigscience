@@ -144,7 +144,7 @@ Sizes of each layer:
 - embedding size: `v*h`: `250880*14336` => `3_596_615_680` params (7.2GB in bf16)
 - one layer size: `12*h**2 + 13*h`: `12*14336**2 + 13*14336` => `2_466_437_120` params (4.9GB in bf16)
 
-So if you using Deepspeed ZeRO-Infinity with NVME offload that means that a single GPU of about 16GB should be sufficient to infer. It will be slow, but doable.And you'd need a fast NVME with free 350GB on it.
+So if you're using Deepspeed ZeRO-Infinity with NVME offload that means that a single GPU of about 16GB should be sufficient to infer.  And you'd need a fast NVME with free 350GB on it. It will be slow, but doable.
 
 
 
