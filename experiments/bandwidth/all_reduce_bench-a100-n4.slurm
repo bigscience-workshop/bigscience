@@ -12,7 +12,7 @@
 
 export LOG_FILE=all_reduce_bench-a100-4n.txt
 
-export NNODES=4
+export NNODES=$SLURM_NNODES
 export GPUS_PER_NODE=8
 export NCCL_DEBUG=info
 
