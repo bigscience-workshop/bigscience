@@ -48,8 +48,7 @@ the math is based on the recent log:
 
 ### What makes the 176B-ml training so stable?
 
-To compare: at [104B-en experiments]
-(https://huggingface.co/bigscience/tr8b-104B-logs/tensorboard?tab=scalars&runSelectionState=eyJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWV4cC0wMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWV4cC0wMiI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDEiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9ibmItZXhwLTAyIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wMyI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDQiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMiI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYiI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDUiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybSI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDEiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTAyIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wMyI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDQiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTA1Ijp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wNiI6dHJ1ZSwidGVuc29yYm9hcmQvY2wiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9jbC1hMTAwIjpmYWxzZX0%253D&tagFilter=loss%2520vs%2520tokens#scalars&runSelectionState=eyJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMSI6dHJ1ZSwidGVuc29yYm9hcmQvY2wtZXhwLTAxIjpmYWxzZSwidGVuc29yYm9hcmQvY2wtZXhwLTAyIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDIiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9ibmItZXhwLTAzIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wNCI6ZmFsc2UsInRlbnNvcmJvYXJkL2Jhc2UtZXhwLTEyIjp0cnVlLCJ0ZW5zb3Jib2FyZC9ibmIiOnRydWUsInRlbnNvcmJvYXJkL2JuYi1leHAtMDUiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wMSI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDIiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTAzIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wNCI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDUiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTA2Ijp0cnVlLCJ0ZW5zb3Jib2FyZC9jbCI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWExMDAiOmZhbHNlfQ%3D%3D&tagFilter=loss%20vs%20tokens) we failed to cross the 24B-tokens barrier. You can find the indepth details in [the 104B chronicles](../tr8b-104B/chronicles.md).
+To compare: at [104B-en experiments](https://huggingface.co/bigscience/tr8b-104B-logs/tensorboard?tab=scalars&runSelectionState=eyJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWV4cC0wMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWV4cC0wMiI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDEiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9ibmItZXhwLTAyIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wMyI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDQiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMiI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYiI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDUiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybSI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDEiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTAyIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wMyI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDQiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTA1Ijp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wNiI6dHJ1ZSwidGVuc29yYm9hcmQvY2wiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9jbC1hMTAwIjpmYWxzZX0%253D&tagFilter=loss%2520vs%2520tokens#scalars&runSelectionState=eyJ0ZW5zb3Jib2FyZC9iYXNlLWV4cC0xMSI6dHJ1ZSwidGVuc29yYm9hcmQvY2wtZXhwLTAxIjpmYWxzZSwidGVuc29yYm9hcmQvY2wtZXhwLTAyIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wMSI6ZmFsc2UsInRlbnNvcmJvYXJkL2JuYi1leHAtMDIiOmZhbHNlLCJ0ZW5zb3Jib2FyZC9ibmItZXhwLTAzIjpmYWxzZSwidGVuc29yYm9hcmQvYm5iLWV4cC0wNCI6ZmFsc2UsInRlbnNvcmJvYXJkL2Jhc2UtZXhwLTEyIjp0cnVlLCJ0ZW5zb3Jib2FyZC9ibmIiOnRydWUsInRlbnNvcmJvYXJkL2JuYi1leHAtMDUiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wMSI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDIiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTAzIjp0cnVlLCJ0ZW5zb3Jib2FyZC9lbWItbm9ybS0wNCI6dHJ1ZSwidGVuc29yYm9hcmQvZW1iLW5vcm0tMDUiOnRydWUsInRlbnNvcmJvYXJkL2VtYi1ub3JtLTA2Ijp0cnVlLCJ0ZW5zb3Jib2FyZC9jbCI6ZmFsc2UsInRlbnNvcmJvYXJkL2NsLWExMDAiOmZhbHNlfQ%3D%3D&tagFilter=loss%20vs%20tokens) we failed to cross the 24B-tokens barrier. You can find the indepth details in [the 104B chronicles](../tr8b-104B/chronicles.md).
 
 ![104B-en-24B-tokens-fail](images/104B-en-24B-tokens-fail.png)
 
@@ -220,3 +219,203 @@ The before and after checkpoints have been saved at:
 $six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31200
 $six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31259
 ```
+
+### 2022-04-XX
+
+Every week or so we have hardware issues where one of the gpus dies. Most of the time the SLURM job auto-restarts and we lose at most 3 hours of training, since we save a checkpoint every 100 iterations, which takes about 3 hours to train.
+
+Sometimes the training gets stuck despite a crashing process and it won't quit, which seems to be related to some `torch.launch` and possibly NCCL.
+
+I'm trying to figure this issue out in this [pytorch issue](https://github.com/pytorch/pytorch/issues/76287).
+
+This is a big problem since not only it requires someone watching the training 24/7, but also it sometimes break our kill switch functionality which we had to invent to overcome the limitation imposed on us by JeanZay where we have no `sudo` access and once one of us starts a slurm job, nobody else can stop it. So if there a problem and person goes to sleep or away, nobody can do anything until that person returns. So we use a special kill switch file which when created gracefully exits the training after saving a checkpoint.
+
+As suggested in the Issue above we are going to add the following workaround:
+
+```
+# force crashing on nccl issues like hanging broadcast
+export NCCL_ASYNC_ERROR_HANDLING=1
+
+# srun error handling:
+# --wait=60: wait 60 sec after the first task terminates before terminating all remaining tasks
+# --kill-on-bad-exit=1: terminate a step if any task exits with a non-zero exit code
+SRUN_ARGS=" \
+    --wait=60 \
+    --kill-on-bad-exit=1 \
+    "
+
+clear; srun $SRUN_ARGS --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
+```
+
+
+### 2022-04-30
+
+
+We run into another weird issue, the eval stage started at the end of iteration 45000 and got stuck:
+
+```
+[default7]: iteration    45000/  115311 | consumed samples:     76002224 | consumed tokens: 155652554752 | elapsed time per iteration (s): 111.00 | learning rate: 4.298E-05 | global batch size:  2048 | lm loss: 2.113567E+00 | grad norm: 0.139 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 18.451 | TFLOPs: 141.26 |
+[default7]:-------------------------------------------------------------------------------------------
+[default7]:valid loss at iteration 45000 | lm loss value: 2.327091E+00 | lm loss PPL: 1.024808E+01 |
+[default7]:-------------------------------------------------------------------------------------------
+[2022-05-01 03:56:11] PULSE: tr11-176B-ml is waiting to be scheduled (1528874_[1-3%1] on 'gpu_p5' partition)
+[2022-05-01 03:56:11] PULSE: tr11-176B-ml is running for 1-07:27:33 since 2022-04-29T20:28:38 (1528763 on 'gpu_p5' partition (jean-zay-iam[01-34,36-49])
+[2022-05-01 04:56:13] PULSE: tr11-176B-ml is waiting to be scheduled (1528874_[1-3%1] on 'gpu_p5' partition)
+[2022-05-01 04:56:13] PULSE: tr11-176B-ml is running for 1-08:27:35 since 2022-04-29T20:28:38 (1528763 on 'gpu_p5' partition (jean-zay-iam[01-34,36-49])
+[2022-05-01 05:56:18] PULSE: tr11-176B-ml is waiting to be scheduled (1528874_[1-3%1] on 'gpu_p5' partition)
+[2022-05-01 05:56:18] PULSE: tr11-176B-ml is running for 1-09:27:40 since 2022-04-29T20:28:38 (1528763 on 'gpu_p5' partition (jean-zay-iam[01-34,36-49])
+```
+
+So it has been stuck for at least 3 hours. No timeouts from NCCL or distributed, just gpus spinning at 100%.
+
+
+For some reason I wasn't able to run trace on all nodes, which worked in the past:
+
+```
+srun --jobid=2180718 --gres=gpu:0 --nodes=40 --tasks-per-node=1 --output=trace-%N.out sh -c 'ps aux | grep python | egrep -v "grep|srun" | grep `whoami` | awk "{print \$2}" | xargs -I {} py-spy dump --native --pid {}' || echo "failed"
+it was just sitting there doing nothing.
+```
+
+Manually restarted the training.
+
+I was able to reproduce on a 2-node setup. Here are the stack traces:
+
+Node 48:
+
+4 in:
+
+```
+Thread 688510 (active): "MainThread"
+Thread 688511 (active): "MainThread"
+Thread 599212 (active): "MainThread"
+Thread 599213 (active): "MainThread"
+    broadcast (torch/distributed/distributed_c10d.py:1191)
+    _bcast_pipe_scalar (deepspeed/runtime/pipe/engine.py:542)
+    eval_batch (deepspeed/runtime/pipe/engine.py:455)
+    evaluate (megatron/training.py:983)
+    evaluate_and_print_results (megatron/training.py:1030)
+    train (megatron/training.py:904)
+    pretrain (megatron/training.py:188)
+    main (pretrain_gpt.py:245)
+    wrapper (torch/distributed/elastic/multiprocessing/errors/__init__.py:345)
+    <module> (pretrain_gpt.py:249)
+```
+
+1 in:
+
+```
+Thread 688514 (idle): "MainThread"
+    wait (threading.py:306)
+    get (queue.py:179)
+    _try_get_data (torch/utils/data/dataloader.py:1011)
+    _get_data (torch/utils/data/dataloader.py:1163)
+    _next_data (torch/utils/data/dataloader.py:1207)
+    __next__ (torch/utils/data/dataloader.py:530)
+    _next_batch (deepspeed/runtime/pipe/engine.py:627)
+    _exec_load_micro_batch (deepspeed/runtime/pipe/engine.py:795)
+    _exec_schedule (deepspeed/runtime/pipe/engine.py:1380)
+    eval_batch (deepspeed/runtime/pipe/engine.py:449)
+    evaluate (megatron/training.py:983)
+    evaluate_and_print_results (megatron/training.py:1030)
+    train (megatron/training.py:904)
+    pretrain (megatron/training.py:188)
+    main (pretrain_gpt.py:245)
+    wrapper (torch/distributed/elastic/multiprocessing/errors/__init__.py:345)
+    <module> (pretrain_gpt.py:249)
+```
+3 in:
+
+```
+Thread 688515 (active): "MainThread"
+Thread 688516 (active): "MainThread"
+Thread 688517 (active): "MainThread"
+    broadcast (torch/distributed/distributed_c10d.py:1191)
+    _build_key_size_numel_dictionaries (megatron/mpu/data.py:50)
+    broadcast_data (megatron/mpu/data.py:88)
+    get_batch_pipe (pretrain_gpt.py:136)
+    _next_batch (deepspeed/runtime/pipe/engine.py:631)
+    _exec_load_micro_batch (deepspeed/runtime/pipe/engine.py:795)
+    _exec_schedule (deepspeed/runtime/pipe/engine.py:1380)
+    eval_batch (deepspeed/runtime/pipe/engine.py:449)
+    evaluate (megatron/training.py:983)
+    evaluate_and_print_results (megatron/training.py:1030)
+    train (megatron/training.py:904)
+    pretrain (megatron/training.py:188)
+    main (pretrain_gpt.py:245)
+    wrapper (torch/distributed/elastic/multiprocessing/errors/__init__.py:345)
+    <module> (pretrain_gpt.py:249)
+```
+
+so possibly the last 4 are the issue, where the first process 688514 has moved on missing the syncing on broadcast
+
+Node 49
+
+4 in:
+```
+Thread 686181 (active): "MainThread"
+Thread 686182 (active): "MainThread"
+Thread 686183 (active): "MainThread"
+Thread 686184 (active): "MainThread"
+    all_reduce (torch/distributed/distributed_c10d.py:1316)
+    _reduce_outputs (deepspeed/runtime/pipe/engine.py:519)
+    eval_batch (deepspeed/runtime/pipe/engine.py:452)
+    evaluate (megatron/training.py:983)
+    evaluate_and_print_results (megatron/training.py:1030)
+    train (megatron/training.py:904)
+    pretrain (megatron/training.py:188)
+    main (pretrain_gpt.py:245)
+    wrapper (torch/distributed/elastic/multiprocessing/errors/__init__.py:345)
+    <module> (pretrain_gpt.py:249)
+```
+
+4 in:
+```
+Thread 686185 (active): "MainThread"
+Thread 686186 (active): "MainThread"
+Thread 686187 (active): "MainThread"
+Thread 686188 (active): "MainThread"
+    recv (torch/distributed/distributed_c10d.py:1002)
+    recv (deepspeed/runtime/pipe/p2p.py:83)
+    _exec_recv_activations (deepspeed/runtime/pipe/engine.py:1073)
+    _exec_schedule (deepspeed/runtime/pipe/engine.py:1380)
+    eval_batch (deepspeed/runtime/pipe/engine.py:449)
+    evaluate (megatron/training.py:983)
+    evaluate_and_print_results (megatron/training.py:1030)
+    train (megatron/training.py:904)
+    pretrain (megatron/training.py:188)
+    main (pretrain_gpt.py:245)
+    wrapper (torch/distributed/elastic/multiprocessing/errors/__init__.py:345)
+    <module> (pretrain_gpt.py:249)
+```
+
+
+All were in groups of 4 (TP=4, PP=2, DP=2), except the second group of node 48, where I got only 3 of those - and 1 in a different state, which is probably the source of hanging.
+
+
+This is the branch we were using: https://github.com/microsoft/DeepSpeed/pull/1917
+
+
+The odd thing is rolling back to the last commit by Tunji before the rebase to master was made:
+
+
+```
+git checkout 93e9307d609620943565e639f30ef15513c76f4f
+```
+
+and it all went back to working normally. This is the branch I was testing with before I switched to it, but didn't retest once the branch was re-based.
+
+The odd thing is that the newer commits don't seem to have anything to do with this code path - they were some cpp code for Deepspeed-Inference which is a different project altogether.
+
+
+Talking to Tunji the suspect code is:
+
+https://github.com/microsoft/DeepSpeed/blob/a3b90030fd2bea119ea0d4b521057fd84a48705f/deepspeed/runtime/pipe/engine.py#L451-L455
+
+perhaps there is a timing issue here and new code somehow changed the timing and the previously successful race condition was now failing.
+
+TODO:
+
+try: compute_loss = False
+try: adding barrier before compute_loss
+
+need to analyse more the py-spy dumps

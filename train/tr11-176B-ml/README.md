@@ -38,8 +38,8 @@ Hardware:
 
 Software:
 
-- [Megatron-DeepSpeed](https://github.com/bigscience-workshop/Megatron-DeepSpeed) @ master / BigScience fork
-- [DeepSpeed](https://github.com/microsoft/DeepSpeed) @ master (soon)
+- [Megatron-DeepSpeed](https://github.com/bigscience-workshop/Megatron-DeepSpeed) @ master / BigScience fork - currently using `layer-norm-auto-syn` PR branch
+- [DeepSpeed](https://github.com/microsoft/DeepSpeed) @ master (soon) at the moment 93e9307d609620943565e639f30ef15513c76f4f
 - [PyTorch](https://github.com/pytorch/pytorch)-1.11 w/ CUDA-11.5
 - [apex](https://github.com/NVIDIA/apex) @ master
 
