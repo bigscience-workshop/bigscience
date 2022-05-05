@@ -220,7 +220,7 @@ $six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31200
 $six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/checkpoints/spikes/global_step31259
 ```
 
-### 2022-04-XX
+### 2022-04-XX repeated hardware crashes
 
 Every week or so we have hardware issues where one of the gpus dies. Most of the time the SLURM job auto-restarts and we lose at most 3 hours of training, since we save a checkpoint every 100 iterations, which takes about 3 hours to train.
 
@@ -247,11 +247,57 @@ SRUN_ARGS=" \
 clear; srun $SRUN_ARGS --jobid $SLURM_JOBID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
 ```
 
+### 2022-04-28 sudden 5% drop in throughput
 
-### 2022-04-30
+Out of nowhere the throughput dropped by 5% in the middle of the run (no restart which sometimes ends up using a different node which could have issues).
+
+The performance of the system dropped from 149 to 140 TFLOPs and remained there.
+
+```
+[default7]: iteration   42780/ 115311 | consumed samples:    71455664 | consumed tokens: 146341199872 | elapsed time per iteration (s): 105.16 | learning
+ rate: 4.475E-05 | global batch size: 2048 | lm loss: 2.117073E+00 | grad norm: 0.150 | num zeros: 0.0 | number of skipped iterations:  0 | number of nan
+iterations:  0 | samples per second: 19.474 | TFLOPs: 149.10 |
+[default7]: iteration   42781/ 115311 | consumed samples:    71457712 | consumed tokens: 146345394176 | elapsed time per iteration (s): 105.17 | learning
+ rate: 4.475E-05 | global batch size: 2048 | lm loss: 2.116946E+00 | grad norm: 0.140 | num zeros: 0.0 | number of skipped iterations:  0 | number of nan
+iterations:  0 | samples per second: 19.473 | TFLOPs: 149.09 |
+[default7]: iteration   42782/ 115311 | consumed samples:    71459760 | consumed tokens: 146349588480 | elapsed time per iteration (s): 106.25 | learning
+ rate: 4.475E-05 | global batch size: 2048 | lm loss: 2.110646E+00 | grad norm: 0.144 | num zeros: 0.0 | number of skipped iterations:  0 | number of nan
+iterations:  0 | samples per second: 19.276 | TFLOPs: 147.58 |
+[default7]: iteration   42783/ 115311 | consumed samples:    71461808 | consumed tokens: 146353782784 | elapsed time per iteration (s): 110.17 | learning
+ rate: 4.475E-05 | global batch size: 2048 | lm loss: 2.124820E+00 | grad norm: 0.135 | num zeros: 0.0 | number of skipped iterations:  0 | number of nan
+iterations:  0 | samples per second: 18.589 | TFLOPs: 142.32 |
+[default7]: iteration   42784/ 115311 | consumed samples:    71463856 | consumed tokens: 146357977088 | elapsed time per iteration (s): 111.14 | learning
+ rate: 4.475E-05 | global batch size: 2048 | lm loss: 2.127643E+00 | grad norm: 0.127 | num zeros: 0.0 | number of skipped iterations:  0 | number of nan
+iterations:  0 | samples per second: 18.428 | TFLOPs: 141.09 |
+```
+
+I suspected that one of the nodes had a performance issue where one or more GPUs were slow to process their load.
+
+I stopped the training and did a quick network benchmark test, but all nodes responded with the exact same network throughput, so it wasn't an issue with some node's network.
+
+As I didn't have a tool to benchmark all the gpus and find out which node was underperforming and this was a weekend and sysadmins who have the tool were away till Monday I either had to come up with a tool or try the elimination game. Since I only had 3 spare nodes it was very slow. Basically I had to exclude 3 nodes at a time to first find the group of nodes that was causing the slowdown, and then binary search through the nodes of that group and to find the problematic node.
 
 
-We run into another weird issue, the eval stage started at the end of iteration 45000 and got stuck:
+```
+sbatch --exclude=jean-zay-iam[1-3] tr11-176B-ml.slurm
+sbatch --exclude=jean-zay-iam[4-5] tr11-176B-ml.slurm
+...
+```
+
+As I had another issue to debug I was using a different exclusion on every restart until I found the culprit node, which I excluded and we were back at running at ~149TFLOPs.
+
+Interestingly the benchmark run by Remi on that node showed only 2.5% difference (303.6s vs around 296.5 s) - and not 5%, but once the slow gpu was replaced, using that node again restored things back to the consistent performance.
+
+You can see the drop at around 42k on the graph:
+
+![176B-ml-throughput-drop](images/176B-ml-throughput-drop.png)
+
+
+
+### 2022-04-30 hanging at eval
+
+
+We run into another weird issue, the eval stage started at the end of iteration 45000 and got stuck after the first eval dataset:
 
 ```
 [default7]: iteration    45000/  115311 | consumed samples:     76002224 | consumed tokens: 155652554752 | elapsed time per iteration (s): 111.00 | learning rate: 4.298E-05 | global batch size:  2048 | lm loss: 2.113567E+00 | grad norm: 0.139 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 18.451 | TFLOPs: 141.26 |
@@ -268,17 +314,20 @@ We run into another weird issue, the eval stage started at the end of iteration 
 
 So it has been stuck for at least 3 hours. No timeouts from NCCL or distributed, just gpus spinning at 100%.
 
+First I thought it might have been a hardware issue, so I went to sleep and it was weekend nobody was around and in the morning found it stuck again - and I had to carefully wait another 3h to save the checkpoint just before eval at 45000. Fast forwarding - by the time I found the cause and rolled back we lost about 18h of training :( But let's go back to the details.
 
-For some reason I wasn't able to run trace on all nodes, which worked in the past:
+For some reason I wasn't able to run `py-spy` trace on all nodes, which worked in the past:
 
 ```
 srun --jobid=2180718 --gres=gpu:0 --nodes=40 --tasks-per-node=1 --output=trace-%N.out sh -c 'ps aux | grep python | egrep -v "grep|srun" | grep `whoami` | awk "{print \$2}" | xargs -I {} py-spy dump --native --pid {}' || echo "failed"
 it was just sitting there doing nothing.
 ```
 
-Manually restarted the training.
+XXX: still waiting to hear from the admins on why it wasn't doing anything.
 
-I was able to reproduce on a 2-node setup. Here are the stack traces:
+I manually restarted the training to resolve the hanging. For some reason NCCL wasn't timing out either! even after 3 hours of not being able to broadcast.
+
+But I was able to reproduce the issue on a 2-node setup, where I could easily run the above command manually after `ssh`ing to each node. Here are the stack traces:
 
 Node 48:
 
@@ -405,7 +454,6 @@ git checkout 93e9307d609620943565e639f30ef15513c76f4f
 and it all went back to working normally. This is the branch I was testing with before I switched to it, but didn't retest once the branch was re-based.
 
 The odd thing is that the newer commits don't seem to have anything to do with this code path - they were some cpp code for Deepspeed-Inference which is a different project altogether.
-
 
 Talking to Tunji the suspect code is:
 
