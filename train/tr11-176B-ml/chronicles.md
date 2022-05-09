@@ -461,9 +461,12 @@ https://github.com/microsoft/DeepSpeed/blob/a3b90030fd2bea119ea0d4b521057fd84a48
 
 perhaps there is a timing issue here and new code somehow changed the timing and the previously successful race condition was now failing.
 
-TODO:
 
-try: compute_loss = False
-try: adding barrier before compute_loss
+### 2022-05-09 hanging at eval
 
-need to analyse more the py-spy dumps
+Same as deadlock at 45k we got the same repeat at 51k
+
+Solved by adding a `dist.barrier` before eval computation started.
+https://github.com/microsoft/DeepSpeed/pull/1944
+
+Lost 6h of work until this got resolves.
