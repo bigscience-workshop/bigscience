@@ -10,6 +10,13 @@ Model size: 176B
 
 The training started on March 11, 2022 11:42am PST
 
+To calculate how many days left to 341B-token goal - take the current consumed tokens and feed it to (e.g. with 192755367936)
+
+```
+perl -le 'print 105 * (341_000_000_000-shift)  / (2048*2048*3600*24)' 192755367936
+42.9531114154392
+```
+
 ## Main info
 
 Important links:
@@ -642,7 +649,25 @@ NHIDDEN=14336; NLAYERS=70; SEQ_LEN=2048; VOCAB_SIZE=250680; python -c "h=$NHIDDE
 BF16 Transformer block size: 4.59GB, the rest is: 6.75GB, total 328.34GB
 ```
 
+### Eval Results
 
+`lm-eval` on 29 tasks is run every 10k iterations and the results are stored in `$six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/eval-results`
+
+Currently the eval is run from:
+
+```
+cd /gpfsssd/worksf/projects/rech/six/commun/code/eval/Megatron-DeepSpeed
+sbatch run_evalharness_tr11-176b-ml.slurm
+```
+but need to edit the slurm script to change the checkpoint on each run.
+
+Currently the work is done from this PR branch: https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/212
+
+It takes about 20h to complete the job on a single A100.
+
+Spreadsheet: https://docs.google.com/spreadsheets/d/1CI8Q9RCblLRzUOPJ6ViqBmo284-8ojluQ-CmaEuhuv0/edit?usp=sharing
+
+The tasks are: `arc_challenge,arc_easy,boolq,copa,headqa,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc`
 
 ### Watchdogs
 

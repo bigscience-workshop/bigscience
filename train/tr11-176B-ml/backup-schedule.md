@@ -8,10 +8,12 @@ srun --pty -A six@cpu -p compil --hint=nomultithread --time=20:00:00 bash --rcfi
 
 then back up:
 
-## logs (tiny)
+## logs and eval-results (tiny)
 
 ```
 gsutil rsync -x ".git" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/tr11-176B-ml-logs  gs://bigscience-backups/tr11-176B-ml/tr11-176B-ml-logs
+gsutil rsync -x ".git" -r $six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/eval-results
+gs://bigscience-backups/tr11-176B-ml/tr11-176B-ml-eval-results
 ```
 
 
