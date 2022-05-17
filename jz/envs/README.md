@@ -512,30 +512,47 @@ If it's trying to install into your local `~/.local` folder it's because `pip` i
 
 
 
-## Quering many running nodes at once
+## Running `py-spy` diagnostics on multiple nodes at once
 
-To do some monitoring...
+To do some monitoring of multiple nodes running an `srun` job:
 
-
+(This is just an example of starting a job, most of the time it'll be running already:
 ```
 cd ~/prod/code/tr8b-104B/bigscience/train/tr11-200B-ml/
 
-salloc --partition=gpu_p5 --constraint=a100 --nodes=40 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
+salloc --partition=gpu_p5 --constraint=a100 --nodes=48 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
 
 bash 200B-n40-bf16-mono.slurm
-
-
-# in another shell
-squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"
-# adjust jobid
-srun --jobid=2180718 --gres=gpu:0 --nodes=40 --tasks-per-node=1 --output=trace-%N.out sh -c 'ps aux | grep python | egrep -v "grep|srun" | grep `whoami` | awk "{print \$2}" | xargs -I {} py-spy dump --native --pid {}' || echo "failed"
-
 ```
 
+Then in another shell:
 
-# using ds_ssh
+```
+squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"
+srun --overlap --jobid=1729333 --gres=gpu:0 --nodes=48 --tasks-per-node=1 --output=trace-%N.out sh -c 'source $six_ALL_CCFRWORK/start-prod; pgrep -P $(pgrep -o python) | xargs -I {} py-spy dump --pid {}' || echo "failed"
+```
 
-It's a bit tricky and doesn't work for `py-spy`
+This will create a log file per node, e.g. `trace-jean-zay-iam52.out` which will contain the output of the command on that node.
+
+Notes:
+- adjust `--jobid` to the desired job (output of `squeue`). If using a job array and the job id looks like `1728318_2` first translate the virtual JobId into an actual JobID:
+```
+scontrol show job 1728318_2 | perl -nle 'm/JobId=(\d+)/ && print $1'
+```
+- adjust `--nodes=48` to match the same setting as the original `salloc` or `srun` command
+- `--overlap` allows a new job to run on nodes allocated by another job.
+
+`py-spy`-specific notes:
+
+- run the command via `sh`. It may be possible to run `bash`, but I run into `py-spy: Permission denied` - it shouldn't need `sudo` but something in my bash dotfile triggers this problem, even though it doesn't happen if I run bash interactively.
+- `pgrep -P $(pgrep -o python)` will give the immediate children of the launcher - 8 processes per node on A100 - which is what we want most of the time.
+- if you want all children and grandchildren (e.g. dataloader helpers) - can be hundreds of processes! then use just `pgrep python`
+
+
+
+### using ds_ssh
+
+It's a bit tricky and doesn't work for `py-spy` (see notes in the section above - it seems to do with `bash`'s dotfiles).
 
 
 ```
@@ -611,7 +628,7 @@ Note that `py-spy` works just fine when actually ssh'ed to the compute node:
 ps aux | grep python | egrep -v '(srun|grep)' | grep `whoami` | awk '{print $2}' | xargs -I {} py-spy dump --pid {}
 ```
 
-# using pdsh
+### using pdsh
 
 To access just one running node it's simpler to just use `pdsh` directly.
 
