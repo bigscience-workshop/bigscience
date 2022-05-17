@@ -512,7 +512,7 @@ If it's trying to install into your local `~/.local` folder it's because `pip` i
 
 
 
-## Running `py-spy` diagnostics on multiple nodes at once
+### Running `py-spy` diagnostics on multiple nodes at once
 
 To do some monitoring of multiple nodes running an `srun` job:
 
@@ -550,7 +550,7 @@ scontrol show job 1728318_2 | perl -nle 'm/JobId=(\d+)/ && print $1'
 
 
 
-### using ds_ssh
+#### using ds_ssh
 
 It's a bit tricky and doesn't work for `py-spy` (see notes in the section above - it seems to do with `bash`'s dotfiles).
 
@@ -628,7 +628,7 @@ Note that `py-spy` works just fine when actually ssh'ed to the compute node:
 ps aux | grep python | egrep -v '(srun|grep)' | grep `whoami` | awk '{print $2}' | xargs -I {} py-spy dump --pid {}
 ```
 
-### using pdsh
+#### using pdsh
 
 To access just one running node it's simpler to just use `pdsh` directly.
 
