@@ -187,6 +187,7 @@ export CMD=" \
     --load $CHECKPOINT_PATH \
     --train-weighted-split-paths-path $TRAIN_DATA_PATH \
     --valid-weighted-split-paths-path $VALID_DATA_PATH \
+    --num-workers 2 \
     --data-impl mmap \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
@@ -200,6 +201,17 @@ export CUDA_LAUNCH_BLOCKING=1
 # hide duplicated errors using this hack - will be properly fixed in pt-1.12
 export TORCHELASTIC_ERROR_FILE=/tmp/torch-elastic-error.json
 
-clear; srun --jobid $SLURM_JOB_ID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
+# force crashing on nccl issues like hanging broadcast
+export NCCL_ASYNC_ERROR_HANDLING=1
+
+# srun error handling:
+# --wait=60: wait 60 sec after the first task terminates before terminating all remaining tasks
+# --kill-on-bad-exit=1: terminate a step if any task exits with a non-zero exit code
+SRUN_ARGS=" \
+    --wait=60 \
+    --kill-on-bad-exit=1 \
+    "
+
+clear; srun $SRUN_ARGS --jobid $SLURM_JOB_ID bash -c "$LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a $LOGS_PATH/main_log.txt
 
 echo "END TIME: $(date)"
