@@ -649,6 +649,13 @@ NHIDDEN=14336; NLAYERS=70; SEQ_LEN=2048; VOCAB_SIZE=250680; python -c "h=$NHIDDE
 BF16 Transformer block size: 4.59GB, the rest is: 6.75GB, total 328.34GB
 ```
 
+### Times
+
+- 1 train iteration ~100sec
+- 29 eval ~12min
+- checkpoint saving ~40sec
+
+
 ### Eval Results
 
 `lm-eval` on 29 tasks is run every 10k iterations and the results are stored in `$six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/eval-results`

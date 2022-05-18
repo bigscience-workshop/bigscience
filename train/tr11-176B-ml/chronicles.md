@@ -470,3 +470,137 @@ Solved by adding a `dist.barrier` before eval computation started.
 https://github.com/microsoft/DeepSpeed/pull/1944
 
 Lost 6h of work until this got resolves.
+
+### 2022-05-18 hanging at eval redux
+
+The deadlock race condition at multiple eval stages is still there :(
+
+Diagnosis:
+
+First taking the tracebacks of all processes
+
+```
+$ srun --overlap --jobid=19911--gres=gpu:0 --nodes=48 --tasks-per-node=1 --output=trace-%N.out sh -c 'source $six_ALL_CCFRWORK/start-prod; pgrep -P $(pgrep -o python) | xargs -I {} py-spy dump --pid {}' || echo "failed"
+```
+This saves 48 trace files, e.g., `trace-jean-zay-iam02.out`
+
+Now let's analyse where each process is:
+```
+$ perl -0777 -nle '$ARGV[0]=~/(trace-jean-zay-iam\d+)/ && print "$1\n"; while (m| "MainThread"\n( +\w+) \(|msg) { print "$1\n"}' trace-jean-zay-iam*.out
+```
+
+As the output is too long for 384 gpus, here are the 4 unique groups of outputs:
+
+```
+trace-jean-zay-iam03
+    broadcast
+    broadcast
+    broadcast
+    broadcast
+    broadcast
+    broadcast
+    broadcast
+    broadcast
+trace-jean-zay-iam06
+    send
+    send
+    send
+    send
+    broadcast
+    broadcast
+    broadcast
+    broadcast
+trace-jean-zay-iam50
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+trace-jean-zay-iam52
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+    wait
+    broadcast
+    broadcast
+    broadcast
+    all_reduce
+    all_reduce
+    all_reduce
+    all_reduce
+```
+
+each one of these is repeating many times.
+
+@DanielHesslow discovered that the deadlock happens in DataLoader - i.e. pytorch bug https://github.com/pytorch/pytorch/pull/25158 - which was supposed to be fixed, but it's not - the race condition is still there - and other recent comments confirm that.
+
+The deadlock was happening here:
+
+```
+Thread 1439102 (idle): "MainThread"
+    wait (threading.py:306)
+    get (queue.py:179)
+    _try_get_data (torch/utils/data/dataloader.py:1011)
+    _get_data (torch/utils/data/dataloader.py:1163)
+    _next_data (torch/utils/data/dataloader.py:1207)
+    __next__ (torch/utils/data/dataloader.py:530)
+    _next_batch (deepspeed/runtime/pipe/engine.py:631)
+    _exec_load_micro_batch (deepspeed/runtime/pipe/engine.py:799)
+    _exec_schedule (deepspeed/runtime/pipe/engine.py:1384)
+    eval_batch (deepspeed/runtime/pipe/engine.py:453)
+    evaluate (megatron/training.py:983)
+    evaluate_and_print_results (megatron/training.py:1030)
+    train (megatron/training.py:904)
+    pretrain (megatron/training.py:188)
+    main (pretrain_gpt.py:245)
+    wrapper (torch/distributed/elastic/multiprocessing/errors/__init__.py:345)
+    <module> (pretrain_gpt.py:249)
+```
+
+The deadlock has something to do with a new `DataLoader` worker thread copying the lock and not freeing it.
+
+So based on Daniel's suggestion we set the `valid_dataloaders` to use `num_workers=0` to work around it - it slows things down by a 5 TFLOPs on training, so we kept training at `num_workers=2`. This has only a tiny overhead every 30h when validation is run.
+
+The workaround is here:
+https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/282
+
+After applying this we were able to overcome the hanging and the training throughput is not impacted.
+
+We lost ~11h on this event.
+
+
+
+### 2022-05-18 slurm doesn't quit on some crashes
+
+So one of the recurrent problems we have is one when the training crashes, but SLURM doesn't quit - so unless someone is around to notice it the training just hangs there in limbo and doesn't get a chance to restart.
+
+I reported this issue to pytorch https://github.com/pytorch/pytorch/issues/76287 and they proposed the following additions:
+
+```
+# force crashing on nccl issues like hanging broadcast
+export NCCL_ASYNC_ERROR_HANDLING=1
+
+# srun error handling:
+# --wait=60: wait 60 sec after the first task terminates before terminating all remaining tasks
+# --kill-on-bad-exit=1: terminate a step if any task exits with a non-zero exit code
+SRUN_ARGS=" \
+    --wait=60 \
+    --kill-on-bad-exit=1 \
+    "
+
+srun $SRUN_ARGS ...
+```
+
+I tested this on 2 nodes. Started a new job, then logged into one node and manually killed one process. The local sub-processes got killed, but the slurm job was still running.
+
+It took about 5min of waiting and slurm killed the whole job, so will apply this to the main training. I guess I tested only the new srun options here and not the NCCL issue which would be tricky to emulate easily.
+
+Let's see if works well on the next hardware failure.
