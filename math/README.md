@@ -108,3 +108,17 @@ gives us:
 $ python -c 'print(f"{8*300*200_000_000/(350*150)/(3600*24):0.2f}", "days")'
 105.82 days
 ```
+
+## Finding the checkpoint that has the amount of tokens you want
+
+Trying to find the step at which you reached the number of tokens you want for every model size
+n_samples = n_tokens / 2048
+The average batch size during rampup is rampup_batch_size = 0.5 * (global_batch_size + start_batch_size) (edited)
+The number of steps is rampup_samples / rampup_batch_size + (n_samples - rampup_samples) / global_batch_size = rampup_samples / 0.5 / (global_batch_size + start_batch_size) + (n_tokens / 2048 - rampup_samples) / global_batch_size. Those will all change for each model. For example for [tr11f](https://github.com/bigscience-workshop/bigscience/blob/master/train/tr11-176B-ml/smaller_models/tr11f-6B3-ml.slurm) at 150B tokens we have:
+
+> - $GLOBAL_BATCH_SIZE = 512
+> - --rampup-batch-size 192 32 9_765_625 which gives:
+>    - start_batch_size = 192
+>    - rampup_samples = 9,765,625
+> 
+> so n_steps = 9,765,625 / 0.5 / (512 + 192) + (150,000,000,000 / 2048 - 9,765,625) / 512 = 151721
