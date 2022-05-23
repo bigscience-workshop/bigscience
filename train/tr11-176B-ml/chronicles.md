@@ -604,3 +604,14 @@ I tested this on 2 nodes. Started a new job, then logged into one node and manua
 It took about 5min of waiting and slurm killed the whole job, so will apply this to the main training. I guess I tested only the new srun options here and not the NCCL issue which would be tricky to emulate easily.
 
 Let's see if works well on the next hardware failure.
+
+Though later Remi shared that SLURM on JZ already had these set:
+
+```
+# IDRIS setting
+UnkillableStepTimeout=180
+KillWait=60
+KillOnBadExit=1
+```
+
+So really the only new thing I added was `NCCL_ASYNC_ERROR_HANDLING=1`
