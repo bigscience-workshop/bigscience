@@ -1,6 +1,6 @@
 # google-cloud-sdk
 
-Installed in `$six_ALL_CCFRWORK/lib/google-cloud-sdk`
+Installed in `$six_ALL_CCFRWORK/lib/google-cloud-sdk` following the linux installation instructions [here](https://cloud.google.com/sdk/docs/install?hl=en).
 
 To activate add to your `~/.bashrc`:
 
