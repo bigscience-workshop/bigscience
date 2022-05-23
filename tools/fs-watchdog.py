@@ -144,8 +144,8 @@ def main():
     # partitions due to it filling up at a faster rate (dumping huge checkpoints)
     analyse_partition_bytes(partition_name="SCRATCH", partition_path="/gpfsssd/scratch/rech/six/", hard_limit_bytes=400*2**40, alert_bytes_threshold=0.75)
 
-    # WORKFS - check both bytes and inodes w/ hard quotas of 2TB / 3M
-    analyse_partition_bytes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/", hard_limit_bytes=2*2**40, alert_bytes_threshold=0.85)
+    # WORKFS - check both bytes and inodes w/ hard quotas of 3TB / 3M
+    analyse_partition_bytes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/", hard_limit_bytes=3*2**40, alert_bytes_threshold=0.85)
     analyse_partition_inodes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/", hard_limit_inodes=3*10**6, alert_inodes_threshold=0.85)
 
     if len(alerts) > 0 :
