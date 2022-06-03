@@ -188,6 +188,7 @@ export CMD=" \
     --train-weighted-split-paths-path $TRAIN_DATA_PATH \
     --valid-weighted-split-paths-path $VALID_DATA_PATH \
     --num-workers 2 \
+    --valid-num-workers 0 \
     --data-impl mmap \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
