@@ -30,7 +30,8 @@ def generate_from_text(model, text, tokenizer, max_length=200, greedy=False, top
         "outputs": tokenizer.decode(greedy_output, skip_special_tokens=True)
     }
 
-def main(args):
+def main():
+    args = get_args()
     print(f"Loading model", flush=True)
 
     tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom", padding_side="left")
@@ -55,3 +56,6 @@ def main(args):
             text += dummy
         output = generate_from_text(model, text, tokenizer, max_length=args.generate_max_length, greedy=args.greedy, top_k=args.top_k)
         print(json.dumps(output, indent=2))
+
+if __name__ == "__main__":
+    main()
