@@ -48,15 +48,15 @@ def main():
     model.eval()
     print(f"Loaded model in {datetime.datetime.now() - start}")
 
+    text = ''
     while True:
-        text = ''
-        while True:
-            dummy = input('''Enter the paragraph :''')
-            if dummy=='\n':
-                break
+        try:
+            dummy = input('''Enter the paragraph (Enter for new line and Ctrl-c to end the prompt):''')+'\n'
             text += dummy
-        output = generate_from_text(model, text, tokenizer, max_length=args.generate_max_length, greedy=args.greedy, top_k=args.top_k)
-        print(json.dumps(output, indent=2))
+        except KeyboardInterrupt:
+            output = generate_from_text(model, text, tokenizer, max_length=args.generate_max_length, greedy=args.greedy, top_k=args.top_k)
+            print(json.dumps(output, indent=2))
+            text = ''
 
 if __name__ == "__main__":
     main()
