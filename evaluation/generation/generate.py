@@ -34,7 +34,7 @@ def main():
     args = get_args()
     print(f"Loading model", flush=True)
 
-    tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom", padding_side="left")
+    tokenizer = AutoTokenizer.from_pretrained(args.checkpoint, padding_side="left")
 
     print("Loaded tokenizer !")
     start = datetime.datetime.now()
