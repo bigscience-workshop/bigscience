@@ -48,8 +48,9 @@ def main():
     text = ''
     while True:
         try:
-            dummy = input('''Enter the paragraph (Enter for new line and Ctrl-c to end the prompt):''')+'\n'
+            dummy = input('''Enter the paragraph (Enter for new line and Ctrl-c to end the prompt):''')
             text += dummy
+            text += '\n'
         except KeyboardInterrupt:
             output = generate_from_text(model, text, tokenizer, max_length=args.generate_max_length, greedy=args.greedy, top_k=args.top_k)
             print(output)
