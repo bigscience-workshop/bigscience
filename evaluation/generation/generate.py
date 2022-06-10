@@ -2,6 +2,7 @@ import argparse
 import json
 import datetime
 
+import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 
 def get_args():
