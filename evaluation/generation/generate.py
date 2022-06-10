@@ -1,9 +1,8 @@
 import argparse
-import json
 import datetime
 
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -30,7 +29,7 @@ def generate_from_text(model, text, tokenizer, max_length=200, greedy=False, top
 
 def main():
     args = get_args()
-    print(f"Loading model", flush=True)
+    print(f"Loading model")
 
     tokenizer = AutoTokenizer.from_pretrained(args.checkpoint, padding_side="left")
 
@@ -42,7 +41,6 @@ def main():
         torch_dtype=torch.bfloat16,
         revision="gs{}".format(args.global_step) if args.global_step else None
     )
-    model.eval()
     print(f"Loaded model in {datetime.datetime.now() - start}")
 
     text = ''
