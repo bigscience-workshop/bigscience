@@ -26,10 +26,7 @@ def generate_from_text(model, text, tokenizer, max_length=200, greedy=False, top
         do_sample=not greedy,
         top_k=None if greedy else top_k,
     )
-    return {
-        "inputs": text,
-        "outputs": tokenizer.decode(greedy_output[0], skip_special_tokens=True)
-    }
+    return tokenizer.decode(greedy_output[0], skip_special_tokens=True)
 
 def main():
     args = get_args()
@@ -55,7 +52,7 @@ def main():
             text += dummy
         except KeyboardInterrupt:
             output = generate_from_text(model, text, tokenizer, max_length=args.generate_max_length, greedy=args.greedy, top_k=args.top_k)
-            print(json.dumps(output, indent=2))
+            print(output)
             text = ''
 
 if __name__ == "__main__":
