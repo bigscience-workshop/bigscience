@@ -28,7 +28,7 @@ def generate_from_text(model, text, tokenizer, max_length=200, greedy=False, top
     )
     return {
         "inputs": text,
-        "outputs": tokenizer.decode(greedy_output, skip_special_tokens=True)
+        "outputs": tokenizer.decode(greedy_output[0], skip_special_tokens=True)
     }
 
 def main():
@@ -51,7 +51,7 @@ def main():
     while True:
         text = ''
         while True:
-            dummy = input('''Enter the paragraph :''')+'\n'
+            dummy = input('''Enter the paragraph :''')
             if dummy=='\n':
                 break
             text += dummy
