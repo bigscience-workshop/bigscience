@@ -82,17 +82,17 @@ gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkp
 gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step63000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step63000
 gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step66000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step66000
 gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step69000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step69000
+gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step72000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step72000
+gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step75000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step75000
+gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step78000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step78000
 
 
 # in-progress
 
-gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step72000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step72000
 
 
 # todo:
 
-gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step75000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step75000
-gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step78000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step78000
 gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step81000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step81000
 gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step84000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step84000
 gsutil rsync -x "bf16.*" -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step87000 gs://bigscience-backups/tr11-176B-ml/checkpoints-weights/global_step87000
