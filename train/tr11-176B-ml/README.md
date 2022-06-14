@@ -696,6 +696,23 @@ Since this doesn't include the batch size rampup when we run on average at half 
 
 
 
+### Maintenance
+
+Here are the things that need to be done routinely - every 1-2 days:
+
+1. Backing up every new 1k checkpoint from `$six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main` to `$six_ALL_CCFRSTORE/checkpoints/tr11-176B-ml/checkpoints`
+
+2. Deleting the intermediary (non-1k) checkpoints from `$six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main`, while keeping the last 15-20 intermediary checkpoints around in case we discover some problem and need to rollback to an earlier recent checkpoint
+
+3. Backing up to GCS. Follow the instructions at [backup-schedule.md](./backup-schedule.md) - this needs to be done every 1-2 weeks. Once the checkpoints were backed up to GCS and STORE, they can now be deleted from `$six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main`, but still keep a few last ones around if we need them quickly.
+
+4. Ensuring there are at least 2 jobs are in the queue, when you create a new job array please make sure to add `--dependency` on the already queued job array, so other other smaller jobs could be run as well.
+```
+sbatch --array=1-3%1 --dependency=87553 tr11-176B-ml.slurm
+```
+edit `--dependency=` to the actual job array that is already active.
+
+
 ### On Call
 
 When a person is on call, they need to watch that the training is either running or scheduled to run. If neither is happening they need to schedule a new training. When this situation occurs the log file will report:
