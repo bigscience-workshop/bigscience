@@ -1047,7 +1047,7 @@ For posterity here is the process:
 
 In one console, first allocate the gpus:
 ```
-salloc --partition=gpu_p5 --constraint=a100 --nodes=2 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
+salloc --partition=gpu_p5 --constraint=a100 --reservation=hug --nodes=2 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
 ```
 We are doing that so that if SLURM kills the processes we could still access those.
 

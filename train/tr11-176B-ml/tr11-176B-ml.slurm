@@ -2,6 +2,7 @@
 #SBATCH --job-name=tr11-176B-ml
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
+#SBATCH --reservation=hug
 #SBATCH --qos=qos_gpu-gc             # up to 100h
 #SBATCH --nodes=48
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!

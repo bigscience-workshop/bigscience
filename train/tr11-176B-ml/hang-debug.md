@@ -95,7 +95,7 @@ Thread 835995 (active): "MainThread"
 ## debugging setup
 
 ```
-salloc --partition=gpu_p5 --constraint=a100 --nodes=2 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
+salloc --partition=gpu_p5 --constraint=a100 --reservation=hug --nodes=2 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
 ```
 
 ```
@@ -144,7 +144,7 @@ ssh jean-zay-iam01 "~/script.bash"
 ```
 cd ~/prod/code/tr8b-104B/bigscience/train/tr11-200B-ml/
 
-salloc --partition=gpu_p5 --constraint=a100 --nodes=40 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
+salloc --partition=gpu_p5 --constraint=a100 --reservation=hug --nodes=40 --ntasks-per-node=1 --cpus-per-task=64 --hint=nomultithread --gres=gpu:8 --time 20:00:00 --account=six@a100
 
 bash 200B-n40-bf16-mono.slurm
 
