@@ -148,10 +148,10 @@ def main():
         disk_meta = [disk_meta_.split() for disk_meta_ in disk_metas if disk_meta_.startswith(partition_name_2_disk[partition_name])][0]
         disk_meta = {column_name: value for column_name, value in zip(column_names, disk_meta)}
 
-        available_disk_left = int(disk_meta["Available"])
+        # default `df` counts uses 1024-byte units, and `1024 == 2 ** 10`
+        available_disk_left = int(disk_meta["Available"]) * 2 ** 10
         if available_disk_left < alert_bytes_threshold:
-            # default `df` counts uses 1024-byte units, and `1024 == 2 ** 10`
-            alerts.append(f"Shared {partition_name} has {available_disk_left/2**(40 - 10):.2f}TB left")
+            alerts.append(f"Shared {partition_name} has {available_disk_left/2**40:.2f}TB left")
             alerts.append("")
 
     # WORK and STORE partitions stats can be accessed much faster through `idrquota`, and it already
@@ -159,12 +159,12 @@ def main():
     analyse_partition_idrquota(partition_name="WORK", partition_flag="-w", alert_bytes_threshold=0.85, alert_inodes_threshold=0.85)
     analyse_partition_idrquota(partition_name="STORE", partition_flag="-s", alert_bytes_threshold=0.85, alert_inodes_threshold=0.85)
 
-    # # SCRATCH - check only bytes w/ a hard quota of 400TB - alert on lower threshold than other
-    # # partitions due to it filling up at a faster rate (dumping huge checkpoints)
-    # analyse_partition_bytes(partition_name="SCRATCH", partition_path="/gpfsssd/scratch/rech/six/", hard_limit_bytes=400*2**40, alert_bytes_threshold=0.75)
+    # SCRATCH - check only bytes w/ a hard quota of 400TB - alert on lower threshold than other
+    # partitions due to it filling up at a faster rate (dumping huge checkpoints)
+    analyse_partition_bytes(partition_name="SCRATCH", partition_path="/gpfsssd/scratch/rech/six/", hard_limit_bytes=400*2**40, alert_bytes_threshold=0.75)
     # Actually SCRATCH is shared with everyone and we should monitor the output of `df -h | grep gpfsssd`
     # Check that there's still 40TB left
-    analyse_shared_disk("SCRATCH", 40 * 2 ** 40)
+    analyse_shared_disk("SCRATCH", 100 * 2 ** 40)
 
     # WORKFS - check both bytes and inodes w/ hard quotas of 2TB / 3M
     analyse_partition_bytes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/", hard_limit_bytes=2*2**40, alert_bytes_threshold=0.85)
