@@ -69,6 +69,7 @@ def run_cmd(cmd, check=True):
         ).stdout.strip()
     except subprocess.CalledProcessError as exc:
         raise EnvironmentError(exc.stderr)
+
     return git_status
 
 
