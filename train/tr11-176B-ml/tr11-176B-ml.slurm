@@ -12,7 +12,6 @@
 #SBATCH --time 100:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --reservation=hug
 
 set -x -e
 
