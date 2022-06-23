@@ -134,7 +134,7 @@ OUTPUT_ARGS=" \
     --log-validation-ppl-to-tensorboard \
     "
 
-ZERO_STAGE=0 # important: bf16 must use z0! it implements its own zero stage 1 equivalent
+ZERO_STAGE=1 # important: bf16 must use z0! it implements its own zero stage 1 equivalent
 
 config_json="./ds_config.$SLURM_JOBID.json"
 
