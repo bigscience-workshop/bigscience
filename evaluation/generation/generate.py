@@ -33,7 +33,7 @@ def main():
 
     tokenizer = AutoTokenizer.from_pretrained(args.checkpoint, padding_side="left")
 
-    print("Loaded tokenizer !")
+    print("Loaded tokenizer!")
     start = datetime.datetime.now()
     model = AutoModelForCausalLM.from_pretrained(
         args.checkpoint,
