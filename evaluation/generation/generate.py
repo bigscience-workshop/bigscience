@@ -29,7 +29,7 @@ def generate_from_text(model, text, tokenizer, max_length=200, greedy=False, top
 
 def main():
     args = get_args()
-    print(f"Loading model")
+    print("Loading model")
 
     tokenizer = AutoTokenizer.from_pretrained(args.checkpoint, padding_side="left")
 
