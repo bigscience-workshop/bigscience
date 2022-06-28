@@ -166,9 +166,9 @@ def main():
     # Check that there's still 40TB left
     analyse_shared_disk("SCRATCH", 100 * 2 ** 40)
 
-    # WORKFS - check both bytes and inodes w/ hard quotas of 2TB / 3M
-    analyse_partition_bytes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/", hard_limit_bytes=2*2**40, alert_bytes_threshold=0.85)
-    analyse_partition_inodes(partition_name="WORKFS", partition_path="/gpfsssd/worksf/projects/rech/six/", hard_limit_inodes=3*10**6, alert_inodes_threshold=0.85)
+    # WORKSF - check both bytes and inodes w/ hard quotas of 2TB / 3M
+    analyse_partition_bytes(partition_name="WORKSF", partition_path="/gpfsssd/worksf/projects/rech/six/", hard_limit_bytes=2*2**40, alert_bytes_threshold=0.85)
+    analyse_partition_inodes(partition_name="WORKSF", partition_path="/gpfsssd/worksf/projects/rech/six/", hard_limit_inodes=3*10**6, alert_inodes_threshold=0.85)
 
     if len(alerts) > 0 :
         print(f"[ALERT] JZ filesystem is getting close to being full")
