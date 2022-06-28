@@ -12,6 +12,7 @@ def get_args():
     parser.add_argument("--generate-max-length", type=int, default=50, help="max generation length")
     parser.add_argument("--greedy", action="store_true")
     parser.add_argument("--top-k", type=int, default=0)
+    parser.add_argument("--offload_folder", type=str, help="offload folder for accelerate", default="./offload")
 
     return parser.parse_args()
 
@@ -40,6 +41,7 @@ def main():
         device_map="auto" if args.parallelize else None,
         torch_dtype=torch.bfloat16,
         revision="gs{}".format(args.global_step) if args.global_step else None
+        offload_floder=args.offload_folder,
     )
     print(f"Loaded model in {datetime.datetime.now() - start}")
 
