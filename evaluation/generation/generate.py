@@ -41,7 +41,7 @@ def main():
         device_map="auto" if args.parallelize else None,
         torch_dtype=torch.bfloat16,
         revision="gs{}".format(args.global_step) if args.global_step else None
-        offload_floder=args.offload_folder,
+        offload_folder=args.offload_folder is args.parallelize else None,
     )
     print(f"Loaded model in {datetime.datetime.now() - start}")
 
