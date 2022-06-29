@@ -295,7 +295,7 @@ more informative all-in-one myjobs that includes the projected start time for pe
 
 ```
 alias myjobs='squeue -u `whoami` -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"'
-alias groupjobs='squeue -u $(getent group six | cut -d: -f4) -o "%.16i %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"'
+alias groupjobs='squeue -u $(getent group six | cut -d: -f4) -o "%.16i %u %.9P %.26j %.8T %.10M %.8l %.6D %.20S %R"'
 ```
 
 
