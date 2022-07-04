@@ -649,6 +649,20 @@ NHIDDEN=14336; NLAYERS=70; SEQ_LEN=2048; VOCAB_SIZE=250680; python -c "h=$NHIDDE
 BF16 Transformer block size: 4.59GB, the rest is: 6.75GB, total 328.34GB
 ```
 
+### Important checkpoints
+
+The first epoch finished at:
+
+```
+[default7]: iteration   85376/ 115311 | consumed samples:   158692272 | consumed tokens: 325001773056 | elapsed time per iteration (s)
+: 104.70 | learning rate: 1.150E-05 | global batch size: 2048 | lm loss: 1.979558E+00 | grad norm: 0.132 | num zeros: 0.0 | number of sk
+ipped iterations:  0 | number of nan iterations:  0 | samples per second: 19.561 | TFLOPs: 149.77
+```
+
+So if someone wants the nearest checkpoint that is guaranteed to have had seen only one pass of data is 85k.
+
+
+
 ### Checkpoint reshaping
 
 It's not trivial to switch from one 3D topology to another due to TP and DP logic of Deepspeed. So we developed a special mechanism called universal checkpoint which converts whatever topology the last checkpoint was created with into a universal checkpoint which has each weight and optimizer state as a separate file. This is done after careful merging of weights split across TP ranks (some weights are averaged, some are concatenated on the first and some on the second dimension. And then DP ZeRO sharding gets unsharded. So this universal checkpoint can now be used to start any new topology or to create a HF Transformers checkpoint. Note that all weights are in fp32 - so no data is lost.
