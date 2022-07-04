@@ -54,6 +54,10 @@ NNODES=$SLURM_NNODES
 PP_SIZE=1
 TP_SIZE=1
 
+# T0 paper:
+# ...truncate input and target sequences to 1024 and 256 tokens...
+# ...use a batch size of 1024 sequences ... 2^20 total input tokens per batch...
+# We use 2048 total tokens and 512 batch size = 2**20
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=512
 
@@ -65,15 +69,16 @@ SEQ_LEN=2048
 SAVE_INTERVAL=500
 
 TRAIN_SAMPLES=6_400_000  # 13e9 / 2048
-LR_WARMUP_SAMPLES=640_000  # 10%
+LR_WARMUP_SAMPLES=640_000  # 10% - TODO: T0 paper says nothing about warmup
 
-
+# T0 paper:
+# "...we use a learning rate of 1e-3..."
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 3.0e-4 \
+    --lr 1e-3 \
     --lr-decay-style constant \
     --lr-warmup-samples $LR_WARMUP_SAMPLES \
     --clip-grad 1.0 \
@@ -172,6 +177,8 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
+    --save $CHECKPOINT_PATH \
+    --load $CHECKPOINT_PATH \
     --data-path $DATA_PATH \
     --split 95,5,0 \
     --dataloader-type single \
