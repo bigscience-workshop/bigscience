@@ -103,7 +103,7 @@ def get_layer_id(meg_ds_filename: str, total_num_layers: int) -> Optional[int]:
     return layer_id
 
 def merge_layers(layers, num_heads: int, hidden_size: int):
-    if len(layers):
+    if len(layers) == 0:
         return layers[0]
     else:
         # We merge QKV
