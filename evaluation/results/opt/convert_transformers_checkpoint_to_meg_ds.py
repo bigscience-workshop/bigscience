@@ -107,16 +107,30 @@ def merge_layers(layers, num_heads: int, hidden_size: int):
         return layers[0]
     else:
         # We merge QKV
-        return torch.reshape(
-            torch.cat(
-                [
-                    layer.view(num_heads, 1, hidden_size // num_heads, hidden_size)
-                    for layer in layers
-                ],
-                dim=1
-            ),
-            (3 * hidden_size, hidden_size)
-        )
+        if len(layers[0].shape) == 1:
+            # bias
+            return torch.reshape(
+                torch.cat(
+                    [
+                        layer.view(num_heads, 1, hidden_size // num_heads)
+                        for layer in layers
+                    ],
+                    dim=1
+                ),
+                (3 * hidden_size, )
+            )
+        else:
+            #weight
+            return torch.reshape(
+                torch.cat(
+                    [
+                        layer.view(num_heads, 1, hidden_size // num_heads, hidden_size)
+                        for layer in layers
+                    ],
+                    dim=1
+                ),
+                (3 * hidden_size, hidden_size)
+            )
 
 def find_transformers_weights_and_save_meg_ds_weights(
     meg_ds_filename: str,
