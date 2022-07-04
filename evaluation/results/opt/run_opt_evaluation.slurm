@@ -33,23 +33,39 @@ export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 cd $MEGATRON_DEEPSPEED_REPO
 
 # Make sure you use the slow version of the tokenizer.
-TOKENIZER_NAME_OR_PATH=bigscience/opt
+# Same tokenizer for 125m and 175b
+TOKENIZER_NAME_OR_PATH=/gpfsscratch/rech/six/commun/opt/opt-125m
 
 PP_SIZE=8
 TP_SIZE=1
+
+NHIDDEN=12288
+NLAYERS=96
+NHEADS=96
 SEQ_LEN=2048
 
 # different from the training MICRO_BATCH_SIZE - no optim memory, so can do bigger BS
 # make as big as it can fit into gpu w/o OOM, but not too close to 100%
 EVAL_MICRO_BATCH_SIZE=1
 
-#dummy arguments to make megatron happy.
-MEGATRON_REQUIRED_ARGS=" \
-    --num-layers -1 \
-    --hidden-size -1 \
-    --num-attention-heads -1 \
-    --seq-length -1  \
-    --max-position-embeddings -1 \
+MEGATRON_REQUIRED_ARGS="
+    --pp-partition-method 'type:transformer' \
+    --num-layers $NLAYERS \
+    --hidden-size $NHIDDEN \
+    --num-attention-heads $NHEADS \
+    --seq-length $SEQ_LEN \
+    --max-position-embeddings $SEQ_LEN \
+    --tokenizer-type PretrainedFromHF \
+    --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
+    --fp16 \
+    --relu \
+    --bf16 \
+    --seed 42 \
+    --position-embedding-type alibi \
+    --checkpoint-activations \
+    --abort-on-unmet-fused-kernel-constraints \
+    --kill-switch-path $KILL_SWITCH_PATH \
+    --pad-vocab-size-to 250880 \
 "
 
 
@@ -81,15 +97,10 @@ CMD="./tasks/eval_harness/evaluate.py  \
     --results_path $OPT_FOLDER/eai_results.json \
     --tensor-model-parallel-size $TP_SIZE  \
     --pipeline-model-parallel-size $PP_SIZE \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
     --micro-batch-size $EVAL_MICRO_BATCH_SIZE \
     --no-load-optim \
-    --relu \
     --no-load-rng \
-    --fp16 \
     --inference \
-    --seq-length $SEQ_LEN \
     --task_list arc_challenge,arc_easy,boolq,copa,headqa,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc \
     --deepspeed \
     --deepspeed_config ds_config.json \
