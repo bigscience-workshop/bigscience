@@ -108,6 +108,8 @@ def find_transformers_weights_and_save_meg_ds_weights(
     opt_checkpoint_path: str,
     megatron_dump_folder_path:str,
     total_num_layers: int,
+    num_heads: int,
+    hidden_size: int,
     trfs_weight_map: Dict[str, str]
 ):
     layer_id = get_layer_id(meg_ds_filename, total_num_layers=total_num_layers)
@@ -132,8 +134,15 @@ def find_transformers_weights_and_save_meg_ds_weights(
     # possibly concatenate
     save_path = os.path.join(megatron_dump_folder_path, meg_ds_filename)
     with open(save_path, "wb") as fo:
+        # qkv are mixed s.t. [q1 k1 v1 q2 k2 v2 ...] with (1,2..) being head_id
         torch.save(
-            {key: torch.cat(value) for key, value in result.items()},
+            {
+                key: torch.cat(
+                    value.view(num_heads, 1, hidden_size//num_heads, hidden_size),
+                    dim=1
+                ).resize(3 * hidden_size, hidden_size)
+                for key, value in result.items()
+            },
             fo
         )
 
@@ -148,12 +157,11 @@ def convert_opt_checkpoint_to_megatron(
     with open(opt_index_path, "r") as fi:
         index_file = json.load(fi)["weight_map"]
     # Compute total amount of layers
-    total_amount_of_layers = 0
-    for weight_name in index_file.keys():
-        match = re.match(r"decoder.layers.(\d*).*", weight_name)
-        if match is not None:
-            total_amount_of_layers = max(int(match[1]), total_amount_of_layers)
-    total_amount_of_layers += 1
+    with open(os.path.join(opt_checkpoint_path, "config.json"), "r") as fi:
+        config = json.load(fi)
+    total_amount_of_layers = config["num_hidden_layers"]
+    num_heads = config["num_attention_heads"]
+    hidden_size = config["hidden_size"]
 
     # Given the total number of layers we can compute exactly each meg_ds params we need to find.
     meg_ds_filename_to_meg_ds_weights = compute_meg_ds_weight_names(total_amount_of_layers)
@@ -168,7 +176,9 @@ def convert_opt_checkpoint_to_megatron(
                 opt_checkpoint_path=opt_checkpoint_path,
                 megatron_dump_folder_path=megatron_dump_folder_path,
                 total_num_layers=total_amount_of_layers,
-                trfs_weight_map=index_file
+                trfs_weight_map=index_file,
+                num_heads=num_heads,
+                hidden_size=hidden_size
             )
     else:
         with Pool(num_proc) as pool:
@@ -178,7 +188,9 @@ def convert_opt_checkpoint_to_megatron(
                     opt_checkpoint_path=opt_checkpoint_path,
                     megatron_dump_folder_path=megatron_dump_folder_path,
                     total_num_layers=total_amount_of_layers,
-                    trfs_weight_map=index_file
+                    trfs_weight_map=index_file,
+                    num_heads=num_heads,
+                    hidden_size=hidden_size
                 ),
                 tqdm(meg_ds_filename_to_meg_ds_weights.items())
             )
