@@ -138,10 +138,13 @@ def find_transformers_weights_and_save_meg_ds_weights(
         torch.save(
             {
                 key: torch.cat(
-                    value.view(num_heads, 1, hidden_size//num_heads, hidden_size),
+                    [
+                        value.view(num_heads, 1, hidden_size//num_heads, hidden_size)
+                        for value in values
+                    ],
                     dim=1
                 ).resize(3 * hidden_size, hidden_size)
-                for key, value in result.items()
+                for key, values in result.items()
             },
             fo
         )
