@@ -36,3 +36,5 @@ Location of the checkpoints of the trained models plus logs and anything else of
 
 - tr9b-350M-swiglu: `six_ALL_CCFRSTORE/checkpoints/tr9b-350M-swiglu`
 - tr9c-1B3-swiglu-pile: `six_ALL_CCFRSTORE/checkpoints/tr9b-1B3-swiglu-pile`
+
+- tr13: Multi-Task Fine-tuning (T0)

@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr11f-6B3-ml-t0
+#SBATCH --job-name=tr13f-6B3-ml-t0
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
@@ -15,22 +15,22 @@
 
 set -x -e
 
-source $six_ALL_CCFRWORK/start-tr11f-6B3-ml-t0 # TODO
+source $six_ALL_CCFRWORK/start-tr13f-6B3-ml-t0 # TODO
 echo "START TIME: $(date)"
 
 variant=main
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11f-6B3-ml-t0
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
-REPO_PATH=$DATA_OUTPUT_PATH/tr11f-6B3-ml-t0-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr13f-6B3-ml-t0-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
 LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
 
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr11f-6B3-ml-t0/Megatron-DeepSpeed # TODO
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed # TODO
 cd $MEGATRON_DEEPSPEED_REPO
 
-BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/bigscience
+BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code//tr11f-6B3-ml-t0/bigscience
 TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
 
 # defining the right environment variables
@@ -66,9 +66,9 @@ NHIDDEN=4096
 NHEADS=32
 SEQ_LEN=2048
 
-SAVE_INTERVAL=500
+SAVE_INTERVAL=1000
 
-TRAIN_SAMPLES=6_400_000  # 13e9 / 2048
+TRAIN_SAMPLES=6_348_800  # 13e9 / 2048
 
 # T0 paper:
 # "...we use a learning rate of 1e-3..."
@@ -79,6 +79,7 @@ OPTIMIZER_ARGS=" \
     --adam-eps 1e-8 \
     --lr 1e-3 \
     --lr-decay-style constant \
+    --lr-warmup-samples 0 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
@@ -115,7 +116,7 @@ OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 1000 \
-    --eval-iters 1 \
+    --eval-iters 10 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
@@ -123,7 +124,7 @@ OUTPUT_ARGS=" \
     --log-validation-ppl-to-tensorboard \
     "
 
-ZERO_STAGE=1 # important: bf16 must use z0! it implements its own zero stage 1 equivalent
+ZERO_STAGE=1
 
 config_json="./ds_config.$SLURM_JOBID.json"
 
