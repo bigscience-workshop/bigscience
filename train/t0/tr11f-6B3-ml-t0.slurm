@@ -31,7 +31,7 @@ MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr11f-6B3-ml-t0/Megatron-DeepSpee
 cd $MEGATRON_DEEPSPEED_REPO
 
 BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/bigscience
-TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
+TOKENIZER_NAME_OR_PATH=bigscience/tokenizer
 
 # defining the right environment variables
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
