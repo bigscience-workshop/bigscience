@@ -1,16 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=eai-eval-opt
-#SBATCH --partition=gpu_p5
-#SBATCH --constraint=a100
-#SBATCH --reservation=hug
+#SBATCH --job-name=eai-eval-opt-125m
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=64           # number of cores per tasks
-#SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --gres=gpu:8                 # number of gpus
-#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
-#SBATCH --output=/gpfswork/rech/six/uty16tp/logs/%x-%j.out           # output file name
-#SBATCH --account=six@a100
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=10
+#SBATCH --hint=nomultithread
+#SBATCH --gres=gpu:1
+#SBATCH --time 20:00:00
+#SBATCH --output=/gpfswork/rech/six/uty16tp/logs/%x-%j.out
+#SBATCH --account=six@v100
 
 set -x -e
 
@@ -20,7 +17,7 @@ conda activate thomas_lm_eval
 echo "START TIME: $(date)"
 
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/opt/opt-175b-meg-ds
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/opt/opt-125m-meg-ds
 MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/uty16tp/code/big_science/Megatron-DeepSpeed
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
@@ -36,12 +33,12 @@ cd $MEGATRON_DEEPSPEED_REPO
 # Same tokenizer for 125m and 175b
 TOKENIZER_NAME_OR_PATH=/gpfsscratch/rech/six/commun/opt/opt-125m
 
-PP_SIZE=8
+PP_SIZE=1
 TP_SIZE=1
 
-NHIDDEN=12288
-NLAYERS=96
-NHEADS=96
+NHIDDEN=768
+NLAYERS=12
+NHEADS=12
 SEQ_LEN=2048
 
 # different from the training MICRO_BATCH_SIZE - no optim memory, so can do bigger BS
@@ -59,13 +56,7 @@ MEGATRON_REQUIRED_ARGS="
     --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
     --fp16 \
     --relu \
-    --bf16 \
     --seed 42 \
-    --position-embedding-type alibi \
-    --checkpoint-activations \
-    --abort-on-unmet-fused-kernel-constraints \
-    --kill-switch-path $KILL_SWITCH_PATH \
-    --pad-vocab-size-to 250880 \
 "
 
 
@@ -82,8 +73,13 @@ cat <<EOT > $config_json
   "zero_optimization": {
     "stage": $ZERO_STAGE
   },
-  "bf16": {
-    "enabled": true
+  "fp16": {
+    "enabled": true,
+    "loss_scale": 0,
+    "loss_scale_window": 500,
+    "hysteresis": 2,
+    "min_loss_scale": 1,
+    "initial_scale_power": 12
   },
   "steps_per_print": 2000,
   "wall_clock_breakdown": false
@@ -110,7 +106,7 @@ CMD="./tasks/eval_harness/evaluate.py  \
     $MEGATRON_REQUIRED_ARGS \
     "
 
-GPUS_PER_NODE=8
+GPUS_PER_NODE=1
 NNODES=$SLURM_NNODES
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6000
