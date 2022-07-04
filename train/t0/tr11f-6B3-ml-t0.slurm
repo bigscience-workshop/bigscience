@@ -69,7 +69,6 @@ SEQ_LEN=2048
 SAVE_INTERVAL=500
 
 TRAIN_SAMPLES=6_400_000  # 13e9 / 2048
-LR_WARMUP_SAMPLES=640_000  # 10% - TODO: T0 paper says nothing about warmup
 
 # T0 paper:
 # "...we use a learning rate of 1e-3..."
@@ -80,7 +79,6 @@ OPTIMIZER_ARGS=" \
     --adam-eps 1e-8 \
     --lr 1e-3 \
     --lr-decay-style constant \
-    --lr-warmup-samples $LR_WARMUP_SAMPLES \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     "
