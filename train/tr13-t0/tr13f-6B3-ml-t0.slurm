@@ -30,8 +30,8 @@ mkdir -p $LOGS_PATH
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed # TODO
 cd $MEGATRON_DEEPSPEED_REPO
 
-BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code//tr11f-6B3-ml-t0/bigscience
-TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
+BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr11f-6B3-ml-t0/bigscience # TODO
+TOKENIZER_NAME_OR_PATH=bigscience/tokenizer
 
 # defining the right environment variables
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
