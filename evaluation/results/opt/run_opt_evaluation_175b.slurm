@@ -43,23 +43,25 @@ NHIDDEN=12288
 NLAYERS=96
 NHEADS=96
 SEQ_LEN=2048
+MAX_POSITION_EMBEDDINGS=2050
 
 # different from the training MICRO_BATCH_SIZE - no optim memory, so can do bigger BS
 # make as big as it can fit into gpu w/o OOM, but not too close to 100%
 EVAL_MICRO_BATCH_SIZE=1
 
 MEGATRON_REQUIRED_ARGS="
-    --pp-partition-method 'type:transformer' \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
     --num-attention-heads $NHEADS \
     --seq-length $SEQ_LEN \
-    --max-position-embeddings $SEQ_LEN \
+    --max-position-embeddings $MAX_POSITION_EMBEDDINGS \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
     --fp16 \
     --relu \
     --seed 42 \
+    --pad-vocab-size-to 50272 \
+    --make-vocab-size-divisible-by 1\
 "
 
 
@@ -89,7 +91,7 @@ cat <<EOT > $config_json
 }
 EOT
 
-OPT_FOLDER=$WORK/opt
+OPT_FOLDER=$WORK/opt/opt-175m
 
 CMD="./tasks/eval_harness/evaluate.py  \
     --load $CHECKPOINT_PATH \

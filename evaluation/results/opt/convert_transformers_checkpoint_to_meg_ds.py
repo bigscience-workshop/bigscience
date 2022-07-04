@@ -59,7 +59,7 @@ def compute_meg_ds_weight_names(num_layers: int):
             ]
             for layer_id in range(3, num_layers + 3)
         },
-        f"layer_{str(num_layers + 5).zfill(2)}-model_00-model_states.pt": [
+        f"layer_{str(num_layers + 4).zfill(2)}-model_00-model_states.pt": [
             "weight",
             "bias"
         ]
@@ -182,6 +182,9 @@ def convert_opt_checkpoint_to_megatron(
                 ),
                 tqdm(meg_ds_filename_to_meg_ds_weights.items())
             )
+
+    # Create dummy mp_rank_00_model_states.pt
+    torch.save({"mp_world_size": 1, "module": None, "dp_world_size": 1}, os.path.join(megatron_dump_folder_path, "mp_rank_00_model_states.pt"))
 
 def main():
     args = get_args()
