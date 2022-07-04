@@ -102,6 +102,19 @@ def get_layer_id(meg_ds_filename: str, total_num_layers: int) -> Optional[int]:
 
     return layer_id
 
+def merge_layers(layers, num_heads: int, hidden_size: int):
+    if len(layers):
+        return layers[0]
+    else:
+        # We merge QKV
+        return torch.cat(
+            [
+                layer.view(num_heads, 1, hidden_size // num_heads, hidden_size)
+                for layer in layers
+            ],
+            dim=1
+        ).resize(3 * hidden_size, hidden_size)
+
 def find_transformers_weights_and_save_meg_ds_weights(
     meg_ds_filename: str,
     meg_ds_weight_names: List[str],
@@ -137,13 +150,7 @@ def find_transformers_weights_and_save_meg_ds_weights(
         # qkv are mixed s.t. [q1 k1 v1 q2 k2 v2 ...] with (1,2..) being head_id
         torch.save(
             {
-                key: torch.cat(
-                    [
-                        value.view(num_heads, 1, hidden_size//num_heads, hidden_size)
-                        for value in values
-                    ],
-                    dim=1
-                ).resize(3 * hidden_size, hidden_size)
+                key: merge_layers(values, num_heads=num_heads, hidden_size=hidden_size)
                 for key, values in result.items()
             },
             fo
