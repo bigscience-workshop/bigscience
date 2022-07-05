@@ -30,7 +30,9 @@ mkdir -p $LOGS_PATH
 MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed # TODO
 cd $MEGATRON_DEEPSPEED_REPO
 
-BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr11f-6B3-ml-t0/bigscience # TODO
+BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/bigscience # TODO
+TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits-6B3.txt
+VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits-6B3.txt
 TOKENIZER_NAME_OR_PATH=bigscience/tokenizer
 
 # defining the right environment variables
@@ -167,9 +169,6 @@ export LAUNCHER="python -u -m torch.distributed.run \
     --tee 3 \
     "
 
-DATA_PATH="/gpfswork/rech/six/commun/bigscience-training/p3t0/p3_t0_train"
-
-
 export CMD=" \
     `pwd`/finetune_t0_non_causal_decoder.py \
     --tensor-model-parallel-size $TP_SIZE \
@@ -178,8 +177,8 @@ export CMD=" \
     $OUTPUT_ARGS \
     --save $CHECKPOINT_PATH \
     --load $CHECKPOINT_PATH \
-    --data-path $DATA_PATH \
-    --split 95,5,0 \
+    --train-weighted-split-paths-path $TRAIN_DATA_PATH \
+    --valid-weighted-split-paths-path $VALID_DATA_PATH \
     --dataloader-type single \
     --data-impl mmap \
     --distributed-backend nccl \

@@ -24,10 +24,12 @@ TENSORBOARD_PATH=$REPO_PATH/tensorboard-test/$variant
 LOGS_PATH=$REPO_PATH/logs-test/$variant
 mkdir -p $LOGS_PATH
 
-MEGATRON_DEEPSPEED_REPO=/gpfsscratch/rech/six/commun/commun/experiments/muennighoff/megdsmtf/thomas/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=/gpfsscratch/rech/six/commun/commun/experiments/muennighoff/megdsmtf/thomas2/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
 BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/bigscience
+TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/p3_train.txt
+VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/p3_validation.txt
 TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
 
 # defining the right environment variables
@@ -163,8 +165,10 @@ export LAUNCHER="python -u -m torch.distributed.run \
     --tee 3 \
     "
 
-DATA_PATH="/gpfswork/rech/six/commun/bigscience-training/p3t0/p3_t0_train"
-
+# Data loading option 1:
+#DATA_PATH="/gpfswork/rech/six/commun/bigscience-training/p3t0/p3_t0_train"
+#    --data-path $DATA_PATH \
+#    --split 100,0,0 \
 
 export CMD=" \
     `pwd`/finetune_t0_non_causal_decoder.py \
@@ -172,8 +176,8 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
-    --data-path $DATA_PATH \
-    --split 100,0,0 \
+    --train-weighted-split-paths-path $TRAIN_DATA_PATH \
+    --valid-weighted-split-paths-path $VALID_DATA_PATH \
     --dataloader-type single \
     --data-impl mmap \
     --distributed-backend nccl \
