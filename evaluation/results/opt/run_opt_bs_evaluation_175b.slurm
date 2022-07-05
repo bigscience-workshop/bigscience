@@ -192,7 +192,8 @@ CMD="./tasks/eval_harness/evaluate.py  \
     --deepspeed_config ds_config.json \
     --intermed_results \
     --adaptive_seq_len \
-    --micro_bs_multiplier 4 \
+    --micro_bs_multiplier 16 \
+    --offloadearly \
     $MEGATRON_REQUIRED_ARGS \
     "
 
