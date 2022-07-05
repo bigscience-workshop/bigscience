@@ -223,7 +223,15 @@ def convert_opt_checkpoint_to_megatron(
             )
 
     # Create dummy mp_rank_00_model_states.pt
-    torch.save({"mp_world_size": 1, "module": None, "dp_world_size": 1}, os.path.join(megatron_dump_folder_path, "mp_rank_00_model_states.pt"))
+    torch.save(
+        {
+            "mp_world_size": 1,
+            "module": None,
+            "dp_world_size": 1,
+            "checkpoint_version": 3
+        },
+        os.path.join(megatron_dump_folder_path, "mp_rank_00_model_states.pt")
+    )
 
 def main():
     args = get_args()
