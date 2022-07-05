@@ -1,29 +1,28 @@
 #!/bin/bash
-#SBATCH --job-name=tr11e-350M-ml
-#SBATCH --qos=qos_gpu-t3
-#SBATCH --nodes=8
+#SBATCH --job-name=tr11f-6B3-ml
+#SBATCH --partition=gpu_p5
+#SBATCH --constraint=a100
+#SBATCH --nodes=32
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=40           # number of cores per tasks
+#SBATCH --cpus-per-task=32           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:4                 # number of gpus
-#SBATCH -C v100-32g
-#SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
+#SBATCH --time 100:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --account=six@v100
+#SBATCH --account=six@a100
+#SBATCH --reservation=hug
 
 set -x -e
 
-#source $six_ALL_CCFRWORK/start-py38-pt110
-#source $six_ALL_CCFRWORK/start-py38-pt111
-source $six_ALL_CCFRWORK/code/tr11-176B-ml/bigscience/train/tr11-176B-ml/start-tr11-176B-ml
+source /gpfsscratch/rech/six/commun/commun/experiments/muennighoff/muennighoffsmallmodels
 
 echo "START TIME: $(date)"
 
 variant=main
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11e-350M-ml
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11f-6B3-ml
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
-REPO_PATH=$DATA_OUTPUT_PATH/tr11e-350M-ml-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr11f-6B3-ml-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
 LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
@@ -32,8 +31,8 @@ MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
 BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/bigscience
-TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits-350M.txt
-VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits-350M.txt
+TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits-6B3.txt
+VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits-6B3.txt
 CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_merged_nigercongo_v3.json
 LOAD_RATIOS_SCRIPT=$BIGSCIENCE_REPO/data/catalogue/load_ratios_meg_ds_format.py
 python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split train --output-meg-ds-ratio-file $TRAIN_DATA_PATH
@@ -63,14 +62,14 @@ PP_SIZE=1
 TP_SIZE=1
 
 MICRO_BATCH_SIZE=1
-GLOBAL_BATCH_SIZE=256
+GLOBAL_BATCH_SIZE=512
 
-NLAYERS=24
-NHIDDEN=1024
-NHEADS=16
+NLAYERS=30
+NHIDDEN=4096
+NHEADS=32
 SEQ_LEN=2048
 
-SAVE_INTERVAL=250
+SAVE_INTERVAL=1
 
 TRAIN_SAMPLES=220_000_000  # 450B tokens
 LR_DECAY_SAMPLES=200_000_000  # Decay for the first 410B tokens then continue at fixed --min-lr
@@ -82,7 +81,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 3.0e-4 \
+    --lr 1.2e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
     --lr-decay-samples $LR_DECAY_SAMPLES \
@@ -114,6 +113,7 @@ GPT_ARGS=" \
     --fp16 \
     --seed 42 \
     --position-embedding-type alibi \
+    --checkpoint-activations \
     --abort-on-unmet-fused-kernel-constraints \
     --pad-vocab-size-to 250880 \
     $OPTIMIZER_ARGS \
@@ -134,7 +134,7 @@ OUTPUT_ARGS=" \
     --log-validation-ppl-to-tensorboard \
     "
 
-ZERO_STAGE=0 # important: bf16 must use z0! it implements its own zero stage 1 equivalent
+ZERO_STAGE=1 # important: bf16 must use z0! it implements its own zero stage 1 equivalent
 
 config_json="./ds_config.$SLURM_JOBID.json"
 

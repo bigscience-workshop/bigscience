@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr11e-350M-ml
+#SBATCH --job-name=tr11d-760M-ml
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=8
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -21,9 +21,9 @@ echo "START TIME: $(date)"
 
 variant=main
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11e-350M-ml
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11d-760M-ml
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
-REPO_PATH=$DATA_OUTPUT_PATH/tr11e-350M-ml-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr11d-760M-ml-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
 LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
@@ -32,8 +32,8 @@ MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr11-176B-ml/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
 BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/bigscience
-TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits-350M.txt
-VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits-350M.txt
+TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits-760M.txt
+VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits-760M.txt
 CATALOGUE_JSON_PATH=$BIGSCIENCE_REPO/data/catalogue/training_dataset_ratios_merged_nigercongo_v3.json
 LOAD_RATIOS_SCRIPT=$BIGSCIENCE_REPO/data/catalogue/load_ratios_meg_ds_format.py
 python $LOAD_RATIOS_SCRIPT --dataset-ratios-path $CATALOGUE_JSON_PATH --split train --output-meg-ds-ratio-file $TRAIN_DATA_PATH
@@ -59,14 +59,14 @@ MASTER_PORT=6000
 GPUS_PER_NODE=4
 NNODES=$SLURM_NNODES
 
-PP_SIZE=1
+PP_SIZE=2
 TP_SIZE=1
 
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=256
 
 NLAYERS=24
-NHIDDEN=1024
+NHIDDEN=1536
 NHEADS=16
 SEQ_LEN=2048
 
@@ -82,7 +82,7 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 3.0e-4 \
+    --lr 2.5e-4 \
     --min-lr 1e-5 \
     --lr-decay-style cosine \
     --lr-decay-samples $LR_DECAY_SAMPLES \
@@ -104,7 +104,7 @@ GPT_ARGS=" \
     --seq-length $SEQ_LEN \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
-    --rampup-batch-size 192 32 9_765_625 \
+    --rampup-batch-size 192 16 9_765_625 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
     --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
@@ -134,7 +134,7 @@ OUTPUT_ARGS=" \
     --log-validation-ppl-to-tensorboard \
     "
 
-ZERO_STAGE=0 # important: bf16 must use z0! it implements its own zero stage 1 equivalent
+ZERO_STAGE=1 # important: bf16 must use z0! it implements its own zero stage 1 equivalent
 
 config_json="./ds_config.$SLURM_JOBID.json"
 
