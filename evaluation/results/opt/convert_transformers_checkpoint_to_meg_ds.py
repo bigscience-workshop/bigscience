@@ -228,7 +228,8 @@ def convert_opt_checkpoint_to_megatron(
             "mp_world_size": 1,
             "module": None,
             "dp_world_size": 1,
-            "checkpoint_version": 3
+            "checkpoint_version": 3,
+            "iteration": 0
         },
         os.path.join(megatron_dump_folder_path, "mp_rank_00_model_states.pt")
     )
