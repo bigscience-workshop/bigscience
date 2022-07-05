@@ -59,6 +59,7 @@ MEGATRON_REQUIRED_ARGS="
     --seed 42 \
     --pad-vocab-size-to 50272 \
     --make-vocab-size-divisible-by 1\
+    --no-bias-gelu-fusion\
 "
 
 
