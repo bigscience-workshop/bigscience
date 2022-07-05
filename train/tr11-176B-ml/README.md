@@ -8,7 +8,11 @@ Auto-regressive objective using regular Megatron-LM GPT2 language model w/ multi
 
 Model size: 176B
 
-The training started on March 11, 2022 11:42am PST
+Brief chronology:
+
+1. The training started on March 11, 2022 11:42am PST
+2. Epoch one finished on June 28, 2022, (iteration 85376) and then we continued a bit more as we still had the resources
+3. The training switched from 48 to 24 nodes on July 4, 2022 9pm PST
 
 To calculate how many days left to 341B-token goal - take the current consumed tokens and feed it to (e.g. with 192755367936)
 
@@ -670,9 +674,7 @@ It's not trivial to switch from one 3D topology to another due to TP and DP logi
 
 As this is all new currently this requires that the code runs on the following 2 branches
 - `microsoft/DeepSpeed|olruwase/elastic-ckpt-refresh`
-- `bigscience-workshop/Megatron-DeepSpeed|ds_ckpt_reshape-with-layer-norm-auto-sync`
-
-The latter is really `bigscience-workshop/Megatron-DeepSpeed|ds_ckpt_reshape` but since we also have another bandaid branch that is being used it's merged with`layer-norm-auto-sync`.
+- `bigscience-workshop/Megatron-DeepSpeed||ds_ckpt_reshape`
 
 So say you want to switch from 48 to 24 nodes.
 
