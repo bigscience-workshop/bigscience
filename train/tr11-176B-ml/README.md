@@ -45,7 +45,7 @@ Hardware:
 
 Software:
 
-- [Megatron-DeepSpeed](https://github.com/bigscience-workshop/Megatron-DeepSpeed) @  `ds_ckpt_reshape-with-layer-norm-auto-sync` PR branch
+- [Megatron-DeepSpeed](https://github.com/bigscience-workshop/Megatron-DeepSpeed) @  `ds_ckpt_reshape` PR branch
 - [DeepSpeed](https://github.com/microsoft/DeepSpeed) @ olruwase/elastic-ckpt-refresh PR branch
 - [PyTorch](https://github.com/pytorch/pytorch)-1.11 w/ CUDA-11.5
 - [apex](https://github.com/NVIDIA/apex) @ master
@@ -679,15 +679,17 @@ So say you want to switch from 48 to 24 nodes.
 1. allocate a new cpu node
 
 ```
-srun --pty --account=six@cpu --nodes=1 --ntasks=1 --partition=cpu_p1 --cpus-per-task=40 --time 6:00:00 --hint=nomultithread  --tasks-per-node=1 bash
-```
-
-2. convert the checkpoint, e.g. for `global_step90751`
+srun --pty --account=six@cpu --nodes=1 --ntasks=1 --partition=cpu_p1 --cpus-per-task=40 --time 6:00:00 --hint=nomultithread  --tasks-per-node=1 bash --rcfile $six_ALL_CCFRWORK/start-tr11-176B-ml
 
 ```
+
+2. convert the checkpoint, e.g. for `global_step94767`
+
+```
+cd $six_ALL_CCFRWORK/code/tr11-176B-ml/Megatron-DeepSpeed-checkpoint-reshape
 /usr/bin/time -v python tools/convert_checkpoint/ds_to_universal.py \
---input_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step90751 \
---output_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step90751_universal \
+--input_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step94767 \
+--output_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step94767_universal \
 --num_extract_workers 10 --num_merge_workers 4
 ```
 
