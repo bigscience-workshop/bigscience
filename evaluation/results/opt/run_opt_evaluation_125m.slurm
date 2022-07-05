@@ -13,7 +13,8 @@
 set -x -e
 
 source $six_ALL_CCFRWORK/start-py38-pt111
-# conda activate thomas_lm_eval
+# Required in order to load the opt tokenizer
+conda activate thomas_lm_eval
 
 echo "START TIME: $(date)"
 
