@@ -62,9 +62,6 @@ def compute_meg_ds_weight_names(num_layers: int):
         f"layer_{str(num_layers + 4).zfill(2)}-model_00-model_states.pt": [
             "weight",
             "bias"
-        ],
-        f"layer_{str(num_layers + 5).zfill(2)}-model_00-model_states.pt": [
-            "lm_head.weight",
         ]
     }
 
@@ -72,8 +69,7 @@ NON_TRANSFORMERS_BLOCK_WEIGHTS = {
     "word_embeddings.weight": "decoder.embed_tokens.weight",
     "position_embeddings.weight": "decoder.embed_positions.weight",
     "weight": "decoder.final_layer_norm.weight",
-    "bias": "decoder.final_layer_norm.bias",
-    "lm_head.weight": "lm_head.weight"
+    "bias": "decoder.final_layer_norm.bias"
 }
 TRANSFORMERS_BLOCK_WEIGHTS = {
     "input_layernorm.weight": ["self_attn_layer_norm.weight"],
