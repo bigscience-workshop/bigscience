@@ -11,7 +11,7 @@
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=/gpfswork/rech/six/uty16tp/logs/%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-28
+#SBATCH --array=0-27
 
 set -x -e
 

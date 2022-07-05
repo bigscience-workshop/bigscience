@@ -8,7 +8,7 @@
 #SBATCH --time 20:00:00
 #SBATCH --output=/gpfswork/rech/six/uty16tp/logs/%x-%j.out
 #SBATCH --account=six@v100
-#SBATCH --array=0-28
+#SBATCH --array=0-27
 
 set -x -e
 
