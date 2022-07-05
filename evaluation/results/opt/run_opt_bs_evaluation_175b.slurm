@@ -178,7 +178,7 @@ TASK=${TASKS[$SLURM_ARRAY_TASK_ID]}
 OPT_FOLDER=$WORK/opt/opt-175b/$TASK
 mkdir -p $OPT_FOLDER
 
-CMD="./tasks/eval_harness/evaluate.py  \
+CMD="./tasks/eval_harness/evaluate_bsevalharness.py  \
     --load $CHECKPOINT_PATH \
     --results_path $OPT_FOLDER/eai_results.json \
     --tensor-model-parallel-size $TP_SIZE  \
