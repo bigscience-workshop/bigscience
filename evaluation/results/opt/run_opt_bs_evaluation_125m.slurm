@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=eai-eval-opt-125m
+#SBATCH --job-name=bs-eval-opt-125m
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=10
@@ -8,12 +8,12 @@
 #SBATCH --time 20:00:00
 #SBATCH --output=/gpfswork/rech/six/uty16tp/logs/%x-%j.out
 #SBATCH --account=six@v100
-#SBATCH --array=0-28
+#SBATCH --array=0-70
 
 set -x -e
 
 source $six_ALL_CCFRWORK/start-py38-pt111
-# conda activate thomas_lm_eval
+conda activate muennighofflmeval
 
 echo "START TIME: $(date)"
 
@@ -24,7 +24,7 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
-export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasetseval
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
 export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 
@@ -90,7 +90,7 @@ cat <<EOT > $config_json
 }
 EOT
 
-# --task_list arc_challenge,arc_easy,boolq,copa,headqa,hellaswag,lambada,logiqa,mathqa,mc_taco,mrpc,multirc,openbookqa,piqa,prost,pubmedqa,qnli,qqp,race,rte,sciq,sst,triviaqa,webqs,wic,winogrande,wnli,wsc \
+# --task_list GEM/web_nlg_en,GEM/web_nlg_en_challenge_test_numbers,GEM/web_nlg_en_challenge_test_scramble,GEM/web_nlg_en_challenge_validation_sample,GEM/web_nlg_ru,GEM/web_nlg_ru_challenge_test_scramble,GEM/web_nlg_ru_challenge_validation_sample,GEM/wiki_auto_asset_turk_challenge_test_asset_backtranslation,GEM/wiki_auto_asset_turk_challenge_test_asset_bfp02,GEM/wiki_auto_asset_turk_challenge_test_asset_bfp05,GEM/wiki_auto_asset_turk_challenge_test_asset_nopunc,GEM/wiki_auto_asset_turk_challenge_test_turk_backtranslation,GEM/wiki_auto_asset_turk_challenge_test_turk_bfp02,GEM/wiki_auto_asset_turk_challenge_test_turk_bfp05,GEM/wiki_auto_asset_turk_challenge_test_turk_nopunc,GEM/wiki_auto_asset_turk_test_asset,GEM/wiki_auto_asset_turk_test_turk,GEM/wiki_lingua_ar,GEM/wiki_lingua_cs,GEM/wiki_lingua_de,GEM/wiki_lingua_en,GEM/wiki_lingua_es,GEM/wiki_lingua_fr,GEM/wiki_lingua_hi,GEM/wiki_lingua_id,GEM/wiki_lingua_it,GEM/wiki_lingua_ja,GEM/wiki_lingua_ko,GEM/wiki_lingua_nl,GEM/wiki_lingua_pt,GEM/wiki_lingua_ru,GEM/wiki_lingua_th,GEM/wiki_lingua_tr,GEM/wiki_lingua_vi,GEM/wiki_lingua_zh,gem_xsum,gem_xsum_challenge_sample,gem_xsum_challenge_test_backtranslation,gem_xsum_challenge_test_bfp_02,gem_xsum_challenge_test_bfp_05,gem_xsum_challenge_test_covid,gem_xsum_challenge_test_nopunc,axb,axg,boolq,cb,cola,copa,crows_pairs_english,crows_pairs_french,diabla,e2e_nlg_cleaned,mnli,mnli_mismatched,multirc,piaf,qqp,rte,sst,tydiqa_primary,tydiqa_secondary,wic,wsc,wnli,wino_bias_type1_anti,wino_bias_type1_pro,wino_bias_type2_anti,wino_bias_type2_pro,xquad_ar,xquad_en\
 TASKS=(
 arc_challenge
 arc_easy
@@ -134,7 +134,7 @@ mkdir -p $OPT_FOLDER
 
 CMD="./tasks/eval_harness/evaluate.py  \
     --load $CHECKPOINT_PATH \
-    --results_path $OPT_FOLDER/eai_results.json \
+    --results_path $OPT_FOLDER/bs_results.json \
     --tensor-model-parallel-size $TP_SIZE  \
     --pipeline-model-parallel-size $PP_SIZE \
     --micro-batch-size $EVAL_MICRO_BATCH_SIZE \
@@ -169,4 +169,4 @@ echo $LAUNCHER $CMD
 
 export PYTHONPATH=$MEGATRON_DEEPSPEED_REPO
 
-$LAUNCHER $CMD 2>&1 | tee $OPT_FOLDER/eval-harness.log
+$LAUNCHER $CMD 2>&1 | tee $OPT_FOLDER/bs-eval-harness.log
