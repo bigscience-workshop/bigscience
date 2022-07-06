@@ -159,7 +159,7 @@ fi
 TASK=${TASKS[$SLURM_ARRAY_TASK_ID]}
 
 BLOOM_FOLDER=$WORK/bloom/bloom-176b/$TASK
-mkdir -p $OPT_FOLDER
+mkdir -p $BLOOM_FOLDER
 
 CMD="./tasks/eval_harness/evaluate_bsevalharness.py  \
     --load $CHECKPOINT_PATH \
