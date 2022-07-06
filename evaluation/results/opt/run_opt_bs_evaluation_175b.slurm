@@ -180,7 +180,7 @@ mkdir -p $OPT_FOLDER
 
 CMD="./tasks/eval_harness/evaluate_bsevalharness.py  \
     --load $CHECKPOINT_PATH \
-    --results_path $OPT_FOLDER/eai_results.json \
+    --results_path $OPT_FOLDER/bs_results.json \
     --tensor-model-parallel-size $TP_SIZE  \
     --pipeline-model-parallel-size $PP_SIZE \
     --micro-batch-size $EVAL_MICRO_BATCH_SIZE \
@@ -216,4 +216,4 @@ echo $LAUNCHER $CMD
 
 export PYTHONPATH=$MEGATRON_DEEPSPEED_REPO
 
-$LAUNCHER $CMD 2>&1 | tee $OPT_FOLDER/eval-harness.log
+$LAUNCHER $CMD 2>&1 | tee $OPT_FOLDER/bs-eval-harness.log
