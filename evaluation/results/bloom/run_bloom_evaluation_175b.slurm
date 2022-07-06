@@ -22,7 +22,7 @@ conda activate thomas_lm_eval
 echo "START TIME: $(date)"
 
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/opt/opt-175b-meg-ds
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step95000
 MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/uty16tp/code/big_science/Megatron-DeepSpeed-bloom
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
