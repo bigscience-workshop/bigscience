@@ -115,7 +115,7 @@ GPT_ARGS=" \
     --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
     --init-method-std 0.0048 \
     --embed-layernorm \
-    --layernorm-tp-auto-sync \
+    --sync-tp-duplicated-parameters \
     --bf16 \
     --seed 42 \
     --position-embedding-type alibi \
