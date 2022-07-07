@@ -17,6 +17,11 @@ import t0.seqio_tasks
 import seqio
 tasks = [task.name for task in seqio.MixtureRegistry.get('t0_train').tasks]
 print(tasks)
+
+
+
+After running the script, merge train & validation jsonls separately into two big files:
+cat folder_with_all_jsonl/*.jsonl > merged_file.jsonl
 """
 TZERO_TASK_LIST = [
     'adversarial_qa_dbert_answer_the_following_q',
