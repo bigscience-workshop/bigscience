@@ -123,11 +123,11 @@ wnli
 wsc
 )
 
-if [ "${#TASKS[@]}" -eq "$SLURM_ARRAY_TASK_COUNT" ];
-    then
-    echo "Please update the array size as the it doesn't correspond to the number of models we want to evaluate. Array size: $SLURM_ARRAY_TASK_COUNT, number of models: ${#TASKS[@]}"
-    exit 1
-fi
+#if [ "${#TASKS[@]}" -ne "$SLURM_ARRAY_TASK_COUNT" ];
+#    then
+#    echo "Please update the array size as the it doesn't correspond to the number of models we want to evaluate. Array size: $SLURM_ARRAY_TASK_COUNT, number of models: ${#TASKS[@]}"
+#    exit 1
+#fi
 TASK=${TASKS[$SLURM_ARRAY_TASK_ID]}
 
 OPT_FOLDER=$WORK/opt/opt-125m/$TASK
