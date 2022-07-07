@@ -11,7 +11,7 @@
 #SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=/gpfswork/rech/six/uty16tp/logs/%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-27
+#SBATCH --array=0-32
 
 set -x -e
 
@@ -124,6 +124,11 @@ wic
 winogrande
 wnli
 wsc
+lambada_mt_en
+lambada_mt_fr
+lambada_mt_de
+lambada_mt_it
+lambada_mt_es
 )
 
 if [ "${#TASKS[@]}" -eq "$SLURM_ARRAY_TASK_COUNT" ];
