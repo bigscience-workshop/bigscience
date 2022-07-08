@@ -2,8 +2,9 @@
 #SBATCH --job-name=tr11-176B-ml
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
+#SBATCH --reservation=hug
 #SBATCH --qos=qos_gpu-gc             # up to 100h
-#SBATCH --nodes=48
+#SBATCH --nodes=24
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -114,6 +115,7 @@ GPT_ARGS=" \
     --tokenizer-name-or-path $TOKENIZER_NAME_OR_PATH \
     --init-method-std 0.0048 \
     --embed-layernorm \
+    --sync-tp-duplicated-parameters \
     --bf16 \
     --seed 42 \
     --position-embedding-type alibi \
@@ -177,6 +179,7 @@ export LAUNCHER="python -u -m torch.distributed.run \
     --tee 3 \
     "
 
+#    --universal-checkpoint \
 export CMD=" \
     `pwd`/pretrain_gpt.py \
     --tensor-model-parallel-size $TP_SIZE \

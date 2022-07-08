@@ -615,3 +615,80 @@ KillOnBadExit=1
 ```
 
 So really the only new thing I added was `NCCL_ASYNC_ERROR_HANDLING=1`
+
+
+### 2022-06-28 finished epoch 1 training
+
+We finished going through all of the data on June 28 - finished a few days early - Yay!
+
+We are going to give it a few more days with epoch 2 - while we still have resources and make the model even better.
+
+
+
+### 2022-07-04 switched from 48 to 24 nodes
+
+Our allocation of 52 nodes has expired and so we switched the training to 24 nodes, after going through a conversion to the universal checkpoint, which took about 45min.
+
+Using these 2 branches:
+- `microsoft/DeepSpeed|olruwase/elastic-ckpt-refresh`
+- `bigscience-workshop/Megatron-DeepSpeed||ds_ckpt_reshape`
+
+The following was done:
+
+1. allocated a new cpu node
+
+```
+srun --pty --account=six@cpu --nodes=1 --ntasks=1 --partition=cpu_p1 --cpus-per-task=40 --time 6:00:00 --hint=nomultithread  --tasks-per-node=1 bash --rcfile $six_ALL_CCFRWORK/start-tr11-176B-ml
+
+```
+
+2. converted the checkpoint `global_step94767` (last on 48 nodes) to universal checkpoint format
+
+```
+cd $six_ALL_CCFRWORK/code/tr11-176B-ml/Megatron-DeepSpeed-checkpoint-reshape
+/usr/bin/time -v python tools/convert_checkpoint/ds_to_universal.py \
+--input_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step94767 \
+--output_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step94767_universal \
+--num_extract_workers 10 --num_merge_workers 4
+```
+
+Took 47 minutes.
+
+```
+        User time (seconds): 9864.93
+        System time (seconds): 6987.00
+        Percent of CPU this job got: 586%
+        Elapsed (wall clock) time (h:mm:ss or m:ss): 47:55.47
+        Average shared text size (kbytes): 0
+        Average unshared data size (kbytes): 0
+        Average stack size (kbytes): 0
+        Average total size (kbytes): 0
+        Maximum resident set size (kbytes): 65719976
+        Average resident set size (kbytes): 0
+        Major (requiring I/O) page faults: 0
+        Minor (reclaiming a frame) page faults: 17097777
+        Voluntary context switches: 1082873
+        Involuntary context switches: 526464
+        Swaps: 0
+        File system inputs: 0
+        File system outputs: 0
+        Socket messages sent: 0
+        Socket messages received: 0
+        Signals delivered: 0
+        Page size (bytes): 4096
+        Exit status: 0
+```
+
+3. Edited the normal slurm script
+
+a. changed its topology to 24 nodes
+
+b. added `--universal-checkpoint` to the script
+
+c. started the slurm job normally with the edited script
+
+4. using a kill-switch saved a new checkpoint `global_step94768` which will be a normal Megatron-Deepspeed checkpoint
+
+5. removed `--universal-checkpoint` from the slurm script
+
+6. resumed training normally

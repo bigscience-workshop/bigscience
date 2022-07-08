@@ -158,12 +158,16 @@ def main():
     in_the_system = False
     for l in status_lines:
         #print(f"l=[{l}]")
-        jobid, partition, name, state, time, nodes, start_time, notes = l.split(None, 7)
-        #print("-".join([jobid, partition, name, state, time, nodes, start_time, notes]))
-        # XXX: add support for regex matching so partial name can be provided
-        if name == args.job_name:
-            in_the_system = True
-            process_job(jobid, partition, name, state, time, nodes, start_time, notes)
+
+        # XXX: apparently some jobs can be run w/o name and break the split() call, so match our
+        # name first and then split
+        if args.job_name in l:
+            jobid, partition, name, state, time, nodes, start_time, notes = l.split(None, 7)
+            #print("-".join([jobid, partition, name, state, time, nodes, start_time, notes]))
+            # XXX: add support for regex matching so partial name can be provided
+            if name == args.job_name:
+                in_the_system = True
+                process_job(jobid, partition, name, state, time, nodes, start_time, notes)
 
     if not in_the_system:
         preamble = get_preamble()

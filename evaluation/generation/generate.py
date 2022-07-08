@@ -47,7 +47,7 @@ def main():
         max_cpu_memory=args.max_cpu_memory if args.parallelize else None,
         offload_folder=args.offload_folder if args.parallelize else None,
     )
-        
+
     print(f"Loaded model in {datetime.datetime.now() - start}")
 
     text = ''
