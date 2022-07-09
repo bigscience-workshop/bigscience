@@ -4,7 +4,7 @@
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
 #SBATCH --qos=qos_gpu-gc             # up to 100h
-#SBATCH --nodes=16
+#SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -15,7 +15,7 @@
 
 set -x -e
 
-source $six_ALL_CCFRWORK/start-tr13f-6B3-ml-t0 # TODO
+source $six_ALL_CCFRWORK/start-tr13f-6B3-ml-t0
 echo "START TIME: $(date)"
 
 variant=main
@@ -27,12 +27,12 @@ TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
 LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
 
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed # TODO
+MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
-BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/bigscience # TODO
-TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/train-splits-6B3.txt
-VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/valid-splits-6B3.txt
+BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/bigscience
+TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/p3_train.txt
+VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/p3_validation.txt
 TOKENIZER_NAME_OR_PATH=bigscience/tokenizer
 
 # defining the right environment variables
@@ -70,7 +70,7 @@ SEQ_LEN=2048
 
 SAVE_INTERVAL=1000
 
-TRAIN_SAMPLES=6_348_800  # 13e9 / 2048
+TRAIN_SAMPLES=6_348_800
 
 # T0 paper:
 # "...we use a learning rate of 1e-3..."
@@ -79,11 +79,12 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 1e-3 \
+    --lr 1e-5 \
     --lr-decay-style constant \
     --lr-warmup-samples 0 \
     --clip-grad 1.0 \
-    --weight-decay 1e-1 \
+    --weight-decay 0 \
+    --no-load-optim \
     "
 # for 20h 1190, for 100h 5990
 #    --exit-duration-in-mins 1190 \
@@ -175,6 +176,7 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
+    --finetune \
     --save $CHECKPOINT_PATH \
     --load $CHECKPOINT_PATH \
     --train-weighted-split-paths-path $TRAIN_DATA_PATH \
