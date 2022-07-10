@@ -4,7 +4,7 @@
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
 #SBATCH --qos=qos_gpu-gc             # up to 100h
-#SBATCH --nodes=1
+#SBATCH --nodes=32
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -31,8 +31,8 @@ MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpee
 cd $MEGATRON_DEEPSPEED_REPO
 
 BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/bigscience
-TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/p3_train.txt
-VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/p3_validation.txt
+TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/p31_train.txt
+VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/p31_validation.txt
 TOKENIZER_NAME_OR_PATH=bigscience/tokenizer
 
 # defining the right environment variables
@@ -74,6 +74,10 @@ TRAIN_SAMPLES=6_348_800
 
 # T0 paper:
 # "...we use a learning rate of 1e-3..."
+# However, they use Adafactor, which adapts the LR
+# For Adam we likely want a lower one
+# FLAN:
+# "...decay of 1e-4..""
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
@@ -83,7 +87,7 @@ OPTIMIZER_ARGS=" \
     --lr-decay-style constant \
     --lr-warmup-samples 0 \
     --clip-grad 1.0 \
-    --weight-decay 0 \
+    --weight-decay 1e-4 \
     --no-load-optim \
     "
 # for 20h 1190, for 100h 5990
