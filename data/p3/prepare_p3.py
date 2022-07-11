@@ -411,6 +411,7 @@ python tools/preprocess_data.py \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path $TOKENIZER_PATH \
     --append-eod \
+    --prepend-space \
     --workers 8
 
 
@@ -433,5 +434,6 @@ python tools/preprocess_data.py \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path $TOKENIZER_PATH \
     --append-eod \
+    --prepend-space \
     --workers 8
 """
