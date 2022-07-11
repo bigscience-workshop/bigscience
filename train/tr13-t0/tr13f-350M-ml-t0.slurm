@@ -109,6 +109,7 @@ GPT_ARGS=" \
     --fp16 \
     --seed 42 \
     --position-embedding-type alibi \
+    --checkpoint-activations \
     --abort-on-unmet-fused-kernel-constraints \
     --pad-vocab-size-to 250880 \
     $OPTIMIZER_ARGS \
@@ -176,7 +177,6 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
-    --finetune \
     --save $CHECKPOINT_PATH \
     --load $CHECKPOINT_PATH \
     --train-weighted-split-paths-path $TRAIN_DATA_PATH \
