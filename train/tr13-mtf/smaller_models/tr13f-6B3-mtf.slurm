@@ -4,13 +4,13 @@
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
 #SBATCH --qos=qos_gpu-gc             # up to 100h
-#SBATCH --nodes=32
+#SBATCH --nodes=8
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:8                 # number of gpus
 #SBATCH --time 100:00:00             # maximum execution time (HH:MM:SS)
-#SBATCH --output=%x-%j.out           # output file name
+#SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --account=six@a100
 
 set -x -e
@@ -20,19 +20,21 @@ echo "START TIME: $(date)"
 
 variant=main
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0
-CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
+DATA_OUTPUT_PATH=$SCRATCH/checkpoints/tr13f-6B3-ml-t0
+CHECKPOINT_PATH=/gpfsscratch/rech/six/uty16tp/checkpoints/tr13f-6B3-ml-t0/checkpoints/$variant
 REPO_PATH=$DATA_OUTPUT_PATH/tr13f-6B3-ml-t0-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
 LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
+mkdir -p $TENSORBOARD_PATH
 
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=$WORK/code/big_science/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
-BIGSCIENCE_REPO=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/bigscience
-TRAIN_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/p31_train.txt
-VALID_DATA_PATH=$MEGATRON_DEEPSPEED_REPO/data/p31_validation.txt
+KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr13f-6B3-mtf
+
+TRAIN_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/p31_train.txt
+VALID_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/p31_validation.txt
 TOKENIZER_NAME_OR_PATH=bigscience/tokenizer
 
 # defining the right environment variables
@@ -60,8 +62,8 @@ TP_SIZE=1
 # ...truncate input and target sequences to 1024 and 256 tokens...
 # ...use a batch size of 1024 sequences ... 2^20 total input tokens per batch...
 # We use 2048 total tokens and 512 batch size = 2**20
-MICRO_BATCH_SIZE=1
-GLOBAL_BATCH_SIZE=512
+MICRO_BATCH_SIZE=4
+GLOBAL_BATCH_SIZE=2048
 
 NLAYERS=30
 NHIDDEN=4096
@@ -78,17 +80,19 @@ TRAIN_SAMPLES=6_348_800
 # For Adam we likely want a lower one
 # FLAN:
 # "...decay of 1e-4..""
+
+# Uncomment for the first step
+# --no-load-optim \
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 1e-5 \
+    --lr 2e-5 \
     --lr-decay-style constant \
     --lr-warmup-samples 0 \
     --clip-grad 1.0 \
     --weight-decay 1e-4 \
-    --no-load-optim \
     "
 # for 20h 1190, for 100h 5990
 #    --exit-duration-in-mins 1190 \
@@ -113,7 +117,9 @@ GPT_ARGS=" \
     --fp16 \
     --seed 42 \
     --position-embedding-type alibi \
+    --checkpoint-activations \
     --abort-on-unmet-fused-kernel-constraints \
+    --kill-switch-path $KILL_SWITCH_PATH \
     --pad-vocab-size-to 250880 \
     $OPTIMIZER_ARGS \
     $EXIT_OPTS \
@@ -180,7 +186,6 @@ export CMD=" \
     --pipeline-model-parallel-size $PP_SIZE \
     $GPT_ARGS \
     $OUTPUT_ARGS \
-    --finetune \
     --save $CHECKPOINT_PATH \
     --load $CHECKPOINT_PATH \
     --train-weighted-split-paths-path $TRAIN_DATA_PATH \
