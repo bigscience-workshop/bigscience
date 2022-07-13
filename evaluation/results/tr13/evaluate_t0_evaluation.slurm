@@ -30,9 +30,9 @@ mkdir -p $OUTPUT_DIR
 # TODO @thomasw21 find all the prompts to run.
 DATASETS_AND_CONFIGS=(
 super_glue,rte
-anli,valid_r1
-anli,valid_r2
-anli,valid_r3
+anli,dev_r1
+anli,dev_r2
+anli,dev_r3
 super_glue,cb
 super_glue,rte
 super_glue,wsc.fixed
