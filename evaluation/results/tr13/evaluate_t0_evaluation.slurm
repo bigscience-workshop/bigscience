@@ -10,7 +10,7 @@
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-0
+#SBATCH --array=0-10
 
 set -x -e
 
