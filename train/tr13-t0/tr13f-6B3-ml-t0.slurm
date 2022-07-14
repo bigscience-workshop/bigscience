@@ -4,7 +4,7 @@
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
 #SBATCH --qos=qos_gpu-gc             # up to 100h
-#SBATCH --nodes=32
+#SBATCH --nodes=8
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -59,9 +59,10 @@ TP_SIZE=1
 # T0 paper:
 # ...truncate input and target sequences to 1024 and 256 tokens...
 # ...use a batch size of 1024 sequences ... 2^20 total input tokens per batch...
-# We use 2048 total tokens and 512 batch size = 2**20
+# We use 2048 total tokens and 512 batch size = 2**20 (1M)
+# We changed to 2048 to get more throughput, so 4.2M tokens / batch
 MICRO_BATCH_SIZE=1
-GLOBAL_BATCH_SIZE=512
+GLOBAL_BATCH_SIZE=2048
 
 NLAYERS=30
 NHIDDEN=4096
@@ -78,12 +79,15 @@ TRAIN_SAMPLES=6_348_800
 # For Adam we likely want a lower one
 # FLAN:
 # "...decay of 1e-4..""
+# We use 2e-5 due to overflows in fp16 with higher rates
+# Remove after the first step in case of restarting:
+# --no-load-optim \
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 1e-5 \
+    --lr 2e-5 \
     --lr-decay-style constant \
     --lr-warmup-samples 0 \
     --clip-grad 1.0 \
