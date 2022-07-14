@@ -6,7 +6,7 @@
 #SBATCH --qos=qos_gpu-gc             # up to 100h
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=64           # number of cores per tasks
+#SBATCH --cpus-per-task=8           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --gres=gpu:1                 # number of gpus
 #SBATCH --time 100:00:00             # maximum execution time (HH:MM:SS)
