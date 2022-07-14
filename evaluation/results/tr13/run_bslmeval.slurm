@@ -36,7 +36,7 @@ cd /gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/lm-evaluation-
 
 python3 main.py --model hf-causal \
     --model_args pretrained=$MODEL_CKPT,use_accelerate=True,tokenizer=$MODEL_CKPT,dtype=float16 \
-    --tasks wikilingua-en \
+    --tasks GEM/wiki_lingua_zh \
     --device cuda \
     --batch_size 16 \
     --no_cache \
