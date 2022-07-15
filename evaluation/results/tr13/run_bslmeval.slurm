@@ -30,16 +30,24 @@ export TRANSFORMERS_OFFLINE=1
 
 # Converted transformer checkpoint
 #MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6B3-ml-t0-lmtoks168B-t0toks8b5
-MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6B3-ml-t0-lmtoks168B-t0toks0
+#MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6B3-ml-t0-lmtoks168B-t0toks0
+MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks168b-t0toks13b
 
 cd /gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/lm-evaluation-harness
 
+# GEM/wiki_lingua_es has 5 prompts
+NUM_TASKS=5
+
+
+# Use this fork of lm-eval: https://github.com/bigscience-workshop/lm-evaluation-harness/pull/109
 python3 main.py --model hf-causal \
     --model_args pretrained=$MODEL_CKPT,use_accelerate=True,tokenizer=$MODEL_CKPT,dtype=float16 \
-    --tasks GEM/wiki_lingua_zh \
+    --tasks GEM/wiki_lingua_es \
     --device cuda \
     --batch_size 16 \
     --no_cache \
+    --no_tracking \
+    --prompts $SLURM_ARRAY_TASK_ID \
     --num_fewshot 0
 
 echo "END TIME: $(date)"
