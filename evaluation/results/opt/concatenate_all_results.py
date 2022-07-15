@@ -15,7 +15,7 @@ def get_args():
 MODEL = "opt-175b-meg-ds"
 # MODEL = "global_step95000"
 RESULTS_REGEX = re.compile(rf"(eai|bs)_results_lm-eval_{MODEL}_(\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2})_backup\.json")
-def get_all_files_that_match_results_in_folder(root_folder: Path, regex: Pattern) -> List[Path]:
+def get_all_files_that_match_results_in_folder(root_folder: Path) -> List[Path]:
     json_files = []
     for folder in root_folder.iterdir():
         if folder.is_dir():
