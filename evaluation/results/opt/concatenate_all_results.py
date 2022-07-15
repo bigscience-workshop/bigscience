@@ -35,7 +35,7 @@ def get_all_files_that_match_results_in_folder(root_folder: Path, regex: Pattern
 def sort_dict(dictionary: Dict) -> Dict:
     results = {}
 
-    for key, value in sorted(dictionary.items(), key=lambda item: item[1]):
+    for key, value in sorted(dictionary.items(), key=lambda item: item[0]):
         new_value = value
 
         if isinstance(value, dict):
