@@ -20,7 +20,7 @@ conda activate muennighofflmeval
 #export TRANSFORMERS_OFFLINE=1
 
 export TRANSFORMERS_CACHE=$six_ALL_CCFRWORK/models
-export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasets
+export HF_DATASETS_CACHE=$six_ALL_CCFRWORK/datasetseval
 export HF_MODULES_CACHE=$six_ALL_CCFRWORK/modules
 export HF_METRICS_CACHE=$six_ALL_CCFRWORK/metrics
 export TOKENIZERS_PARALLELISM=false
