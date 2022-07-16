@@ -10,7 +10,7 @@
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=logs/%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-24
+#SBATCH --array=0-25
 
 set -x -e
 
@@ -29,6 +29,7 @@ mkdir -p $OUTPUT_DIR
 
 # TODO @thomasw21 find all the prompts to run.
 DATASETS_AND_CONFIGS=(
+super_glue,copa,None
 super_glue,rte,None
 anli,dev_r1,None
 anli,dev_r2,None
