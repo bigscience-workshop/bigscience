@@ -4,8 +4,6 @@ import multiprocessing
 from datasets import load_dataset, load_from_disk
 import jsonlines
 
-os.environ["HF_DATASETS_CACHE"] = "/gpfsscratch/rech/six/commun/datasets"
-
 """Get task list:
 !git clone https://github.com/bigscience-workshop/t-zero.git
 %cd t-zero
@@ -363,77 +361,6 @@ def write_to_jsonl_disk(task_name, split):
                     "targets": example["targets_pretokenized"]
                 })
 
-with multiprocessing.Pool(multiprocessing.cpu_count()) as pool:
+with multiprocessing.Pool(num_proc=multiprocessing.cpu_count()) as pool:
     pool.map(partial(write_to_jsonl_disk, split="train"), TZERO_TASK_LIST)
     pool.map(partial(write_to_jsonl_disk, split="validation"), TZERO_TASK_LIST)
-
-
-"""
-DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/p3t0/p3_t0_validation.jsonl
-OUTPUT=/gpfswork/rech/six/commun/bigscience-training/p3t0/p3_t0_validation
-TOKENIZER_PATH="bigscience/tokenizer"
-python tools/preprocess_data.py \
-    --input $DATA_PATH \
-    --output-prefix $OUTPUT \
-    --dataset-impl mmap \
-    --json-key inputs \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path $TOKENIZER_PATH \
-    --workers 8
-
-python tools/preprocess_data.py \
-    --input $DATA_PATH \
-    --output-prefix $OUTPUT \
-    --dataset-impl mmap \
-    --json-key targets \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path $TOKENIZER_PATH \
-    --append-eod \
-    --workers 8
-
-
-DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/p31t0/p31t0_train.jsonl
-OUTPUT=/gpfswork/rech/six/commun/bigscience-training/p31t0/p31t0_train
-TOKENIZER_PATH="bigscience/tokenizer"
-python tools/preprocess_data.py \
-    --input $DATA_PATH \
-    --output-prefix $OUTPUT \
-    --dataset-impl mmap \
-    --json-key inputs \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path $TOKENIZER_PATH \
-    --workers 8
-python tools/preprocess_data.py \
-    --input $DATA_PATH \
-    --output-prefix $OUTPUT \
-    --dataset-impl mmap \
-    --json-key targets \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path $TOKENIZER_PATH \
-    --append-eod \
-    --prepend-space \
-    --workers 8
-
-
-DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/p31t0/p31t0_validation.jsonl
-OUTPUT=/gpfswork/rech/six/commun/bigscience-training/p31t0/p31t0_validation
-TOKENIZER_PATH="bigscience/tokenizer"
-python tools/preprocess_data.py \
-    --input $DATA_PATH \
-    --output-prefix $OUTPUT \
-    --dataset-impl mmap \
-    --json-key inputs \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path $TOKENIZER_PATH \
-    --workers 8
-python tools/preprocess_data.py \
-    --input $DATA_PATH \
-    --output-prefix $OUTPUT \
-    --dataset-impl mmap \
-    --json-key targets \
-    --tokenizer-type PretrainedFromHF \
-    --tokenizer-name-or-path $TOKENIZER_PATH \
-    --append-eod \
-    --prepend-space \
-    --workers 8
-"""
