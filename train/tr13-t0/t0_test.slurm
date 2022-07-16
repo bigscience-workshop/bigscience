@@ -17,7 +17,7 @@ echo "START TIME: $(date)"
 
 variant=main
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11e-350M-ml
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-test-ml
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
 REPO_PATH=$DATA_OUTPUT_PATH/tr11e-350M-ml-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard-test/$variant
