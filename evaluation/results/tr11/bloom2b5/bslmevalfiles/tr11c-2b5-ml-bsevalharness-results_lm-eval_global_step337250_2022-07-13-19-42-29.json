@@ -1,0 +1,1917 @@
+{
+    "results": [
+        {
+            "task_name": "multirc",
+            "prompt_name": "I was going to say\u2026",
+            "acc": 0.5724009900990099,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "d2d78b88-8845-45b5-935a-6451da00b285",
+            "prompt_jinja": "{{ paragraph }}\n{{ question }} \nI was going to say \"{{ answer }}\". Does that sound right? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.007106111600745623
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "I was going to say\u2026",
+            "acc_norm": 0.42883663366336633,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "d2d78b88-8845-45b5-935a-6451da00b285",
+            "prompt_jinja": "{{ paragraph }}\n{{ question }} \nI was going to say \"{{ answer }}\". Does that sound right? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00710869042313772
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "Would it be good to answer\u2026",
+            "acc": 0.5204207920792079,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "4fc9e1ea-7451-4dba-a2cb-ce870e35ef8b",
+            "prompt_jinja": "{{ paragraph }}\n{{ question }} \nWould it be good to answer \"{{ answer }}\"? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0071758108566598
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "Would it be good to answer\u2026",
+            "acc_norm": 0.43337458745874585,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "4fc9e1ea-7451-4dba-a2cb-ce870e35ef8b",
+            "prompt_jinja": "{{ paragraph }}\n{{ question }} \nWould it be good to answer \"{{ answer }}\"? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00711775827463544
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "confirm",
+            "acc": 0.4329620462046205,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "b63fd1c3-b4a6-43c3-8429-6a389235b2a4",
+            "prompt_jinja": "{{paragraph}}\n\nQuestion: {{question}}\nI think \"{{answer}}\" is a valid answer. Could you confirm? Yes or no?\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.007116959070151668
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "confirm",
+            "acc_norm": 0.4280115511551155,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "b63fd1c3-b4a6-43c3-8429-6a389235b2a4",
+            "prompt_jinja": "{{paragraph}}\n\nQuestion: {{question}}\nI think \"{{answer}}\" is a valid answer. Could you confirm? Yes or no?\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "correct",
+            "acc": 0.5721947194719472,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "ae9b2b0b-1731-4370-adcc-36c4a959490d",
+            "prompt_jinja": "Is \"{{answer}}\" a correct answer to the following question?\nQuestion: {{question}}\n\nRely on the following text: {{paragraph}}\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.007106544557507229
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "correct",
+            "acc_norm": 0.4709158415841584,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "ae9b2b0b-1731-4370-adcc-36c4a959490d",
+            "prompt_jinja": "Is \"{{answer}}\" a correct answer to the following question?\nQuestion: {{question}}\n\nRely on the following text: {{paragraph}}\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00716964280499065
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "decide_valid",
+            "acc": 0.5375412541254125,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "7bf537ea-ff8d-44c7-8fc9-305b35e3be66",
+            "prompt_jinja": "{{paragraph}}\n\nDecide whether \"{{answer}}\" is a valid answer to the following question: {{question}}\nAnswer yes or no.\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.007161531207958062
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "decide_valid",
+            "acc_norm": 0.4280115511551155,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "7bf537ea-ff8d-44c7-8fc9-305b35e3be66",
+            "prompt_jinja": "{{paragraph}}\n\nDecide whether \"{{answer}}\" is a valid answer to the following question: {{question}}\nAnswer yes or no.\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "found_this_answer",
+            "acc": 0.4773102310231023,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "2d95962b-a545-41ae-8d76-07ee6704ef65",
+            "prompt_jinja": "{{paragraph}}\n\nQuestion: {{question}}\nI found this answer \"{{answer}}\". Is that correct? Yes or no?\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.007174404542630741
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "found_this_answer",
+            "acc_norm": 0.4280115511551155,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "2d95962b-a545-41ae-8d76-07ee6704ef65",
+            "prompt_jinja": "{{paragraph}}\n\nQuestion: {{question}}\nI found this answer \"{{answer}}\". Is that correct? Yes or no?\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "grading",
+            "acc": 0.5874587458745875,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "431a5c97-af33-4053-83c8-afb0dfc04448",
+            "prompt_jinja": "{{paragraph}}\nQuestion: {{question}}\n\nI am grading my students' exercises. Is the answer \"{{answer}}\" correct?\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.007071081930208332
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "grading",
+            "acc_norm": 0.4280115511551155,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "431a5c97-af33-4053-83c8-afb0dfc04448",
+            "prompt_jinja": "{{paragraph}}\nQuestion: {{question}}\n\nI am grading my students' exercises. Is the answer \"{{answer}}\" correct?\n|||\n{% if label != -1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "is the correct answer\u2026",
+            "acc": 0.5478547854785478,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "7d878b89-2774-429a-82fb-ac801379e3ae",
+            "prompt_jinja": "{{ paragraph }}\nQuestion: {{ question }} \nIs the correct answer {{ answer }}? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.007148833615093023
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "is the correct answer\u2026",
+            "acc_norm": 0.4278052805280528,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "7d878b89-2774-429a-82fb-ac801379e3ae",
+            "prompt_jinja": "{{ paragraph }}\nQuestion: {{ question }} \nIs the correct answer {{ answer }}? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.007106544557507229
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "is\u2026 a correct answer?",
+            "acc": 0.45028877887788776,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "42d47df9-09de-4691-8e49-7cfadd636cdd",
+            "prompt_jinja": "{{ paragraph }}\nBased on the previous passage, {{ question }} \nIs \"{{ answer }}\" a correct answer? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.007146219530521704
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "is\u2026 a correct answer?",
+            "acc_norm": 0.4280115511551155,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "42d47df9-09de-4691-8e49-7cfadd636cdd",
+            "prompt_jinja": "{{ paragraph }}\nBased on the previous passage, {{ question }} \nIs \"{{ answer }}\" a correct answer? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "paragraph\u2026 question\u2026 is it\u2026 ?",
+            "acc": 0.5581683168316832,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "59a2d847-27f3-4002-a125-cf9a291b3098",
+            "prompt_jinja": "{{ paragraph }}\nQuestion: {{ question }} \nIs it {{ answer }}? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.007133037518848498
+        },
+        {
+            "task_name": "multirc",
+            "prompt_name": "paragraph\u2026 question\u2026 is it\u2026 ?",
+            "acc_norm": 0.429042904290429,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "multirc",
+            "subset": null,
+            "prompt_id": "59a2d847-27f3-4002-a125-cf9a291b3098",
+            "prompt_jinja": "{{ paragraph }}\nQuestion: {{ question }} \nIs it {{ answer }}? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.007109115814226985
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "answer",
+            "acc": 0.4095720999257977,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "c0182cd1-c7ac-4abe-829f-4651536af951",
+            "prompt_jinja": "Can an answer to \"{{question1}}\" also be used to answer \"{{question2}}\"? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.0024456940020775335
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "answer",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "c0182cd1-c7ac-4abe-829f-4651536af951",
+            "prompt_jinja": "Can an answer to \"{{question1}}\" also be used to answer \"{{question2}}\"? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "duplicate",
+            "acc": 0.5389809547365817,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "fd244bd3-ca3b-4e4f-9722-fd006c50e157",
+            "prompt_jinja": "I received the questions \"{{question1}}\" and \"{{question2}}\". Are they duplicates? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0024791319564636633
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "duplicate",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "fd244bd3-ca3b-4e4f-9722-fd006c50e157",
+            "prompt_jinja": "I received the questions \"{{question1}}\" and \"{{question2}}\". Are they duplicates? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "duplicate or not",
+            "acc": 0.3811526094484294,
+            "fixed_answer_choice_list": [
+                "not duplicates",
+                "duplicates"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "94972071-a726-42a3-a726-13f414b65e67",
+            "prompt_jinja": "{{question1}}\n{{question2}}\nPick one: These questions are \"{{\"duplicates\"}}\" or \"{{\"not duplicates\"}}\".\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0024154315297388092
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "duplicate or not",
+            "acc_norm": 0.6317585951026465,
+            "fixed_answer_choice_list": [
+                "not duplicates",
+                "duplicates"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "94972071-a726-42a3-a726-13f414b65e67",
+            "prompt_jinja": "{{question1}}\n{{question2}}\nPick one: These questions are \"{{\"duplicates\"}}\" or \"{{\"not duplicates\"}}\".\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00239880745215712
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "meaning",
+            "acc": 0.3842443729903537,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "c0724198-97e7-44a1-89d8-c51e97ce0b04",
+            "prompt_jinja": "Question 1: {{question1}}\nQuestion 2: {{question2}}\n\nDo these two questions convey the same meaning? Yes or no? ||| {{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0024191425100536248
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "meaning",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "c0724198-97e7-44a1-89d8-c51e97ce0b04",
+            "prompt_jinja": "Question 1: {{question1}}\nQuestion 2: {{question2}}\n\nDo these two questions convey the same meaning? Yes or no? ||| {{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "quora",
+            "acc": 0.36826613900568883,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "8e711799-a57c-4941-833b-466bedfb80ad",
+            "prompt_jinja": "I'm an administrator on the website Quora. There are two posts, one that asks \"{{question1}}\" and another that asks \"{{question2}}\". I can merge questions if they are asking the same thing. Can I merge these two questions? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.002398841052447127
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "quora",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "8e711799-a57c-4941-833b-466bedfb80ad",
+            "prompt_jinja": "I'm an administrator on the website Quora. There are two posts, one that asks \"{{question1}}\" and another that asks \"{{question2}}\". I can merge questions if they are asking the same thing. Can I merge these two questions? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "same thing",
+            "acc": 0.5813999505317833,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "a45ad5cd-a3ba-4ab2-a728-a9ea0f27102b",
+            "prompt_jinja": "Are the questions \"{{question1}}\" and \"{{question2}}\" asking the same thing? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0024535258231136925
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "same thing",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "a45ad5cd-a3ba-4ab2-a728-a9ea0f27102b",
+            "prompt_jinja": "Are the questions \"{{question1}}\" and \"{{question2}}\" asking the same thing? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "does the claim\u2026 follow the fact\u2026",
+            "acc": 0.4729241877256318,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "4ee6ff27-de63-4e7b-a9d4-82a17eba407a",
+            "prompt_jinja": "Does the claim \"{{sentence2}}\" follow from the fact that \"{{sentence1}}\"? Please answer either {{\"yes\"}} or {{\"no\"}}.\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "does the claim\u2026 follow the fact\u2026",
+            "acc_norm": 0.5270758122743683,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "4ee6ff27-de63-4e7b-a9d4-82a17eba407a",
+            "prompt_jinja": "Does the claim \"{{sentence2}}\" follow from the fact that \"{{sentence1}}\"? Please answer either {{\"yes\"}} or {{\"no\"}}.\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "entailment explained",
+            "acc": 0.516245487364621,
+            "fixed_answer_choice_list": [
+                "entailment",
+                "not entailment"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "9e2b4267-ec23-44c8-b82a-107e2c890fec",
+            "prompt_jinja": "We say that one sentence \"{{\"entails\"}}\" another sentence when the first sentence implies the second sentence. Consider the following two sentences:\n{{sentence1}}\n{{sentence2}}\nIs the relationship from the first to the second sentence \"{{\"entailment\"}}\" or \"{{\"not entailment\"}}\"?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.030080573208738064
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "entailment explained",
+            "acc_norm": 0.4729241877256318,
+            "fixed_answer_choice_list": [
+                "entailment",
+                "not entailment"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "9e2b4267-ec23-44c8-b82a-107e2c890fec",
+            "prompt_jinja": "We say that one sentence \"{{\"entails\"}}\" another sentence when the first sentence implies the second sentence. Consider the following two sentences:\n{{sentence1}}\n{{sentence2}}\nIs the relationship from the first to the second sentence \"{{\"entailment\"}}\" or \"{{\"not entailment\"}}\"?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "imply",
+            "acc": 0.47653429602888087,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "c8dfc879-40f2-412d-be1e-4cd70107f6e6",
+            "prompt_jinja": "Does \"{{sentence1}}\" imply that \"{{sentence2}}\"? Please answer either {{\"yes\"}} or {{\"no\"}}.\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.030063300411902652
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "imply",
+            "acc_norm": 0.5270758122743683,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "c8dfc879-40f2-412d-be1e-4cd70107f6e6",
+            "prompt_jinja": "Does \"{{sentence1}}\" imply that \"{{sentence2}}\"? Please answer either {{\"yes\"}} or {{\"no\"}}.\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "imply separated",
+            "acc": 0.4620938628158845,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "f56ffced-9b16-431a-8a17-501e63cddf73",
+            "prompt_jinja": "{{sentence1}}\nDoes this imply\n{{sentence2}}\nPlease answer {{\"A) yes or B) no.\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.03000984891252911
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "imply separated",
+            "acc_norm": 0.5270758122743683,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "f56ffced-9b16-431a-8a17-501e63cddf73",
+            "prompt_jinja": "{{sentence1}}\nDoes this imply\n{{sentence2}}\nPlease answer {{\"A) yes or B) no.\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "mean",
+            "acc": 0.47653429602888087,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "03a7ae07-5ddd-46c4-92f3-2152223d44ec",
+            "prompt_jinja": "{{sentence1}}\nDoes this mean that \"{{sentence2}}\" is true? {{\"A) yes or B) no.\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.030063300411902652
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "mean",
+            "acc_norm": 0.5270758122743683,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "03a7ae07-5ddd-46c4-92f3-2152223d44ec",
+            "prompt_jinja": "{{sentence1}}\nDoes this mean that \"{{sentence2}}\" is true? {{\"A) yes or B) no.\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "following positive negative",
+            "acc": 0.7603211009174312,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "63c6b2be-8ecd-42ad-88c7-0d1dc1a8323a",
+            "prompt_jinja": "Does the following sentence have a {{\"positive\"}} or {{\"negative\"}} sentiment?\n{{sentence}}\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014464530608155847
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "following positive negative",
+            "acc_norm": 0.7603211009174312,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "63c6b2be-8ecd-42ad-88c7-0d1dc1a8323a",
+            "prompt_jinja": "Does the following sentence have a {{\"positive\"}} or {{\"negative\"}} sentiment?\n{{sentence}}\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014464530608155847
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "happy or mad",
+            "acc": 0.5091743119266054,
+            "fixed_answer_choice_list": [
+                "bad",
+                "good"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "6dd74cd5-e074-4612-9e96-c17ca88c3bc4",
+            "prompt_jinja": "Someone sent me an email with the sentence \"{{sentence}}\". Do you think they are feeling {{\"good\"}} or {{\"bad\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.01693900152535154
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "happy or mad",
+            "acc_norm": 0.5091743119266054,
+            "fixed_answer_choice_list": [
+                "bad",
+                "good"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "6dd74cd5-e074-4612-9e96-c17ca88c3bc4",
+            "prompt_jinja": "Someone sent me an email with the sentence \"{{sentence}}\". Do you think they are feeling {{\"good\"}} or {{\"bad\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01693900152535154
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "positive negative after",
+            "acc": 0.5263761467889908,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "11d1c505-9232-4c35-82a4-4c3642843e2e",
+            "prompt_jinja": "{{sentence}}\nQuestion: Was that sentence {{\"positive\"}} or {{\"negative\"}}? Answer: ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.016918264333564144
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "positive negative after",
+            "acc_norm": 0.5263761467889908,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "11d1c505-9232-4c35-82a4-4c3642843e2e",
+            "prompt_jinja": "{{sentence}}\nQuestion: Was that sentence {{\"positive\"}} or {{\"negative\"}}? Answer: ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.016918264333564144
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "review",
+            "acc": 0.5722477064220184,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "228fcae7-7f4c-4e3c-9ac4-e49b26bc103d",
+            "prompt_jinja": "I'm reading a review that says \"{{sentence}}\".\n\nDo you think the review is {{\"positive\"}} or {{\"negative\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.016764056901835654
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "review",
+            "acc_norm": 0.5722477064220184,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "228fcae7-7f4c-4e3c-9ac4-e49b26bc103d",
+            "prompt_jinja": "I'm reading a review that says \"{{sentence}}\".\n\nDo you think the review is {{\"positive\"}} or {{\"negative\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.016764056901835654
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "said",
+            "acc": 0.5022935779816514,
+            "fixed_answer_choice_list": [
+                "sad",
+                "happy"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "5aa0cea9-0f8d-454d-b25b-b0d4cda273b8",
+            "prompt_jinja": "Someone just said to me \"{{sentence}}\".\n\nDo you think they are {{\"sad\"}} or {{\"happy\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.016941675443113525
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "said",
+            "acc_norm": 0.5091743119266054,
+            "fixed_answer_choice_list": [
+                "sad",
+                "happy"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "5aa0cea9-0f8d-454d-b25b-b0d4cda273b8",
+            "prompt_jinja": "Someone just said to me \"{{sentence}}\".\n\nDo you think they are {{\"sad\"}} or {{\"happy\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01693900152535154
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_after_reading_the_text",
+            "acc": 0.35064935064935066,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "9c42e3fd-d46e-4149-bb60-4b3118104d95",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAfter reading the following text snippet from Wikipedia, please answer the question: {{question_text}} \n{{document_plaintext}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.054735534443086
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_after_reading_the_text",
+            "acc_norm": 0.6493506493506493,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "9c42e3fd-d46e-4149-bb60-4b3118104d95",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAfter reading the following text snippet from Wikipedia, please answer the question: {{question_text}} \n{{document_plaintext}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.054735534443086
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_based_on_the_text",
+            "acc": 0.33766233766233766,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "e593017f-9bcf-4442-944d-fcdf2edcb4f7",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nBased on the following text snippet, {{question_text}} \n{{document_plaintext}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05424681453014242
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_based_on_the_text",
+            "acc_norm": 0.6363636363636364,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "e593017f-9bcf-4442-944d-fcdf2edcb4f7",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nBased on the following text snippet, {{question_text}} \n{{document_plaintext}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.055179725333353066
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_heres_what_I_found",
+            "acc": 0.03685741998060136,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "16f11e56-a78d-4e33-bba1-586f9947baf7",
+            "prompt_jinja": "{% if language == \"english\" %}\nI wonder {{question_text}}.\nHelp me answer this question with \"{{answer_choices[0]}}\" or \"{{answer_choices[1]}}\" or \"{{answer_choices[2]}}\" if none of the first two answers apply.\nHere's what I found on the internet:\nTopic: {{document_title}}\nArticle: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.005870689955728106
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_heres_what_I_found",
+            "acc_norm": 0.8661493695441319,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "16f11e56-a78d-4e33-bba1-586f9947baf7",
+            "prompt_jinja": "{% if language == \"english\" %}\nI wonder {{question_text}}.\nHelp me answer this question with \"{{answer_choices[0]}}\" or \"{{answer_choices[1]}}\" or \"{{answer_choices[2]}}\" if none of the first two answers apply.\nHere's what I found on the internet:\nTopic: {{document_title}}\nArticle: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.010609330898735572
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa",
+            "acc": 0.6753246753246753,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "b4f7c441-41b1-4665-93f9-f2e875aed92a",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAnswer the question about {{document_title}}.\nQuestion: {{question_text}}. Yes or No?\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.05371235012133188
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa",
+            "acc_norm": 0.6753246753246753,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "b4f7c441-41b1-4665-93f9-f2e875aed92a",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAnswer the question about {{document_title}}.\nQuestion: {{question_text}}. Yes or No?\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.05371235012133188
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa_without_choices",
+            "acc": 0.6753246753246753,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "4b21e3be-fba4-49b7-beb1-a61de26eb0ac",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAnswer the question about {{document_title}}. {{question_text}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}} \n    {% endif %} \n{% endif %} ",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.05371235012133188
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa_without_choices",
+            "acc_norm": 0.6753246753246753,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "4b21e3be-fba4-49b7-beb1-a61de26eb0ac",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAnswer the question about {{document_title}}. {{question_text}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}} \n    {% endif %} \n{% endif %} ",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.05371235012133188
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_read_and_answer",
+            "acc": 0.03685741998060136,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "7b8b7707-dbad-40d2-a5c2-430e6ace10bb",
+            "prompt_jinja": "{% if language == \"english\" %}\nAnswer the following question with \"{{answer_choices[0]}}\" or \"{{answer_choices[1]}}\" or \"{{answer_choices[2]}}\" if none of the first two answers apply.\nQuestion: {{question_text}}\nTopic: {{document_title}}\nArticle: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.005870689955728103
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_read_and_answer",
+            "acc_norm": 0.8845780795344326,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "7b8b7707-dbad-40d2-a5c2-430e6ace10bb",
+            "prompt_jinja": "{% if language == \"english\" %}\nAnswer the following question with \"{{answer_choices[0]}}\" or \"{{answer_choices[1]}}\" or \"{{answer_choices[2]}}\" if none of the first two answers apply.\nQuestion: {{question_text}}\nTopic: {{document_title}}\nArticle: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.009956200231519313
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_none",
+            "acc": 0.037827352085354024,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "297fc59f-bd92-493b-ae61-3c3adcb46eb3",
+            "prompt_jinja": "{% if language == \"english\" %} \nQuestion: {{question_text}}\nAnswer the question with {{\"Yes\"}} or {{\"No\"}}. If it is not possible then answer {{\"None\"}}.\nHint: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.005944438823944305
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_none",
+            "acc_norm": 0.871968962172648,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "297fc59f-bd92-493b-ae61-3c3adcb46eb3",
+            "prompt_jinja": "{% if language == \"english\" %} \nQuestion: {{question_text}}\nAnswer the question with {{\"Yes\"}} or {{\"No\"}}. If it is not possible then answer {{\"None\"}}.\nHint: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01041093017771443
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_question",
+            "acc": 0.7652764306498545,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "6835dd64-96bd-4bf8-9ba5-645d6a7b8472",
+            "prompt_jinja": "{% if language == \"english\" %}\n{{question_text}}\nIs this a \"Yes/No\" question?\n|||\n{% if annotations. yes_no_answer[0] == \"NONE\" %}\nNo\n{% else %}\nYes\n{% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.013205927447521368
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_question",
+            "acc_norm": 0.07565470417070805,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "6835dd64-96bd-4bf8-9ba5-645d6a7b8472",
+            "prompt_jinja": "{% if language == \"english\" %}\n{{question_text}}\nIs this a \"Yes/No\" question?\n|||\n{% if annotations. yes_no_answer[0] == \"NONE\" %}\nNo\n{% else %}\nYes\n{% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.008239796273494257
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_after_reading_the_text",
+            "acc": 0.2711864406779661,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "f93c6cde-cd5e-4d25-8549-f186546cea26",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nSetelah membaca potongan teks Wikipedia di bawah ini, mohon jawab pertanyaan: \n{{question_text}} \n{{document_plaintext}}\n||| \n{{{\"NO\":\"Tidak\", \"YES\":\"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.058375177038848765
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_after_reading_the_text",
+            "acc_norm": 0.2033898305084746,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "f93c6cde-cd5e-4d25-8549-f186546cea26",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nSetelah membaca potongan teks Wikipedia di bawah ini, mohon jawab pertanyaan: \n{{question_text}} \n{{document_plaintext}}\n||| \n{{{\"NO\":\"Tidak\", \"YES\":\"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_based_on_the_text",
+            "acc": 0.23728813559322035,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "fe910acd-a156-4f46-a757-4382821fcfd2",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nMenurut potongan teks berikut, {{question_text}}\n{{document_plaintext}}\n||| \n{{{\"NO\":\"Tidak\", \"YES\":\"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05586042894941199
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_based_on_the_text",
+            "acc_norm": 0.2033898305084746,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "fe910acd-a156-4f46-a757-4382821fcfd2",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nMenurut potongan teks berikut, {{question_text}}\n{{document_plaintext}}\n||| \n{{{\"NO\":\"Tidak\", \"YES\":\"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_heres_what_I_found",
+            "acc": 0.007202216066481994,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "764fda4e-dc13-4766-b8ab-eafd79fe875e",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\nSaya penasaran {{question_text}}.\nTolong bantu saya menjawab pertanyaan ini dengan \"{{answer_choices[0]}}\", \"{{answer_choices[1]}}\" atau \"{{answer_choices[2]}}\" jika dua opsi pertama tidak bisa diaplikasikan.\nIni yang saya temukan di internet:\nTopik: {{document_title}}\nArtikel: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.001990880560147875
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_heres_what_I_found",
+            "acc_norm": 0.9662049861495845,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "764fda4e-dc13-4766-b8ab-eafd79fe875e",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\nSaya penasaran {{question_text}}.\nTolong bantu saya menjawab pertanyaan ini dengan \"{{answer_choices[0]}}\", \"{{answer_choices[1]}}\" atau \"{{answer_choices[2]}}\" jika dua opsi pertama tidak bisa diaplikasikan.\nIni yang saya temukan di internet:\nTopik: {{document_title}}\nArtikel: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa",
+            "acc": 0.4576271186440678,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "976fb48f-7135-4344-91c8-cee2e535b8ab",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nJawab pertanyaan terkait {{document_title}}.\nPertanyaan: {{question_text}}. Ya atau Tidak?\n||| \n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.06541703602400106
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa",
+            "acc_norm": 0.2033898305084746,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "976fb48f-7135-4344-91c8-cee2e535b8ab",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nJawab pertanyaan terkait {{document_title}}.\nPertanyaan: {{question_text}}. Ya atau Tidak?\n||| \n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa_without_choices",
+            "acc": 0.2711864406779661,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d6139cbc-7b25-4539-80c7-2b0832183951",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nJawab pertanyaan terkait {{document_title}}. {{question_text}}\n||| \n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %} \n{% endif %} ",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.05837517703884878
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa_without_choices",
+            "acc_norm": 0.2033898305084746,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d6139cbc-7b25-4539-80c7-2b0832183951",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nJawab pertanyaan terkait {{document_title}}. {{question_text}}\n||| \n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %} \n{% endif %} ",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_read_and_answer",
+            "acc": 0.007202216066481994,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "b368b4af-b8b1-4b0f-ab72-a4db0649ca65",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\nJawab pertanyaan berikut dengan \"{{answer_choices[0]}}\" atau \"{{answer_choices[1]}}\" atau \"{{answer_choices[2]}}\" jika dua\nopsi pertama tidak dapat diaplikasikan.\nPertanyaan: {{question_text}}\nTopik: {{document_title}}\nArtikel: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0019908805601478756
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_read_and_answer",
+            "acc_norm": 0.9662049861495845,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "b368b4af-b8b1-4b0f-ab72-a4db0649ca65",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\nJawab pertanyaan berikut dengan \"{{answer_choices[0]}}\" atau \"{{answer_choices[1]}}\" atau \"{{answer_choices[2]}}\" jika dua\nopsi pertama tidak dapat diaplikasikan.\nPertanyaan: {{question_text}}\nTopik: {{document_title}}\nArtikel: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_none",
+            "acc": 0.008310249307479225,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "5c48e84c-10e4-44ee-b2b3-94a4d018e833",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \nPertanyaan: {{question_text}}\nJawab pertanyaan tersebut dengan {{\"Ya\"}} atau {{\"Tidak\"}}. Jika tidak memungkinkan, jawab dengan {{\"Tidak ada\"}}.\nPetunjuk: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.002137355052582956
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_none",
+            "acc_norm": 0.9662049861495845,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "5c48e84c-10e4-44ee-b2b3-94a4d018e833",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \nPertanyaan: {{question_text}}\nJawab pertanyaan tersebut dengan {{\"Ya\"}} atau {{\"Tidak\"}}. Jika tidak memungkinkan, jawab dengan {{\"Tidak ada\"}}.\nPetunjuk: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_question",
+            "acc": 0.8138504155124654,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "ebba1db1-daf2-4e40-9dca-4cbe4298cd3e",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\n{{question_text}}\nApakah ini termasuk kalimat tanya \"Ya/Tidak\"?\n|||\n{% if annotations. yes_no_answer[0] == \"NONE\" %}\nTidak\n{% else %}\nYa\n{% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.009163999646097152
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_question",
+            "acc_norm": 0.9673130193905817,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "ebba1db1-daf2-4e40-9dca-4cbe4298cd3e",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\n{{question_text}}\nApakah ini termasuk kalimat tanya \"Ya/Tidak\"?\n|||\n{% if annotations. yes_no_answer[0] == \"NONE\" %}\nTidak\n{% else %}\nYa\n{% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.0041865150102794995
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_after_reading_the_text",
+            "acc": 0.7635135135135135,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d160228e-9169-456d-a16a-0f5288452c9a",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \n        \u30a6\u30a3\u30ad\u30da\u30c7\u30a3\u30a2\u306e\u8a18\u4e8b\u3092\u8aad\u3093\u3060\u3042\u3068\u3001\u6b21\u306e\u8cea\u554f\u306b\u7b54\u3048\u3066\u304f\u3060\u3055\u3044: {{question_text}}\n        {{document_plaintext}}\n        |||\n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.03504716241250439
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_after_reading_the_text",
+            "acc_norm": 0.2972972972972973,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d160228e-9169-456d-a16a-0f5288452c9a",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \n        \u30a6\u30a3\u30ad\u30da\u30c7\u30a3\u30a2\u306e\u8a18\u4e8b\u3092\u8aad\u3093\u3060\u3042\u3068\u3001\u6b21\u306e\u8cea\u554f\u306b\u7b54\u3048\u3066\u304f\u3060\u3055\u3044: {{question_text}}\n        {{document_plaintext}}\n        |||\n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.037698374558241474
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_based_on_the_text",
+            "acc": 0.7635135135135135,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "733a3ff3-6edd-4440-b038-bf9736ebaff7",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %}\n        \u6b21\u306e\u6587\u7ae0\u306b\u3082\u3068\u3065\u304f\u3068\u3001 , {{question_text}} \n        {{document_plaintext}}\n        ||| \n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.03504716241250439
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_based_on_the_text",
+            "acc_norm": 0.2905405405405405,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "733a3ff3-6edd-4440-b038-bf9736ebaff7",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %}\n        \u6b21\u306e\u6587\u7ae0\u306b\u3082\u3068\u3065\u304f\u3068\u3001 , {{question_text}} \n        {{document_plaintext}}\n        ||| \n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.03744626397928733
+        }
+    ],
+    "versions": {
+        "multirc+I was going to say\u2026": 0,
+        "multirc+Would it be good to answer\u2026": 0,
+        "multirc+confirm": 0,
+        "multirc+correct": 0,
+        "multirc+decide_valid": 0,
+        "multirc+found_this_answer": 0,
+        "multirc+grading": 0,
+        "multirc+is the correct answer\u2026": 0,
+        "multirc+is\u2026 a correct answer?": 0,
+        "multirc+paragraph\u2026 question\u2026 is it\u2026 ?": 0,
+        "qqp+answer": 0,
+        "qqp+duplicate": 0,
+        "qqp+duplicate or not": 0,
+        "qqp+meaning": 0,
+        "qqp+quora": 0,
+        "qqp+same thing": 0,
+        "rte+does the claim\u2026 follow the fact\u2026": 0,
+        "rte+entailment explained": 0,
+        "rte+imply": 0,
+        "rte+imply separated": 0,
+        "rte+mean": 0,
+        "sst+following positive negative": 0,
+        "sst+happy or mad": 0,
+        "sst+positive negative after": 0,
+        "sst+review": 0,
+        "sst+said": 0,
+        "tydiqa_primary+en_after_reading_the_text": 0,
+        "tydiqa_primary+en_based_on_the_text": 0,
+        "tydiqa_primary+en_heres_what_I_found": 0,
+        "tydiqa_primary+en_open_domain_qa": 0,
+        "tydiqa_primary+en_open_domain_qa_without_choices": 0,
+        "tydiqa_primary+en_read_and_answer": 0,
+        "tydiqa_primary+en_yes_no_none": 0,
+        "tydiqa_primary+en_yes_no_question": 0,
+        "tydiqa_primary+id_after_reading_the_text": 0,
+        "tydiqa_primary+id_based_on_the_text": 0,
+        "tydiqa_primary+id_heres_what_I_found": 0,
+        "tydiqa_primary+id_open_domain_qa": 0,
+        "tydiqa_primary+id_open_domain_qa_without_choices": 0,
+        "tydiqa_primary+id_read_and_answer": 0,
+        "tydiqa_primary+id_yes_no_none": 0,
+        "tydiqa_primary+id_yes_no_question": 0,
+        "tydiqa_primary+jp_after_reading_the_text": 0,
+        "tydiqa_primary+jp_based_on_the_text": 0
+    },
+    "table_results": {
+        "multirc+I was going to say\u2026": {
+            "task_name": "multirc",
+            "prompt_name": "I was going to say\u2026",
+            "acc": 0.5724009900990099,
+            "acc_stderr": 0.007106111600745623,
+            "acc_norm": 0.42883663366336633,
+            "acc_norm_stderr": 0.00710869042313772
+        },
+        "multirc+Would it be good to answer\u2026": {
+            "task_name": "multirc",
+            "prompt_name": "Would it be good to answer\u2026",
+            "acc": 0.5204207920792079,
+            "acc_stderr": 0.0071758108566598,
+            "acc_norm": 0.43337458745874585,
+            "acc_norm_stderr": 0.00711775827463544
+        },
+        "multirc+confirm": {
+            "task_name": "multirc",
+            "prompt_name": "confirm",
+            "acc": 0.4329620462046205,
+            "acc_stderr": 0.007116959070151668,
+            "acc_norm": 0.4280115511551155,
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        "multirc+correct": {
+            "task_name": "multirc",
+            "prompt_name": "correct",
+            "acc": 0.5721947194719472,
+            "acc_stderr": 0.007106544557507229,
+            "acc_norm": 0.4709158415841584,
+            "acc_norm_stderr": 0.00716964280499065
+        },
+        "multirc+decide_valid": {
+            "task_name": "multirc",
+            "prompt_name": "decide_valid",
+            "acc": 0.5375412541254125,
+            "acc_stderr": 0.007161531207958062,
+            "acc_norm": 0.4280115511551155,
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        "multirc+found_this_answer": {
+            "task_name": "multirc",
+            "prompt_name": "found_this_answer",
+            "acc": 0.4773102310231023,
+            "acc_stderr": 0.007174404542630741,
+            "acc_norm": 0.4280115511551155,
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        "multirc+grading": {
+            "task_name": "multirc",
+            "prompt_name": "grading",
+            "acc": 0.5874587458745875,
+            "acc_stderr": 0.007071081930208332,
+            "acc_norm": 0.4280115511551155,
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        "multirc+is the correct answer\u2026": {
+            "task_name": "multirc",
+            "prompt_name": "is the correct answer\u2026",
+            "acc": 0.5478547854785478,
+            "acc_stderr": 0.007148833615093023,
+            "acc_norm": 0.4278052805280528,
+            "acc_norm_stderr": 0.007106544557507229
+        },
+        "multirc+is\u2026 a correct answer?": {
+            "task_name": "multirc",
+            "prompt_name": "is\u2026 a correct answer?",
+            "acc": 0.45028877887788776,
+            "acc_stderr": 0.007146219530521704,
+            "acc_norm": 0.4280115511551155,
+            "acc_norm_stderr": 0.007106976252751536
+        },
+        "multirc+paragraph\u2026 question\u2026 is it\u2026 ?": {
+            "task_name": "multirc",
+            "prompt_name": "paragraph\u2026 question\u2026 is it\u2026 ?",
+            "acc": 0.5581683168316832,
+            "acc_stderr": 0.007133037518848498,
+            "acc_norm": 0.429042904290429,
+            "acc_norm_stderr": 0.007109115814226985
+        },
+        "qqp+answer": {
+            "task_name": "qqp",
+            "prompt_name": "answer",
+            "acc": 0.4095720999257977,
+            "acc_stderr": 0.0024456940020775335,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "qqp+duplicate": {
+            "task_name": "qqp",
+            "prompt_name": "duplicate",
+            "acc": 0.5389809547365817,
+            "acc_stderr": 0.0024791319564636633,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "qqp+duplicate or not": {
+            "task_name": "qqp",
+            "prompt_name": "duplicate or not",
+            "acc": 0.3811526094484294,
+            "acc_stderr": 0.0024154315297388092,
+            "acc_norm": 0.6317585951026465,
+            "acc_norm_stderr": 0.00239880745215712
+        },
+        "qqp+meaning": {
+            "task_name": "qqp",
+            "prompt_name": "meaning",
+            "acc": 0.3842443729903537,
+            "acc_stderr": 0.0024191425100536248,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "qqp+quora": {
+            "task_name": "qqp",
+            "prompt_name": "quora",
+            "acc": 0.36826613900568883,
+            "acc_stderr": 0.002398841052447127,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "qqp+same thing": {
+            "task_name": "qqp",
+            "prompt_name": "same thing",
+            "acc": 0.5813999505317833,
+            "acc_stderr": 0.0024535258231136925,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "rte+does the claim\u2026 follow the fact\u2026": {
+            "task_name": "rte",
+            "prompt_name": "does the claim\u2026 follow the fact\u2026",
+            "acc": 0.4729241877256318,
+            "acc_stderr": 0.0300523034631437,
+            "acc_norm": 0.5270758122743683,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "rte+entailment explained": {
+            "task_name": "rte",
+            "prompt_name": "entailment explained",
+            "acc": 0.516245487364621,
+            "acc_stderr": 0.030080573208738064,
+            "acc_norm": 0.4729241877256318,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "rte+imply": {
+            "task_name": "rte",
+            "prompt_name": "imply",
+            "acc": 0.47653429602888087,
+            "acc_stderr": 0.030063300411902652,
+            "acc_norm": 0.5270758122743683,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "rte+imply separated": {
+            "task_name": "rte",
+            "prompt_name": "imply separated",
+            "acc": 0.4620938628158845,
+            "acc_stderr": 0.03000984891252911,
+            "acc_norm": 0.5270758122743683,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "rte+mean": {
+            "task_name": "rte",
+            "prompt_name": "mean",
+            "acc": 0.47653429602888087,
+            "acc_stderr": 0.030063300411902652,
+            "acc_norm": 0.5270758122743683,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "sst+following positive negative": {
+            "task_name": "sst",
+            "prompt_name": "following positive negative",
+            "acc": 0.7603211009174312,
+            "acc_stderr": 0.014464530608155847,
+            "acc_norm": 0.7603211009174312,
+            "acc_norm_stderr": 0.014464530608155847
+        },
+        "sst+happy or mad": {
+            "task_name": "sst",
+            "prompt_name": "happy or mad",
+            "acc": 0.5091743119266054,
+            "acc_stderr": 0.01693900152535154,
+            "acc_norm": 0.5091743119266054,
+            "acc_norm_stderr": 0.01693900152535154
+        },
+        "sst+positive negative after": {
+            "task_name": "sst",
+            "prompt_name": "positive negative after",
+            "acc": 0.5263761467889908,
+            "acc_stderr": 0.016918264333564144,
+            "acc_norm": 0.5263761467889908,
+            "acc_norm_stderr": 0.016918264333564144
+        },
+        "sst+review": {
+            "task_name": "sst",
+            "prompt_name": "review",
+            "acc": 0.5722477064220184,
+            "acc_stderr": 0.016764056901835654,
+            "acc_norm": 0.5722477064220184,
+            "acc_norm_stderr": 0.016764056901835654
+        },
+        "sst+said": {
+            "task_name": "sst",
+            "prompt_name": "said",
+            "acc": 0.5022935779816514,
+            "acc_stderr": 0.016941675443113525,
+            "acc_norm": 0.5091743119266054,
+            "acc_norm_stderr": 0.01693900152535154
+        },
+        "tydiqa_primary+en_after_reading_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_after_reading_the_text",
+            "acc": 0.35064935064935066,
+            "acc_stderr": 0.054735534443086,
+            "acc_norm": 0.6493506493506493,
+            "acc_norm_stderr": 0.054735534443086
+        },
+        "tydiqa_primary+en_based_on_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_based_on_the_text",
+            "acc": 0.33766233766233766,
+            "acc_stderr": 0.05424681453014242,
+            "acc_norm": 0.6363636363636364,
+            "acc_norm_stderr": 0.055179725333353066
+        },
+        "tydiqa_primary+en_heres_what_I_found": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_heres_what_I_found",
+            "acc": 0.03685741998060136,
+            "acc_stderr": 0.005870689955728106,
+            "acc_norm": 0.8661493695441319,
+            "acc_norm_stderr": 0.010609330898735572
+        },
+        "tydiqa_primary+en_open_domain_qa": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa",
+            "acc": 0.6753246753246753,
+            "acc_stderr": 0.05371235012133188,
+            "acc_norm": 0.6753246753246753,
+            "acc_norm_stderr": 0.05371235012133188
+        },
+        "tydiqa_primary+en_open_domain_qa_without_choices": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa_without_choices",
+            "acc": 0.6753246753246753,
+            "acc_stderr": 0.05371235012133188,
+            "acc_norm": 0.6753246753246753,
+            "acc_norm_stderr": 0.05371235012133188
+        },
+        "tydiqa_primary+en_read_and_answer": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_read_and_answer",
+            "acc": 0.03685741998060136,
+            "acc_stderr": 0.005870689955728103,
+            "acc_norm": 0.8845780795344326,
+            "acc_norm_stderr": 0.009956200231519313
+        },
+        "tydiqa_primary+en_yes_no_none": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_none",
+            "acc": 0.037827352085354024,
+            "acc_stderr": 0.005944438823944305,
+            "acc_norm": 0.871968962172648,
+            "acc_norm_stderr": 0.01041093017771443
+        },
+        "tydiqa_primary+en_yes_no_question": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_question",
+            "acc": 0.7652764306498545,
+            "acc_stderr": 0.013205927447521368,
+            "acc_norm": 0.07565470417070805,
+            "acc_norm_stderr": 0.008239796273494257
+        },
+        "tydiqa_primary+id_after_reading_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_after_reading_the_text",
+            "acc": 0.2711864406779661,
+            "acc_stderr": 0.058375177038848765,
+            "acc_norm": 0.2033898305084746,
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        "tydiqa_primary+id_based_on_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_based_on_the_text",
+            "acc": 0.23728813559322035,
+            "acc_stderr": 0.05586042894941199,
+            "acc_norm": 0.2033898305084746,
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        "tydiqa_primary+id_heres_what_I_found": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_heres_what_I_found",
+            "acc": 0.007202216066481994,
+            "acc_stderr": 0.001990880560147875,
+            "acc_norm": 0.9662049861495845,
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        "tydiqa_primary+id_open_domain_qa": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa",
+            "acc": 0.4576271186440678,
+            "acc_stderr": 0.06541703602400106,
+            "acc_norm": 0.2033898305084746,
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        "tydiqa_primary+id_open_domain_qa_without_choices": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa_without_choices",
+            "acc": 0.2711864406779661,
+            "acc_stderr": 0.05837517703884878,
+            "acc_norm": 0.2033898305084746,
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        "tydiqa_primary+id_read_and_answer": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_read_and_answer",
+            "acc": 0.007202216066481994,
+            "acc_stderr": 0.0019908805601478756,
+            "acc_norm": 0.9662049861495845,
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        "tydiqa_primary+id_yes_no_none": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_none",
+            "acc": 0.008310249307479225,
+            "acc_stderr": 0.002137355052582956,
+            "acc_norm": 0.9662049861495845,
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        "tydiqa_primary+id_yes_no_question": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_question",
+            "acc": 0.8138504155124654,
+            "acc_stderr": 0.009163999646097152,
+            "acc_norm": 0.9673130193905817,
+            "acc_norm_stderr": 0.0041865150102794995
+        },
+        "tydiqa_primary+jp_after_reading_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_after_reading_the_text",
+            "acc": 0.7635135135135135,
+            "acc_stderr": 0.03504716241250439,
+            "acc_norm": 0.2972972972972973,
+            "acc_norm_stderr": 0.037698374558241474
+        },
+        "tydiqa_primary+jp_based_on_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_based_on_the_text",
+            "acc": 0.7635135135135135,
+            "acc_stderr": 0.03504716241250439,
+            "acc_norm": 0.2905405405405405,
+            "acc_norm_stderr": 0.03744626397928733
+        }
+    },
+    "config": {
+        "adaptive_seq_len": true,
+        "num_fewshot": 0,
+        "bootstrap_iters": 100000
+    }
+}

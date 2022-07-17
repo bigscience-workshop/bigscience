@@ -1,0 +1,2938 @@
+{
+  "results": {
+    "arc_challenge": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.23464163822525597,
+        "acc_norm": 0.26791808873720135,
+        "acc_norm_stderr": 0.012942030195136423,
+        "acc_stderr": 0.012383873560768673
+      }
+    },
+    "arc_easy": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.5631313131313131,
+        "acc_norm": 0.4810606060606061,
+        "acc_norm_stderr": 0.010252420496894487,
+        "acc_stderr": 0.010177672928157678
+      }
+    },
+    "axb+GPT-3 style": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.4855072463768116,
+        "acc_norm": 0.5878623188405797,
+        "acc_norm_stderr": 0.014820785339690506,
+        "acc_stderr": 0.015048725939283577,
+        "prompt_name": "GPT-3 style",
+        "task_name": "axb"
+      }
+    },
+    "axb+MNLI crowdsource": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.447463768115942,
+        "acc_norm": 0.4166666666666667,
+        "acc_norm_stderr": 0.014844481058991162,
+        "acc_stderr": 0.0149717153798021,
+        "prompt_name": "MNLI crowdsource",
+        "task_name": "axb"
+      }
+    },
+    "axb+based on the previous passage": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.4846014492753623,
+        "acc_norm": 0.4166666666666667,
+        "acc_norm_stderr": 0.014844481058991162,
+        "acc_stderr": 0.015047910329698355,
+        "prompt_name": "based on the previous passage",
+        "task_name": "axb"
+      }
+    },
+    "axb+can we infer": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.421195652173913,
+        "acc_norm": 0.4166666666666667,
+        "acc_norm_stderr": 0.014844481058991162,
+        "acc_stderr": 0.014866888213508284,
+        "prompt_name": "can we infer",
+        "task_name": "axb"
+      }
+    },
+    "axb+does it follow that": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.4375,
+        "acc_norm": 0.4166666666666667,
+        "acc_norm_stderr": 0.014844481058991162,
+        "acc_stderr": 0.014936970932375573,
+        "prompt_name": "does it follow that",
+        "task_name": "axb"
+      }
+    },
+    "axb+does this imply": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5353260869565217,
+        "acc_norm": 0.4166666666666667,
+        "acc_norm_stderr": 0.014844481058991162,
+        "acc_stderr": 0.015017429208641943,
+        "prompt_name": "does this imply",
+        "task_name": "axb"
+      }
+    },
+    "axb+guaranteed true": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.44655797101449274,
+        "acc_norm": 0.4166666666666667,
+        "acc_norm_stderr": 0.014844481058991162,
+        "acc_stderr": 0.014968808595500557,
+        "prompt_name": "guaranteed true",
+        "task_name": "axb"
+      }
+    },
+    "axb+justified in saying": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.4365942028985507,
+        "acc_norm": 0.4166666666666667,
+        "acc_norm_stderr": 0.014844481058991162,
+        "acc_stderr": 0.014933509475434285,
+        "prompt_name": "justified in saying",
+        "task_name": "axb"
+      }
+    },
+    "axb+must be true": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.4266304347826087,
+        "acc_norm": 0.4166666666666667,
+        "acc_norm_stderr": 0.014844481058991162,
+        "acc_stderr": 0.014892084059444173,
+        "prompt_name": "must be true",
+        "task_name": "axb"
+      }
+    },
+    "axb+should assume": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5163043478260869,
+        "acc_norm": 0.4157608695652174,
+        "acc_norm_stderr": 0.014839845193003246,
+        "acc_stderr": 0.015047045240919796,
+        "prompt_name": "should assume",
+        "task_name": "axb"
+      }
+    },
+    "axg+GPT-3 style": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.4803370786516854,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.02651671646679541,
+        "parity": 0.9606741573033708,
+        "parity_stderr": 0.01460967112412074,
+        "prompt_name": "GPT-3 style",
+        "task_name": "axg"
+      }
+    },
+    "axg+MNLI crowdsource": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5140449438202247,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.026526773058212952,
+        "parity": 0.9719101123595506,
+        "parity_stderr": 0.012419422972302346,
+        "prompt_name": "MNLI crowdsource",
+        "task_name": "axg"
+      }
+    },
+    "axg+based on the previous passage": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.026537244621713762,
+        "parity": 0.9662921348314607,
+        "parity_stderr": 0.013565419020002358,
+        "prompt_name": "based on the previous passage",
+        "task_name": "axg"
+      }
+    },
+    "axg+can we infer": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.026537244621713762,
+        "parity": 0.9887640449438202,
+        "parity_stderr": 0.007922544664164389,
+        "prompt_name": "can we infer",
+        "task_name": "axg"
+      }
+    },
+    "axg+does it follow that": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.026537244621713762,
+        "parity": 1.0,
+        "parity_stderr": 0.0,
+        "prompt_name": "does it follow that",
+        "task_name": "axg"
+      }
+    },
+    "axg+does this imply": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.49719101123595505,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.026536825838510643,
+        "parity": 0.9831460674157303,
+        "parity_stderr": 0.009675491064988365,
+        "prompt_name": "does this imply",
+        "task_name": "axg"
+      }
+    },
+    "axg+guaranteed true": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.48314606741573035,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.026522164260489825,
+        "parity": 0.9887640449438202,
+        "parity_stderr": 0.007922544664164387,
+        "prompt_name": "guaranteed true",
+        "task_name": "axg"
+      }
+    },
+    "axg+justified in saying": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.026537244621713762,
+        "parity": 0.9887640449438202,
+        "parity_stderr": 0.007922544664164385,
+        "prompt_name": "justified in saying",
+        "task_name": "axg"
+      }
+    },
+    "axg+must be true": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.4803370786516854,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.026516716466795417,
+        "parity": 0.9719101123595506,
+        "parity_stderr": 0.012419422972302347,
+        "prompt_name": "must be true",
+        "task_name": "axg"
+      }
+    },
+    "axg+should assume": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.49719101123595505,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.026537244621713762,
+        "acc_stderr": 0.026536825838510643,
+        "parity": 0.949438202247191,
+        "parity_stderr": 0.016468648928151884,
+        "prompt_name": "should assume",
+        "task_name": "axg"
+      }
+    },
+    "boolq": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.617737003058104,
+        "acc_stderr": 0.008499149690449272
+      }
+    },
+    "boolq+GPT-3 Style": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5896024464831804,
+        "acc_norm": 0.6211009174311927,
+        "acc_norm_stderr": 0.008484678718565017,
+        "acc_stderr": 0.008603488048617526,
+        "prompt_name": "GPT-3 Style",
+        "task_name": "boolq"
+      }
+    },
+    "boolq+I wonder\u2026": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.563914373088685,
+        "acc_norm": 0.6217125382262997,
+        "acc_norm_stderr": 0.00848200113393099,
+        "acc_stderr": 0.008673312776324934,
+        "prompt_name": "I wonder\u2026",
+        "task_name": "boolq"
+      }
+    },
+    "boolq+after_reading": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.6217125382262997,
+        "acc_norm": 0.3804281345565749,
+        "acc_norm_stderr": 0.008491310027059626,
+        "acc_stderr": 0.00848200113393099,
+        "prompt_name": "after_reading",
+        "task_name": "boolq"
+      }
+    },
+    "boolq+based on the following passage": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.3798165137614679,
+        "acc_norm": 0.6012232415902141,
+        "acc_norm_stderr": 0.008563973987729906,
+        "acc_stderr": 0.008488668235778644,
+        "prompt_name": "based on the following passage",
+        "task_name": "boolq"
+      }
+    },
+    "boolq+based on the previous passage": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.6146788990825688,
+        "acc_norm": 0.6217125382262997,
+        "acc_norm_stderr": 0.00848200113393099,
+        "acc_stderr": 0.008511930879680635,
+        "prompt_name": "based on the previous passage",
+        "task_name": "boolq"
+      }
+    },
+    "boolq+could you tell me\u2026": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5840978593272171,
+        "acc_norm": 0.6217125382262997,
+        "acc_norm_stderr": 0.00848200113393099,
+        "acc_stderr": 0.008620469604001,
+        "prompt_name": "could you tell me\u2026",
+        "task_name": "boolq"
+      }
+    },
+    "boolq+exam": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.6220183486238532,
+        "acc_norm": 0.6217125382262997,
+        "acc_norm_stderr": 0.00848200113393099,
+        "acc_stderr": 0.008480656964585267,
+        "prompt_name": "exam",
+        "task_name": "boolq"
+      }
+    },
+    "boolq+exercise": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.6217125382262997,
+        "acc_norm": 0.46788990825688076,
+        "acc_norm_stderr": 0.0087270030269178,
+        "acc_stderr": 0.00848200113393099,
+        "prompt_name": "exercise",
+        "task_name": "boolq"
+      }
+    },
+    "boolq+valid_binary": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.491131498470948,
+        "acc_norm": 0.37370030581039754,
+        "acc_norm_stderr": 0.008461461177104003,
+        "acc_stderr": 0.008743679265456042,
+        "prompt_name": "valid_binary",
+        "task_name": "boolq"
+      }
+    },
+    "boolq+yes_no_question": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.5951070336391437,
+        "acc_norm": 0.6217125382262997,
+        "acc_norm_stderr": 0.00848200113393099,
+        "acc_stderr": 0.008585393347962319,
+        "prompt_name": "yes_no_question",
+        "task_name": "boolq"
+      }
+    },
+    "cb+GPT-3 style": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.42857142857142855,
+        "acc_stderr": 0.06672848092813057,
+        "f1": 0.21956970232832299,
+        "prompt_name": "GPT-3 style",
+        "task_name": "cb"
+      }
+    },
+    "cb+MNLI crowdsource": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.42857142857142855,
+        "acc_stderr": 0.06672848092813057,
+        "f1": 0.21956970232832299,
+        "prompt_name": "MNLI crowdsource",
+        "task_name": "cb"
+      }
+    },
+    "cb+always/sometimes/never": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.08928571428571429,
+        "acc_stderr": 0.038450387280282494,
+        "f1": 0.054644808743169404,
+        "prompt_name": "always/sometimes/never",
+        "task_name": "cb"
+      }
+    },
+    "cb+based on the previous passage": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.35714285714285715,
+        "acc_stderr": 0.06460957383809221,
+        "f1": 0.2094181249110827,
+        "prompt_name": "based on the previous passage",
+        "task_name": "cb"
+      }
+    },
+    "cb+can we infer": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.25,
+        "acc_stderr": 0.058387420812114225,
+        "f1": 0.15483870967741933,
+        "prompt_name": "can we infer",
+        "task_name": "cb"
+      }
+    },
+    "cb+claim true/false/inconclusive": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.42857142857142855,
+        "acc_stderr": 0.06672848092813057,
+        "f1": 0.21956970232832299,
+        "prompt_name": "claim true/false/inconclusive",
+        "task_name": "cb"
+      }
+    },
+    "cb+consider always/sometimes/never": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.08928571428571429,
+        "acc_stderr": 0.038450387280282494,
+        "f1": 0.054644808743169404,
+        "prompt_name": "consider always/sometimes/never",
+        "task_name": "cb"
+      }
+    },
+    "cb+does it follow that": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.30357142857142855,
+        "acc_stderr": 0.06199938655510754,
+        "f1": 0.2613574165298303,
+        "prompt_name": "does it follow that",
+        "task_name": "cb"
+      }
+    },
+    "cb+does this imply": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.10714285714285714,
+        "acc_stderr": 0.0417053005800816,
+        "f1": 0.11222753854332802,
+        "prompt_name": "does this imply",
+        "task_name": "cb"
+      }
+    },
+    "cb+guaranteed true": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.21428571428571427,
+        "acc_stderr": 0.055328333517248834,
+        "f1": 0.15883777239709443,
+        "prompt_name": "guaranteed true",
+        "task_name": "cb"
+      }
+    },
+    "cb+guaranteed/possible/impossible": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.10714285714285714,
+        "acc_stderr": 0.0417053005800816,
+        "f1": 0.07871939736346516,
+        "prompt_name": "guaranteed/possible/impossible",
+        "task_name": "cb"
+      }
+    },
+    "cb+justified in saying": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.21428571428571427,
+        "acc_stderr": 0.055328333517248834,
+        "f1": 0.1623009758602979,
+        "prompt_name": "justified in saying",
+        "task_name": "cb"
+      }
+    },
+    "cb+must be true": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.19642857142857142,
+        "acc_stderr": 0.05357142857142859,
+        "f1": 0.1384656508954825,
+        "prompt_name": "must be true",
+        "task_name": "cb"
+      }
+    },
+    "cb+should assume": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.19642857142857142,
+        "acc_stderr": 0.05357142857142858,
+        "f1": 0.14613935969868175,
+        "prompt_name": "should assume",
+        "task_name": "cb"
+      }
+    },
+    "cb+take the following as truth": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.4107142857142857,
+        "acc_stderr": 0.06633634150359538,
+        "f1": 0.1940928270042194,
+        "prompt_name": "take the following as truth",
+        "task_name": "cb"
+      }
+    },
+    "cola+Following sentence acceptable": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.6625119846596357,
+        "acc_norm": 0.31064237775647174,
+        "acc_norm_stderr": 0.014335695984672221,
+        "acc_stderr": 0.014648467353878477,
+        "prompt_name": "Following sentence acceptable",
+        "task_name": "cola"
+      }
+    },
+    "cola+Make sense yes no": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.3710450623202301,
+        "acc_norm": 0.6903163950143816,
+        "acc_norm_stderr": 0.014323506235950028,
+        "acc_stderr": 0.01496543118537874,
+        "prompt_name": "Make sense yes no",
+        "task_name": "cola"
+      }
+    },
+    "cola+Previous sentence acceptable": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.6864813039309684,
+        "acc_norm": 0.6912751677852349,
+        "acc_norm_stderr": 0.014311244461311299,
+        "acc_stderr": 0.014371834902632595,
+        "prompt_name": "Previous sentence acceptable",
+        "task_name": "cola"
+      }
+    },
+    "cola+editing": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.46596356663470756,
+        "acc_norm": 0.6912751677852349,
+        "acc_norm_stderr": 0.014311244461311299,
+        "acc_stderr": 0.015453525186655532,
+        "prompt_name": "editing",
+        "task_name": "cola"
+      }
+    },
+    "cola+is_this_correct": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.6893576222435283,
+        "acc_norm": 0.6912751677852349,
+        "acc_norm_stderr": 0.014311244461311299,
+        "acc_stderr": 0.014335695984672223,
+        "prompt_name": "is_this_correct",
+        "task_name": "cola"
+      }
+    },
+    "copa": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.7,
+        "acc_stderr": 0.046056618647183814
+      }
+    },
+    "copa+C1 or C2? premise, so/because\u2026": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.65,
+        "acc_norm": 0.57,
+        "acc_norm_stderr": 0.049756985195624284,
+        "acc_stderr": 0.047937248544110196,
+        "prompt_name": "C1 or C2? premise, so/because\u2026",
+        "task_name": "copa"
+      }
+    },
+    "copa+best_option": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.52,
+        "acc_norm": 0.49,
+        "acc_norm_stderr": 0.05024183937956911,
+        "acc_stderr": 0.050211673156867795,
+        "prompt_name": "best_option",
+        "task_name": "copa"
+      }
+    },
+    "copa+cause_effect": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.56,
+        "acc_norm": 0.45,
+        "acc_norm_stderr": 0.05,
+        "acc_stderr": 0.04988876515698589,
+        "prompt_name": "cause_effect",
+        "task_name": "copa"
+      }
+    },
+    "copa+choose": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.53,
+        "acc_norm": 0.46,
+        "acc_norm_stderr": 0.05009082659620333,
+        "acc_stderr": 0.05016135580465919,
+        "prompt_name": "choose",
+        "task_name": "copa"
+      }
+    },
+    "copa+exercise": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.54,
+        "acc_norm": 0.48,
+        "acc_norm_stderr": 0.050211673156867795,
+        "acc_stderr": 0.05009082659620332,
+        "prompt_name": "exercise",
+        "task_name": "copa"
+      }
+    },
+    "copa+i_am_hesitating": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.56,
+        "acc_norm": 0.48,
+        "acc_norm_stderr": 0.050211673156867795,
+        "acc_stderr": 0.04988876515698589,
+        "prompt_name": "i_am_hesitating",
+        "task_name": "copa"
+      }
+    },
+    "copa+more likely": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.53,
+        "acc_norm": 0.49,
+        "acc_norm_stderr": 0.05024183937956911,
+        "acc_stderr": 0.05016135580465919,
+        "prompt_name": "more likely",
+        "task_name": "copa"
+      }
+    },
+    "copa+plausible_alternatives": {
+      "2022-07-15-11-47-34": {
+        "acc": 0.56,
+        "acc_norm": 0.53,
+        "acc_norm_stderr": 0.05016135580465919,
+        "acc_stderr": 0.04988876515698589,
+        "prompt_name": "plausible_alternatives",
+        "task_name": "copa"
+      }
+    },
+    "crows_pairs_english+1": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.49552772808586765,
+        "acc_norm": 0.49552772808586765,
+        "acc_norm_stderr": 0.012212810647205384,
+        "acc_stderr": 0.012212810647205384,
+        "prompt_name": "1",
+        "task_name": "crows_pairs_english"
+      }
+    },
+    "crows_pairs_english+2": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.4883720930232558,
+        "acc_norm": 0.4883720930232558,
+        "acc_norm_stderr": 0.012209996095069646,
+        "acc_stderr": 0.012209996095069646,
+        "prompt_name": "2",
+        "task_name": "crows_pairs_english"
+      }
+    },
+    "crows_pairs_english+3": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.5163983303518187,
+        "acc_norm": 0.4836016696481813,
+        "acc_norm_stderr": 0.012206729011137944,
+        "acc_stderr": 0.012206729011137944,
+        "prompt_name": "3",
+        "task_name": "crows_pairs_english"
+      }
+    },
+    "crows_pairs_english+4": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.4919499105545617,
+        "acc_norm": 0.4919499105545617,
+        "acc_norm_stderr": 0.01221171617623539,
+        "acc_stderr": 0.01221171617623539,
+        "prompt_name": "4",
+        "task_name": "crows_pairs_english"
+      }
+    },
+    "crows_pairs_english+A_preference": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.5104353011329755,
+        "acc_norm": 0.5104353011329755,
+        "acc_norm_stderr": 0.012210638982043397,
+        "acc_stderr": 0.012210638982043397,
+        "prompt_name": "A_preference",
+        "task_name": "crows_pairs_english"
+      }
+    },
+    "crows_pairs_english+A_stereotype_true": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.4907573047107931,
+        "acc_norm": 0.5062611806797853,
+        "acc_norm_stderr": 0.012212341600228735,
+        "acc_stderr": 0.012211212339167695,
+        "prompt_name": "A_stereotype_true",
+        "task_name": "crows_pairs_english"
+      }
+    },
+    "crows_pairs_french+1_fr": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.48598688133571855,
+        "acc_norm": 0.48598688133571855,
+        "acc_norm_stderr": 0.012208501686447066,
+        "acc_stderr": 0.012208501686447066,
+        "prompt_name": "1_fr",
+        "task_name": "crows_pairs_french"
+      }
+    },
+    "crows_pairs_french+2_fr": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.49850924269528923,
+        "acc_norm": 0.49850924269528923,
+        "acc_norm_stderr": 0.01221324493389968,
+        "acc_stderr": 0.01221324493389968,
+        "prompt_name": "2_fr",
+        "task_name": "crows_pairs_french"
+      }
+    },
+    "crows_pairs_french+3_fr": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.49612403100775193,
+        "acc_norm": 0.49612403100775193,
+        "acc_norm_stderr": 0.012212932249036454,
+        "acc_stderr": 0.012212932249036454,
+        "prompt_name": "3_fr",
+        "task_name": "crows_pairs_french"
+      }
+    },
+    "crows_pairs_french+4_fr": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.5313059033989267,
+        "acc_norm": 0.5313059033989267,
+        "acc_norm_stderr": 0.012189336188399829,
+        "acc_stderr": 0.012189336188399829,
+        "prompt_name": "4_fr",
+        "task_name": "crows_pairs_french"
+      }
+    },
+    "crows_pairs_french+A_preference_fr": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.4847942754919499,
+        "acc_norm": 0.4847942754919499,
+        "acc_norm_stderr": 0.01220765013925874,
+        "acc_stderr": 0.01220765013925874,
+        "prompt_name": "A_preference_fr",
+        "task_name": "crows_pairs_french"
+      }
+    },
+    "crows_pairs_french+A_reality_check_fr": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.505664877757901,
+        "acc_norm": 0.505664877757901,
+        "acc_norm_stderr": 0.012212515323431717,
+        "acc_stderr": 0.012212515323431717,
+        "prompt_name": "A_reality_check_fr",
+        "task_name": "crows_pairs_french"
+      }
+    },
+    "crows_pairs_french+A_stereotype_true_fr": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.5020870602265951,
+        "acc_norm": 0.5020870602265951,
+        "acc_norm_stderr": 0.012213192820312026,
+        "acc_stderr": 0.012213192820312026,
+        "prompt_name": "A_stereotype_true_fr",
+        "task_name": "crows_pairs_french"
+      }
+    },
+    "diabla+Is the error present? (same lang)": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.07741823242867084,
+        "acc_norm": 0.07741823242867084,
+        "acc_norm_stderr": 0.0035253599064790993,
+        "acc_stderr": 0.0035253599064790993,
+        "prompt_name": "Is the error present? (same lang)",
+        "task_name": "diabla"
+      }
+    },
+    "diabla+Which is automatic?": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.4966945024356298,
+        "acc_norm": 0.4966945024356298,
+        "acc_norm_stderr": 0.0065953813991735995,
+        "acc_stderr": 0.0065953813991735995,
+        "prompt_name": "Which is automatic?",
+        "task_name": "diabla"
+      }
+    },
+    "gsarti/flores_101_afr+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.8175051369933213,
+        "byte_perplexity": 7.049422805555328,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_afr",
+        "word_perplexity": 139324.0466654445
+      }
+    },
+    "gsarti/flores_101_amh+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.0608666814101815,
+        "byte_perplexity": 4.172368790188039,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_amh",
+        "word_perplexity": 105036774.30501972
+      }
+    },
+    "gsarti/flores_101_ara+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 0.8797352167688847,
+        "byte_perplexity": 1.8400375612633983,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ara",
+        "word_perplexity": 674.8640314665696
+      }
+    },
+    "gsarti/flores_101_asm+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.458711333673663,
+        "byte_perplexity": 5.497254736157445,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_asm",
+        "word_perplexity": 6763188828222.085
+      }
+    },
+    "gsarti/flores_101_ast+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.0909386784329675,
+        "byte_perplexity": 4.260251728273795,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ast",
+        "word_perplexity": 10657.272913539553
+      }
+    },
+    "gsarti/flores_101_azj+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.9432455349850195,
+        "byte_perplexity": 7.691396328945705,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_azj",
+        "word_perplexity": 45923924.18878753
+      }
+    },
+    "gsarti/flores_101_bel+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.914816732584341,
+        "byte_perplexity": 3.7706591215465943,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_bel",
+        "word_perplexity": 23935692.781315073
+      }
+    },
+    "gsarti/flores_101_ben+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.3432036318231058,
+        "byte_perplexity": 5.074281765515423,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ben",
+        "word_perplexity": 2480418685142.412
+      }
+    },
+    "gsarti/flores_101_bos+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.665248069942796,
+        "byte_perplexity": 6.343363734045183,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_bos",
+        "word_perplexity": 229622.13691086147
+      }
+    },
+    "gsarti/flores_101_bul+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.5136770683283687,
+        "byte_perplexity": 2.8553687444403257,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_bul",
+        "word_perplexity": 194851.13344620814
+      }
+    },
+    "gsarti/flores_101_cat+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.2376904653775254,
+        "byte_perplexity": 2.358207169698056,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_cat",
+        "word_perplexity": 179.13123174533087
+      }
+    },
+    "gsarti/flores_101_ceb+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.7858604115174295,
+        "byte_perplexity": 6.896481056329736,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ceb",
+        "word_perplexity": 113330.67154113152
+      }
+    },
+    "gsarti/flores_101_ces+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.6150694333085327,
+        "byte_perplexity": 6.126526835715164,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ces",
+        "word_perplexity": 625101.1441414964
+      }
+    },
+    "gsarti/flores_101_ckb+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.9421776126623524,
+        "byte_perplexity": 3.842852526862475,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ckb",
+        "word_perplexity": 11104497.438038943
+      }
+    },
+    "gsarti/flores_101_cym+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.8470317241534553,
+        "byte_perplexity": 14.390369428021707,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_cym",
+        "word_perplexity": 5900331.966242436
+      }
+    },
+    "gsarti/flores_101_dan+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.5307665257708245,
+        "byte_perplexity": 5.778786323448377,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_dan",
+        "word_perplexity": 71695.50336412797
+      }
+    },
+    "gsarti/flores_101_deu+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.7492158999678582,
+        "byte_perplexity": 3.361758059911202,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_deu",
+        "word_perplexity": 5647.282599404732
+      }
+    },
+    "gsarti/flores_101_ell+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.3862374641150543,
+        "byte_perplexity": 2.6139607239932805,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ell",
+        "word_perplexity": 102751.5248402687
+      }
+    },
+    "gsarti/flores_101_eng+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.0435427545613876,
+        "byte_perplexity": 2.061283234268159,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_eng",
+        "word_perplexity": 75.56480997823662
+      }
+    },
+    "gsarti/flores_101_est+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 3.340809503762674,
+        "byte_perplexity": 10.131736127467489,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_est",
+        "word_perplexity": 92602633.82439691
+      }
+    },
+    "gsarti/flores_101_fas+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.6586730625582675,
+        "byte_perplexity": 3.1572599808371367,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_fas",
+        "word_perplexity": 59965.98383842629
+      }
+    },
+    "gsarti/flores_101_fin+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.9093822743068216,
+        "byte_perplexity": 7.5129644427067355,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_fin",
+        "word_perplexity": 91621886.60145952
+      }
+    },
+    "gsarti/flores_101_fra+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.0127395726746855,
+        "byte_perplexity": 2.0177390037335385,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_fra",
+        "word_perplexity": 89.45884576931464
+      }
+    },
+    "gsarti/flores_101_ful+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 3.561969238361191,
+        "byte_perplexity": 11.810263420287875,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ful",
+        "word_perplexity": 908715.1423017589
+      }
+    },
+    "gsarti/flores_101_gle+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 3.2798070331865063,
+        "byte_perplexity": 9.712259930753122,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_gle",
+        "word_perplexity": 1548851.5929806433
+      }
+    },
+    "gsarti/flores_101_glg+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.6877168009728167,
+        "byte_perplexity": 3.2214647330840154,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_glg",
+        "word_perplexity": 1537.3193913761668
+      }
+    },
+    "gsarti/flores_101_guj+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.357806609400009,
+        "byte_perplexity": 5.125904532570054,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_guj",
+        "word_perplexity": 133216198508.6925
+      }
+    },
+    "gsarti/flores_101_hau+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 3.4659038057537184,
+        "byte_perplexity": 11.049458818357667,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_hau",
+        "word_perplexity": 730749.6449046461
+      }
+    },
+    "gsarti/flores_101_heb+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.8889611054621571,
+        "byte_perplexity": 3.7036842387723694,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_heb",
+        "word_perplexity": 880255.4148832298
+      }
+    },
+    "gsarti/flores_101_hin+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.195760704215568,
+        "byte_perplexity": 4.581311639568996,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_hin",
+        "word_perplexity": 453226793.5348556
+      }
+    },
+    "gsarti/flores_101_hrv+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.7016816564307984,
+        "byte_perplexity": 6.50559790827845,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_hrv",
+        "word_perplexity": 307789.1462790266
+      }
+    },
+    "gsarti/flores_101_hun+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.8470581600253615,
+        "byte_perplexity": 7.19531655942431,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_hun",
+        "word_perplexity": 8545882.19823639
+      }
+    },
+    "gsarti/flores_101_hye+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.906169044483402,
+        "byte_perplexity": 3.7481249397064547,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_hye",
+        "word_perplexity": 99262887.01092263
+      }
+    },
+    "gsarti/flores_101_ibo+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.6012385649422316,
+        "byte_perplexity": 6.06807351892086,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ibo",
+        "word_perplexity": 99576.38125028457
+      }
+    },
+    "gsarti/flores_101_ind+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.1501325666473412,
+        "byte_perplexity": 2.2193428661828962,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ind",
+        "word_perplexity": 299.41864562936706
+      }
+    },
+    "gsarti/flores_101_isl+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 3.1394769822824644,
+        "byte_perplexity": 8.812045732299993,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_isl",
+        "word_perplexity": 3947458.536983725
+      }
+    },
+    "gsarti/flores_101_ita+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.695253347487448,
+        "byte_perplexity": 3.238337491305615,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ita",
+        "word_perplexity": 1951.0663459405935
+      }
+    },
+    "gsarti/flores_101_jav+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.899297993680408,
+        "byte_perplexity": 7.460632752007581,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_jav",
+        "word_perplexity": 956961.3940329206
+      }
+    },
+    "gsarti/flores_101_jpn+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.539549942005635,
+        "byte_perplexity": 2.907038023970581,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_jpn",
+        "word_perplexity": 6.0024027118732196e+69
+      }
+    },
+    "gsarti/flores_101_kam+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 3.515626316920499,
+        "byte_perplexity": 11.436917146974627,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_kam",
+        "word_perplexity": 4288601.196402131
+      }
+    },
+    "gsarti/flores_101_kan+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.3991591199422513,
+        "byte_perplexity": 5.274956219477929,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_kan",
+        "word_perplexity": 5.3861539364992216e+16
+      }
+    },
+    "gsarti/flores_101_kat+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.3325401608568794,
+        "byte_perplexity": 2.5184571084900518,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_kat",
+        "word_perplexity": 1133105340.614723
+      }
+    },
+    "gsarti/flores_101_kaz+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.845791322405974,
+        "byte_perplexity": 3.5945005448756477,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_kaz",
+        "word_perplexity": 89537342.10068764
+      }
+    },
+    "gsarti/flores_101_kea+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 3.2143692668645976,
+        "byte_perplexity": 9.281572608888562,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_kea",
+        "word_perplexity": 438558.0012817139
+      }
+    },
+    "gsarti/flores_101_kir+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.9511242166700078,
+        "byte_perplexity": 3.8667573034119127,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_kir",
+        "word_perplexity": 235337758.18519488
+      }
+    },
+    "gsarti/flores_101_kor+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.023500324792833,
+        "byte_perplexity": 4.065690303705374,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_kor",
+        "word_perplexity": 1684949.6449262113
+      }
+    },
+    "gsarti/flores_101_lao+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.6376750107826055,
+        "byte_perplexity": 3.1116396826339545,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_lao",
+        "word_perplexity": 3.0817754157127624e+28
+      }
+    },
+    "gsarti/flores_101_lav+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.075865182775687,
+        "byte_perplexity": 8.431943399753028,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_lav",
+        "word_perplexity": 20692036.880855087
+      }
+    },
+    "gsarti/flores_101_lin+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.018221991102226,
+        "byte_perplexity": 8.10168498947524,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_lin",
+        "word_perplexity": 259077.7174090486
+      }
+    },
+    "gsarti/flores_101_lit+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.0526165270213905,
+        "byte_perplexity": 8.297153789252596,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_lit",
+        "word_perplexity": 22011900.13997282
+      }
+    },
+    "gsarti/flores_101_ltz+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.2407955989852377,
+        "byte_perplexity": 9.453152958003827,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ltz",
+        "word_perplexity": 6731220.931729273
+      }
+    },
+    "gsarti/flores_101_lug+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 3.2150119431528754,
+        "byte_perplexity": 9.285708185212261,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_lug",
+        "word_perplexity": 32046806.791237485
+      }
+    },
+    "gsarti/flores_101_luo+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.609093857404177,
+        "byte_perplexity": 12.202407052163576,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_luo",
+        "word_perplexity": 1485111.1306447538
+      }
+    },
+    "gsarti/flores_101_mal+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.1588237245178132,
+        "byte_perplexity": 4.465506197375413,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_mal",
+        "word_perplexity": 4.8990954217696134e+17
+      }
+    },
+    "gsarti/flores_101_mar+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.454064685835334,
+        "byte_perplexity": 5.479577601103449,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_mar",
+        "word_perplexity": 53348101396468.1
+      }
+    },
+    "gsarti/flores_101_mkd+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.6388651004482695,
+        "byte_perplexity": 3.11420755589491,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_mkd",
+        "word_perplexity": 513306.31562258815
+      }
+    },
+    "gsarti/flores_101_mlt+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 4.014730236310589,
+        "byte_perplexity": 16.164200382975334,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_mlt",
+        "word_perplexity": 3271065298.9525104
+      }
+    },
+    "gsarti/flores_101_mon+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.8368760183021453,
+        "byte_perplexity": 3.5723563966116956,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_mon",
+        "word_perplexity": 11967156.496346941
+      }
+    },
+    "gsarti/flores_101_mri+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.037967287223778,
+        "byte_perplexity": 8.213330128288407,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_mri",
+        "word_perplexity": 42667.84366725716
+      }
+    },
+    "gsarti/flores_101_msa+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.4109363519680242,
+        "byte_perplexity": 2.659096901190639,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_msa",
+        "word_perplexity": 1188.7251531670374
+      }
+    },
+    "gsarti/flores_101_mya+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.4101030557435918,
+        "byte_perplexity": 2.657561458464019,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_mya",
+        "word_perplexity": 5.887577237013639e+18
+      }
+    },
+    "gsarti/flores_101_nld+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.1813098607926804,
+        "byte_perplexity": 4.535651709856251,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_nld",
+        "word_perplexity": 13951.877058430618
+      }
+    },
+    "gsarti/flores_101_nob+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.561165630453858,
+        "byte_perplexity": 5.901843358131797,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_nob",
+        "word_perplexity": 64134.3587194621
+      }
+    },
+    "gsarti/flores_101_npi+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.361386302448311,
+        "byte_perplexity": 5.138638996619111,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_npi",
+        "word_perplexity": 7452421298650.788
+      }
+    },
+    "gsarti/flores_101_nso+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.150046187635368,
+        "byte_perplexity": 8.876839962509171,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_nso",
+        "word_perplexity": 133251.3907730927
+      }
+    },
+    "gsarti/flores_101_nya+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.166160871838487,
+        "byte_perplexity": 8.97654874419086,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_nya",
+        "word_perplexity": 13237249.320560299
+      }
+    },
+    "gsarti/flores_101_oci+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.3544826611123932,
+        "byte_perplexity": 5.114108118049416,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_oci",
+        "word_perplexity": 29786.57326210068
+      }
+    },
+    "gsarti/flores_101_orm+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.7457001993717243,
+        "byte_perplexity": 13.414303089263644,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_orm",
+        "word_perplexity": 1286222337.8393624
+      }
+    },
+    "gsarti/flores_101_ory+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.3466784891528936,
+        "byte_perplexity": 5.086518347981296,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ory",
+        "word_perplexity": 8232620282886.167
+      }
+    },
+    "gsarti/flores_101_pan+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.3255600077385723,
+        "byte_perplexity": 5.012603107956229,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_pan",
+        "word_perplexity": 2003582065.835696
+      }
+    },
+    "gsarti/flores_101_pol+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.3688414865658434,
+        "byte_perplexity": 5.165261846492578,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_pol",
+        "word_perplexity": 239703.75452947227
+      }
+    },
+    "gsarti/flores_101_por+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.0087385096181816,
+        "byte_perplexity": 2.012150908931838,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_por",
+        "word_perplexity": 78.66129921108659
+      }
+    },
+    "gsarti/flores_101_pus+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.2173729850313615,
+        "byte_perplexity": 4.650458574106675,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_pus",
+        "word_perplexity": 200303.57214724104
+      }
+    },
+    "gsarti/flores_101_ron+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.486356022105963,
+        "byte_perplexity": 5.603607947317877,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ron",
+        "word_perplexity": 80490.92705368399
+      }
+    },
+    "gsarti/flores_101_rus+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.095728414417906,
+        "byte_perplexity": 2.1372096174466697,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_rus",
+        "word_perplexity": 22038.65288574451
+      }
+    },
+    "gsarti/flores_101_slk+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.8667803584469502,
+        "byte_perplexity": 7.294354718439043,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_slk",
+        "word_perplexity": 1873211.2703176092
+      }
+    },
+    "gsarti/flores_101_slv+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.894935550489075,
+        "byte_perplexity": 7.438107250941839,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_slv",
+        "word_perplexity": 609965.8362492598
+      }
+    },
+    "gsarti/flores_101_sna+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.226698783453375,
+        "byte_perplexity": 9.361234419948593,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_sna",
+        "word_perplexity": 151658287.08006003
+      }
+    },
+    "gsarti/flores_101_snd+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.505484320885354,
+        "byte_perplexity": 5.678399375652783,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_snd",
+        "word_perplexity": 2195879.0537875695
+      }
+    },
+    "gsarti/flores_101_som+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.6579492747174616,
+        "byte_perplexity": 12.622705630414286,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_som",
+        "word_perplexity": 12921970.127169678
+      }
+    },
+    "gsarti/flores_101_spa+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 0.9441289779054047,
+        "byte_perplexity": 1.9240269109386998,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_spa",
+        "word_perplexity": 55.14408503293887
+      }
+    },
+    "gsarti/flores_101_srp+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.6091583939601046,
+        "byte_perplexity": 3.050738229673983,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_srp",
+        "word_perplexity": 359037.4163692842
+      }
+    },
+    "gsarti/flores_101_swe+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.4943222333483153,
+        "byte_perplexity": 5.634635291846611,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_swe",
+        "word_perplexity": 104567.9891705103
+      }
+    },
+    "gsarti/flores_101_swh+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.9721156771582438,
+        "byte_perplexity": 3.923430589092355,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_swh",
+        "word_perplexity": 6985.646204087442
+      }
+    },
+    "gsarti/flores_101_tam+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.0999329236632325,
+        "byte_perplexity": 4.286894531607389,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_tam",
+        "word_perplexity": 4220234444737767.0
+      }
+    },
+    "gsarti/flores_101_tel+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.549014618212334,
+        "byte_perplexity": 5.852344181819556,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_tel",
+        "word_perplexity": 7315913985648022.0
+      }
+    },
+    "gsarti/flores_101_tgk+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.9399053923480125,
+        "byte_perplexity": 3.836804862794101,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_tgk",
+        "word_perplexity": 10003619.893239152
+      }
+    },
+    "gsarti/flores_101_tgl+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 2.645461413001105,
+        "byte_perplexity": 6.256957969905079,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_tgl",
+        "word_perplexity": 87554.31770184237
+      }
+    },
+    "gsarti/flores_101_tha+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.2979178211163922,
+        "byte_perplexity": 2.458737675753546,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_tha",
+        "word_perplexity": 6.85384626099906e+32
+      }
+    },
+    "gsarti/flores_101_tur+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.4123830232149,
+        "byte_perplexity": 5.323529328304652,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_tur",
+        "word_perplexity": 1230000.8194755162
+      }
+    },
+    "gsarti/flores_101_ukr+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.5282644195953918,
+        "byte_perplexity": 2.8843863497020608,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_ukr",
+        "word_perplexity": 780615.9486315987
+      }
+    },
+    "gsarti/flores_101_umb+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.710219475046473,
+        "byte_perplexity": 13.088423907901921,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_umb",
+        "word_perplexity": 346118506.64866126
+      }
+    },
+    "gsarti/flores_101_urd+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 1.0075988539165108,
+        "byte_perplexity": 2.010562039704537,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_urd",
+        "word_perplexity": 335.1943886252716
+      }
+    },
+    "gsarti/flores_101_uzb+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.69831120498359,
+        "byte_perplexity": 12.980834294137205,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_uzb",
+        "word_perplexity": 1248263505.2751954
+      }
+    },
+    "gsarti/flores_101_vie+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 0.8461114961807352,
+        "byte_perplexity": 1.7976491760484148,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_vie",
+        "word_perplexity": 33.51752264232948
+      }
+    },
+    "gsarti/flores_101_wol+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.332383415073327,
+        "byte_perplexity": 10.072733993132132,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_wol",
+        "word_perplexity": 199684.7010180392
+      }
+    },
+    "gsarti/flores_101_xho+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.0428982143908727,
+        "byte_perplexity": 8.241450154294917,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_xho",
+        "word_perplexity": 141017733.33017766
+      }
+    },
+    "gsarti/flores_101_yor+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 2.62429549091613,
+        "byte_perplexity": 6.165831615133067,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_yor",
+        "word_perplexity": 171980.641422536
+      }
+    },
+    "gsarti/flores_101_zho_simpl+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.2156521449449949,
+        "byte_perplexity": 2.322457417595381,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_zho_simpl",
+        "word_perplexity": 1.0554528210220222e+21
+      }
+    },
+    "gsarti/flores_101_zho_trad+null": {
+      "2022-07-14-10-03-25": {
+        "bits_per_byte": 1.3622834584784203,
+        "byte_perplexity": 2.5709177552415134,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_zho_trad",
+        "word_perplexity": 4.787781515987923e+24
+      }
+    },
+    "gsarti/flores_101_zul+null": {
+      "2022-07-14-12-00-55": {
+        "bits_per_byte": 3.2020451216662975,
+        "byte_perplexity": 9.202622963132773,
+        "prompt_name": "null",
+        "task_name": "gsarti/flores_101_zul",
+        "word_perplexity": 998742068.9481835
+      }
+    },
+    "headqa": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.25419401896425964,
+        "acc_norm": 0.29576951130561635,
+        "acc_norm_stderr": 0.008717251898361422,
+        "acc_stderr": 0.008316509290190668
+      }
+    },
+    "hellaswag": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.37621987651862177,
+        "acc_norm": 0.46564429396534557,
+        "acc_norm_stderr": 0.004977988452502641,
+        "acc_stderr": 0.004834461997944872
+      }
+    },
+    "lambada": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.46322530564719583,
+        "acc_stderr": 0.006947110835634445,
+        "ppl": 12.583447597222621,
+        "ppl_stderr": 0.4021518609838198
+      }
+    },
+    "logiqa": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.21658986175115208,
+        "acc_norm": 0.28110599078341014,
+        "acc_norm_stderr": 0.017632374626460005,
+        "acc_stderr": 0.016156860583178303
+      }
+    },
+    "mathqa": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.2489112227805695,
+        "acc_norm": 0.2422110552763819,
+        "acc_norm_stderr": 0.007842810183504986,
+        "acc_stderr": 0.007915319798861361
+      }
+    },
+    "mc_taco": {
+      "2022-07-13-11-29-13": {
+        "em": 0.12537537537537538,
+        "f1": 0.4747075325110886
+      }
+    },
+    "mnli+GPT-3 style": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3564951604686704,
+        "acc_norm": 0.335303107488538,
+        "acc_norm_stderr": 0.004765490263584639,
+        "acc_stderr": 0.004834813222301984,
+        "prompt_name": "GPT-3 style",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+MNLI crowdsource": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3548650025471218,
+        "acc_norm": 0.37982679572083544,
+        "acc_norm_stderr": 0.004899212442097964,
+        "acc_stderr": 0.004829852406948984,
+        "prompt_name": "MNLI crowdsource",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+always/sometimes/never": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.31920529801324504,
+        "acc_norm": 0.31818644931227713,
+        "acc_norm_stderr": 0.004701653585969693,
+        "acc_stderr": 0.004705655206722177,
+        "prompt_name": "always/sometimes/never",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+based on the previous passage": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.34070300560366784,
+        "acc_norm": 0.33245033112582784,
+        "acc_norm_stderr": 0.004755346314564714,
+        "acc_stderr": 0.004784157883834768,
+        "prompt_name": "based on the previous passage",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+can we infer": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.36271013754457465,
+        "acc_norm": 0.3392766174223128,
+        "acc_norm_stderr": 0.004779294320017342,
+        "acc_stderr": 0.004853167998709484,
+        "prompt_name": "can we infer",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+claim true/false/inconclusive": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.35384615384615387,
+        "acc_norm": 0.3169638308711156,
+        "acc_norm_stderr": 0.004696817414398099,
+        "acc_stderr": 0.004826720820135633,
+        "prompt_name": "claim true/false/inconclusive",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+consider always/sometimes/never": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3183902190524707,
+        "acc_norm": 0.31818644931227713,
+        "acc_norm_stderr": 0.004701653585969693,
+        "acc_stderr": 0.004702455981984395,
+        "prompt_name": "consider always/sometimes/never",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+does it follow that": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3784004075394804,
+        "acc_norm": 0.3499745287824758,
+        "acc_norm_stderr": 0.004814601860231488,
+        "acc_stderr": 0.00489562485968904,
+        "prompt_name": "does it follow that",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+does this imply": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.33224656138563424,
+        "acc_norm": 0.31920529801324504,
+        "acc_norm_stderr": 0.004705655206722178,
+        "acc_stderr": 0.004754614244749308,
+        "prompt_name": "does this imply",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+guaranteed true": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.35731023942944473,
+        "acc_norm": 0.3398879266428935,
+        "acc_norm_stderr": 0.004781384619510542,
+        "acc_stderr": 0.004837270730680468,
+        "prompt_name": "guaranteed true",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+guaranteed/possible/impossible": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.32317880794701986,
+        "acc_norm": 0.3390728476821192,
+        "acc_norm_stderr": 0.004778595579555236,
+        "acc_stderr": 0.004721015048648592,
+        "prompt_name": "guaranteed/possible/impossible",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+justified in saying": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3611818644931228,
+        "acc_norm": 0.33438614365766683,
+        "acc_norm_stderr": 0.004762251055102503,
+        "acc_stderr": 0.0048487362318538965,
+        "prompt_name": "justified in saying",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+must be true": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3532348446255731,
+        "acc_norm": 0.3400916963830871,
+        "acc_norm_stderr": 0.004782079413482068,
+        "acc_stderr": 0.004824830369595005,
+        "prompt_name": "must be true",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+should assume": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3532348446255731,
+        "acc_norm": 0.32236372898624555,
+        "acc_norm_stderr": 0.004717896188851781,
+        "acc_stderr": 0.004824830369595005,
+        "prompt_name": "should assume",
+        "task_name": "mnli"
+      }
+    },
+    "mnli+take the following as truth": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3540499235863474,
+        "acc_norm": 0.32654100866021396,
+        "acc_norm_stderr": 0.004733707466562015,
+        "acc_stderr": 0.004827349052909375,
+        "prompt_name": "take the following as truth",
+        "task_name": "mnli"
+      }
+    },
+    "mnli_mismatched+GPT-3 style": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3558787632221318,
+        "acc_norm": 0.3365541090317331,
+        "acc_norm_stderr": 0.0047657510794410825,
+        "acc_stderr": 0.004828764189286043,
+        "prompt_name": "GPT-3 style",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+MNLI crowdsource": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3524206672091131,
+        "acc_norm": 0.3876118795768918,
+        "acc_norm_stderr": 0.004913750149712027,
+        "acc_stderr": 0.004818127922877737,
+        "prompt_name": "MNLI crowdsource",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+always/sometimes/never": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3187550854353133,
+        "acc_norm": 0.318246541903987,
+        "acc_norm_stderr": 0.004697823254367764,
+        "acc_stderr": 0.004699821349212815,
+        "prompt_name": "always/sometimes/never",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+based on the previous passage": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3442839707078926,
+        "acc_norm": 0.3240439381611066,
+        "acc_norm_stderr": 0.00472022103875238,
+        "acc_stderr": 0.004792007109263922,
+        "prompt_name": "based on the previous passage",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+can we infer": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3628966639544345,
+        "acc_norm": 0.33909682668836455,
+        "acc_norm_stderr": 0.0047745443668395,
+        "acc_stderr": 0.004849506876045877,
+        "prompt_name": "can we infer",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+claim true/false/inconclusive": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3517087062652563,
+        "acc_norm": 0.31550040683482505,
+        "acc_norm_stderr": 0.004686921836958016,
+        "acc_stderr": 0.004815903833418159,
+        "prompt_name": "claim true/false/inconclusive",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+consider always/sometimes/never": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.318246541903987,
+        "acc_norm": 0.318246541903987,
+        "acc_norm_stderr": 0.004697823254367764,
+        "acc_stderr": 0.004697823254367764,
+        "prompt_name": "consider always/sometimes/never",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+does it follow that": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.38923921887713586,
+        "acc_norm": 0.34926769731489016,
+        "acc_norm_stderr": 0.004808189163919754,
+        "acc_stderr": 0.004917507365149974,
+        "prompt_name": "does it follow that",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+does this imply": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3233319772172498,
+        "acc_norm": 0.3184499593165175,
+        "acc_norm_stderr": 0.0046986232661144,
+        "acc_stderr": 0.0047175151956513625,
+        "prompt_name": "does this imply",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+guaranteed true": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.36208299430431246,
+        "acc_norm": 0.3303498779495525,
+        "acc_norm_stderr": 0.004743645253038162,
+        "acc_stderr": 0.00484715944530685,
+        "prompt_name": "guaranteed true",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+guaranteed/possible/impossible": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.32048413344182264,
+        "acc_norm": 0.33848657445077296,
+        "acc_norm_stderr": 0.004772448023078353,
+        "acc_stderr": 0.004706566719294992,
+        "prompt_name": "guaranteed/possible/impossible",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+justified in saying": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.371033360455655,
+        "acc_norm": 0.32648494711147275,
+        "acc_norm_stderr": 0.004729403696523803,
+        "acc_stderr": 0.004872158826748743,
+        "prompt_name": "justified in saying",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+must be true": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3565907241659886,
+        "acc_norm": 0.3373677786818552,
+        "acc_norm_stderr": 0.004768581700693004,
+        "acc_stderr": 0.004830919845456573,
+        "prompt_name": "must be true",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+should assume": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.35740439381611067,
+        "acc_norm": 0.32231489015459724,
+        "acc_norm_stderr": 0.0047136280360736155,
+        "acc_stderr": 0.0048333692129862065,
+        "prompt_name": "should assume",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mnli_mismatched+take the following as truth": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3522172497965826,
+        "acc_norm": 0.3263832384052075,
+        "acc_norm_stderr": 0.004729024000627127,
+        "acc_stderr": 0.004817493665633715,
+        "prompt_name": "take the following as truth",
+        "task_name": "mnli_mismatched"
+      }
+    },
+    "mrpc": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.6813725490196079,
+        "acc_stderr": 0.023095996571841474,
+        "f1": 0.8104956268221574,
+        "f1_stderr": 0.016329211455484924
+      }
+    },
+    "multirc": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.011542497376705142,
+        "acc_stderr": 0.003461867320927179
+      }
+    },
+    "multirc+I was going to say\u2026": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.5082508250825083,
+        "acc_norm": 0.4280115511551155,
+        "acc_norm_stderr": 0.007106976252751536,
+        "acc_stderr": 0.007180825220905937,
+        "prompt_name": "I was going to say\u2026",
+        "task_name": "multirc"
+      }
+    },
+    "multirc+Would it be good to answer\u2026": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.45173267326732675,
+        "acc_norm": 0.4278052805280528,
+        "acc_norm_stderr": 0.007106544557507229,
+        "acc_stderr": 0.007148261386088041,
+        "prompt_name": "Would it be good to answer\u2026",
+        "task_name": "multirc"
+      }
+    },
+    "multirc+confirm": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.4280115511551155,
+        "acc_norm": 0.4280115511551155,
+        "acc_norm_stderr": 0.007106976252751536,
+        "acc_stderr": 0.007106976252751536,
+        "prompt_name": "confirm",
+        "task_name": "multirc"
+      }
+    },
+    "multirc+correct": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.5532178217821783,
+        "acc_norm": 0.4643151815181518,
+        "acc_norm_stderr": 0.00716348904876326,
+        "acc_stderr": 0.007141007544074806,
+        "prompt_name": "correct",
+        "task_name": "multirc"
+      }
+    },
+    "multirc+decide_valid": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.5107260726072608,
+        "acc_norm": 0.4280115511551155,
+        "acc_norm_stderr": 0.007106976252751536,
+        "acc_stderr": 0.007180150402551771,
+        "prompt_name": "decide_valid",
+        "task_name": "multirc"
+      }
+    },
+    "multirc+found_this_answer": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.4278052805280528,
+        "acc_norm": 0.4280115511551155,
+        "acc_norm_stderr": 0.007106976252751536,
+        "acc_stderr": 0.007106544557507229,
+        "prompt_name": "found_this_answer",
+        "task_name": "multirc"
+      }
+    },
+    "multirc+grading": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.429042904290429,
+        "acc_norm": 0.4280115511551155,
+        "acc_norm_stderr": 0.007106976252751536,
+        "acc_stderr": 0.007109115814226985,
+        "prompt_name": "grading",
+        "task_name": "multirc"
+      }
+    },
+    "multirc+is the correct answer\u2026": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.4498762376237624,
+        "acc_norm": 0.4273927392739274,
+        "acc_norm_stderr": 0.007105677382236137,
+        "acc_stderr": 0.0071456249799065185,
+        "prompt_name": "is the correct answer\u2026",
+        "task_name": "multirc"
+      }
+    },
+    "multirc+is\u2026 a correct answer?": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.4278052805280528,
+        "acc_norm": 0.4280115511551155,
+        "acc_norm_stderr": 0.007106976252751536,
+        "acc_stderr": 0.007106544557507229,
+        "prompt_name": "is\u2026 a correct answer?",
+        "task_name": "multirc"
+      }
+    },
+    "multirc+paragraph\u2026 question\u2026 is it\u2026 ?": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.5030940594059405,
+        "acc_norm": 0.42883663366336633,
+        "acc_norm_stderr": 0.007108690423137722,
+        "acc_stderr": 0.007181665598939583,
+        "prompt_name": "paragraph\u2026 question\u2026 is it\u2026 ?",
+        "task_name": "multirc"
+      }
+    },
+    "openbookqa": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.214,
+        "acc_norm": 0.298,
+        "acc_norm_stderr": 0.020475118092988978,
+        "acc_stderr": 0.01835979750238702
+      }
+    },
+    "piqa": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.6871599564744287,
+        "acc_norm": 0.7002176278563657,
+        "acc_norm_stderr": 0.010689686967138092,
+        "acc_stderr": 0.010817714425701112
+      }
+    },
+    "prost": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.23505550811272416,
+        "acc_norm": 0.2670260461144321,
+        "acc_norm_stderr": 0.0032321702981822874,
+        "acc_stderr": 0.0030979423271461875
+      }
+    },
+    "pubmedqa": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.56,
+        "acc_stderr": 0.015704987954361798
+      }
+    },
+    "qnli": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.4962474830679114,
+        "acc_stderr": 0.006765220016415222
+      }
+    },
+    "qqp": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.3681424684640119,
+        "acc_stderr": 0.0023986729832071816,
+        "f1": 0.5381138352498734,
+        "f1_stderr": 0.002555831569895799
+      }
+    },
+    "qqp+answer": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.40558990848379917,
+        "acc_norm": 0.36816720257234725,
+        "acc_norm_stderr": 0.002398706610614492,
+        "acc_stderr": 0.002441969063495092,
+        "prompt_name": "answer",
+        "task_name": "qqp"
+      }
+    },
+    "qqp+duplicate": {
+      "2022-07-12-22-45-57": {
+        "acc": 0.3788523373732377,
+        "acc_norm": 0.36816720257234725,
+        "acc_norm_stderr": 0.002398706610614492,
+        "acc_stderr": 0.002412603277723025,
+        "prompt_name": "duplicate",
+        "task_name": "qqp"
+      }
+    },
+    "qqp+duplicate or not": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.5761315854563444,
+        "acc_norm": 0.6318327974276527,
+        "acc_norm_stderr": 0.002398706610614492,
+        "acc_stderr": 0.0024577056660753426,
+        "prompt_name": "duplicate or not",
+        "task_name": "qqp"
+      }
+    },
+    "qqp+meaning": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.3681424684640119,
+        "acc_norm": 0.36816720257234725,
+        "acc_norm_stderr": 0.002398706610614492,
+        "acc_stderr": 0.0023986729832071916,
+        "prompt_name": "meaning",
+        "task_name": "qqp"
+      }
+    },
+    "qqp+quora": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.36821667078901804,
+        "acc_norm": 0.36816720257234725,
+        "acc_norm_stderr": 0.002398706610614492,
+        "acc_stderr": 0.0023987738450886556,
+        "prompt_name": "quora",
+        "task_name": "qqp"
+      }
+    },
+    "qqp+same thing": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.5099431115508286,
+        "acc_norm": 0.36816720257234725,
+        "acc_norm_stderr": 0.002398706610614492,
+        "acc_stderr": 0.002486208885430481,
+        "prompt_name": "same thing",
+        "task_name": "qqp"
+      }
+    },
+    "race": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.3320574162679426,
+        "acc_stderr": 0.014575582129545914
+      }
+    },
+    "rte": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.5342960288808665,
+        "acc_stderr": 0.030025579819366426
+      }
+    },
+    "rte+does the claim\u2026 follow the fact\u2026": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.4729241877256318,
+        "acc_norm": 0.5270758122743683,
+        "acc_norm_stderr": 0.0300523034631437,
+        "acc_stderr": 0.030052303463143706,
+        "prompt_name": "does the claim\u2026 follow the fact\u2026",
+        "task_name": "rte"
+      }
+    },
+    "rte+entailment explained": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.49458483754512633,
+        "acc_norm": 0.4729241877256318,
+        "acc_norm_stderr": 0.0300523034631437,
+        "acc_stderr": 0.030094698123239966,
+        "prompt_name": "entailment explained",
+        "task_name": "rte"
+      }
+    },
+    "rte+imply": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.48375451263537905,
+        "acc_norm": 0.5270758122743683,
+        "acc_norm_stderr": 0.0300523034631437,
+        "acc_stderr": 0.030080573208738064,
+        "prompt_name": "imply",
+        "task_name": "rte"
+      }
+    },
+    "rte+imply separated": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.45126353790613716,
+        "acc_norm": 0.5270758122743683,
+        "acc_norm_stderr": 0.0300523034631437,
+        "acc_stderr": 0.029953149241808943,
+        "prompt_name": "imply separated",
+        "task_name": "rte"
+      }
+    },
+    "rte+mean": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.48014440433212996,
+        "acc_norm": 0.5270758122743683,
+        "acc_norm_stderr": 0.0300523034631437,
+        "acc_stderr": 0.030072723167317194,
+        "prompt_name": "mean",
+        "task_name": "rte"
+      }
+    },
+    "sciq": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.853,
+        "acc_norm": 0.771,
+        "acc_norm_stderr": 0.013294199326613609,
+        "acc_stderr": 0.011203415395160335
+      }
+    },
+    "sst": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.6823394495412844,
+        "acc_stderr": 0.015775124845202545
+      }
+    },
+    "sst+following positive negative": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.8061926605504587,
+        "acc_norm": 0.8061926605504587,
+        "acc_norm_stderr": 0.013393542261521812,
+        "acc_stderr": 0.013393542261521812,
+        "prompt_name": "following positive negative",
+        "task_name": "sst"
+      }
+    },
+    "sst+happy or mad": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.5091743119266054,
+        "acc_norm": 0.5091743119266054,
+        "acc_norm_stderr": 0.01693900152535154,
+        "acc_stderr": 0.01693900152535154,
+        "prompt_name": "happy or mad",
+        "task_name": "sst"
+      }
+    },
+    "sst+positive negative after": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.6204128440366973,
+        "acc_norm": 0.6204128440366973,
+        "acc_norm_stderr": 0.016443227556688766,
+        "acc_stderr": 0.016443227556688766,
+        "prompt_name": "positive negative after",
+        "task_name": "sst"
+      }
+    },
+    "sst+review": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.5091743119266054,
+        "acc_norm": 0.5091743119266054,
+        "acc_norm_stderr": 0.01693900152535154,
+        "acc_stderr": 0.01693900152535154,
+        "prompt_name": "review",
+        "task_name": "sst"
+      }
+    },
+    "sst+said": {
+      "2022-07-13-19-23-37": {
+        "acc": 0.4908256880733945,
+        "acc_norm": 0.5091743119266054,
+        "acc_norm_stderr": 0.01693900152535154,
+        "acc_stderr": 0.01693900152535154,
+        "prompt_name": "said",
+        "task_name": "sst"
+      }
+    },
+    "triviaqa": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.0313798285158667,
+        "acc_stderr": 0.0016392014864795154
+      }
+    },
+    "webqs": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.012795275590551181,
+        "acc_stderr": 0.0024938680596856277
+      }
+    },
+    "wic": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.5,
+        "acc_stderr": 0.01981072129375818
+      }
+    },
+    "wic+GPT-3-prompt": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.5,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.01981072129375818,
+        "acc_stderr": 0.01981072129375818,
+        "prompt_name": "GPT-3-prompt",
+        "task_name": "wic"
+      }
+    },
+    "wic+GPT-3-prompt-with-label": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.49216300940438873,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.01981072129375818,
+        "acc_stderr": 0.019808287657813832,
+        "prompt_name": "GPT-3-prompt-with-label",
+        "task_name": "wic"
+      }
+    },
+    "wic+affirmation_true_or_false": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.5,
+        "acc_norm": 0.5078369905956113,
+        "acc_norm_stderr": 0.019808287657813832,
+        "acc_stderr": 0.01981072129375818,
+        "prompt_name": "affirmation_true_or_false",
+        "task_name": "wic"
+      }
+    },
+    "wic+grammar_homework": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.5094043887147336,
+        "acc_norm": 0.49843260188087773,
+        "acc_norm_stderr": 0.019810623954060382,
+        "acc_stderr": 0.019807216763271497,
+        "prompt_name": "grammar_homework",
+        "task_name": "wic"
+      }
+    },
+    "wic+polysemous": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.512539184952978,
+        "acc_norm": 0.49843260188087773,
+        "acc_norm_stderr": 0.019810623954060382,
+        "acc_stderr": 0.019804490588592596,
+        "prompt_name": "polysemous",
+        "task_name": "wic"
+      }
+    },
+    "wic+question-context": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.5266457680250783,
+        "acc_norm": 0.5031347962382445,
+        "acc_norm_stderr": 0.019810331932097542,
+        "acc_stderr": 0.019782570188812167,
+        "prompt_name": "question-context",
+        "task_name": "wic"
+      }
+    },
+    "wic+question-context-meaning": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.5438871473354232,
+        "acc_norm": 0.5015673981191222,
+        "acc_norm_stderr": 0.019810623954060382,
+        "acc_stderr": 0.019734259601993404,
+        "prompt_name": "question-context-meaning",
+        "task_name": "wic"
+      }
+    },
+    "wic+question-context-meaning-with-label": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.5156739811912225,
+        "acc_norm": 0.5015673981191222,
+        "acc_norm_stderr": 0.019810623954060382,
+        "acc_stderr": 0.019800984955347847,
+        "prompt_name": "question-context-meaning-with-label",
+        "task_name": "wic"
+      }
+    },
+    "wic+same_sense": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.5047021943573667,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.01981072129375818,
+        "acc_stderr": 0.019809845219259763,
+        "prompt_name": "same_sense",
+        "task_name": "wic"
+      }
+    },
+    "wic+similar-sense": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.542319749216301,
+        "acc_norm": 0.5,
+        "acc_norm_stderr": 0.01981072129375818,
+        "acc_stderr": 0.01973963328373276,
+        "prompt_name": "similar-sense",
+        "task_name": "wic"
+      }
+    },
+    "winogrande": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.5730071033938438,
+        "acc_stderr": 0.013901878072575058
+      }
+    },
+    "wnli": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.43661971830985913,
+        "acc_stderr": 0.0592793555841297
+      }
+    },
+    "wnli+confident": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.43661971830985913,
+        "acc_norm": 0.43661971830985913,
+        "acc_norm_stderr": 0.0592793555841297,
+        "acc_stderr": 0.0592793555841297,
+        "prompt_name": "confident",
+        "task_name": "wnli"
+      }
+    },
+    "wnli+entailment explained": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.39436619718309857,
+        "acc_norm": 0.43661971830985913,
+        "acc_norm_stderr": 0.0592793555841297,
+        "acc_stderr": 0.058412510854444266,
+        "prompt_name": "entailment explained",
+        "task_name": "wnli"
+      }
+    },
+    "wnli+imply": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.4225352112676056,
+        "acc_norm": 0.43661971830985913,
+        "acc_norm_stderr": 0.0592793555841297,
+        "acc_stderr": 0.05903984205682581,
+        "prompt_name": "imply",
+        "task_name": "wnli"
+      }
+    },
+    "wnli+justified": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.43661971830985913,
+        "acc_norm": 0.43661971830985913,
+        "acc_norm_stderr": 0.0592793555841297,
+        "acc_stderr": 0.0592793555841297,
+        "prompt_name": "justified",
+        "task_name": "wnli"
+      }
+    },
+    "wnli+mean": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.6619718309859155,
+        "acc_norm": 0.43661971830985913,
+        "acc_norm_stderr": 0.0592793555841297,
+        "acc_stderr": 0.05653887739133513,
+        "prompt_name": "mean",
+        "task_name": "wnli"
+      }
+    },
+    "wsc": {
+      "2022-07-13-11-29-13": {
+        "acc": 0.36538461538461536,
+        "acc_stderr": 0.0474473339327792
+      }
+    },
+    "wsc+GPT-3 Style": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.36538461538461536,
+        "acc_norm": 0.36538461538461536,
+        "acc_norm_stderr": 0.0474473339327792,
+        "acc_stderr": 0.0474473339327792,
+        "prompt_name": "GPT-3 Style",
+        "task_name": "wsc"
+      }
+    },
+    "wsc+I think they mean": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.36538461538461536,
+        "acc_norm": 0.36538461538461536,
+        "acc_norm_stderr": 0.0474473339327792,
+        "acc_stderr": 0.0474473339327792,
+        "prompt_name": "I think they mean",
+        "task_name": "wsc"
+      }
+    },
+    "wsc+Who or what is/are": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.40384615384615385,
+        "acc_norm": 0.36538461538461536,
+        "acc_norm_stderr": 0.0474473339327792,
+        "acc_stderr": 0.048346889526540184,
+        "prompt_name": "Who or what is/are",
+        "task_name": "wsc"
+      }
+    },
+    "wsc+by p they mean": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.36538461538461536,
+        "acc_norm": 0.36538461538461536,
+        "acc_norm_stderr": 0.0474473339327792,
+        "acc_stderr": 0.0474473339327792,
+        "prompt_name": "by p they mean",
+        "task_name": "wsc"
+      }
+    },
+    "wsc+does p stand for": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.375,
+        "acc_norm": 0.36538461538461536,
+        "acc_norm_stderr": 0.0474473339327792,
+        "acc_stderr": 0.04770204856076104,
+        "prompt_name": "does p stand for",
+        "task_name": "wsc"
+      }
+    },
+    "wsc+does the pronoun refer to": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.5480769230769231,
+        "acc_norm": 0.36538461538461536,
+        "acc_norm_stderr": 0.0474473339327792,
+        "acc_stderr": 0.049038186969314335,
+        "prompt_name": "does the pronoun refer to",
+        "task_name": "wsc"
+      }
+    },
+    "wsc+in other words": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.36538461538461536,
+        "acc_norm": 0.5288461538461539,
+        "acc_norm_stderr": 0.04918440626354964,
+        "acc_stderr": 0.0474473339327792,
+        "prompt_name": "in other words",
+        "task_name": "wsc"
+      }
+    },
+    "wsc+p is/are r": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.36538461538461536,
+        "acc_norm": 0.34615384615384615,
+        "acc_norm_stderr": 0.04687634642174987,
+        "acc_stderr": 0.0474473339327792,
+        "prompt_name": "p is/are r",
+        "task_name": "wsc"
+      }
+    },
+    "wsc+replaced with": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.6153846153846154,
+        "acc_norm": 0.36538461538461536,
+        "acc_norm_stderr": 0.0474473339327792,
+        "acc_stderr": 0.047936688680750406,
+        "prompt_name": "replaced with",
+        "task_name": "wsc"
+      }
+    },
+    "wsc+the pronoun refers to": {
+      "2022-07-14-10-03-25": {
+        "acc": 0.36538461538461536,
+        "acc_norm": 0.5865384615384616,
+        "acc_norm_stderr": 0.04852294969729053,
+        "acc_stderr": 0.0474473339327792,
+        "prompt_name": "the pronoun refers to",
+        "task_name": "wsc"
+      }
+    }
+  },
+  "versions": {
+    "arc_challenge": 0,
+    "arc_easy": 0,
+    "axb+GPT-3 style": 0,
+    "axb+MNLI crowdsource": 0,
+    "axb+based on the previous passage": 0,
+    "axb+can we infer": 0,
+    "axb+does it follow that": 0,
+    "axb+does this imply": 0,
+    "axb+guaranteed true": 0,
+    "axb+justified in saying": 0,
+    "axb+must be true": 0,
+    "axb+should assume": 0,
+    "axg+GPT-3 style": 0,
+    "axg+MNLI crowdsource": 0,
+    "axg+based on the previous passage": 0,
+    "axg+can we infer": 0,
+    "axg+does it follow that": 0,
+    "axg+does this imply": 0,
+    "axg+guaranteed true": 0,
+    "axg+justified in saying": 0,
+    "axg+must be true": 0,
+    "axg+should assume": 0,
+    "boolq": 1,
+    "boolq+GPT-3 Style": 0,
+    "boolq+I wonder\u2026": 0,
+    "boolq+after_reading": 0,
+    "boolq+based on the following passage": 0,
+    "boolq+based on the previous passage": 0,
+    "boolq+could you tell me\u2026": 0,
+    "boolq+exam": 0,
+    "boolq+exercise": 0,
+    "boolq+valid_binary": 0,
+    "boolq+yes_no_question": 0,
+    "cb+GPT-3 style": 0,
+    "cb+MNLI crowdsource": 0,
+    "cb+always/sometimes/never": 0,
+    "cb+based on the previous passage": 0,
+    "cb+can we infer": 0,
+    "cb+claim true/false/inconclusive": 0,
+    "cb+consider always/sometimes/never": 0,
+    "cb+does it follow that": 0,
+    "cb+does this imply": 0,
+    "cb+guaranteed true": 0,
+    "cb+guaranteed/possible/impossible": 0,
+    "cb+justified in saying": 0,
+    "cb+must be true": 0,
+    "cb+should assume": 0,
+    "cb+take the following as truth": 0,
+    "cola+Following sentence acceptable": 0,
+    "cola+Make sense yes no": 0,
+    "cola+Previous sentence acceptable": 0,
+    "cola+editing": 0,
+    "cola+is_this_correct": 0,
+    "copa": 0,
+    "copa+C1 or C2? premise, so/because\u2026": 0,
+    "copa+best_option": 0,
+    "copa+cause_effect": 0,
+    "copa+choose": 0,
+    "copa+exercise": 0,
+    "copa+i_am_hesitating": 0,
+    "copa+more likely": 0,
+    "copa+plausible_alternatives": 0,
+    "crows_pairs_english+1": 0,
+    "crows_pairs_english+2": 0,
+    "crows_pairs_english+3": 0,
+    "crows_pairs_english+4": 0,
+    "crows_pairs_english+A_preference": 0,
+    "crows_pairs_english+A_reality_check": 0,
+    "crows_pairs_english+A_stereotype_true": 0,
+    "crows_pairs_french+1_fr": 0,
+    "crows_pairs_french+2_fr": 0,
+    "crows_pairs_french+3_fr": 0,
+    "crows_pairs_french+4_fr": 0,
+    "crows_pairs_french+A_preference_fr": 0,
+    "crows_pairs_french+A_reality_check_fr": 0,
+    "crows_pairs_french+A_stereotype_true_fr": 0,
+    "diabla+Is the error present? (same lang)": 0,
+    "diabla+Which is automatic?": 0,
+    "gsarti/flores_101_afr+null": 0,
+    "gsarti/flores_101_amh+null": 0,
+    "gsarti/flores_101_ara+null": 0,
+    "gsarti/flores_101_asm+null": 0,
+    "gsarti/flores_101_ast+null": 0,
+    "gsarti/flores_101_azj+null": 0,
+    "gsarti/flores_101_bel+null": 0,
+    "gsarti/flores_101_ben+null": 0,
+    "gsarti/flores_101_bos+null": 0,
+    "gsarti/flores_101_bul+null": 0,
+    "gsarti/flores_101_cat+null": 0,
+    "gsarti/flores_101_ceb+null": 0,
+    "gsarti/flores_101_ces+null": 0,
+    "gsarti/flores_101_ckb+null": 0,
+    "gsarti/flores_101_cym+null": 0,
+    "gsarti/flores_101_dan+null": 0,
+    "gsarti/flores_101_deu+null": 0,
+    "gsarti/flores_101_ell+null": 0,
+    "gsarti/flores_101_eng+null": 0,
+    "gsarti/flores_101_est+null": 0,
+    "gsarti/flores_101_fas+null": 0,
+    "gsarti/flores_101_fin+null": 0,
+    "gsarti/flores_101_fra+null": 0,
+    "gsarti/flores_101_ful+null": 0,
+    "gsarti/flores_101_gle+null": 0,
+    "gsarti/flores_101_glg+null": 0,
+    "gsarti/flores_101_guj+null": 0,
+    "gsarti/flores_101_hau+null": 0,
+    "gsarti/flores_101_heb+null": 0,
+    "gsarti/flores_101_hin+null": 0,
+    "gsarti/flores_101_hrv+null": 0,
+    "gsarti/flores_101_hun+null": 0,
+    "gsarti/flores_101_hye+null": 0,
+    "gsarti/flores_101_ibo+null": 0,
+    "gsarti/flores_101_ind+null": 0,
+    "gsarti/flores_101_isl+null": 0,
+    "gsarti/flores_101_ita+null": 0,
+    "gsarti/flores_101_jav+null": 0,
+    "gsarti/flores_101_jpn+null": 0,
+    "gsarti/flores_101_kam+null": 0,
+    "gsarti/flores_101_kan+null": 0,
+    "gsarti/flores_101_kat+null": 0,
+    "gsarti/flores_101_kaz+null": 0,
+    "gsarti/flores_101_kea+null": 0,
+    "gsarti/flores_101_kir+null": 0,
+    "gsarti/flores_101_kor+null": 0,
+    "gsarti/flores_101_lao+null": 0,
+    "gsarti/flores_101_lav+null": 0,
+    "gsarti/flores_101_lin+null": 0,
+    "gsarti/flores_101_lit+null": 0,
+    "gsarti/flores_101_ltz+null": 0,
+    "gsarti/flores_101_lug+null": 0,
+    "gsarti/flores_101_luo+null": 0,
+    "gsarti/flores_101_mal+null": 0,
+    "gsarti/flores_101_mar+null": 0,
+    "gsarti/flores_101_mkd+null": 0,
+    "gsarti/flores_101_mlt+null": 0,
+    "gsarti/flores_101_mon+null": 0,
+    "gsarti/flores_101_mri+null": 0,
+    "gsarti/flores_101_msa+null": 0,
+    "gsarti/flores_101_mya+null": 0,
+    "gsarti/flores_101_nld+null": 0,
+    "gsarti/flores_101_nob+null": 0,
+    "gsarti/flores_101_npi+null": 0,
+    "gsarti/flores_101_nso+null": 0,
+    "gsarti/flores_101_nya+null": 0,
+    "gsarti/flores_101_oci+null": 0,
+    "gsarti/flores_101_orm+null": 0,
+    "gsarti/flores_101_ory+null": 0,
+    "gsarti/flores_101_pan+null": 0,
+    "gsarti/flores_101_pol+null": 0,
+    "gsarti/flores_101_por+null": 0,
+    "gsarti/flores_101_pus+null": 0,
+    "gsarti/flores_101_ron+null": 0,
+    "gsarti/flores_101_rus+null": 0,
+    "gsarti/flores_101_slk+null": 0,
+    "gsarti/flores_101_slv+null": 0,
+    "gsarti/flores_101_sna+null": 0,
+    "gsarti/flores_101_snd+null": 0,
+    "gsarti/flores_101_som+null": 0,
+    "gsarti/flores_101_spa+null": 0,
+    "gsarti/flores_101_srp+null": 0,
+    "gsarti/flores_101_swe+null": 0,
+    "gsarti/flores_101_swh+null": 0,
+    "gsarti/flores_101_tam+null": 0,
+    "gsarti/flores_101_tel+null": 0,
+    "gsarti/flores_101_tgk+null": 0,
+    "gsarti/flores_101_tgl+null": 0,
+    "gsarti/flores_101_tha+null": 0,
+    "gsarti/flores_101_tur+null": 0,
+    "gsarti/flores_101_ukr+null": 0,
+    "gsarti/flores_101_umb+null": 0,
+    "gsarti/flores_101_urd+null": 0,
+    "gsarti/flores_101_uzb+null": 0,
+    "gsarti/flores_101_vie+null": 0,
+    "gsarti/flores_101_wol+null": 0,
+    "gsarti/flores_101_xho+null": 0,
+    "gsarti/flores_101_yor+null": 0,
+    "gsarti/flores_101_zho_simpl+null": 0,
+    "gsarti/flores_101_zho_trad+null": 0,
+    "gsarti/flores_101_zul+null": 0,
+    "headqa": 0,
+    "hellaswag": 0,
+    "lambada": 0,
+    "logiqa": 0,
+    "mathqa": 0,
+    "mc_taco": 0,
+    "mnli+GPT-3 style": 0,
+    "mnli+MNLI crowdsource": 0,
+    "mnli+always/sometimes/never": 0,
+    "mnli+based on the previous passage": 0,
+    "mnli+can we infer": 0,
+    "mnli+claim true/false/inconclusive": 0,
+    "mnli+consider always/sometimes/never": 0,
+    "mnli+does it follow that": 0,
+    "mnli+does this imply": 0,
+    "mnli+guaranteed true": 0,
+    "mnli+guaranteed/possible/impossible": 0,
+    "mnli+justified in saying": 0,
+    "mnli+must be true": 0,
+    "mnli+should assume": 0,
+    "mnli+take the following as truth": 0,
+    "mnli_mismatched+GPT-3 style": 0,
+    "mnli_mismatched+MNLI crowdsource": 0,
+    "mnli_mismatched+always/sometimes/never": 0,
+    "mnli_mismatched+based on the previous passage": 0,
+    "mnli_mismatched+can we infer": 0,
+    "mnli_mismatched+claim true/false/inconclusive": 0,
+    "mnli_mismatched+consider always/sometimes/never": 0,
+    "mnli_mismatched+does it follow that": 0,
+    "mnli_mismatched+does this imply": 0,
+    "mnli_mismatched+guaranteed true": 0,
+    "mnli_mismatched+guaranteed/possible/impossible": 0,
+    "mnli_mismatched+justified in saying": 0,
+    "mnli_mismatched+must be true": 0,
+    "mnli_mismatched+should assume": 0,
+    "mnli_mismatched+take the following as truth": 0,
+    "mrpc": 0,
+    "multirc": 1,
+    "multirc+I was going to say\u2026": 0,
+    "multirc+Would it be good to answer\u2026": 0,
+    "multirc+confirm": 0,
+    "multirc+correct": 0,
+    "multirc+decide_valid": 0,
+    "multirc+found_this_answer": 0,
+    "multirc+grading": 0,
+    "multirc+is the correct answer\u2026": 0,
+    "multirc+is\u2026 a correct answer?": 0,
+    "multirc+paragraph\u2026 question\u2026 is it\u2026 ?": 0,
+    "openbookqa": 0,
+    "piqa": 0,
+    "prost": 0,
+    "pubmedqa": 0,
+    "qnli": 0,
+    "qqp": 0,
+    "qqp+answer": 0,
+    "qqp+duplicate": 0,
+    "qqp+duplicate or not": 0,
+    "qqp+meaning": 0,
+    "qqp+quora": 0,
+    "qqp+same thing": 0,
+    "race": 1,
+    "rte": 0,
+    "rte+does the claim\u2026 follow the fact\u2026": 0,
+    "rte+entailment explained": 0,
+    "rte+imply": 0,
+    "rte+imply separated": 0,
+    "rte+mean": 0,
+    "sciq": 0,
+    "sst": 0,
+    "sst+following positive negative": 0,
+    "sst+happy or mad": 0,
+    "sst+positive negative after": 0,
+    "sst+review": 0,
+    "sst+said": 0,
+    "triviaqa": 0,
+    "webqs": 0,
+    "wic": 0,
+    "wic+GPT-3-prompt": 0,
+    "wic+GPT-3-prompt-with-label": 0,
+    "wic+affirmation_true_or_false": 0,
+    "wic+grammar_homework": 0,
+    "wic+polysemous": 0,
+    "wic+question-context": 0,
+    "wic+question-context-meaning": 0,
+    "wic+question-context-meaning-with-label": 0,
+    "wic+same_sense": 0,
+    "wic+similar-sense": 0,
+    "winogrande": 0,
+    "wnli": 1,
+    "wnli+confident": 1,
+    "wnli+entailment explained": 1,
+    "wnli+imply": 1,
+    "wnli+justified": 1,
+    "wnli+mean": 1,
+    "wsc": 0,
+    "wsc+GPT-3 Style": 0,
+    "wsc+I think they mean": 0,
+    "wsc+Who or what is/are": 0,
+    "wsc+by p they mean": 0,
+    "wsc+does p stand for": 0,
+    "wsc+does the pronoun refer to": 0,
+    "wsc+in other words": 0,
+    "wsc+p is/are r": 0,
+    "wsc+replaced with": 0,
+    "wsc+the pronoun refers to": 0
+  }
+}
