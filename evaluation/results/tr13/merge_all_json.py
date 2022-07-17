@@ -50,14 +50,30 @@ def main():
         with open(json_file, "r") as fi:
             data = json.load(fi)
 
-        key = f"{data['dataset_name']}_{data['dataset_config_name']}"
-        if key in results:
-            assert data["template_name"] not in results
-            results[key][data["template_name"]] = data
+        if str(json_file.name).startswith("slim"):
+            print(f"Parsing {json_file} as bigscience/lm-eval-harness file.")
+            for dic in data["results"]:
+                key = f'{dic["task_name"]}+{dic["prompt_name"]}'
+                results.setdefault(key, {})
+                results[key] = {
+                    **results[key], 
+                    **{subk: subv for subk, subv in dic.items() if type(subv) in [int, float]}
+                }
+                results["prompt_name"] = dic["prompt_name"]
+                results["task_name"] = dic["task_name"]
+        elif str(json_file.name).startswith("agg"):
+            print(f"Skipping {json_file} from bigscience/lm-eval-harness.")
+            continue
         else:
-            results[key] = {
-                data["template_name"]: data
-            }
+            print(f"Parsing {json_file} as bigscience/t-zero file.")
+            key = f"{data['dataset_name']}_{data['dataset_config_name']}"
+            if key in results:
+                assert data["template_name"] not in results
+                results[key][data["template_name"]] = data
+            else:
+                results[key] = {
+                    data["template_name"]: data
+                }
 
     # sort
     sorted_results = sort_dict(results)
