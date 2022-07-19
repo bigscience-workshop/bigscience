@@ -52,6 +52,9 @@ find . -type f -name "*out" -exec perl -lne 'm|elapsed time per iteration .ms.: 
 
 The exact formula is in Equation 3 of Section 5.1 of the [Efficient Large-Scale Language Model Training on GPU Clusters Using Megatron-LM](https://arxiv.org/abs/2104.04473) paper. You can see the code [here](https://github.com/bigscience-workshop/Megatron-DeepSpeed/pull/251).
 
+For Inference only it'd be:
+
+`24Bsh^2 + 4𝐵s^2h` floating point operations per layer
 
 
 ## Model sizing
@@ -63,6 +66,11 @@ NHIDDEN=4096; NLAYERS=36; SEQ_LEN=512; VOCAB_SIZE=50257; python -c "h=$NHIDDEN; 
 ```
 
 For full details see [Calculate model size](../experiments/gpt2-utils.md).
+
+The BLOOM architecture hasn't used the normal positional embedding, so the formula is slightly different and it no longer depends on SEQLEN, and we have added an additional layer norm after the word embedding so `s/s*h + 2*h/4*h` in the formula above:
+```
+NHIDDEN=14336; NLAYERS=70; NHEADS=112; VOCAB_SIZE=250000; python -c "h=$NHIDDEN; l=$NLAYERS; n=$NHEADS;  v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + 4*h) / 10**9 :.0f}B, hidden/layers ratio: {int(h/l)}, hidden/heads ratio: {int(h/n)}')"
+```
 
 ### Width-depth tradeoff
 
@@ -120,5 +128,5 @@ The number of steps is rampup_samples / rampup_batch_size + (n_samples - rampup_
 > - --rampup-batch-size 192 32 9_765_625 which gives:
 >    - start_batch_size = 192
 >    - rampup_samples = 9,765,625
-> 
+>
 > so n_steps = 9,765,625 / 0.5 / (512 + 192) + (150,000,000,000 / 2048 - 9,765,625) / 512 = 151721

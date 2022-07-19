@@ -146,7 +146,7 @@ and each gpu has about the same amount of memory used. Without this rebalancing 
 
 Sanity check:
 ```
-$ NHIDDEN=14336; NLAYERS=70; NHEADS=112; SEQ_LEN=2048; VOCAB_SIZE=250000; python -c "h=$NHIDDEN; l=$NLAYERS; n=$NHEADS; s=$SEQ_LEN; v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + s*h + 2*h) / 10**9 :.0f}B, hidden/layers ratio: {int(h/l)}, hidden/heads ratio: {int(h/n)}')"
+$ NHIDDEN=14336; NLAYERS=70; NHEADS=112; VOCAB_SIZE=250000; python -c "h=$NHIDDEN; l=$NLAYERS; n=$NHEADS;  v=$VOCAB_SIZE; print(f'Model size: {(l*(12*h**2 + 13*h) + v*h + 4*h) / 10**9 :.0f}B, hidden/layers ratio: {int(h/l)}, hidden/heads ratio: {int(h/n)}')"
 Model size: 176B, hidden/layers ratio: 204, hidden/heads ratio: 128
 ```
 
