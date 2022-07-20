@@ -33,7 +33,11 @@ csv_file = results_file.replace("json", "csv")
 print(f"Converting {results_file} to {csv_file}")
 
 with io.open(results_file, 'r', encoding='utf-8') as f:
-    results = json.load(f)
+    raw_results = json.load(f)
+
+results = {}
+for ds_name, v in sorted(raw_results.items()):
+    results[ds_name.split("/")[-1]] = v
 
 with io.open(csv_file, 'w', encoding='utf-8') as f:
 
