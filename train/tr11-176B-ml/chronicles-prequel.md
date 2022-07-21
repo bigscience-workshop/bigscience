@@ -1036,7 +1036,7 @@ Topology is TP=8, PP=10, DP=4
 
 It has been very difficult to work on diagnosing this issue since every time I run the hanging setup I would lose a few nodes and since I'm 10h behind JeanZay, nobody is around there to reboot the nodes.
 
-So first of all it appears that `CUDA_LAUNCH_BLOCKING=1` removes the hanging issue and I did several performance checks and it surprising has no impact on this framework at this scale. Normally, it should make things much slower as it makes CUDA ops synchronous.
+So first of all it appears that `CUDA_LAUNCH_BLOCKING=1` removes the hanging issue and I did several performance checks and it surprisingly has no impact on this framework at this scale. Normally, it should make things much slower as it makes CUDA ops synchronous.
 
 ### py-spying all processes
 
