@@ -982,8 +982,8 @@ One more data point - Deepspeed ZeRO shards data over all gpus - so the more GPU
 The next day:
 
 Most of the nodes have come back this morning so continuing the dimensional growing experiments.
-To remind, growing on the layer dimension and keeping hidden at 1024*14 worked until 40 layers were reached where it was hanging. So it couldn't handle 100B model in this dimension.
-Now I'm keeping the layers dimension frozen to 80 and growing the nhidden dimension, starting from 1024*4 - proving that it works and then incrementing the size until it hangs:
+To remind, growing on the layer dimension and keeping hidden at `1024*14` worked until 40 layers were reached where it was hanging. So it couldn't handle 100B model in this dimension.
+Now I'm keeping the layers dimension frozen to 80 and growing the nhidden dimension, starting from `1024*4` - proving that it works and then incrementing the size until it hangs:
 
 - `1024*10` works (100B model)
 - `1024*12` hangs (145B model)

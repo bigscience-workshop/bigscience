@@ -33,6 +33,7 @@ gsutil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/g
 gsutil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step70000 gs://bigscience-backups/tr11-176B-ml/checkpoints/global_step70000
 gsutil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step80000 gs://bigscience-backups/tr11-176B-ml/checkpoints/global_step80000
 gsutil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step90000 gs://bigscience-backups/tr11-176B-ml/checkpoints/global_step90000
+gsutil rsync -r $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step95000 gs://bigscience-backups/tr11-176B-ml/checkpoints/global_step95000
 
 # in-progress
 
