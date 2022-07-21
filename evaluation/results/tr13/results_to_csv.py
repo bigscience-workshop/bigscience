@@ -48,3 +48,5 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
         for prompt_name, res in sorted(v.items()):
             for metric, value in sorted(res["evaluation"].items()):
                 writer.writerow([ds_name, prompt_name, metric, value])
+            
+            writer.writerow([ds_name, "median", metric, value])
