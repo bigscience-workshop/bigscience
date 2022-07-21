@@ -1,9 +1,11 @@
 from functools import partial
 import multiprocessing
+import os
 
 import datasets
 from datasets import load_dataset
-
+# pip install -q iso-639
+from iso639 import languages
 from promptsource.templates import DatasetTemplates
 
 
@@ -180,20 +182,86 @@ TRAIN_DATASETS = [
     ("openai_humaneval", None),
 ]
 
-TRAIN_DATASETS = [
-    ('GEM/wiki_lingua', 'en'),
-    ('xquad', 'vi'),
-    ('xquad', 'en'),
-    ('xquad', 'es'),
-    ('xquad', 'hi'),
-    ('paws-x', 'en'),
-    ('paws-x', 'es'),
-]
+# Copied from metadata
+BLOOM_LANGS = """
+- ak
+- ar
+- as
+- bm
+- bn
+- ca
+- code
+- en
+- es
+- eu
+- fon
+- fr
+- gu
+- hi
+- id
+- ig
+- ki
+- kn
+- lg
+- ln
+- ml
+- mr
+- ne
+- nso
+- ny
+- or
+- pa
+- pt
+- rn
+- rw
+- sn
+- st
+- sw
+- ta
+- te
+- tn
+- ts
+- tum
+- tw
+- ur
+- vi
+- wo
+- xh
+- yo
+- zh
+- zu
+"""
 
 DS_TO_LANG = {
     'Muennighoff/mbpp': 'code',
     'openai_humaneval': 'code',
+    "cmn": "zh", # == zho
 }
+
+bloom_lang_codes_iso3 = []
+bloom_lang_codes_iso2 = []
+for lang in BLOOM_LANGS.split("\n")[1:-1]:
+    iso2 = lang.replace("- ", "")
+    try:
+        name = languages.get(alpha2=lang)
+    except KeyError:
+        print(f"Could not find code {lang}. Skipping...")
+        continue
+    iso3 = name.part3
+
+    DS_TO_LANG[iso2] = iso2
+    DS_TO_LANG[iso3] = iso2
+
+
+TRAIN_DATASETS = [
+    ('GEM/wiki_lingua', 'en'),
+    ('paws-x', 'es'),
+    ('tatoeba_mt', 'fra-run'),
+    ('xquad.en', None),
+    ('Muennighoff/mbpp', 'sanitized'),
+]
+
+
 
 # Copied from promptsource.utils
 def removeHyphen(example):
@@ -246,6 +314,11 @@ def get_dataset_splits(dataset_name, subset_name=None):
 
 def write_to_jsonl_hub(ds, split="train"):
     ds_name, subset_name = ds
+    
+    lang_dir = DS_TO_LANG.get(ds_name, None)
+    if lang_dir is None:
+        lang_dir = DS_TO_LANG.get(subset_name, "eng")
+    os.makedir(lang_dir, exist_ok=True)
 
     ds = load_dataset(ds_name, subset_name)
 
@@ -284,9 +357,12 @@ def write_to_jsonl_hub(ds, split="train"):
     # TODO: Add capping? (cap = MAX_EXAMPLES_PER_DATASET // num_templates)
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
-            # TODO: Add language information
             # TODO: Count tokens / language
-            out_path = f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_")
+            if ds_name == "tatoeba_mt":
+                # E.g. translate-this-ara-eng, where eng is the target
+                lang_dir = t_name.split("-")[-1]
+
+            out_path = os.path.join(lang_dir, f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_"))
             apply_template(dataset=ds[split], template=prompts[t_name]).to_json(out_path)
 
 for ds in TRAIN_DATASETS:
