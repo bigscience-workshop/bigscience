@@ -12,7 +12,8 @@
 set -x -e
 
 source $six_ALL_CCFRWORK/start-prod
+conda activate thomas_t_zero_evaluation
 
 # use SCRATCH for building as it's much faster
-cd $six_ALL_CCFRSCRATCH/datasets/bigscience___xp3/
-python $six_ALL_CCFRSCRATCH/datasets/bigscience___xp3/prepare_p3.py
+cd /gpfsscratch/rech/six/commun/experiments/muennighoff/xp3
+python /gpfsscratch/rech/six/commun/experiments/muennighoff/xp3/prepare_xp3.py

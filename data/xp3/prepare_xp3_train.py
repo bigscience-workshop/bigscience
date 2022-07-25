@@ -17,7 +17,7 @@ DS_TO_ENG_PROMPT = {
     'GEM/wiki_lingua': 'en',
     'xnli': 'en',
     "paws-x": "en",
-    "xquad": "en",
+    "xquad": "xquad.en",
     "khalidalt/tydiqa-primary": "english",
     "khalidalt/tydiqa-goldp": "english",
 }
@@ -37,8 +37,51 @@ EVAL_DATASETS_L1 = [
     ('winogrande','winogrande_xl'),
     ('super_glue','cb'),
     ('super_glue','rte'),
-    ('anli',None),  
+    ('anli',None),
     ('story_cloze', '2016'),
+    ('mlqa', 'mlqa.ar.ar'),
+    ('mlqa', 'mlqa.vi.vi'),
+    ('mlqa', 'mlqa.zh.zh'),
+    ('mlqa', 'mlqa.es.es'),
+    ('mlqa', 'mlqa.en.en'),
+    ('mlqa', 'mlqa.hi.hi'),
+
+    ('mlqa', 'mlqa.ar.vi'),
+    ('mlqa', 'mlqa.ar.zh'),
+    ('mlqa', 'mlqa.ar.es'),
+    ('mlqa', 'mlqa.ar.en'),
+    ('mlqa', 'mlqa.ar.hi'),
+
+    ('mlqa', 'mlqa.vi.ar'),
+    ('mlqa', 'mlqa.vi.zh'),
+    ('mlqa', 'mlqa.vi.es'),
+    ('mlqa', 'mlqa.vi.en'),
+    ('mlqa', 'mlqa.vi.hi'),
+
+    ('mlqa', 'mlqa.zh.ar'),
+    ('mlqa', 'mlqa.zh.vi'),
+    ('mlqa', 'mlqa.zh.es'),
+    ('mlqa', 'mlqa.zh.en'),
+    ('mlqa', 'mlqa.zh.hi'),
+
+    ('mlqa', 'mlqa.es.ar'),
+    ('mlqa', 'mlqa.es.vi'),
+    ('mlqa', 'mlqa.es.zh'),
+    ('mlqa', 'mlqa.es.en'),
+    ('mlqa', 'mlqa.es.hi'),
+
+    ('mlqa', 'mlqa.en.ar'),
+    ('mlqa', 'mlqa.es.vi'),
+    ('mlqa', 'mlqa.es.zh'),
+    ('mlqa', 'mlqa.es.es'),
+    ('mlqa', 'mlqa.es.hi'),
+
+    ('mlqa', 'mlqa.hi.ar'),
+    ('mlqa', 'mlqa.hi.vi'),
+    ('mlqa', 'mlqa.hi.zh'),
+    ('mlqa', 'mlqa.hi.es'),
+    ('mlqa', 'mlqa.hi.en'),
+
     ('Muennighoff/xstory_cloze', 'ar'),
     ('Muennighoff/xstory_cloze', 'es'),
     ('Muennighoff/xstory_cloze', 'eu'),
@@ -61,23 +104,31 @@ EVAL_DATASETS_L1 = [
     ('xcopa','vi'),
     ('xcopa','zh'),
     ("xnli", "ar"),
-    ("xnli", "de"),
-    ("xnli", "el"),
     ("xnli", "en"),
     ("xnli", "es"),
     ("xnli", "fr"),
     ("xnli", "hi"),
-    ("xnli", "ru"),
     ("xnli", "sw"),
-    ("xnli", "th"),
-    ("xnli", "tr"),
     ("xnli", "ur"),
     ("xnli", "vi"),
     ("xnli", "zh"),
 ]
 
 EVAL_DATASETS_L2 = [
+    ('Muennighoff/xwinograd','jp'),
+    ('Muennighoff/xwinograd','ru'),
+    ('xcopa','et'),
+    ('xcopa','ht'),
+    ('xcopa','it'),
+    ('xcopa','qu'),
+    ('xcopa','th'),
+    ('xcopa','tr'),
     ("xnli", "bg"),
+    ("xnli", "de"),
+    ("xnli", "el"),
+    ("xnli", "ru"),
+    ("xnli", "th"),
+    ("xnli", "tr"),
 ]
 
 TRAIN_DATASETS = [
@@ -141,59 +192,59 @@ TRAIN_DATASETS = [
     ('GEM/wiki_lingua', 'pt'),
     ('GEM/wiki_lingua', 'vi'),
     ('GEM/wiki_lingua', 'zh'),
-    ('tatoeba_mt', 'ara-eng'),
-    ('tatoeba_mt', 'ara-fra'),
-    ('tatoeba_mt', 'ara-spa'),
-    ('tatoeba_mt', 'ben-eng'),
-    ('tatoeba_mt', 'cat-eng'),
-    ('tatoeba_mt', 'cat-fra'),
-    ('tatoeba_mt', 'cat-por'),
-    ('tatoeba_mt', 'cat-spa'),
-    ('tatoeba_mt', 'eng-cmn_Hans'),
-    ('tatoeba_mt', 'eng-cmn_Hant'),
-    ('tatoeba_mt', 'eng-eus'),
-    ('tatoeba_mt', 'eng-fra'),
-    ('tatoeba_mt', 'eng-hin'),
-    ('tatoeba_mt', 'eng-ind'),
-    ('tatoeba_mt', 'eng-mal'),
-    ('tatoeba_mt', 'eng-mar'),
-    ('tatoeba_mt', 'eng-por'),
-    ('tatoeba_mt', 'eng-run'),
-    ('tatoeba_mt', 'eng-spa'),
-    ('tatoeba_mt', 'eng-swa'),
-    ('tatoeba_mt', 'eng-tam'),
-    ('tatoeba_mt', 'eng-tel'),
-    ('tatoeba_mt', 'eng-urd'),
-    ('tatoeba_mt', 'eng-vie'),
-    ('tatoeba_mt', 'eng-zho'),
-    ('tatoeba_mt', 'eus-spa'),
-    ('tatoeba_mt', 'fra-cmn_Hans'),
-    ('tatoeba_mt', 'fra-cmn_Hant'),
-    ('tatoeba_mt', 'fra-ind'),
-    ('tatoeba_mt', 'fra-por'),
-    ('tatoeba_mt', 'fra-run'),
-    ('tatoeba_mt', 'fra-spa'),
-    ('tatoeba_mt', 'fra-vie'),
-    ('tatoeba_mt', 'fra-zho'),
-    ('tatoeba_mt', 'hin-urd'),
-    ('tatoeba_mt', 'hin-zho'),
-    ('tatoeba_mt', 'por-cmn_Hans'),
-    ('tatoeba_mt', 'por-cmn_Hant'),
-    ('tatoeba_mt', 'por-spa'),
-    ('tatoeba_mt', 'por-zho'),
-    ('tatoeba_mt', 'run-spa'),
-    ('tatoeba_mt', 'spa-cmn_Hans'),
-    ('tatoeba_mt', 'spa-cmn_Hant'),
-    ('tatoeba_mt', 'spa-vie'),
-    ('tatoeba_mt', 'spa-zho'),
-    ('tatoeba_mt', 'vie-cmn_Hans'),
-    ('tatoeba_mt', 'vie-zho'),
-    ('xquad.ar', None),
-    ('xquad.zh', None),
-    ('xquad.vi', None),
-    ('xquad.en', None),
-    ('xquad.es', None),
-    ('xquad.hi', None),
+    ('Helsinki-NLP/tatoeba_mt', 'ara-eng'),
+    ('Helsinki-NLP/tatoeba_mt', 'ara-fra'),
+    ('Helsinki-NLP/tatoeba_mt', 'ara-spa'),
+    ('Helsinki-NLP/tatoeba_mt', 'ben-eng'),
+    ('Helsinki-NLP/tatoeba_mt', 'cat-eng'),
+    ('Helsinki-NLP/tatoeba_mt', 'cat-fra'),
+    ('Helsinki-NLP/tatoeba_mt', 'cat-por'),
+    ('Helsinki-NLP/tatoeba_mt', 'cat-spa'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-cmn_Hans'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-cmn_Hant'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-eus'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-fra'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-hin'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-ind'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-mal'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-mar'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-por'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-run'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-spa'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-swa'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-tam'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-tel'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-urd'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-vie'),
+    ('Helsinki-NLP/tatoeba_mt', 'eng-zho'),
+    ('Helsinki-NLP/tatoeba_mt', 'eus-spa'),
+    ('Helsinki-NLP/tatoeba_mt', 'fra-cmn_Hans'),
+    ('Helsinki-NLP/tatoeba_mt', 'fra-cmn_Hant'),
+    ('Helsinki-NLP/tatoeba_mt', 'fra-ind'),
+    ('Helsinki-NLP/tatoeba_mt', 'fra-por'),
+    ('Helsinki-NLP/tatoeba_mt', 'fra-run'),
+    ('Helsinki-NLP/tatoeba_mt', 'fra-spa'),
+    ('Helsinki-NLP/tatoeba_mt', 'fra-vie'),
+    ('Helsinki-NLP/tatoeba_mt', 'fra-zho'),
+    ('Helsinki-NLP/tatoeba_mt', 'hin-urd'),
+    ('Helsinki-NLP/tatoeba_mt', 'hin-zho'),
+    ('Helsinki-NLP/tatoeba_mt', 'por-cmn_Hans'),
+    ('Helsinki-NLP/tatoeba_mt', 'por-cmn_Hant'),
+    ('Helsinki-NLP/tatoeba_mt', 'por-spa'),
+    ('Helsinki-NLP/tatoeba_mt', 'por-zho'),
+    ('Helsinki-NLP/tatoeba_mt', 'run-spa'),
+    ('Helsinki-NLP/tatoeba_mt', 'spa-cmn_Hans'),
+    ('Helsinki-NLP/tatoeba_mt', 'spa-cmn_Hant'),
+    ('Helsinki-NLP/tatoeba_mt', 'spa-vie'),
+    ('Helsinki-NLP/tatoeba_mt', 'spa-zho'),
+    ('Helsinki-NLP/tatoeba_mt', 'vie-cmn_Hans'),
+    ('Helsinki-NLP/tatoeba_mt', 'vie-zho'),
+    ('xquad', 'xquad.ar'),
+    ('xquad', 'xquad.zh'),
+    ('xquad', 'xquad.vi'),
+    ('xquad', 'xquad.en'),
+    ('xquad', 'xquad.es'),
+    ('xquad', 'xquad.hi'),
     ('paws-x', 'en'),
     ('paws-x', 'es'),
     ('paws-x', 'fr'),
@@ -212,6 +263,8 @@ TRAIN_DATASETS = [
     ('khalidalt/tydiqa-goldp', 'telugu'),
     ('Muennighoff/mbpp', 'sanitized'),
     ("openai_humaneval", None),
+    ("great_code", None),
+    ("neural_code_search", "evaluation_dataset"),
     # flores200
 ]
 
@@ -475,6 +528,8 @@ BLOOM_LANGS = """
 DS_TO_LANG = {
     'Muennighoff/mbpp': 'code',
     'openai_humaneval': 'code',
+    "great_code": "code",
+    "neural_code_search": "code",
     "cmn": "zh", # == zho
     "npi": "ne", # == npe
     "ory": "or", # == ori
@@ -504,7 +559,8 @@ for (l1_name, l1_code) in FLORES_LANGS:
             continue
         elif l1_name == l2_name:
             continue
-        TRAIN_DATASETS.append(("facebook/flores", f"{l1_code}-{l2_code}"))
+        #TODO TMP
+        #TRAIN_DATASETS.append(("facebook/flores", f"{l1_code}-{l2_code}"))
 
 
 # Copied from promptsource.utils
@@ -537,7 +593,9 @@ def apply_template(dataset, template):
         # We will filter these out later
         else:
             # inputs is a str by default & targets a list
-            ex = {"inputs": "", "targets": []}
+            # Note that the signature changed in promptsource 
+            # In 0.1.0 template.apply returned two strings; In >0.3.0 it retuns a str & list
+            ex = {"inputs": "", "targets": [""]}
 
         if answer_choices:
             ex["answer_choices"] = answer_choices
@@ -545,7 +603,7 @@ def apply_template(dataset, template):
         return ex
 
     def filter_fn(ex):
-        return len(ex["inputs"]) > 0 and len(ex["targets"]) > 0
+        return len(ex["inputs"]) > 0 and len(ex["targets"][0]) > 0
 
     original_columns = dataset.column_names
     dataset = dataset.map(map_fn).filter(filter_fn)
@@ -569,7 +627,11 @@ def write_to_jsonl_hub(ds, split="train"):
 
     os.makedirs(lang_dir, exist_ok=True)
 
-    ds = load_dataset(ds_name, subset_name)
+    if ds_name == "Helsinki-NLP/tatoeba_mt":
+        # Fixes a bug when loading a ds where only test split exists
+        ds = datasets.load_dataset(ds_name, subset_name, ignore_verifications=True, revision="842eb26634a9775f504bb2f3f43cd4cc5f9314d8")#, download_config=datasets.DownloadConfig(num_proc=1)
+    else:
+        ds = load_dataset(ds_name, subset_name)#, download_config=datasets.DownloadConfig(num_proc=1))
 
     dataset_splits = list(ds.keys())
 
@@ -600,38 +662,59 @@ def write_to_jsonl_hub(ds, split="train"):
     #        return
     #ds = load_dataset(ds_name, subset_name)
 
-    subset_name_prompt = subset_name
-    if USE_ENGLISH_PROMPTS and ds_name in DS_TO_ENG_PROMPT:
-        subset_name_prompt = DS_TO_ENG_PROMPT[ds_name]
+    if subset_name is None:
+        prompt_dataset_name = ds_name
+    else:
+        subset_name_prompt = subset_name
+        if USE_ENGLISH_PROMPTS and ds_name in DS_TO_ENG_PROMPT:
+            subset_name_prompt = DS_TO_ENG_PROMPT[ds_name]
+        prompt_dataset_name = f"{ds_name}/{subset_name_prompt}"
 
-    prompts = DatasetTemplates(f"{ds_name}/{subset_name_prompt}")
+    prompts = DatasetTemplates(prompt_dataset_name)
+
     # TODO: Add capping? (cap = MAX_EXAMPLES_PER_DATASET // num_templates)
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
             # TODO: Count tokens / language
-            if ds_name == "tatoeba_mt":
+            if ds_name == "Helsinki-NLP/tatoeba_mt":
                 # E.g. translate-this-ara-eng, where eng is the target
-                lang_dir = t_name.split("-")[-1]
+                backcompat_path = os.path.join(
+                    lang_dir, 
+                    f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_").replace(" ", "_")
+                )
+                lang_dir = DS_TO_LANG.get(t_name.split("-")[-1], "en")
 
             out_path = os.path.join(
                 lang_dir, 
                 f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_").replace(" ", "_")
             )
-            if os.path.exists(out_path) and ds_name not in ['Muennighoff/mbpp']:
+            if os.path.exists(out_path):
                 print("SKIPPING AS EXISTS:", out_path)
                 continue
+            elif ds_name == "Helsinki-NLP/tatoeba_mt" and os.path.exists(backcompat_path):
+                print("MOVING AS EXISTS:", out_path)
+                os.rename(backcompat_path, out_path)
+                continue
+            
+            assert len(ds[split]) > 0, f"Got empty: {ds_name}"
+
+            try:
+                out_ds = apply_template(dataset=ds[split], template=prompts[t_name])
+            except Exception as e:
+                print(f"Skipping template due to {e}. DS: {ds_name} Template: {prompts[t_name]}")
+                continue
             # Do not force ascii to allow chars like é
-            apply_template(dataset=ds[split], template=prompts[t_name]).to_json(out_path,  orient="records", lines=True, force_ascii=False)
+            if len(out_ds) > 0:
+                out_ds.to_json(out_path,  orient="records", lines=True, force_ascii=False)
 
 
 # Testing:
-#TRAIN_DATASETS = [
-#    ("facebook/flores", "yor_Latn-zul_Latn"),
-#]
-#for ds in TRAIN_DATASETS:
-#    write_to_jsonl_hub(ds)
+TRAIN_DATASETS = [
+    ("great_code", None),
+]
+for ds in TRAIN_DATASETS:
+    write_to_jsonl_hub(ds)
 
-
-with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
-    pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
+#with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
+#    pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
 #    pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
