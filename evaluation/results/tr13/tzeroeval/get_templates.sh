@@ -11,6 +11,9 @@ winogrande,winogrande_xl,None
 super_glue,wic,None
 hellaswag,None,None
 story_cloze,2016,None
+Muennighoff/xstory_cloze,2016,None
+Muennighoff/xstory_cloze,2016,None
+Muennighoff/xstory_cloze,2016,None
 xnli,ar,en
 xnli,bg,en
 xnli,de,en

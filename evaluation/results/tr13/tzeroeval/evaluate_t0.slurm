@@ -20,9 +20,7 @@ conda activate thomas_t_zero_evaluation
 #CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6B3-ml-t0-lmtoks168B-t0toks0
 CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks168b-t0toks13b-prefix
 
-
-#WORKDIR=$WORK/code/big_science
-WORKDIR=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/t0eval/bigscience
+WORKDIR=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0
 
 pushd $WORKDIR
 
