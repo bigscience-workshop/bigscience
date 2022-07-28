@@ -17,6 +17,7 @@ DS_TO_ENG_PROMPT = {
     'GEM/wiki_lingua': 'en',
     'xnli': 'en',
     "paws-x": "en",
+    "mlqa": "mlqa.en.en",
     "xquad": "xquad.en",
     "khalidalt/tydiqa-primary": "english",
     "khalidalt/tydiqa-goldp": "english",
@@ -39,49 +40,6 @@ EVAL_DATASETS_L1 = [
     ('super_glue','rte'),
     ('anli',None),
     ('story_cloze', '2016'),
-    ('mlqa', 'mlqa.ar.ar'),
-    ('mlqa', 'mlqa.vi.vi'),
-    ('mlqa', 'mlqa.zh.zh'),
-    ('mlqa', 'mlqa.es.es'),
-    ('mlqa', 'mlqa.en.en'),
-    ('mlqa', 'mlqa.hi.hi'),
-
-    ('mlqa', 'mlqa.ar.vi'),
-    ('mlqa', 'mlqa.ar.zh'),
-    ('mlqa', 'mlqa.ar.es'),
-    ('mlqa', 'mlqa.ar.en'),
-    ('mlqa', 'mlqa.ar.hi'),
-
-    ('mlqa', 'mlqa.vi.ar'),
-    ('mlqa', 'mlqa.vi.zh'),
-    ('mlqa', 'mlqa.vi.es'),
-    ('mlqa', 'mlqa.vi.en'),
-    ('mlqa', 'mlqa.vi.hi'),
-
-    ('mlqa', 'mlqa.zh.ar'),
-    ('mlqa', 'mlqa.zh.vi'),
-    ('mlqa', 'mlqa.zh.es'),
-    ('mlqa', 'mlqa.zh.en'),
-    ('mlqa', 'mlqa.zh.hi'),
-
-    ('mlqa', 'mlqa.es.ar'),
-    ('mlqa', 'mlqa.es.vi'),
-    ('mlqa', 'mlqa.es.zh'),
-    ('mlqa', 'mlqa.es.en'),
-    ('mlqa', 'mlqa.es.hi'),
-
-    ('mlqa', 'mlqa.en.ar'),
-    ('mlqa', 'mlqa.es.vi'),
-    ('mlqa', 'mlqa.es.zh'),
-    ('mlqa', 'mlqa.es.es'),
-    ('mlqa', 'mlqa.es.hi'),
-
-    ('mlqa', 'mlqa.hi.ar'),
-    ('mlqa', 'mlqa.hi.vi'),
-    ('mlqa', 'mlqa.hi.zh'),
-    ('mlqa', 'mlqa.hi.es'),
-    ('mlqa', 'mlqa.hi.en'),
-
     ('Muennighoff/xstory_cloze', 'ar'),
     ('Muennighoff/xstory_cloze', 'es'),
     ('Muennighoff/xstory_cloze', 'eu'),
@@ -132,6 +90,7 @@ EVAL_DATASETS_L2 = [
 ]
 
 TRAIN_DATASETS = [
+    # English-only
     ('glue','mrpc'),
     ('glue','qqp'),
     ('paws','labeled_final'),
@@ -245,6 +204,49 @@ TRAIN_DATASETS = [
     ('xquad', 'xquad.en'),
     ('xquad', 'xquad.es'),
     ('xquad', 'xquad.hi'),
+    ('mlqa', 'mlqa.ar.ar'),
+    ('mlqa', 'mlqa.vi.vi'),
+    ('mlqa', 'mlqa.zh.zh'),
+    ('mlqa', 'mlqa.es.es'),
+    ('mlqa', 'mlqa.en.en'),
+    ('mlqa', 'mlqa.hi.hi'),
+
+    ('mlqa', 'mlqa.ar.vi'),
+    ('mlqa', 'mlqa.ar.zh'),
+    ('mlqa', 'mlqa.ar.es'),
+    ('mlqa', 'mlqa.ar.en'),
+    ('mlqa', 'mlqa.ar.hi'),
+
+    ('mlqa', 'mlqa.vi.ar'),
+    ('mlqa', 'mlqa.vi.zh'),
+    ('mlqa', 'mlqa.vi.es'),
+    ('mlqa', 'mlqa.vi.en'),
+    ('mlqa', 'mlqa.vi.hi'),
+
+    ('mlqa', 'mlqa.zh.ar'),
+    ('mlqa', 'mlqa.zh.vi'),
+    ('mlqa', 'mlqa.zh.es'),
+    ('mlqa', 'mlqa.zh.en'),
+    ('mlqa', 'mlqa.zh.hi'),
+
+    ('mlqa', 'mlqa.es.ar'),
+    ('mlqa', 'mlqa.es.vi'),
+    ('mlqa', 'mlqa.es.zh'),
+    ('mlqa', 'mlqa.es.en'),
+    ('mlqa', 'mlqa.es.hi'),
+
+    ('mlqa', 'mlqa.en.ar'),
+    ('mlqa', 'mlqa.es.vi'),
+    ('mlqa', 'mlqa.es.zh'),
+    ('mlqa', 'mlqa.es.es'),
+    ('mlqa', 'mlqa.es.hi'),
+
+    ('mlqa', 'mlqa.hi.ar'),
+    ('mlqa', 'mlqa.hi.vi'),
+    ('mlqa', 'mlqa.hi.zh'),
+    ('mlqa', 'mlqa.hi.es'),
+    ('mlqa', 'mlqa.hi.en'),
+
     ('paws-x', 'en'),
     ('paws-x', 'es'),
     ('paws-x', 'fr'),
@@ -536,6 +538,17 @@ DS_TO_LANG = {
     "swh": "sw", # == swa
 }
 
+# Add GEM multilingual
+TRAIN_DATASETS = [] # TODO TMP
+WIKILINGUA_LANGS = ["ar", "en", "es", "fr", "hi", "id", "pt", "vi", "zh"]
+for l1_code in WIKILINGUA_LANGS:
+    for l2_code in WIKILINGUA_LANGS:
+        if l1_code == l2_code:
+            continue
+        TRAIN_DATASETS.append(("GEM/wiki_lingua", f"{l1_code}_{l2_code}"))
+        
+
+
 bloom_lang_codes_iso3 = []
 bloom_lang_codes_iso2 = []
 for lang in BLOOM_LANGS.split("\n")[1:-1]:
@@ -559,7 +572,7 @@ for (l1_name, l1_code) in FLORES_LANGS:
             continue
         elif l1_name == l2_name:
             continue
-        #TODO TMP
+        #TODO: TMP
         #TRAIN_DATASETS.append(("facebook/flores", f"{l1_code}-{l2_code}"))
 
 
@@ -616,15 +629,32 @@ def get_dataset_splits(dataset_name, subset_name=None):
     subset_name = subset_name or list(info.keys())[0]
     return info[subset_name].splits
 
+def add_language_name_wikilingua(example):
+    example["source_language_name"] = languages.get(alpha2=example["source_language"]).name
+    example["target_language_name"] = languages.get(alpha2=example["target_language"]).name
+    return example
+
+def filter_l1_l2_wikilingua(example, l1, l2):
+    return example["source_language"] == l1 and example["target_language"] == l2
+
+
 def write_to_jsonl_hub(ds, split="train"):
     ds_name, subset_name = ds
+
+    is_wikilingua_cross_lingual = (ds_name == "GEM/wiki_lingua") and ("_") in subset_name
     
     lang_dir = DS_TO_LANG.get(ds_name, None)
     if lang_dir is None:
         lang_dir = DS_TO_LANG.get(subset_name, "en")
     if ds_name == "facebook/flores":
-         lang_dir = DS_TO_LANG.get(subset_name.split("-")[-1].split("_")[0])
-
+        lang_dir = DS_TO_LANG.get(subset_name.split("-")[-1].split("_")[0])
+    elif is_wikilingua_cross_lingual:
+        lang_dir = DS_TO_LANG.get(subset_name.split("_")[-1])
+    elif ds_name == "xquad":
+        lang_dir = DS_TO_LANG.get(subset_name.split(".")[1])
+    elif ds_name == "mlqa":
+        # Classify it by the target language for cross-lingual (i.e. what the loss is computed on)
+        lang_dir = DS_TO_LANG.get(subset_name.split(".")[1])
     os.makedirs(lang_dir, exist_ok=True)
 
     if ds_name == "Helsinki-NLP/tatoeba_mt":
@@ -632,6 +662,13 @@ def write_to_jsonl_hub(ds, split="train"):
         ds = datasets.load_dataset(ds_name, subset_name, ignore_verifications=True, revision="842eb26634a9775f504bb2f3f43cd4cc5f9314d8")#, download_config=datasets.DownloadConfig(num_proc=1)
     else:
         ds = load_dataset(ds_name, subset_name)#, download_config=datasets.DownloadConfig(num_proc=1))
+
+    # Filter down to only the current set
+    if is_wikilingua_cross_lingual:
+        # Keep only L1 -> L2 (L2 -> L1 will be a separate dataset)
+        ds = ds.filter(partial(filter_l1_l2_wikilingua, l1=subset_name.split("_")[0], l2=subset_name.split("_")[1]))
+        # Add names, e.g. Chinese for zh
+        ds = ds.map(add_language_name_wikilingua)
 
     dataset_splits = list(ds.keys())
 
@@ -641,32 +678,24 @@ def write_to_jsonl_hub(ds, split="train"):
             return
         dataset_splits = ["validation"]
     elif split == "train":
-        #dataset_splits = [sp for sp in dataset_splits if sp in ["train", "validation", "test"]]
         # Use as much as possible
         # Will need to remove e.g. test datasets to benchmark same task performance
         if len(dataset_splits) > 1 and "validation" in dataset_splits:
             dataset_splits.remove("validation")
-    
-
-    #dataset_splits = {x:x for x in ds.keys()}
-    #get_dataset_splits(ds_name, subset_name)
-    # Always use >=1 ds for training
-    #if split == "train" and len(dataset_splits) > 1:
-    #    dataset_splits.pop("validation")
-    #    dataset_splits = 
-    #elif split == "validation":
-    #    dataset_splits.pop("train")
-    #    dataset_splits.pop("test")
-    #    assert len(dataset_splits) in [0,1]
-    #    if len(dataset_splits) == 0:
-    #        return
-    #ds = load_dataset(ds_name, subset_name)
+        # WikiLingua
+        if "sampled_validation" in dataset_splits:
+            dataset_splits.remove("sampled_validation")
+        if "sampled_test" in dataset_splits:
+            dataset_splits.remove("sampled_test")
 
     if subset_name is None:
         prompt_dataset_name = ds_name
     else:
         subset_name_prompt = subset_name
-        if USE_ENGLISH_PROMPTS and ds_name in DS_TO_ENG_PROMPT:
+        if is_wikilingua_cross_lingual:
+            # Custom crosslingual prompts
+            subset_name_prompt = "en_en"
+        elif USE_ENGLISH_PROMPTS and ds_name in DS_TO_ENG_PROMPT:
             subset_name_prompt = DS_TO_ENG_PROMPT[ds_name]
         prompt_dataset_name = f"{ds_name}/{subset_name_prompt}"
 
@@ -682,14 +711,13 @@ def write_to_jsonl_hub(ds, split="train"):
                     lang_dir, 
                     f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_").replace(" ", "_")
                 )
-                lang_dir = DS_TO_LANG.get(t_name.split("-")[-1], "en")
+                lang_dir = DS_TO_LANG.get(t_name.split("-")[-1].split("_")[0], "en")
 
             out_path = os.path.join(
                 lang_dir, 
                 f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_").replace(" ", "_")
             )
             if os.path.exists(out_path):
-                print("SKIPPING AS EXISTS:", out_path)
                 continue
             elif ds_name == "Helsinki-NLP/tatoeba_mt" and os.path.exists(backcompat_path):
                 print("MOVING AS EXISTS:", out_path)
@@ -701,7 +729,7 @@ def write_to_jsonl_hub(ds, split="train"):
             try:
                 out_ds = apply_template(dataset=ds[split], template=prompts[t_name])
             except Exception as e:
-                print(f"Skipping template due to {e}. DS: {ds_name} Template: {prompts[t_name]}")
+                print(f"Skipping template due to {e}. DS: {ds_name} Template: {t_name}")
                 continue
             # Do not force ascii to allow chars like é
             if len(out_ds) > 0:
@@ -709,9 +737,9 @@ def write_to_jsonl_hub(ds, split="train"):
 
 
 # Testing:
-TRAIN_DATASETS = [
-    ("great_code", None),
-]
+#TRAIN_DATASETS = [
+#    ("great_code", None),
+#]
 for ds in TRAIN_DATASETS:
     write_to_jsonl_hub(ds)
 
