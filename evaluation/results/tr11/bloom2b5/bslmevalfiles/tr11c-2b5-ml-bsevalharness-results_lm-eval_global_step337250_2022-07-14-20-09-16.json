@@ -1,0 +1,1255 @@
+{
+    "results": [
+        {
+            "task_name": "gsarti/flores_101_kor",
+            "prompt_name": null,
+            "word_perplexity": 1199924.6918920355
+        },
+        {
+            "task_name": "gsarti/flores_101_kor",
+            "prompt_name": null,
+            "byte_perplexity": 3.932884847226212
+        },
+        {
+            "task_name": "gsarti/flores_101_kor",
+            "prompt_name": null,
+            "bits_per_byte": 1.9755879455567535
+        },
+        {
+            "task_name": "gsarti/flores_101_kir",
+            "prompt_name": null,
+            "word_perplexity": 140474672.36703426
+        },
+        {
+            "task_name": "gsarti/flores_101_kir",
+            "prompt_name": null,
+            "byte_perplexity": 3.729278369847201
+        },
+        {
+            "task_name": "gsarti/flores_101_kir",
+            "prompt_name": null,
+            "bits_per_byte": 1.8988964902756764
+        },
+        {
+            "task_name": "gsarti/flores_101_lao",
+            "prompt_name": null,
+            "word_perplexity": 6.1350041352351446e+26
+        },
+        {
+            "task_name": "gsarti/flores_101_lao",
+            "prompt_name": null,
+            "byte_perplexity": 2.9077314760849924
+        },
+        {
+            "task_name": "gsarti/flores_101_lao",
+            "prompt_name": null,
+            "bits_per_byte": 1.5398940450457603
+        },
+        {
+            "task_name": "gsarti/flores_101_lav",
+            "prompt_name": null,
+            "word_perplexity": 10925745.685132286
+        },
+        {
+            "task_name": "gsarti/flores_101_lav",
+            "prompt_name": null,
+            "byte_perplexity": 7.777221919194806
+        },
+        {
+            "task_name": "gsarti/flores_101_lav",
+            "prompt_name": null,
+            "bits_per_byte": 2.959254905963978
+        },
+        {
+            "task_name": "gsarti/flores_101_lin",
+            "prompt_name": null,
+            "word_perplexity": 166841.83897098716
+        },
+        {
+            "task_name": "gsarti/flores_101_lin",
+            "prompt_name": null,
+            "byte_perplexity": 7.524842908050988
+        },
+        {
+            "task_name": "gsarti/flores_101_lin",
+            "prompt_name": null,
+            "bits_per_byte": 2.9116614638468965
+        },
+        {
+            "task_name": "gsarti/flores_101_lit",
+            "prompt_name": null,
+            "word_perplexity": 8532364.031813102
+        },
+        {
+            "task_name": "gsarti/flores_101_lit",
+            "prompt_name": null,
+            "byte_perplexity": 7.369179434621725
+        },
+        {
+            "task_name": "gsarti/flores_101_lit",
+            "prompt_name": null,
+            "bits_per_byte": 2.88150398275188
+        },
+        {
+            "task_name": "gsarti/flores_101_luo",
+            "prompt_name": null,
+            "word_perplexity": 1335199.656768974
+        },
+        {
+            "task_name": "gsarti/flores_101_luo",
+            "prompt_name": null,
+            "byte_perplexity": 11.975963093623681
+        },
+        {
+            "task_name": "gsarti/flores_101_luo",
+            "prompt_name": null,
+            "bits_per_byte": 3.5820697754437467
+        },
+        {
+            "task_name": "gsarti/flores_101_ltz",
+            "prompt_name": null,
+            "word_perplexity": 4081613.1281958995
+        },
+        {
+            "task_name": "gsarti/flores_101_ltz",
+            "prompt_name": null,
+            "byte_perplexity": 8.801059747949214
+        },
+        {
+            "task_name": "gsarti/flores_101_ltz",
+            "prompt_name": null,
+            "bits_per_byte": 3.1376772511430198
+        },
+        {
+            "task_name": "gsarti/flores_101_mkd",
+            "prompt_name": null,
+            "word_perplexity": 291548.6603872499
+        },
+        {
+            "task_name": "gsarti/flores_101_mkd",
+            "prompt_name": null,
+            "byte_perplexity": 2.9656732291754087
+        },
+        {
+            "task_name": "gsarti/flores_101_mkd",
+            "prompt_name": null,
+            "bits_per_byte": 1.5683596441110415
+        },
+        {
+            "task_name": "gsarti/flores_101_msa",
+            "prompt_name": null,
+            "word_perplexity": 931.4191160965655
+        },
+        {
+            "task_name": "gsarti/flores_101_msa",
+            "prompt_name": null,
+            "byte_perplexity": 2.5710001772665634
+        },
+        {
+            "task_name": "gsarti/flores_101_msa",
+            "prompt_name": null,
+            "bits_per_byte": 1.3623297096432079
+        },
+        {
+            "task_name": "gsarti/flores_101_mal",
+            "prompt_name": null,
+            "word_perplexity": 1.207348615509252e+18
+        },
+        {
+            "task_name": "gsarti/flores_101_mal",
+            "prompt_name": null,
+            "byte_perplexity": 4.615948455160037
+        },
+        {
+            "task_name": "gsarti/flores_101_mal",
+            "prompt_name": null,
+            "bits_per_byte": 2.2066271139530245
+        },
+        {
+            "task_name": "gsarti/flores_101_mlt",
+            "prompt_name": null,
+            "word_perplexity": 1820552051.5260184
+        },
+        {
+            "task_name": "gsarti/flores_101_mlt",
+            "prompt_name": null,
+            "byte_perplexity": 15.004773437665275
+        },
+        {
+            "task_name": "gsarti/flores_101_mlt",
+            "prompt_name": null,
+            "bits_per_byte": 3.9073496302297994
+        },
+        {
+            "task_name": "gsarti/flores_101_mri",
+            "prompt_name": null,
+            "word_perplexity": 26466.98082941409
+        },
+        {
+            "task_name": "gsarti/flores_101_mri",
+            "prompt_name": null,
+            "byte_perplexity": 7.474035895661322
+        },
+        {
+            "task_name": "gsarti/flores_101_mri",
+            "prompt_name": null,
+            "bits_per_byte": 2.9018874925878335
+        },
+        {
+            "task_name": "gsarti/flores_101_mar",
+            "prompt_name": null,
+            "word_perplexity": 54017030487867.64
+        },
+        {
+            "task_name": "gsarti/flores_101_mar",
+            "prompt_name": null,
+            "byte_perplexity": 5.483253482821379
+        },
+        {
+            "task_name": "gsarti/flores_101_mar",
+            "prompt_name": null,
+            "bits_per_byte": 2.4550321688665875
+        },
+        {
+            "task_name": "gsarti/flores_101_mon",
+            "prompt_name": null,
+            "word_perplexity": 6612951.176601774
+        },
+        {
+            "task_name": "gsarti/flores_101_mon",
+            "prompt_name": null,
+            "byte_perplexity": 3.410598542315402
+        },
+        {
+            "task_name": "gsarti/flores_101_mon",
+            "prompt_name": null,
+            "bits_per_byte": 1.7700249469487581
+        },
+        {
+            "task_name": "gsarti/flores_101_npi",
+            "prompt_name": null,
+            "word_perplexity": 9218412485042.457
+        },
+        {
+            "task_name": "gsarti/flores_101_npi",
+            "prompt_name": null,
+            "byte_perplexity": 5.199342701937889
+        },
+        {
+            "task_name": "gsarti/flores_101_npi",
+            "prompt_name": null,
+            "bits_per_byte": 2.3783292500628397
+        },
+        {
+            "task_name": "gsarti/flores_101_nso",
+            "prompt_name": null,
+            "word_perplexity": 84236.45826211123
+        },
+        {
+            "task_name": "gsarti/flores_101_nso",
+            "prompt_name": null,
+            "byte_perplexity": 8.154626800955667
+        },
+        {
+            "task_name": "gsarti/flores_101_nso",
+            "prompt_name": null,
+            "bits_per_byte": 3.027618853058479
+        },
+        {
+            "task_name": "gsarti/flores_101_nob",
+            "prompt_name": null,
+            "word_perplexity": 36969.51682419191
+        },
+        {
+            "task_name": "gsarti/flores_101_nob",
+            "prompt_name": null,
+            "byte_perplexity": 5.402763169129877
+        },
+        {
+            "task_name": "gsarti/flores_101_nob",
+            "prompt_name": null,
+            "bits_per_byte": 2.4336974426149056
+        },
+        {
+            "task_name": "gsarti/flores_101_nya",
+            "prompt_name": null,
+            "word_perplexity": 6609896.030066139
+        },
+        {
+            "task_name": "gsarti/flores_101_nya",
+            "prompt_name": null,
+            "byte_perplexity": 8.179860208369393
+        },
+        {
+            "task_name": "gsarti/flores_101_nya",
+            "prompt_name": null,
+            "bits_per_byte": 3.0320761881040017
+        },
+        {
+            "task_name": "gsarti/flores_101_oci",
+            "prompt_name": null,
+            "word_perplexity": 21641.316763505896
+        },
+        {
+            "task_name": "gsarti/flores_101_oci",
+            "prompt_name": null,
+            "byte_perplexity": 4.8617357393685845
+        },
+        {
+            "task_name": "gsarti/flores_101_oci",
+            "prompt_name": null,
+            "bits_per_byte": 2.2814714775164466
+        },
+        {
+            "task_name": "gsarti/flores_101_ory",
+            "prompt_name": null,
+            "word_perplexity": 11873283711992.748
+        },
+        {
+            "task_name": "gsarti/flores_101_ory",
+            "prompt_name": null,
+            "byte_perplexity": 5.189421861225964
+        },
+        {
+            "task_name": "gsarti/flores_101_ory",
+            "prompt_name": null,
+            "bits_per_byte": 2.375573820972048
+        },
+        {
+            "task_name": "gsarti/flores_101_orm",
+            "prompt_name": null,
+            "word_perplexity": 944722910.1683049
+        },
+        {
+            "task_name": "gsarti/flores_101_orm",
+            "prompt_name": null,
+            "byte_perplexity": 12.911595421079408
+        },
+        {
+            "task_name": "gsarti/flores_101_orm",
+            "prompt_name": null,
+            "bits_per_byte": 3.690595373136525
+        },
+        {
+            "task_name": "gsarti/flores_101_pus",
+            "prompt_name": null,
+            "word_perplexity": 153261.38659736273
+        },
+        {
+            "task_name": "gsarti/flores_101_pus",
+            "prompt_name": null,
+            "byte_perplexity": 4.4963371422771585
+        },
+        {
+            "task_name": "gsarti/flores_101_pus",
+            "prompt_name": null,
+            "bits_per_byte": 2.1687502151085742
+        },
+        {
+            "task_name": "gsarti/flores_101_fas",
+            "prompt_name": null,
+            "word_perplexity": 44174.10652942002
+        },
+        {
+            "task_name": "gsarti/flores_101_fas",
+            "prompt_name": null,
+            "byte_perplexity": 3.058009097116482
+        },
+        {
+            "task_name": "gsarti/flores_101_fas",
+            "prompt_name": null,
+            "bits_per_byte": 1.6125926985055565
+        },
+        {
+            "task_name": "gsarti/flores_101_pol",
+            "prompt_name": null,
+            "word_perplexity": 104253.80848720921
+        },
+        {
+            "task_name": "gsarti/flores_101_pol",
+            "prompt_name": null,
+            "byte_perplexity": 4.625550458479643
+        },
+        {
+            "task_name": "gsarti/flores_101_pol",
+            "prompt_name": null,
+            "bits_per_byte": 2.2096250621616695
+        },
+        {
+            "task_name": "gsarti/flores_101_por",
+            "prompt_name": null,
+            "word_perplexity": 70.12185258792593
+        },
+        {
+            "task_name": "gsarti/flores_101_por",
+            "prompt_name": null,
+            "byte_perplexity": 1.9754515986213523
+        },
+        {
+            "task_name": "gsarti/flores_101_por",
+            "prompt_name": null,
+            "bits_per_byte": 0.9821824986646657
+        },
+        {
+            "task_name": "gsarti/flores_101_pan",
+            "prompt_name": null,
+            "word_perplexity": 847925284.3968099
+        },
+        {
+            "task_name": "gsarti/flores_101_pan",
+            "prompt_name": null,
+            "byte_perplexity": 4.698477289331806
+        },
+        {
+            "task_name": "gsarti/flores_101_pan",
+            "prompt_name": null,
+            "bits_per_byte": 2.2321932752863454
+        },
+        {
+            "task_name": "gsarti/flores_101_ron",
+            "prompt_name": null,
+            "word_perplexity": 36440.61611845943
+        },
+        {
+            "task_name": "gsarti/flores_101_ron",
+            "prompt_name": null,
+            "byte_perplexity": 4.965456830031304
+        },
+        {
+            "task_name": "gsarti/flores_101_ron",
+            "prompt_name": null,
+            "bits_per_byte": 2.31192645412871
+        },
+        {
+            "task_name": "gsarti/flores_101_rus",
+            "prompt_name": null,
+            "word_perplexity": 12717.27557342625
+        },
+        {
+            "task_name": "gsarti/flores_101_rus",
+            "prompt_name": null,
+            "byte_perplexity": 2.0498020542445303
+        },
+        {
+            "task_name": "gsarti/flores_101_rus",
+            "prompt_name": null,
+            "bits_per_byte": 1.0354845979511649
+        },
+        {
+            "task_name": "gsarti/flores_101_srp",
+            "prompt_name": null,
+            "word_perplexity": 179094.36755355867
+        },
+        {
+            "task_name": "gsarti/flores_101_srp",
+            "prompt_name": null,
+            "byte_perplexity": 2.871214785885079
+        },
+        {
+            "task_name": "gsarti/flores_101_srp",
+            "prompt_name": null,
+            "bits_per_byte": 1.5216612577275341
+        },
+        {
+            "task_name": "gsarti/flores_101_sna",
+            "prompt_name": null,
+            "word_perplexity": 64794029.630749054
+        },
+        {
+            "task_name": "gsarti/flores_101_sna",
+            "prompt_name": null,
+            "byte_perplexity": 8.462166771382726
+        },
+        {
+            "task_name": "gsarti/flores_101_sna",
+            "prompt_name": null,
+            "bits_per_byte": 3.0810271184378166
+        },
+        {
+            "task_name": "gsarti/flores_101_snd",
+            "prompt_name": null,
+            "word_perplexity": 1593844.7987764536
+        },
+        {
+            "task_name": "gsarti/flores_101_snd",
+            "prompt_name": null,
+            "byte_perplexity": 5.466066951221973
+        },
+        {
+            "task_name": "gsarti/flores_101_snd",
+            "prompt_name": null,
+            "bits_per_byte": 2.450503130846187
+        },
+        {
+            "task_name": "gsarti/flores_101_slk",
+            "prompt_name": null,
+            "word_perplexity": 766753.5771631876
+        },
+        {
+            "task_name": "gsarti/flores_101_slk",
+            "prompt_name": null,
+            "byte_perplexity": 6.450822127057479
+        },
+        {
+            "task_name": "gsarti/flores_101_slk",
+            "prompt_name": null,
+            "bits_per_byte": 2.6894830369770566
+        },
+        {
+            "task_name": "gsarti/flores_101_slv",
+            "prompt_name": null,
+            "word_perplexity": 281495.6973621906
+        },
+        {
+            "task_name": "gsarti/flores_101_slv",
+            "prompt_name": null,
+            "byte_perplexity": 6.620252120186232
+        },
+        {
+            "task_name": "gsarti/flores_101_slv",
+            "prompt_name": null,
+            "bits_per_byte": 2.726886160479057
+        },
+        {
+            "task_name": "gsarti/flores_101_som",
+            "prompt_name": null,
+            "word_perplexity": 9117591.536991648
+        },
+        {
+            "task_name": "gsarti/flores_101_som",
+            "prompt_name": null,
+            "byte_perplexity": 11.95918054093392
+        },
+        {
+            "task_name": "gsarti/flores_101_som",
+            "prompt_name": null,
+            "bits_per_byte": 3.5800466324138576
+        },
+        {
+            "task_name": "gsarti/flores_101_ckb",
+            "prompt_name": null,
+            "word_perplexity": 7641937.513844287
+        },
+        {
+            "task_name": "gsarti/flores_101_ckb",
+            "prompt_name": null,
+            "byte_perplexity": 3.7255124939234765
+        },
+        {
+            "task_name": "gsarti/flores_101_ckb",
+            "prompt_name": null,
+            "bits_per_byte": 1.8974389011678956
+        },
+        {
+            "task_name": "gsarti/flores_101_spa",
+            "prompt_name": null,
+            "word_perplexity": 50.48600403475257
+        },
+        {
+            "task_name": "gsarti/flores_101_spa",
+            "prompt_name": null,
+            "byte_perplexity": 1.8965140104323535
+        },
+        {
+            "task_name": "gsarti/flores_101_spa",
+            "prompt_name": null,
+            "bits_per_byte": 0.9233500295317635
+        },
+        {
+            "task_name": "gsarti/flores_101_swh",
+            "prompt_name": null,
+            "word_perplexity": 4756.310957867697
+        },
+        {
+            "task_name": "gsarti/flores_101_swh",
+            "prompt_name": null,
+            "byte_perplexity": 3.6973091886730676
+        },
+        {
+            "task_name": "gsarti/flores_101_swh",
+            "prompt_name": null,
+            "bits_per_byte": 1.8864756944079395
+        },
+        {
+            "task_name": "gsarti/flores_101_swe",
+            "prompt_name": null,
+            "word_perplexity": 50609.194691403645
+        },
+        {
+            "task_name": "gsarti/flores_101_swe",
+            "prompt_name": null,
+            "byte_perplexity": 5.054972008155866
+        },
+        {
+            "task_name": "gsarti/flores_101_swe",
+            "prompt_name": null,
+            "bits_per_byte": 2.3377031032447033
+        },
+        {
+            "task_name": "gsarti/flores_101_tgk",
+            "prompt_name": null,
+            "word_perplexity": 4653242.643384356
+        },
+        {
+            "task_name": "gsarti/flores_101_tgk",
+            "prompt_name": null,
+            "byte_perplexity": 3.5994818827380426
+        },
+        {
+            "task_name": "gsarti/flores_101_tgk",
+            "prompt_name": null,
+            "bits_per_byte": 1.847789256832959
+        },
+        {
+            "task_name": "gsarti/flores_101_tam",
+            "prompt_name": null,
+            "word_perplexity": 1.7375636861561886e+16
+        },
+        {
+            "task_name": "gsarti/flores_101_tam",
+            "prompt_name": null,
+            "byte_perplexity": 4.539493400469833
+        },
+        {
+            "task_name": "gsarti/flores_101_tam",
+            "prompt_name": null,
+            "bits_per_byte": 2.182531304254031
+        },
+        {
+            "task_name": "gsarti/flores_101_tel",
+            "prompt_name": null,
+            "word_perplexity": 6240250468604343.0
+        },
+        {
+            "task_name": "gsarti/flores_101_tel",
+            "prompt_name": null,
+            "byte_perplexity": 5.807499987508966
+        },
+        {
+            "task_name": "gsarti/flores_101_tel",
+            "prompt_name": null,
+            "bits_per_byte": 2.537917245931069
+        },
+        {
+            "task_name": "gsarti/flores_101_tha",
+            "prompt_name": null,
+            "word_perplexity": 2.7023221906004898e+31
+        },
+        {
+            "task_name": "gsarti/flores_101_tha",
+            "prompt_name": null,
+            "byte_perplexity": 2.365940201944242
+        },
+        {
+            "task_name": "gsarti/flores_101_tha",
+            "prompt_name": null,
+            "bits_per_byte": 1.242413610681628
+        },
+        {
+            "task_name": "gsarti/flores_101_tur",
+            "prompt_name": null,
+            "word_perplexity": 598170.0194818947
+        },
+        {
+            "task_name": "gsarti/flores_101_tur",
+            "prompt_name": null,
+            "byte_perplexity": 4.885014749844601
+        },
+        {
+            "task_name": "gsarti/flores_101_tur",
+            "prompt_name": null,
+            "bits_per_byte": 2.288362918282818
+        },
+        {
+            "task_name": "gsarti/flores_101_ukr",
+            "prompt_name": null,
+            "word_perplexity": 375312.1511987307
+        },
+        {
+            "task_name": "gsarti/flores_101_ukr",
+            "prompt_name": null,
+            "byte_perplexity": 2.7240934990288483
+        },
+        {
+            "task_name": "gsarti/flores_101_ukr",
+            "prompt_name": null,
+            "bits_per_byte": 1.445776221804572
+        },
+        {
+            "task_name": "gsarti/flores_101_umb",
+            "prompt_name": null,
+            "word_perplexity": 286182026.84727985
+        },
+        {
+            "task_name": "gsarti/flores_101_umb",
+            "prompt_name": null,
+            "byte_perplexity": 12.766915508610673
+        },
+        {
+            "task_name": "gsarti/flores_101_umb",
+            "prompt_name": null,
+            "bits_per_byte": 3.6743381063848357
+        },
+        {
+            "task_name": "gsarti/flores_101_urd",
+            "prompt_name": null,
+            "word_perplexity": 294.7473718166965
+        },
+        {
+            "task_name": "gsarti/flores_101_urd",
+            "prompt_name": null,
+            "byte_perplexity": 1.9797467071381232
+        },
+        {
+            "task_name": "gsarti/flores_101_urd",
+            "prompt_name": null,
+            "bits_per_byte": 0.9853158607436239
+        },
+        {
+            "task_name": "gsarti/flores_101_uzb",
+            "prompt_name": null,
+            "word_perplexity": 657971096.5030558
+        },
+        {
+            "task_name": "gsarti/flores_101_uzb",
+            "prompt_name": null,
+            "byte_perplexity": 12.002337637722146
+        },
+        {
+            "task_name": "gsarti/flores_101_uzb",
+            "prompt_name": null,
+            "bits_per_byte": 3.5852435148799184
+        },
+        {
+            "task_name": "gsarti/flores_101_vie",
+            "prompt_name": null,
+            "word_perplexity": 30.113286809710246
+        },
+        {
+            "task_name": "gsarti/flores_101_vie",
+            "prompt_name": null,
+            "byte_perplexity": 1.76578415476397
+        },
+        {
+            "task_name": "gsarti/flores_101_vie",
+            "prompt_name": null,
+            "bits_per_byte": 0.8203090021691818
+        },
+        {
+            "task_name": "gsarti/flores_101_cym",
+            "prompt_name": null,
+            "word_perplexity": 2638019.4579179045
+        },
+        {
+            "task_name": "gsarti/flores_101_cym",
+            "prompt_name": null,
+            "byte_perplexity": 12.539424151448149
+        },
+        {
+            "task_name": "gsarti/flores_101_cym",
+            "prompt_name": null,
+            "bits_per_byte": 3.6483991915978407
+        },
+        {
+            "task_name": "gsarti/flores_101_wol",
+            "prompt_name": null,
+            "word_perplexity": 119795.78671768666
+        },
+        {
+            "task_name": "gsarti/flores_101_wol",
+            "prompt_name": null,
+            "byte_perplexity": 9.144285650306488
+        },
+        {
+            "task_name": "gsarti/flores_101_wol",
+            "prompt_name": null,
+            "bits_per_byte": 3.1928704713393357
+        },
+        {
+            "task_name": "gsarti/flores_101_xho",
+            "prompt_name": null,
+            "word_perplexity": 54307092.21333007
+        },
+        {
+            "task_name": "gsarti/flores_101_xho",
+            "prompt_name": null,
+            "byte_perplexity": 7.403240538286952
+        },
+        {
+            "task_name": "gsarti/flores_101_xho",
+            "prompt_name": null,
+            "bits_per_byte": 2.8881569038733983
+        },
+        {
+            "task_name": "gsarti/flores_101_yor",
+            "prompt_name": null,
+            "word_perplexity": 130267.12232132205
+        },
+        {
+            "task_name": "gsarti/flores_101_yor",
+            "prompt_name": null,
+            "byte_perplexity": 5.91272037551173
+        },
+        {
+            "task_name": "gsarti/flores_101_yor",
+            "prompt_name": null,
+            "bits_per_byte": 2.5638220507535796
+        },
+        {
+            "task_name": "gsarti/flores_101_zul",
+            "prompt_name": null,
+            "word_perplexity": 493606524.8156374
+        },
+        {
+            "task_name": "gsarti/flores_101_zul",
+            "prompt_name": null,
+            "byte_perplexity": 8.53353320693145
+        },
+        {
+            "task_name": "gsarti/flores_101_zul",
+            "prompt_name": null,
+            "bits_per_byte": 3.0931431957905224
+        }
+    ],
+    "versions": {
+        "gsarti/flores_101_kor+null": 0,
+        "gsarti/flores_101_kir+null": 0,
+        "gsarti/flores_101_lao+null": 0,
+        "gsarti/flores_101_lav+null": 0,
+        "gsarti/flores_101_lin+null": 0,
+        "gsarti/flores_101_lit+null": 0,
+        "gsarti/flores_101_luo+null": 0,
+        "gsarti/flores_101_ltz+null": 0,
+        "gsarti/flores_101_mkd+null": 0,
+        "gsarti/flores_101_msa+null": 0,
+        "gsarti/flores_101_mal+null": 0,
+        "gsarti/flores_101_mlt+null": 0,
+        "gsarti/flores_101_mri+null": 0,
+        "gsarti/flores_101_mar+null": 0,
+        "gsarti/flores_101_mon+null": 0,
+        "gsarti/flores_101_npi+null": 0,
+        "gsarti/flores_101_nso+null": 0,
+        "gsarti/flores_101_nob+null": 0,
+        "gsarti/flores_101_nya+null": 0,
+        "gsarti/flores_101_oci+null": 0,
+        "gsarti/flores_101_ory+null": 0,
+        "gsarti/flores_101_orm+null": 0,
+        "gsarti/flores_101_pus+null": 0,
+        "gsarti/flores_101_fas+null": 0,
+        "gsarti/flores_101_pol+null": 0,
+        "gsarti/flores_101_por+null": 0,
+        "gsarti/flores_101_pan+null": 0,
+        "gsarti/flores_101_ron+null": 0,
+        "gsarti/flores_101_rus+null": 0,
+        "gsarti/flores_101_srp+null": 0,
+        "gsarti/flores_101_sna+null": 0,
+        "gsarti/flores_101_snd+null": 0,
+        "gsarti/flores_101_slk+null": 0,
+        "gsarti/flores_101_slv+null": 0,
+        "gsarti/flores_101_som+null": 0,
+        "gsarti/flores_101_ckb+null": 0,
+        "gsarti/flores_101_spa+null": 0,
+        "gsarti/flores_101_swh+null": 0,
+        "gsarti/flores_101_swe+null": 0,
+        "gsarti/flores_101_tgk+null": 0,
+        "gsarti/flores_101_tam+null": 0,
+        "gsarti/flores_101_tel+null": 0,
+        "gsarti/flores_101_tha+null": 0,
+        "gsarti/flores_101_tur+null": 0,
+        "gsarti/flores_101_ukr+null": 0,
+        "gsarti/flores_101_umb+null": 0,
+        "gsarti/flores_101_urd+null": 0,
+        "gsarti/flores_101_uzb+null": 0,
+        "gsarti/flores_101_vie+null": 0,
+        "gsarti/flores_101_cym+null": 0,
+        "gsarti/flores_101_wol+null": 0,
+        "gsarti/flores_101_xho+null": 0,
+        "gsarti/flores_101_yor+null": 0,
+        "gsarti/flores_101_zul+null": 0
+    },
+    "table_results": {
+        "gsarti/flores_101_kor+null": {
+            "task_name": "gsarti/flores_101_kor",
+            "prompt_name": "null",
+            "word_perplexity": 1199924.6918920355,
+            "byte_perplexity": 3.932884847226212,
+            "bits_per_byte": 1.9755879455567535
+        },
+        "gsarti/flores_101_kir+null": {
+            "task_name": "gsarti/flores_101_kir",
+            "prompt_name": "null",
+            "word_perplexity": 140474672.36703426,
+            "byte_perplexity": 3.729278369847201,
+            "bits_per_byte": 1.8988964902756764
+        },
+        "gsarti/flores_101_lao+null": {
+            "task_name": "gsarti/flores_101_lao",
+            "prompt_name": "null",
+            "word_perplexity": 6.1350041352351446e+26,
+            "byte_perplexity": 2.9077314760849924,
+            "bits_per_byte": 1.5398940450457603
+        },
+        "gsarti/flores_101_lav+null": {
+            "task_name": "gsarti/flores_101_lav",
+            "prompt_name": "null",
+            "word_perplexity": 10925745.685132286,
+            "byte_perplexity": 7.777221919194806,
+            "bits_per_byte": 2.959254905963978
+        },
+        "gsarti/flores_101_lin+null": {
+            "task_name": "gsarti/flores_101_lin",
+            "prompt_name": "null",
+            "word_perplexity": 166841.83897098716,
+            "byte_perplexity": 7.524842908050988,
+            "bits_per_byte": 2.9116614638468965
+        },
+        "gsarti/flores_101_lit+null": {
+            "task_name": "gsarti/flores_101_lit",
+            "prompt_name": "null",
+            "word_perplexity": 8532364.031813102,
+            "byte_perplexity": 7.369179434621725,
+            "bits_per_byte": 2.88150398275188
+        },
+        "gsarti/flores_101_luo+null": {
+            "task_name": "gsarti/flores_101_luo",
+            "prompt_name": "null",
+            "word_perplexity": 1335199.656768974,
+            "byte_perplexity": 11.975963093623681,
+            "bits_per_byte": 3.5820697754437467
+        },
+        "gsarti/flores_101_ltz+null": {
+            "task_name": "gsarti/flores_101_ltz",
+            "prompt_name": "null",
+            "word_perplexity": 4081613.1281958995,
+            "byte_perplexity": 8.801059747949214,
+            "bits_per_byte": 3.1376772511430198
+        },
+        "gsarti/flores_101_mkd+null": {
+            "task_name": "gsarti/flores_101_mkd",
+            "prompt_name": "null",
+            "word_perplexity": 291548.6603872499,
+            "byte_perplexity": 2.9656732291754087,
+            "bits_per_byte": 1.5683596441110415
+        },
+        "gsarti/flores_101_msa+null": {
+            "task_name": "gsarti/flores_101_msa",
+            "prompt_name": "null",
+            "word_perplexity": 931.4191160965655,
+            "byte_perplexity": 2.5710001772665634,
+            "bits_per_byte": 1.3623297096432079
+        },
+        "gsarti/flores_101_mal+null": {
+            "task_name": "gsarti/flores_101_mal",
+            "prompt_name": "null",
+            "word_perplexity": 1.207348615509252e+18,
+            "byte_perplexity": 4.615948455160037,
+            "bits_per_byte": 2.2066271139530245
+        },
+        "gsarti/flores_101_mlt+null": {
+            "task_name": "gsarti/flores_101_mlt",
+            "prompt_name": "null",
+            "word_perplexity": 1820552051.5260184,
+            "byte_perplexity": 15.004773437665275,
+            "bits_per_byte": 3.9073496302297994
+        },
+        "gsarti/flores_101_mri+null": {
+            "task_name": "gsarti/flores_101_mri",
+            "prompt_name": "null",
+            "word_perplexity": 26466.98082941409,
+            "byte_perplexity": 7.474035895661322,
+            "bits_per_byte": 2.9018874925878335
+        },
+        "gsarti/flores_101_mar+null": {
+            "task_name": "gsarti/flores_101_mar",
+            "prompt_name": "null",
+            "word_perplexity": 54017030487867.64,
+            "byte_perplexity": 5.483253482821379,
+            "bits_per_byte": 2.4550321688665875
+        },
+        "gsarti/flores_101_mon+null": {
+            "task_name": "gsarti/flores_101_mon",
+            "prompt_name": "null",
+            "word_perplexity": 6612951.176601774,
+            "byte_perplexity": 3.410598542315402,
+            "bits_per_byte": 1.7700249469487581
+        },
+        "gsarti/flores_101_npi+null": {
+            "task_name": "gsarti/flores_101_npi",
+            "prompt_name": "null",
+            "word_perplexity": 9218412485042.457,
+            "byte_perplexity": 5.199342701937889,
+            "bits_per_byte": 2.3783292500628397
+        },
+        "gsarti/flores_101_nso+null": {
+            "task_name": "gsarti/flores_101_nso",
+            "prompt_name": "null",
+            "word_perplexity": 84236.45826211123,
+            "byte_perplexity": 8.154626800955667,
+            "bits_per_byte": 3.027618853058479
+        },
+        "gsarti/flores_101_nob+null": {
+            "task_name": "gsarti/flores_101_nob",
+            "prompt_name": "null",
+            "word_perplexity": 36969.51682419191,
+            "byte_perplexity": 5.402763169129877,
+            "bits_per_byte": 2.4336974426149056
+        },
+        "gsarti/flores_101_nya+null": {
+            "task_name": "gsarti/flores_101_nya",
+            "prompt_name": "null",
+            "word_perplexity": 6609896.030066139,
+            "byte_perplexity": 8.179860208369393,
+            "bits_per_byte": 3.0320761881040017
+        },
+        "gsarti/flores_101_oci+null": {
+            "task_name": "gsarti/flores_101_oci",
+            "prompt_name": "null",
+            "word_perplexity": 21641.316763505896,
+            "byte_perplexity": 4.8617357393685845,
+            "bits_per_byte": 2.2814714775164466
+        },
+        "gsarti/flores_101_ory+null": {
+            "task_name": "gsarti/flores_101_ory",
+            "prompt_name": "null",
+            "word_perplexity": 11873283711992.748,
+            "byte_perplexity": 5.189421861225964,
+            "bits_per_byte": 2.375573820972048
+        },
+        "gsarti/flores_101_orm+null": {
+            "task_name": "gsarti/flores_101_orm",
+            "prompt_name": "null",
+            "word_perplexity": 944722910.1683049,
+            "byte_perplexity": 12.911595421079408,
+            "bits_per_byte": 3.690595373136525
+        },
+        "gsarti/flores_101_pus+null": {
+            "task_name": "gsarti/flores_101_pus",
+            "prompt_name": "null",
+            "word_perplexity": 153261.38659736273,
+            "byte_perplexity": 4.4963371422771585,
+            "bits_per_byte": 2.1687502151085742
+        },
+        "gsarti/flores_101_fas+null": {
+            "task_name": "gsarti/flores_101_fas",
+            "prompt_name": "null",
+            "word_perplexity": 44174.10652942002,
+            "byte_perplexity": 3.058009097116482,
+            "bits_per_byte": 1.6125926985055565
+        },
+        "gsarti/flores_101_pol+null": {
+            "task_name": "gsarti/flores_101_pol",
+            "prompt_name": "null",
+            "word_perplexity": 104253.80848720921,
+            "byte_perplexity": 4.625550458479643,
+            "bits_per_byte": 2.2096250621616695
+        },
+        "gsarti/flores_101_por+null": {
+            "task_name": "gsarti/flores_101_por",
+            "prompt_name": "null",
+            "word_perplexity": 70.12185258792593,
+            "byte_perplexity": 1.9754515986213523,
+            "bits_per_byte": 0.9821824986646657
+        },
+        "gsarti/flores_101_pan+null": {
+            "task_name": "gsarti/flores_101_pan",
+            "prompt_name": "null",
+            "word_perplexity": 847925284.3968099,
+            "byte_perplexity": 4.698477289331806,
+            "bits_per_byte": 2.2321932752863454
+        },
+        "gsarti/flores_101_ron+null": {
+            "task_name": "gsarti/flores_101_ron",
+            "prompt_name": "null",
+            "word_perplexity": 36440.61611845943,
+            "byte_perplexity": 4.965456830031304,
+            "bits_per_byte": 2.31192645412871
+        },
+        "gsarti/flores_101_rus+null": {
+            "task_name": "gsarti/flores_101_rus",
+            "prompt_name": "null",
+            "word_perplexity": 12717.27557342625,
+            "byte_perplexity": 2.0498020542445303,
+            "bits_per_byte": 1.0354845979511649
+        },
+        "gsarti/flores_101_srp+null": {
+            "task_name": "gsarti/flores_101_srp",
+            "prompt_name": "null",
+            "word_perplexity": 179094.36755355867,
+            "byte_perplexity": 2.871214785885079,
+            "bits_per_byte": 1.5216612577275341
+        },
+        "gsarti/flores_101_sna+null": {
+            "task_name": "gsarti/flores_101_sna",
+            "prompt_name": "null",
+            "word_perplexity": 64794029.630749054,
+            "byte_perplexity": 8.462166771382726,
+            "bits_per_byte": 3.0810271184378166
+        },
+        "gsarti/flores_101_snd+null": {
+            "task_name": "gsarti/flores_101_snd",
+            "prompt_name": "null",
+            "word_perplexity": 1593844.7987764536,
+            "byte_perplexity": 5.466066951221973,
+            "bits_per_byte": 2.450503130846187
+        },
+        "gsarti/flores_101_slk+null": {
+            "task_name": "gsarti/flores_101_slk",
+            "prompt_name": "null",
+            "word_perplexity": 766753.5771631876,
+            "byte_perplexity": 6.450822127057479,
+            "bits_per_byte": 2.6894830369770566
+        },
+        "gsarti/flores_101_slv+null": {
+            "task_name": "gsarti/flores_101_slv",
+            "prompt_name": "null",
+            "word_perplexity": 281495.6973621906,
+            "byte_perplexity": 6.620252120186232,
+            "bits_per_byte": 2.726886160479057
+        },
+        "gsarti/flores_101_som+null": {
+            "task_name": "gsarti/flores_101_som",
+            "prompt_name": "null",
+            "word_perplexity": 9117591.536991648,
+            "byte_perplexity": 11.95918054093392,
+            "bits_per_byte": 3.5800466324138576
+        },
+        "gsarti/flores_101_ckb+null": {
+            "task_name": "gsarti/flores_101_ckb",
+            "prompt_name": "null",
+            "word_perplexity": 7641937.513844287,
+            "byte_perplexity": 3.7255124939234765,
+            "bits_per_byte": 1.8974389011678956
+        },
+        "gsarti/flores_101_spa+null": {
+            "task_name": "gsarti/flores_101_spa",
+            "prompt_name": "null",
+            "word_perplexity": 50.48600403475257,
+            "byte_perplexity": 1.8965140104323535,
+            "bits_per_byte": 0.9233500295317635
+        },
+        "gsarti/flores_101_swh+null": {
+            "task_name": "gsarti/flores_101_swh",
+            "prompt_name": "null",
+            "word_perplexity": 4756.310957867697,
+            "byte_perplexity": 3.6973091886730676,
+            "bits_per_byte": 1.8864756944079395
+        },
+        "gsarti/flores_101_swe+null": {
+            "task_name": "gsarti/flores_101_swe",
+            "prompt_name": "null",
+            "word_perplexity": 50609.194691403645,
+            "byte_perplexity": 5.054972008155866,
+            "bits_per_byte": 2.3377031032447033
+        },
+        "gsarti/flores_101_tgk+null": {
+            "task_name": "gsarti/flores_101_tgk",
+            "prompt_name": "null",
+            "word_perplexity": 4653242.643384356,
+            "byte_perplexity": 3.5994818827380426,
+            "bits_per_byte": 1.847789256832959
+        },
+        "gsarti/flores_101_tam+null": {
+            "task_name": "gsarti/flores_101_tam",
+            "prompt_name": "null",
+            "word_perplexity": 1.7375636861561886e+16,
+            "byte_perplexity": 4.539493400469833,
+            "bits_per_byte": 2.182531304254031
+        },
+        "gsarti/flores_101_tel+null": {
+            "task_name": "gsarti/flores_101_tel",
+            "prompt_name": "null",
+            "word_perplexity": 6240250468604343.0,
+            "byte_perplexity": 5.807499987508966,
+            "bits_per_byte": 2.537917245931069
+        },
+        "gsarti/flores_101_tha+null": {
+            "task_name": "gsarti/flores_101_tha",
+            "prompt_name": "null",
+            "word_perplexity": 2.7023221906004898e+31,
+            "byte_perplexity": 2.365940201944242,
+            "bits_per_byte": 1.242413610681628
+        },
+        "gsarti/flores_101_tur+null": {
+            "task_name": "gsarti/flores_101_tur",
+            "prompt_name": "null",
+            "word_perplexity": 598170.0194818947,
+            "byte_perplexity": 4.885014749844601,
+            "bits_per_byte": 2.288362918282818
+        },
+        "gsarti/flores_101_ukr+null": {
+            "task_name": "gsarti/flores_101_ukr",
+            "prompt_name": "null",
+            "word_perplexity": 375312.1511987307,
+            "byte_perplexity": 2.7240934990288483,
+            "bits_per_byte": 1.445776221804572
+        },
+        "gsarti/flores_101_umb+null": {
+            "task_name": "gsarti/flores_101_umb",
+            "prompt_name": "null",
+            "word_perplexity": 286182026.84727985,
+            "byte_perplexity": 12.766915508610673,
+            "bits_per_byte": 3.6743381063848357
+        },
+        "gsarti/flores_101_urd+null": {
+            "task_name": "gsarti/flores_101_urd",
+            "prompt_name": "null",
+            "word_perplexity": 294.7473718166965,
+            "byte_perplexity": 1.9797467071381232,
+            "bits_per_byte": 0.9853158607436239
+        },
+        "gsarti/flores_101_uzb+null": {
+            "task_name": "gsarti/flores_101_uzb",
+            "prompt_name": "null",
+            "word_perplexity": 657971096.5030558,
+            "byte_perplexity": 12.002337637722146,
+            "bits_per_byte": 3.5852435148799184
+        },
+        "gsarti/flores_101_vie+null": {
+            "task_name": "gsarti/flores_101_vie",
+            "prompt_name": "null",
+            "word_perplexity": 30.113286809710246,
+            "byte_perplexity": 1.76578415476397,
+            "bits_per_byte": 0.8203090021691818
+        },
+        "gsarti/flores_101_cym+null": {
+            "task_name": "gsarti/flores_101_cym",
+            "prompt_name": "null",
+            "word_perplexity": 2638019.4579179045,
+            "byte_perplexity": 12.539424151448149,
+            "bits_per_byte": 3.6483991915978407
+        },
+        "gsarti/flores_101_wol+null": {
+            "task_name": "gsarti/flores_101_wol",
+            "prompt_name": "null",
+            "word_perplexity": 119795.78671768666,
+            "byte_perplexity": 9.144285650306488,
+            "bits_per_byte": 3.1928704713393357
+        },
+        "gsarti/flores_101_xho+null": {
+            "task_name": "gsarti/flores_101_xho",
+            "prompt_name": "null",
+            "word_perplexity": 54307092.21333007,
+            "byte_perplexity": 7.403240538286952,
+            "bits_per_byte": 2.8881569038733983
+        },
+        "gsarti/flores_101_yor+null": {
+            "task_name": "gsarti/flores_101_yor",
+            "prompt_name": "null",
+            "word_perplexity": 130267.12232132205,
+            "byte_perplexity": 5.91272037551173,
+            "bits_per_byte": 2.5638220507535796
+        },
+        "gsarti/flores_101_zul+null": {
+            "task_name": "gsarti/flores_101_zul",
+            "prompt_name": "null",
+            "word_perplexity": 493606524.8156374,
+            "byte_perplexity": 8.53353320693145,
+            "bits_per_byte": 3.0931431957905224
+        }
+    },
+    "config": {
+        "adaptive_seq_len": true,
+        "num_fewshot": 0,
+        "bootstrap_iters": 100000
+    }
+}

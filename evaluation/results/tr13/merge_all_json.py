@@ -59,8 +59,8 @@ def main():
                     **results[key], 
                     **{subk: subv for subk, subv in dic.items() if type(subv) in [int, float]}
                 }
-                results["prompt_name"] = dic["prompt_name"]
-                results["task_name"] = dic["task_name"]
+                results[key]["prompt_name"] = dic["prompt_name"]
+                results[key]["task_name"] = dic["task_name"]
         elif str(json_file.name).startswith("agg"):
             print(f"Skipping {json_file} from bigscience/lm-eval-harness.")
             continue
@@ -74,6 +74,13 @@ def main():
                 results[key] = {
                     data["template_name"]: data
                 }
+
+    # add median scores - TODO
+    #for ds_name in results:
+    #    for prompt_name in results[ds_name]:
+    #        for metric, value in results[ds_name][prompt_name]["evaluation"]:
+    #            #results.setdefault(ds_name, f"{metric_median}")
+    #            [] = 
 
     # sort
     sorted_results = sort_dict(results)
