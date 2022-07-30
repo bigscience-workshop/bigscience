@@ -99,6 +99,22 @@ do
         --workers 35
 done
 
+# No val data for other langs
+LANGS=(
+ar
+bn
+code
+en
+es
+fr
+hi
+id
+pt
+sw
+te
+vi
+zh
+)
 
 DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3/validation
 cd $DATA_PATH
