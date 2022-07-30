@@ -21,6 +21,18 @@ DS_TO_ENG_PROMPT = {
     "xquad": "xquad.en",
     "khalidalt/tydiqa-primary": "english",
     "khalidalt/tydiqa-goldp": "english",
+    "pasinit/xlwic": "en",
+}
+
+TRUNCATE = {
+    "khalidalt/tydiqa-primary": {
+        "cols": ["document_plaintext", "question_text"], 
+        "trunc_col": "document_plaintext"
+        },
+    "GEM/wiki_lingua": {
+        "cols": ["document_plaintext", "question_text"], 
+        "trunc_col": "document_plaintext"
+        },
 }
 
 BIAS_FAIRNESS = [
@@ -50,12 +62,12 @@ EVAL_DATASETS_L1 = [
     ('Muennighoff/xstory_cloze', 'zh'),
     ('hellaswag', None),
     ('super_glue', 'copa'),
-    ('super_glue', 'wic'),
     # Multilingual
     ('Muennighoff/xwinograd','en'),
     ('Muennighoff/xwinograd','fr'),
     ('Muennighoff/xwinograd','pt'),
     ('Muennighoff/xwinograd','zh'),
+    ('clue', 'cluewsc2020'),
     ('xcopa','id'),
     ('xcopa','ta'),
     ('xcopa','sw'),
@@ -267,6 +279,15 @@ TRAIN_DATASETS = [
     ("openai_humaneval", None),
     ("great_code", None),
     ("neural_code_search", "evaluation_dataset"),
+    ("codeparrot/codecomplex", "codeparrot--codecomplex"),
+    ('clue', 'c3'),
+    ('clue', 'cmrc2018'),
+    ('clue', 'csl'),
+    ('clue', 'drcd'),
+    ('clue', 'tnews'),
+    ('super_glue', 'wic'),
+    ('pasinit/xlwic', "xlwic_en_zh"),
+    ('pasinit/xlwic', "xlwic_fr_fr"),
     # flores200
 ]
 
@@ -532,6 +553,8 @@ DS_TO_LANG = {
     'openai_humaneval': 'code',
     "great_code": "code",
     "neural_code_search": "code",
+    "codeparrot/codecomplex": "code",
+    "clue": "zh",
     "cmn": "zh", # == zho
     "npi": "ne", # == npe
     "ory": "or", # == ori
@@ -539,7 +562,6 @@ DS_TO_LANG = {
 }
 
 # Add GEM multilingual
-TRAIN_DATASETS = [] # TODO TMP
 WIKILINGUA_LANGS = ["ar", "en", "es", "fr", "hi", "id", "pt", "vi", "zh"]
 for l1_code in WIKILINGUA_LANGS:
     for l2_code in WIKILINGUA_LANGS:
@@ -572,8 +594,10 @@ for (l1_name, l1_code) in FLORES_LANGS:
             continue
         elif l1_name == l2_name:
             continue
-        #TODO: TMP
-        #TRAIN_DATASETS.append(("facebook/flores", f"{l1_code}-{l2_code}"))
+        TRAIN_DATASETS.append(("facebook/flores", f"{l1_code}-{l2_code}"))
+
+
+### DATASET CREATION ###
 
 
 # Copied from promptsource.utils
@@ -588,15 +612,27 @@ def removeHyphen(example):
     example = example_clean
     return example
 
+#from transformers import AutoTokenizer
+#tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom350m")
+
+#import re
 # Adapted from t0.seqio_tasks.utils
-def apply_template(dataset, template):
+def apply_template(dataset, template, truncate_ds_name=None):
+    #if truncate_ds_name is not None:
+    #    #TRUNCATE
+    #    template_toks = tokenizer.tokenize(re.sub("[\{].*?[\}]|\||\}", "", template.jinja))
+
     def map_fn(ex):
         ex = removeHyphen(ex)
+        #if truncate_ds_name is not None:
+        #    toks = sum([tokenizer.tokenize(ex[col]) for col in TRUNCATE[truncate_ds_name]["cols"]])
+        #    if toks
+        #    cols_toks = tokenizer.tokenize(ex)
+        #    # col_to_truncate
         inputs_and_targets = template.apply(ex)
         answer_choices = template.get_answer_choices_list(ex)
         if len(inputs_and_targets) == 2:
             inputs, targets = inputs_and_targets
-            # TODO: Use str to convert e.g. "\u00e9" -> é ?
             if targets == "":
                 ex = {"inputs": inputs, "targets": "<NO LABEL>"}
             else:
@@ -671,9 +707,12 @@ def write_to_jsonl_hub(ds, split="train"):
         ds = ds.map(add_language_name_wikilingua)
 
     dataset_splits = list(ds.keys())
+    if subset_name == "xlwic_en_zh":
+        # Train set is en; val & test are zh
+        dataset_splits.remove("train")
 
     if split == "validation":
-        if split not in dataset_splits or len(dataset_splits) > 1:
+        if split not in dataset_splits or len(dataset_splits) == 1:
             print(f"Validation not found for {ds_name}")
             return
         dataset_splits = ["validation"]
@@ -718,6 +757,7 @@ def write_to_jsonl_hub(ds, split="train"):
                 f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_").replace(" ", "_")
             )
             if os.path.exists(out_path):
+                print("Skipping as exists: ", out_path)
                 continue
             elif ds_name == "Helsinki-NLP/tatoeba_mt" and os.path.exists(backcompat_path):
                 print("MOVING AS EXISTS:", out_path)
@@ -737,11 +777,14 @@ def write_to_jsonl_hub(ds, split="train"):
 
 
 # Testing:
-#TRAIN_DATASETS = [
-#    ("great_code", None),
-#]
+TRAIN_DATASETS = [
+    ('super_glue', 'wic'),
+    ('pasinit/xlwic', "xlwic_en_zh"),
+    ('pasinit/xlwic', "xlwic_fr_fr"),
+]
 for ds in TRAIN_DATASETS:
-    write_to_jsonl_hub(ds)
+    #write_to_jsonl_hub(ds)
+    write_to_jsonl_hub(ds, split="train")
 
 #with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
 #    pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
