@@ -72,9 +72,8 @@ zu
 
 DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3/train
 
-
-for LANG in $LANGS
-do
+for val in {0..45}; do
+    LANG=${LANGS[$val]}
     cd $DATA_PATH/$LANG
     cat *.jsonl > merged_$LANG.jsonl
     OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3/train/xp3_train_$LANG
@@ -120,8 +119,8 @@ DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3/validation
 cd $DATA_PATH
 
 
-for LANG in $LANGS
-do
+for val in {0..12}; do
+    LANG=${LANGS[$val]}
     cd $DATA_PATH/$LANG
     cat *.jsonl > merged_$LANG.jsonl
     OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3/validation/xp3_validation_$LANG
