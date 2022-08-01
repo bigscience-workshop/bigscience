@@ -874,10 +874,10 @@ def removeHyphen(example):
 
 #from transformers import AutoTokenizer
 #tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom350m")
-
 #import re
 # Adapted from t0.seqio_tasks.utils
 def apply_template(dataset, template, truncate_ds_name=None):
+    # TODO: Truncation?
     #if truncate_ds_name is not None:
     #    #TRUNCATE
     #    template_toks = tokenizer.tokenize(re.sub("[\{].*?[\}]|\||\}", "", template.jinja))
@@ -978,7 +978,7 @@ def write_to_jsonl_hub(ds, split="train"):
         dataset_splits = ["validation"]
     elif split == "train":
         # Use as much as possible
-        # Will need to remove e.g. test datasets to benchmark same task performance
+        # Would need to remove e.g. test datasets to benchmark same task performance
         if len(dataset_splits) > 1 and "validation" in dataset_splits:
             dataset_splits.remove("validation")
         # WikiLingua
@@ -1030,13 +1030,12 @@ def write_to_jsonl_hub(ds, split="train"):
 
 
 # Testing:
-TRAIN_DATASETS = [
-    ('super_glue', 'wic'),
-    ('pasinit/xlwic', "xlwic_en_zh"),
-    ('pasinit/xlwic', "xlwic_fr_fr"),
-]
+#TRAIN_DATASETS = [
+#    ('super_glue', 'wic'),
+#    ('pasinit/xlwic', "xlwic_en_zh"),
+#    ('pasinit/xlwic', "xlwic_fr_fr"),
+#]
 for ds in TRAIN_DATASETS:
-    #write_to_jsonl_hub(ds)
     write_to_jsonl_hub(ds, split="train")
 
 #with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
