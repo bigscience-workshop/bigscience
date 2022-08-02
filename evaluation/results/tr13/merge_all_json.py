@@ -1,3 +1,8 @@
+"""
+Usage:
+python merge_all_json.py --directory X --save-output-json X/merged.json
+"""
+
 import argparse
 import json
 from pathlib import Path
@@ -74,13 +79,6 @@ def main():
                 results[key] = {
                     data["template_name"]: data
                 }
-
-    # add median scores - TODO
-    #for ds_name in results:
-    #    for prompt_name in results[ds_name]:
-    #        for metric, value in results[ds_name][prompt_name]["evaluation"]:
-    #            #results.setdefault(ds_name, f"{metric_median}")
-    #            [] = 
 
     # sort
     sorted_results = sort_dict(results)

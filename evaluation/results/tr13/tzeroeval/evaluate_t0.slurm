@@ -10,7 +10,7 @@
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-190
+#SBATCH --array=0-164
 
 set -x -e
 
@@ -64,11 +64,6 @@ super_glue,rte,None,"GPT-3 style"
 super_glue,rte,None,"does it follow that"
 super_glue,rte,None,"should assume"
 super_glue,rte,None,"guaranteed true"
-super_glue,wsc.fixed,None,"I think they mean"
-super_glue,wsc.fixed,None,"GPT-3 Style"
-super_glue,wsc.fixed,None,"does p stand for"
-super_glue,wsc.fixed,None,"the pronoun refers to"
-super_glue,wsc.fixed,None,"in other words"
 winogrande,winogrande_xl,None,"underscore refer to"
 winogrande,winogrande_xl,None,"Replace"
 winogrande,winogrande_xl,None,"stand for"
@@ -288,4 +283,4 @@ python t-zero/evaluation/run_eval.py \
         --model_name_or_path $CHECKPOINT_PATH \
         --output_dir $OUTPUT_DIR \
         --per_device_eval_batch_size 8 \
-        --prefixlm
+        --max_length 2048

@@ -22,6 +22,7 @@
 
 
 import sys
+import statistics
 import json
 import io
 import csv
@@ -45,8 +46,11 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
     writer.writerow(["dataset", "prompt", "metric", "value"])
 
     for ds_name, v in sorted(results.items()):
+        acc_scores = []
         for prompt_name, res in sorted(v.items()):
             for metric, value in sorted(res["evaluation"].items()):
                 writer.writerow([ds_name, prompt_name, metric, value])
-            
-            writer.writerow([ds_name, "median", metric, value])
+                if metric == "accuracy":
+                    acc_scores.append(value)
+        if acc_scores:
+            writer.writerow([ds_name, "median", "accuracy", statistics.median(acc_scores)])
