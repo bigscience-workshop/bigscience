@@ -11,6 +11,8 @@ from promptsource.templates import DatasetTemplates
 # Set to False to use multilingual prompts e.g. 'id' for xcopa/id instead of 'en'
 USE_ENGLISH_PROMPTS = True
 
+MAX_EXAMPLES_PER_DATASET_PROMPT = 100_000
+
 DS_TO_ENG_PROMPT = {
     "xcopa": "en",
     "Muennighoff/xstory_cloze": "en",
@@ -1020,7 +1022,12 @@ def write_to_jsonl_hub(ds, split="train"):
             assert len(ds[split]) > 0, f"Got empty: {ds_name}"
 
             try:
-                out_ds = apply_template(dataset=ds[split], template=prompts[t_name])
+                # Allow 10x buffer for empty examples
+                max_range = min(len(ds[split]), MAX_EXAMPLES_PER_DATASET_PROMPT * 10)
+                out_ds = apply_template(dataset=ds[split].select(list(range(max_range))), template=prompts[t_name])
+                # Keep X shortest examples
+                max_range = min(len(out_ds), MAX_EXAMPLES_PER_DATASET_PROMPT)
+                out_ds = out_ds.sort("inputs").select(list(range(max_range)))
             except Exception as e:
                 print(f"Skipping template due to {e}. DS: {ds_name} Template: {t_name}")
                 continue
@@ -1030,11 +1037,11 @@ def write_to_jsonl_hub(ds, split="train"):
 
 
 # Testing:
-#TRAIN_DATASETS = [
-#    ('super_glue', 'wic'),
-#    ('pasinit/xlwic', "xlwic_en_zh"),
-#    ('pasinit/xlwic', "xlwic_fr_fr"),
-#]
+TRAIN_DATASETS = [
+    ('super_glue', 'wic'),
+    ('pasinit/xlwic', "xlwic_en_zh"),
+    ('pasinit/xlwic', "xlwic_fr_fr"),
+]
 for ds in TRAIN_DATASETS:
     write_to_jsonl_hub(ds, split="train")
 
