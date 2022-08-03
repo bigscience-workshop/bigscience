@@ -849,7 +849,6 @@ for (l1_name, l1_code) in FLORES_LANGS:
             continue
         TRAIN_DATASETS.append(("facebook/flores", f"{l1_code}-{l2_code}"))
 
-TRAIN_DATASETS = []
 for (l1_code, l2_code) in WMT22_LANGS:
     if l1_code not in DS_TO_LANG or l2_code not in DS_TO_LANG:
         print(f"Skipping as {l1_code} or {l2_code} was not pre-trained on.")
@@ -946,7 +945,7 @@ def write_to_jsonl_hub(ds, split="train"):
         lang_dir = DS_TO_LANG.get(subset_name, "en")
     if ds_name == "facebook/flores":
         lang_dir = DS_TO_LANG.get(subset_name.split("-")[-1].split("_")[0])
-    elif is_wikilingua_cross_lingual:
+    elif is_wikilingua_cross_lingual or ds_name == "pasinit/xlwic":
         lang_dir = DS_TO_LANG.get(subset_name.split("_")[-1])
     elif ds_name == "xquad":
         lang_dir = DS_TO_LANG.get(subset_name.split(".")[1])
@@ -1005,16 +1004,25 @@ def write_to_jsonl_hub(ds, split="train"):
     # TODO: Add capping? (cap = MAX_EXAMPLES_PER_DATASET // num_templates)
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
+            backcompat_path = None
             if ds_name == "Helsinki-NLP/tatoeba_mt":
                 # E.g. translate-this-ara-eng, where eng is the target
                 lang_dir = DS_TO_LANG.get(t_name.split("-")[-1].split("_")[0], "en")
             elif ds_name == "allenai/wmt22_african":
-                lang_dir = DS_TO_LANG.get(subset_name.split("-")[-1])
+                backcompat_path = os.path.join(
+                    DS_TO_LANG.get(subset_name.split("-")[-1]), 
+                    f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_").replace(" ", "_")
+                )
+                lang_dir = DS_TO_LANG.get(t_name.split("-")[-1])
 
             out_path = os.path.join(
                 lang_dir, 
                 f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_").replace(" ", "_")
             )
+            if backcompat_path is not None and os.path.exists(backcompat_path):
+                print("Moving: ", backcompat_path)
+                os.rename(backcompat_path, out_path)
+                # Skip below
             if os.path.exists(out_path):
                 print("Skipping as exists: ", out_path)
                 continue
@@ -1037,11 +1045,11 @@ def write_to_jsonl_hub(ds, split="train"):
 
 
 # Testing:
-TRAIN_DATASETS = [
-    ('super_glue', 'wic'),
-    ('pasinit/xlwic', "xlwic_en_zh"),
-    ('pasinit/xlwic', "xlwic_fr_fr"),
-]
+#TRAIN_DATASETS = [
+#    ('super_glue', 'wic'),
+#    ('pasinit/xlwic', "xlwic_en_zh"),
+#    ('pasinit/xlwic', "xlwic_fr_fr"),
+#]
 for ds in TRAIN_DATASETS:
     write_to_jsonl_hub(ds, split="train")
 
