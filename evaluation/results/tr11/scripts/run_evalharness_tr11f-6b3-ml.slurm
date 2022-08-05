@@ -22,8 +22,8 @@ echo "START TIME: $(date)"
 VARIANT="tr11f-6b3-ml-evalharness"
 
 
-CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11f-6B3-ml/checkpoints/main/
-MEGATRON_DEEPSPEED_REPO=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/megdsbslmeval/Megatron-DeepSpeed
+CHECKPOINT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11f-6B3-ml/checkpoints/main/global_step337500
+MEGATRON_DEEPSPEED_REPO=/gpfsssd/worksf/projects/rech/six/commun/code/eval/Megatron-DeepSpeed
 export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 
