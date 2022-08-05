@@ -11,12 +11,11 @@ GEM/wiki_lingua,vi,vi
 GEM/wiki_lingua,zh,zh
 GEM/web_nlg,en,en
 GEM/web_nlg,ru,ru
-GEM/wiki_auto_asset_turk,None,None
 wmt14,fr-en,fr-en
 )
 
 # Unique ones: 0 1 2 5 6 7 8 9 10 11
-for val in {0..13}; do
+for val in {0..12}; do
     DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS[$val]}
     IFS=',' read dataset_name dataset_config_name template_config_name <<< "${DATASET_AND_CONFIG}"
     echo $dataset_config_name
