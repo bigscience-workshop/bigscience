@@ -70,13 +70,13 @@ zu
 )
 
 
-DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3/train
+DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3capped/train
 
 for val in {0..45}; do
     LANG=${LANGS[$val]}
     cd $DATA_PATH/$LANG
     cat *.jsonl > merged_$LANG.jsonl
-    OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3/train/xp3_train_$LANG
+    OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3capped/train/xp3_train_$LANG
     cd $MEGATRON_DEEPSPEED_REPO
     python tools/preprocess_data.py \
         --input $DATA_PATH/$LANG/merged_$LANG.jsonl \
@@ -115,7 +115,7 @@ vi
 zh
 )
 
-DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3/validation
+DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3capped/validation
 cd $DATA_PATH
 
 
@@ -123,7 +123,7 @@ for val in {0..12}; do
     LANG=${LANGS[$val]}
     cd $DATA_PATH/$LANG
     cat *.jsonl > merged_$LANG.jsonl
-    OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3/validation/xp3_validation_$LANG
+    OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3capped/validation/xp3_validation_$LANG
     cd $MEGATRON_DEEPSPEED_REPO
     python tools/preprocess_data.py \
         --input $DATA_PATH/$LANG/merged_$LANG.jsonl \
