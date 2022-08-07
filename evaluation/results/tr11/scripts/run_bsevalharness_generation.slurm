@@ -35,7 +35,7 @@ MODEL_CKPT=/gpfsscratch/rech/six/commun/uan68tv-model-conversion/bloom
 cd /gpfsscratch/rech/six/commun/experiments/muennighoff/bslmevalgeneration/lm-evaluation-harness
 
 
-DATASETS_AND_CONFIGS = (
+DATASETS_AND_CONFIGS=(
 GEM/wiki_lingua_ar,ar,"article_summary_ar"
 GEM/wiki_lingua_ar,ar,"write_abstract_ar"
 GEM/wiki_lingua_ar,ar,"summarize_above_ar"
