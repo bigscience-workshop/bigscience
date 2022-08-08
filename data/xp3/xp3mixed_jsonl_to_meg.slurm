@@ -75,8 +75,10 @@ DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3mixed
 for val in {0..45}; do
     LANG=${LANGS[$val]}
     cd $DATA_PATH/$LANG
-    # Merge + Shuffle
-    cat *.jsonl | shuf > merged_$LANG.jsonl
+    # Merge
+    cat *.jsonl > merged_$LANG.jsonl
+    # Drop duplicates (~1G / 37G for en) + Shuffle
+    sort -u merged_$LANG.jsonl | shuf > merged_$LANG.jsonl
     OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3mixed/xp3_$LANG
     cd $MEGATRON_DEEPSPEED_REPO
     python tools/preprocess_data.py \

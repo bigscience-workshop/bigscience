@@ -893,7 +893,12 @@ def apply_template(dataset, template, truncate_ds_name=None):
         inputs_and_targets = template.apply(ex)
         answer_choices = template.get_answer_choices_list(ex)
         if len(inputs_and_targets) == 2:
+            # Note that the signature changed in promptsource 
+            # In 0.1.0 template.apply returned two strings; In >0.3.0 it retuns a str & list
             inputs, targets = inputs_and_targets
+            if len(targets) > 1:
+                print("Found targets longer than 1, picking the first: ", targets)
+            targets = targets[0]
             if targets == "":
                 ex = {"inputs": inputs, "targets": "<NO LABEL>"}
             else:
@@ -902,10 +907,8 @@ def apply_template(dataset, template, truncate_ds_name=None):
         # Also, if the template gets split wrong, len can be > 2
         # We will filter these out later
         else:
-            # inputs is a str by default & targets a list
-            # Note that the signature changed in promptsource 
-            # In 0.1.0 template.apply returned two strings; In >0.3.0 it retuns a str & list
-            ex = {"inputs": "", "targets": [""]}
+            # inputs is a str by default & targets a str
+            ex = {"inputs": "", "targets": ""}
 
         if answer_choices:
             ex["answer_choices"] = answer_choices
@@ -913,7 +916,7 @@ def apply_template(dataset, template, truncate_ds_name=None):
         return ex
 
     def filter_fn(ex):
-        return len(ex["inputs"]) > 0 and len(ex["targets"][0]) > 0
+        return len(ex["inputs"]) > 0 and len(ex["targets"]) > 0
 
     original_columns = dataset.column_names
     dataset = dataset.map(map_fn).filter(filter_fn)
@@ -1041,7 +1044,7 @@ def write_to_jsonl_hub(ds, split="train"):
                 continue
             # Do not force ascii to allow chars like é
             if len(out_ds) > 0:
-                out_ds.to_json(out_path,  orient="records", lines=True, force_ascii=False)
+                out_ds.to_json(out_path, orient="records", lines=True, force_ascii=False)
 
 
 # Testing:
