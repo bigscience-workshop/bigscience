@@ -3,7 +3,7 @@ import json
 import os
 import multiprocessing
 
-jsonl_files = glob.glob("/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3cappedmixed/*/*.jsonl")
+jsonl_files = glob.glob("/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3capped/*/*/*.jsonl")
 print(jsonl_files)
 
 #for path in jsonl_files:
