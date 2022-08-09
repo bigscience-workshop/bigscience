@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=xp3mixedtr13f-6B3-ml-t0
+#SBATCH --job-name=p31tr13f-6B3-ml-t0
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
@@ -18,7 +18,7 @@ set -x -e
 source $six_ALL_CCFRWORK/start-tr13f-6B3-ml-t0
 echo "START TIME: $(date)"
 
-variant=xp3capmix
+variant=p31
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
@@ -28,13 +28,13 @@ LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
 mkdir -p $TENSORBOARD_PATH
 
-MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/megdslossseq/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr13f-6B3-mtf
 
-TRAIN_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3capmix_train.txt
-VALID_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3capmix_validation.txt
+TRAIN_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/p31_train.txt
+VALID_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/p31_validation.txt
 TOKENIZER_NAME_OR_PATH=bigscience/tokenizer
 
 # defining the right environment variables
