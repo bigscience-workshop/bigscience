@@ -30,6 +30,7 @@ export TOKENIZERS_PARALLELISM=false
 
 # Converted transformer checkpoint
 MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-xp3capmixlossseq
+MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-xp3capmix
 MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3/bloom-6b3
 
 cd /gpfsscratch/rech/six/commun/experiments/muennighoff/bslmevalgeneration/lm-evaluation-harness
@@ -45,6 +46,19 @@ wmt14_fr_en,fr-en,"a_good_translation-fr-en-target"
 wmt14_fr_en,fr-en,"a_good_translation-fr-en-source+target"
 wmt14_fr_en,fr-en,"xglm-fr-en-target"
 wmt14_fr_en,fr-en,"gpt3-fr-en"
+)
+
+DATASETS_AND_CONFIGS=(
+wmt19_zh_en,zh-en,"version-en-zh-target"
+wmt19_zh_en,zh-en,"a_good_translation-en-zh-target"
+wmt19_zh_en,zh-en,"a_good_translation-en-zh-source+target"
+wmt19_zh_en,zh-en,"xglm-en-zh-target"
+wmt19_zh_en,zh-en,"gpt3-en-zh"
+wmt19_zh_en,zh-en,"version-zh-en-target"
+wmt19_zh_en,zh-en,"a_good_translation-zh-en-target"
+wmt19_zh_en,zh-en,"a_good_translation-zh-en-source+target"
+wmt19_zh_en,zh-en,"xglm-zh-en-target"
+wmt19_zh_en,zh-en,"gpt3-zh-en"
 )
 
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS[$SLURM_ARRAY_TASK_ID]}
