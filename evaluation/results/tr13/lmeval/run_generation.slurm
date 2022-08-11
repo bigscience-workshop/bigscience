@@ -35,16 +35,16 @@ MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3/bl
 cd /gpfsscratch/rech/six/commun/experiments/muennighoff/bslmevalgeneration/lm-evaluation-harness
 
 DATASETS_AND_CONFIGS=(
-wmt14,fr-en,fr-en,"version-en-fr-target"
-wmt14,fr-en,fr-en,"a_good_translation-en-fr-target"
-wmt14,fr-en,fr-en,"a_good_translation-en-fr-source+target"
-wmt14,fr-en,fr-en,"xglm-en-fr-source-target"
-wmt14,fr-en,fr-en,"gpt3-en-fr"
-wmt14,fr-en,fr-en,"version-fr-en-target"
-wmt14,fr-en,fr-en,"a_good_translation-fr-en-target"
-wmt14,fr-en,fr-en,"a_good_translation-fr-en-source+target"
-wmt14,fr-en,fr-en,"xglm-fr-en-source-target"
-wmt14,fr-en,fr-en,"gpt3-fr-en"
+wmt14_fr_en,fr-en,"version-en-fr-target"
+wmt14_fr_en,fr-en,"a_good_translation-en-fr-target"
+wmt14_fr_en,fr-en,"a_good_translation-en-fr-source+target"
+wmt14_fr_en,fr-en,"xglm-en-fr-source-target"
+wmt14_fr_en,fr-en,"gpt3-en-fr"
+wmt14_fr_en,fr-en,"version-fr-en-target"
+wmt14_fr_en,fr-en,"a_good_translation-fr-en-target"
+wmt14_fr_en,fr-en,"a_good_translation-fr-en-source+target"
+wmt14_fr_en,fr-en,"xglm-fr-en-source-target"
+wmt14_fr_en,fr-en,"gpt3-fr-en"
 )
 
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS[$SLURM_ARRAY_TASK_ID]}
