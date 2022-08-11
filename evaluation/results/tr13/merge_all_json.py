@@ -58,14 +58,19 @@ def main():
         if str(json_file.name).startswith("slim"):
             print(f"Parsing {json_file} as bigscience/lm-eval-harness file.")
             for dic in data["results"]:
-                key = f'{dic["task_name"]}+{dic["prompt_name"]}'
+                key = dic["task_name"]
+                # Same dataset but not really comparable
+                if "en-fr" in dic["prompt_name"]:
+                    key += "_en-fr"
+                elif "fr-en" in dic["prompt_name"]:
+                    key += "_fr-en"
+                sub_key = dic["prompt_name"]
                 results.setdefault(key, {})
-                results[key] = {
-                    **results[key], 
+                results[key].setdefault(sub_key, {})
+                results[key][sub_key] = {
+                    **results[key][sub_key],
                     **{subk: subv for subk, subv in dic.items() if type(subv) in [int, float]}
                 }
-                results[key]["prompt_name"] = dic["prompt_name"]
-                results[key]["task_name"] = dic["task_name"]
         elif str(json_file.name).startswith("agg"):
             print(f"Skipping {json_file} from bigscience/lm-eval-harness.")
             continue

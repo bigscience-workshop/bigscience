@@ -46,11 +46,20 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
     writer.writerow(["dataset", "prompt", "metric", "value"])
 
     for ds_name, v in sorted(results.items()):
-        acc_scores = []
+        acc_scores, bleu_scores = [], []
         for prompt_name, res in sorted(v.items()):
-            for metric, value in sorted(res["evaluation"].items()):
-                writer.writerow([ds_name, prompt_name, metric, value])
-                if metric == "accuracy":
-                    acc_scores.append(value)
+            # T0 Eval
+            if "evaluation" in res:
+                for metric, value in sorted(res["evaluation"].items()):
+                    writer.writerow([ds_name, prompt_name, metric, value])
+                    if metric == "accuracy":
+                        acc_scores.append(value)
+            # LM Eval Harness Generation
+            elif "bleu" in res:
+                writer.writerow([ds_name, prompt_name, "bleu", res["bleu"]])
+                bleu_scores.append(res["bleu"])
+
         if acc_scores:
             writer.writerow([ds_name, "median", "accuracy", statistics.median(acc_scores)])
+        elif bleu_scores:
+            writer.writerow([ds_name, "median", "bleu", statistics.median(bleu_scores)])
