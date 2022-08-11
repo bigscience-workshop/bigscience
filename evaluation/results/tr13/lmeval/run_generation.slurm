@@ -61,5 +61,6 @@ python main.py \
     --no_tracking \
     --task_name $dataset_name \
     --template_names $template_name \
+    --bootstrap_iters 10
 
 echo "END TIME: $(date)"
