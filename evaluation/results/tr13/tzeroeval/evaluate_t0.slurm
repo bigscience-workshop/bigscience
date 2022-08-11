@@ -285,4 +285,5 @@ python t-zero/evaluation/run_eval.py \
         --model_name_or_path $CHECKPOINT_PATH \
         --output_dir $OUTPUT_DIR \
         --per_device_eval_batch_size 8 \
-        --max_length 2048
+        --max_length 2048 \
+        --dtype float16
