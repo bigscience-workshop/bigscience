@@ -38,12 +38,12 @@ DATASETS_AND_CONFIGS=(
 wmt14_fr_en,fr-en,"version-en-fr-target"
 wmt14_fr_en,fr-en,"a_good_translation-en-fr-target"
 wmt14_fr_en,fr-en,"a_good_translation-en-fr-source+target"
-wmt14_fr_en,fr-en,"xglm-en-fr-source-target"
+wmt14_fr_en,fr-en,"xglm-en-fr-target"
 wmt14_fr_en,fr-en,"gpt3-en-fr"
 wmt14_fr_en,fr-en,"version-fr-en-target"
 wmt14_fr_en,fr-en,"a_good_translation-fr-en-target"
 wmt14_fr_en,fr-en,"a_good_translation-fr-en-source+target"
-wmt14_fr_en,fr-en,"xglm-fr-en-source-target"
+wmt14_fr_en,fr-en,"xglm-fr-en-target"
 wmt14_fr_en,fr-en,"gpt3-fr-en"
 )
 
