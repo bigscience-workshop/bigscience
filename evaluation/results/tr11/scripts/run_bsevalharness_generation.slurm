@@ -83,6 +83,13 @@ GEM/wiki_lingua_zh,zh,"rephrase_zh"
 GEM/wiki_lingua_zh,zh,"tldr_zh"
 )
 
+DATASETS_AND_CONFIGS=(
+GEM/wiki_lingua_zh,zh,"article_summary_zh"
+GEM/wiki_lingua_zh,zh,"write_abstract_zh"
+GEM/wiki_lingua_zh,zh,"summarize_above_zh"
+GEM/wiki_lingua_zh,zh,"rephrase_zh"
+GEM/wiki_lingua_zh,zh,"tldr_zh"
+)
 
 
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS[$SLURM_ARRAY_TASK_ID]}
@@ -99,5 +106,6 @@ python main.py \
     --no_tracking \
     --task_name $dataset_name \
     --template_names $template_name \
+    --bootstrap_iters 10
 
 echo "END TIME: $(date)"

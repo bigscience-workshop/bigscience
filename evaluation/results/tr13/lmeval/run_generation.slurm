@@ -61,6 +61,10 @@ wmt19_zh_en,zh-en,"xglm-zh-en-target"
 wmt19_zh_en,zh-en,"gpt3-zh-en"
 )
 
+DATASETS_AND_CONFIGS=(
+GEM/mlsum_es,"es","layman_summ_es"
+)
+
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS[$SLURM_ARRAY_TASK_ID]}
 echo $ARGUMENT
 
@@ -75,6 +79,7 @@ python main.py \
     --no_tracking \
     --task_name $dataset_name \
     --template_names $template_name \
-    --bootstrap_iters 10
+    --bootstrap_iters 10 \
+    --limit 5
 
 echo "END TIME: $(date)"
