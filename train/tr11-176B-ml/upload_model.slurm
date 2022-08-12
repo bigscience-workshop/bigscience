@@ -55,3 +55,6 @@ done
 # CMD="git push --set-upstream origin gs47400"
 # eval $CMD
 # eval "git push"
+
+PATH_REPO=/gpfsscratch/rech/six/commun/commun/experiments/muennighoff/intermedckpts/bloom-6b3-optimizer-states
+eval "python $PATH_CODE_SYNC/hub-sync.py --repo-path  --patterns '*bin'"

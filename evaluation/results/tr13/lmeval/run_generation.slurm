@@ -61,9 +61,13 @@ wmt14_fr_en,fr-en,"a_good_translation-fr-en-target"
 wmt14_fr_en,fr-en,"a_good_translation-fr-en-source+target"
 wmt14_fr_en,fr-en,"xglm-fr-en-target"
 wmt14_fr_en,fr-en,"gpt3-fr-en"
-GEM/mlsum_es,"es","layman_summ_es"
-GEM/mlsum_es,"es","palm_prompt"
-GEM/mlsum_es,"es","summarise_this_in_es_few_sentences"
+)
+
+# Use --limit 3000
+DATASETS_AND_CONFIGS=(
+mlsum_es,"es","layman_summ_es"
+mlsum_es,"es","palm_prompt"
+mlsum_es,"es","summarise_this_in_es_few_sentences"
 )
 
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS[$SLURM_ARRAY_TASK_ID]}
@@ -81,6 +85,6 @@ python main.py \
     --task_name $dataset_name \
     --template_names $template_name \
     --bootstrap_iters 10 \
-    --limit 5
+    --limit 3000
 
 echo "END TIME: $(date)"

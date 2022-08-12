@@ -55,9 +55,6 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
                     if metric == "accuracy":
                         acc_scores.append(value)
             # LM Eval Harness Generation
-            elif "rouge2_fmeasure" in res:
-                writer.writerow([ds_name, prompt_name, "rouge2_fmeasure", res["rouge2_fmeasure"]])
-                bleu_scores.append(res["rouge2_fmeasure"])
             elif "bleu" in res:
                 writer.writerow([ds_name, prompt_name, "bleu", res["bleu"]])
                 bleu_scores.append(res["bleu"])
