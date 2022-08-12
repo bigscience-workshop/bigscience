@@ -46,7 +46,7 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
     writer.writerow(["dataset", "prompt", "metric", "value"])
 
     for ds_name, v in sorted(results.items()):
-        acc_scores, bleu_scores = [], []
+        acc_scores, bleu_scores, rouge2_fmeasure = [], [], []
         for prompt_name, res in sorted(v.items()):
             # T0 Eval
             if "evaluation" in res:
@@ -55,6 +55,9 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
                     if metric == "accuracy":
                         acc_scores.append(value)
             # LM Eval Harness Generation
+            elif "rouge2_fmeasure" in res:
+                writer.writerow([ds_name, prompt_name, "rouge2_fmeasure", res["rouge2_fmeasure"]])
+                bleu_scores.append(res["rouge2_fmeasure"])
             elif "bleu" in res:
                 writer.writerow([ds_name, prompt_name, "bleu", res["bleu"]])
                 bleu_scores.append(res["bleu"])

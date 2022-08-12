@@ -32,22 +32,11 @@ export TOKENIZERS_PARALLELISM=false
 MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-xp3capmixlossseq
 MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-xp3capmix
 MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3/bloom-6b3
+MODEL_CKPT=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-p31
 
 cd /gpfsscratch/rech/six/commun/experiments/muennighoff/bslmevalgeneration/lm-evaluation-harness
 
-DATASETS_AND_CONFIGS=(
-wmt14_fr_en,fr-en,"version-en-fr-target"
-wmt14_fr_en,fr-en,"a_good_translation-en-fr-target"
-wmt14_fr_en,fr-en,"a_good_translation-en-fr-source+target"
-wmt14_fr_en,fr-en,"xglm-en-fr-target"
-wmt14_fr_en,fr-en,"gpt3-en-fr"
-wmt14_fr_en,fr-en,"version-fr-en-target"
-wmt14_fr_en,fr-en,"a_good_translation-fr-en-target"
-wmt14_fr_en,fr-en,"a_good_translation-fr-en-source+target"
-wmt14_fr_en,fr-en,"xglm-fr-en-target"
-wmt14_fr_en,fr-en,"gpt3-fr-en"
-)
-
+# WMT19 ZH-EN does not work
 DATASETS_AND_CONFIGS=(
 wmt19_zh_en,zh-en,"version-en-zh-target"
 wmt19_zh_en,zh-en,"a_good_translation-en-zh-target"
@@ -62,7 +51,19 @@ wmt19_zh_en,zh-en,"gpt3-zh-en"
 )
 
 DATASETS_AND_CONFIGS=(
+wmt14_fr_en,fr-en,"version-en-fr-target"
+wmt14_fr_en,fr-en,"a_good_translation-en-fr-target"
+wmt14_fr_en,fr-en,"a_good_translation-en-fr-source+target"
+wmt14_fr_en,fr-en,"xglm-en-fr-target"
+wmt14_fr_en,fr-en,"gpt3-en-fr"
+wmt14_fr_en,fr-en,"version-fr-en-target"
+wmt14_fr_en,fr-en,"a_good_translation-fr-en-target"
+wmt14_fr_en,fr-en,"a_good_translation-fr-en-source+target"
+wmt14_fr_en,fr-en,"xglm-fr-en-target"
+wmt14_fr_en,fr-en,"gpt3-fr-en"
 GEM/mlsum_es,"es","layman_summ_es"
+GEM/mlsum_es,"es","palm_prompt"
+GEM/mlsum_es,"es","summarise_this_in_es_few_sentences"
 )
 
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS[$SLURM_ARRAY_TASK_ID]}

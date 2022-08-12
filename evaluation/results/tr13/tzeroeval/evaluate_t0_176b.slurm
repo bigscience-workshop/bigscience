@@ -2,9 +2,9 @@
 #SBATCH --job-name=evaluate_t0
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=8           # number of cores per tasks
+#SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --gres=gpu:1                 # number of gpus
+#SBATCH --gres=gpu:8                 # number of gpus
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
@@ -17,11 +17,7 @@ set -x -e
 source $six_ALL_CCFRWORK/start-py38-pt111
 conda activate thomas_t_zero_evaluation
 
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6B3-ml-t0-lmtoks341B-t0toks0
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-prefix
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3/bloom-6b3
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-capmixlossseq
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-p31
+CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/uan68tv-model-conversion/bloom
 
 WORKDIR=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0
 
@@ -277,6 +273,7 @@ echo $ARGUMENT
 
 # Run T0 evaluation
 # For PrefixLM add --prefixlm
+# bfloat16 for 176B ; float16 for smaller models
 IFS=',' read dataset_name dataset_config_name template_config_name template_name <<< "${DATASET_AND_CONFIG}"
 python t-zero/evaluation/run_eval.py \
         --dataset_name $dataset_name \
@@ -287,4 +284,4 @@ python t-zero/evaluation/run_eval.py \
         --output_dir $OUTPUT_DIR \
         --per_device_eval_batch_size 8 \
         --max_length 2048 \
-        --dtype float16
+        --dtype bfloat16
