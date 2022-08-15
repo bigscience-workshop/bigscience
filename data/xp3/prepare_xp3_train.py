@@ -24,6 +24,8 @@ DS_TO_ENG_PROMPT = {
     "khalidalt/tydiqa-primary": "english",
     "khalidalt/tydiqa-goldp": "english",
     "pasinit/xlwic": "en",
+    "GEM/xlsum": "english",
+    "GEM/BiSECT": "en",
 }
 
 TRUNCATE = {
@@ -290,6 +292,31 @@ TRAIN_DATASETS = [
     ('super_glue', 'wic'),
     ('pasinit/xlwic', "xlwic_en_zh"),
     ('pasinit/xlwic', "xlwic_fr_fr"),
+    ('GEM/BiSECT', "en"),   
+    ('GEM/BiSECT', "es"),
+    ('GEM/BiSECT', "fr"),
+    ('GEM/xlsum', "arabic"),
+    ('GEM/xlsum', "bengali"),
+    ('GEM/xlsum', "chinese_simplified"),
+    ('GEM/xlsum', "chinese_traditional"),
+    ('GEM/xlsum', "english"),
+    ('GEM/xlsum', "french"),
+    ('GEM/xlsum', "gujarati"),
+    ('GEM/xlsum', "hindi"),
+    ('GEM/xlsum', "igbo"),
+    ('GEM/xlsum', "indonesian"),
+    ('GEM/xlsum', "kirundi"),
+    ('GEM/xlsum', "marathi"),
+    ('GEM/xlsum', "nepali"),
+    ('GEM/xlsum', "portuguese"),
+    ('GEM/xlsum', "punjabi"),
+    ('GEM/xlsum', "spanish"),
+    ('GEM/xlsum', "swahili"),
+    ('GEM/xlsum', "tamil"),
+    ('GEM/xlsum', "telugu"),
+    ('GEM/xlsum', "urdu"),
+    ('GEM/xlsum', "vietnamese"),
+    ('GEM/xlsum', "yoruba"),
     # flores200
 ]
 
@@ -812,6 +839,10 @@ DS_TO_LANG = {
     "npi": "ne", # == npe
     "ory": "or", # == ori
     "swh": "sw", # == swa
+    "kirundi": "rn", # == rundi
+    "punjabi": "pa", # == panjabi
+    "chinese_simplified": "zh",
+    "chinese_traditional": "zh",
 }
 
 # Add GEM multilingual
@@ -1048,14 +1079,36 @@ def write_to_jsonl_hub(ds, split="train"):
 
 
 # Testing:
-#TRAIN_DATASETS = [
-#    ('super_glue', 'wic'),
-#    ('pasinit/xlwic', "xlwic_en_zh"),
-#    ('pasinit/xlwic', "xlwic_fr_fr"),
-#]
-for ds in TRAIN_DATASETS:
-    write_to_jsonl_hub(ds, split="train")
+TRAIN_DATASETS = [
+    ('GEM/BiSECT', "en"),   
+    ('GEM/BiSECT', "es"),
+    ('GEM/BiSECT', "fr"),
+    ('GEM/xlsum', "arabic"),
+    ('GEM/xlsum', "bengali"),
+    ('GEM/xlsum', "chinese_simplified"),
+    ('GEM/xlsum', "chinese_traditional"),
+    ('GEM/xlsum', "english"),
+    ('GEM/xlsum', "french"),
+    ('GEM/xlsum', "gujarati"),
+    ('GEM/xlsum', "hindi"),
+    ('GEM/xlsum', "igbo"),
+    ('GEM/xlsum', "indonesian"),
+    ('GEM/xlsum', "kirundi"),
+    ('GEM/xlsum', "marathi"),
+    ('GEM/xlsum', "nepali"),
+    ('GEM/xlsum', "portuguese"),
+    ('GEM/xlsum', "punjabi"),
+    ('GEM/xlsum', "spanish"),
+    ('GEM/xlsum', "swahili"),
+    ('GEM/xlsum', "tamil"),
+    ('GEM/xlsum', "telugu"),
+    ('GEM/xlsum', "urdu"),
+    ('GEM/xlsum', "vietnamese"),
+    ('GEM/xlsum', "yoruba"),
+]
+#for ds in TRAIN_DATASETS:
+#    write_to_jsonl_hub(ds, split="train")
 
-#with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
-#    pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
+with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
+    pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
 #    pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)

@@ -71,7 +71,7 @@ zu
 
 
 DATA_PATH=/gpfswork/rech/six/commun/bigscience-training/jsonls/xp3cappedmixed
-OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3cappedmixednew
+OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3cappedmixed
 
 mkdir -p $OUTPUT
 
