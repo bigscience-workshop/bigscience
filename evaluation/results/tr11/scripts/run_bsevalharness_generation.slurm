@@ -84,11 +84,16 @@ GEM/wiki_lingua_zh,zh,"tldr_zh"
 )
 
 DATASETS_AND_CONFIGS=(
-GEM/wiki_lingua_zh,zh,"article_summary_zh"
-GEM/wiki_lingua_zh,zh,"write_abstract_zh"
-GEM/wiki_lingua_zh,zh,"summarize_above_zh"
-GEM/wiki_lingua_zh,zh,"rephrase_zh"
-GEM/wiki_lingua_zh,zh,"tldr_zh"
+wmt14_fr_en,fr-en,"version-en-fr-target"
+wmt14_fr_en,fr-en,"a_good_translation-en-fr-target"
+wmt14_fr_en,fr-en,"a_good_translation-en-fr-source+target"
+wmt14_fr_en,fr-en,"xglm-en-fr-target"
+wmt14_fr_en,fr-en,"gpt3-en-fr"
+wmt14_fr_en,fr-en,"version-fr-en-target"
+wmt14_fr_en,fr-en,"a_good_translation-fr-en-target"
+wmt14_fr_en,fr-en,"a_good_translation-fr-en-source+target"
+wmt14_fr_en,fr-en,"xglm-fr-en-target"
+wmt14_fr_en,fr-en,"gpt3-fr-en"
 )
 
 
@@ -102,7 +107,7 @@ python main.py \
     --model_api_name 'hf-causal' \
     --model_args pretrained=$MODEL_CKPT,use_accelerate=True,tokenizer=$MODEL_CKPT,dtype=bfloat16 \
     --device cuda \
-    --batch_size 16 \
+    --batch_size 8 \
     --no_tracking \
     --task_name $dataset_name \
     --template_names $template_name \
