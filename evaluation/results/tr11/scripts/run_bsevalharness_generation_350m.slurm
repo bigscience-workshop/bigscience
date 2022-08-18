@@ -1,17 +1,14 @@
 #!/bin/bash
-#SBATCH --job-name=genbseval
-#SBATCH --partition=gpu_p5
-#SBATCH --constraint=a100
-#SBATCH --reservation=hug
-#SBATCH --qos=qos_gpu-gc             # up to 100h
+#SBATCH --job-name=run_bsevalharness-generation-350m
+#SBATCH --constraint=v100-32g
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=64           # number of cores per tasks
+#SBATCH --cpus-per-task=10           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --gres=gpu:8                  # number of gpus
-#SBATCH --time 100:00:00             # maximum execution time (HH:MM:SS)
+#SBATCH --gres=gpu:1                 # number of gpus
+#SBATCH --time 20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --account=six@a100
+#SBATCH --account=six@v100
 
 set -x -e
 
@@ -30,11 +27,11 @@ export TRANSFORMERS_OFFLINE=1
 export TOKENIZERS_PARALLELISM=false
 
 # Converted transformer checkpoint
-MODEL_CKPT=/gpfsscratch/rech/six/commun/uan68tv-model-conversion/bloom
+MODEL_CKPT=/gpfsscratch/rech/six/commun/commun/experiments/muennighoff/bloomckpt/350m/bloom-350m
 
 cd /gpfsscratch/rech/six/commun/experiments/muennighoff/bslmevalgeneration/lm-evaluation-harness
 
-
+# WMT19 ZH-EN does not work
 DATASETS_AND_CONFIGS=(
 GEM/wiki_lingua_ar,ar,"article_summary_ar"
 GEM/wiki_lingua_ar,ar,"write_abstract_ar"
@@ -83,19 +80,16 @@ GEM/wiki_lingua_zh,zh,"rephrase_zh"
 GEM/wiki_lingua_zh,zh,"tldr_zh"
 )
 
-DATASETS_AND_CONFIGS=(
-wmt14_fr_en,fr-en,"version-en-fr-target"
-wmt14_fr_en,fr-en,"a_good_translation-en-fr-target"
-wmt14_fr_en,fr-en,"a_good_translation-en-fr-source+target"
-wmt14_fr_en,fr-en,"xglm-en-fr-target"
-wmt14_fr_en,fr-en,"gpt3-en-fr"
-wmt14_fr_en,fr-en,"version-fr-en-target"
-wmt14_fr_en,fr-en,"a_good_translation-fr-en-target"
-wmt14_fr_en,fr-en,"a_good_translation-fr-en-source+target"
-wmt14_fr_en,fr-en,"xglm-fr-en-target"
-wmt14_fr_en,fr-en,"gpt3-fr-en"
-)
-
+#GEM/wiki_lingua_ar,ar,"article_summary_ar"
+#GEM/wiki_lingua_ar,ar,"write_abstract_ar"
+#GEM/wiki_lingua_ar,ar,"summarize_above_ar"
+#GEM/wiki_lingua_ar,ar,"rephrase_ar"
+#GEM/wiki_lingua_ar,ar,"tldr_ar"
+#GEM/wiki_lingua_zh,zh,"article_summary_zh"
+#GEM/wiki_lingua_zh,zh,"write_abstract_zh"
+#GEM/wiki_lingua_zh,zh,"summarize_above_zh"
+#GEM/wiki_lingua_zh,zh,"rephrase_zh"
+#GEM/wiki_lingua_zh,zh,"tldr_zh"
 
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS[$SLURM_ARRAY_TASK_ID]}
 echo $ARGUMENT
@@ -105,9 +99,9 @@ IFS=',' read dataset_name lang template_name <<< "${DATASET_AND_CONFIG}"
 # Use this fork of lm-eval: https://github.com/bigscience-workshop/lm-evaluation-harness/pull/109
 python main.py \
     --model_api_name 'hf-causal' \
-    --model_args pretrained=$MODEL_CKPT,use_accelerate=True,tokenizer=$MODEL_CKPT,dtype=bfloat16 \
+    --model_args pretrained=$MODEL_CKPT,use_accelerate=True,tokenizer=$MODEL_CKPT,dtype=float16 \
     --device cuda \
-    --batch_size 8 \
+    --batch_size 16 \
     --no_tracking \
     --task_name $dataset_name \
     --template_names $template_name \
