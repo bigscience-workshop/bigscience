@@ -116,6 +116,7 @@ GPT_ARGS=" \
     --init-method-std 0.0048 \
     --embed-layernorm \
     --fp16 \
+    --bitfit \
     --seed 42 \
     --position-embedding-type alibi \
     --checkpoint-activations \
