@@ -902,7 +902,9 @@ def apply_template(dataset, template, truncate_ds_name=None):
             # In 0.1.0 template.apply returned two strings; In >0.3.0 it retuns a str & list
             inputs, targets = inputs_and_targets
             if len(targets) > 1:
-                print("Found targets longer than 1, picking the first: ", targets)
+                # Safer to skip, as could be a bug
+                print(f"Found targets longer than 1. Inputs: {inputs} ; Targets {targets}. Skipping.")
+                return {"inputs": "", "targets": ""}
             targets = targets[0]
             ex = {"inputs": inputs, "targets": targets}
         # When template results in an empty example, template.apply returns [""]
