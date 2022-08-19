@@ -75,6 +75,7 @@ EVAL_DATASETS_L1 = [
     ("xnli", "ur"),
     ("xnli", "vi"),
     ("xnli", "zh"),
+    ("openai_humaneval", None),
 ]
 
 EVAL_DATASETS_L2 = [
@@ -96,56 +97,56 @@ EVAL_DATASETS_L2 = [
 
 TRAIN_DATASETS = [
     # English-only
-    ('glue','mrpc'), #
-    ('glue','qqp'), #
-    ('paws','labeled_final'), #
-    ('ai2_arc','ARC-Challenge'),#
-    ('ai2_arc','ARC-Easy'),#
-    ('kilt_tasks','hotpotqa'),#
-    ('trivia_qa','unfiltered'),#
-    ('web_questions',None),#
-    ('wiki_qa',None),#
-    ('adversarial_qa','dbidaf'),#
-    ('adversarial_qa','dbert'),#
-    ('adversarial_qa','droberta'),#
-    ('duorc','SelfRC'),#
-    ('duorc','ParaphraseRC'),#
-    ('ropes',None),#
-    ('squad_v2',None),#
-    ('super_glue','record'),#XXXXXXX
-    ('quoref',None),#
-    ('cos_e','v1.11'),#
-    ('cosmos_qa',None),#
-    ('dream',None),#
-    ('openbookqa','main'),#
-    ('qasc',None),#
-    ('quail',None),#
-    ('quarel',None),#
-    ('quartz',None),#
-    ('race','high'),#
-    ('race','middle'),#
-    ('sciq',None),#
-    ('social_i_qa',None),#
-    ('super_glue','boolq'),#
-    ('super_glue','multirc'),#
-    ('wiki_hop','original'),#
-    ('wiqa',None),#
-    ('piqa',None),#
-    ('amazon_polarity',None),#
-    ('app_reviews',None),#
-    ('imdb',None),#
-    ('rotten_tomatoes',None),#
-    ('yelp_review_full',None),#
-    ('common_gen',None),#
-    ('wiki_bio',None),#
-    ('cnn_dailymail','3.0.0'),#
-    ('gigaword',None),#
-    ('multi_news',None),#
-    ('samsum',None),#
-    ('xsum',None),#
-    ('ag_news',None),#
-    ('dbpedia_14',None),#
-    ('trec',None),#
+    ('glue','mrpc'), 
+    ('glue','qqp'),
+    ('paws','labeled_final'),
+    ('ai2_arc','ARC-Challenge'),
+    ('ai2_arc','ARC-Easy'),
+    ('kilt_tasks','hotpotqa'),
+    ('trivia_qa','unfiltered'),
+    ('web_questions',None),
+    ('wiki_qa',None),
+    ('adversarial_qa','dbidaf'),
+    ('adversarial_qa','dbert'),
+    ('adversarial_qa','droberta'),
+    ('duorc','SelfRC'),
+    ('duorc','ParaphraseRC'),
+    ('ropes',None),
+    ('squad_v2',None),
+    ('super_glue','record'),
+    ('quoref',None),
+    ('cos_e','v1.11'),
+    ('cosmos_qa',None),
+    ('dream',None),
+    ('openbookqa','main'),
+    ('qasc',None),
+    ('quail',None),
+    ('quarel',None),
+    ('quartz',None),
+    ('race','high'),
+    ('race','middle'),
+    ('sciq',None),
+    ('social_i_qa',None),
+    ('super_glue','boolq'),
+    ('super_glue','multirc'),
+    ('wiki_hop','original'),
+    ('wiqa',None),
+    ('piqa',None),
+    ('amazon_polarity',None),
+    ('app_reviews',None),
+    ('imdb',None),
+    ('rotten_tomatoes',None),
+    ('yelp_review_full',None),
+    ('common_gen',None),
+    ('wiki_bio',None),
+    ('cnn_dailymail','3.0.0'),
+    ('gigaword',None),
+    ('multi_news',None),
+    ('samsum',None),
+    ('xsum',None),
+    ('ag_news',None),
+    ('dbpedia_14',None),
+    ('trec',None),
     # Multilingual
     ('GEM/wiki_lingua', 'ar'),
     ('GEM/wiki_lingua', 'en'),
@@ -269,7 +270,6 @@ TRAIN_DATASETS = [
     ('khalidalt/tydiqa-goldp', 'swahili'),
     ('khalidalt/tydiqa-goldp', 'telugu'),
     ('Muennighoff/mbpp', 'sanitized'),
-    ("openai_humaneval", None),
     ("great_code", None),
     ("neural_code_search", "evaluation_dataset"),
     ("codeparrot/codecomplex", "codeparrot--codecomplex"),
@@ -281,7 +281,7 @@ TRAIN_DATASETS = [
     ('super_glue', 'wic'),
     ('pasinit/xlwic', "xlwic_en_zh"),
     ('pasinit/xlwic', "xlwic_fr_fr"),
-    ('GEM/BiSECT', "en"),   
+    ('GEM/BiSECT', "en"),
     ('GEM/BiSECT', "es"),
     ('GEM/BiSECT', "fr"),
     ('GEM/xlsum', "arabic"),
@@ -1038,32 +1038,9 @@ def write_to_jsonl_hub(ds, split="train"):
                 out_ds.to_json(out_path, orient="records", lines=True, force_ascii=False)
 
 # Testing:
-TRAIN_DATASETS = [
-    # English-only
-    ('glue','mrpc'), #
-    ('glue','qqp'), #
-    ('paws','labeled_final'), #
-    ('ai2_arc','ARC-Challenge'),#
-    ('ai2_arc','ARC-Easy'),#
-    ('kilt_tasks','hotpotqa'),#
-    ('trivia_qa','unfiltered'),#
-    ('web_questions',None),#
-    ('wiki_qa',None),#
-    ('adversarial_qa','dbidaf'),#
-    ('adversarial_qa','dbert'),#
-    ('adversarial_qa','droberta'),#
-    ('duorc','SelfRC'),#
-    ('duorc','ParaphraseRC'),#
-    ('ropes',None),#
-    ('squad_v2',None),#
-    ('quoref',None),#
-    ('cos_e','v1.11'),#
-    ('cosmos_qa',None),#
-    ('dream',None),#
-    ('openbookqa','main'),#
-    ('qasc',None),#
-    ('quail',None),#
-]
+#TRAIN_DATASETS = [
+#    ('khalidalt/tydiqa-primary', 'arabic'),
+#]
 
 #for ds in TRAIN_DATASETS:
 #    write_to_jsonl_hub(ds, split="train")
