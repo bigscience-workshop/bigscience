@@ -16,7 +16,7 @@ MAX_EXAMPLES_PER_DATASET_PROMPT = 100_000
 DS_TO_ENG_PROMPT = {
     "xcopa": "en",
     "Muennighoff/xstory_cloze": "en",
-    'GEM/wiki_lingua': 'en',
+    'GEM/wiki_lingua': 'en_en', # Contains correct language names
     'xnli': 'en',
     "paws-x": "en",
     "mlqa": "mlqa.en.en",
@@ -26,17 +26,6 @@ DS_TO_ENG_PROMPT = {
     "pasinit/xlwic": "en",
     "GEM/xlsum": "english",
     "GEM/BiSECT": "en",
-}
-
-TRUNCATE = {
-    "khalidalt/tydiqa-primary": {
-        "cols": ["document_plaintext", "question_text"], 
-        "trunc_col": "document_plaintext"
-        },
-    "GEM/wiki_lingua": {
-        "cols": ["document_plaintext", "question_text"], 
-        "trunc_col": "document_plaintext"
-        },
 }
 
 BIAS_FAIRNESS = [
@@ -51,10 +40,10 @@ BIAS_FAIRNESS = [
 
 EVAL_DATASETS_L1 = [
     ('super_glue','wsc.fixed'),
-    ('winogrande','winogrande_xl'),
-    ('super_glue','cb'),
-    ('super_glue','rte'),
-    ('anli',None),
+    ('winogrande','winogrande_xl'),#
+    ('super_glue','cb'),#
+    ('super_glue','rte'),#
+    ('anli',None),#
     ('story_cloze', '2016'),
     ('Muennighoff/xstory_cloze', 'ar'),
     ('Muennighoff/xstory_cloze', 'es'),
@@ -67,17 +56,17 @@ EVAL_DATASETS_L1 = [
     ('hellaswag', None),
     ('super_glue', 'copa'),
     # Multilingual
-    ('Muennighoff/xwinograd','en'),
+    ('Muennighoff/xwinograd','en'),#
     ('Muennighoff/xwinograd','fr'),
     ('Muennighoff/xwinograd','pt'),
     ('Muennighoff/xwinograd','zh'),
     ('clue', 'cluewsc2020'),
-    ('xcopa','id'),
+    ('xcopa','id'),#
     ('xcopa','ta'),
     ('xcopa','sw'),
     ('xcopa','vi'),
     ('xcopa','zh'),
-    ("xnli", "ar"),
+    ("xnli", "ar"),#
     ("xnli", "en"),
     ("xnli", "es"),
     ("xnli", "fr"),
@@ -107,56 +96,56 @@ EVAL_DATASETS_L2 = [
 
 TRAIN_DATASETS = [
     # English-only
-    ('glue','mrpc'),
-    ('glue','qqp'),
-    ('paws','labeled_final'),
-    ('ai2_arc','ARC-Challenge'),
-    ('ai2_arc','ARC-Easy'),
-    ('kilt_tasks','hotpotqa'),
-    ('trivia_qa','unfiltered'),
-    ('web_questions',None),
-    ('wiki_qa',None),
-    ('adversarial_qa','dbidaf'),
-    ('adversarial_qa','dbert'),
-    ('adversarial_qa','droberta'),
-    ('duorc','SelfRC'),
-    ('duorc','ParaphraseRC'),
-    ('ropes',None),
-    ('squad_v2',None),
-    ('super_glue','record'),
-    ('quoref',None),
-    ('cos_e','v1.11'),
-    ('cosmos_qa',None),
-    ('dream',None),
-    ('openbookqa','main'),
-    ('qasc',None),
-    ('quail',None),
-    ('quarel',None),
-    ('quartz',None),
-    ('race','high'),
-    ('race','middle'),
-    ('sciq',None),
-    ('social_i_qa',None),
-    ('super_glue','boolq'),
-    ('super_glue','multirc'),
-    ('wiki_hop','original'),
-    ('wiqa',None),
-    ('piqa',None),
-    ('amazon_polarity',None),
-    ('app_reviews',None),
-    ('imdb',None),
-    ('rotten_tomatoes',None),
-    ('yelp_review_full',None),
-    ('common_gen',None),
-    ('wiki_bio',None),
-    ('cnn_dailymail','3.0.0'),
-    ('gigaword',None),
-    ('multi_news',None),
-    ('samsum',None),
-    ('xsum',None),
-    ('ag_news',None),
-    ('dbpedia_14',None),
-    ('trec',None),
+    ('glue','mrpc'), #
+    ('glue','qqp'), #
+    ('paws','labeled_final'), #
+    ('ai2_arc','ARC-Challenge'),#
+    ('ai2_arc','ARC-Easy'),#
+    ('kilt_tasks','hotpotqa'),#
+    ('trivia_qa','unfiltered'),#
+    ('web_questions',None),#
+    ('wiki_qa',None),#
+    ('adversarial_qa','dbidaf'),#
+    ('adversarial_qa','dbert'),#
+    ('adversarial_qa','droberta'),#
+    ('duorc','SelfRC'),#
+    ('duorc','ParaphraseRC'),#
+    ('ropes',None),#
+    ('squad_v2',None),#
+    ('super_glue','record'),#XXXXXXX
+    ('quoref',None),#
+    ('cos_e','v1.11'),#
+    ('cosmos_qa',None),#
+    ('dream',None),#
+    ('openbookqa','main'),#
+    ('qasc',None),#
+    ('quail',None),#
+    ('quarel',None),#
+    ('quartz',None),#
+    ('race','high'),#
+    ('race','middle'),#
+    ('sciq',None),#
+    ('social_i_qa',None),#
+    ('super_glue','boolq'),#
+    ('super_glue','multirc'),#
+    ('wiki_hop','original'),#
+    ('wiqa',None),#
+    ('piqa',None),#
+    ('amazon_polarity',None),#
+    ('app_reviews',None),#
+    ('imdb',None),#
+    ('rotten_tomatoes',None),#
+    ('yelp_review_full',None),#
+    ('common_gen',None),#
+    ('wiki_bio',None),#
+    ('cnn_dailymail','3.0.0'),#
+    ('gigaword',None),#
+    ('multi_news',None),#
+    ('samsum',None),#
+    ('xsum',None),#
+    ('ag_news',None),#
+    ('dbpedia_14',None),#
+    ('trec',None),#
     # Multilingual
     ('GEM/wiki_lingua', 'ar'),
     ('GEM/wiki_lingua', 'en'),
@@ -854,7 +843,6 @@ for l1_code in WIKILINGUA_LANGS:
         TRAIN_DATASETS.append(("GEM/wiki_lingua", f"{l1_code}_{l2_code}"))
         
 
-
 bloom_lang_codes_iso3 = []
 bloom_lang_codes_iso2 = []
 for lang in BLOOM_LANGS.split("\n")[1:-1]:
@@ -904,25 +892,11 @@ def removeHyphen(example):
     example = example_clean
     return example
 
-#from transformers import AutoTokenizer
-#tokenizer = AutoTokenizer.from_pretrained("bigscience/bloom350m")
-#import re
-# Adapted from t0.seqio_tasks.utils
-def apply_template(dataset, template, truncate_ds_name=None):
-    # TODO: Truncation?
-    #if truncate_ds_name is not None:
-    #    #TRUNCATE
-    #    template_toks = tokenizer.tokenize(re.sub("[\{].*?[\}]|\||\}", "", template.jinja))
 
+def apply_template(dataset, template, truncate_ds_name=None):
     def map_fn(ex):
         ex = removeHyphen(ex)
-        #if truncate_ds_name is not None:
-        #    toks = sum([tokenizer.tokenize(ex[col]) for col in TRUNCATE[truncate_ds_name]["cols"]])
-        #    if toks
-        #    cols_toks = tokenizer.tokenize(ex)
-        #    # col_to_truncate
         inputs_and_targets = template.apply(ex)
-        answer_choices = template.get_answer_choices_list(ex)
         if len(inputs_and_targets) == 2:
             # Note that the signature changed in promptsource 
             # In 0.1.0 template.apply returned two strings; In >0.3.0 it retuns a str & list
@@ -930,20 +904,13 @@ def apply_template(dataset, template, truncate_ds_name=None):
             if len(targets) > 1:
                 print("Found targets longer than 1, picking the first: ", targets)
             targets = targets[0]
-            if targets == "":
-                ex = {"inputs": inputs, "targets": "<NO LABEL>"}
-            else:
-                ex = {"inputs": inputs, "targets": targets}
+            ex = {"inputs": inputs, "targets": targets}
         # When template results in an empty example, template.apply returns [""]
         # Also, if the template gets split wrong, len can be > 2
         # We will filter these out later
         else:
             # inputs is a str by default & targets a str
             ex = {"inputs": "", "targets": ""}
-
-        if answer_choices:
-            ex["answer_choices"] = answer_choices
-
         return ex
 
     def filter_fn(ex):
@@ -952,7 +919,7 @@ def apply_template(dataset, template, truncate_ds_name=None):
     original_columns = dataset.column_names
     dataset = dataset.map(map_fn).filter(filter_fn)
     # map keeps original columns, remove them
-    return dataset.remove_columns(set(original_columns) - {"inputs", "targets", "answer_choices"})
+    return dataset.remove_columns(set(original_columns) - {"inputs", "targets"})
 
 # Copied from t0.seqio_tasks.utils
 def get_dataset_splits(dataset_name, subset_name=None):
@@ -970,6 +937,9 @@ def filter_l1_l2_wikilingua(example, l1, l2):
 
 
 def write_to_jsonl_hub(ds, split="train"):
+
+    ### GET DATASET & LANGUAGE ###
+
     ds_name, subset_name = ds
 
     is_wikilingua_cross_lingual = (ds_name == "GEM/wiki_lingua") and ("_") in subset_name
@@ -988,18 +958,17 @@ def write_to_jsonl_hub(ds, split="train"):
         lang_dir = DS_TO_LANG.get(subset_name.split(".")[1])
     os.makedirs(lang_dir, exist_ok=True)
 
-    if ds_name == "Helsinki-NLP/tatoeba_mt":
-        # Fixes a bug when loading a ds where only test split exists
-        ds = datasets.load_dataset(ds_name, subset_name, ignore_verifications=True, revision="842eb26634a9775f504bb2f3f43cd4cc5f9314d8")#, download_config=datasets.DownloadConfig(num_proc=1)
-    else:
-        ds = load_dataset(ds_name, subset_name)#, download_config=datasets.DownloadConfig(num_proc=1))
+    ds = load_dataset(ds_name, subset_name)
 
-    # Filter down to only the current set
-    if is_wikilingua_cross_lingual:
-        # Keep only L1 -> L2 (L2 -> L1 will be a separate dataset)
-        ds = ds.filter(partial(filter_l1_l2_wikilingua, l1=subset_name.split("_")[0], l2=subset_name.split("_")[1]))
-        # Add names, e.g. Chinese for zh
+    if ds_name == "GEM/wiki_lingua":
+        # Add names, e.g. Chinese for zh to use them in the jinja prompts
         ds = ds.map(add_language_name_wikilingua)
+        if is_wikilingua_cross_lingual:
+            # Keep only L1 -> L2 (L2 -> L1 will be a separate dataset)
+            ds = ds.filter(partial(filter_l1_l2_wikilingua, l1=subset_name.split("_")[0], l2=subset_name.split("_")[1]))
+
+
+    ### SELECT SPLITS ###
 
     dataset_splits = list(ds.keys())
     if subset_name == "xlwic_en_zh":
@@ -1022,41 +991,32 @@ def write_to_jsonl_hub(ds, split="train"):
         if "sampled_test" in dataset_splits:
             dataset_splits.remove("sampled_test")
 
+    ### SELECT PROMPTS ###
+
     if subset_name is None:
         prompt_dataset_name = ds_name
     else:
         subset_name_prompt = subset_name
-        if is_wikilingua_cross_lingual:
-            # Custom crosslingual prompts
-            subset_name_prompt = "en_en"
-        elif USE_ENGLISH_PROMPTS and ds_name in DS_TO_ENG_PROMPT:
+        if USE_ENGLISH_PROMPTS and ds_name in DS_TO_ENG_PROMPT:
             subset_name_prompt = DS_TO_ENG_PROMPT[ds_name]
         prompt_dataset_name = f"{ds_name}/{subset_name_prompt}"
 
     prompts = DatasetTemplates(prompt_dataset_name)
 
-    # TODO: Add capping? (cap = MAX_EXAMPLES_PER_DATASET // num_templates)
+    ### PROCESS ###
+
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
-            backcompat_path = None
             if ds_name == "Helsinki-NLP/tatoeba_mt":
                 # E.g. translate-this-ara-eng, where eng is the target
                 lang_dir = DS_TO_LANG.get(t_name.split("-")[-1].split("_")[0], "en")
             elif ds_name == "allenai/wmt22_african":
-                backcompat_path = os.path.join(
-                    DS_TO_LANG.get(subset_name.split("-")[-1]), 
-                    f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_").replace(" ", "_")
-                )
                 lang_dir = DS_TO_LANG.get(t_name.split("-")[-1])
 
             out_path = os.path.join(
                 lang_dir, 
                 f'xp3_{ds_name}_{subset_name}_{split}_{t_name}.jsonl'.replace("/", "_").replace(" ", "_")
             )
-            if backcompat_path is not None and os.path.exists(backcompat_path):
-                print("Moving: ", backcompat_path)
-                os.rename(backcompat_path, out_path)
-                # Skip below
             if os.path.exists(out_path):
                 print("Skipping as exists: ", out_path)
                 continue
@@ -1071,44 +1031,43 @@ def write_to_jsonl_hub(ds, split="train"):
                 max_range = min(len(out_ds), MAX_EXAMPLES_PER_DATASET_PROMPT)
                 out_ds = out_ds.sort("inputs").select(list(range(max_range)))
             except Exception as e:
-                print(f"Skipping template due to {e}. DS: {ds_name} Template: {t_name}")
+                print(f"Skipping due to {e}. DS: {ds_name}/{subset_name} Template: {t_name}")
                 continue
             # Do not force ascii to allow chars like é
             if len(out_ds) > 0:
                 out_ds.to_json(out_path, orient="records", lines=True, force_ascii=False)
 
-
 # Testing:
 TRAIN_DATASETS = [
-    ('GEM/BiSECT', "en"),   
-    ('GEM/BiSECT', "es"),
-    ('GEM/BiSECT', "fr"),
-    ('GEM/xlsum', "arabic"),
-    ('GEM/xlsum', "bengali"),
-    ('GEM/xlsum', "chinese_simplified"),
-    ('GEM/xlsum', "chinese_traditional"),
-    ('GEM/xlsum', "english"),
-    ('GEM/xlsum', "french"),
-    ('GEM/xlsum', "gujarati"),
-    ('GEM/xlsum', "hindi"),
-    ('GEM/xlsum', "igbo"),
-    ('GEM/xlsum', "indonesian"),
-    ('GEM/xlsum', "kirundi"),
-    ('GEM/xlsum', "marathi"),
-    ('GEM/xlsum', "nepali"),
-    ('GEM/xlsum', "portuguese"),
-    ('GEM/xlsum', "punjabi"),
-    ('GEM/xlsum', "spanish"),
-    ('GEM/xlsum', "swahili"),
-    ('GEM/xlsum', "tamil"),
-    ('GEM/xlsum', "telugu"),
-    ('GEM/xlsum', "urdu"),
-    ('GEM/xlsum', "vietnamese"),
-    ('GEM/xlsum', "yoruba"),
+    # English-only
+    ('glue','mrpc'), #
+    ('glue','qqp'), #
+    ('paws','labeled_final'), #
+    ('ai2_arc','ARC-Challenge'),#
+    ('ai2_arc','ARC-Easy'),#
+    ('kilt_tasks','hotpotqa'),#
+    ('trivia_qa','unfiltered'),#
+    ('web_questions',None),#
+    ('wiki_qa',None),#
+    ('adversarial_qa','dbidaf'),#
+    ('adversarial_qa','dbert'),#
+    ('adversarial_qa','droberta'),#
+    ('duorc','SelfRC'),#
+    ('duorc','ParaphraseRC'),#
+    ('ropes',None),#
+    ('squad_v2',None),#
+    ('quoref',None),#
+    ('cos_e','v1.11'),#
+    ('cosmos_qa',None),#
+    ('dream',None),#
+    ('openbookqa','main'),#
+    ('qasc',None),#
+    ('quail',None),#
 ]
+
 #for ds in TRAIN_DATASETS:
 #    write_to_jsonl_hub(ds, split="train")
 
 with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
-    pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
+    pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
 #    pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)

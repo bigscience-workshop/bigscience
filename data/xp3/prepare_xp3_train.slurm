@@ -14,5 +14,5 @@ set -x -e
 source $six_ALL_CCFRWORK/start-prod
 conda activate thomas_t_zero_evaluation
 
-cd /gpfswork/rech/six/commun/bigscience-training/jsonls/xp3/train/
-python /gpfswork/rech/six/commun/bigscience-training/jsonls/xp3/train/prepare_xp3.py
+cd /gpfswork/rech/six/commun/bigscience-training/jsonls/xp3long/train/
+python /gpfswork/rech/six/commun/bigscience-training/jsonls/xp3long/train/prepare_xp3.py
