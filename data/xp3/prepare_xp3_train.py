@@ -13,6 +13,37 @@ USE_ENGLISH_PROMPTS = True
 
 MAX_EXAMPLES_PER_DATASET_PROMPT = 100_000
 
+# Some datasets have test sets with hidden labels which will still compile but only noise
+# e.g. piqa test labels are all [-1] which still works on list indices resulting in 
+# noise samples where the label is always the same  
+SKIP_PROMPTS = {
+    "common_gen": {"test": ["all"]},
+    "piqa": {"test": ["all"]},
+    "qasc": {"test": ["all"]},
+    "imdb": {"unsupervised": ["all"]},
+    "glue/qqp": {"test": ["all"]},
+    "qasc": {"test": ["all"]},
+    "cosmos_qa": {"test": [
+        "description_context_question_answer_text", 
+        "description_context_question_text",
+        "description_context_question_answer_id",
+        "context_answer_to_question",
+        "context_description_question_answer_text",
+        "context_description_question_answer_id",
+        "context_question_description_answer_id",
+        "context_description_question_text",
+        "context_question_description_answer_text",
+        "only_question_answer",
+        "no_prompt_id",
+        "context_question_description_text",
+        "no_prompt_text",
+        ]},
+    "clue/tnews": {"test": ["all"]},
+    "clue/csl": {"test": ["all"]},
+    "clue/cmrc2018": {"test": ["generate_question", "in_an_exam", "answer_in_the_passage", "answer_following_question", "xp3longcontinue"]},
+    "clue/drcd": {"test": ["generate_question", "in_an_exam", "answer_in_the_passage", "answer_following_question", "xp3longcontinue"]},
+}
+
 DS_TO_ENG_PROMPT = {
     "xcopa": "en",
     "Muennighoff/xstory_cloze": "en",
@@ -893,7 +924,7 @@ def removeHyphen(example):
     return example
 
 
-def apply_template(dataset, template, truncate_ds_name=None):
+def apply_template(dataset, template):
     def map_fn(ex):
         ex = removeHyphen(ex)
         inputs_and_targets = template.apply(ex)
@@ -1009,6 +1040,12 @@ def write_to_jsonl_hub(ds, split="train"):
 
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
+            
+            if SKIP_PROMPTS.get(prompt_dataset_name, {}).get(split, False):
+                if ("all" in SKIP_PROMPTS[prompt_dataset_name][split]) or (t_name in SKIP_PROMPTS[prompt_dataset_name][split]):
+                    print(f"Skipping DS: {prompt_dataset_name} Split {split} Prompt {t_name}")
+                    continue
+
             if ds_name == "Helsinki-NLP/tatoeba_mt":
                 # E.g. translate-this-ara-eng, where eng is the target
                 lang_dir = DS_TO_LANG.get(t_name.split("-")[-1].split("_")[0], "en")
@@ -1026,9 +1063,15 @@ def write_to_jsonl_hub(ds, split="train"):
             assert len(ds[split]) > 0, f"Got empty: {ds_name}"
 
             try:
-                # Allow 10x buffer for empty examples
-                max_range = min(len(ds[split]), MAX_EXAMPLES_PER_DATASET_PROMPT * 10)
-                out_ds = apply_template(dataset=ds[split].select(list(range(max_range))), template=prompts[t_name])
+                if ds_name == "allenai/wmt22_african":
+                    # Sort by laser score, i.e. by increasing confidence & limit samples due to mediocre quality
+                    ds[split] = ds[split].sort("laser_score", reverse=True)
+                    max_range = min(len(ds[split]), MAX_EXAMPLES_PER_DATASET_PROMPT // 2)
+                else:
+                    # Allow 5x buffer for empty examples
+                    max_range = min(len(ds[split]), MAX_EXAMPLES_PER_DATASET_PROMPT * 5)
+                # Shuffle to avoid using the same subset
+                out_ds = apply_template(dataset=ds[split].shuffle().select(list(range(max_range))), template=prompts[t_name])
                 # Keep X shortest examples
                 max_range = min(len(out_ds), MAX_EXAMPLES_PER_DATASET_PROMPT)
                 out_ds = out_ds.sort("inputs").select(list(range(max_range)))
@@ -1040,9 +1083,9 @@ def write_to_jsonl_hub(ds, split="train"):
                 out_ds.to_json(out_path, orient="records", lines=True, force_ascii=False)
 
 # Testing:
-#TRAIN_DATASETS = [
-#    ('khalidalt/tydiqa-primary', 'arabic'),
-#]
+TRAIN_DATASETS = [
+    ('great_code', None),
+]
 
 #for ds in TRAIN_DATASETS:
 #    write_to_jsonl_hub(ds, split="train")
