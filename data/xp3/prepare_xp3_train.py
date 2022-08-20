@@ -1041,6 +1041,10 @@ def write_to_jsonl_hub(ds, split="train"):
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
             
+            print("RUNNING", split, t_name)
+            if t_name != "fix buggy line":
+                continue
+            
             if SKIP_PROMPTS.get(prompt_dataset_name, {}).get(split, False):
                 if ("all" in SKIP_PROMPTS[prompt_dataset_name][split]) or (t_name in SKIP_PROMPTS[prompt_dataset_name][split]):
                     print(f"Skipping DS: {prompt_dataset_name} Split {split} Prompt {t_name}")
