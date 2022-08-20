@@ -94,7 +94,6 @@ OPTIMIZER_ARGS=" \
     --clip-grad 1.0 \
     --weight-decay 1e-4 \
     --no-load-optim \
-    --norm-target-loss \
     "
 # for 20h 1190, for 100h 5990
 #    --exit-duration-in-mins 1190 \
