@@ -18,7 +18,7 @@ set -x -e
 source $six_ALL_CCFRWORK/start-tr13f-6B3-ml-t0
 echo "START TIME: $(date)"
 
-variant=xp3capmixv2
+variant=xp3capmixv3lossseq
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
@@ -28,7 +28,7 @@ LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
 mkdir -p $TENSORBOARD_PATH
 
-MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/megdslossseqnew/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr13f-6B3-mtf
@@ -94,6 +94,7 @@ OPTIMIZER_ARGS=" \
     --clip-grad 1.0 \
     --weight-decay 1e-4 \
     --no-load-optim \
+    --norm-target-loss \
     "
 # for 20h 1190, for 100h 5990
 #    --exit-duration-in-mins 1190 \
