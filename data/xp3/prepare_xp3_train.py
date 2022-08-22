@@ -71,10 +71,10 @@ BIAS_FAIRNESS = [
 
 EVAL_DATASETS_L1 = [
     ('super_glue','wsc.fixed'),
-    ('winogrande','winogrande_xl'),#
-    ('super_glue','cb'),#
-    ('super_glue','rte'),#
-    ('anli',None),#
+    ('winogrande','winogrande_xl'),
+    ('super_glue','cb'),
+    ('super_glue','rte'),
+    ('anli',None),
     ('story_cloze', '2016'),
     ('Muennighoff/xstory_cloze', 'ar'),
     ('Muennighoff/xstory_cloze', 'es'),
@@ -87,17 +87,17 @@ EVAL_DATASETS_L1 = [
     ('hellaswag', None),
     ('super_glue', 'copa'),
     # Multilingual
-    ('Muennighoff/xwinograd','en'),#
+    ('Muennighoff/xwinograd','en'),
     ('Muennighoff/xwinograd','fr'),
     ('Muennighoff/xwinograd','pt'),
     ('Muennighoff/xwinograd','zh'),
     ('clue', 'cluewsc2020'),
-    ('xcopa','id'),#
+    ('xcopa','id'),
     ('xcopa','ta'),
     ('xcopa','sw'),
     ('xcopa','vi'),
     ('xcopa','zh'),
-    ("xnli", "ar"),#
+    ("xnli", "ar"),
     ("xnli", "en"),
     ("xnli", "es"),
     ("xnli", "fr"),
@@ -1040,11 +1040,6 @@ def write_to_jsonl_hub(ds, split="train"):
 
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
-            
-            print("RUNNING", split, t_name)
-            if t_name != "fix buggy line":
-                continue
-            
             if SKIP_PROMPTS.get(prompt_dataset_name, {}).get(split, False):
                 if ("all" in SKIP_PROMPTS[prompt_dataset_name][split]) or (t_name in SKIP_PROMPTS[prompt_dataset_name][split]):
                     print(f"Skipping DS: {prompt_dataset_name} Split {split} Prompt {t_name}")
@@ -1087,9 +1082,9 @@ def write_to_jsonl_hub(ds, split="train"):
                 out_ds.to_json(out_path, orient="records", lines=True, force_ascii=False)
 
 # Testing:
-TRAIN_DATASETS = [
-    ('great_code', None),
-]
+#TRAIN_DATASETS = [
+#    ('great_code', None),
+#]
 
 #for ds in TRAIN_DATASETS:
 #    write_to_jsonl_hub(ds, split="train")

@@ -12,16 +12,18 @@
 #SBATCH --account=six@a100
 #SBATCH --array=0-164
 
+# Fixed prompts subset:
+# --array=0-63
+
 set -x -e
 
 source $six_ALL_CCFRWORK/start-py38-pt111
 conda activate thomas_t_zero_evaluation
 
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6B3-ml-t0-lmtoks341B-t0toks0
 #CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-prefix
 #CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3/bloom-6b3
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-capmixlossseq
 #CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-p31
+#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-xp3capmixfixlossseq
 
 WORKDIR=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0
 
@@ -30,7 +32,75 @@ pushd $WORKDIR
 OUTPUT_DIR=$CHECKPOINT_PATH/evaluation
 mkdir -p $OUTPUT_DIR
 
+# Fixed prompts subset:
+DATASETS_AND_CONFIGS_L1=(
+super_glue,copa,None,"best_option"
+super_glue,copa,None,"i_am_hesitating"
+super_glue,copa,None,"cause_effect"
+super_glue,copa,None,"plausible_alternatives"
+xcopa,id,en,"best_option"
+xcopa,id,en,"i_am_hesitating"
+xcopa,id,en,"cause_effect"
+xcopa,id,en,"plausible_alternatives"
+xcopa,sw,en,"best_option"
+xcopa,sw,en,"i_am_hesitating"
+xcopa,sw,en,"cause_effect"
+xcopa,sw,en,"plausible_alternatives"
+xcopa,ta,en,"best_option"
+xcopa,ta,en,"i_am_hesitating"
+xcopa,ta,en,"cause_effect"
+xcopa,ta,en,"plausible_alternatives"
+xcopa,vi,en,"best_option"
+xcopa,vi,en,"i_am_hesitating"
+xcopa,vi,en,"cause_effect"
+xcopa,vi,en,"plausible_alternatives"
+xcopa,zh,en,"best_option"
+xcopa,zh,en,"i_am_hesitating"
+xcopa,zh,en,"cause_effect"
+xcopa,zh,en,"plausible_alternatives"
+story_cloze,2016,None,"Story Continuation and Options"
+story_cloze,2016,None,"Answer Given options"
+story_cloze,2016,None,"Novel Correct Ending"
+story_cloze,2016,None,"Choose Story Ending"
+Muennighoff/xstory_cloze,ar,en,"Story Continuation and Options"
+Muennighoff/xstory_cloze,ar,en,"Answer Given options"
+Muennighoff/xstory_cloze,ar,en,"Novel Correct Ending"
+Muennighoff/xstory_cloze,ar,en,"Choose Story Ending"
+Muennighoff/xstory_cloze,es,en,"Story Continuation and Options"
+Muennighoff/xstory_cloze,es,en,"Answer Given options"
+Muennighoff/xstory_cloze,es,en,"Novel Correct Ending"
+Muennighoff/xstory_cloze,es,en,"Choose Story Ending"
+Muennighoff/xstory_cloze,eu,en,"Story Continuation and Options"
+Muennighoff/xstory_cloze,eu,en,"Answer Given options"
+Muennighoff/xstory_cloze,eu,en,"Novel Correct Ending"
+Muennighoff/xstory_cloze,eu,en,"Choose Story Ending"
+Muennighoff/xstory_cloze,id,en,"Story Continuation and Options"
+Muennighoff/xstory_cloze,id,en,"Answer Given options"
+Muennighoff/xstory_cloze,id,en,"Novel Correct Ending"
+Muennighoff/xstory_cloze,id,en,"Choose Story Ending"
+Muennighoff/xstory_cloze,hi,en,"Story Continuation and Options"
+Muennighoff/xstory_cloze,hi,en,"Answer Given options"
+Muennighoff/xstory_cloze,hi,en,"Novel Correct Ending"
+Muennighoff/xstory_cloze,hi,en,"Choose Story Ending"
+Muennighoff/xstory_cloze,zh,en,"Story Continuation and Options"
+Muennighoff/xstory_cloze,zh,en,"Answer Given options"
+Muennighoff/xstory_cloze,zh,en,"Novel Correct Ending"
+Muennighoff/xstory_cloze,zh,en,"Choose Story Ending"
+winogrande,winogrande_xl,None,"Replace"
+winogrande,winogrande_xl,None,"stand for"
+winogrande,winogrande_xl,None,"True or False"
+Muennighoff/xwinograd,fr,en,"Replace"
+Muennighoff/xwinograd,fr,en,"stand for"
+Muennighoff/xwinograd,fr,en,"True or False"
+Muennighoff/xwinograd,pt,en,"Replace"
+Muennighoff/xwinograd,pt,en,"stand for"
+Muennighoff/xwinograd,pt,en,"True or False"
+Muennighoff/xwinograd,zh,en,"Replace"
+Muennighoff/xwinograd,zh,en,"stand for"
+Muennighoff/xwinograd,zh,en,"True or False"
+)
 
+# All:
 DATASETS_AND_CONFIGS_L1=(
 super_glue,copa,None,"best_option"
 super_glue,copa,None,"C1 or C2? premise, so/because…"
