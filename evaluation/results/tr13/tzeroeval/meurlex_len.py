@@ -11,7 +11,7 @@ for path in paths:
         continue
     pred_lens = []
     tar_lens = []
-    with open(path, "r") as f:
+    with open(os.path.join(dir, path), "r") as f:
         for line in f:
             ex = json.loads(line)
             pred_lens.append(len(ex["pred"]))
@@ -29,5 +29,5 @@ for path in paths:
 print("Average Pred: ", sum(len_dict[k]["pred"] for k in len_dict) / len(len_dict))
 print("Average Target: ", sum(len_dict[k]["tar"] for k in len_dict) / len(len_dict))
 
-with open("meurlex_lens.json", "w") as f:
+with open(os.path.join(dir, "meurlex_lens.json"), "w") as f:
     json.dump(len_dict, f)
