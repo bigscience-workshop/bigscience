@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=xp3capmixeos
+#SBATCH --job-name=xp3capmixlossseqeos
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
@@ -18,7 +18,7 @@ set -x -e
 source $six_ALL_CCFRWORK/start-tr13f-6B3-ml-t0
 echo "START TIME: $(date)"
 
-variant=xp3capmixeos
+variant=xp3capmixlossseqeos
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
