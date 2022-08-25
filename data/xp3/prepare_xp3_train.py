@@ -303,7 +303,7 @@ TRAIN_DATASETS = [
     ('khalidalt/tydiqa-goldp', 'swahili'),
     ('khalidalt/tydiqa-goldp', 'telugu'),
     ('Muennighoff/mbpp', 'sanitized'),
-    ("great_code", None),
+#    ("great_code", None),
     ("neural_code_search", "evaluation_dataset"),
     ("codeparrot/codecomplex", "codeparrot--codecomplex"),
     ("codeparrot/github-jupyter-text-code-pairs", None),
@@ -1085,9 +1085,9 @@ def write_to_jsonl_hub(ds, split="train"):
 
     ### PROCESS ###
 
-    print(f"Running {ds_name}/{subset_name}")
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
+            print(f"Running {ds_name}/{subset_name}/{split}/{t_name}")
             if SKIP_PROMPTS.get(prompt_dataset_name, {}).get(split, False):
                 if ("all" in SKIP_PROMPTS[prompt_dataset_name][split]) or (t_name in SKIP_PROMPTS[prompt_dataset_name][split]):
                     print(f"Skipping DS: {prompt_dataset_name} Split {split} Prompt {t_name}")
@@ -1131,14 +1131,7 @@ def write_to_jsonl_hub(ds, split="train"):
 
 # Testing:
 #TRAIN_DATASETS = [
-#    ("codeparrot/xlcost-text-to-code", "Python-program-level"),
-#    ("codeparrot/xlcost-text-to-code", "C-program-level"),
-#    ("codeparrot/xlcost-text-to-code", "C++-program-level"),
-#    ("codeparrot/xlcost-text-to-code", "Csharp-program-level"),
-#    ("codeparrot/xlcost-text-to-code", "Java-program-level"),
-#    ("codeparrot/xlcost-text-to-code", "Javascript-program-level"),
-#    ("codeparrot/xlcost-text-to-code", "PHP-program-level"),
-#    ("teven/code_docstring_corpus", "top_level"),
+#    ('common_gen',None),
 #]
 
 #for ds in TRAIN_DATASETS:
