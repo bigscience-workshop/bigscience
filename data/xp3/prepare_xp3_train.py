@@ -1,6 +1,8 @@
 from functools import partial
+import json
 import multiprocessing
 import os
+import random
 
 import datasets
 from datasets import load_dataset
@@ -304,6 +306,18 @@ TRAIN_DATASETS = [
     ("great_code", None),
     ("neural_code_search", "evaluation_dataset"),
     ("codeparrot/codecomplex", "codeparrot--codecomplex"),
+    ("codeparrot/github-jupyter-text-code-pairs", None),
+    ("codeparrot/apps", "all"),
+    ("codeparrot/xlcost-text-to-code", "Python-program-level"),
+    ("codeparrot/xlcost-text-to-code", "C-program-level"),
+    ("codeparrot/xlcost-text-to-code", "C++-program-level"),
+    ("codeparrot/xlcost-text-to-code", "Csharp-program-level"),
+    ("codeparrot/xlcost-text-to-code", "Java-program-level"),
+    ("codeparrot/xlcost-text-to-code", "Javascript-program-level"),
+    ("codeparrot/xlcost-text-to-code", "PHP-program-level"),
+    ("teven/code_contests", None),
+    ("teven/code_docstring_corpus", "top_level"),
+    ("Fraser/python-state-changes", None),
     ('clue', 'c3'),
     ('clue', 'cmrc2018'),
     ('clue', 'csl'),
@@ -337,7 +351,7 @@ TRAIN_DATASETS = [
     ('GEM/xlsum', "urdu"),
     ('GEM/xlsum', "vietnamese"),
     ('GEM/xlsum', "yoruba"),
-    # flores200
+    # flores200, wmt & more wikilingua added below
 ]
 
 FLORES_LANGS = [
@@ -854,6 +868,12 @@ DS_TO_LANG = {
     "great_code": "code",
     "neural_code_search": "code",
     "codeparrot/codecomplex": "code",
+    "codeparrot/github-jupyter-text-code-pairs": "code",
+    "codeparrot/apps": "code",
+    "Fraser/python-state-changes": "code",
+    "codeparrot/xlcost-text-to-code": "code",
+    "teven/code_contests": "code",
+    "teven/code_docstring_corpus": "code",
     "clue": "zh",
     "cmn": "zh", # == zho
     "npi": "ne", # == npe
@@ -865,13 +885,6 @@ DS_TO_LANG = {
     "chinese_traditional": "zh",
 }
 
-# Add GEM multilingual
-WIKILINGUA_LANGS = ["ar", "en", "es", "fr", "hi", "id", "pt", "vi", "zh"]
-for l1_code in WIKILINGUA_LANGS:
-    for l2_code in WIKILINGUA_LANGS:
-        if l1_code == l2_code:
-            continue
-        TRAIN_DATASETS.append(("GEM/wiki_lingua", f"{l1_code}_{l2_code}"))
         
 
 bloom_lang_codes_iso3 = []
@@ -890,6 +903,15 @@ for lang in BLOOM_LANGS.split("\n")[1:-1]:
     except KeyError:
         print(f"Could not find iso3 code for {lang}.")
 
+# Add GEM multilingual
+WIKILINGUA_LANGS = ["ar", "en", "es", "fr", "hi", "id", "pt", "vi", "zh"]
+for l1_code in WIKILINGUA_LANGS:
+    for l2_code in WIKILINGUA_LANGS:
+        if l1_code == l2_code:
+            continue
+        TRAIN_DATASETS.append(("GEM/wiki_lingua", f"{l1_code}_{l2_code}"))
+
+# Add flores200
 for (l1_name, l1_code) in FLORES_LANGS:
     for (l2_name, l2_code) in FLORES_LANGS:
         if l1_code.split("_")[0] not in DS_TO_LANG or l2_code.split("_")[0] not in DS_TO_LANG:
@@ -899,6 +921,7 @@ for (l1_name, l1_code) in FLORES_LANGS:
             continue
         TRAIN_DATASETS.append(("facebook/flores", f"{l1_code}-{l2_code}"))
 
+# Add wmt22
 for (l1_code, l2_code) in WMT22_LANGS:
     if l1_code not in DS_TO_LANG or l2_code not in DS_TO_LANG:
         print(f"Skipping as {l1_code} or {l2_code} was not pre-trained on.")
@@ -927,7 +950,10 @@ def removeHyphen(example):
 def apply_template(dataset, template):
     def map_fn(ex):
         ex = removeHyphen(ex)
-        inputs_and_targets = template.apply(ex)
+        try:
+            inputs_and_targets = template.apply(ex)
+        except ValueError:
+            return {"inputs": "", "targets": ""}
         if len(inputs_and_targets) == 2:
             # Note that the signature changed in promptsource 
             # In 0.1.0 template.apply returned two strings; In >0.3.0 it retuns a str & list
@@ -937,14 +963,13 @@ def apply_template(dataset, template):
                 print(f"Found targets longer than 1. Inputs: {inputs} ; Targets {targets}. Skipping.")
                 return {"inputs": "", "targets": ""}
             targets = targets[0]
-            ex = {"inputs": inputs, "targets": targets}
+            return {"inputs": inputs, "targets": targets}
         # When template results in an empty example, template.apply returns [""]
         # Also, if the template gets split wrong, len can be > 2
         # We will filter these out later
         else:
             # inputs is a str by default & targets a str
-            ex = {"inputs": "", "targets": ""}
-        return ex
+            return {"inputs": "", "targets": ""}
 
     def filter_fn(ex):
         return len(ex["inputs"]) > 0 and len(ex["targets"]) > 0
@@ -968,6 +993,25 @@ def add_language_name_wikilingua(example):
 def filter_l1_l2_wikilingua(example, l1, l2):
     return example["source_language"] == l1 and example["target_language"] == l2
 
+def filter_empty_solution_apps(example):
+    return bool(example["solutions"])
+
+def add_solution_apps(example):
+    example["solution"] = random.choice(json.loads(example["solutions"]))
+    return example
+
+def clean_code_xlcost(example):
+    clean_lines = []
+    cur_indent = 0
+    for line in example["code"].split("NEW_LINE"):
+        cur_indent += line.count("INDENT")
+        cur_indent -= line.count("DEDENT")
+        line = line.replace("INDENT", "").replace("DEDENT", "")
+        line = line.replace("STRNEWLINE", "\n")
+        line = line.replace("TABSYMBOL", "\t")
+        clean_lines.append("\t" * cur_indent + line.strip())
+    example["code_clean"] = "\n".join(clean_lines)
+    return example
 
 def write_to_jsonl_hub(ds, split="train"):
 
@@ -999,7 +1043,10 @@ def write_to_jsonl_hub(ds, split="train"):
         if is_wikilingua_cross_lingual:
             # Keep only L1 -> L2 (L2 -> L1 will be a separate dataset)
             ds = ds.filter(partial(filter_l1_l2_wikilingua, l1=subset_name.split("_")[0], l2=subset_name.split("_")[1]))
-
+    elif ds_name == "codeparrot/apps":
+        ds = ds.filter(filter_empty_solution_apps).map(add_solution_apps)
+    elif ds_name == "codeparrot/xlcost-text-to-code":
+        ds = ds.map(clean_code_xlcost)
 
     ### SELECT SPLITS ###
 
@@ -1038,6 +1085,7 @@ def write_to_jsonl_hub(ds, split="train"):
 
     ### PROCESS ###
 
+    print(f"Running {ds_name}/{subset_name}")
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
             if SKIP_PROMPTS.get(prompt_dataset_name, {}).get(split, False):
@@ -1083,7 +1131,14 @@ def write_to_jsonl_hub(ds, split="train"):
 
 # Testing:
 #TRAIN_DATASETS = [
-#    ('great_code', None),
+#    ("codeparrot/xlcost-text-to-code", "Python-program-level"),
+#    ("codeparrot/xlcost-text-to-code", "C-program-level"),
+#    ("codeparrot/xlcost-text-to-code", "C++-program-level"),
+#    ("codeparrot/xlcost-text-to-code", "Csharp-program-level"),
+#    ("codeparrot/xlcost-text-to-code", "Java-program-level"),
+#    ("codeparrot/xlcost-text-to-code", "Javascript-program-level"),
+#    ("codeparrot/xlcost-text-to-code", "PHP-program-level"),
+#    ("teven/code_docstring_corpus", "top_level"),
 #]
 
 #for ds in TRAIN_DATASETS:
@@ -1091,4 +1146,4 @@ def write_to_jsonl_hub(ds, split="train"):
 
 with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
     pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
-#    pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
+    #pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
