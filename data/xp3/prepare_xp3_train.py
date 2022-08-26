@@ -303,7 +303,7 @@ TRAIN_DATASETS = [
     ('khalidalt/tydiqa-goldp', 'swahili'),
     ('khalidalt/tydiqa-goldp', 'telugu'),
     ('Muennighoff/mbpp', 'sanitized'),
-#    ("great_code", None),
+    ("great_code", None),
     ("neural_code_search", "evaluation_dataset"),
     ("codeparrot/codecomplex", "codeparrot--codecomplex"),
     ("codeparrot/github-jupyter-text-code-pairs", None),
@@ -952,6 +952,10 @@ def apply_template(dataset, template):
         ex = removeHyphen(ex)
         try:
             inputs_and_targets = template.apply(ex)
+            #inputs_and_targets = template.apply(ex, truncate=False)
+        # Skip ValueError("Prompt did not produce an input and at least one target.")
+        # which happens for some prompts with if else clauses based on inputs producing occasional
+        # empty targets
         except ValueError:
             return {"inputs": "", "targets": ""}
         if len(inputs_and_targets) == 2:
@@ -1054,6 +1058,9 @@ def write_to_jsonl_hub(ds, split="train"):
     if subset_name == "xlwic_en_zh":
         # Train set is en; val & test are zh
         dataset_splits.remove("train")
+    elif ds_name == "teven/code_docstring_corpus":
+        # Bad quality split
+        dataset_splits.remove("class_level")
 
     if split == "validation":
         if split not in dataset_splits or len(dataset_splits) == 1:
@@ -1132,6 +1139,7 @@ def write_to_jsonl_hub(ds, split="train"):
 # Testing:
 #TRAIN_DATASETS = [
 #    ('common_gen',None),
+#    ("wiki_bio", None)
 #]
 
 #for ds in TRAIN_DATASETS:
