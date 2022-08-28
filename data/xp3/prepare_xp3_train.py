@@ -947,11 +947,11 @@ def removeHyphen(example):
     return example
 
 
-def apply_template(dataset, template):
+def apply_template(dataset, template, strip_connection=True):
     def map_fn(ex):
         ex = removeHyphen(ex)
         try:
-            inputs_and_targets = template.apply(ex)
+            inputs_and_targets = template.apply(ex, strip_connection=strip_connection)
             #inputs_and_targets = template.apply(ex, truncate=False)
         # Skip ValueError("Prompt did not produce an input and at least one target.")
         # which happens for some prompts with if else clauses based on inputs producing occasional
@@ -1039,7 +1039,10 @@ def write_to_jsonl_hub(ds, split="train"):
         lang_dir = DS_TO_LANG.get(subset_name.split(".")[1])
     os.makedirs(lang_dir, exist_ok=True)
 
-    ds = load_dataset(ds_name, subset_name)
+    if ds_name == "Helsinki-NLP/tatoeba_mt":
+        ds = load_dataset(ds_name, subset_name, ignore_verifications=True, revision="49aa20ac768eabc5a106a123549ea58053fc9b40")
+    else:
+        ds = load_dataset(ds_name, subset_name)
 
     if ds_name == "GEM/wiki_lingua":
         # Add names, e.g. Chinese for zh to use them in the jinja prompts
@@ -1125,7 +1128,12 @@ def write_to_jsonl_hub(ds, split="train"):
                     # Allow 5x buffer for empty examples
                     max_range = min(len(ds[split]), MAX_EXAMPLES_PER_DATASET_PROMPT * 5)
                 # Shuffle to avoid using the same subset
-                out_ds = apply_template(dataset=ds[split].shuffle().select(list(range(max_range))), template=prompts[t_name])
+                # Leave \n in-between input & targets for code
+                out_ds = apply_template(
+                    dataset=ds[split].shuffle().select(list(range(max_range))), 
+                    template=prompts[t_name],
+                    strip_connection=False if lang_dir == "code" else True
+                )
                 # Keep X shortest examples
                 max_range = min(len(out_ds), MAX_EXAMPLES_PER_DATASET_PROMPT)
                 out_ds = out_ds.sort("inputs").select(list(range(max_range)))
@@ -1137,10 +1145,10 @@ def write_to_jsonl_hub(ds, split="train"):
                 out_ds.to_json(out_path, orient="records", lines=True, force_ascii=False)
 
 # Testing:
-#TRAIN_DATASETS = [
-#    ('common_gen',None),
-#    ("wiki_bio", None)
-#]
+TRAIN_DATASETS = [
+    ('common_gen',None),
+    #('wiki_bio',None),
+]
 
 #for ds in TRAIN_DATASETS:
 #    write_to_jsonl_hub(ds, split="train")
