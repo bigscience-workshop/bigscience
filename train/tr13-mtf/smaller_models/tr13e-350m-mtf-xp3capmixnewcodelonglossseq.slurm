@@ -60,7 +60,7 @@ TP_SIZE=1
 # ...truncate input and target sequences to 1024 and 256 tokens...
 # ...use a batch size of 1024 sequences ... 2^20 total input tokens per batch...
 # We use 2048 total tokens and 512 batch size = 2**20
-MICRO_BATCH_SIZE=4
+MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=1024
 
 NLAYERS=30
