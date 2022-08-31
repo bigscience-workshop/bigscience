@@ -69,7 +69,7 @@ NLAYERS=30
 NHIDDEN=4096
 NHEADS=32
 SEQ_LEN=2048
-
+# 250
 SAVE_INTERVAL=2
 
 TRAIN_SAMPLES=6_348_800
@@ -130,8 +130,8 @@ GPT_ARGS=" \
 OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 250 \
-    --eval-iters 50 \
+    --eval-interval 125 \
+    --eval-iters 10 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
