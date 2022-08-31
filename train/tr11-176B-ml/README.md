@@ -685,13 +685,13 @@ srun --pty --account=six@cpu --nodes=1 --ntasks=1 --partition=cpu_p1 --cpus-per-
 
 ```
 
-2. convert the checkpoint, e.g. for `global_step94767`
+2. convert the checkpoint, e.g. for `global_step95000`
 
 ```
 cd $six_ALL_CCFRWORK/code/tr11-176B-ml/Megatron-DeepSpeed-checkpoint-reshape
 /usr/bin/time -v python tools/convert_checkpoint/ds_to_universal.py \
---input_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step94767 \
---output_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step94767_universal \
+--input_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step95000 \
+--output_folder $six_ALL_CCFRSCRATCH/checkpoints/tr11-176B-ml/checkpoints/main/global_step95000_universal \
 --num_extract_workers 10 --num_merge_workers 4
 ```
 
