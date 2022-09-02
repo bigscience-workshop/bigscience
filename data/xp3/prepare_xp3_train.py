@@ -4,7 +4,6 @@ import multiprocessing
 import os
 import random
 
-import datasets
 from datasets import load_dataset
 # pip install -q iso-639
 from iso639 import languages
@@ -15,7 +14,7 @@ USE_ENGLISH_PROMPTS = True
 
 MAX_EXAMPLES_PER_DATASET_PROMPT = 100_000
 
-# Some datasets have test sets with hidden labels which will still compile but only noise
+# Some datasets have test sets with hidden labels which will still compile but only be noise
 # e.g. piqa test labels are all [-1] which still works on list indices resulting in 
 # noise samples where the label is always the same  
 SKIP_PROMPTS = {
@@ -946,13 +945,15 @@ def removeHyphen(example):
     example = example_clean
     return example
 
-
 def apply_template(dataset, template, strip_connection=True):
     def map_fn(ex):
         ex = removeHyphen(ex)
         try:
-            inputs_and_targets = template.apply(ex, strip_connection=strip_connection)
-            #inputs_and_targets = template.apply(ex, truncate=False)
+            inputs_and_targets = template.apply(
+                ex, 
+                strip_connection=strip_connection,
+                truncate=True,
+            )
         # Skip ValueError("Prompt did not produce an input and at least one target.")
         # which happens for some prompts with if else clauses based on inputs producing occasional
         # empty targets
@@ -982,12 +983,6 @@ def apply_template(dataset, template, strip_connection=True):
     dataset = dataset.map(map_fn).filter(filter_fn)
     # map keeps original columns, remove them
     return dataset.remove_columns(set(original_columns) - {"inputs", "targets"})
-
-# Copied from t0.seqio_tasks.utils
-def get_dataset_splits(dataset_name, subset_name=None):
-    info = datasets.get_dataset_infos(dataset_name)
-    subset_name = subset_name or list(info.keys())[0]
-    return info[subset_name].splits
 
 def add_language_name_wikilingua(example):
     example["source_language_name"] = languages.get(alpha2=example["source_language"]).name
@@ -1145,14 +1140,12 @@ def write_to_jsonl_hub(ds, split="train"):
                 out_ds.to_json(out_path, orient="records", lines=True, force_ascii=False)
 
 # Testing:
-TRAIN_DATASETS = [
-    ('common_gen',None),
-    #('wiki_bio',None),
-]
-
+#TRAIN_DATASETS = [
+#    ('common_gen',None),
+#]
 #for ds in TRAIN_DATASETS:
 #    write_to_jsonl_hub(ds, split="train")
 
 with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
     pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
-    #pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
+    pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)

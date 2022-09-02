@@ -18,7 +18,7 @@ echo "START TIME: $(date)"
 
 variant=xp3capmixnewcodelonglossseq
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr11e-350M-ml
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13e-350M-ml-t0
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
 REPO_PATH=$DATA_OUTPUT_PATH/tr13e-350M-ml-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
@@ -26,7 +26,7 @@ LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
 mkdir -p $TENSORBOARD_PATH
 
-MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/megdslossseqnew/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/megdslossseqnew350m/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr13e-350M-mtf
@@ -50,7 +50,7 @@ export TRANSFORMERS_OFFLINE=1
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6001
 
-GPUS_PER_NODE=8
+GPUS_PER_NODE=4
 NNODES=$SLURM_NNODES
 
 PP_SIZE=1
@@ -63,9 +63,9 @@ TP_SIZE=1
 MICRO_BATCH_SIZE=1
 GLOBAL_BATCH_SIZE=1024
 
-NLAYERS=30
-NHIDDEN=4096
-NHEADS=32
+NLAYERS=24
+NHIDDEN=1024
+NHEADS=16
 SEQ_LEN=2048
 # 250
 SAVE_INTERVAL=2
@@ -93,6 +93,7 @@ OPTIMIZER_ARGS=" \
     --weight-decay 1e-4 \
     --no-load-optim \
     --norm-target-loss \
+    --reset-progress \
     "
 # for 20h 1190, for 100h 5990
 #    --exit-duration-in-mins 1190 \
