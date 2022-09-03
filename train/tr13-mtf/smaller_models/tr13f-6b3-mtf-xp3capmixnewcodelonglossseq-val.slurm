@@ -131,7 +131,7 @@ OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 125 \
-    --eval-only \
+    --eval-only True \
     --eval-iters 10 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
