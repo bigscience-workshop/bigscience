@@ -278,6 +278,19 @@ xcopa,tr,en,"cause_effect"
 xcopa,tr,en,"plausible_alternatives"
 )
 
+DATASETS_AND_CONFIGS_XNLITR=(
+xnli,zh,en,"guaranteed/possible/impossibleht"
+xnli,zh,en,"MNLI crowdsourceht"
+xnli,zh,en,"GPT-3 styleht"
+xnli,zh,en,"justified in sayinght"
+xnli,zh,en,"can we inferht"
+xnli,zh,en,"guaranteed/possible/impossiblemt"
+xnli,zh,en,"MNLI crowdsourcemt"
+xnli,zh,en,"GPT-3 stylemt"
+xnli,zh,en,"justified in sayingmt"
+xnli,zh,en,"can we infermt"
+)
+
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS_L1[$SLURM_ARRAY_TASK_ID]}
 echo $ARGUMENT
 
