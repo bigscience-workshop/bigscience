@@ -196,6 +196,16 @@ Muennighoff/xwinograd,zh,en,"True or False"
 )
 
 DATASETS_AND_CONFIGS_L2=(
+Muennighoff/xstory_cloze,ru,en,"Story Continuation and Options"
+Muennighoff/xstory_cloze,ru,en,"Answer Given options"
+Muennighoff/xstory_cloze,ru,en,"Novel Correct Ending"
+Muennighoff/xstory_cloze,ru,en,"Generate Ending"
+Muennighoff/xstory_cloze,ru,en,"Choose Story Ending"
+Muennighoff/xstory_cloze,my,en,"Story Continuation and Options"
+Muennighoff/xstory_cloze,my,en,"Answer Given options"
+Muennighoff/xstory_cloze,my,en,"Novel Correct Ending"
+Muennighoff/xstory_cloze,my,en,"Generate Ending"
+Muennighoff/xstory_cloze,my,en,"Choose Story Ending"
 xnli,bg,en,"guaranteed/possible/impossible"
 xnli,bg,en,"MNLI crowdsource"
 xnli,bg,en,"GPT-3 style"

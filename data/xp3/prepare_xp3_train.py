@@ -48,6 +48,7 @@ SKIP_PROMPTS = {
 DS_TO_ENG_PROMPT = {
     "xcopa": "en",
     "Muennighoff/xstory_cloze": "en",
+    "Muennighoff/xwinograd": "en",
     'GEM/wiki_lingua': 'en_en', # Contains correct language names
     'xnli': 'en',
     "paws-x": "en",
@@ -108,6 +109,36 @@ EVAL_DATASETS_L1 = [
     ("xnli", "vi"),
     ("xnli", "zh"),
     ("openai_humaneval", None),
+    ("multi_eurlex", "all_languages")
+]
+
+ADD_TRAIN_DATASETS_L1_BLOOMZZ = [
+    ('super_glue','wsc.fixed'),
+    ('winogrande','winogrande_xl'),
+    ('story_cloze', '2016'),
+    ('Muennighoff/xstory_cloze', 'ar'),
+    ('Muennighoff/xstory_cloze', 'es'),
+    ('Muennighoff/xstory_cloze', 'eu'),
+    ('Muennighoff/xstory_cloze', 'id'),
+    ('Muennighoff/xstory_cloze', 'hi'),
+    ('Muennighoff/xstory_cloze', 'te'),
+    ('Muennighoff/xstory_cloze', 'sw'),
+    ('Muennighoff/xstory_cloze', 'zh'),
+    ('hellaswag', None),
+    ('super_glue', 'copa'),
+    # Multilingual
+    ('Muennighoff/xwinograd','en'),
+    ('Muennighoff/xwinograd','fr'),
+    ('Muennighoff/xwinograd','pt'),
+    ('Muennighoff/xwinograd','zh'),
+    ('clue', 'cluewsc2020'),
+    ('xcopa','id'),
+    ('xcopa','ta'),
+    ('xcopa','sw'),
+    ('xcopa','vi'),
+    ('xcopa','zh'),
+    ("multi_eurlex", "all_languages")
+    # ("openai_humaneval", None), # Low quality prompts
 ]
 
 EVAL_DATASETS_L2 = [
@@ -1101,8 +1132,9 @@ def write_to_jsonl_hub(ds, split="train"):
             if ds_name == "Helsinki-NLP/tatoeba_mt":
                 # E.g. translate-this-ara-eng, where eng is the target
                 lang_dir = DS_TO_LANG.get(t_name.split("-")[-1].split("_")[0], "en")
-            elif ds_name == "allenai/wmt22_african":
-                lang_dir = DS_TO_LANG.get(t_name.split("-")[-1])
+            elif ds_name in ("allenai/wmt22_african", "multi_eurlex"):
+                # One prompt in multi_eurlex has -source+target appended to the languages
+                lang_dir = DS_TO_LANG.get(t_name.replace("-source+target", "").split("-")[-1])
 
             out_path = os.path.join(
                 lang_dir, 
@@ -1147,5 +1179,7 @@ def write_to_jsonl_hub(ds, split="train"):
 #    write_to_jsonl_hub(ds, split="train")
 
 with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
-    pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
-    pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
+    #pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
+    #pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
+    pool.map(partial(write_to_jsonl_hub, split="train"), ADD_TRAIN_DATASETS_L1_BLOOMZZ)
+    pool.map(partial(write_to_jsonl_hub, split="validation"), ADD_TRAIN_DATASETS_L1_BLOOMZZ)
