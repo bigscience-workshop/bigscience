@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=eval-tr13-176B-ml
+#SBATCH --job-name=val-tr13-176B-ml
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
