@@ -130,7 +130,7 @@ GPT_ARGS=" \
 OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 125 \
+    --eval-interval 250 \
     --eval-iters 10 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \

@@ -77,7 +77,7 @@ for val in {0..45}; do
     cd $DATA_PATH/$LANG
     cat *.jsonl > merged_dups_$LANG.jsonl
     # Drop duplicates (~1G / 37G for en)
-    sort -u merged_dups_$LANG.jsonl > merged_$LANG.jsonl
+    sort -u merged_dups_$LANG.jsonl | shuf > merged_$LANG.jsonl
     OUTPUT=/gpfswork/rech/six/commun/bigscience-training/xp3cappednew/train/xp3_train_$LANG
     cd $MEGATRON_DEEPSPEED_REPO
     python tools/preprocess_data.py \
