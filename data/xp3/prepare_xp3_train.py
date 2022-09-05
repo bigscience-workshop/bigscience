@@ -14,6 +14,9 @@ USE_ENGLISH_PROMPTS = True
 
 MAX_EXAMPLES_PER_DATASET_PROMPT = 100_000
 
+STORY_CLOZE_DIR = "/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/story_cloze_data"
+XSTORY_CLOZE_DIR = "/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/xstory_cloze_data"
+
 # Some datasets have test sets with hidden labels which will still compile but only be noise
 # e.g. piqa test labels are all [-1] which still works on list indices resulting in 
 # noise samples where the label is always the same  
@@ -43,6 +46,7 @@ SKIP_PROMPTS = {
     "clue/csl": {"test": ["all"]},
     "clue/cmrc2018": {"test": ["generate_question", "in_an_exam", "answer_in_the_passage", "answer_following_question", "xp3longcontinue"]},
     "clue/drcd": {"test": ["generate_question", "in_an_exam", "answer_in_the_passage", "answer_following_question", "xp3longcontinue"]},
+    "hellaswag": {"test": ["complete_first_then", "Topic of the context", "Open-ended completion", "Randomized prompts template", "Appropriate continuation - Yes or No", "Predict ending with hint", "Open-ended start", "Reversed appropriate continuation - Yes or No", "how_ends", "if_begins_how_continues"]},
 }
 
 DS_TO_ENG_PROMPT = {
@@ -1067,6 +1071,10 @@ def write_to_jsonl_hub(ds, split="train"):
 
     if ds_name == "Helsinki-NLP/tatoeba_mt":
         ds = load_dataset(ds_name, subset_name, ignore_verifications=True, revision="49aa20ac768eabc5a106a123549ea58053fc9b40")
+    elif ds_name == "story_cloze":   
+        ds = load_dataset(ds_name, subset_name, data_dir=STORY_CLOZE_DIR)
+    elif ds_name == "Muennighoff/xstory_cloze":
+        ds = load_dataset(ds_name, subset_name, data_dir=XSTORY_CLOZE_DIR)
     else:
         ds = load_dataset(ds_name, subset_name)
 
