@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=2b5xp3capmixnewcodelong
+#SBATCH --job-name=1b3xp3capmixnewcodelong
 #SBATCH --qos=qos_gpu-t3
-#SBATCH --nodes=32
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -18,18 +18,18 @@ echo "START TIME: $(date)"
 
 variant=xp3capmixnewcodelonglossseq
 
-DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13c-2B5-ml-t0
+DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13d-760M-ml-t0
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
-REPO_PATH=$DATA_OUTPUT_PATH/tr13c-2B5-ml-t0-logs
+REPO_PATH=$DATA_OUTPUT_PATH/tr13d-760M-ml-logs
 TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
 LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
 mkdir -p $TENSORBOARD_PATH
 
-MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/megdslossseqnew/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/megdslossseqnew350m/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
-KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr13c-2B5-mtf
+KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr13e-350M-mtf
 
 TRAIN_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3capmixnewcodelong_train.txt
 VALID_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3capmixnewcodelong_validation_pretr.txt
@@ -60,12 +60,12 @@ TP_SIZE=1
 # ...truncate input and target sequences to 1024 and 256 tokens...
 # ...use a batch size of 1024 sequences ... 2^20 total input tokens per batch...
 # We use 2048 total tokens and 512 batch size = 2**20
-MICRO_BATCH_SIZE=4
-GLOBAL_BATCH_SIZE=2048
+MICRO_BATCH_SIZE=1
+GLOBAL_BATCH_SIZE=1024
 
-NLAYERS=30
-NHIDDEN=2560
-NHEADS=32
+NLAYERS=24
+NHIDDEN=1536
+NHEADS=16
 SEQ_LEN=2048
 # 250
 SAVE_INTERVAL=2
@@ -93,6 +93,7 @@ OPTIMIZER_ARGS=" \
     --weight-decay 1e-4 \
     --no-load-optim \
     --norm-target-loss \
+    --reset-progress \
     "
 # for 20h 1190, for 100h 5990
 #    --exit-duration-in-mins 1190 \
@@ -129,7 +130,7 @@ OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 125 \
-    --eval-iters 2 \
+    --eval-iters 10 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
