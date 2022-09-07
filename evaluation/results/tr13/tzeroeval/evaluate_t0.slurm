@@ -35,6 +35,30 @@ pushd $WORKDIR
 OUTPUT_DIR=$CHECKPOINT_PATH/evaluation
 mkdir -p $OUTPUT_DIR
 
+
+# Validation
+DATASETS_AND_CONFIGS_VAL=(
+head_qa,en,en,"multiple_choice_q_and_a_index_with_context_en"
+head_qa,en,en,"multiple_choice_q_and_a_en"
+head_qa,en,en,"multiple_choice_q_and_a_index_en"
+head_qa,en,en,"multiple_choice_a_and_q_with_context_en"
+head_qa,en,en,"multiple_choice_a_and_q_en"
+head_qa,es,en,"multiple_choice_q_and_a_index_with_context_en"
+head_qa,es,en,"multiple_choice_q_and_a_en"
+head_qa,es,en,"multiple_choice_q_and_a_index_en"
+head_qa,es,en,"multiple_choice_a_and_q_with_context_en"
+head_qa,es,en,"multiple_choice_a_and_q_en"
+)
+
+DATASETS_AND_CONFIGS_VAL=(
+climate_fever,None,None,"first_evidence_and_claim_itemization"
+climate_fever,None,None,"claim_and_all_supporting_evidences"
+climate_fever,None,None,"fifth_evidence_and_claim_itemization"
+climate_fever,None,None,"third_evidence_claim_pair"
+climate_fever,None,None,"second_evidence_and_claim_itemization"
+)
+
+
 # Fixed prompts subset:
 DATASETS_AND_CONFIGS_L1=(
 super_glue,copa,None,"best_option"

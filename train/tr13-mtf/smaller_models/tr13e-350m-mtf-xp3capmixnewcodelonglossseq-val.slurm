@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=xp3capmixnewcodelong
+#SBATCH --job-name=val350mxp3capmixnewcodelong
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=8
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -131,6 +131,7 @@ OUTPUT_ARGS=" \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 125 \
     --eval-iters 10 \
+    --eval-only True \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
