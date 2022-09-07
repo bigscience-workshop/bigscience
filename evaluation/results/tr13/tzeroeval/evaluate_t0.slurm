@@ -58,6 +58,19 @@ climate_fever,None,None,"third_evidence_claim_pair"
 climate_fever,None,None,"second_evidence_and_claim_itemization"
 )
 
+DATASETS_AND_CONFIGS_VAL=(
+codah,codah,None,"interrogative_instruction_after_sentence_and_choices"
+codah,codah,None,"affirmative_instruction_before_sentence_and_choices"
+codah,codah,None,"affirmative_instruction_after_sentence_and_choices"
+asnq,None,None,"positive_pairs"
+asnq,None,None,"answer_infer_question"
+asnq,None,None,"Does_sentence_answer_question"
+commonsense_qa,None,None,"answer_given_question_without_options"
+commonsense_qa,None,None,"question_answering"
+commonsense_qa,None,None,"most_suitable_answer"
+)
+
+
 
 # Fixed prompts subset:
 DATASETS_AND_CONFIGS_L1=(
