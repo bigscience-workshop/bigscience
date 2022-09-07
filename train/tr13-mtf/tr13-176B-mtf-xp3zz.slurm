@@ -33,7 +33,7 @@ cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr13-176B-mtf
 
-TRAIN_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3zz_train.txt
+TRAIN_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3zzlossseq_train.txt
 VALID_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3capmixnewcodelong_validation_pretr_only.txt
 TOKENIZER_NAME_OR_PATH=bigscience/tokenizer
 
@@ -137,7 +137,7 @@ OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
     --eval-interval 250 \
-    --eval-iters 10 \
+    --eval-iters 1 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
