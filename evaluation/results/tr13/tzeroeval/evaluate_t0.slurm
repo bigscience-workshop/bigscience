@@ -7,10 +7,10 @@
 #SBATCH --gres=gpu:1                 # number of gpus
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
-#SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
+#SBATCH --time 5:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-164
+#SBATCH --array=0-158
 
 # XNLITR:
 # --array=0-79
@@ -24,9 +24,10 @@ source $six_ALL_CCFRWORK/start-py38-pt111
 conda activate thomas_t_zero_evaluation
 
 #CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-prefix
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3/bloom-6b3
+CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3/bloom-6b3
 #CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-p31
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-xp3capmixfixlossseq
+#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-xp3capmixnewcodelonglossseq
+#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/bloom7b1zz
 
 WORKDIR=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0
 
@@ -48,28 +49,181 @@ head_qa,es,en,"multiple_choice_q_and_a_en"
 head_qa,es,en,"multiple_choice_q_and_a_index_en"
 head_qa,es,en,"multiple_choice_a_and_q_with_context_en"
 head_qa,es,en,"multiple_choice_a_and_q_en"
-)
-
-DATASETS_AND_CONFIGS_VAL=(
 climate_fever,None,None,"first_evidence_and_claim_itemization"
 climate_fever,None,None,"claim_and_all_supporting_evidences"
 climate_fever,None,None,"fifth_evidence_and_claim_itemization"
 climate_fever,None,None,"third_evidence_claim_pair"
 climate_fever,None,None,"second_evidence_and_claim_itemization"
-)
-
-DATASETS_AND_CONFIGS_VAL=(
 codah,codah,None,"interrogative_instruction_after_sentence_and_choices"
 codah,codah,None,"affirmative_instruction_before_sentence_and_choices"
 codah,codah,None,"affirmative_instruction_after_sentence_and_choices"
-asnq,None,None,"positive_pairs"
-asnq,None,None,"answer_infer_question"
-asnq,None,None,"Does_sentence_answer_question"
+aqua_rat,raw,None,"select_the_best_option"
+aqua_rat,raw,None,"answer_quiz"
+aqua_rat,raw,None,"Answer questions from options"
 commonsense_qa,None,None,"answer_given_question_without_options"
 commonsense_qa,None,None,"question_answering"
 commonsense_qa,None,None,"most_suitable_answer"
 )
 
+DATASETS_AND_CONFIGS_VAL=(
+amazon_reviews_multi,en,en,"prompt_title_to_star",validation
+amazon_reviews_multi,en,en,"prompt_review_to_star",validation
+amazon_reviews_multi,en,en,"prompt_body_title_to_star",validation
+amazon_reviews_multi,en,zh,"prompt_title_to_star",validation
+amazon_reviews_multi,en,zh,"prompt_review_to_star",validation
+amazon_reviews_multi,en,zh,"prompt_body_title_to_star",validation
+amazon_reviews_multi,en,fr,"prompt_title_to_star",validation
+amazon_reviews_multi,en,fr,"prompt_review_to_star",validation
+amazon_reviews_multi,en,fr,"prompt_body_title_to_star",validation
+amazon_reviews_multi,en,es,"prompt_title_to_star",validation
+amazon_reviews_multi,en,es,"prompt_review_to_star",validation
+amazon_reviews_multi,en,es,"prompt_body_title_to_star",validation
+amazon_us_reviews,Wireless_v1_00,None,"Given the review headline return a categorical rating",validation
+amazon_us_reviews,Wireless_v1_00,None,"Given the review body return a categorical rating",validation
+art,None,None,"choose_hypothesis_options",validation
+art,None,None,"choose_hypothesis_believable",validation
+art,None,None,"choose_hypothesis",validation
+art,None,None,"choose_hypothesis_desc",validation
+art,None,None,"choose_hypothesis_likely",validation
+banking77,None,None,"help_page_topic",test
+banking77,None,None,"direct_to_which_department",test
+banking77,None,None,"choose the correct department",test
+banking77,None,None,"rephrase_as_banking_term",test
+banking77,None,None,"choose_the_correct_intent",test
+blbooksgenre,title_genre_classifiction,None,"multi-choice",train
+blbooksgenre,title_genre_classifiction,None,"premise_context_first",train
+blbooksgenre,title_genre_classifiction,None,"classify",train
+blimp,adjunct_island,None,"grammatical_between_1_2",train
+blimp,adjunct_island,None,"grammatical_between_A_B",train
+blimp,adjunct_island,None,"grammatical_which_one_1_2",train
+blimp,adjunct_island,None,"single_sentence_bad_yes_no",train
+blimp,adjunct_island,None,"single_sentence_good_yes_no",train
+cbt,CN,None,"Fill Blank with Options - Replace",validation
+cbt,CN,None,"Fill Blank with Options - In the following",validation
+cbt,CN,None,"Fill Blank without Options",validation
+cbt,CN,None,"Fill Blanks with Options - above story",validation
+cbt,CN,None,"Fill Blank with Options - Which",validation
+conv_ai,None,None,"engagement_alice_interested",train
+conv_ai,None,None,"engagement_bob_real",train
+conv_ai,None,None,"engagement_question_before",train
+conv_ai,None,None,"engagement_bob_interested",train
+conv_ai,None,None,"engagement_question_after",train
+conv_ai_2,None,None,"match_profile_question",train
+conv_ai_2,None,None,"match_profile_expected",train
+conv_ai_2,None,None,"match_profile_guess",train
+conv_ai_2,None,None,"match_profile_agree",train
+conv_ai_2,None,None,"match_profile",train
+conv_ai_3,None,None,"clarification_needed",validation
+conv_ai_3,None,None,"score_give_number",validation
+conv_ai_3,None,None,"ambiguous",validation
+conv_ai_3,None,None,"directly_answer",validation
+conv_ai_3,None,None,"score_how_much",validation
+craigslist_bargains,None,None,"good deal for seller no list price implicit",validation
+craigslist_bargains,None,None,"good deal for seller no list price",validation
+craigslist_bargains,None,None,"good deal for seller",validation
+craigslist_bargains,None,None,"best deal",validation
+ecthr_cases,alleged-violation-prediction,None,"implicit_advice_number",validation
+ecthr_cases,alleged-violation-prediction,None,"ecthr_alleged_articles_declaration_at_end",validation
+ecthr_cases,alleged-violation-prediction,None,"ecthr_alleged_articles_question_at_start",validation
+ecthr_cases,alleged-violation-prediction,None,"implicit_judgment_paragraph",validation
+ecthr_cases,alleged-violation-prediction,None,"confirm number of violated articles",validation
+emo,None,None,"persons_describe",validation
+emo,None,None,"final_message",validation
+emo,None,None,"what_emotion_do_you_think",validation
+emo,None,None,"emotional_state",validation
+emo,None,None,"dialogue_between",validation
+emotion,None,None,"choose_the_best_emotion_label",test
+emotion,None,None,"reply_with_emoation_label",test
+emotion,None,None,"answer_with_class_label",test
+emotion,None,None,"answer_question_with_emotion_label",test
+emotion,None,None,"select_emotion_label_from_list",test
+financial_phrasebank,sentences_allagree,None,"share_price_option",train
+financial_phrasebank,sentences_allagree,None,"sentiment",train
+financial_phrasebank,sentences_allagree,None,"word_comes_to_mind",train
+financial_phrasebank,sentences_allagree,None,"complementary_industries",train
+financial_phrasebank,sentences_allagree,None,"bullish_neutral_bearish",train
+glue,cola,None,"Make sense yes no",validation
+glue,cola,None,"is_this_correct",validation
+glue,cola,None,"editing",validation
+glue,cola,None,"Following sentence acceptable",validation
+glue,cola,None,"Previous sentence acceptable",validation
+glue,sst2,None,"positive negative after",validation
+glue,sst2,None,"review",validation
+glue,sst2,None,"said",validation
+glue,sst2,None,"following positive negative",validation
+glue,sst2,None,"happy or mad",validation
+health_fact,None,None,"claim_veracity_classification_after_reading_I_believe",validation
+health_fact,None,None,"claim_explanation_classification",validation
+health_fact,None,None,"claim_veracity_classification_tell_me",validation
+hlgd,None,None,"is_same_event_with_time_interrogative_related",validation
+hlgd,None,None,"is_same_event_interrogative_talk",validation
+hlgd,None,None,"is_same_event_with_time_interrogative_talk",validation
+hlgd,None,None,"is_same_event_refer",validation
+hlgd,None,None,"is_same_event_editor_asks",validation
+hyperpartisan_news_detection,byarticle,None,"consider_does_it_follow_a_hyperpartisan_argumentation",train
+hyperpartisan_news_detection,byarticle,None,"follows_hyperpartisan_argumentation",train
+hyperpartisan_news_detection,byarticle,None,"consume_with_caution",train
+hyperpartisan_news_detection,byarticle,None,"extreme_left_wing_or_right_wing",train
+hyperpartisan_news_detection,byarticle,None,"consider_it_exhibits_extreme_one_sidedness",train
+liar,None,None,"Guess affiliation",validation
+liar,None,None,"Given statement guess category",validation
+liar,None,None,"Given statement guess subject ",validation
+lince,sa_spaeng,None,"original poster expressed sentiment",validation
+lince,sa_spaeng,None,"sentiment trying to express",validation
+lince,sa_spaeng,None,"express sentiment",validation
+lince,sa_spaeng,None,"negation template",validation
+lince,sa_spaeng,None,"the author seem",validation
+math_qa,None,None,"choose_correct_og",test
+math_qa,None,None,"pick_the_correct",test
+math_qa,None,None,"first_choice_then_problem",test
+math_qa,None,None,"problem_set_type",test
+math_qa,None,None,"gre_problem",test
+movie_rationales,None,None,"Standard binary sentiment analysis",validation
+movie_rationales,None,None,"Evidences sentiment classification",validation
+movie_rationales,None,None,"Evidences + review",validation
+movie_rationales,None,None,"Generate evidences and sentiment",validation
+mwsc,None,None,"in-the-sentence-question-first",validation
+mwsc,None,None,"what-think",validation
+mwsc,None,None,"in-the-sentence",validation
+mwsc,None,None,"options-or",validation
+mwsc,None,None,"is-correct",validation
+poem_sentiment,None,None,"positive_or_negative_sentiment_variation_2",validation
+poem_sentiment,None,None,"question_answer_format",validation
+poem_sentiment,None,None,"guess_sentiment_without_options_variation_1",validation
+poem_sentiment,None,None,"positive_or_negative_sentiment_variation_1",validation
+poem_sentiment,None,None,"most_appropriate_sentiment",validation
+onestop_english,None,None,"esl_context",train
+onestop_english,None,None,"ara_context",train
+onestop_english,None,None,"determine_reading_level_from_the_first_three_sentences",train
+onestop_english,None,None,"esl_variation",train
+onestop_english,None,None,"assess",train
+pubmed_qa,pqa_labeled,None,"Long Answer to Final Decision",train
+pubmed_qa,pqa_labeled,None,"Context Section Type",train
+pubmed_qa,pqa_labeled,None,"Question Answering (Short)",train
+riddle_sense,None,None,"answer_to_question",validation
+riddle_sense,None,None,"most_suitable_answer",validation
+riddle_sense,None,None,"answer_given_question_without_options",validation
+riddle_sense,None,None,"question_to_answer_index",validation
+riddle_sense,None,None,"question_answering",validation
+scicite,None,None,"Classify intent w/section (select choice)",validation
+scicite,None,None,"Classify intent (choices first)",validation
+scicite,None,None,"Classify intent (select choice)",validation
+scicite,None,None,"Classify intent",validation
+scicite,None,None,"can_describe",validation
+selqa,answer_selection_analysis,None,"is-he-talking-about",validation
+selqa,answer_selection_analysis,None,"would-make-sense-qu-rand",validation
+selqa,answer_selection_analysis,None,"about-topic-vs-random",validation
+selqa,answer_selection_analysis,None,"make-sense-rand",validation
+selqa,answer_selection_analysis,None,"which-answer-1st-vs-random",validation
+snips_built_in_intents,None,None,"voice_intent",train
+snips_built_in_intents,None,None,"categorize_query",train
+snips_built_in_intents,None,None,"intent_query",train
+snips_built_in_intents,None,None,"categorize_query_brief",train
+snips_built_in_intents,None,None,"query_intent",train
+turk,None,None,"simplify",test
+turk,None,None,"choose-verbose",test
+turk,None,None,"choose-simplification",test
+)
 
 
 # Fixed prompts subset:
@@ -475,17 +629,18 @@ xnli,zh,zh,"justified in saying_zhmt"
 xnli,zh,zh,"can we infer_zhmt"
 )
 
-DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS_L1[$SLURM_ARRAY_TASK_ID]}
+DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS_VAL[$SLURM_ARRAY_TASK_ID]}
 echo $ARGUMENT
 
 # Run T0 evaluation
 # For PrefixLM add --prefixlm
-IFS=',' read dataset_name dataset_config_name template_config_name template_name <<< "${DATASET_AND_CONFIG}"
+IFS=',' read dataset_name dataset_config_name template_config_name template_name split <<< "${DATASET_AND_CONFIG}"
 python t-zero/evaluation/run_eval.py \
         --dataset_name $dataset_name \
         --dataset_config_name $dataset_config_name \
         --template_config_name $template_config_name \
         --template_name "$template_name" \
+        --split $split \
         --model_name_or_path $CHECKPOINT_PATH \
         --output_dir $OUTPUT_DIR \
         --per_device_eval_batch_size 8 \
