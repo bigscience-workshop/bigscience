@@ -10,7 +10,7 @@
 #SBATCH --time 5:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-156
+#SBATCH --array=0-148
 
 # XNLITR:
 # --array=0-79
@@ -98,11 +98,6 @@ blimp,adjunct_island,None,"grammatical_between_A_B",train
 blimp,adjunct_island,None,"grammatical_which_one_1_2",train
 blimp,adjunct_island,None,"single_sentence_bad_yes_no",train
 blimp,adjunct_island,None,"single_sentence_good_yes_no",train
-cbt,CN,None,"Fill Blank with Options - Replace",validation
-cbt,CN,None,"Fill Blank with Options - In the following",validation
-cbt,CN,None,"Fill Blank without Options",validation
-cbt,CN,None,"Fill Blanks with Options - above story",validation
-cbt,CN,None,"Fill Blank with Options - Which",validation
 conv_ai,None,None,"engagement_alice_interested",train
 conv_ai,None,None,"engagement_bob_real",train
 conv_ai,None,None,"engagement_question_before",train
@@ -218,11 +213,7 @@ snips_built_in_intents,None,None,"categorize_query",train
 snips_built_in_intents,None,None,"intent_query",train
 snips_built_in_intents,None,None,"categorize_query_brief",train
 snips_built_in_intents,None,None,"query_intent",train
-turk,None,None,"simplify",test
-turk,None,None,"choose-verbose",test
-turk,None,None,"choose-simplification",test
 )
-#cbt runs oom
 
 # Fixed prompts subset:
 DATASETS_AND_CONFIGS_L1=(
