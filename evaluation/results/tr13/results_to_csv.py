@@ -56,8 +56,9 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
                         acc_scores.append(value)
             # LM Eval Harness Generation
             elif "bleu" in res:
-                writer.writerow([ds_name, prompt_name, "bleu", res["bleu"]])
-                bleu_scores.append(res["bleu"])
+                # Make sure BLEU is 0-1 not 0-100
+                writer.writerow([ds_name, prompt_name, "bleu", res["bleu"] / 100])
+                bleu_scores.append(res["bleu"] / 100)
 
         if acc_scores:
             median = statistics.median(acc_scores)
