@@ -61,11 +61,11 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
 
         if acc_scores:
             median = statistics.median(acc_scores)
-            medians.append(medians)
+            medians.append(median)
             writer.writerow([ds_name, "median", "accuracy", median])
         elif bleu_scores:
             median = statistics.median(bleu_scores)
-            medians.append(medians)
+            medians.append(median)
             writer.writerow([ds_name, "median", "bleu", median])
     if medians:
         writer.writerow([ds_name, "average", "multiple", statistics.mean(medians)])
