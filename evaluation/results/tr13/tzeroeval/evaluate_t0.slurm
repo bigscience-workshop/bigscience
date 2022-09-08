@@ -10,7 +10,7 @@
 #SBATCH --time 5:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-148
+#SBATCH --array=0-146
 
 # XNLITR:
 # --array=0-79
@@ -78,8 +78,6 @@ amazon_reviews_multi,en,fr,"prompt_body_title_to_star",validation
 amazon_reviews_multi,en,es,"prompt_title_to_star",validation
 amazon_reviews_multi,en,es,"prompt_review_to_star",validation
 amazon_reviews_multi,en,es,"prompt_body_title_to_star",validation
-amazon_us_reviews,Wireless_v1_00,None,"Given the review headline return a categorical rating",train
-amazon_us_reviews,Wireless_v1_00,None,"Given the review body return a categorical rating",train
 art,None,None,"choose_hypothesis_options",validation
 art,None,None,"choose_hypothesis_believable",validation
 art,None,None,"choose_hypothesis",validation
@@ -87,9 +85,7 @@ art,None,None,"choose_hypothesis_desc",validation
 art,None,None,"choose_hypothesis_likely",validation
 banking77,None,None,"help_page_topic",test
 banking77,None,None,"direct_to_which_department",test
-banking77,None,None,"choose the correct department",test
 banking77,None,None,"rephrase_as_banking_term",test
-banking77,None,None,"choose_the_correct_intent",test
 blbooksgenre,title_genre_classifiction,None,"multi-choice",train
 blbooksgenre,title_genre_classifiction,None,"premise_context_first",train
 blbooksgenre,title_genre_classifiction,None,"classify",train
@@ -632,6 +628,6 @@ python t-zero/evaluation/run_eval.py \
         --split $split \
         --model_name_or_path $CHECKPOINT_PATH \
         --output_dir $OUTPUT_DIR \
-        --per_device_eval_batch_size 4 \
+        --per_device_eval_batch_size 8 \
         --max_length 2048 \
         --dtype float16
