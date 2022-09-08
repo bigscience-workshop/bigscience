@@ -67,5 +67,5 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
             median = statistics.median(bleu_scores)
             medians.append(medians)
             writer.writerow([ds_name, "median", "bleu", median])
-        
+    if medians:
         writer.writerow([ds_name, "average", "multiple", statistics.mean(medians)])
