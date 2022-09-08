@@ -64,6 +64,10 @@ def main():
                     key += "_en-fr"
                 elif "fr-en" in dic["prompt_name"]:
                     key += "_fr-en"
+                elif "hi-en" in dic["prompt_name"]:
+                    key += "_hi-en"
+                elif "en-hi" in dic["prompt_name"]:
+                    key += "_en-hi"
                 sub_key = dic["prompt_name"]
                 results.setdefault(key, {})
                 results[key].setdefault(sub_key, {})

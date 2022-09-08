@@ -10,7 +10,7 @@
 #SBATCH --time 5:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-158
+#SBATCH --array=0-156
 
 # XNLITR:
 # --array=0-79
@@ -78,8 +78,8 @@ amazon_reviews_multi,en,fr,"prompt_body_title_to_star",validation
 amazon_reviews_multi,en,es,"prompt_title_to_star",validation
 amazon_reviews_multi,en,es,"prompt_review_to_star",validation
 amazon_reviews_multi,en,es,"prompt_body_title_to_star",validation
-amazon_us_reviews,Wireless_v1_00,None,"Given the review headline return a categorical rating",validation
-amazon_us_reviews,Wireless_v1_00,None,"Given the review body return a categorical rating",validation
+amazon_us_reviews,Wireless_v1_00,None,"Given the review headline return a categorical rating",train
+amazon_us_reviews,Wireless_v1_00,None,"Given the review body return a categorical rating",train
 art,None,None,"choose_hypothesis_options",validation
 art,None,None,"choose_hypothesis_believable",validation
 art,None,None,"choose_hypothesis",validation
@@ -200,7 +200,6 @@ onestop_english,None,None,"assess",train
 pubmed_qa,pqa_labeled,None,"Long Answer to Final Decision",train
 pubmed_qa,pqa_labeled,None,"Context Section Type",train
 pubmed_qa,pqa_labeled,None,"Question Answering (Short)",train
-riddle_sense,None,None,"answer_to_question",validation
 riddle_sense,None,None,"most_suitable_answer",validation
 riddle_sense,None,None,"answer_given_question_without_options",validation
 riddle_sense,None,None,"question_to_answer_index",validation
@@ -212,7 +211,6 @@ scicite,None,None,"Classify intent",validation
 scicite,None,None,"can_describe",validation
 selqa,answer_selection_analysis,None,"is-he-talking-about",validation
 selqa,answer_selection_analysis,None,"would-make-sense-qu-rand",validation
-selqa,answer_selection_analysis,None,"about-topic-vs-random",validation
 selqa,answer_selection_analysis,None,"make-sense-rand",validation
 selqa,answer_selection_analysis,None,"which-answer-1st-vs-random",validation
 snips_built_in_intents,None,None,"voice_intent",train
@@ -224,7 +222,7 @@ turk,None,None,"simplify",test
 turk,None,None,"choose-verbose",test
 turk,None,None,"choose-simplification",test
 )
-
+#cbt runs oom
 
 # Fixed prompts subset:
 DATASETS_AND_CONFIGS_L1=(
@@ -643,6 +641,6 @@ python t-zero/evaluation/run_eval.py \
         --split $split \
         --model_name_or_path $CHECKPOINT_PATH \
         --output_dir $OUTPUT_DIR \
-        --per_device_eval_batch_size 8 \
+        --per_device_eval_batch_size 4 \
         --max_length 2048 \
         --dtype float16
