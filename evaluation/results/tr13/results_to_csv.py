@@ -44,7 +44,7 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
 
     writer = csv.writer(f)
     writer.writerow(["dataset", "prompt", "metric", "value"])
-
+    medians = []
     for ds_name, v in sorted(results.items()):
         acc_scores, bleu_scores, rouge2_fmeasure = [], [], []
         for prompt_name, res in sorted(v.items()):
@@ -60,6 +60,12 @@ with io.open(csv_file, 'w', encoding='utf-8') as f:
                 bleu_scores.append(res["bleu"])
 
         if acc_scores:
-            writer.writerow([ds_name, "median", "accuracy", statistics.median(acc_scores)])
+            median = statistics.median(acc_scores)
+            medians.append(medians)
+            writer.writerow([ds_name, "median", "accuracy", median])
         elif bleu_scores:
-            writer.writerow([ds_name, "median", "bleu", statistics.median(bleu_scores)])
+            median = statistics.median(bleu_scores)
+            medians.append(medians)
+            writer.writerow([ds_name, "median", "bleu", median])
+        
+        writer.writerow([ds_name, "average", "multiple", statistics.mean(medians)])
