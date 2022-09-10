@@ -40,11 +40,11 @@ def sort_dict(dictionary: Dict) -> Dict:
 def main():
     # find all json file in directory
     root_dir = Path(sys.argv[1])
-    all_jsons = find_all_json(root_dir)
     out_path = os.path.join(root_dir, "merged.json")
     if os.path.exists(out_path):
         os.remove(out_path)
 
+    all_jsons = find_all_json(root_dir)
     # merge
     results = {}
     for json_file in all_jsons:
