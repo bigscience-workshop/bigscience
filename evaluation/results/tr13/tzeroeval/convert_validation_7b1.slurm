@@ -19,15 +19,12 @@ conda activate muennighoffmodelconv
 CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0/checkpoints/xp3zzlossseq
 #CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0/checkpoints/p31lossseq
 CKPTS=(
-global_step250
 global_step500
 global_step750
 global_step1000
 global_step1250
 global_step1500
 global_step1750
-)
-CKPTS=(
 global_step2000
 global_step2250
 global_step2500
@@ -44,7 +41,7 @@ TP=1
 ### CONVERT ###
 
 
-for i in {0..12}; do
+for i in {0..11}; do
 CKPT=${CKPTS[$i]}
 echo "$i"
 echo "Running $CKPT"
@@ -290,7 +287,7 @@ cat <<EOT > $lm_eval_script
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-22
+#SBATCH --array=0-1
 
 set -x -e
 
@@ -329,15 +326,20 @@ wmt14_hi_en,hi-en,"version-en-hi-target"
 wmt14_hi_en,hi-en,"a_good_translation-en-hi-target"
 wmt14_hi_en,hi-en,"a_good_translation-en-hi-source+target"
 wmt14_hi_en,hi-en,"xglm-en-hi-target"
-wmt14_hi_en,hi-en,"gpt3-en-hi-target"
+wmt14_hi_en,hi-en,"gpt-3-en-hi-target"
 wmt14_hi_en,hi-en,"version-hi-en-target"
 wmt14_hi_en,hi-en,"a_good_translation-hi-en-target"
 wmt14_hi_en,hi-en,"a_good_translation-hi-en-source+target"
 wmt14_hi_en,hi-en,"xglm-hi-en-target"
-wmt14_hi_en,hi-en,"gpt3-hi-en-target"
+wmt14_hi_en,hi-en,"gpt-3-hi-en-target"
 mlsum_es,"es","layman_summ_es"
 mlsum_es,"es","palm_prompt"
 mlsum_es,"es","summarise_this_in_es_few_sentences"
+)
+
+DATASETS_AND_CONFIGS=(
+wmt14_hi_en,hi-en,"gpt-3-en-hi-target"
+wmt14_hi_en,hi-en,"gpt-3-hi-en-target"
 )
 
 DATASET_AND_CONFIG="\${DATASETS_AND_CONFIGS[\$SLURM_ARRAY_TASK_ID]}"
@@ -356,6 +358,9 @@ python main.py \
     --template_names "\$template_name" \
     --bootstrap_iters 10 \
     --limit 3000
+
+mkdir -p "$OUTPUTCKPT/evaluation/\$dataset_name"
+mv outputs/*$CKPT* "$OUTPUTCKPT/evaluation/\$dataset_name/"
 
 echo "END TIME: $(date)"
 EOT

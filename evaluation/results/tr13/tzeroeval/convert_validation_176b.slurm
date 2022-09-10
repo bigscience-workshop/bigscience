@@ -19,7 +19,7 @@ conda activate muennighoffmodelconv
 #global_step1743  global_step1992  global_step2114  global_step249  global_step498  global_step747  global_step996
 
 #CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0/checkpoints/xp3zzlossseq
-CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/xp3capmixnewcodelonglossseq/
+CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
 CKPTS=(
 global_step249
 global_step498
@@ -29,27 +29,23 @@ global_step1245
 global_step1494
 global_step1743
 global_step1992
-global_step2241
-global_step2490
-global_step2739
-global_step2989
+global_step2114
 )
-EXAMPLE_CKPT=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-xp3capmixnewcodelonglossseq
-DUMP_PATH=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/6b3t0
-OUT_PREFIX=xp3zzlossseq_
-OUT_PREFIX=p31lossseq
+EXAMPLE_CKPT=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/176bt0/tr13-176b-ml-t0-lmtoks341b-t0toks13b-xp3capmixnewcodelonglossseq
+DUMP_PATH=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/176bt0
+OUT_PREFIX=xp3capmixnewcodelonglossseq_
 TP=1
 
 ### CONVERT ###
 
 
-for i in {0..12}; do
+for i in {0..8}; do
 CKPT=${CKPTS[$i]}
 echo "$i"
 echo "Running $CKPT"
 
 OUTPUTCKPT=$DUMP_PATH/"$OUT_PREFIX$CKPT"
-python $six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/transformers_clone/src/transformers/models/bloom/convert_bloom_original_checkpoint_to_pytorch.py --pytorch_dump_folder_path $OUTPUTCKPT --bloom_checkpoint_path $CKPT_PATH/$CKPT --pretraining_tp $TP --bloom_config_file $EXAMPLE_CKPT/config.json
+python $six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/transformers_clone/src/transformers/models/bloom/convert_bloom_original_checkpoint_to_pytorch.py --pytorch_dump_folder_path $OUTPUTCKPT --bloom_checkpoint_path $CKPT_PATH/$CKPT --pretraining_tp $TP --bloom_config_file $EXAMPLE_CKPT/config.json --shard_model
 
 # Copy tokenizer.json etc
 cp -r $EXAMPLE_CKPT/*.json $OUTPUTCKPT/
@@ -60,12 +56,12 @@ cat <<EOT > $eval_script
 #SBATCH --job-name=evaluate_t0
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=8           # number of cores per tasks
+#SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --gres=gpu:1                 # number of gpus
+#SBATCH --gres=gpu:8                 # number of gpus
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
-#SBATCH --time 5:00:00             # maximum execution time (HH:MM:SS)
+#SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
 #SBATCH --array=0-168
@@ -267,7 +263,7 @@ python t-zero/evaluation/run_eval.py \
         --split "\$split" \
         --model_name_or_path "\$CHECKPOINT_PATH" \
         --output_dir "\$OUTPUT_DIR" \
-        --per_device_eval_batch_size 4 \
+        --per_device_eval_batch_size 8 \
         --max_length 2048 \
         --dtype bfloat16
 EOT
@@ -281,9 +277,9 @@ cat <<EOT > $lm_eval_script
 #SBATCH --job-name=lmeval
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=8           # number of cores per tasks
+#SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --gres=gpu:1                 # number of gpus
+#SBATCH --gres=gpu:8                 # number of gpus
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
@@ -349,12 +345,15 @@ python main.py \
     --model_api_name 'hf-causal' \
     --model_args "pretrained=\$MODEL_CKPT,use_accelerate=True,tokenizer=\$MODEL_CKPT,dtype=bfloat16" \
     --device cuda \
-    --batch_size 16 \
+    --batch_size 8 \
     --no_tracking \
     --task_name "\$dataset_name" \
     --template_names "\$template_name" \
     --bootstrap_iters 10 \
     --limit 3000
+
+mkdir -p "$OUTPUTCKPT/evaluation/\$dataset_name"
+mv outputs/*$CKPT* "$OUTPUTCKPT/evaluation/\$dataset_name/"
 
 echo "END TIME: $(date)"
 EOT
