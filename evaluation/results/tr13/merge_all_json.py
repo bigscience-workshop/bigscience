@@ -39,7 +39,7 @@ def sort_dict(dictionary: Dict) -> Dict:
 
 def main():
     # find all json file in directory
-    root_dir: Path = sys.argv[1]
+    root_dir = Path(sys.argv[1])
     all_jsons = find_all_json(root_dir)
 
     # merge
