@@ -1,19 +1,14 @@
 """
-Usage:
-python merge_all_json.py --directory X --save-output-json X/merged.json
+Saves a merged.json file in the provided directory
+python merge_all_json.py DIRECTORY
 """
 
-import argparse
 import json
+import os
 from pathlib import Path
+import sys
 from typing import Dict
 
-
-def get_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--directory", type=Path)
-    parser.add_argument("--save-output-json", type=str)
-    return parser.parse_args()
 
 def find_all_json(root_dir: Path):
     if root_dir.is_file():
@@ -43,10 +38,8 @@ def sort_dict(dictionary: Dict) -> Dict:
     return results
 
 def main():
-    args = get_args()
-
     # find all json file in directory
-    root_dir: Path = args.directory
+    root_dir: Path = sys.argv[1]
     all_jsons = find_all_json(root_dir)
 
     # merge
@@ -93,7 +86,7 @@ def main():
     sorted_results = sort_dict(results)
 
     # write
-    with open(args.save_output_json, "w") as fo:
+    with open(os.path.join(root_dir, "merged.json"), "w") as fo:
         json.dump(sorted_results, fo)
 
 

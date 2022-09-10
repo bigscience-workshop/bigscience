@@ -13,7 +13,7 @@
 #SBATCH --array=0-146
 
 # VALIDATION:
-# --array=0-235
+# --array=0-168
 
 # L1
 # --array=0-159
