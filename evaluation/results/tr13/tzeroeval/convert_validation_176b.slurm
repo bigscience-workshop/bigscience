@@ -45,6 +45,7 @@ echo "$i"
 echo "Running $CKPT"
 
 OUTPUTCKPT=$DUMP_PATH/"$OUT_PREFIX$CKPT"
+mkdir -p OUTPUTCKPT
 python $six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/transformers_clone/src/transformers/models/bloom/convert_bloom_original_checkpoint_to_pytorch.py --pytorch_dump_folder_path $OUTPUTCKPT --bloom_checkpoint_path $CKPT_PATH/$CKPT --pretraining_tp $TP --bloom_config_file $EXAMPLE_CKPT/config.json --shard_model
 
 # Copy tokenizer.json etc
@@ -353,7 +354,7 @@ python main.py \
     --limit 3000
 
 mkdir -p "$OUTPUTCKPT/evaluation/\$dataset_name"
-mv outputs/*$CKPT* "$OUTPUTCKPT/evaluation/\$dataset_name/"
+mv "outputs/*$CKPT*\$dataset_name*" "$OUTPUTCKPT/evaluation/\$dataset_name/"
 
 echo "END TIME: $(date)"
 EOT

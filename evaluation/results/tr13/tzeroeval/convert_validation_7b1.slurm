@@ -360,7 +360,7 @@ python main.py \
     --limit 3000
 
 mkdir -p "$OUTPUTCKPT/evaluation/\$dataset_name"
-mv outputs/*$CKPT* "$OUTPUTCKPT/evaluation/\$dataset_name/"
+mv "outputs/*$CKPT*\$dataset_name*" "$OUTPUTCKPT/evaluation/\$dataset_name/"
 
 echo "END TIME: $(date)"
 EOT
