@@ -26,6 +26,8 @@ global_step1000
 global_step1250
 global_step1500
 global_step1750
+)
+CKPTS=(
 global_step2000
 global_step2250
 global_step2500
@@ -271,7 +273,7 @@ python t-zero/evaluation/run_eval.py \
         --dtype float16
 EOT
 
-sbatch $eval_script
+#sbatch $eval_script
 
 
 lm_eval_script="./lm_eval_$i.slurm"
@@ -358,7 +360,7 @@ python main.py \
 echo "END TIME: $(date)"
 EOT
 
-#sbatch $lm_eval_script
+sbatch $lm_eval_script
 
 
 done

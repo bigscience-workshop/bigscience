@@ -41,6 +41,9 @@ def main():
     # find all json file in directory
     root_dir = Path(sys.argv[1])
     all_jsons = find_all_json(root_dir)
+    out_path = os.path.join(root_dir, "merged.json")
+    if os.path.exists(out_path):
+        os.remove(out_path)
 
     # merge
     results = {}
@@ -86,7 +89,7 @@ def main():
     sorted_results = sort_dict(results)
 
     # write
-    with open(os.path.join(root_dir, "merged.json"), "w") as fo:
+    with open(out_path, "w") as fo:
         json.dump(sorted_results, fo)
 
 
