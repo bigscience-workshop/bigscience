@@ -39,7 +39,7 @@ TP=1
 ### CONVERT ###
 
 
-for i in {0..1}; do
+for i in {0..7}; do
 CKPT=${CKPTS[$i]}
 echo "$i"
 echo "Running $CKPT"
