@@ -20,8 +20,8 @@ conda activate muennighoffmodelconv
 
 #CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0/checkpoints/xp3zzlossseq
 CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
+#global_step249
 CKPTS=(
-global_step249
 global_step498
 global_step747
 global_step996
@@ -39,7 +39,7 @@ TP=1
 ### CONVERT ###
 
 
-for i in {0..8}; do
+for i in {0..1}; do
 CKPT=${CKPTS[$i]}
 echo "$i"
 echo "Running $CKPT"
@@ -166,7 +166,6 @@ emotion,None,None,"choose_the_best_emotion_label",test
 emotion,None,None,"reply_with_emoation_label",test
 emotion,None,None,"answer_with_class_label",test
 emotion,None,None,"answer_question_with_emotion_label",test
-emotion,None,None,"select_emotion_label_from_list",test
 financial_phrasebank,sentences_allagree,None,"share_price_option",train
 financial_phrasebank,sentences_allagree,None,"sentiment",train
 financial_phrasebank,sentences_allagree,None,"word_comes_to_mind",train
@@ -346,7 +345,7 @@ python main.py \
     --model_api_name 'hf-causal' \
     --model_args "pretrained=\$MODEL_CKPT,use_accelerate=True,tokenizer=\$MODEL_CKPT,dtype=bfloat16" \
     --device cuda \
-    --batch_size 8 \
+    --batch_size 4 \
     --no_tracking \
     --task_name "\$dataset_name" \
     --template_names "\$template_name" \

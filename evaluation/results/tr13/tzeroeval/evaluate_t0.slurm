@@ -133,7 +133,6 @@ emotion,None,None,"choose_the_best_emotion_label",test
 emotion,None,None,"reply_with_emoation_label",test
 emotion,None,None,"answer_with_class_label",test
 emotion,None,None,"answer_question_with_emotion_label",test
-emotion,None,None,"select_emotion_label_from_list",test
 financial_phrasebank,sentences_allagree,None,"share_price_option",train
 financial_phrasebank,sentences_allagree,None,"sentiment",train
 financial_phrasebank,sentences_allagree,None,"word_comes_to_mind",train
