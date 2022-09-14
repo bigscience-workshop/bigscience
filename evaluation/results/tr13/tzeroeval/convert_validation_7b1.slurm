@@ -134,16 +134,6 @@ blimp,adjunct_island,None,"grammatical_between_A_B",train
 blimp,adjunct_island,None,"grammatical_which_one_1_2",train
 blimp,adjunct_island,None,"single_sentence_bad_yes_no",train
 blimp,adjunct_island,None,"single_sentence_good_yes_no",train
-conv_ai,None,None,"engagement_alice_interested",train
-conv_ai,None,None,"engagement_bob_real",train
-conv_ai,None,None,"engagement_question_before",train
-conv_ai,None,None,"engagement_bob_interested",train
-conv_ai,None,None,"engagement_question_after",train
-conv_ai_2,None,None,"match_profile_question",train
-conv_ai_2,None,None,"match_profile_expected",train
-conv_ai_2,None,None,"match_profile_guess",train
-conv_ai_2,None,None,"match_profile_agree",train
-conv_ai_2,None,None,"match_profile",train
 conv_ai_3,None,None,"clarification_needed",validation
 conv_ai_3,None,None,"score_give_number",validation
 conv_ai_3,None,None,"ambiguous",validation

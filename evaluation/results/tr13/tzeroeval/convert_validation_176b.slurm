@@ -18,10 +18,14 @@ conda activate muennighoffmodelconv
 
 #global_step1743  global_step1992  global_step2114  global_step249  global_step498  global_step747  global_step996
 
-#CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0/checkpoints/xp3zzlossseq
-CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
+#CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/xp3zzlossseq
+#CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
+CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/p31lossseq
+
 #global_step249
+#global_step1068  global_step249  global_step498  global_step5  global_step747  global_step996
 CKPTS=(
+global_step249
 global_step498
 global_step747
 global_step996
@@ -29,27 +33,32 @@ global_step1245
 global_step1494
 global_step1743
 global_step1992
-global_step2114
+global_step2241
 )
 EXAMPLE_CKPT=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/176bt0/tr13-176b-ml-t0-lmtoks341b-t0toks13b-xp3capmixnewcodelonglossseq
 DUMP_PATH=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/176bt0
-OUT_PREFIX=xp3capmixnewcodelonglossseq_
+
+OUT_PREFIX=p31lossseq_
+#OUT_PREFIX=xp3capmixnewcodelonglossseq_
+#OUT_PREFIX=xp3zzlossseq_
+
 TP=1
 
 ### CONVERT ###
 
 
-for i in {0..7}; do
+for i in {0..8}; do
 CKPT=${CKPTS[$i]}
 echo "$i"
 echo "Running $CKPT"
 
 OUTPUTCKPT=$DUMP_PATH/"$OUT_PREFIX$CKPT"
 mkdir -p $OUTPUTCKPT
-python $six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/transformers_clone/src/transformers/models/bloom/convert_bloom_original_checkpoint_to_pytorch.py --pytorch_dump_folder_path $OUTPUTCKPT --bloom_checkpoint_path $CKPT_PATH/$CKPT --pretraining_tp $TP --bloom_config_file $EXAMPLE_CKPT/config.json --shard_model
+#python $six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/transformers_clone/src/transformers/models/bloom/convert_bloom_original_checkpoint_to_pytorch.py --pytorch_dump_folder_path $OUTPUTCKPT --bloom_checkpoint_path $CKPT_PATH/$CKPT --pretraining_tp $TP --bloom_config_file $EXAMPLE_CKPT/config.json --shard_model
 
 # Copy tokenizer.json etc
-cp -r $EXAMPLE_CKPT/*.json $OUTPUTCKPT/
+#cp -r $EXAMPLE_CKPT/*.json $OUTPUTCKPT/
+#OUTPUTCKPT=/gpfsscratch/rech/six/commun/uan68tv-model-conversion/bloom
 
 eval_script="./eval_$i.slurm"
 cat <<EOT > $eval_script
@@ -65,7 +74,7 @@ cat <<EOT > $eval_script
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-168
+#SBATCH --array=0-11
 
 set -x -e
 
@@ -133,16 +142,6 @@ blimp,adjunct_island,None,"grammatical_between_A_B",train
 blimp,adjunct_island,None,"grammatical_which_one_1_2",train
 blimp,adjunct_island,None,"single_sentence_bad_yes_no",train
 blimp,adjunct_island,None,"single_sentence_good_yes_no",train
-conv_ai,None,None,"engagement_alice_interested",train
-conv_ai,None,None,"engagement_bob_real",train
-conv_ai,None,None,"engagement_question_before",train
-conv_ai,None,None,"engagement_bob_interested",train
-conv_ai,None,None,"engagement_question_after",train
-conv_ai_2,None,None,"match_profile_question",train
-conv_ai_2,None,None,"match_profile_expected",train
-conv_ai_2,None,None,"match_profile_guess",train
-conv_ai_2,None,None,"match_profile_agree",train
-conv_ai_2,None,None,"match_profile",train
 conv_ai_3,None,None,"clarification_needed",validation
 conv_ai_3,None,None,"score_give_number",validation
 conv_ai_3,None,None,"ambiguous",validation
@@ -249,6 +248,22 @@ snips_built_in_intents,None,None,"categorize_query_brief",train
 snips_built_in_intents,None,None,"query_intent",train
 )
 
+DATASETS_AND_CONFIGS_VAL=(
+amazon_reviews_multi,en,en,"prompt_title_to_star",validation
+amazon_reviews_multi,en,en,"prompt_review_to_star",validation
+amazon_reviews_multi,en,en,"prompt_body_title_to_star",validation
+amazon_reviews_multi,zh,en,"prompt_title_to_star",validation
+amazon_reviews_multi,zh,en,"prompt_review_to_star",validation
+amazon_reviews_multi,zh,en,"prompt_body_title_to_star",validation
+amazon_reviews_multi,fr,en,"prompt_title_to_star",validation
+amazon_reviews_multi,fr,en,"prompt_review_to_star",validation
+amazon_reviews_multi,fr,en,"prompt_body_title_to_star",validation
+amazon_reviews_multi,es,en,"prompt_title_to_star",validation
+amazon_reviews_multi,es,en,"prompt_review_to_star",validation
+amazon_reviews_multi,es,en,"prompt_body_title_to_star",validation
+)
+
+
 DATASET_AND_CONFIG="\${DATASETS_AND_CONFIGS_VAL[\$SLURM_ARRAY_TASK_ID]}"
 echo "\$ARGUMENT"
 
@@ -263,7 +278,7 @@ python t-zero/evaluation/run_eval.py \
         --split "\$split" \
         --model_name_or_path "\$CHECKPOINT_PATH" \
         --output_dir "\$OUTPUT_DIR" \
-        --per_device_eval_batch_size 8 \
+        --per_device_eval_batch_size 1 \
         --max_length 2048 \
         --dtype bfloat16
 EOT
@@ -285,7 +300,7 @@ cat <<EOT > $lm_eval_script
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-22
+#SBATCH --array=0-1
 
 set -x -e
 
@@ -324,15 +339,20 @@ wmt14_hi_en,hi-en,"version-en-hi-target"
 wmt14_hi_en,hi-en,"a_good_translation-en-hi-target"
 wmt14_hi_en,hi-en,"a_good_translation-en-hi-source+target"
 wmt14_hi_en,hi-en,"xglm-en-hi-target"
-wmt14_hi_en,hi-en,"gpt3-en-hi-target"
+wmt14_hi_en,hi-en,"gpt-3-en-hi-target"
 wmt14_hi_en,hi-en,"version-hi-en-target"
 wmt14_hi_en,hi-en,"a_good_translation-hi-en-target"
 wmt14_hi_en,hi-en,"a_good_translation-hi-en-source+target"
 wmt14_hi_en,hi-en,"xglm-hi-en-target"
-wmt14_hi_en,hi-en,"gpt3-hi-en-target"
+wmt14_hi_en,hi-en,"gpt-3-hi-en-target"
 mlsum_es,"es","layman_summ_es"
 mlsum_es,"es","palm_prompt"
 mlsum_es,"es","summarise_this_in_es_few_sentences"
+)
+
+DATASETS_AND_CONFIGS=(
+wmt14_hi_en,hi-en,"gpt-3-en-hi-target"
+wmt14_hi_en,hi-en,"gpt-3-hi-en-target"
 )
 
 DATASET_AND_CONFIG="\${DATASETS_AND_CONFIGS[\$SLURM_ARRAY_TASK_ID]}"
@@ -353,12 +373,11 @@ python main.py \
     --limit 3000
 
 mkdir -p "$OUTPUTCKPT/evaluation/\$dataset_name"
-mv "outputs/*$CKPT*\$dataset_name*" "$OUTPUTCKPT/evaluation/\$dataset_name/"
+mv /gpfsscratch/rech/six/commun/experiments/muennighoff/lm-evaluation-harness/outputs/*$CKPT*\$dataset_name* "$OUTPUTCKPT/evaluation/\$dataset_name/"
 
 echo "END TIME: $(date)"
 EOT
 
-sbatch $lm_eval_script
-
+#sbatch $lm_eval_script
 
 done
