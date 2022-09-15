@@ -16,14 +16,10 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 conda activate muennighoffmodelconv
 
-#global_step1743  global_step1992  global_step2114  global_step249  global_step498  global_step747  global_step996
-
 #CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/xp3zzlossseq
-#CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
 CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/p31lossseq
+#CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
 
-#global_step249
-#global_step1068  global_step249  global_step498  global_step5  global_step747  global_step996
 CKPTS=(
 global_step249
 global_step498
@@ -38,9 +34,9 @@ global_step2241
 EXAMPLE_CKPT=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/176bt0/tr13-176b-ml-t0-lmtoks341b-t0toks13b-xp3capmixnewcodelonglossseq
 DUMP_PATH=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/176bt0
 
+#OUT_PREFIX=xp3zzlossseq_
 OUT_PREFIX=p31lossseq_
 #OUT_PREFIX=xp3capmixnewcodelonglossseq_
-#OUT_PREFIX=xp3zzlossseq_
 
 TP=1
 
@@ -54,10 +50,12 @@ echo "Running $CKPT"
 
 OUTPUTCKPT=$DUMP_PATH/"$OUT_PREFIX$CKPT"
 mkdir -p $OUTPUTCKPT
-#python $six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/transformers_clone/src/transformers/models/bloom/convert_bloom_original_checkpoint_to_pytorch.py --pytorch_dump_folder_path $OUTPUTCKPT --bloom_checkpoint_path $CKPT_PATH/$CKPT --pretraining_tp $TP --bloom_config_file $EXAMPLE_CKPT/config.json --shard_model
+python $six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/transformers_clone/src/transformers/models/bloom/convert_bloom_original_checkpoint_to_pytorch.py --pytorch_dump_folder_path $OUTPUTCKPT --bloom_checkpoint_path $CKPT_PATH/$CKPT --pretraining_tp $TP --bloom_config_file $EXAMPLE_CKPT/config.json --shard_model
 
 # Copy tokenizer.json etc
-#cp -r $EXAMPLE_CKPT/*.json $OUTPUTCKPT/
+cp -r $EXAMPLE_CKPT/*.json $OUTPUTCKPT/
+
+# Use model prior to finetuning
 #OUTPUTCKPT=/gpfsscratch/rech/six/commun/uan68tv-model-conversion/bloom
 
 eval_script="./eval_$i.slurm"
@@ -74,7 +72,7 @@ cat <<EOT > $eval_script
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-11
+#SBATCH --array=0-155
 
 set -x -e
 
@@ -226,7 +224,6 @@ onestop_english,None,None,"determine_reading_level_from_the_first_three_sentence
 onestop_english,None,None,"esl_variation",train
 onestop_english,None,None,"assess",train
 pubmed_qa,pqa_labeled,None,"Long Answer to Final Decision",train
-pubmed_qa,pqa_labeled,None,"Context Section Type",train
 pubmed_qa,pqa_labeled,None,"Question Answering (Short)",train
 riddle_sense,None,None,"most_suitable_answer",validation
 riddle_sense,None,None,"answer_given_question_without_options",validation
@@ -278,7 +275,7 @@ python t-zero/evaluation/run_eval.py \
         --split "\$split" \
         --model_name_or_path "\$CHECKPOINT_PATH" \
         --output_dir "\$OUTPUT_DIR" \
-        --per_device_eval_batch_size 1 \
+        --per_device_eval_batch_size 4 \
         --max_length 2048 \
         --dtype bfloat16
 EOT
@@ -300,7 +297,7 @@ cat <<EOT > $lm_eval_script
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-1
+#SBATCH --array=0-12
 
 set -x -e
 
@@ -350,11 +347,6 @@ mlsum_es,"es","palm_prompt"
 mlsum_es,"es","summarise_this_in_es_few_sentences"
 )
 
-DATASETS_AND_CONFIGS=(
-wmt14_hi_en,hi-en,"gpt-3-en-hi-target"
-wmt14_hi_en,hi-en,"gpt-3-hi-en-target"
-)
-
 DATASET_AND_CONFIG="\${DATASETS_AND_CONFIGS[\$SLURM_ARRAY_TASK_ID]}"
 echo "\$ARGUMENT"
 
@@ -378,6 +370,6 @@ mv /gpfsscratch/rech/six/commun/experiments/muennighoff/lm-evaluation-harness/ou
 echo "END TIME: $(date)"
 EOT
 
-#sbatch $lm_eval_script
+sbatch $lm_eval_script
 
 done

@@ -18,6 +18,7 @@ conda activate muennighoffmodelconv
 
 CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0/checkpoints/xp3zzlossseq
 #CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0/checkpoints/p31lossseq
+
 CKPTS=(
 global_step500
 global_step750
@@ -36,6 +37,7 @@ EXAMPLE_CKPT=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/6b3t0
 DUMP_PATH=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/6b3t0
 OUT_PREFIX=xp3zzlossseq_
 #OUT_PREFIX=p31lossseq
+
 TP=1
 
 ### CONVERT ###
@@ -47,7 +49,7 @@ echo "$i"
 echo "Running $CKPT"
 
 OUTPUTCKPT=$DUMP_PATH/"$OUT_PREFIX$CKPT"
-#python $six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/transformers_clone/src/transformers/models/bloom/convert_bloom_original_checkpoint_to_pytorch.py --pytorch_dump_folder_path $OUTPUTCKPT --bloom_checkpoint_path $CKPT_PATH/$CKPT --pretraining_tp $TP --bloom_config_file $EXAMPLE_CKPT/config.json
+python $six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/transformers_clone/src/transformers/models/bloom/convert_bloom_original_checkpoint_to_pytorch.py --pytorch_dump_folder_path $OUTPUTCKPT --bloom_checkpoint_path $CKPT_PATH/$CKPT --pretraining_tp $TP --bloom_config_file $EXAMPLE_CKPT/config.json
 
 # Copy tokenizer.json etc
 cp -r $EXAMPLE_CKPT/*.json $OUTPUTCKPT/
@@ -218,7 +220,6 @@ onestop_english,None,None,"determine_reading_level_from_the_first_three_sentence
 onestop_english,None,None,"esl_variation",train
 onestop_english,None,None,"assess",train
 pubmed_qa,pqa_labeled,None,"Long Answer to Final Decision",train
-pubmed_qa,pqa_labeled,None,"Context Section Type",train
 pubmed_qa,pqa_labeled,None,"Question Answering (Short)",train
 riddle_sense,None,None,"most_suitable_answer",validation
 riddle_sense,None,None,"answer_given_question_without_options",validation
@@ -259,7 +260,7 @@ python t-zero/evaluation/run_eval.py \
         --dtype float16
 EOT
 
-#sbatch $eval_script
+sbatch $eval_script
 
 
 lm_eval_script="./lm_eval_$i.slurm"
@@ -276,7 +277,7 @@ cat <<EOT > $lm_eval_script
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-1
+#SBATCH --array=0-12
 
 set -x -e
 
@@ -326,11 +327,6 @@ mlsum_es,"es","palm_prompt"
 mlsum_es,"es","summarise_this_in_es_few_sentences"
 )
 
-DATASETS_AND_CONFIGS=(
-wmt14_hi_en,hi-en,"gpt-3-en-hi-target"
-wmt14_hi_en,hi-en,"gpt-3-hi-en-target"
-)
-
 DATASET_AND_CONFIG="\${DATASETS_AND_CONFIGS[\$SLURM_ARRAY_TASK_ID]}"
 echo "\$ARGUMENT"
 
@@ -354,7 +350,7 @@ mv "outputs/*$CKPT*\$dataset_name*" "$OUTPUTCKPT/evaluation/\$dataset_name/"
 echo "END TIME: $(date)"
 EOT
 
-#sbatch $lm_eval_script
+sbatch $lm_eval_script
 
 
 done
