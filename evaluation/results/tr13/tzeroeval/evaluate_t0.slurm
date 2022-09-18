@@ -502,7 +502,7 @@ Muennighoff/xwinograd,fr,fr,"Replace_frmt",test
 Muennighoff/xwinograd,fr,fr,"stand for_frmt",test
 Muennighoff/xwinograd,fr,fr,"does underscore refer to_frmt",test
 Muennighoff/xwinograd,fr,fr,"True or False_frmt",test
-Muennighoff/xwinograd,pt,pt,"underscore refer to",test
+Muennighoff/xwinograd,pt,pt,"underscore refer to_ptmt",test
 Muennighoff/xwinograd,pt,pt,"Replace_ptmt",test
 Muennighoff/xwinograd,pt,pt,"stand for_ptmt",test
 Muennighoff/xwinograd,pt,pt,"does underscore refer to_ptmt",test

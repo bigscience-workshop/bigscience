@@ -21,6 +21,9 @@
 # L2
 # --array=0-79
 
+# XWINOSTORY_MT
+# --array=0-44
+
 # XNLITR:
 # --array=0-79
 
@@ -286,6 +289,54 @@ xcopa,tr,en,"C1 or C2? premise, so/because…",validation
 xcopa,tr,en,"i_am_hesitating",validation
 xcopa,tr,en,"cause_effect",validation
 xcopa,tr,en,"plausible_alternatives",validation
+)
+
+DATASETS_AND_CONFIGS_XWINOSTORYMT=(
+Muennighoff/xstory_cloze,ar,ar,"Story Continuation and Options_armt",validation
+Muennighoff/xstory_cloze,ar,ar,"Answer Given options_armt",validation
+Muennighoff/xstory_cloze,ar,ar,"Novel Correct Ending_armt",validation
+Muennighoff/xstory_cloze,ar,ar,"Generate Ending_armt",validation
+Muennighoff/xstory_cloze,ar,ar,"Choose Story Ending_armt",validation
+Muennighoff/xstory_cloze,es,es,"Story Continuation and Options_esmt",validation
+Muennighoff/xstory_cloze,es,es,"Answer Given options_esmt",validation
+Muennighoff/xstory_cloze,es,es,"Novel Correct Ending_esmt",validation
+Muennighoff/xstory_cloze,es,es,"Generate Ending_esmt",validation
+Muennighoff/xstory_cloze,es,es,"Choose Story Ending_esmt",validation
+Muennighoff/xstory_cloze,eu,eu,"Story Continuation and Options_eumt",validation
+Muennighoff/xstory_cloze,eu,eu,"Answer Given options_eumt",validation
+Muennighoff/xstory_cloze,eu,eu,"Novel Correct Ending_eumt",validation
+Muennighoff/xstory_cloze,eu,eu,"Generate Ending_eumt",validation
+Muennighoff/xstory_cloze,eu,eu,"Choose Story Ending_eumt",validation
+Muennighoff/xstory_cloze,id,id,"Story Continuation and Options_idmt",validation
+Muennighoff/xstory_cloze,id,id,"Answer Given options_idmt",validation
+Muennighoff/xstory_cloze,id,id,"Novel Correct Ending_idmt",validation
+Muennighoff/xstory_cloze,id,id,"Generate Ending_idmt",validation
+Muennighoff/xstory_cloze,id,id,"Choose Story Ending_idmt",validation
+Muennighoff/xstory_cloze,hi,hi,"Story Continuation and Options_himt",validation
+Muennighoff/xstory_cloze,hi,hi,"Answer Given options_himt",validation
+Muennighoff/xstory_cloze,hi,hi,"Novel Correct Ending_himt",validation
+Muennighoff/xstory_cloze,hi,hi,"Generate Ending_himt",validation
+Muennighoff/xstory_cloze,hi,hi,"Choose Story Ending_himt",validation
+Muennighoff/xstory_cloze,zh,zh,"Story Continuation and Options_zhmt",validation
+Muennighoff/xstory_cloze,zh,zh,"Answer Given options_zhmt",validation
+Muennighoff/xstory_cloze,zh,zh,"Novel Correct Ending_zhmt",validation
+Muennighoff/xstory_cloze,zh,zh,"Generate Ending_zhmt",validation
+Muennighoff/xstory_cloze,zh,zh,"Choose Story Ending_zhmt",validation
+Muennighoff/xwinograd,fr,fr,"underscore refer to_frmt",test
+Muennighoff/xwinograd,fr,fr,"Replace_frmt",test
+Muennighoff/xwinograd,fr,fr,"stand for_frmt",test
+Muennighoff/xwinograd,fr,fr,"does underscore refer to_frmt",test
+Muennighoff/xwinograd,fr,fr,"True or False_frmt",test
+Muennighoff/xwinograd,pt,pt,"underscore refer to_ptmt",test
+Muennighoff/xwinograd,pt,pt,"Replace_ptmt",test
+Muennighoff/xwinograd,pt,pt,"stand for_ptmt",test
+Muennighoff/xwinograd,pt,pt,"does underscore refer to_ptmt",test
+Muennighoff/xwinograd,pt,pt,"True or False_ptmt",test
+Muennighoff/xwinograd,zh,zh,"underscore refer to_zhmt",test
+Muennighoff/xwinograd,zh,zh,"Replace_zhmt",test
+Muennighoff/xwinograd,zh,zh,"stand for_zhmt",test
+Muennighoff/xwinograd,zh,zh,"does underscore refer to_zhmt",test
+Muennighoff/xwinograd,zh,zh,"True or False_zhmt",test
 )
 
 DATASETS_AND_CONFIGS_XCOPAMT=(
