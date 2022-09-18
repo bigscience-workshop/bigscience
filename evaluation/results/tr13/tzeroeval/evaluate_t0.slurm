@@ -463,6 +463,34 @@ xcopa,tr,en,"cause_effect",validation
 xcopa,tr,en,"plausible_alternatives",validation
 )
 
+DATASETS_AND_CONFIGS_XCOPAMT=(
+xcopa,id,id,"best_option_idmt",validation
+xcopa,id,id,"C1 or C2? premise_idmt",validation
+xcopa,id,id,"i_am_hesitating_idmt",validation
+xcopa,id,id,"cause_effect_idmt",validation
+xcopa,id,id,"plausible_alternatives_idmt",validation
+xcopa,sw,sw,"best_option_swmt",validation
+xcopa,sw,sw,"C1 or C2? premise_swmt",validation
+xcopa,sw,sw,"i_am_hesitating_swmt",validation
+xcopa,sw,sw,"cause_effect_swmt",validation
+xcopa,sw,sw,"plausible_alternatives_swmt",validation
+xcopa,ta,ta,"best_option_tamt",validation
+xcopa,ta,ta,"C1 or C2? premise_tamt",validation
+xcopa,ta,ta,"i_am_hesitating_tamt",validation
+xcopa,ta,ta,"cause_effect_tamt",validation
+xcopa,ta,ta,"plausible_alternatives_tamt",validation
+xcopa,vi,vi,"best_option_vimt",validation
+xcopa,vi,vi,"C1 or C2? premise_vimt",validation
+xcopa,vi,vi,"i_am_hesitating_vimt",validation
+xcopa,vi,vi,"cause_effect_vimt",validation
+xcopa,vi,vi,"plausible_alternatives_vimt",validation
+xcopa,zh,zh,"best_option_zhmt",validation
+xcopa,zh,zh,"C1 or C2? premise_zhmt",validation
+xcopa,zh,zh,"i_am_hesitating_zhmt",validation
+xcopa,zh,zh,"cause_effect_zhmt",validation
+xcopa,zh,zh,"plausible_alternatives_zhmt",validation   
+)
+
 DATASETS_AND_CONFIGS_XNLITR=(
 xnli,ar,ar,"guaranteed/possible/impossible_arht",validation
 xnli,ar,ar,"MNLI crowdsource_arht",validation
