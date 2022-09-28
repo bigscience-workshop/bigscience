@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=tr13-176B-ml
+#SBATCH --job-name=tr13-176B-ml-mt
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
 #SBATCH --reservation=hug
@@ -18,7 +18,7 @@ set -x -e
 source $six_ALL_CCFRWORK/start-tr13f-6B3-ml-t0
 echo "START TIME: $(date)"
 
-variant=xp3zhmt
+variant=xp3mt
 
 DATA_OUTPUT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13-176B-ml-t0
 CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
@@ -33,8 +33,8 @@ cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr13-176B-mtf
 
-TRAIN_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3zhmt_train.txt
-VALID_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3zhmt_validation.txt
+TRAIN_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3mt_train.txt
+VALID_DATA_PATH=$six_ALL_CCFRWORK/code/tr13f-6B3-ml-t0/Megatron-DeepSpeed/data/xp3mt_validation.txt
 TOKENIZER_NAME_OR_PATH=bigscience/tokenizer
 
 # defining the right environment variables
