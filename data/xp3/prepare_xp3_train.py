@@ -1131,9 +1131,6 @@ def write_to_jsonl_hub(ds, split="train"):
 
     for split in dataset_splits:
         for t_name in prompts.all_template_names:
-            if not "zhmt" in t_name:
-                print(f"Skipping {t_name}")
-                continue
             print(f"Running {ds_name}/{subset_name}/{split}/{t_name}")
             if SKIP_PROMPTS.get(prompt_dataset_name, {}).get(split, False):
                 if ("all" in SKIP_PROMPTS[prompt_dataset_name][split]) or (t_name in SKIP_PROMPTS[prompt_dataset_name][split]):
@@ -1183,23 +1180,9 @@ def write_to_jsonl_hub(ds, split="train"):
                 out_ds.to_json(out_path, orient="records", lines=True, force_ascii=False)
 
 # Testing:
-TRAIN_DATASETS = [
-    ('mlqa', 'mlqa.zh.ar'),
-    ('mlqa', 'mlqa.zh.vi'),
-    ('mlqa', 'mlqa.zh.es'),
-    ('mlqa', 'mlqa.zh.en'),
-    ('mlqa', 'mlqa.zh.hi'),
-    ('paws-x', 'zh'),
-    ('clue', 'c3'),
-    ('clue', 'cmrc2018'),
-    ('clue', 'csl'),
-    ('clue', 'drcd'),
-    ('clue', 'tnews'),
-    ('pasinit/xlwic', "xlwic_en_zh"),
-    ('GEM/xlsum', "chinese_simplified"),
-    ('GEM/wiki_lingua', 'zh'),
-]
-
+#TRAIN_DATASETS = [
+#    ('xquad', 'xquad.ar'),
+#]
 
 #for ds in TRAIN_DATASETS:
 #    write_to_jsonl_hub(ds, split="train")

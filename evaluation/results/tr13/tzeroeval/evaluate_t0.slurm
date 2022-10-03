@@ -542,6 +542,24 @@ xcopa,zh,zh,"cause_effect_zhmt",validation
 xcopa,zh,zh,"plausible_alternatives_zhmt",validation   
 )
 
+DATASETS_AND_CONFIGS_ZHHT=(
+Muennighoff/xstory_cloze,zh,zh,"Story Continuation and Options_zhht",validation
+Muennighoff/xstory_cloze,zh,zh,"Answer Given options_zhht",validation
+Muennighoff/xstory_cloze,zh,zh,"Novel Correct Ending_zhht",validation
+Muennighoff/xstory_cloze,zh,zh,"Generate Ending_zhht",validation
+Muennighoff/xstory_cloze,zh,zh,"Choose Story Ending_zhht",validation
+Muennighoff/xwinograd,zh,zh,"underscore refer to_zhht",test
+Muennighoff/xwinograd,zh,zh,"Replace_zhht",test
+Muennighoff/xwinograd,zh,zh,"stand for_zhht",test
+Muennighoff/xwinograd,zh,zh,"does underscore refer to_zhht",test
+Muennighoff/xwinograd,zh,zh,"True or False_zhht",test
+xcopa,zh,zh,"best_option_zhht",validation
+xcopa,zh,zh,"C1 or C2? premise_zhht",validation
+xcopa,zh,zh,"i_am_hesitating_zhht",validation
+xcopa,zh,zh,"cause_effect_zhht",validation
+xcopa,zh,zh,"plausible_alternatives_zhht",validation  
+)
+
 DATASETS_AND_CONFIGS_XNLITR=(
 xnli,ar,ar,"guaranteed/possible/impossible_arht",validation
 xnli,ar,ar,"MNLI crowdsource_arht",validation

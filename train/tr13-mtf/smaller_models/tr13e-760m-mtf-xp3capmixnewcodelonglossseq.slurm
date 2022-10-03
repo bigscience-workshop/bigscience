@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=xp3capmixnewcodelong
+#SBATCH --job-name=xp3capmixnewcodelong760m
 #SBATCH --qos=qos_gpu-t3
 #SBATCH --nodes=8
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
@@ -26,7 +26,7 @@ LOGS_PATH=$REPO_PATH/logs/$variant
 mkdir -p $LOGS_PATH
 mkdir -p $TENSORBOARD_PATH
 
-MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/megdslossseqnew350m/Megatron-DeepSpeed
+MEGATRON_DEEPSPEED_REPO=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0/megdslossseqnew/Megatron-DeepSpeed
 cd $MEGATRON_DEEPSPEED_REPO
 
 KILL_SWITCH_PATH=$MEGATRON_DEEPSPEED_REPO/kill-switch-tr13e-350M-mtf
