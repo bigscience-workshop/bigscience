@@ -81,19 +81,20 @@ TRAIN_SAMPLES=6_348_800
 
 # Uncomment for the first step
 # --no-load-optim \
+# --reset-progress \
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 5e-4 \
+    --lr 2e-5 \
     --lr-decay-style constant \
     --lr-warmup-samples 0 \
     --clip-grad 1.0 \
     --weight-decay 1e-4 \
     --no-load-optim \
-    --norm-target-loss \
     --reset-progress \
+    --norm-target-loss \
     "
 # for 20h 1190, for 100h 5990
 #    --exit-duration-in-mins 1190 \

@@ -61,7 +61,7 @@ TP_SIZE=1
 # ...use a batch size of 1024 sequences ... 2^20 total input tokens per batch...
 # We use 2048 total tokens and 512 batch size = 2**20
 MICRO_BATCH_SIZE=1
-GLOBAL_BATCH_SIZE=1024
+GLOBAL_BATCH_SIZE=2048
 
 NLAYERS=24
 NHIDDEN=1536
@@ -81,6 +81,7 @@ TRAIN_SAMPLES=6_348_800
 
 # Uncomment for the first step
 # --no-load-optim \
+# --reset-progress \
 OPTIMIZER_ARGS=" \
     --optimizer adam \
     --adam-beta1 0.9 \
@@ -92,8 +93,8 @@ OPTIMIZER_ARGS=" \
     --clip-grad 1.0 \
     --weight-decay 1e-4 \
     --no-load-optim \
-    --norm-target-loss \
     --reset-progress \
+    --norm-target-loss \
     "
 # for 20h 1190, for 100h 5990
 #    --exit-duration-in-mins 1190 \
