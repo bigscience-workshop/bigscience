@@ -2,7 +2,7 @@
 #SBATCH --job-name=xp3capmixnewcodelong760m
 #SBATCH --partition=gpu_p5
 #SBATCH --constraint=a100
-#SBATCH --nodes=8
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
@@ -130,8 +130,8 @@ GPT_ARGS=" \
 OUTPUT_ARGS=" \
     --log-interval 1 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 125 \
-    --eval-iters 10 \
+    --eval-interval 250 \
+    --eval-iters 5 \
     --tensorboard-dir $TENSORBOARD_PATH \
     --tensorboard-queue-size 5 \
     --log-timers-to-tensorboard \
