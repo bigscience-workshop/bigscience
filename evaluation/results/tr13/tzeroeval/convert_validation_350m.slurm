@@ -16,7 +16,7 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 conda activate muennighoffmodelconv
 
-CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
+CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13e-350M-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
 
 CKPTS=(
 global_step250
