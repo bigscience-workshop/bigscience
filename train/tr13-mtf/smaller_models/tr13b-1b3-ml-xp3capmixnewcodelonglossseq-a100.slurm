@@ -1,15 +1,15 @@
 #!/bin/bash
 #SBATCH --job-name=1b3xp3capmixnewcodelong
-#SBATCH --qos=qos_gpu-t3
-#SBATCH --nodes=16
+#SBATCH --partition=gpu_p5
+#SBATCH --constraint=a100
+#SBATCH --nodes=8
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
-#SBATCH --cpus-per-task=40           # number of cores per tasks
+#SBATCH --cpus-per-task=64           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
-#SBATCH --gres=gpu:4                 # number of gpus
-#SBATCH -C v100-32g
+#SBATCH --gres=gpu:8                 # number of gpus
 #SBATCH --time 20:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
-#SBATCH --account=six@v100
+#SBATCH --account=six@a100
 
 set -x -e
 
@@ -50,7 +50,7 @@ export TRANSFORMERS_OFFLINE=1
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 MASTER_PORT=6001
 
-GPUS_PER_NODE=4
+GPUS_PER_NODE=8
 NNODES=$SLURM_NNODES
 
 PP_SIZE=2
