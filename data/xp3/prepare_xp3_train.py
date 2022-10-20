@@ -76,7 +76,7 @@ BIAS_FAIRNESS = [
 ]
 
 EVAL_DATASETS_L1 = [
-    ('super_glue','wsc.fixed'),
+    # ('super_glue','wsc.fixed'), # Not used due to time constraints
     ('winogrande','winogrande_xl'),
     ('super_glue','cb'),
     ('super_glue','rte'),
@@ -90,14 +90,14 @@ EVAL_DATASETS_L1 = [
     ('Muennighoff/xstory_cloze', 'te'),
     ('Muennighoff/xstory_cloze', 'sw'),
     ('Muennighoff/xstory_cloze', 'zh'),
-    ('hellaswag', None),
+    # ('hellaswag', None), # Not used due to time constraints
     ('super_glue', 'copa'),
     # Multilingual
     ('Muennighoff/xwinograd','en'),
     ('Muennighoff/xwinograd','fr'),
     ('Muennighoff/xwinograd','pt'),
     ('Muennighoff/xwinograd','zh'),
-    ('clue', 'cluewsc2020'),
+    # ('clue', 'cluewsc2020'), # Included in 'Muennighoff/xwinograd','zh'
     ('xcopa','id'),
     ('xcopa','ta'),
     ('xcopa','sw'),
@@ -112,8 +112,8 @@ EVAL_DATASETS_L1 = [
     ("xnli", "ur"),
     ("xnli", "vi"),
     ("xnli", "zh"),
-    ("openai_humaneval", None),
-    ("multi_eurlex", "all_languages")
+    # ("openai_humaneval", None), # Used without prompts in evaluation
+    # ("multi_eurlex", "all_languages")
 ]
 
 ADD_TRAIN_DATASETS_L1_BLOOMZZ = [

@@ -174,9 +174,7 @@ hyperpartisan_news_detection,byarticle,None,"follows_hyperpartisan_argumentation
 hyperpartisan_news_detection,byarticle,None,"consume_with_caution",train
 hyperpartisan_news_detection,byarticle,None,"extreme_left_wing_or_right_wing",train
 hyperpartisan_news_detection,byarticle,None,"consider_it_exhibits_extreme_one_sidedness",train
-liar,None,None,"Guess affiliation",validation
 liar,None,None,"Given statement guess category",validation
-liar,None,None,"Given statement guess subject ",validation
 lince,sa_spaeng,None,"original poster expressed sentiment",validation
 lince,sa_spaeng,None,"sentiment trying to express",validation
 lince,sa_spaeng,None,"express sentiment",validation

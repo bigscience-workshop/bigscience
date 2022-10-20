@@ -16,7 +16,7 @@ export HF_DATASETS_OFFLINE=1
 export TRANSFORMERS_OFFLINE=1
 conda activate muennighoffmodelconv
 
-CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13d-760M-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
+CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13b-1B3-ml-t0/checkpoints/xp3capmixnewcodelonglossseq
 #CKPT_PATH=$six_ALL_CCFRSCRATCH/checkpoints/tr13f-6B3-ml-t0/checkpoints/p31lossseq
 
 CKPTS=(
@@ -33,8 +33,8 @@ global_step2500
 global_step2750
 global_step3000
 )
-EXAMPLE_CKPT=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/760m/bloom-760m
-DUMP_PATH=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/760mt0
+EXAMPLE_CKPT=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/1b3/bloom-1b7
+DUMP_PATH=$six_ALL_CCFRSCRATCH/commun/experiments/muennighoff/bloomckpt/1b3t0
 OUT_PREFIX=xp3capmixlossseq_
 #OUT_PREFIX=p31lossseq
 
@@ -72,7 +72,7 @@ cat <<EOT > $eval_script
 set -x -e
 
 source $six_ALL_CCFRWORK/start-py38-pt111
-conda activate thomas_t_zero_evaluation
+conda activate muennighofflmevalgen
 
 CHECKPOINT_PATH=$OUTPUTCKPT
 
