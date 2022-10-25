@@ -21,25 +21,22 @@
 # L2
 # --array=0-79
 
-# XWINOSTORY_MT
-# --array=0-44
+# MT L1
+# --array=0-69
 
-# XNLITR:
+# MT L2
+# --array=0-89
+
+# XNLIMTHT:
 # --array=0-79
 
-# Fixed prompts subset:
-# --array=0-63
 
 set -x -e
 
 source $six_ALL_CCFRWORK/start-py38-pt111
 conda activate thomas_t_zero_evaluation
 
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-prefix
 CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3/bloom-6b3
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-p31
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/tr13f-6b3-ml-t0-lmtoks341b-t0toks13b-xp3capmixnewcodelonglossseq
-#CHECKPOINT_PATH=/gpfsscratch/rech/six/commun/experiments/muennighoff/bloomckpt/6b3t0/bloom7b1zz
 
 WORKDIR=/gpfswork/rech/six/commun/code/tr13f-6B3-ml-t0
 
@@ -47,7 +44,6 @@ pushd $WORKDIR
 
 OUTPUT_DIR=$CHECKPOINT_PATH/evaluation
 mkdir -p $OUTPUT_DIR
-
 
 # Validation
 DATASETS_AND_CONFIGS_VAL=(
@@ -103,16 +99,6 @@ blimp,adjunct_island,None,"grammatical_between_A_B",train
 blimp,adjunct_island,None,"grammatical_which_one_1_2",train
 blimp,adjunct_island,None,"single_sentence_bad_yes_no",train
 blimp,adjunct_island,None,"single_sentence_good_yes_no",train
-conv_ai,None,None,"engagement_alice_interested",train
-conv_ai,None,None,"engagement_bob_real",train
-conv_ai,None,None,"engagement_question_before",train
-conv_ai,None,None,"engagement_bob_interested",train
-conv_ai,None,None,"engagement_question_after",train
-conv_ai_2,None,None,"match_profile_question",train
-conv_ai_2,None,None,"match_profile_expected",train
-conv_ai_2,None,None,"match_profile_guess",train
-conv_ai_2,None,None,"match_profile_agree",train
-conv_ai_2,None,None,"match_profile",train
 conv_ai_3,None,None,"clarification_needed",validation
 conv_ai_3,None,None,"score_give_number",validation
 conv_ai_3,None,None,"ambiguous",validation
@@ -164,9 +150,7 @@ hyperpartisan_news_detection,byarticle,None,"follows_hyperpartisan_argumentation
 hyperpartisan_news_detection,byarticle,None,"consume_with_caution",train
 hyperpartisan_news_detection,byarticle,None,"extreme_left_wing_or_right_wing",train
 hyperpartisan_news_detection,byarticle,None,"consider_it_exhibits_extreme_one_sidedness",train
-liar,None,None,"Guess affiliation",validation
 liar,None,None,"Given statement guess category",validation
-liar,None,None,"Given statement guess subject ",validation
 lince,sa_spaeng,None,"original poster expressed sentiment",validation
 lince,sa_spaeng,None,"sentiment trying to express",validation
 lince,sa_spaeng,None,"express sentiment",validation
@@ -197,7 +181,6 @@ onestop_english,None,None,"determine_reading_level_from_the_first_three_sentence
 onestop_english,None,None,"esl_variation",train
 onestop_english,None,None,"assess",train
 pubmed_qa,pqa_labeled,None,"Long Answer to Final Decision",train
-pubmed_qa,pqa_labeled,None,"Context Section Type",train
 pubmed_qa,pqa_labeled,None,"Question Answering (Short)",train
 riddle_sense,None,None,"most_suitable_answer",validation
 riddle_sense,None,None,"answer_given_question_without_options",validation
@@ -219,7 +202,6 @@ snips_built_in_intents,None,None,"categorize_query_brief",train
 snips_built_in_intents,None,None,"query_intent",train
 )
 
-# All:
 DATASETS_AND_CONFIGS_L1=(
 super_glue,copa,None,"best_option",validation
 super_glue,copa,None,"C1 or C2? premise, so/because…",validation
@@ -286,6 +268,16 @@ Muennighoff/xstory_cloze,hi,en,"Answer Given options",validation
 Muennighoff/xstory_cloze,hi,en,"Novel Correct Ending",validation
 Muennighoff/xstory_cloze,hi,en,"Generate Ending",validation
 Muennighoff/xstory_cloze,hi,en,"Choose Story Ending",validation
+Muennighoff/xstory_cloze,sw,en,"Story Continuation and Options",validation
+Muennighoff/xstory_cloze,sw,en,"Answer Given options",validation
+Muennighoff/xstory_cloze,sw,en,"Novel Correct Ending",validation
+Muennighoff/xstory_cloze,sw,en,"Generate Ending",validation
+Muennighoff/xstory_cloze,sw,en,"Choose Story Ending",validation
+Muennighoff/xstory_cloze,te,en,"Story Continuation and Options",validation
+Muennighoff/xstory_cloze,te,en,"Answer Given options",validation
+Muennighoff/xstory_cloze,te,en,"Novel Correct Ending",validation
+Muennighoff/xstory_cloze,te,en,"Generate Ending",validation
+Muennighoff/xstory_cloze,te,en,"Choose Story Ending",validation
 Muennighoff/xstory_cloze,zh,en,"Story Continuation and Options",validation
 Muennighoff/xstory_cloze,zh,en,"Answer Given options",validation
 Muennighoff/xstory_cloze,zh,en,"Novel Correct Ending",validation
@@ -466,7 +458,7 @@ xcopa,tr,en,"cause_effect",validation
 xcopa,tr,en,"plausible_alternatives",validation
 )
 
-DATASETS_AND_CONFIGS_XWINOSTORYMT=(
+DATASETS_AND_CONFIGS_MT_L1=(
 Muennighoff/xstory_cloze,ar,ar,"Story Continuation and Options_armt",validation
 Muennighoff/xstory_cloze,ar,ar,"Answer Given options_armt",validation
 Muennighoff/xstory_cloze,ar,ar,"Novel Correct Ending_armt",validation
@@ -492,6 +484,16 @@ Muennighoff/xstory_cloze,hi,hi,"Answer Given options_himt",validation
 Muennighoff/xstory_cloze,hi,hi,"Novel Correct Ending_himt",validation
 Muennighoff/xstory_cloze,hi,hi,"Generate Ending_himt",validation
 Muennighoff/xstory_cloze,hi,hi,"Choose Story Ending_himt",validation
+Muennighoff/xstory_cloze,sw,sw,"Story Continuation and Options_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Answer Given options_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Novel Correct Ending_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Generate Ending_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Choose Story Ending_swmt",validation
+Muennighoff/xstory_cloze,te,te,"Story Continuation and Options_temt",validation
+Muennighoff/xstory_cloze,te,te,"Answer Given options_temt",validation
+Muennighoff/xstory_cloze,te,te,"Novel Correct Ending_temt",validation
+Muennighoff/xstory_cloze,te,te,"Generate Ending_temt",validation
+Muennighoff/xstory_cloze,te,te,"Choose Story Ending_temt",validation
 Muennighoff/xstory_cloze,zh,zh,"Story Continuation and Options_zhmt",validation
 Muennighoff/xstory_cloze,zh,zh,"Answer Given options_zhmt",validation
 Muennighoff/xstory_cloze,zh,zh,"Novel Correct Ending_zhmt",validation
@@ -512,9 +514,6 @@ Muennighoff/xwinograd,zh,zh,"Replace_zhmt",test
 Muennighoff/xwinograd,zh,zh,"stand for_zhmt",test
 Muennighoff/xwinograd,zh,zh,"does underscore refer to_zhmt",test
 Muennighoff/xwinograd,zh,zh,"True or False_zhmt",test
-)
-
-DATASETS_AND_CONFIGS_XCOPAMT=(
 xcopa,id,id,"best_option_idmt",validation
 xcopa,id,id,"C1 or C2? premise_idmt",validation
 xcopa,id,id,"i_am_hesitating_idmt",validation
@@ -560,7 +559,7 @@ xcopa,zh,zh,"cause_effect_zhht",validation
 xcopa,zh,zh,"plausible_alternatives_zhht",validation  
 )
 
-DATASETS_AND_CONFIGS_XNLITR=(
+DATASETS_AND_CONFIGS_XNLIHTMT=(
 xnli,ar,ar,"guaranteed/possible/impossible_arht",validation
 xnli,ar,ar,"MNLI crowdsource_arht",validation
 xnli,ar,ar,"GPT-3 style_arht",validation
@@ -641,6 +640,99 @@ xnli,zh,zh,"MNLI crowdsource_zhmt",validation
 xnli,zh,zh,"GPT-3 style_zhmt",validation
 xnli,zh,zh,"justified in saying_zhmt",validation
 xnli,zh,zh,"can we infer_zhmt",validation
+)
+
+DATASETS_AND_CONFIGS_MT_L2=(
+Muennighoff/xstory_cloze,my,my,"Story Continuation and Options_mymt",validation
+Muennighoff/xstory_cloze,my,my,"Answer Given options_mymt",validation
+Muennighoff/xstory_cloze,my,my,"Novel Correct Ending_mymt",validation
+Muennighoff/xstory_cloze,my,my,"Generate Ending_mymt",validation
+Muennighoff/xstory_cloze,my,my,"Choose Story Ending_mymt",validation
+Muennighoff/xstory_cloze,ru,ru,"Story Continuation and Options_rumt",validation
+Muennighoff/xstory_cloze,ru,ru,"Answer Given options_rumt",validation
+Muennighoff/xstory_cloze,ru,ru,"Novel Correct Ending_rumt",validation
+Muennighoff/xstory_cloze,ru,ru,"Generate Ending_rumt",validation
+Muennighoff/xstory_cloze,ru,ru,"Choose Story Ending_rumt",validation
+Muennighoff/xstory_cloze,sw,sw,"Story Continuation and Options_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Answer Given options_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Novel Correct Ending_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Generate Ending_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Choose Story Ending_swmt",validation
+Muennighoff/xstory_cloze,te,te,"Story Continuation and Options_temt",validation
+Muennighoff/xstory_cloze,te,te,"Answer Given options_temt",validation
+Muennighoff/xstory_cloze,te,te,"Novel Correct Ending_temt",validation
+Muennighoff/xstory_cloze,te,te,"Generate Ending_temt",validation
+Muennighoff/xstory_cloze,te,te,"Choose Story Ending_temt",validation
+Muennighoff/xwinograd,jp,jp,"underscore refer to_jpmt",test
+Muennighoff/xwinograd,jp,jp,"Replace_jpmt",test
+Muennighoff/xwinograd,jp,jp,"stand for_jpmt",test
+Muennighoff/xwinograd,jp,jp,"does underscore refer to_jpmt",test
+Muennighoff/xwinograd,jp,jp,"True or False_jpmt",test
+Muennighoff/xwinograd,ru,ru,"underscore refer to_rumt",test
+Muennighoff/xwinograd,ru,ru,"Replace_rumt",test
+Muennighoff/xwinograd,ru,ru,"stand for_rumt",test
+Muennighoff/xwinograd,ru,ru,"does underscore refer to_rumt",test
+Muennighoff/xwinograd,ru,ru,"True or False_rumt",test
+xcopa,et,et,"best_option_etmt",validation
+xcopa,et,et,"C1 or C2? premise_etmt",validation
+xcopa,et,et,"i_am_hesitating_etmt",validation
+xcopa,et,et,"cause_effect_etmt",validation
+xcopa,et,et,"plausible_alternatives_etmt",validation
+xcopa,ht,ht,"best_option_htmt",validation
+xcopa,ht,ht,"C1 or C2? premise_htmt",validation
+xcopa,ht,ht,"i_am_hesitating_htmt",validation
+xcopa,ht,ht,"cause_effect_htmt",validation
+xcopa,ht,ht,"plausible_alternatives_htmt",validation
+xcopa,it,it,"best_option_itmt",validation
+xcopa,it,it,"C1 or C2? premise_itmt",validation
+xcopa,it,it,"i_am_hesitating_itmt",validation
+xcopa,it,it,"cause_effect_itmt",validation
+xcopa,it,it,"plausible_alternatives_itmt",validation
+xcopa,qu,qu,"best_option_qumt",validation
+xcopa,qu,qu,"C1 or C2? premise_qumt",validation
+xcopa,qu,qu,"i_am_hesitating_qumt",validation
+xcopa,qu,qu,"cause_effect_qumt",validation
+xcopa,qu,qu,"plausible_alternatives_qumt",validation
+xcopa,th,th,"best_option_thmt",validation
+xcopa,th,th,"C1 or C2? premise_thmt",validation
+xcopa,th,th,"i_am_hesitating_thmt",validation
+xcopa,th,th,"cause_effect_thmt",validation
+xcopa,th,th,"plausible_alternatives_thmt",validation
+xcopa,tr,tr,"best_option_trmt",validation
+xcopa,tr,tr,"C1 or C2? premise_trmt",validation
+xcopa,tr,tr,"i_am_hesitating_trmt",validation
+xcopa,tr,tr,"cause_effect_trmt",validation
+xcopa,tr,tr,"plausible_alternatives_trmt",validation
+xnli,bg,bg,"guaranteed/possible/impossible_bgmt",validation
+xnli,bg,bg,"MNLI crowdsource_bgmt",validation
+xnli,bg,bg,"GPT-3 style_bgmt",validation
+xnli,bg,bg,"justified in saying_bgmt",validation
+xnli,bg,bg,"can we infer_bgmt",validation
+xnli,de,de,"guaranteed/possible/impossible_demt",validation
+xnli,de,de,"MNLI crowdsource_demt",validation
+xnli,de,de,"GPT-3 style_demt",validation
+xnli,de,de,"justified in saying_demt",validation
+xnli,de,de,"can we infer_demt",validation
+xnli,el,el,"guaranteed/possible/impossible_elmt",validation
+xnli,el,el,"MNLI crowdsource_elmt",validation
+xnli,el,el,"GPT-3 style_elmt",validation
+xnli,el,el,"justified in saying_elmt",validation
+xnli,el,el,"can we infer_elmt",validation
+xnli,ru,ru,"guaranteed/possible/impossible_rumt",validation
+xnli,ru,ru,"MNLI crowdsource_rumt",validation
+xnli,ru,ru,"GPT-3 style_rumt",validation
+xnli,ru,ru,"justified in saying_rumt",validation
+xnli,ru,ru,"can we infer_rumt",validation
+xnli,th,th,"guaranteed/possible/impossible_thmt",validation
+xnli,th,th,"MNLI crowdsource_thmt",validation
+xnli,th,th,"GPT-3 style_thmt",validation
+xnli,th,th,"justified in saying_thmt",validation
+xnli,th,th,"can we infer_thmt",validation
+xnli,tr,tr,"guaranteed/possible/impossible_trmt",validation
+xnli,tr,tr,"MNLI crowdsource_trmt",validation
+xnli,tr,tr,"GPT-3 style_trmt",validation
+xnli,tr,tr,"justified in saying_trmt",validation
+xnli,tr,tr,"can we infer_trmt",validation
 )
 
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS_VAL[$SLURM_ARRAY_TASK_ID]}

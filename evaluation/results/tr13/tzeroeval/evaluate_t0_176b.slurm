@@ -21,14 +21,14 @@
 # L2
 # --array=0-79
 
-# XWINOSTORY_MT
-# --array=0-44
+# MT L1
+# --array=0-69
 
-# XNLITR:
+# MT L2
+# --array=0-89
+
+# XNLIMTHT:
 # --array=0-79
-
-# Fixed prompts subset:
-# --array=0-63
 
 set -x -e
 
@@ -44,10 +44,166 @@ pushd $WORKDIR
 OUTPUT_DIR=$CHECKPOINT_PATH/evaluation
 mkdir -p $OUTPUT_DIR
 
+# Validation
+DATASETS_AND_CONFIGS_VAL=(
+head_qa,en,en,"multiple_choice_q_and_a_index_with_context_en",validation
+head_qa,en,en,"multiple_choice_q_and_a_en",validation
+head_qa,en,en,"multiple_choice_q_and_a_index_en",validation
+head_qa,en,en,"multiple_choice_a_and_q_with_context_en",validation
+head_qa,en,en,"multiple_choice_a_and_q_en",validation
+head_qa,es,en,"multiple_choice_q_and_a_index_with_context_en",validation
+head_qa,es,en,"multiple_choice_q_and_a_en",validation
+head_qa,es,en,"multiple_choice_q_and_a_index_en",validation
+head_qa,es,en,"multiple_choice_a_and_q_with_context_en",validation
+head_qa,es,en,"multiple_choice_a_and_q_en",validation
+climate_fever,None,None,"first_evidence_and_claim_itemization",test
+climate_fever,None,None,"claim_and_all_supporting_evidences",test
+climate_fever,None,None,"fifth_evidence_and_claim_itemization",test
+climate_fever,None,None,"third_evidence_claim_pair",test
+climate_fever,None,None,"second_evidence_and_claim_itemization",test
+codah,codah,None,"interrogative_instruction_after_sentence_and_choices",train
+codah,codah,None,"affirmative_instruction_before_sentence_and_choices",train
+codah,codah,None,"affirmative_instruction_after_sentence_and_choices",train
+aqua_rat,raw,None,"select_the_best_option",validation
+aqua_rat,raw,None,"answer_quiz",validation
+aqua_rat,raw,None,"Answer questions from options",validation
+commonsense_qa,None,None,"answer_given_question_without_options",validation
+commonsense_qa,None,None,"question_answering",validation
+commonsense_qa,None,None,"most_suitable_answer",validation
+amazon_reviews_multi,en,en,"prompt_title_to_star",validation
+amazon_reviews_multi,en,en,"prompt_review_to_star",validation
+amazon_reviews_multi,en,en,"prompt_body_title_to_star",validation
+amazon_reviews_multi,zh,en,"prompt_title_to_star",validation
+amazon_reviews_multi,zh,en,"prompt_review_to_star",validation
+amazon_reviews_multi,zh,en,"prompt_body_title_to_star",validation
+amazon_reviews_multi,fr,en,"prompt_title_to_star",validation
+amazon_reviews_multi,fr,en,"prompt_review_to_star",validation
+amazon_reviews_multi,fr,en,"prompt_body_title_to_star",validation
+amazon_reviews_multi,es,en,"prompt_title_to_star",validation
+amazon_reviews_multi,es,en,"prompt_review_to_star",validation
+amazon_reviews_multi,es,en,"prompt_body_title_to_star",validation
+art,None,None,"choose_hypothesis_options",validation
+art,None,None,"choose_hypothesis_believable",validation
+art,None,None,"choose_hypothesis",validation
+art,None,None,"choose_hypothesis_desc",validation
+art,None,None,"choose_hypothesis_likely",validation
+banking77,None,None,"help_page_topic",test
+banking77,None,None,"direct_to_which_department",test
+banking77,None,None,"rephrase_as_banking_term",test
+blbooksgenre,title_genre_classifiction,None,"multi-choice",train
+blbooksgenre,title_genre_classifiction,None,"premise_context_first",train
+blbooksgenre,title_genre_classifiction,None,"classify",train
+blimp,adjunct_island,None,"grammatical_between_1_2",train
+blimp,adjunct_island,None,"grammatical_between_A_B",train
+blimp,adjunct_island,None,"grammatical_which_one_1_2",train
+blimp,adjunct_island,None,"single_sentence_bad_yes_no",train
+blimp,adjunct_island,None,"single_sentence_good_yes_no",train
+conv_ai_3,None,None,"clarification_needed",validation
+conv_ai_3,None,None,"score_give_number",validation
+conv_ai_3,None,None,"ambiguous",validation
+conv_ai_3,None,None,"directly_answer",validation
+conv_ai_3,None,None,"score_how_much",validation
+craigslist_bargains,None,None,"good deal for seller no list price implicit",validation
+craigslist_bargains,None,None,"good deal for seller no list price",validation
+craigslist_bargains,None,None,"good deal for seller",validation
+craigslist_bargains,None,None,"best deal",validation
+ecthr_cases,alleged-violation-prediction,None,"implicit_advice_number",validation
+ecthr_cases,alleged-violation-prediction,None,"ecthr_alleged_articles_declaration_at_end",validation
+ecthr_cases,alleged-violation-prediction,None,"ecthr_alleged_articles_question_at_start",validation
+ecthr_cases,alleged-violation-prediction,None,"implicit_judgment_paragraph",validation
+ecthr_cases,alleged-violation-prediction,None,"confirm number of violated articles",validation
+emo,None,None,"persons_describe",validation
+emo,None,None,"final_message",validation
+emo,None,None,"what_emotion_do_you_think",validation
+emo,None,None,"emotional_state",validation
+emo,None,None,"dialogue_between",validation
+emotion,None,None,"choose_the_best_emotion_label",test
+emotion,None,None,"reply_with_emoation_label",test
+emotion,None,None,"answer_with_class_label",test
+emotion,None,None,"answer_question_with_emotion_label",test
+financial_phrasebank,sentences_allagree,None,"share_price_option",train
+financial_phrasebank,sentences_allagree,None,"sentiment",train
+financial_phrasebank,sentences_allagree,None,"word_comes_to_mind",train
+financial_phrasebank,sentences_allagree,None,"complementary_industries",train
+financial_phrasebank,sentences_allagree,None,"bullish_neutral_bearish",train
+glue,cola,None,"Make sense yes no",validation
+glue,cola,None,"is_this_correct",validation
+glue,cola,None,"editing",validation
+glue,cola,None,"Following sentence acceptable",validation
+glue,cola,None,"Previous sentence acceptable",validation
+glue,sst2,None,"positive negative after",validation
+glue,sst2,None,"review",validation
+glue,sst2,None,"said",validation
+glue,sst2,None,"following positive negative",validation
+glue,sst2,None,"happy or mad",validation
+health_fact,None,None,"claim_veracity_classification_after_reading_I_believe",validation
+health_fact,None,None,"claim_explanation_classification",validation
+health_fact,None,None,"claim_veracity_classification_tell_me",validation
+hlgd,None,None,"is_same_event_with_time_interrogative_related",validation
+hlgd,None,None,"is_same_event_interrogative_talk",validation
+hlgd,None,None,"is_same_event_with_time_interrogative_talk",validation
+hlgd,None,None,"is_same_event_refer",validation
+hlgd,None,None,"is_same_event_editor_asks",validation
+hyperpartisan_news_detection,byarticle,None,"consider_does_it_follow_a_hyperpartisan_argumentation",train
+hyperpartisan_news_detection,byarticle,None,"follows_hyperpartisan_argumentation",train
+hyperpartisan_news_detection,byarticle,None,"consume_with_caution",train
+hyperpartisan_news_detection,byarticle,None,"extreme_left_wing_or_right_wing",train
+hyperpartisan_news_detection,byarticle,None,"consider_it_exhibits_extreme_one_sidedness",train
+liar,None,None,"Given statement guess category",validation
+lince,sa_spaeng,None,"original poster expressed sentiment",validation
+lince,sa_spaeng,None,"sentiment trying to express",validation
+lince,sa_spaeng,None,"express sentiment",validation
+lince,sa_spaeng,None,"negation template",validation
+lince,sa_spaeng,None,"the author seem",validation
+math_qa,None,None,"choose_correct_og",test
+math_qa,None,None,"pick_the_correct",test
+math_qa,None,None,"first_choice_then_problem",test
+math_qa,None,None,"problem_set_type",test
+math_qa,None,None,"gre_problem",test
+movie_rationales,None,None,"Standard binary sentiment analysis",validation
+movie_rationales,None,None,"Evidences sentiment classification",validation
+movie_rationales,None,None,"Evidences + review",validation
+movie_rationales,None,None,"Generate evidences and sentiment",validation
+mwsc,None,None,"in-the-sentence-question-first",validation
+mwsc,None,None,"what-think",validation
+mwsc,None,None,"in-the-sentence",validation
+mwsc,None,None,"options-or",validation
+mwsc,None,None,"is-correct",validation
+poem_sentiment,None,None,"positive_or_negative_sentiment_variation_2",validation
+poem_sentiment,None,None,"question_answer_format",validation
+poem_sentiment,None,None,"guess_sentiment_without_options_variation_1",validation
+poem_sentiment,None,None,"positive_or_negative_sentiment_variation_1",validation
+poem_sentiment,None,None,"most_appropriate_sentiment",validation
+onestop_english,None,None,"esl_context",train
+onestop_english,None,None,"ara_context",train
+onestop_english,None,None,"determine_reading_level_from_the_first_three_sentences",train
+onestop_english,None,None,"esl_variation",train
+onestop_english,None,None,"assess",train
+pubmed_qa,pqa_labeled,None,"Long Answer to Final Decision",train
+pubmed_qa,pqa_labeled,None,"Question Answering (Short)",train
+riddle_sense,None,None,"most_suitable_answer",validation
+riddle_sense,None,None,"answer_given_question_without_options",validation
+riddle_sense,None,None,"question_to_answer_index",validation
+riddle_sense,None,None,"question_answering",validation
+scicite,None,None,"Classify intent w/section (select choice)",validation
+scicite,None,None,"Classify intent (choices first)",validation
+scicite,None,None,"Classify intent (select choice)",validation
+scicite,None,None,"Classify intent",validation
+scicite,None,None,"can_describe",validation
+selqa,answer_selection_analysis,None,"is-he-talking-about",validation
+selqa,answer_selection_analysis,None,"would-make-sense-qu-rand",validation
+selqa,answer_selection_analysis,None,"make-sense-rand",validation
+selqa,answer_selection_analysis,None,"which-answer-1st-vs-random",validation
+snips_built_in_intents,None,None,"voice_intent",train
+snips_built_in_intents,None,None,"categorize_query",train
+snips_built_in_intents,None,None,"intent_query",train
+snips_built_in_intents,None,None,"categorize_query_brief",train
+snips_built_in_intents,None,None,"query_intent",train
+)
 
 DATASETS_AND_CONFIGS_L1=(
 super_glue,copa,None,"best_option",validation
-super_glue,copa,None,'C1 or C2? premise, so/because…',validation
+super_glue,copa,None,"C1 or C2? premise, so/because…",validation
 super_glue,copa,None,"i_am_hesitating",validation
 super_glue,copa,None,"cause_effect",validation
 super_glue,copa,None,"plausible_alternatives",validation
@@ -111,6 +267,16 @@ Muennighoff/xstory_cloze,hi,en,"Answer Given options",validation
 Muennighoff/xstory_cloze,hi,en,"Novel Correct Ending",validation
 Muennighoff/xstory_cloze,hi,en,"Generate Ending",validation
 Muennighoff/xstory_cloze,hi,en,"Choose Story Ending",validation
+Muennighoff/xstory_cloze,sw,en,"Story Continuation and Options",validation
+Muennighoff/xstory_cloze,sw,en,"Answer Given options",validation
+Muennighoff/xstory_cloze,sw,en,"Novel Correct Ending",validation
+Muennighoff/xstory_cloze,sw,en,"Generate Ending",validation
+Muennighoff/xstory_cloze,sw,en,"Choose Story Ending",validation
+Muennighoff/xstory_cloze,te,en,"Story Continuation and Options",validation
+Muennighoff/xstory_cloze,te,en,"Answer Given options",validation
+Muennighoff/xstory_cloze,te,en,"Novel Correct Ending",validation
+Muennighoff/xstory_cloze,te,en,"Generate Ending",validation
+Muennighoff/xstory_cloze,te,en,"Choose Story Ending",validation
 Muennighoff/xstory_cloze,zh,en,"Story Continuation and Options",validation
 Muennighoff/xstory_cloze,zh,en,"Answer Given options",validation
 Muennighoff/xstory_cloze,zh,en,"Novel Correct Ending",validation
@@ -291,7 +457,7 @@ xcopa,tr,en,"cause_effect",validation
 xcopa,tr,en,"plausible_alternatives",validation
 )
 
-DATASETS_AND_CONFIGS_XWINOSTORYMT=(
+DATASETS_AND_CONFIGS_MT_L1=(
 Muennighoff/xstory_cloze,ar,ar,"Story Continuation and Options_armt",validation
 Muennighoff/xstory_cloze,ar,ar,"Answer Given options_armt",validation
 Muennighoff/xstory_cloze,ar,ar,"Novel Correct Ending_armt",validation
@@ -317,6 +483,16 @@ Muennighoff/xstory_cloze,hi,hi,"Answer Given options_himt",validation
 Muennighoff/xstory_cloze,hi,hi,"Novel Correct Ending_himt",validation
 Muennighoff/xstory_cloze,hi,hi,"Generate Ending_himt",validation
 Muennighoff/xstory_cloze,hi,hi,"Choose Story Ending_himt",validation
+Muennighoff/xstory_cloze,sw,sw,"Story Continuation and Options_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Answer Given options_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Novel Correct Ending_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Generate Ending_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Choose Story Ending_swmt",validation
+Muennighoff/xstory_cloze,te,te,"Story Continuation and Options_temt",validation
+Muennighoff/xstory_cloze,te,te,"Answer Given options_temt",validation
+Muennighoff/xstory_cloze,te,te,"Novel Correct Ending_temt",validation
+Muennighoff/xstory_cloze,te,te,"Generate Ending_temt",validation
+Muennighoff/xstory_cloze,te,te,"Choose Story Ending_temt",validation
 Muennighoff/xstory_cloze,zh,zh,"Story Continuation and Options_zhmt",validation
 Muennighoff/xstory_cloze,zh,zh,"Answer Given options_zhmt",validation
 Muennighoff/xstory_cloze,zh,zh,"Novel Correct Ending_zhmt",validation
@@ -337,9 +513,6 @@ Muennighoff/xwinograd,zh,zh,"Replace_zhmt",test
 Muennighoff/xwinograd,zh,zh,"stand for_zhmt",test
 Muennighoff/xwinograd,zh,zh,"does underscore refer to_zhmt",test
 Muennighoff/xwinograd,zh,zh,"True or False_zhmt",test
-)
-
-DATASETS_AND_CONFIGS_XCOPAMT=(
 xcopa,id,id,"best_option_idmt",validation
 xcopa,id,id,"C1 or C2? premise_idmt",validation
 xcopa,id,id,"i_am_hesitating_idmt",validation
@@ -365,6 +538,24 @@ xcopa,zh,zh,"C1 or C2? premise_zhmt",validation
 xcopa,zh,zh,"i_am_hesitating_zhmt",validation
 xcopa,zh,zh,"cause_effect_zhmt",validation
 xcopa,zh,zh,"plausible_alternatives_zhmt",validation   
+)
+
+DATASETS_AND_CONFIGS_ZHHT=(
+Muennighoff/xstory_cloze,zh,zh,"Story Continuation and Options_zhht",validation
+Muennighoff/xstory_cloze,zh,zh,"Answer Given options_zhht",validation
+Muennighoff/xstory_cloze,zh,zh,"Novel Correct Ending_zhht",validation
+Muennighoff/xstory_cloze,zh,zh,"Generate Ending_zhht",validation
+Muennighoff/xstory_cloze,zh,zh,"Choose Story Ending_zhht",validation
+Muennighoff/xwinograd,zh,zh,"underscore refer to_zhht",test
+Muennighoff/xwinograd,zh,zh,"Replace_zhht",test
+Muennighoff/xwinograd,zh,zh,"stand for_zhht",test
+Muennighoff/xwinograd,zh,zh,"does underscore refer to_zhht",test
+Muennighoff/xwinograd,zh,zh,"True or False_zhht",test
+xcopa,zh,zh,"best_option_zhht",validation
+xcopa,zh,zh,"C1 or C2? premise_zhht",validation
+xcopa,zh,zh,"i_am_hesitating_zhht",validation
+xcopa,zh,zh,"cause_effect_zhht",validation
+xcopa,zh,zh,"plausible_alternatives_zhht",validation  
 )
 
 DATASETS_AND_CONFIGS_XNLIHTMT=(
@@ -448,6 +639,99 @@ xnli,zh,zh,"MNLI crowdsource_zhmt",validation
 xnli,zh,zh,"GPT-3 style_zhmt",validation
 xnli,zh,zh,"justified in saying_zhmt",validation
 xnli,zh,zh,"can we infer_zhmt",validation
+)
+
+DATASETS_AND_CONFIGS_MT_L2=(
+Muennighoff/xstory_cloze,my,my,"Story Continuation and Options_mymt",validation
+Muennighoff/xstory_cloze,my,my,"Answer Given options_mymt",validation
+Muennighoff/xstory_cloze,my,my,"Novel Correct Ending_mymt",validation
+Muennighoff/xstory_cloze,my,my,"Generate Ending_mymt",validation
+Muennighoff/xstory_cloze,my,my,"Choose Story Ending_mymt",validation
+Muennighoff/xstory_cloze,ru,ru,"Story Continuation and Options_rumt",validation
+Muennighoff/xstory_cloze,ru,ru,"Answer Given options_rumt",validation
+Muennighoff/xstory_cloze,ru,ru,"Novel Correct Ending_rumt",validation
+Muennighoff/xstory_cloze,ru,ru,"Generate Ending_rumt",validation
+Muennighoff/xstory_cloze,ru,ru,"Choose Story Ending_rumt",validation
+Muennighoff/xstory_cloze,sw,sw,"Story Continuation and Options_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Answer Given options_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Novel Correct Ending_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Generate Ending_swmt",validation
+Muennighoff/xstory_cloze,sw,sw,"Choose Story Ending_swmt",validation
+Muennighoff/xstory_cloze,te,te,"Story Continuation and Options_temt",validation
+Muennighoff/xstory_cloze,te,te,"Answer Given options_temt",validation
+Muennighoff/xstory_cloze,te,te,"Novel Correct Ending_temt",validation
+Muennighoff/xstory_cloze,te,te,"Generate Ending_temt",validation
+Muennighoff/xstory_cloze,te,te,"Choose Story Ending_temt",validation
+Muennighoff/xwinograd,jp,jp,"underscore refer to_jpmt",test
+Muennighoff/xwinograd,jp,jp,"Replace_jpmt",test
+Muennighoff/xwinograd,jp,jp,"stand for_jpmt",test
+Muennighoff/xwinograd,jp,jp,"does underscore refer to_jpmt",test
+Muennighoff/xwinograd,jp,jp,"True or False_jpmt",test
+Muennighoff/xwinograd,ru,ru,"underscore refer to_rumt",test
+Muennighoff/xwinograd,ru,ru,"Replace_rumt",test
+Muennighoff/xwinograd,ru,ru,"stand for_rumt",test
+Muennighoff/xwinograd,ru,ru,"does underscore refer to_rumt",test
+Muennighoff/xwinograd,ru,ru,"True or False_rumt",test
+xcopa,et,et,"best_option_etmt",validation
+xcopa,et,et,"C1 or C2? premise_etmt",validation
+xcopa,et,et,"i_am_hesitating_etmt",validation
+xcopa,et,et,"cause_effect_etmt",validation
+xcopa,et,et,"plausible_alternatives_etmt",validation
+xcopa,ht,ht,"best_option_htmt",validation
+xcopa,ht,ht,"C1 or C2? premise_htmt",validation
+xcopa,ht,ht,"i_am_hesitating_htmt",validation
+xcopa,ht,ht,"cause_effect_htmt",validation
+xcopa,ht,ht,"plausible_alternatives_htmt",validation
+xcopa,it,it,"best_option_itmt",validation
+xcopa,it,it,"C1 or C2? premise_itmt",validation
+xcopa,it,it,"i_am_hesitating_itmt",validation
+xcopa,it,it,"cause_effect_itmt",validation
+xcopa,it,it,"plausible_alternatives_itmt",validation
+xcopa,qu,qu,"best_option_qumt",validation
+xcopa,qu,qu,"C1 or C2? premise_qumt",validation
+xcopa,qu,qu,"i_am_hesitating_qumt",validation
+xcopa,qu,qu,"cause_effect_qumt",validation
+xcopa,qu,qu,"plausible_alternatives_qumt",validation
+xcopa,th,th,"best_option_thmt",validation
+xcopa,th,th,"C1 or C2? premise_thmt",validation
+xcopa,th,th,"i_am_hesitating_thmt",validation
+xcopa,th,th,"cause_effect_thmt",validation
+xcopa,th,th,"plausible_alternatives_thmt",validation
+xcopa,tr,tr,"best_option_trmt",validation
+xcopa,tr,tr,"C1 or C2? premise_trmt",validation
+xcopa,tr,tr,"i_am_hesitating_trmt",validation
+xcopa,tr,tr,"cause_effect_trmt",validation
+xcopa,tr,tr,"plausible_alternatives_trmt",validation
+xnli,bg,bg,"guaranteed/possible/impossible_bgmt",validation
+xnli,bg,bg,"MNLI crowdsource_bgmt",validation
+xnli,bg,bg,"GPT-3 style_bgmt",validation
+xnli,bg,bg,"justified in saying_bgmt",validation
+xnli,bg,bg,"can we infer_bgmt",validation
+xnli,de,de,"guaranteed/possible/impossible_demt",validation
+xnli,de,de,"MNLI crowdsource_demt",validation
+xnli,de,de,"GPT-3 style_demt",validation
+xnli,de,de,"justified in saying_demt",validation
+xnli,de,de,"can we infer_demt",validation
+xnli,el,el,"guaranteed/possible/impossible_elmt",validation
+xnli,el,el,"MNLI crowdsource_elmt",validation
+xnli,el,el,"GPT-3 style_elmt",validation
+xnli,el,el,"justified in saying_elmt",validation
+xnli,el,el,"can we infer_elmt",validation
+xnli,ru,ru,"guaranteed/possible/impossible_rumt",validation
+xnli,ru,ru,"MNLI crowdsource_rumt",validation
+xnli,ru,ru,"GPT-3 style_rumt",validation
+xnli,ru,ru,"justified in saying_rumt",validation
+xnli,ru,ru,"can we infer_rumt",validation
+xnli,th,th,"guaranteed/possible/impossible_thmt",validation
+xnli,th,th,"MNLI crowdsource_thmt",validation
+xnli,th,th,"GPT-3 style_thmt",validation
+xnli,th,th,"justified in saying_thmt",validation
+xnli,th,th,"can we infer_thmt",validation
+xnli,tr,tr,"guaranteed/possible/impossible_trmt",validation
+xnli,tr,tr,"MNLI crowdsource_trmt",validation
+xnli,tr,tr,"GPT-3 style_trmt",validation
+xnli,tr,tr,"justified in saying_trmt",validation
+xnli,tr,tr,"can we infer_trmt",validation
 )
 
 DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS_L1[$SLURM_ARRAY_TASK_ID]}
