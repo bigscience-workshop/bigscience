@@ -10,16 +10,16 @@
 #SBATCH --time 5:00:00             # maximum execution time (HH:MM:SS)
 #SBATCH --output=%x-%j.out           # output file name
 #SBATCH --account=six@a100
-#SBATCH --array=0-146
+#SBATCH --array=0-169
 
 # VALIDATION:
 # --array=0-168
 
 # L1
-# --array=0-159
+# --array=0-169
 
 # L2
-# --array=0-79
+# --array=0-84
 
 # MT L1
 # --array=0-69
@@ -735,7 +735,7 @@ xnli,tr,tr,"justified in saying_trmt",validation
 xnli,tr,tr,"can we infer_trmt",validation
 )
 
-DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS_VAL[$SLURM_ARRAY_TASK_ID]}
+DATASET_AND_CONFIG=${DATASETS_AND_CONFIGS_L1[$SLURM_ARRAY_TASK_ID]}
 echo $ARGUMENT
 
 # Run T0 evaluation
