@@ -14,7 +14,23 @@ T0_EVAL_DATASETS=[
     # ("story_cloze_2016": ('StoryCloze', 0.5),
 ]
 
-XNLI_DATASETS=[
+MULTILINGUAL_DATASETS=[
+    ('Muennighoff/xwinograd','en'),
+    ('Muennighoff/xwinograd','fr'),
+    ('Muennighoff/xwinograd','pt'),
+    ('Muennighoff/xwinograd','zh'),
+    ('Muennighoff/xwinograd','jp'),
+    ('Muennighoff/xwinograd','ru'),
+    ('xcopa','id'),
+    ('xcopa','ta'),
+    ('xcopa','sw'),
+    ('xcopa','vi'),
+    ('xcopa','zh'),
+    ('xcopa','tr'),
+    ('xcopa','qu'),
+    ('xcopa','it'),
+    ('xcopa','ht'),
+    ('xcopa','et'),
     ("xnli", "ar"),
     ("xnli", "bg"),
     ("xnli", "de"),
@@ -34,8 +50,8 @@ XNLI_DATASETS=[
 ]
 
 def main():
-    for dataset_name, dataset_config in T0_EVAL_DATASETS + XNLI_DATASETS:
-        load_dataset(dataset_name, dataset_config)
+    for dataset_name, dataset_config in T0_EVAL_DATASETS + MULTILINGUAL_DATASETS:
+        load_dataset(dataset_name, dataset_config, split="validation")
 
 if __name__ == "__main__":
     main()

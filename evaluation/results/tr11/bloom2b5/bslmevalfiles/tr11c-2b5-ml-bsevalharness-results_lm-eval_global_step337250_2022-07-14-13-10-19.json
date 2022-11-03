@@ -1,0 +1,3219 @@
+{
+    "results": [
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_after_reading_the_text",
+            "acc": 0.35064935064935066,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "9c42e3fd-d46e-4149-bb60-4b3118104d95",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAfter reading the following text snippet from Wikipedia, please answer the question: {{question_text}} \n{{document_plaintext}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.054735534443086
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_after_reading_the_text",
+            "acc_norm": 0.6493506493506493,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "9c42e3fd-d46e-4149-bb60-4b3118104d95",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAfter reading the following text snippet from Wikipedia, please answer the question: {{question_text}} \n{{document_plaintext}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.054735534443086
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_based_on_the_text",
+            "acc": 0.33766233766233766,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "e593017f-9bcf-4442-944d-fcdf2edcb4f7",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nBased on the following text snippet, {{question_text}} \n{{document_plaintext}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05424681453014242
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_based_on_the_text",
+            "acc_norm": 0.6363636363636364,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "e593017f-9bcf-4442-944d-fcdf2edcb4f7",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nBased on the following text snippet, {{question_text}} \n{{document_plaintext}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.055179725333353066
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_heres_what_I_found",
+            "acc": 0.03685741998060136,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "16f11e56-a78d-4e33-bba1-586f9947baf7",
+            "prompt_jinja": "{% if language == \"english\" %}\nI wonder {{question_text}}.\nHelp me answer this question with \"{{answer_choices[0]}}\" or \"{{answer_choices[1]}}\" or \"{{answer_choices[2]}}\" if none of the first two answers apply.\nHere's what I found on the internet:\nTopic: {{document_title}}\nArticle: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.005870689955728106
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_heres_what_I_found",
+            "acc_norm": 0.8661493695441319,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "16f11e56-a78d-4e33-bba1-586f9947baf7",
+            "prompt_jinja": "{% if language == \"english\" %}\nI wonder {{question_text}}.\nHelp me answer this question with \"{{answer_choices[0]}}\" or \"{{answer_choices[1]}}\" or \"{{answer_choices[2]}}\" if none of the first two answers apply.\nHere's what I found on the internet:\nTopic: {{document_title}}\nArticle: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.010609330898735572
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa",
+            "acc": 0.6753246753246753,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "b4f7c441-41b1-4665-93f9-f2e875aed92a",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAnswer the question about {{document_title}}.\nQuestion: {{question_text}}. Yes or No?\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.05371235012133188
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa",
+            "acc_norm": 0.6753246753246753,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "b4f7c441-41b1-4665-93f9-f2e875aed92a",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAnswer the question about {{document_title}}.\nQuestion: {{question_text}}. Yes or No?\n||| \n{{annotations.yes_no_answer[0] | capitalize}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.05371235012133188
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa_without_choices",
+            "acc": 0.6753246753246753,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "4b21e3be-fba4-49b7-beb1-a61de26eb0ac",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAnswer the question about {{document_title}}. {{question_text}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}} \n    {% endif %} \n{% endif %} ",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.05371235012133188
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa_without_choices",
+            "acc_norm": 0.6753246753246753,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "4b21e3be-fba4-49b7-beb1-a61de26eb0ac",
+            "prompt_jinja": "{% if language == \"english\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nAnswer the question about {{document_title}}. {{question_text}}\n||| \n{{annotations.yes_no_answer[0] | capitalize}} \n    {% endif %} \n{% endif %} ",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.05371235012133188
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_read_and_answer",
+            "acc": 0.03685741998060136,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "7b8b7707-dbad-40d2-a5c2-430e6ace10bb",
+            "prompt_jinja": "{% if language == \"english\" %}\nAnswer the following question with \"{{answer_choices[0]}}\" or \"{{answer_choices[1]}}\" or \"{{answer_choices[2]}}\" if none of the first two answers apply.\nQuestion: {{question_text}}\nTopic: {{document_title}}\nArticle: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.005870689955728103
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_read_and_answer",
+            "acc_norm": 0.8845780795344326,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "7b8b7707-dbad-40d2-a5c2-430e6ace10bb",
+            "prompt_jinja": "{% if language == \"english\" %}\nAnswer the following question with \"{{answer_choices[0]}}\" or \"{{answer_choices[1]}}\" or \"{{answer_choices[2]}}\" if none of the first two answers apply.\nQuestion: {{question_text}}\nTopic: {{document_title}}\nArticle: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.009956200231519313
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_none",
+            "acc": 0.037827352085354024,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "297fc59f-bd92-493b-ae61-3c3adcb46eb3",
+            "prompt_jinja": "{% if language == \"english\" %} \nQuestion: {{question_text}}\nAnswer the question with {{\"Yes\"}} or {{\"No\"}}. If it is not possible then answer {{\"None\"}}.\nHint: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.005944438823944305
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_none",
+            "acc_norm": 0.871968962172648,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "None"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "297fc59f-bd92-493b-ae61-3c3adcb46eb3",
+            "prompt_jinja": "{% if language == \"english\" %} \nQuestion: {{question_text}}\nAnswer the question with {{\"Yes\"}} or {{\"No\"}}. If it is not possible then answer {{\"None\"}}.\nHint: {{document_plaintext}}\n|||\n{{annotations.yes_no_answer[0] | capitalize}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01041093017771443
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_question",
+            "acc": 0.7652764306498545,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "6835dd64-96bd-4bf8-9ba5-645d6a7b8472",
+            "prompt_jinja": "{% if language == \"english\" %}\n{{question_text}}\nIs this a \"Yes/No\" question?\n|||\n{% if annotations. yes_no_answer[0] == \"NONE\" %}\nNo\n{% else %}\nYes\n{% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.013205927447521368
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_question",
+            "acc_norm": 0.07565470417070805,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "6835dd64-96bd-4bf8-9ba5-645d6a7b8472",
+            "prompt_jinja": "{% if language == \"english\" %}\n{{question_text}}\nIs this a \"Yes/No\" question?\n|||\n{% if annotations. yes_no_answer[0] == \"NONE\" %}\nNo\n{% else %}\nYes\n{% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.008239796273494257
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_after_reading_the_text",
+            "acc": 0.2711864406779661,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "f93c6cde-cd5e-4d25-8549-f186546cea26",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nSetelah membaca potongan teks Wikipedia di bawah ini, mohon jawab pertanyaan: \n{{question_text}} \n{{document_plaintext}}\n||| \n{{{\"NO\":\"Tidak\", \"YES\":\"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.058375177038848765
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_after_reading_the_text",
+            "acc_norm": 0.2033898305084746,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "f93c6cde-cd5e-4d25-8549-f186546cea26",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nSetelah membaca potongan teks Wikipedia di bawah ini, mohon jawab pertanyaan: \n{{question_text}} \n{{document_plaintext}}\n||| \n{{{\"NO\":\"Tidak\", \"YES\":\"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_based_on_the_text",
+            "acc": 0.23728813559322035,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "fe910acd-a156-4f46-a757-4382821fcfd2",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nMenurut potongan teks berikut, {{question_text}}\n{{document_plaintext}}\n||| \n{{{\"NO\":\"Tidak\", \"YES\":\"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05586042894941199
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_based_on_the_text",
+            "acc_norm": 0.2033898305084746,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "fe910acd-a156-4f46-a757-4382821fcfd2",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nMenurut potongan teks berikut, {{question_text}}\n{{document_plaintext}}\n||| \n{{{\"NO\":\"Tidak\", \"YES\":\"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_heres_what_I_found",
+            "acc": 0.007202216066481994,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "764fda4e-dc13-4766-b8ab-eafd79fe875e",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\nSaya penasaran {{question_text}}.\nTolong bantu saya menjawab pertanyaan ini dengan \"{{answer_choices[0]}}\", \"{{answer_choices[1]}}\" atau \"{{answer_choices[2]}}\" jika dua opsi pertama tidak bisa diaplikasikan.\nIni yang saya temukan di internet:\nTopik: {{document_title}}\nArtikel: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.001990880560147875
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_heres_what_I_found",
+            "acc_norm": 0.9662049861495845,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "764fda4e-dc13-4766-b8ab-eafd79fe875e",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\nSaya penasaran {{question_text}}.\nTolong bantu saya menjawab pertanyaan ini dengan \"{{answer_choices[0]}}\", \"{{answer_choices[1]}}\" atau \"{{answer_choices[2]}}\" jika dua opsi pertama tidak bisa diaplikasikan.\nIni yang saya temukan di internet:\nTopik: {{document_title}}\nArtikel: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa",
+            "acc": 0.4576271186440678,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "976fb48f-7135-4344-91c8-cee2e535b8ab",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nJawab pertanyaan terkait {{document_title}}.\nPertanyaan: {{question_text}}. Ya atau Tidak?\n||| \n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.06541703602400106
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa",
+            "acc_norm": 0.2033898305084746,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "976fb48f-7135-4344-91c8-cee2e535b8ab",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nJawab pertanyaan terkait {{document_title}}.\nPertanyaan: {{question_text}}. Ya atau Tidak?\n||| \n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa_without_choices",
+            "acc": 0.2711864406779661,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d6139cbc-7b25-4539-80c7-2b0832183951",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nJawab pertanyaan terkait {{document_title}}. {{question_text}}\n||| \n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %} \n{% endif %} ",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.05837517703884878
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa_without_choices",
+            "acc_norm": 0.2033898305084746,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d6139cbc-7b25-4539-80c7-2b0832183951",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \nJawab pertanyaan terkait {{document_title}}. {{question_text}}\n||| \n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n    {% endif %} \n{% endif %} ",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_read_and_answer",
+            "acc": 0.007202216066481994,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "b368b4af-b8b1-4b0f-ab72-a4db0649ca65",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\nJawab pertanyaan berikut dengan \"{{answer_choices[0]}}\" atau \"{{answer_choices[1]}}\" atau \"{{answer_choices[2]}}\" jika dua\nopsi pertama tidak dapat diaplikasikan.\nPertanyaan: {{question_text}}\nTopik: {{document_title}}\nArtikel: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0019908805601478756
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_read_and_answer",
+            "acc_norm": 0.9662049861495845,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "b368b4af-b8b1-4b0f-ab72-a4db0649ca65",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\nJawab pertanyaan berikut dengan \"{{answer_choices[0]}}\" atau \"{{answer_choices[1]}}\" atau \"{{answer_choices[2]}}\" jika dua\nopsi pertama tidak dapat diaplikasikan.\nPertanyaan: {{question_text}}\nTopik: {{document_title}}\nArtikel: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_none",
+            "acc": 0.008310249307479225,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "5c48e84c-10e4-44ee-b2b3-94a4d018e833",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \nPertanyaan: {{question_text}}\nJawab pertanyaan tersebut dengan {{\"Ya\"}} atau {{\"Tidak\"}}. Jika tidak memungkinkan, jawab dengan {{\"Tidak ada\"}}.\nPetunjuk: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.002137355052582956
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_none",
+            "acc_norm": 0.9662049861495845,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak",
+                "Tidak ada"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "5c48e84c-10e4-44ee-b2b3-94a4d018e833",
+            "prompt_jinja": "{% if language == \"indonesian\" %} \nPertanyaan: {{question_text}}\nJawab pertanyaan tersebut dengan {{\"Ya\"}} atau {{\"Tidak\"}}. Jika tidak memungkinkan, jawab dengan {{\"Tidak ada\"}}.\nPetunjuk: {{document_plaintext}}\n|||\n{{{\"NO\":\"Tidak\",\"YES\": \"Ya\", \"NONE\": \"Tidak ada\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_question",
+            "acc": 0.8138504155124654,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "ebba1db1-daf2-4e40-9dca-4cbe4298cd3e",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\n{{question_text}}\nApakah ini termasuk kalimat tanya \"Ya/Tidak\"?\n|||\n{% if annotations. yes_no_answer[0] == \"NONE\" %}\nTidak\n{% else %}\nYa\n{% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.009163999646097152
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_question",
+            "acc_norm": 0.9673130193905817,
+            "fixed_answer_choice_list": [
+                "Ya",
+                "Tidak"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "ebba1db1-daf2-4e40-9dca-4cbe4298cd3e",
+            "prompt_jinja": "{% if language == \"indonesian\" %}\n{{question_text}}\nApakah ini termasuk kalimat tanya \"Ya/Tidak\"?\n|||\n{% if annotations. yes_no_answer[0] == \"NONE\" %}\nTidak\n{% else %}\nYa\n{% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.0041865150102794995
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_after_reading_the_text",
+            "acc": 0.7635135135135135,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d160228e-9169-456d-a16a-0f5288452c9a",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \n        \u30a6\u30a3\u30ad\u30da\u30c7\u30a3\u30a2\u306e\u8a18\u4e8b\u3092\u8aad\u3093\u3060\u3042\u3068\u3001\u6b21\u306e\u8cea\u554f\u306b\u7b54\u3048\u3066\u304f\u3060\u3055\u3044: {{question_text}}\n        {{document_plaintext}}\n        |||\n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.03504716241250439
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_after_reading_the_text",
+            "acc_norm": 0.2972972972972973,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d160228e-9169-456d-a16a-0f5288452c9a",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %} \n        \u30a6\u30a3\u30ad\u30da\u30c7\u30a3\u30a2\u306e\u8a18\u4e8b\u3092\u8aad\u3093\u3060\u3042\u3068\u3001\u6b21\u306e\u8cea\u554f\u306b\u7b54\u3048\u3066\u304f\u3060\u3055\u3044: {{question_text}}\n        {{document_plaintext}}\n        |||\n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.037698374558241474
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_based_on_the_text",
+            "acc": 0.7635135135135135,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "733a3ff3-6edd-4440-b038-bf9736ebaff7",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %}\n        \u6b21\u306e\u6587\u7ae0\u306b\u3082\u3068\u3065\u304f\u3068\u3001 , {{question_text}} \n        {{document_plaintext}}\n        ||| \n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.03504716241250439
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_based_on_the_text",
+            "acc_norm": 0.2905405405405405,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "733a3ff3-6edd-4440-b038-bf9736ebaff7",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES\" or annotations.yes_no_answer[0] == \"NO\" %}\n        \u6b21\u306e\u6587\u7ae0\u306b\u3082\u3068\u3065\u304f\u3068\u3001 , {{question_text}} \n        {{document_plaintext}}\n        ||| \n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.03744626397928733
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_heres_what_I_found",
+            "acc": 0.15330602691632533,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048",
+                "\u3069\u3061\u3089\u3067\u3082\u306a\u3044"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "590c276c-d649-4296-816a-e759167f3556",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n      {{question_text}} \u306e\u304b\u6c17\u306b\u306a\u308a\u307e\u3059\u3002\n      \u3053\u306e\u8cea\u554f\u306b\u300c\u306f\u3044\u300d\u307e\u305f\u306f\u300c\u3044\u3044\u3048\u300d\u306e\u3069\u3061\u3089\u304b\u3067\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n      \u3069\u3061\u3089\u3082\u3042\u3066\u306f\u307e\u3089\u306a\u3044\u5834\u5408\u3001\u300c\u3069\u3061\u3089\u3067\u3082\u306a\u3044\u300d\u3068\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n\n      \u30a4\u30f3\u30bf\u30fc\u30cd\u30c3\u30c8\u3067\u3053\u3093\u306a\u8a18\u4e8b\u3092\u898b\u3064\u3051\u307e\u3057\u305f\uff1a\n\n      \u30bf\u30a4\u30c8\u30eb\uff1a {{document_title}}\n\n      \u672c\u6587\uff1a {{document_plaintext}}\n\n      |||\n      \n      {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.008717639693136726
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_heres_what_I_found",
+            "acc_norm": 0.9133996489174956,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048",
+                "\u3069\u3061\u3089\u3067\u3082\u306a\u3044"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "590c276c-d649-4296-816a-e759167f3556",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n      {{question_text}} \u306e\u304b\u6c17\u306b\u306a\u308a\u307e\u3059\u3002\n      \u3053\u306e\u8cea\u554f\u306b\u300c\u306f\u3044\u300d\u307e\u305f\u306f\u300c\u3044\u3044\u3048\u300d\u306e\u3069\u3061\u3089\u304b\u3067\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n      \u3069\u3061\u3089\u3082\u3042\u3066\u306f\u307e\u3089\u306a\u3044\u5834\u5408\u3001\u300c\u3069\u3061\u3089\u3067\u3082\u306a\u3044\u300d\u3068\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n\n      \u30a4\u30f3\u30bf\u30fc\u30cd\u30c3\u30c8\u3067\u3053\u3093\u306a\u8a18\u4e8b\u3092\u898b\u3064\u3051\u307e\u3057\u305f\uff1a\n\n      \u30bf\u30a4\u30c8\u30eb\uff1a {{document_title}}\n\n      \u672c\u6587\uff1a {{document_plaintext}}\n\n      |||\n      \n      {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.006805284929468163
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_open_domain_qa",
+            "acc": 1.0,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d942b06e-65d1-497f-8e69-0608c775f020",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES \" or annotations.yes_no_answer[0] == \"NO\" %}\n        {{document_title}}\u306b\u95a2\u3059\u308b\u8cea\u554f\u306b\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n        \u8cea\u554f: {{question_text}}\u300c\u306f\u3044\u300d\u300c\u3044\u3044\u3048\u300d\u306e\u3069\u3061\u3089\u3067\u3059\u304b\uff1f\n        ||| \n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n  {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.0
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_open_domain_qa",
+            "acc_norm": 1.0,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "d942b06e-65d1-497f-8e69-0608c775f020",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n    {% if annotations.yes_no_answer[0] == \"YES \" or annotations.yes_no_answer[0] == \"NO\" %}\n        {{document_title}}\u306b\u95a2\u3059\u308b\u8cea\u554f\u306b\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n        \u8cea\u554f: {{question_text}}\u300c\u306f\u3044\u300d\u300c\u3044\u3044\u3048\u300d\u306e\u3069\u3061\u3089\u3067\u3059\u304b\uff1f\n        ||| \n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n  {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.0
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_open_domain_qa_without_choices",
+            "acc": 0.3310810810810811,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "a7260c3e-2c25-4c87-b9a2-5955fdff0c5e",
+            "prompt_jinja": "{% if language == \"japanese\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\"  or annotations.yes_no_answer[0] == \"NO\" %}\n        {{document_title}}\u306b\u95a2\u3059\u308b\u8cea\u554f\u306b\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002{{question_text}}\n        ||| \n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.03881461247660828
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_open_domain_qa_without_choices",
+            "acc_norm": 0.22297297297297297,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "a7260c3e-2c25-4c87-b9a2-5955fdff0c5e",
+            "prompt_jinja": "{% if language == \"japanese\" %} \n    {% if annotations.yes_no_answer[0] == \"YES\"  or annotations.yes_no_answer[0] == \"NO\" %}\n        {{document_title}}\u306b\u95a2\u3059\u308b\u8cea\u554f\u306b\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002{{question_text}}\n        ||| \n        {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n    {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.03433092518104002
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_read_and_answer",
+            "acc": 0.1743709771796372,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048",
+                "\u3069\u3061\u3089\u3067\u3082\u306a\u3044"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "dd737fa3-3364-49b1-8a7e-9b7fb25f495d",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n      \u3053\u306e\u8cea\u554f\u306b\u300c\u306f\u3044\u300d\u307e\u305f\u306f\u300c\u3044\u3044\u3048\u300d\u306e\u3069\u3061\u3089\u304b\u3067\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n      \u3069\u3061\u3089\u3082\u3042\u3066\u306f\u307e\u3089\u306a\u3044\u5834\u5408\u3001\u300c\u3069\u3061\u3089\u3067\u3082\u306a\u3044\u300d\u3068\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n\n      \u8cea\u554f: {{question_text}}\n\n      \u30bf\u30a4\u30c8\u30eb\uff1a {{document_title}}\n\n      \u672c\u6587\uff1a {{document_plaintext}}\n\n      |||\n\n      {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.009180908160252244
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_read_and_answer",
+            "acc_norm": 0.9133996489174956,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048",
+                "\u3069\u3061\u3089\u3067\u3082\u306a\u3044"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "dd737fa3-3364-49b1-8a7e-9b7fb25f495d",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n      \u3053\u306e\u8cea\u554f\u306b\u300c\u306f\u3044\u300d\u307e\u305f\u306f\u300c\u3044\u3044\u3048\u300d\u306e\u3069\u3061\u3089\u304b\u3067\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n      \u3069\u3061\u3089\u3082\u3042\u3066\u306f\u307e\u3089\u306a\u3044\u5834\u5408\u3001\u300c\u3069\u3061\u3089\u3067\u3082\u306a\u3044\u300d\u3068\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n\n      \u8cea\u554f: {{question_text}}\n\n      \u30bf\u30a4\u30c8\u30eb\uff1a {{document_title}}\n\n      \u672c\u6587\uff1a {{document_plaintext}}\n\n      |||\n\n      {{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.006805284929468163
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_yes_no_none",
+            "acc": 0.0684610883557636,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048",
+                "\u3069\u3061\u3089\u3067\u3082\u306a\u3044"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "1aa48c84-f64b-493c-bc9b-e5be15690109",
+            "prompt_jinja": "{% if language == \"japanese\" %} \n\u8cea\u554f: {{question_text}}\n\u8cea\u554f\u306b {{\"\u306f\u3044\"}}\u304b{{\"\u3044\u3044\u3048\"}}\u3067\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002 \u3069\u3061\u3089\u3082\u3042\u3066\u306f\u307e\u3089\u306a\u3044\u5834\u5408\u306f{{\"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}}\u3068\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n\u30d2\u30f3\u30c8: {{document_plaintext}}\n|||\n{{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.006110524175614192
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_yes_no_none",
+            "acc_norm": 0.9133996489174956,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048",
+                "\u3069\u3061\u3089\u3067\u3082\u306a\u3044"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "1aa48c84-f64b-493c-bc9b-e5be15690109",
+            "prompt_jinja": "{% if language == \"japanese\" %} \n\u8cea\u554f: {{question_text}}\n\u8cea\u554f\u306b {{\"\u306f\u3044\"}}\u304b{{\"\u3044\u3044\u3048\"}}\u3067\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002 \u3069\u3061\u3089\u3082\u3042\u3066\u306f\u307e\u3089\u306a\u3044\u5834\u5408\u306f{{\"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}}\u3068\u7b54\u3048\u3066\u304f\u3060\u3055\u3044\u3002\n\u30d2\u30f3\u30c8: {{document_plaintext}}\n|||\n{{{\"YES\":\"\u306f\u3044\", \"NO\":\"\u3044\u3044\u3048\", \"NONE\": \"\u3069\u3061\u3089\u3067\u3082\u306a\u3044\"}[annotations.yes_no_answer[0]]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.006805284929468163
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_yes_no_question",
+            "acc": 0.9133996489174956,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "eba7a853-bd37-45d7-af7d-cf3bd4bc0328",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n\n      {{question_text}}\n\n      \u3053\u308c\u306f\u300c\u306f\u3044\u300d\u300c\u3044\u3044\u3048\u300d\u3067\u7b54\u3048\u3089\u308c\u308b\u8cea\u554f\u3067\u3059\u304b\uff1f\n\n      |||\n\n      {% if annotations. yes_no_answer[0] == \"NONE\" %}\n\n      \u3044\u3044\u3048\n\n      {% else %}\n\n      \u306f\u3044\n\n      {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.006805284929468163
+        },
+        {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_yes_no_question",
+            "acc_norm": 0.9133996489174956,
+            "fixed_answer_choice_list": [
+                "\u306f\u3044",
+                "\u3044\u3044\u3048"
+            ],
+            "dataset_path": "tydiqa",
+            "dataset_name": "primary_task",
+            "subset": null,
+            "prompt_id": "eba7a853-bd37-45d7-af7d-cf3bd4bc0328",
+            "prompt_jinja": "{% if language == \"japanese\" %}\n\n      {{question_text}}\n\n      \u3053\u308c\u306f\u300c\u306f\u3044\u300d\u300c\u3044\u3044\u3048\u300d\u3067\u7b54\u3048\u3089\u308c\u308b\u8cea\u554f\u3067\u3059\u304b\uff1f\n\n      |||\n\n      {% if annotations. yes_no_answer[0] == \"NONE\" %}\n\n      \u3044\u3044\u3048\n\n      {% else %}\n\n      \u306f\u3044\n\n      {% endif %}\n{% endif %}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.006805284929468163
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "GPT-3-prompt",
+            "acc": 0.5031347962382445,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "c3a0a5d8-cfe9-4a7f-8a3c-3c526e0ad0c6",
+            "prompt_jinja": "{{sentence1}}\n{{sentence2}}\nQuestion: Is the word '{{word}}' used in the same sense in the two sentences above?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.019810331932097542
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "GPT-3-prompt",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "c3a0a5d8-cfe9-4a7f-8a3c-3c526e0ad0c6",
+            "prompt_jinja": "{{sentence1}}\n{{sentence2}}\nQuestion: Is the word '{{word}}' used in the same sense in the two sentences above?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "GPT-3-prompt-with-label",
+            "acc": 0.5015673981191222,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "d9e1db2a-ab0b-4621-bb41-01d5788d3873",
+            "prompt_jinja": "{{sentence1}}\n{{sentence2}}\nQuestion: Is the word '{{word}}' used in the same sense in the two sentences above? Yes, No?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.019810623954060382
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "GPT-3-prompt-with-label",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "d9e1db2a-ab0b-4621-bb41-01d5788d3873",
+            "prompt_jinja": "{{sentence1}}\n{{sentence2}}\nQuestion: Is the word '{{word}}' used in the same sense in the two sentences above? Yes, No?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "affirmation_true_or_false",
+            "acc": 0.5,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "725b5ed0-7728-4890-95a4-a74cb7ae1bb4",
+            "prompt_jinja": "Sentence A: {{sentence1}}\nSentence B: {{sentence2}}\n\n\"{{word}}\" has a similar meaning in sentences A and B. True or False?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.01981072129375818
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "affirmation_true_or_false",
+            "acc_norm": 0.4952978056426332,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "725b5ed0-7728-4890-95a4-a74cb7ae1bb4",
+            "prompt_jinja": "Sentence A: {{sentence1}}\nSentence B: {{sentence2}}\n\n\"{{word}}\" has a similar meaning in sentences A and B. True or False?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01980984521925977
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "grammar_homework",
+            "acc": 0.5015673981191222,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "611d13dc-d414-4b9b-9204-e4f325e859e7",
+            "prompt_jinja": "Homework\n\nDecide whether the word \"{{word}}\" is used with the same meaning in the two following sentences. Answer by yes or no.\n{{sentence1}}\n{{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.019810623954060382
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "grammar_homework",
+            "acc_norm": 0.5015673981191222,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "611d13dc-d414-4b9b-9204-e4f325e859e7",
+            "prompt_jinja": "Homework\n\nDecide whether the word \"{{word}}\" is used with the same meaning in the two following sentences. Answer by yes or no.\n{{sentence1}}\n{{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.019810623954060382
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "polysemous",
+            "acc": 0.512539184952978,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "dd2080cf-3117-49ba-9aff-c988a21fdb69",
+            "prompt_jinja": "The word \"{{word}}\" has multiple meanings. Does it have the same meaning in sentences 1 and 2? Yes or no?\n\nSentence 1: {{sentence1}}\nSentence 2: {{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.019804490588592582
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "polysemous",
+            "acc_norm": 0.5015673981191222,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "dd2080cf-3117-49ba-9aff-c988a21fdb69",
+            "prompt_jinja": "The word \"{{word}}\" has multiple meanings. Does it have the same meaning in sentences 1 and 2? Yes or no?\n\nSentence 1: {{sentence1}}\nSentence 2: {{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.019810623954060382
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "question-context",
+            "acc": 0.5015673981191222,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "cfbc1637-10b8-4f20-a31c-55292f3cebd0",
+            "prompt_jinja": "Determine if the word '{{word}}' is used in the same way in the two sentences below. \n{{sentence1}}\n{{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.019810623954060382
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "question-context",
+            "acc_norm": 0.5047021943573667,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "cfbc1637-10b8-4f20-a31c-55292f3cebd0",
+            "prompt_jinja": "Determine if the word '{{word}}' is used in the same way in the two sentences below. \n{{sentence1}}\n{{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.019809845219259763
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "question-context-meaning",
+            "acc": 0.5062695924764891,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "3503ead5-4fa5-4f77-95dc-f0c2ed3eecdc",
+            "prompt_jinja": "Does the word \"{{word}}\" have the same meaning in these two sentences?\n{{sentence1}}\n{{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.019809163801196517
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "question-context-meaning",
+            "acc_norm": 0.49843260188087773,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "3503ead5-4fa5-4f77-95dc-f0c2ed3eecdc",
+            "prompt_jinja": "Does the word \"{{word}}\" have the same meaning in these two sentences?\n{{sentence1}}\n{{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.019810623954060382
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "question-context-meaning-with-label",
+            "acc": 0.5360501567398119,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "14e73f39-a0d1-44c2-b9a4-4e48f9f1608e",
+            "prompt_jinja": "Does the word \"{{word}}\" have the same meaning in these two sentences? Yes, No?\n{{sentence1}}\n{{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.019759161625189245
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "question-context-meaning-with-label",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "14e73f39-a0d1-44c2-b9a4-4e48f9f1608e",
+            "prompt_jinja": "Does the word \"{{word}}\" have the same meaning in these two sentences? Yes, No?\n{{sentence1}}\n{{sentence2}}\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "same_sense",
+            "acc": 0.5,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "ce8b5a93-1841-4897-84db-b100f1c84f4b",
+            "prompt_jinja": "Sentence 1: {{sentence1}}\nSentence 2: {{sentence2}}\n\nDetermine whether the word \"{{word}}\" is used in the same sense in both sentences. Yes or no?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.01981072129375818
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "same_sense",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "ce8b5a93-1841-4897-84db-b100f1c84f4b",
+            "prompt_jinja": "Sentence 1: {{sentence1}}\nSentence 2: {{sentence2}}\n\nDetermine whether the word \"{{word}}\" is used in the same sense in both sentences. Yes or no?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "similar-sense",
+            "acc": 0.5172413793103449,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "f934a96d-fe4d-4075-aa47-5595b9a604c7",
+            "prompt_jinja": "{{sentence1}}\n{{sentence2}}\nSimilar sense of {{word}}?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.019798939715972977
+        },
+        {
+            "task_name": "wic",
+            "prompt_name": "similar-sense",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wic",
+            "subset": null,
+            "prompt_id": "f934a96d-fe4d-4075-aa47-5595b9a604c7",
+            "prompt_jinja": "{{sentence1}}\n{{sentence2}}\nSimilar sense of {{word}}?\n||| {% if label != -1%}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "GPT-3 Style",
+            "acc": 0.6346153846153846,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "7d377293-d043-4b6c-8ec1-d61eaf14ec67",
+            "prompt_jinja": "Passage: {{ text }} \n\nQuestion: In the passage above, does the pronoun \"{{ span2_text }}\" refer to {{ span1_text }}?\n\nAnswer: ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "GPT-3 Style",
+            "acc_norm": 0.38461538461538464,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "7d377293-d043-4b6c-8ec1-d61eaf14ec67",
+            "prompt_jinja": "Passage: {{ text }} \n\nQuestion: In the passage above, does the pronoun \"{{ span2_text }}\" refer to {{ span1_text }}?\n\nAnswer: ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.047936688680750406
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "I think they mean",
+            "acc": 0.4423076923076923,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "4b3e29cc-ccb8-4e4c-a845-4935ca29cf34",
+            "prompt_jinja": "{{ text }} I think they mean \"{{ text.split(\" \")[span2_index:] | join(\" \") | replace(span2_text, span1_text) }}\" Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.04893740777700999
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "I think they mean",
+            "acc_norm": 0.36538461538461536,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "4b3e29cc-ccb8-4e4c-a845-4935ca29cf34",
+            "prompt_jinja": "{{ text }} I think they mean \"{{ text.split(\" \")[span2_index:] | join(\" \") | replace(span2_text, span1_text) }}\" Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "Who or what is/are",
+            "acc": 0.5769230769230769,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "d88f3e21-42dc-49a5-924d-69b764a14816",
+            "prompt_jinja": "{{ text }} \n{% if span2_text.lower()  == \"they\" or span2_text.lower() == \"them\" %}\nQuestion: Who or what are \"{{ span2_text.lower() }}\"? {{ span1_text }}?\n{% else %}\nQuestion: Who or what is \"{{ span2_text.lower() }}\"? Is it {{ span1_text }}?\n{% endif %}\nAnswer: ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.048679937479186836
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "Who or what is/are",
+            "acc_norm": 0.36538461538461536,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "d88f3e21-42dc-49a5-924d-69b764a14816",
+            "prompt_jinja": "{{ text }} \n{% if span2_text.lower()  == \"they\" or span2_text.lower() == \"them\" %}\nQuestion: Who or what are \"{{ span2_text.lower() }}\"? {{ span1_text }}?\n{% else %}\nQuestion: Who or what is \"{{ span2_text.lower() }}\"? Is it {{ span1_text }}?\n{% endif %}\nAnswer: ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "by p they mean",
+            "acc": 0.41346153846153844,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "23361c5d-b67f-4c2a-9da7-16301c55d0e1",
+            "prompt_jinja": "{{ text }} Here, by \"{{ span2_text }}\" they mean \"{{ span1_text }}\". Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.04852294969729053
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "by p they mean",
+            "acc_norm": 0.36538461538461536,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "23361c5d-b67f-4c2a-9da7-16301c55d0e1",
+            "prompt_jinja": "{{ text }} Here, by \"{{ span2_text }}\" they mean \"{{ span1_text }}\". Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "does p stand for",
+            "acc": 0.6153846153846154,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "7482d24f-cf45-4013-b82d-369489fc958b",
+            "prompt_jinja": "{{ text }} Here, does \"{{ span2_text.lower() }}\" stand for {{ span1_text }}? Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0479366886807504
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "does p stand for",
+            "acc_norm": 0.36538461538461536,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "7482d24f-cf45-4013-b82d-369489fc958b",
+            "prompt_jinja": "{{ text }} Here, does \"{{ span2_text.lower() }}\" stand for {{ span1_text }}? Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "does the pronoun refer to",
+            "acc": 0.4807692307692308,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "212fb8b1-8436-4f64-8f37-a9094fe029f4",
+            "prompt_jinja": "{{ text }} In the previous sentence, does the pronoun \"{{ span2_text.lower() }}\" refer to {{ span1_text }}? Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.049230010729780505
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "does the pronoun refer to",
+            "acc_norm": 0.36538461538461536,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "212fb8b1-8436-4f64-8f37-a9094fe029f4",
+            "prompt_jinja": "{{ text }} In the previous sentence, does the pronoun \"{{ span2_text.lower() }}\" refer to {{ span1_text }}? Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "in other words",
+            "acc": 0.36538461538461536,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "2f17f18b-6daa-44ef-a2dd-dddaf04aec0e",
+            "prompt_jinja": "{{ text }} \n\nIn other words, {{ text.split(\" \")[span2_index:] | join(\" \") | replace(span2_text, span1_text) }} True or false? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "in other words",
+            "acc_norm": 0.4519230769230769,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "2f17f18b-6daa-44ef-a2dd-dddaf04aec0e",
+            "prompt_jinja": "{{ text }} \n\nIn other words, {{ text.split(\" \")[span2_index:] | join(\" \") | replace(span2_text, span1_text) }} True or false? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.049038186969314335
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "p is/are r",
+            "acc": 0.36538461538461536,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "87f97aa0-1fa9-4f0b-b8e6-89d3c1f19bd6",
+            "prompt_jinja": "Context: {{ text }} \n\n{% if span2_text.lower()  == \"they\" or span2_text.lower() == \"them\" %}\nQuestion: \"{{ span2_text }}\" are {{ span1_text }}. True or false?\n{% else %}\nQuestion: \"{{ span2_text }}\" is {{ span1_text }}. True or false?\n{% endif %}\n\nAnswer: ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "p is/are r",
+            "acc_norm": 0.40384615384615385,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "87f97aa0-1fa9-4f0b-b8e6-89d3c1f19bd6",
+            "prompt_jinja": "Context: {{ text }} \n\n{% if span2_text.lower()  == \"they\" or span2_text.lower() == \"them\" %}\nQuestion: \"{{ span2_text }}\" are {{ span1_text }}. True or false?\n{% else %}\nQuestion: \"{{ span2_text }}\" is {{ span1_text }}. True or false?\n{% endif %}\n\nAnswer: ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.04834688952654018
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "replaced with",
+            "acc": 0.46153846153846156,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "809eacd0-2f6c-4e3a-b52a-57c783879d36",
+            "prompt_jinja": "{{ text }} In the previous sentence, can the pronoun \"{{ span2_text }}\" be replaced with \"{{ span1_text }}\"? Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.04912048887947828
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "replaced with",
+            "acc_norm": 0.36538461538461536,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "809eacd0-2f6c-4e3a-b52a-57c783879d36",
+            "prompt_jinja": "{{ text }} In the previous sentence, can the pronoun \"{{ span2_text }}\" be replaced with \"{{ span1_text }}\"? Yes or no? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "the pronoun refers to",
+            "acc": 0.36538461538461536,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "aae24b54-c3a7-4f69-8b77-f6dc115988f8",
+            "prompt_jinja": "{{ text }} \nIn the passage above, the pronoun \"{{ span2_text }}\" refers to {{ span1_text }}. True or false? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0474473339327792
+        },
+        {
+            "task_name": "wsc",
+            "prompt_name": "the pronoun refers to",
+            "acc_norm": 0.38461538461538464,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "wsc.fixed",
+            "subset": null,
+            "prompt_id": "aae24b54-c3a7-4f69-8b77-f6dc115988f8",
+            "prompt_jinja": "{{ text }} \nIn the passage above, the pronoun \"{{ span2_text }}\" refers to {{ span1_text }}. True or false? ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.047936688680750406
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "confident",
+            "acc": 0.43661971830985913,
+            "fixed_answer_choice_list": [
+                "not confident",
+                "very confident"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "10c354ee-6f4e-4b04-91e1-29e999a8f3e7",
+            "prompt_jinja": "If it's true that\n{{sentence1}}\nhow {{\"confident\"}} should I be that\n{{sentence2}}\n{{\"very confident or not confident?\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0592793555841297
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "confident",
+            "acc_norm": 0.43661971830985913,
+            "fixed_answer_choice_list": [
+                "not confident",
+                "very confident"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "10c354ee-6f4e-4b04-91e1-29e999a8f3e7",
+            "prompt_jinja": "If it's true that\n{{sentence1}}\nhow {{\"confident\"}} should I be that\n{{sentence2}}\n{{\"very confident or not confident?\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "entailment explained",
+            "acc": 0.49295774647887325,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "3a0e46cb-0b96-4972-83f6-29a6c6a09ba9",
+            "prompt_jinja": "{{\"Entailment\"}} means that the second sentence follows from the first sentence. Are the following two sentences an example of entailment?\n{{sentence1}}\n{{sentence2}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05975550263548289
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "entailment explained",
+            "acc_norm": 0.43661971830985913,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "3a0e46cb-0b96-4972-83f6-29a6c6a09ba9",
+            "prompt_jinja": "{{\"Entailment\"}} means that the second sentence follows from the first sentence. Are the following two sentences an example of entailment?\n{{sentence1}}\n{{sentence2}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "imply",
+            "acc": 0.5211267605633803,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "a2ce492b-dfd0-4f04-bc44-70c7867ba231",
+            "prompt_jinja": "{{sentence1}}\n{{sentence2}}\nDoes the first sentence imply the second sentence?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.059708058798995024
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "imply",
+            "acc_norm": 0.43661971830985913,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "a2ce492b-dfd0-4f04-bc44-70c7867ba231",
+            "prompt_jinja": "{{sentence1}}\n{{sentence2}}\nDoes the first sentence imply the second sentence?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "justified",
+            "acc": 0.4225352112676056,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "a244158a-a248-4e34-bef7-66e269dd0815",
+            "prompt_jinja": "Someone told me \"{{sentence1}}\" Now, I think that \"{{sentence2}}\" Am I justified in thinking this?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05903984205682581
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "justified",
+            "acc_norm": 0.43661971830985913,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "a244158a-a248-4e34-bef7-66e269dd0815",
+            "prompt_jinja": "Someone told me \"{{sentence1}}\" Now, I think that \"{{sentence2}}\" Am I justified in thinking this?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "mean",
+            "acc": 0.5633802816901409,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "75f89b05-5a81-401b-8a04-8239211a9a95",
+            "prompt_jinja": "Assume that the following is true:\n{{sentence1}}\nDoes this mean that \"{{sentence2}}\"?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0592793555841297
+        },
+        {
+            "task_name": "wnli",
+            "prompt_name": "mean",
+            "acc_norm": 0.43661971830985913,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "wnli",
+            "subset": null,
+            "prompt_id": "75f89b05-5a81-401b-8a04-8239211a9a95",
+            "prompt_jinja": "Assume that the following is true:\n{{sentence1}}\nDoes this mean that \"{{sentence2}}\"?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        {
+            "task_name": "gsarti/flores_101_afr",
+            "prompt_name": null,
+            "word_perplexity": 85235.19367887951
+        },
+        {
+            "task_name": "gsarti/flores_101_afr",
+            "prompt_name": null,
+            "byte_perplexity": 6.500798737976343
+        },
+        {
+            "task_name": "gsarti/flores_101_afr",
+            "prompt_name": null,
+            "bits_per_byte": 2.7006169896060404
+        },
+        {
+            "task_name": "gsarti/flores_101_amh",
+            "prompt_name": null,
+            "word_perplexity": 55713444.65495123
+        },
+        {
+            "task_name": "gsarti/flores_101_amh",
+            "prompt_name": null,
+            "byte_perplexity": 3.9726863338897145
+        },
+        {
+            "task_name": "gsarti/flores_101_amh",
+            "prompt_name": null,
+            "bits_per_byte": 1.9901148889694242
+        },
+        {
+            "task_name": "gsarti/flores_101_ara",
+            "prompt_name": null,
+            "word_perplexity": 560.6696588565998
+        },
+        {
+            "task_name": "gsarti/flores_101_ara",
+            "prompt_name": null,
+            "byte_perplexity": 1.8083841089875814
+        },
+        {
+            "task_name": "gsarti/flores_101_ara",
+            "prompt_name": null,
+            "bits_per_byte": 0.8547011452725499
+        },
+        {
+            "task_name": "gsarti/flores_101_hye",
+            "prompt_name": null,
+            "word_perplexity": 70633577.33991678
+        },
+        {
+            "task_name": "gsarti/flores_101_hye",
+            "prompt_name": null,
+            "byte_perplexity": 3.657718918347166
+        },
+        {
+            "task_name": "gsarti/flores_101_hye",
+            "prompt_name": null,
+            "bits_per_byte": 1.8709442137724226
+        },
+        {
+            "task_name": "gsarti/flores_101_asm",
+            "prompt_name": null,
+            "word_perplexity": 12636385444578.451
+        },
+        {
+            "task_name": "gsarti/flores_101_asm",
+            "prompt_name": null,
+            "byte_perplexity": 5.699102962086425
+        },
+        {
+            "task_name": "gsarti/flores_101_asm",
+            "prompt_name": null,
+            "bits_per_byte": 2.5107348571732158
+        },
+        {
+            "task_name": "gsarti/flores_101_ast",
+            "prompt_name": null,
+            "word_perplexity": 6309.878600095261
+        },
+        {
+            "task_name": "gsarti/flores_101_ast",
+            "prompt_name": null,
+            "byte_perplexity": 3.9252047073429384
+        },
+        {
+            "task_name": "gsarti/flores_101_ast",
+            "prompt_name": null,
+            "bits_per_byte": 1.9727678954226908
+        },
+        {
+            "task_name": "gsarti/flores_101_azj",
+            "prompt_name": null,
+            "word_perplexity": 18943806.634796362
+        },
+        {
+            "task_name": "gsarti/flores_101_azj",
+            "prompt_name": null,
+            "byte_perplexity": 6.942805054270002
+        },
+        {
+            "task_name": "gsarti/flores_101_azj",
+            "prompt_name": null,
+            "bits_per_byte": 2.79551866284193
+        },
+        {
+            "task_name": "gsarti/flores_101_bel",
+            "prompt_name": null,
+            "word_perplexity": 13910215.83904608
+        },
+        {
+            "task_name": "gsarti/flores_101_bel",
+            "prompt_name": null,
+            "byte_perplexity": 3.614136245847082
+        },
+        {
+            "task_name": "gsarti/flores_101_bel",
+            "prompt_name": null,
+            "bits_per_byte": 1.8536508940007679
+        },
+        {
+            "task_name": "gsarti/flores_101_ben",
+            "prompt_name": null,
+            "word_perplexity": 2918741696357.8086
+        },
+        {
+            "task_name": "gsarti/flores_101_ben",
+            "prompt_name": null,
+            "byte_perplexity": 5.121491534300969
+        },
+        {
+            "task_name": "gsarti/flores_101_ben",
+            "prompt_name": null,
+            "bits_per_byte": 2.3565640281490667
+        },
+        {
+            "task_name": "gsarti/flores_101_bos",
+            "prompt_name": null,
+            "word_perplexity": 106372.42755582671
+        },
+        {
+            "task_name": "gsarti/flores_101_bos",
+            "prompt_name": null,
+            "byte_perplexity": 5.653353469118798
+        },
+        {
+            "task_name": "gsarti/flores_101_bos",
+            "prompt_name": null,
+            "bits_per_byte": 2.4991069025837276
+        },
+        {
+            "task_name": "gsarti/flores_101_bul",
+            "prompt_name": null,
+            "word_perplexity": 102416.43191883583
+        },
+        {
+            "task_name": "gsarti/flores_101_bul",
+            "prompt_name": null,
+            "byte_perplexity": 2.7014693938055068
+        },
+        {
+            "task_name": "gsarti/flores_101_bul",
+            "prompt_name": null,
+            "bits_per_byte": 1.433744337099477
+        },
+        {
+            "task_name": "gsarti/flores_101_mya",
+            "prompt_name": null,
+            "word_perplexity": 8.32988509119671e+16
+        },
+        {
+            "task_name": "gsarti/flores_101_mya",
+            "prompt_name": null,
+            "byte_perplexity": 2.413577969878331
+        },
+        {
+            "task_name": "gsarti/flores_101_mya",
+            "prompt_name": null,
+            "bits_per_byte": 1.2711734333455413
+        },
+        {
+            "task_name": "gsarti/flores_101_cat",
+            "prompt_name": null,
+            "word_perplexity": 156.11743040388885
+        },
+        {
+            "task_name": "gsarti/flores_101_cat",
+            "prompt_name": null,
+            "byte_perplexity": 2.305190041967345
+        },
+        {
+            "task_name": "gsarti/flores_101_cat",
+            "prompt_name": null,
+            "bits_per_byte": 1.2048856926511506
+        },
+        {
+            "task_name": "gsarti/flores_101_ceb",
+            "prompt_name": null,
+            "word_perplexity": 65136.707286125806
+        },
+        {
+            "task_name": "gsarti/flores_101_ceb",
+            "prompt_name": null,
+            "byte_perplexity": 6.291000321323428
+        },
+        {
+            "task_name": "gsarti/flores_101_ceb",
+            "prompt_name": null,
+            "bits_per_byte": 2.6532894358437407
+        },
+        {
+            "task_name": "gsarti/flores_101_zho_simpl",
+            "prompt_name": null,
+            "word_perplexity": 3.3824709197567466e+20
+        },
+        {
+            "task_name": "gsarti/flores_101_zho_simpl",
+            "prompt_name": null,
+            "byte_perplexity": 2.2769070822768533
+        },
+        {
+            "task_name": "gsarti/flores_101_zho_simpl",
+            "prompt_name": null,
+            "bits_per_byte": 1.1870754181000942
+        },
+        {
+            "task_name": "gsarti/flores_101_zho_trad",
+            "prompt_name": null,
+            "word_perplexity": 1.3713322787636808e+24
+        },
+        {
+            "task_name": "gsarti/flores_101_zho_trad",
+            "prompt_name": null,
+            "byte_perplexity": 2.5180582198242383
+        },
+        {
+            "task_name": "gsarti/flores_101_zho_trad",
+            "prompt_name": null,
+            "bits_per_byte": 1.3323116398800825
+        },
+        {
+            "task_name": "gsarti/flores_101_hrv",
+            "prompt_name": null,
+            "word_perplexity": 145578.72858233206
+        },
+        {
+            "task_name": "gsarti/flores_101_hrv",
+            "prompt_name": null,
+            "byte_perplexity": 5.822418943372185
+        },
+        {
+            "task_name": "gsarti/flores_101_hrv",
+            "prompt_name": null,
+            "bits_per_byte": 2.5416186501409137
+        },
+        {
+            "task_name": "gsarti/flores_101_ces",
+            "prompt_name": null,
+            "word_perplexity": 263164.5309136012
+        },
+        {
+            "task_name": "gsarti/flores_101_ces",
+            "prompt_name": null,
+            "byte_perplexity": 5.447322753586386
+        },
+        {
+            "task_name": "gsarti/flores_101_ces",
+            "prompt_name": null,
+            "bits_per_byte": 2.4455473493160125
+        },
+        {
+            "task_name": "gsarti/flores_101_dan",
+            "prompt_name": null,
+            "word_perplexity": 35849.16532970031
+        },
+        {
+            "task_name": "gsarti/flores_101_dan",
+            "prompt_name": null,
+            "byte_perplexity": 5.183309001005672
+        },
+        {
+            "task_name": "gsarti/flores_101_dan",
+            "prompt_name": null,
+            "bits_per_byte": 2.3738734020055223
+        },
+        {
+            "task_name": "gsarti/flores_101_nld",
+            "prompt_name": null,
+            "word_perplexity": 7697.768358497185
+        },
+        {
+            "task_name": "gsarti/flores_101_nld",
+            "prompt_name": null,
+            "byte_perplexity": 4.127831721885065
+        },
+        {
+            "task_name": "gsarti/flores_101_nld",
+            "prompt_name": null,
+            "bits_per_byte": 2.0453841580309375
+        },
+        {
+            "task_name": "gsarti/flores_101_eng",
+            "prompt_name": null,
+            "word_perplexity": 66.70590833061453
+        },
+        {
+            "task_name": "gsarti/flores_101_eng",
+            "prompt_name": null,
+            "byte_perplexity": 2.018740628193298
+        },
+        {
+            "task_name": "gsarti/flores_101_eng",
+            "prompt_name": null,
+            "bits_per_byte": 1.013455562250928
+        },
+        {
+            "task_name": "gsarti/flores_101_est",
+            "prompt_name": null,
+            "word_perplexity": 40122625.72726358
+        },
+        {
+            "task_name": "gsarti/flores_101_est",
+            "prompt_name": null,
+            "byte_perplexity": 9.11654425176368
+        },
+        {
+            "task_name": "gsarti/flores_101_est",
+            "prompt_name": null,
+            "bits_per_byte": 3.188487055130014
+        },
+        {
+            "task_name": "gsarti/flores_101_tgl",
+            "prompt_name": null,
+            "word_perplexity": 47356.58757292501
+        },
+        {
+            "task_name": "gsarti/flores_101_tgl",
+            "prompt_name": null,
+            "byte_perplexity": 5.667053833119858
+        },
+        {
+            "task_name": "gsarti/flores_101_tgl",
+            "prompt_name": null,
+            "bits_per_byte": 2.5025989071247237
+        },
+        {
+            "task_name": "gsarti/flores_101_fin",
+            "prompt_name": null,
+            "word_perplexity": 39405750.856214106
+        },
+        {
+            "task_name": "gsarti/flores_101_fin",
+            "prompt_name": null,
+            "byte_perplexity": 6.847047959628553
+        },
+        {
+            "task_name": "gsarti/flores_101_fin",
+            "prompt_name": null,
+            "bits_per_byte": 2.775482117713524
+        },
+        {
+            "task_name": "gsarti/flores_101_fra",
+            "prompt_name": null,
+            "word_perplexity": 83.8726646302907
+        },
+        {
+            "task_name": "gsarti/flores_101_fra",
+            "prompt_name": null,
+            "byte_perplexity": 1.9975177011840075
+        },
+        {
+            "task_name": "gsarti/flores_101_fra",
+            "prompt_name": null,
+            "bits_per_byte": 0.9982082877826558
+        },
+        {
+            "task_name": "gsarti/flores_101_ful",
+            "prompt_name": null,
+            "word_perplexity": 770932.6617637431
+        },
+        {
+            "task_name": "gsarti/flores_101_ful",
+            "prompt_name": null,
+            "byte_perplexity": 11.465912731488828
+        },
+        {
+            "task_name": "gsarti/flores_101_ful",
+            "prompt_name": null,
+            "bits_per_byte": 3.5192792985439896
+        },
+        {
+            "task_name": "gsarti/flores_101_glg",
+            "prompt_name": null,
+            "word_perplexity": 1046.7432892543627
+        },
+        {
+            "task_name": "gsarti/flores_101_glg",
+            "prompt_name": null,
+            "byte_perplexity": 3.029991089015508
+        },
+        {
+            "task_name": "gsarti/flores_101_glg",
+            "prompt_name": null,
+            "bits_per_byte": 1.5993135508427674
+        },
+        {
+            "task_name": "gsarti/flores_101_lug",
+            "prompt_name": null,
+            "word_perplexity": 15898111.401146516
+        },
+        {
+            "task_name": "gsarti/flores_101_lug",
+            "prompt_name": null,
+            "byte_perplexity": 8.483203026364786
+        },
+        {
+            "task_name": "gsarti/flores_101_lug",
+            "prompt_name": null,
+            "bits_per_byte": 3.084609089996314
+        },
+        {
+            "task_name": "gsarti/flores_101_kat",
+            "prompt_name": null,
+            "word_perplexity": 1176254460.1527395
+        },
+        {
+            "task_name": "gsarti/flores_101_kat",
+            "prompt_name": null,
+            "byte_perplexity": 2.522630524283745
+        },
+        {
+            "task_name": "gsarti/flores_101_kat",
+            "prompt_name": null,
+            "bits_per_byte": 1.3349289182375468
+        },
+        {
+            "task_name": "gsarti/flores_101_deu",
+            "prompt_name": null,
+            "word_perplexity": 3303.386624174112
+        },
+        {
+            "task_name": "gsarti/flores_101_deu",
+            "prompt_name": null,
+            "byte_perplexity": 3.1180422286591347
+        },
+        {
+            "task_name": "gsarti/flores_101_deu",
+            "prompt_name": null,
+            "bits_per_byte": 1.6406404670557635
+        },
+        {
+            "task_name": "gsarti/flores_101_ell",
+            "prompt_name": null,
+            "word_perplexity": 51519.402205470775
+        },
+        {
+            "task_name": "gsarti/flores_101_ell",
+            "prompt_name": null,
+            "byte_perplexity": 2.467943456164706
+        },
+        {
+            "task_name": "gsarti/flores_101_ell",
+            "prompt_name": null,
+            "bits_per_byte": 1.3033093408223124
+        },
+        {
+            "task_name": "gsarti/flores_101_guj",
+            "prompt_name": null,
+            "word_perplexity": 78350965803.28151
+        },
+        {
+            "task_name": "gsarti/flores_101_guj",
+            "prompt_name": null,
+            "byte_perplexity": 4.955224230286231
+        },
+        {
+            "task_name": "gsarti/flores_101_guj",
+            "prompt_name": null,
+            "bits_per_byte": 2.308950342699866
+        },
+        {
+            "task_name": "gsarti/flores_101_hau",
+            "prompt_name": null,
+            "word_perplexity": 628926.7614992795
+        },
+        {
+            "task_name": "gsarti/flores_101_hau",
+            "prompt_name": null,
+            "byte_perplexity": 10.758347356372159
+        },
+        {
+            "task_name": "gsarti/flores_101_hau",
+            "prompt_name": null,
+            "bits_per_byte": 3.427384570190265
+        },
+        {
+            "task_name": "gsarti/flores_101_heb",
+            "prompt_name": null,
+            "word_perplexity": 655025.2771295533
+        },
+        {
+            "task_name": "gsarti/flores_101_heb",
+            "prompt_name": null,
+            "byte_perplexity": 3.6004478129801667
+        },
+        {
+            "task_name": "gsarti/flores_101_heb",
+            "prompt_name": null,
+            "bits_per_byte": 1.8481763558290356
+        },
+        {
+            "task_name": "gsarti/flores_101_hin",
+            "prompt_name": null,
+            "word_perplexity": 656038614.5173899
+        },
+        {
+            "task_name": "gsarti/flores_101_hin",
+            "prompt_name": null,
+            "byte_perplexity": 4.712530650588064
+        },
+        {
+            "task_name": "gsarti/flores_101_hin",
+            "prompt_name": null,
+            "bits_per_byte": 2.23650200178875
+        },
+        {
+            "task_name": "gsarti/flores_101_hun",
+            "prompt_name": null,
+            "word_perplexity": 3487168.4330127877
+        },
+        {
+            "task_name": "gsarti/flores_101_hun",
+            "prompt_name": null,
+            "byte_perplexity": 6.440482646965992
+        },
+        {
+            "task_name": "gsarti/flores_101_hun",
+            "prompt_name": null,
+            "bits_per_byte": 2.6871688073294906
+        },
+        {
+            "task_name": "gsarti/flores_101_isl",
+            "prompt_name": null,
+            "word_perplexity": 2159270.7211763635
+        },
+        {
+            "task_name": "gsarti/flores_101_isl",
+            "prompt_name": null,
+            "byte_perplexity": 8.082349269518136
+        },
+        {
+            "task_name": "gsarti/flores_101_isl",
+            "prompt_name": null,
+            "bits_per_byte": 3.01477469729149
+        },
+        {
+            "task_name": "gsarti/flores_101_ibo",
+            "prompt_name": null,
+            "word_perplexity": 57300.3308212062
+        },
+        {
+            "task_name": "gsarti/flores_101_ibo",
+            "prompt_name": null,
+            "byte_perplexity": 5.564814003872672
+        },
+        {
+            "task_name": "gsarti/flores_101_ibo",
+            "prompt_name": null,
+            "bits_per_byte": 2.476333468308503
+        },
+        {
+            "task_name": "gsarti/flores_101_ind",
+            "prompt_name": null,
+            "word_perplexity": 246.419751375174
+        },
+        {
+            "task_name": "gsarti/flores_101_ind",
+            "prompt_name": null,
+            "byte_perplexity": 2.1597101468869373
+        },
+        {
+            "task_name": "gsarti/flores_101_ind",
+            "prompt_name": null,
+            "bits_per_byte": 1.110837702338435
+        },
+        {
+            "task_name": "gsarti/flores_101_gle",
+            "prompt_name": null,
+            "word_perplexity": 766517.7944107839
+        },
+        {
+            "task_name": "gsarti/flores_101_gle",
+            "prompt_name": null,
+            "byte_perplexity": 8.681491663539422
+        },
+        {
+            "task_name": "gsarti/flores_101_gle",
+            "prompt_name": null,
+            "bits_per_byte": 3.1179429494323765
+        },
+        {
+            "task_name": "gsarti/flores_101_ita",
+            "prompt_name": null,
+            "word_perplexity": 1114.0367822782232
+        },
+        {
+            "task_name": "gsarti/flores_101_ita",
+            "prompt_name": null,
+            "byte_perplexity": 2.9687591414176207
+        },
+        {
+            "task_name": "gsarti/flores_101_ita",
+            "prompt_name": null,
+            "bits_per_byte": 1.5698600506913902
+        },
+        {
+            "task_name": "gsarti/flores_101_jpn",
+            "prompt_name": null,
+            "word_perplexity": 5.750337767161796e+66
+        },
+        {
+            "task_name": "gsarti/flores_101_jpn",
+            "prompt_name": null,
+            "byte_perplexity": 2.7758864197116933
+        },
+        {
+            "task_name": "gsarti/flores_101_jpn",
+            "prompt_name": null,
+            "bits_per_byte": 1.4729485387119294
+        },
+        {
+            "task_name": "gsarti/flores_101_jav",
+            "prompt_name": null,
+            "word_perplexity": 653918.3302311137
+        },
+        {
+            "task_name": "gsarti/flores_101_jav",
+            "prompt_name": null,
+            "byte_perplexity": 7.0573805415708994
+        },
+        {
+            "task_name": "gsarti/flores_101_jav",
+            "prompt_name": null,
+            "bits_per_byte": 2.81913280376114
+        },
+        {
+            "task_name": "gsarti/flores_101_kea",
+            "prompt_name": null,
+            "word_perplexity": 347528.2355184941
+        },
+        {
+            "task_name": "gsarti/flores_101_kea",
+            "prompt_name": null,
+            "byte_perplexity": 8.918534182590863
+        },
+        {
+            "task_name": "gsarti/flores_101_kea",
+            "prompt_name": null,
+            "bits_per_byte": 3.1568066135893136
+        },
+        {
+            "task_name": "gsarti/flores_101_kam",
+            "prompt_name": null,
+            "word_perplexity": 3501813.3108194154
+        },
+        {
+            "task_name": "gsarti/flores_101_kam",
+            "prompt_name": null,
+            "byte_perplexity": 11.072949642861332
+        },
+        {
+            "task_name": "gsarti/flores_101_kam",
+            "prompt_name": null,
+            "bits_per_byte": 3.4689676772860354
+        },
+        {
+            "task_name": "gsarti/flores_101_kan",
+            "prompt_name": null,
+            "word_perplexity": 1.7611472084642624e+17
+        },
+        {
+            "task_name": "gsarti/flores_101_kan",
+            "prompt_name": null,
+            "byte_perplexity": 5.551730651007082
+        },
+        {
+            "task_name": "gsarti/flores_101_kan",
+            "prompt_name": null,
+            "bits_per_byte": 2.4729375755021574
+        },
+        {
+            "task_name": "gsarti/flores_101_kaz",
+            "prompt_name": null,
+            "word_perplexity": 38748720.52581719
+        },
+        {
+            "task_name": "gsarti/flores_101_kaz",
+            "prompt_name": null,
+            "byte_perplexity": 3.3901748516975574
+        },
+        {
+            "task_name": "gsarti/flores_101_kaz",
+            "prompt_name": null,
+            "bits_per_byte": 1.7613596837367294
+        }
+    ],
+    "versions": {
+        "tydiqa_primary+en_after_reading_the_text": 0,
+        "tydiqa_primary+en_based_on_the_text": 0,
+        "tydiqa_primary+en_heres_what_I_found": 0,
+        "tydiqa_primary+en_open_domain_qa": 0,
+        "tydiqa_primary+en_open_domain_qa_without_choices": 0,
+        "tydiqa_primary+en_read_and_answer": 0,
+        "tydiqa_primary+en_yes_no_none": 0,
+        "tydiqa_primary+en_yes_no_question": 0,
+        "tydiqa_primary+id_after_reading_the_text": 0,
+        "tydiqa_primary+id_based_on_the_text": 0,
+        "tydiqa_primary+id_heres_what_I_found": 0,
+        "tydiqa_primary+id_open_domain_qa": 0,
+        "tydiqa_primary+id_open_domain_qa_without_choices": 0,
+        "tydiqa_primary+id_read_and_answer": 0,
+        "tydiqa_primary+id_yes_no_none": 0,
+        "tydiqa_primary+id_yes_no_question": 0,
+        "tydiqa_primary+jp_after_reading_the_text": 0,
+        "tydiqa_primary+jp_based_on_the_text": 0,
+        "tydiqa_primary+jp_heres_what_I_found": 0,
+        "tydiqa_primary+jp_open_domain_qa": 0,
+        "tydiqa_primary+jp_open_domain_qa_without_choices": 0,
+        "tydiqa_primary+jp_read_and_answer": 0,
+        "tydiqa_primary+jp_yes_no_none": 0,
+        "tydiqa_primary+jp_yes_no_question": 0,
+        "wic+GPT-3-prompt": 0,
+        "wic+GPT-3-prompt-with-label": 0,
+        "wic+affirmation_true_or_false": 0,
+        "wic+grammar_homework": 0,
+        "wic+polysemous": 0,
+        "wic+question-context": 0,
+        "wic+question-context-meaning": 0,
+        "wic+question-context-meaning-with-label": 0,
+        "wic+same_sense": 0,
+        "wic+similar-sense": 0,
+        "wsc+GPT-3 Style": 0,
+        "wsc+I think they mean": 0,
+        "wsc+Who or what is/are": 0,
+        "wsc+by p they mean": 0,
+        "wsc+does p stand for": 0,
+        "wsc+does the pronoun refer to": 0,
+        "wsc+in other words": 0,
+        "wsc+p is/are r": 0,
+        "wsc+replaced with": 0,
+        "wsc+the pronoun refers to": 0,
+        "wnli+confident": 1,
+        "wnli+entailment explained": 1,
+        "wnli+imply": 1,
+        "wnli+justified": 1,
+        "wnli+mean": 1,
+        "gsarti/flores_101_afr+null": 0,
+        "gsarti/flores_101_amh+null": 0,
+        "gsarti/flores_101_ara+null": 0,
+        "gsarti/flores_101_hye+null": 0,
+        "gsarti/flores_101_asm+null": 0,
+        "gsarti/flores_101_ast+null": 0,
+        "gsarti/flores_101_azj+null": 0,
+        "gsarti/flores_101_bel+null": 0,
+        "gsarti/flores_101_ben+null": 0,
+        "gsarti/flores_101_bos+null": 0,
+        "gsarti/flores_101_bul+null": 0,
+        "gsarti/flores_101_mya+null": 0,
+        "gsarti/flores_101_cat+null": 0,
+        "gsarti/flores_101_ceb+null": 0,
+        "gsarti/flores_101_zho_simpl+null": 0,
+        "gsarti/flores_101_zho_trad+null": 0,
+        "gsarti/flores_101_hrv+null": 0,
+        "gsarti/flores_101_ces+null": 0,
+        "gsarti/flores_101_dan+null": 0,
+        "gsarti/flores_101_nld+null": 0,
+        "gsarti/flores_101_eng+null": 0,
+        "gsarti/flores_101_est+null": 0,
+        "gsarti/flores_101_tgl+null": 0,
+        "gsarti/flores_101_fin+null": 0,
+        "gsarti/flores_101_fra+null": 0,
+        "gsarti/flores_101_ful+null": 0,
+        "gsarti/flores_101_glg+null": 0,
+        "gsarti/flores_101_lug+null": 0,
+        "gsarti/flores_101_kat+null": 0,
+        "gsarti/flores_101_deu+null": 0,
+        "gsarti/flores_101_ell+null": 0,
+        "gsarti/flores_101_guj+null": 0,
+        "gsarti/flores_101_hau+null": 0,
+        "gsarti/flores_101_heb+null": 0,
+        "gsarti/flores_101_hin+null": 0,
+        "gsarti/flores_101_hun+null": 0,
+        "gsarti/flores_101_isl+null": 0,
+        "gsarti/flores_101_ibo+null": 0,
+        "gsarti/flores_101_ind+null": 0,
+        "gsarti/flores_101_gle+null": 0,
+        "gsarti/flores_101_ita+null": 0,
+        "gsarti/flores_101_jpn+null": 0,
+        "gsarti/flores_101_jav+null": 0,
+        "gsarti/flores_101_kea+null": 0,
+        "gsarti/flores_101_kam+null": 0,
+        "gsarti/flores_101_kan+null": 0,
+        "gsarti/flores_101_kaz+null": 0
+    },
+    "table_results": {
+        "tydiqa_primary+en_after_reading_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_after_reading_the_text",
+            "acc": 0.35064935064935066,
+            "acc_stderr": 0.054735534443086,
+            "acc_norm": 0.6493506493506493,
+            "acc_norm_stderr": 0.054735534443086
+        },
+        "tydiqa_primary+en_based_on_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_based_on_the_text",
+            "acc": 0.33766233766233766,
+            "acc_stderr": 0.05424681453014242,
+            "acc_norm": 0.6363636363636364,
+            "acc_norm_stderr": 0.055179725333353066
+        },
+        "tydiqa_primary+en_heres_what_I_found": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_heres_what_I_found",
+            "acc": 0.03685741998060136,
+            "acc_stderr": 0.005870689955728106,
+            "acc_norm": 0.8661493695441319,
+            "acc_norm_stderr": 0.010609330898735572
+        },
+        "tydiqa_primary+en_open_domain_qa": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa",
+            "acc": 0.6753246753246753,
+            "acc_stderr": 0.05371235012133188,
+            "acc_norm": 0.6753246753246753,
+            "acc_norm_stderr": 0.05371235012133188
+        },
+        "tydiqa_primary+en_open_domain_qa_without_choices": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_open_domain_qa_without_choices",
+            "acc": 0.6753246753246753,
+            "acc_stderr": 0.05371235012133188,
+            "acc_norm": 0.6753246753246753,
+            "acc_norm_stderr": 0.05371235012133188
+        },
+        "tydiqa_primary+en_read_and_answer": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_read_and_answer",
+            "acc": 0.03685741998060136,
+            "acc_stderr": 0.005870689955728103,
+            "acc_norm": 0.8845780795344326,
+            "acc_norm_stderr": 0.009956200231519313
+        },
+        "tydiqa_primary+en_yes_no_none": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_none",
+            "acc": 0.037827352085354024,
+            "acc_stderr": 0.005944438823944305,
+            "acc_norm": 0.871968962172648,
+            "acc_norm_stderr": 0.01041093017771443
+        },
+        "tydiqa_primary+en_yes_no_question": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "en_yes_no_question",
+            "acc": 0.7652764306498545,
+            "acc_stderr": 0.013205927447521368,
+            "acc_norm": 0.07565470417070805,
+            "acc_norm_stderr": 0.008239796273494257
+        },
+        "tydiqa_primary+id_after_reading_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_after_reading_the_text",
+            "acc": 0.2711864406779661,
+            "acc_stderr": 0.058375177038848765,
+            "acc_norm": 0.2033898305084746,
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        "tydiqa_primary+id_based_on_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_based_on_the_text",
+            "acc": 0.23728813559322035,
+            "acc_stderr": 0.05586042894941199,
+            "acc_norm": 0.2033898305084746,
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        "tydiqa_primary+id_heres_what_I_found": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_heres_what_I_found",
+            "acc": 0.007202216066481994,
+            "acc_stderr": 0.001990880560147875,
+            "acc_norm": 0.9662049861495845,
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        "tydiqa_primary+id_open_domain_qa": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa",
+            "acc": 0.4576271186440678,
+            "acc_stderr": 0.06541703602400106,
+            "acc_norm": 0.2033898305084746,
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        "tydiqa_primary+id_open_domain_qa_without_choices": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_open_domain_qa_without_choices",
+            "acc": 0.2711864406779661,
+            "acc_stderr": 0.05837517703884878,
+            "acc_norm": 0.2033898305084746,
+            "acc_norm_stderr": 0.052853474644238056
+        },
+        "tydiqa_primary+id_read_and_answer": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_read_and_answer",
+            "acc": 0.007202216066481994,
+            "acc_stderr": 0.0019908805601478756,
+            "acc_norm": 0.9662049861495845,
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        "tydiqa_primary+id_yes_no_none": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_none",
+            "acc": 0.008310249307479225,
+            "acc_stderr": 0.002137355052582956,
+            "acc_norm": 0.9662049861495845,
+            "acc_norm_stderr": 0.0042544427599910594
+        },
+        "tydiqa_primary+id_yes_no_question": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "id_yes_no_question",
+            "acc": 0.8138504155124654,
+            "acc_stderr": 0.009163999646097152,
+            "acc_norm": 0.9673130193905817,
+            "acc_norm_stderr": 0.0041865150102794995
+        },
+        "tydiqa_primary+jp_after_reading_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_after_reading_the_text",
+            "acc": 0.7635135135135135,
+            "acc_stderr": 0.03504716241250439,
+            "acc_norm": 0.2972972972972973,
+            "acc_norm_stderr": 0.037698374558241474
+        },
+        "tydiqa_primary+jp_based_on_the_text": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_based_on_the_text",
+            "acc": 0.7635135135135135,
+            "acc_stderr": 0.03504716241250439,
+            "acc_norm": 0.2905405405405405,
+            "acc_norm_stderr": 0.03744626397928733
+        },
+        "tydiqa_primary+jp_heres_what_I_found": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_heres_what_I_found",
+            "acc": 0.15330602691632533,
+            "acc_stderr": 0.008717639693136726,
+            "acc_norm": 0.9133996489174956,
+            "acc_norm_stderr": 0.006805284929468163
+        },
+        "tydiqa_primary+jp_open_domain_qa": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_open_domain_qa",
+            "acc": 1.0,
+            "acc_stderr": 0.0,
+            "acc_norm": 1.0,
+            "acc_norm_stderr": 0.0
+        },
+        "tydiqa_primary+jp_open_domain_qa_without_choices": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_open_domain_qa_without_choices",
+            "acc": 0.3310810810810811,
+            "acc_stderr": 0.03881461247660828,
+            "acc_norm": 0.22297297297297297,
+            "acc_norm_stderr": 0.03433092518104002
+        },
+        "tydiqa_primary+jp_read_and_answer": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_read_and_answer",
+            "acc": 0.1743709771796372,
+            "acc_stderr": 0.009180908160252244,
+            "acc_norm": 0.9133996489174956,
+            "acc_norm_stderr": 0.006805284929468163
+        },
+        "tydiqa_primary+jp_yes_no_none": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_yes_no_none",
+            "acc": 0.0684610883557636,
+            "acc_stderr": 0.006110524175614192,
+            "acc_norm": 0.9133996489174956,
+            "acc_norm_stderr": 0.006805284929468163
+        },
+        "tydiqa_primary+jp_yes_no_question": {
+            "task_name": "tydiqa_primary",
+            "prompt_name": "jp_yes_no_question",
+            "acc": 0.9133996489174956,
+            "acc_stderr": 0.006805284929468163,
+            "acc_norm": 0.9133996489174956,
+            "acc_norm_stderr": 0.006805284929468163
+        },
+        "wic+GPT-3-prompt": {
+            "task_name": "wic",
+            "prompt_name": "GPT-3-prompt",
+            "acc": 0.5031347962382445,
+            "acc_stderr": 0.019810331932097542,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        "wic+GPT-3-prompt-with-label": {
+            "task_name": "wic",
+            "prompt_name": "GPT-3-prompt-with-label",
+            "acc": 0.5015673981191222,
+            "acc_stderr": 0.019810623954060382,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        "wic+affirmation_true_or_false": {
+            "task_name": "wic",
+            "prompt_name": "affirmation_true_or_false",
+            "acc": 0.5,
+            "acc_stderr": 0.01981072129375818,
+            "acc_norm": 0.4952978056426332,
+            "acc_norm_stderr": 0.01980984521925977
+        },
+        "wic+grammar_homework": {
+            "task_name": "wic",
+            "prompt_name": "grammar_homework",
+            "acc": 0.5015673981191222,
+            "acc_stderr": 0.019810623954060382,
+            "acc_norm": 0.5015673981191222,
+            "acc_norm_stderr": 0.019810623954060382
+        },
+        "wic+polysemous": {
+            "task_name": "wic",
+            "prompt_name": "polysemous",
+            "acc": 0.512539184952978,
+            "acc_stderr": 0.019804490588592582,
+            "acc_norm": 0.5015673981191222,
+            "acc_norm_stderr": 0.019810623954060382
+        },
+        "wic+question-context": {
+            "task_name": "wic",
+            "prompt_name": "question-context",
+            "acc": 0.5015673981191222,
+            "acc_stderr": 0.019810623954060382,
+            "acc_norm": 0.5047021943573667,
+            "acc_norm_stderr": 0.019809845219259763
+        },
+        "wic+question-context-meaning": {
+            "task_name": "wic",
+            "prompt_name": "question-context-meaning",
+            "acc": 0.5062695924764891,
+            "acc_stderr": 0.019809163801196517,
+            "acc_norm": 0.49843260188087773,
+            "acc_norm_stderr": 0.019810623954060382
+        },
+        "wic+question-context-meaning-with-label": {
+            "task_name": "wic",
+            "prompt_name": "question-context-meaning-with-label",
+            "acc": 0.5360501567398119,
+            "acc_stderr": 0.019759161625189245,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        "wic+same_sense": {
+            "task_name": "wic",
+            "prompt_name": "same_sense",
+            "acc": 0.5,
+            "acc_stderr": 0.01981072129375818,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        "wic+similar-sense": {
+            "task_name": "wic",
+            "prompt_name": "similar-sense",
+            "acc": 0.5172413793103449,
+            "acc_stderr": 0.019798939715972977,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.01981072129375818
+        },
+        "wsc+GPT-3 Style": {
+            "task_name": "wsc",
+            "prompt_name": "GPT-3 Style",
+            "acc": 0.6346153846153846,
+            "acc_stderr": 0.0474473339327792,
+            "acc_norm": 0.38461538461538464,
+            "acc_norm_stderr": 0.047936688680750406
+        },
+        "wsc+I think they mean": {
+            "task_name": "wsc",
+            "prompt_name": "I think they mean",
+            "acc": 0.4423076923076923,
+            "acc_stderr": 0.04893740777700999,
+            "acc_norm": 0.36538461538461536,
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        "wsc+Who or what is/are": {
+            "task_name": "wsc",
+            "prompt_name": "Who or what is/are",
+            "acc": 0.5769230769230769,
+            "acc_stderr": 0.048679937479186836,
+            "acc_norm": 0.36538461538461536,
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        "wsc+by p they mean": {
+            "task_name": "wsc",
+            "prompt_name": "by p they mean",
+            "acc": 0.41346153846153844,
+            "acc_stderr": 0.04852294969729053,
+            "acc_norm": 0.36538461538461536,
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        "wsc+does p stand for": {
+            "task_name": "wsc",
+            "prompt_name": "does p stand for",
+            "acc": 0.6153846153846154,
+            "acc_stderr": 0.0479366886807504,
+            "acc_norm": 0.36538461538461536,
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        "wsc+does the pronoun refer to": {
+            "task_name": "wsc",
+            "prompt_name": "does the pronoun refer to",
+            "acc": 0.4807692307692308,
+            "acc_stderr": 0.049230010729780505,
+            "acc_norm": 0.36538461538461536,
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        "wsc+in other words": {
+            "task_name": "wsc",
+            "prompt_name": "in other words",
+            "acc": 0.36538461538461536,
+            "acc_stderr": 0.0474473339327792,
+            "acc_norm": 0.4519230769230769,
+            "acc_norm_stderr": 0.049038186969314335
+        },
+        "wsc+p is/are r": {
+            "task_name": "wsc",
+            "prompt_name": "p is/are r",
+            "acc": 0.36538461538461536,
+            "acc_stderr": 0.0474473339327792,
+            "acc_norm": 0.40384615384615385,
+            "acc_norm_stderr": 0.04834688952654018
+        },
+        "wsc+replaced with": {
+            "task_name": "wsc",
+            "prompt_name": "replaced with",
+            "acc": 0.46153846153846156,
+            "acc_stderr": 0.04912048887947828,
+            "acc_norm": 0.36538461538461536,
+            "acc_norm_stderr": 0.0474473339327792
+        },
+        "wsc+the pronoun refers to": {
+            "task_name": "wsc",
+            "prompt_name": "the pronoun refers to",
+            "acc": 0.36538461538461536,
+            "acc_stderr": 0.0474473339327792,
+            "acc_norm": 0.38461538461538464,
+            "acc_norm_stderr": 0.047936688680750406
+        },
+        "wnli+confident": {
+            "task_name": "wnli",
+            "prompt_name": "confident",
+            "acc": 0.43661971830985913,
+            "acc_stderr": 0.0592793555841297,
+            "acc_norm": 0.43661971830985913,
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        "wnli+entailment explained": {
+            "task_name": "wnli",
+            "prompt_name": "entailment explained",
+            "acc": 0.49295774647887325,
+            "acc_stderr": 0.05975550263548289,
+            "acc_norm": 0.43661971830985913,
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        "wnli+imply": {
+            "task_name": "wnli",
+            "prompt_name": "imply",
+            "acc": 0.5211267605633803,
+            "acc_stderr": 0.059708058798995024,
+            "acc_norm": 0.43661971830985913,
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        "wnli+justified": {
+            "task_name": "wnli",
+            "prompt_name": "justified",
+            "acc": 0.4225352112676056,
+            "acc_stderr": 0.05903984205682581,
+            "acc_norm": 0.43661971830985913,
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        "wnli+mean": {
+            "task_name": "wnli",
+            "prompt_name": "mean",
+            "acc": 0.5633802816901409,
+            "acc_stderr": 0.0592793555841297,
+            "acc_norm": 0.43661971830985913,
+            "acc_norm_stderr": 0.0592793555841297
+        },
+        "gsarti/flores_101_afr+null": {
+            "task_name": "gsarti/flores_101_afr",
+            "prompt_name": "null",
+            "word_perplexity": 85235.19367887951,
+            "byte_perplexity": 6.500798737976343,
+            "bits_per_byte": 2.7006169896060404
+        },
+        "gsarti/flores_101_amh+null": {
+            "task_name": "gsarti/flores_101_amh",
+            "prompt_name": "null",
+            "word_perplexity": 55713444.65495123,
+            "byte_perplexity": 3.9726863338897145,
+            "bits_per_byte": 1.9901148889694242
+        },
+        "gsarti/flores_101_ara+null": {
+            "task_name": "gsarti/flores_101_ara",
+            "prompt_name": "null",
+            "word_perplexity": 560.6696588565998,
+            "byte_perplexity": 1.8083841089875814,
+            "bits_per_byte": 0.8547011452725499
+        },
+        "gsarti/flores_101_hye+null": {
+            "task_name": "gsarti/flores_101_hye",
+            "prompt_name": "null",
+            "word_perplexity": 70633577.33991678,
+            "byte_perplexity": 3.657718918347166,
+            "bits_per_byte": 1.8709442137724226
+        },
+        "gsarti/flores_101_asm+null": {
+            "task_name": "gsarti/flores_101_asm",
+            "prompt_name": "null",
+            "word_perplexity": 12636385444578.451,
+            "byte_perplexity": 5.699102962086425,
+            "bits_per_byte": 2.5107348571732158
+        },
+        "gsarti/flores_101_ast+null": {
+            "task_name": "gsarti/flores_101_ast",
+            "prompt_name": "null",
+            "word_perplexity": 6309.878600095261,
+            "byte_perplexity": 3.9252047073429384,
+            "bits_per_byte": 1.9727678954226908
+        },
+        "gsarti/flores_101_azj+null": {
+            "task_name": "gsarti/flores_101_azj",
+            "prompt_name": "null",
+            "word_perplexity": 18943806.634796362,
+            "byte_perplexity": 6.942805054270002,
+            "bits_per_byte": 2.79551866284193
+        },
+        "gsarti/flores_101_bel+null": {
+            "task_name": "gsarti/flores_101_bel",
+            "prompt_name": "null",
+            "word_perplexity": 13910215.83904608,
+            "byte_perplexity": 3.614136245847082,
+            "bits_per_byte": 1.8536508940007679
+        },
+        "gsarti/flores_101_ben+null": {
+            "task_name": "gsarti/flores_101_ben",
+            "prompt_name": "null",
+            "word_perplexity": 2918741696357.8086,
+            "byte_perplexity": 5.121491534300969,
+            "bits_per_byte": 2.3565640281490667
+        },
+        "gsarti/flores_101_bos+null": {
+            "task_name": "gsarti/flores_101_bos",
+            "prompt_name": "null",
+            "word_perplexity": 106372.42755582671,
+            "byte_perplexity": 5.653353469118798,
+            "bits_per_byte": 2.4991069025837276
+        },
+        "gsarti/flores_101_bul+null": {
+            "task_name": "gsarti/flores_101_bul",
+            "prompt_name": "null",
+            "word_perplexity": 102416.43191883583,
+            "byte_perplexity": 2.7014693938055068,
+            "bits_per_byte": 1.433744337099477
+        },
+        "gsarti/flores_101_mya+null": {
+            "task_name": "gsarti/flores_101_mya",
+            "prompt_name": "null",
+            "word_perplexity": 8.32988509119671e+16,
+            "byte_perplexity": 2.413577969878331,
+            "bits_per_byte": 1.2711734333455413
+        },
+        "gsarti/flores_101_cat+null": {
+            "task_name": "gsarti/flores_101_cat",
+            "prompt_name": "null",
+            "word_perplexity": 156.11743040388885,
+            "byte_perplexity": 2.305190041967345,
+            "bits_per_byte": 1.2048856926511506
+        },
+        "gsarti/flores_101_ceb+null": {
+            "task_name": "gsarti/flores_101_ceb",
+            "prompt_name": "null",
+            "word_perplexity": 65136.707286125806,
+            "byte_perplexity": 6.291000321323428,
+            "bits_per_byte": 2.6532894358437407
+        },
+        "gsarti/flores_101_zho_simpl+null": {
+            "task_name": "gsarti/flores_101_zho_simpl",
+            "prompt_name": "null",
+            "word_perplexity": 3.3824709197567466e+20,
+            "byte_perplexity": 2.2769070822768533,
+            "bits_per_byte": 1.1870754181000942
+        },
+        "gsarti/flores_101_zho_trad+null": {
+            "task_name": "gsarti/flores_101_zho_trad",
+            "prompt_name": "null",
+            "word_perplexity": 1.3713322787636808e+24,
+            "byte_perplexity": 2.5180582198242383,
+            "bits_per_byte": 1.3323116398800825
+        },
+        "gsarti/flores_101_hrv+null": {
+            "task_name": "gsarti/flores_101_hrv",
+            "prompt_name": "null",
+            "word_perplexity": 145578.72858233206,
+            "byte_perplexity": 5.822418943372185,
+            "bits_per_byte": 2.5416186501409137
+        },
+        "gsarti/flores_101_ces+null": {
+            "task_name": "gsarti/flores_101_ces",
+            "prompt_name": "null",
+            "word_perplexity": 263164.5309136012,
+            "byte_perplexity": 5.447322753586386,
+            "bits_per_byte": 2.4455473493160125
+        },
+        "gsarti/flores_101_dan+null": {
+            "task_name": "gsarti/flores_101_dan",
+            "prompt_name": "null",
+            "word_perplexity": 35849.16532970031,
+            "byte_perplexity": 5.183309001005672,
+            "bits_per_byte": 2.3738734020055223
+        },
+        "gsarti/flores_101_nld+null": {
+            "task_name": "gsarti/flores_101_nld",
+            "prompt_name": "null",
+            "word_perplexity": 7697.768358497185,
+            "byte_perplexity": 4.127831721885065,
+            "bits_per_byte": 2.0453841580309375
+        },
+        "gsarti/flores_101_eng+null": {
+            "task_name": "gsarti/flores_101_eng",
+            "prompt_name": "null",
+            "word_perplexity": 66.70590833061453,
+            "byte_perplexity": 2.018740628193298,
+            "bits_per_byte": 1.013455562250928
+        },
+        "gsarti/flores_101_est+null": {
+            "task_name": "gsarti/flores_101_est",
+            "prompt_name": "null",
+            "word_perplexity": 40122625.72726358,
+            "byte_perplexity": 9.11654425176368,
+            "bits_per_byte": 3.188487055130014
+        },
+        "gsarti/flores_101_tgl+null": {
+            "task_name": "gsarti/flores_101_tgl",
+            "prompt_name": "null",
+            "word_perplexity": 47356.58757292501,
+            "byte_perplexity": 5.667053833119858,
+            "bits_per_byte": 2.5025989071247237
+        },
+        "gsarti/flores_101_fin+null": {
+            "task_name": "gsarti/flores_101_fin",
+            "prompt_name": "null",
+            "word_perplexity": 39405750.856214106,
+            "byte_perplexity": 6.847047959628553,
+            "bits_per_byte": 2.775482117713524
+        },
+        "gsarti/flores_101_fra+null": {
+            "task_name": "gsarti/flores_101_fra",
+            "prompt_name": "null",
+            "word_perplexity": 83.8726646302907,
+            "byte_perplexity": 1.9975177011840075,
+            "bits_per_byte": 0.9982082877826558
+        },
+        "gsarti/flores_101_ful+null": {
+            "task_name": "gsarti/flores_101_ful",
+            "prompt_name": "null",
+            "word_perplexity": 770932.6617637431,
+            "byte_perplexity": 11.465912731488828,
+            "bits_per_byte": 3.5192792985439896
+        },
+        "gsarti/flores_101_glg+null": {
+            "task_name": "gsarti/flores_101_glg",
+            "prompt_name": "null",
+            "word_perplexity": 1046.7432892543627,
+            "byte_perplexity": 3.029991089015508,
+            "bits_per_byte": 1.5993135508427674
+        },
+        "gsarti/flores_101_lug+null": {
+            "task_name": "gsarti/flores_101_lug",
+            "prompt_name": "null",
+            "word_perplexity": 15898111.401146516,
+            "byte_perplexity": 8.483203026364786,
+            "bits_per_byte": 3.084609089996314
+        },
+        "gsarti/flores_101_kat+null": {
+            "task_name": "gsarti/flores_101_kat",
+            "prompt_name": "null",
+            "word_perplexity": 1176254460.1527395,
+            "byte_perplexity": 2.522630524283745,
+            "bits_per_byte": 1.3349289182375468
+        },
+        "gsarti/flores_101_deu+null": {
+            "task_name": "gsarti/flores_101_deu",
+            "prompt_name": "null",
+            "word_perplexity": 3303.386624174112,
+            "byte_perplexity": 3.1180422286591347,
+            "bits_per_byte": 1.6406404670557635
+        },
+        "gsarti/flores_101_ell+null": {
+            "task_name": "gsarti/flores_101_ell",
+            "prompt_name": "null",
+            "word_perplexity": 51519.402205470775,
+            "byte_perplexity": 2.467943456164706,
+            "bits_per_byte": 1.3033093408223124
+        },
+        "gsarti/flores_101_guj+null": {
+            "task_name": "gsarti/flores_101_guj",
+            "prompt_name": "null",
+            "word_perplexity": 78350965803.28151,
+            "byte_perplexity": 4.955224230286231,
+            "bits_per_byte": 2.308950342699866
+        },
+        "gsarti/flores_101_hau+null": {
+            "task_name": "gsarti/flores_101_hau",
+            "prompt_name": "null",
+            "word_perplexity": 628926.7614992795,
+            "byte_perplexity": 10.758347356372159,
+            "bits_per_byte": 3.427384570190265
+        },
+        "gsarti/flores_101_heb+null": {
+            "task_name": "gsarti/flores_101_heb",
+            "prompt_name": "null",
+            "word_perplexity": 655025.2771295533,
+            "byte_perplexity": 3.6004478129801667,
+            "bits_per_byte": 1.8481763558290356
+        },
+        "gsarti/flores_101_hin+null": {
+            "task_name": "gsarti/flores_101_hin",
+            "prompt_name": "null",
+            "word_perplexity": 656038614.5173899,
+            "byte_perplexity": 4.712530650588064,
+            "bits_per_byte": 2.23650200178875
+        },
+        "gsarti/flores_101_hun+null": {
+            "task_name": "gsarti/flores_101_hun",
+            "prompt_name": "null",
+            "word_perplexity": 3487168.4330127877,
+            "byte_perplexity": 6.440482646965992,
+            "bits_per_byte": 2.6871688073294906
+        },
+        "gsarti/flores_101_isl+null": {
+            "task_name": "gsarti/flores_101_isl",
+            "prompt_name": "null",
+            "word_perplexity": 2159270.7211763635,
+            "byte_perplexity": 8.082349269518136,
+            "bits_per_byte": 3.01477469729149
+        },
+        "gsarti/flores_101_ibo+null": {
+            "task_name": "gsarti/flores_101_ibo",
+            "prompt_name": "null",
+            "word_perplexity": 57300.3308212062,
+            "byte_perplexity": 5.564814003872672,
+            "bits_per_byte": 2.476333468308503
+        },
+        "gsarti/flores_101_ind+null": {
+            "task_name": "gsarti/flores_101_ind",
+            "prompt_name": "null",
+            "word_perplexity": 246.419751375174,
+            "byte_perplexity": 2.1597101468869373,
+            "bits_per_byte": 1.110837702338435
+        },
+        "gsarti/flores_101_gle+null": {
+            "task_name": "gsarti/flores_101_gle",
+            "prompt_name": "null",
+            "word_perplexity": 766517.7944107839,
+            "byte_perplexity": 8.681491663539422,
+            "bits_per_byte": 3.1179429494323765
+        },
+        "gsarti/flores_101_ita+null": {
+            "task_name": "gsarti/flores_101_ita",
+            "prompt_name": "null",
+            "word_perplexity": 1114.0367822782232,
+            "byte_perplexity": 2.9687591414176207,
+            "bits_per_byte": 1.5698600506913902
+        },
+        "gsarti/flores_101_jpn+null": {
+            "task_name": "gsarti/flores_101_jpn",
+            "prompt_name": "null",
+            "word_perplexity": 5.750337767161796e+66,
+            "byte_perplexity": 2.7758864197116933,
+            "bits_per_byte": 1.4729485387119294
+        },
+        "gsarti/flores_101_jav+null": {
+            "task_name": "gsarti/flores_101_jav",
+            "prompt_name": "null",
+            "word_perplexity": 653918.3302311137,
+            "byte_perplexity": 7.0573805415708994,
+            "bits_per_byte": 2.81913280376114
+        },
+        "gsarti/flores_101_kea+null": {
+            "task_name": "gsarti/flores_101_kea",
+            "prompt_name": "null",
+            "word_perplexity": 347528.2355184941,
+            "byte_perplexity": 8.918534182590863,
+            "bits_per_byte": 3.1568066135893136
+        },
+        "gsarti/flores_101_kam+null": {
+            "task_name": "gsarti/flores_101_kam",
+            "prompt_name": "null",
+            "word_perplexity": 3501813.3108194154,
+            "byte_perplexity": 11.072949642861332,
+            "bits_per_byte": 3.4689676772860354
+        },
+        "gsarti/flores_101_kan+null": {
+            "task_name": "gsarti/flores_101_kan",
+            "prompt_name": "null",
+            "word_perplexity": 1.7611472084642624e+17,
+            "byte_perplexity": 5.551730651007082,
+            "bits_per_byte": 2.4729375755021574
+        },
+        "gsarti/flores_101_kaz+null": {
+            "task_name": "gsarti/flores_101_kaz",
+            "prompt_name": "null",
+            "word_perplexity": 38748720.52581719,
+            "byte_perplexity": 3.3901748516975574,
+            "bits_per_byte": 1.7613596837367294
+        }
+    },
+    "config": {
+        "adaptive_seq_len": true,
+        "num_fewshot": 0,
+        "bootstrap_iters": 100000
+    }
+}
