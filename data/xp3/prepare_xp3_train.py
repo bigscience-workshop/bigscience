@@ -10,7 +10,7 @@ from iso639 import languages
 from promptsource.templates import DatasetTemplates
 
 # Set to False to use multilingual prompts e.g. 'id' for xcopa/id instead of 'en'
-USE_ENGLISH_PROMPTS = False
+USE_ENGLISH_PROMPTS = True
 
 MAX_EXAMPLES_PER_DATASET_PROMPT = 100_000
 
@@ -116,7 +116,7 @@ EVAL_DATASETS_L1 = [
     # ("multi_eurlex", "all_languages")
 ]
 
-ADD_TRAIN_DATASETS_L1_BLOOMZZ = [
+ADD_TRAIN_DATASETS_L1_XP3ALL = [
     ('super_glue','wsc.fixed'),
     ('winogrande','winogrande_xl'),
     ('story_cloze', '2016'),
@@ -1188,7 +1188,7 @@ def write_to_jsonl_hub(ds, split="train"):
 #    write_to_jsonl_hub(ds, split="train")
 
 with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
-    #pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
-    #pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
-    pool.map(partial(write_to_jsonl_hub, split="train"), ADD_TRAIN_DATASETS_L1_BLOOMZZ)
-    pool.map(partial(write_to_jsonl_hub, split="validation"), ADD_TRAIN_DATASETS_L1_BLOOMZZ)
+    pool.map(partial(write_to_jsonl_hub, split="train"), TRAIN_DATASETS)
+    pool.map(partial(write_to_jsonl_hub, split="validation"), TRAIN_DATASETS)
+    #pool.map(partial(write_to_jsonl_hub, split="train"), ADD_TRAIN_DATASETS_L1_XP3ALL)
+    #pool.map(partial(write_to_jsonl_hub, split="validation"), ADD_TRAIN_DATASETS_L1_XP3ALL)
