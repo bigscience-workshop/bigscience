@@ -1,0 +1,701 @@
+{
+    "results": [
+        {
+            "task_name": "qqp",
+            "prompt_name": "answer",
+            "acc": 0.40558990848379917,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "c0182cd1-c7ac-4abe-829f-4651536af951",
+            "prompt_jinja": "Can an answer to \"{{question1}}\" also be used to answer \"{{question2}}\"? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_stderr": 0.002441969063495092
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "answer",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "c0182cd1-c7ac-4abe-829f-4651536af951",
+            "prompt_jinja": "Can an answer to \"{{question1}}\" also be used to answer \"{{question2}}\"? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": false,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "duplicate",
+            "acc": 0.3788523373732377,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "fd244bd3-ca3b-4e4f-9722-fd006c50e157",
+            "prompt_jinja": "I received the questions \"{{question1}}\" and \"{{question2}}\". Are they duplicates? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.002412603277723025
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "duplicate",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "fd244bd3-ca3b-4e4f-9722-fd006c50e157",
+            "prompt_jinja": "I received the questions \"{{question1}}\" and \"{{question2}}\". Are they duplicates? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "duplicate or not",
+            "acc": 0.5761315854563444,
+            "fixed_answer_choice_list": [
+                "not duplicates",
+                "duplicates"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "94972071-a726-42a3-a726-13f414b65e67",
+            "prompt_jinja": "{{question1}}\n{{question2}}\nPick one: These questions are \"{{\"duplicates\"}}\" or \"{{\"not duplicates\"}}\".\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0024577056660753426
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "duplicate or not",
+            "acc_norm": 0.6318327974276527,
+            "fixed_answer_choice_list": [
+                "not duplicates",
+                "duplicates"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "94972071-a726-42a3-a726-13f414b65e67",
+            "prompt_jinja": "{{question1}}\n{{question2}}\nPick one: These questions are \"{{\"duplicates\"}}\" or \"{{\"not duplicates\"}}\".\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "meaning",
+            "acc": 0.3681424684640119,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "c0724198-97e7-44a1-89d8-c51e97ce0b04",
+            "prompt_jinja": "Question 1: {{question1}}\nQuestion 2: {{question2}}\n\nDo these two questions convey the same meaning? Yes or no? ||| {{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0023986729832071916
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "meaning",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "c0724198-97e7-44a1-89d8-c51e97ce0b04",
+            "prompt_jinja": "Question 1: {{question1}}\nQuestion 2: {{question2}}\n\nDo these two questions convey the same meaning? Yes or no? ||| {{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "quora",
+            "acc": 0.36821667078901804,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "8e711799-a57c-4941-833b-466bedfb80ad",
+            "prompt_jinja": "I'm an administrator on the website Quora. There are two posts, one that asks \"{{question1}}\" and another that asks \"{{question2}}\". I can merge questions if they are asking the same thing. Can I merge these two questions? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0023987738450886556
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "quora",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "8e711799-a57c-4941-833b-466bedfb80ad",
+            "prompt_jinja": "I'm an administrator on the website Quora. There are two posts, one that asks \"{{question1}}\" and another that asks \"{{question2}}\". I can merge questions if they are asking the same thing. Can I merge these two questions? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "same thing",
+            "acc": 0.5099431115508286,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "a45ad5cd-a3ba-4ab2-a728-a9ea0f27102b",
+            "prompt_jinja": "Are the questions \"{{question1}}\" and \"{{question2}}\" asking the same thing? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.002486208885430481
+        },
+        {
+            "task_name": "qqp",
+            "prompt_name": "same thing",
+            "acc_norm": 0.36816720257234725,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "qqp",
+            "subset": null,
+            "prompt_id": "a45ad5cd-a3ba-4ab2-a728-a9ea0f27102b",
+            "prompt_jinja": "Are the questions \"{{question1}}\" and \"{{question2}}\" asking the same thing? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "does the claim\u2026 follow the fact\u2026",
+            "acc": 0.4729241877256318,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "4ee6ff27-de63-4e7b-a9d4-82a17eba407a",
+            "prompt_jinja": "Does the claim \"{{sentence2}}\" follow from the fact that \"{{sentence1}}\"? Please answer either {{\"yes\"}} or {{\"no\"}}.\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.030052303463143706
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "does the claim\u2026 follow the fact\u2026",
+            "acc_norm": 0.5270758122743683,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "4ee6ff27-de63-4e7b-a9d4-82a17eba407a",
+            "prompt_jinja": "Does the claim \"{{sentence2}}\" follow from the fact that \"{{sentence1}}\"? Please answer either {{\"yes\"}} or {{\"no\"}}.\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "entailment explained",
+            "acc": 0.49458483754512633,
+            "fixed_answer_choice_list": [
+                "entailment",
+                "not entailment"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "9e2b4267-ec23-44c8-b82a-107e2c890fec",
+            "prompt_jinja": "We say that one sentence \"{{\"entails\"}}\" another sentence when the first sentence implies the second sentence. Consider the following two sentences:\n{{sentence1}}\n{{sentence2}}\nIs the relationship from the first to the second sentence \"{{\"entailment\"}}\" or \"{{\"not entailment\"}}\"?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.030094698123239966
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "entailment explained",
+            "acc_norm": 0.4729241877256318,
+            "fixed_answer_choice_list": [
+                "entailment",
+                "not entailment"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "9e2b4267-ec23-44c8-b82a-107e2c890fec",
+            "prompt_jinja": "We say that one sentence \"{{\"entails\"}}\" another sentence when the first sentence implies the second sentence. Consider the following two sentences:\n{{sentence1}}\n{{sentence2}}\nIs the relationship from the first to the second sentence \"{{\"entailment\"}}\" or \"{{\"not entailment\"}}\"?\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "imply",
+            "acc": 0.48375451263537905,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "c8dfc879-40f2-412d-be1e-4cd70107f6e6",
+            "prompt_jinja": "Does \"{{sentence1}}\" imply that \"{{sentence2}}\"? Please answer either {{\"yes\"}} or {{\"no\"}}.\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.030080573208738064
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "imply",
+            "acc_norm": 0.5270758122743683,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "c8dfc879-40f2-412d-be1e-4cd70107f6e6",
+            "prompt_jinja": "Does \"{{sentence1}}\" imply that \"{{sentence2}}\"? Please answer either {{\"yes\"}} or {{\"no\"}}.\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "imply separated",
+            "acc": 0.45126353790613716,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "f56ffced-9b16-431a-8a17-501e63cddf73",
+            "prompt_jinja": "{{sentence1}}\nDoes this imply\n{{sentence2}}\nPlease answer {{\"A) yes or B) no.\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.029953149241808943
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "imply separated",
+            "acc_norm": 0.5270758122743683,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "f56ffced-9b16-431a-8a17-501e63cddf73",
+            "prompt_jinja": "{{sentence1}}\nDoes this imply\n{{sentence2}}\nPlease answer {{\"A) yes or B) no.\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "mean",
+            "acc": 0.48014440433212996,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "03a7ae07-5ddd-46c4-92f3-2152223d44ec",
+            "prompt_jinja": "{{sentence1}}\nDoes this mean that \"{{sentence2}}\" is true? {{\"A) yes or B) no.\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.030072723167317194
+        },
+        {
+            "task_name": "rte",
+            "prompt_name": "mean",
+            "acc_norm": 0.5270758122743683,
+            "fixed_answer_choice_list": [
+                "yes",
+                "no"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "rte",
+            "subset": null,
+            "prompt_id": "03a7ae07-5ddd-46c4-92f3-2152223d44ec",
+            "prompt_jinja": "{{sentence1}}\nDoes this mean that \"{{sentence2}}\" is true? {{\"A) yes or B) no.\"}}\n|||\n{{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "following positive negative",
+            "acc": 0.8061926605504587,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "63c6b2be-8ecd-42ad-88c7-0d1dc1a8323a",
+            "prompt_jinja": "Does the following sentence have a {{\"positive\"}} or {{\"negative\"}} sentiment?\n{{sentence}}\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.013393542261521812
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "following positive negative",
+            "acc_norm": 0.8061926605504587,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "63c6b2be-8ecd-42ad-88c7-0d1dc1a8323a",
+            "prompt_jinja": "Does the following sentence have a {{\"positive\"}} or {{\"negative\"}} sentiment?\n{{sentence}}\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.013393542261521812
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "happy or mad",
+            "acc": 0.5091743119266054,
+            "fixed_answer_choice_list": [
+                "bad",
+                "good"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "6dd74cd5-e074-4612-9e96-c17ca88c3bc4",
+            "prompt_jinja": "Someone sent me an email with the sentence \"{{sentence}}\". Do you think they are feeling {{\"good\"}} or {{\"bad\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.01693900152535154
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "happy or mad",
+            "acc_norm": 0.5091743119266054,
+            "fixed_answer_choice_list": [
+                "bad",
+                "good"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "6dd74cd5-e074-4612-9e96-c17ca88c3bc4",
+            "prompt_jinja": "Someone sent me an email with the sentence \"{{sentence}}\". Do you think they are feeling {{\"good\"}} or {{\"bad\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01693900152535154
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "positive negative after",
+            "acc": 0.6204128440366973,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "11d1c505-9232-4c35-82a4-4c3642843e2e",
+            "prompt_jinja": "{{sentence}}\nQuestion: Was that sentence {{\"positive\"}} or {{\"negative\"}}? Answer: ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.016443227556688766
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "positive negative after",
+            "acc_norm": 0.6204128440366973,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "11d1c505-9232-4c35-82a4-4c3642843e2e",
+            "prompt_jinja": "{{sentence}}\nQuestion: Was that sentence {{\"positive\"}} or {{\"negative\"}}? Answer: ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.016443227556688766
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "review",
+            "acc": 0.5091743119266054,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "228fcae7-7f4c-4e3c-9ac4-e49b26bc103d",
+            "prompt_jinja": "I'm reading a review that says \"{{sentence}}\".\n\nDo you think the review is {{\"positive\"}} or {{\"negative\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.01693900152535154
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "review",
+            "acc_norm": 0.5091743119266054,
+            "fixed_answer_choice_list": [
+                "negative",
+                "positive"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "228fcae7-7f4c-4e3c-9ac4-e49b26bc103d",
+            "prompt_jinja": "I'm reading a review that says \"{{sentence}}\".\n\nDo you think the review is {{\"positive\"}} or {{\"negative\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01693900152535154
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "said",
+            "acc": 0.4908256880733945,
+            "fixed_answer_choice_list": [
+                "sad",
+                "happy"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "5aa0cea9-0f8d-454d-b25b-b0d4cda273b8",
+            "prompt_jinja": "Someone just said to me \"{{sentence}}\".\n\nDo you think they are {{\"sad\"}} or {{\"happy\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.01693900152535154
+        },
+        {
+            "task_name": "sst",
+            "prompt_name": "said",
+            "acc_norm": 0.5091743119266054,
+            "fixed_answer_choice_list": [
+                "sad",
+                "happy"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "sst2",
+            "subset": null,
+            "prompt_id": "5aa0cea9-0f8d-454d-b25b-b0d4cda273b8",
+            "prompt_jinja": "Someone just said to me \"{{sentence}}\".\n\nDo you think they are {{\"sad\"}} or {{\"happy\"}}? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.01693900152535154
+        }
+    ],
+    "versions": {
+        "qqp+answer": 0,
+        "qqp+duplicate": 0,
+        "qqp+duplicate or not": 0,
+        "qqp+meaning": 0,
+        "qqp+quora": 0,
+        "qqp+same thing": 0,
+        "rte+does the claim\u2026 follow the fact\u2026": 0,
+        "rte+entailment explained": 0,
+        "rte+imply": 0,
+        "rte+imply separated": 0,
+        "rte+mean": 0,
+        "sst+following positive negative": 0,
+        "sst+happy or mad": 0,
+        "sst+positive negative after": 0,
+        "sst+review": 0,
+        "sst+said": 0
+    },
+    "table_results": {
+        "qqp+answer": {
+            "task_name": "qqp",
+            "prompt_name": "answer",
+            "acc": 0.40558990848379917,
+            "acc_stderr": 0.002441969063495092,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "qqp+duplicate": {
+            "task_name": "qqp",
+            "prompt_name": "duplicate",
+            "acc": 0.3788523373732377,
+            "acc_stderr": 0.002412603277723025,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "qqp+duplicate or not": {
+            "task_name": "qqp",
+            "prompt_name": "duplicate or not",
+            "acc": 0.5761315854563444,
+            "acc_stderr": 0.0024577056660753426,
+            "acc_norm": 0.6318327974276527,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "qqp+meaning": {
+            "task_name": "qqp",
+            "prompt_name": "meaning",
+            "acc": 0.3681424684640119,
+            "acc_stderr": 0.0023986729832071916,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "qqp+quora": {
+            "task_name": "qqp",
+            "prompt_name": "quora",
+            "acc": 0.36821667078901804,
+            "acc_stderr": 0.0023987738450886556,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "qqp+same thing": {
+            "task_name": "qqp",
+            "prompt_name": "same thing",
+            "acc": 0.5099431115508286,
+            "acc_stderr": 0.002486208885430481,
+            "acc_norm": 0.36816720257234725,
+            "acc_norm_stderr": 0.002398706610614492
+        },
+        "rte+does the claim\u2026 follow the fact\u2026": {
+            "task_name": "rte",
+            "prompt_name": "does the claim\u2026 follow the fact\u2026",
+            "acc": 0.4729241877256318,
+            "acc_stderr": 0.030052303463143706,
+            "acc_norm": 0.5270758122743683,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "rte+entailment explained": {
+            "task_name": "rte",
+            "prompt_name": "entailment explained",
+            "acc": 0.49458483754512633,
+            "acc_stderr": 0.030094698123239966,
+            "acc_norm": 0.4729241877256318,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "rte+imply": {
+            "task_name": "rte",
+            "prompt_name": "imply",
+            "acc": 0.48375451263537905,
+            "acc_stderr": 0.030080573208738064,
+            "acc_norm": 0.5270758122743683,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "rte+imply separated": {
+            "task_name": "rte",
+            "prompt_name": "imply separated",
+            "acc": 0.45126353790613716,
+            "acc_stderr": 0.029953149241808943,
+            "acc_norm": 0.5270758122743683,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "rte+mean": {
+            "task_name": "rte",
+            "prompt_name": "mean",
+            "acc": 0.48014440433212996,
+            "acc_stderr": 0.030072723167317194,
+            "acc_norm": 0.5270758122743683,
+            "acc_norm_stderr": 0.0300523034631437
+        },
+        "sst+following positive negative": {
+            "task_name": "sst",
+            "prompt_name": "following positive negative",
+            "acc": 0.8061926605504587,
+            "acc_stderr": 0.013393542261521812,
+            "acc_norm": 0.8061926605504587,
+            "acc_norm_stderr": 0.013393542261521812
+        },
+        "sst+happy or mad": {
+            "task_name": "sst",
+            "prompt_name": "happy or mad",
+            "acc": 0.5091743119266054,
+            "acc_stderr": 0.01693900152535154,
+            "acc_norm": 0.5091743119266054,
+            "acc_norm_stderr": 0.01693900152535154
+        },
+        "sst+positive negative after": {
+            "task_name": "sst",
+            "prompt_name": "positive negative after",
+            "acc": 0.6204128440366973,
+            "acc_stderr": 0.016443227556688766,
+            "acc_norm": 0.6204128440366973,
+            "acc_norm_stderr": 0.016443227556688766
+        },
+        "sst+review": {
+            "task_name": "sst",
+            "prompt_name": "review",
+            "acc": 0.5091743119266054,
+            "acc_stderr": 0.01693900152535154,
+            "acc_norm": 0.5091743119266054,
+            "acc_norm_stderr": 0.01693900152535154
+        },
+        "sst+said": {
+            "task_name": "sst",
+            "prompt_name": "said",
+            "acc": 0.4908256880733945,
+            "acc_stderr": 0.01693900152535154,
+            "acc_norm": 0.5091743119266054,
+            "acc_norm_stderr": 0.01693900152535154
+        }
+    },
+    "config": {
+        "adaptive_seq_len": true,
+        "num_fewshot": 0,
+        "bootstrap_iters": 100000
+    }
+}

@@ -1,0 +1,1595 @@
+model-index:
+- name: bloom
+  results:
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: arc_challenge
+      type: arc_challenge
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.4112627986348123
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: arc_easy
+      type: arc_easy
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.726010101010101
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: axb
+      type: axb
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5751811594202898
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: axg
+      type: axg
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5252808988764045
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: boolq
+      type: boolq
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.6345565749235474
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: cb
+      type: cb
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.3392857142857143
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: cola
+      type: cola
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.39022051773729627
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: copa
+      type: copa
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.56
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: crows_pairs_english
+      type: crows_pairs_english
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: crows_pairs_french
+      type: crows_pairs_french
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.505664877757901
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: diabla
+      type: diabla
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.2947981906750174
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_afr
+      type: gsarti/flores_101_afr
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.25431550058444
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_amh
+      type: gsarti/flores_101_amh
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.716877477347089
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ara
+      type: gsarti/flores_101_ara
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.7049030137120964
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_asm
+      type: gsarti/flores_101_asm
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 6.576581380404954
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ast
+      type: gsarti/flores_101_ast
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.8562364775797944
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_azj
+      type: gsarti/flores_101_azj
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.80721528624391
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_bel
+      type: gsarti/flores_101_bel
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.7312177406635065
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ben
+      type: gsarti/flores_101_ben
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.993409478990023
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_bos
+      type: gsarti/flores_101_bos
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.5936169095529493
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_bul
+      type: gsarti/flores_101_bul
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.159035321398085
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_cat
+      type: gsarti/flores_101_cat
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.167873680006659
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ceb
+      type: gsarti/flores_101_ceb
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.286975089885673
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ces
+      type: gsarti/flores_101_ces
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.4516208322236017
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ckb
+      type: gsarti/flores_101_ckb
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.7051034724765612
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_cym
+      type: gsarti/flores_101_cym
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 7.0889312398688125
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_dan
+      type: gsarti/flores_101_dan
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.4300748208111838
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_deu
+      type: gsarti/flores_101_deu
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.3380585896268107
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ell
+      type: gsarti/flores_101_ell
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.9595604725375586
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_eng
+      type: gsarti/flores_101_eng
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.8819637649637901
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_est
+      type: gsarti/flores_101_est
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.773850600380297
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_fas
+      type: gsarti/flores_101_fas
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.4306140728294086
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_fin
+      type: gsarti/flores_101_fin
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.304305536244342
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_fra
+      type: gsarti/flores_101_fra
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.9374688438541796
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ful
+      type: gsarti/flores_101_ful
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 9.740353097219378
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_gle
+      type: gsarti/flores_101_gle
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 6.035269765075012
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_glg
+      type: gsarti/flores_101_glg
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.365451129546636
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_guj
+      type: gsarti/flores_101_guj
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.70676742569154
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_hau
+      type: gsarti/flores_101_hau
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 8.855204288260023
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_heb
+      type: gsarti/flores_101_heb
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.920943798471208
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_hin
+      type: gsarti/flores_101_hin
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.452028001573195
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_hrv
+      type: gsarti/flores_101_hrv
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.7056829077179225
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_hun
+      type: gsarti/flores_101_hun
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.058579478967854
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_hye
+      type: gsarti/flores_101_hye
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.127237816041562
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ibo
+      type: gsarti/flores_101_ibo
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.9500357969906683
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ind
+      type: gsarti/flores_101_ind
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.976163584180101
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_isl
+      type: gsarti/flores_101_isl
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.500542085165231
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ita
+      type: gsarti/flores_101_ita
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.314465100752677
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_jav
+      type: gsarti/flores_101_jav
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.942322446550142
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_jpn
+      type: gsarti/flores_101_jpn
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.259421750521777
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_kam
+      type: gsarti/flores_101_kam
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 9.743025325635475
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_kan
+      type: gsarti/flores_101_kan
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 6.233724699944989
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_kat
+      type: gsarti/flores_101_kat
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.0508893415872107
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_kaz
+      type: gsarti/flores_101_kaz
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.0390148516287927
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_kea
+      type: gsarti/flores_101_kea
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 7.147132270533836
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_khm
+      type: gsarti/flores_101_khm
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.366514710252477
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_kir
+      type: gsarti/flores_101_kir
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.2413845359487885
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_kor
+      type: gsarti/flores_101_kor
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.9023196482741027
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_lao
+      type: gsarti/flores_101_lao
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.331446855837494
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_lav
+      type: gsarti/flores_101_lav
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.223609016485348
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_lin
+      type: gsarti/flores_101_lin
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.847471204107301
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_lit
+      type: gsarti/flores_101_lit
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.5432035498036765
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ltz
+      type: gsarti/flores_101_ltz
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.5910516978201015
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_lug
+      type: gsarti/flores_101_lug
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.4301049946044175
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_luo
+      type: gsarti/flores_101_luo
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 12.031029857399394
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_mal
+      type: gsarti/flores_101_mal
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.794302548141229
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_mar
+      type: gsarti/flores_101_mar
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 6.856682255407709
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_mkd
+      type: gsarti/flores_101_mkd
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.3354144607382983
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_mlt
+      type: gsarti/flores_101_mlt
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 9.04135227904975
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_mon
+      type: gsarti/flores_101_mon
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.094907723618666
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_mri
+      type: gsarti/flores_101_mri
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.2659698341456505
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_msa
+      type: gsarti/flores_101_msa
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.2220779892820985
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_mya
+      type: gsarti/flores_101_mya
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.5229159853414433
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_nld
+      type: gsarti/flores_101_nld
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.799153089002766
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_nob
+      type: gsarti/flores_101_nob
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.628942049758715
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_npi
+      type: gsarti/flores_101_npi
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 6.666236527803879
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_nso
+      type: gsarti/flores_101_nso
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.015319074943932
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_nya
+      type: gsarti/flores_101_nya
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.938044040751036
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_oci
+      type: gsarti/flores_101_oci
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.607440766288032
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_orm
+      type: gsarti/flores_101_orm
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 11.31585044916705
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ory
+      type: gsarti/flores_101_ory
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.981891184515959
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_pan
+      type: gsarti/flores_101_pan
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.7716086841502685
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_pol
+      type: gsarti/flores_101_pol
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.01200174157614
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_por
+      type: gsarti/flores_101_por
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.8411472115156693
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_pus
+      type: gsarti/flores_101_pus
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.623872921169341
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ron
+      type: gsarti/flores_101_ron
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.049829411973529
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_rus
+      type: gsarti/flores_101_rus
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.7083443875791493
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_slk
+      type: gsarti/flores_101_slk
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.037719650548048
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_slv
+      type: gsarti/flores_101_slv
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.141036287764831
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_sna
+      type: gsarti/flores_101_sna
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.7109183690601295
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_snd
+      type: gsarti/flores_101_snd
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.206170931541356
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_som
+      type: gsarti/flores_101_som
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 9.154342083821405
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_spa
+      type: gsarti/flores_101_spa
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.7955816311143258
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_srp
+      type: gsarti/flores_101_srp
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.241096141430147
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_swe
+      type: gsarti/flores_101_swe
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.344977179674293
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_swh
+      type: gsarti/flores_101_swh
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.6844272218041634
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_tam
+      type: gsarti/flores_101_tam
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 5.1645951632801745
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_tel
+      type: gsarti/flores_101_tel
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 6.8098996634099445
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_tgk
+      type: gsarti/flores_101_tgk
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.785457016715163
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_tgl
+      type: gsarti/flores_101_tgl
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.7498953645610875
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_tha
+      type: gsarti/flores_101_tha
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.104151663233468
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_tur
+      type: gsarti/flores_101_tur
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 3.3178240103796037
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_ukr
+      type: gsarti/flores_101_ukr
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.088543437159643
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_umb
+      type: gsarti/flores_101_umb
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 11.766013385445124
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_urd
+      type: gsarti/flores_101_urd
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.7788699847612357
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_uzb
+      type: gsarti/flores_101_uzb
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 8.499879863290486
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_vie
+      type: gsarti/flores_101_vie
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 1.65901207387262
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_wol
+      type: gsarti/flores_101_wol
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 6.141703791276928
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_xho
+      type: gsarti/flores_101_xho
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.690199677955254
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_yor
+      type: gsarti/flores_101_yor
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 4.360585696242932
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_zho_simpl
+      type: gsarti/flores_101_zho_simpl
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.1183545781883515
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_zho_trad
+      type: gsarti/flores_101_zho_trad
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 2.273787884962656
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: gsarti/flores_101_zul
+      type: gsarti/flores_101_zul
+    metrics:
+    - name: byte_perplexity
+      type: byte_perplexity
+      value: 6.016954767729589
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: headqa
+      type: headqa
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.3464624361779723
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: hellaswag
+      type: hellaswag
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5353515236008763
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: lambada_mt_de
+      type: lambada_mt_de
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.3291286629148069
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: lambada_mt_en
+      type: lambada_mt_en
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.6720357073549389
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: lambada_mt_es
+      type: lambada_mt_es
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.476421502037648
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: lambada_mt_it
+      type: lambada_mt_it
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.4061711624296526
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: logiqa
+      type: logiqa
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.2350230414746544
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: mathqa
+      type: mathqa
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.27671691792294806
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: mc_taco
+      type: mc_taco
+    metrics:
+    - name: em
+      type: em
+      value: 0.13063063063063063
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: mnli
+      type: mnli
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.3545565500406835
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: mnli_mismatched
+      type: mnli_mismatched
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.3545565500406835
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: mrpc
+      type: mrpc
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.3872549019607843
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: multirc
+      type: multirc
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.570957095709571
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: openbookqa
+      type: openbookqa
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.312
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: piqa
+      type: piqa
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.7812840043525572
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: prost
+      type: prost
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.2977156276686593
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: pubmedqa
+      type: pubmedqa
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.741
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: qnli
+      type: qnli
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5172981878088962
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: qqp
+      type: qqp
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5883007667573584
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: race
+      type: race
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.39043062200956935
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: rte
+      type: rte
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5198555956678701
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: sciq
+      type: sciq
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.936
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: sst
+      type: sst
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.6043577981651376
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: triviaqa
+      type: triviaqa
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.18332891363917617
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: tydiqa_primary
+      type: tydiqa_primary
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.2809817301342725
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: webqs
+      type: webqs
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.061515748031496065
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: wic
+      type: wic
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5062695924764891
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: winogrande
+      type: winogrande
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.7095501183898973
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: wnli
+      type: wnli
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5704225352112676
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: wsc
+      type: wsc
+    metrics:
+    - name: acc
+      type: acc
+      value: 0.5192307692307693
+      verified: false
+  - task:
+      type: text-generation
+      name: text generation
+    dataset:
+      name: humaneval
+      type: humaneval
+    metrics:
+    - name: pass@1
+      type: pass@1
+      value: 0.15524390243902436
+      verified: false
+    - name: pass@10
+      type: pass@10
+      value: 0.3220367632383857
+      verified: false
+    - name: pass@100
+      type: pass@100
+      value: 0.5545431515723145
+      verified: false
