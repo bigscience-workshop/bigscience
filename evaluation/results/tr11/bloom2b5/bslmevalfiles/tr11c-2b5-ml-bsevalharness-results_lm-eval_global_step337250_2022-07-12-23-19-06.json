@@ -1,0 +1,2649 @@
+{
+    "results": [
+        {
+            "task_name": "axb",
+            "prompt_name": "GPT-3 style",
+            "acc": 0.4528985507246377,
+            "fixed_answer_choice_list": [
+                "True",
+                "False"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "d965164b-fa96-41b5-8852-e0f6dfe5524e",
+            "prompt_jinja": "{{sentence1}}\nQuestion: {{sentence2}} True or False? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014988102065111553
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "GPT-3 style",
+            "acc_norm": 0.5452898550724637,
+            "fixed_answer_choice_list": [
+                "True",
+                "False"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "d965164b-fa96-41b5-8852-e0f6dfe5524e",
+            "prompt_jinja": "{{sentence1}}\nQuestion: {{sentence2}} True or False? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014993163417181939
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "MNLI crowdsource",
+            "acc": 0.4157608695652174,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "552d6c20-ab5b-462f-b5fb-3c7b80c78dcc",
+            "prompt_jinja": "{{sentence1}} Using only the above description and what you know about the world, is \"{{sentence2}}\" definitely correct? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014839845193003246
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "MNLI crowdsource",
+            "acc_norm": 0.4166666666666667,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "552d6c20-ab5b-462f-b5fb-3c7b80c78dcc",
+            "prompt_jinja": "{{sentence1}} Using only the above description and what you know about the world, is \"{{sentence2}}\" definitely correct? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "based on the previous passage",
+            "acc": 0.4257246376811594,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "d57550ef-2f67-46eb-98cb-432dd135be16",
+            "prompt_jinja": "{{sentence1}} Based on the previous passage, is it true that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014888012621293445
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "based on the previous passage",
+            "acc_norm": 0.4166666666666667,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "d57550ef-2f67-46eb-98cb-432dd135be16",
+            "prompt_jinja": "{{sentence1}} Based on the previous passage, is it true that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "can we infer",
+            "acc": 0.4375,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "bae54ef5-c3be-4862-bdd4-a559ed04eb31",
+            "prompt_jinja": "Suppose {{sentence1}} Can we infer that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014936970932375573
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "can we infer",
+            "acc_norm": 0.4166666666666667,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "bae54ef5-c3be-4862-bdd4-a559ed04eb31",
+            "prompt_jinja": "Suppose {{sentence1}} Can we infer that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "does it follow that",
+            "acc": 0.4601449275362319,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "23651f68-93cc-441f-b826-30dd2c6d6a93",
+            "prompt_jinja": "Given that {{sentence1}} Does it follow that {{sentence2}} Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.015007147683509253
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "does it follow that",
+            "acc_norm": 0.4166666666666667,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "23651f68-93cc-441f-b826-30dd2c6d6a93",
+            "prompt_jinja": "Given that {{sentence1}} Does it follow that {{sentence2}} Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "does this imply",
+            "acc": 0.5018115942028986,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "c92d765f-83b1-4684-a0a3-580929b5e46b",
+            "prompt_jinja": "{{sentence1}} \n\nQuestion: Does this imply that \"{{sentence2}}\"? Yes or no? ||| {{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.015054952773616312
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "does this imply",
+            "acc_norm": 0.4166666666666667,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "c92d765f-83b1-4684-a0a3-580929b5e46b",
+            "prompt_jinja": "{{sentence1}} \n\nQuestion: Does this imply that \"{{sentence2}}\"? Yes or no? ||| {{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "guaranteed true",
+            "acc": 0.4384057971014493,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "908be561-caf4-4416-9fe9-9919c3998681",
+            "prompt_jinja": "Given {{sentence1}} Is it guaranteed true that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014940381799440417
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "guaranteed true",
+            "acc_norm": 0.4166666666666667,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "908be561-caf4-4416-9fe9-9919c3998681",
+            "prompt_jinja": "Given {{sentence1}} Is it guaranteed true that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "justified in saying",
+            "acc": 0.48097826086956524,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "1b2d6e85-a5a9-4d1b-9e3b-630b490c6a34",
+            "prompt_jinja": "{{sentence1}} Are we justified in saying that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.015044153011626225
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "justified in saying",
+            "acc_norm": 0.4166666666666667,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "1b2d6e85-a5a9-4d1b-9e3b-630b490c6a34",
+            "prompt_jinja": "{{sentence1}} Are we justified in saying that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "must be true",
+            "acc": 0.4483695652173913,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "cb68ee27-c0a3-440b-b595-e90fe89539c3",
+            "prompt_jinja": "Given that {{sentence1}} Therefore, it must be true that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014974571925618978
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "must be true",
+            "acc_norm": 0.4166666666666667,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "cb68ee27-c0a3-440b-b595-e90fe89539c3",
+            "prompt_jinja": "Given that {{sentence1}} Therefore, it must be true that \"{{sentence2}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "should assume",
+            "acc": 0.4384057971014493,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "1ae41916-7b4d-4ef3-b414-bfadd95d67e2",
+            "prompt_jinja": "Given {{sentence1}} Should we assume that \"{{sentence2}}\" is true? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.01494038179944042
+        },
+        {
+            "task_name": "axb",
+            "prompt_name": "should assume",
+            "acc_norm": 0.4166666666666667,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axb",
+            "subset": null,
+            "prompt_id": "1ae41916-7b4d-4ef3-b414-bfadd95d67e2",
+            "prompt_jinja": "Given {{sentence1}} Should we assume that \"{{sentence2}}\" is true? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "GPT-3 style",
+            "parity": 0.9382022471910112,
+            "fixed_answer_choice_list": [
+                "True",
+                "False"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "626823f5-ff12-46d5-9e68-b2dc4bfe7cd4",
+            "prompt_jinja": "{{premise}}\nQuestion: {{hypothesis}} True or False? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.01809872339299665
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "GPT-3 style",
+            "acc": 0.5308988764044944,
+            "fixed_answer_choice_list": [
+                "True",
+                "False"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "626823f5-ff12-46d5-9e68-b2dc4bfe7cd4",
+            "prompt_jinja": "{{premise}}\nQuestion: {{hypothesis}} True or False? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026486523782404646
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "GPT-3 style",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "True",
+                "False"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "626823f5-ff12-46d5-9e68-b2dc4bfe7cd4",
+            "prompt_jinja": "{{premise}}\nQuestion: {{hypothesis}} True or False? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "MNLI crowdsource",
+            "parity": 1.0,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "e21f5367-0cc8-412d-b8d9-78548438a384",
+            "prompt_jinja": "{{premise}} Using only the above description and what you know about the world, is \"{{hypothesis}}\" definitely correct? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.0
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "MNLI crowdsource",
+            "acc": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "e21f5367-0cc8-412d-b8d9-78548438a384",
+            "prompt_jinja": "{{premise}} Using only the above description and what you know about the world, is \"{{hypothesis}}\" definitely correct? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "MNLI crowdsource",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "e21f5367-0cc8-412d-b8d9-78548438a384",
+            "prompt_jinja": "{{premise}} Using only the above description and what you know about the world, is \"{{hypothesis}}\" definitely correct? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "based on the previous passage",
+            "parity": 1.0,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "3b7a57e0-7733-4b21-9bed-a381fdc2415f",
+            "prompt_jinja": "{{premise}} Based on the previous passage, is it true that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.0
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "based on the previous passage",
+            "acc": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "3b7a57e0-7733-4b21-9bed-a381fdc2415f",
+            "prompt_jinja": "{{premise}} Based on the previous passage, is it true that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "based on the previous passage",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "3b7a57e0-7733-4b21-9bed-a381fdc2415f",
+            "prompt_jinja": "{{premise}} Based on the previous passage, is it true that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "can we infer",
+            "parity": 1.0,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "db13469f-7161-4670-8a59-8c1137d1fa8b",
+            "prompt_jinja": "Suppose {{premise}} Can we infer that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.0
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "can we infer",
+            "acc": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "db13469f-7161-4670-8a59-8c1137d1fa8b",
+            "prompt_jinja": "Suppose {{premise}} Can we infer that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "can we infer",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "db13469f-7161-4670-8a59-8c1137d1fa8b",
+            "prompt_jinja": "Suppose {{premise}} Can we infer that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "does it follow that",
+            "parity": 1.0,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "c008c778-7621-496e-baa3-7b5817400659",
+            "prompt_jinja": "Given that {{premise}} Does it follow that {{hypothesis}} Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.0
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "does it follow that",
+            "acc": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "c008c778-7621-496e-baa3-7b5817400659",
+            "prompt_jinja": "Given that {{premise}} Does it follow that {{hypothesis}} Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "does it follow that",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "c008c778-7621-496e-baa3-7b5817400659",
+            "prompt_jinja": "Given that {{premise}} Does it follow that {{hypothesis}} Yes or no? ||| {{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "does this imply",
+            "parity": 0.9325842696629213,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "0f8afaef-19a0-472f-9e9f-c803426f8f22",
+            "prompt_jinja": "{{premise}} \n\nQuestion: Does this imply that \"{{hypothesis}}\"? Yes or no? ||| {{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.01884681777754791
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "does this imply",
+            "acc": 0.5056179775280899,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "0f8afaef-19a0-472f-9e9f-c803426f8f22",
+            "prompt_jinja": "{{premise}} \n\nQuestion: Does this imply that \"{{hypothesis}}\"? Yes or no? ||| {{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026535569449245976
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "does this imply",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "0f8afaef-19a0-472f-9e9f-c803426f8f22",
+            "prompt_jinja": "{{premise}} \n\nQuestion: Does this imply that \"{{hypothesis}}\"? Yes or no? ||| {{answer_choices[label]}}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "guaranteed true",
+            "parity": 1.0,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "7e1439f6-d54d-43e6-bdc7-306ad5fd9203",
+            "prompt_jinja": "Given {{premise}} Is it guaranteed true that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.0
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "guaranteed true",
+            "acc": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "7e1439f6-d54d-43e6-bdc7-306ad5fd9203",
+            "prompt_jinja": "Given {{premise}} Is it guaranteed true that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "guaranteed true",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "7e1439f6-d54d-43e6-bdc7-306ad5fd9203",
+            "prompt_jinja": "Given {{premise}} Is it guaranteed true that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "justified in saying",
+            "parity": 0.9719101123595506,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "d4a1dd92-e184-4843-bc1f-1f625c833249",
+            "prompt_jinja": "{{premise}} Are we justified in saying that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.012419422972302344
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "justified in saying",
+            "acc": 0.5028089887640449,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "d4a1dd92-e184-4843-bc1f-1f625c833249",
+            "prompt_jinja": "{{premise}} Are we justified in saying that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026536825838510643
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "justified in saying",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "d4a1dd92-e184-4843-bc1f-1f625c833249",
+            "prompt_jinja": "{{premise}} Are we justified in saying that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "must be true",
+            "parity": 1.0,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "4361cf07-1b58-478f-b97c-3b140832fb77",
+            "prompt_jinja": "Given that {{premise}} Therefore, it must be true that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.0
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "must be true",
+            "acc": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "4361cf07-1b58-478f-b97c-3b140832fb77",
+            "prompt_jinja": "Given that {{premise}} Therefore, it must be true that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "must be true",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "4361cf07-1b58-478f-b97c-3b140832fb77",
+            "prompt_jinja": "Given that {{premise}} Therefore, it must be true that \"{{hypothesis}}\"? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "should assume",
+            "parity": 1.0,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "0f530aa8-b254-4687-8032-bab1a65610c0",
+            "prompt_jinja": "Given {{premise}} Should we assume that \"{{hypothesis}}\" is true? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "parity_stderr": 0.0
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "should assume",
+            "acc": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "0f530aa8-b254-4687-8032-bab1a65610c0",
+            "prompt_jinja": "Given {{premise}} Should we assume that \"{{hypothesis}}\" is true? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "axg",
+            "prompt_name": "should assume",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "axg",
+            "subset": null,
+            "prompt_id": "0f530aa8-b254-4687-8032-bab1a65610c0",
+            "prompt_jinja": "Given {{premise}} Should we assume that \"{{hypothesis}}\" is true? Yes or no? ||| {{ answer_choices[label] }} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "GPT-3 Style",
+            "acc": 0.5706422018348624,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "492f0f88-4370-46cd-839b-1de37a55aeda",
+            "prompt_jinja": "{{ passage }} \nQuestion: {{ question }}\nAnswer: ||| \n{% if label != -1 %}\n{{ answer_choices[label] }}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.008657333755353684
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "GPT-3 Style",
+            "acc_norm": 0.6256880733944954,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "492f0f88-4370-46cd-839b-1de37a55aeda",
+            "prompt_jinja": "{{ passage }} \nQuestion: {{ question }}\nAnswer: ||| \n{% if label != -1 %}\n{{ answer_choices[label] }}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.008464246656443236
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "I wonder\u2026",
+            "acc": 0.5657492354740061,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "6cb6a026-c070-470a-b75d-bb8fdf424e35",
+            "prompt_jinja": "{{ passage }} \n\nHaving read that, I wonder {{ question }}? |||\n{% if label != -1 %}\n{{ answer_choices[label] }} \n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.008669116184243039
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "I wonder\u2026",
+            "acc_norm": 0.6217125382262997,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "6cb6a026-c070-470a-b75d-bb8fdf424e35",
+            "prompt_jinja": "{{ passage }} \n\nHaving read that, I wonder {{ question }}? |||\n{% if label != -1 %}\n{{ answer_choices[label] }} \n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "after_reading",
+            "acc": 0.6217125382262997,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "3e386463-1715-4578-9cba-07d11a0d3b61",
+            "prompt_jinja": "Passage: {{passage}}\n\nAfter reading this passage, I have a question: {{question}}? True or False? |||\n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.00848200113393099
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "after_reading",
+            "acc_norm": 0.5403669724770642,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "3e386463-1715-4578-9cba-07d11a0d3b61",
+            "prompt_jinja": "Passage: {{passage}}\n\nAfter reading this passage, I have a question: {{question}}? True or False? |||\n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.008716508381476008
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "based on the following passage",
+            "acc": 0.37920489296636084,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "9a1bf459-8047-437c-9def-f21e960429cc",
+            "prompt_jinja": "Based on the following passage, {{ question }}? {{ passage }}\n\n|||\n{% if label != -1 %}\n{{ answer_choices[label] }}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.00848601213724628
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "based on the following passage",
+            "acc_norm": 0.5892966360856269,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "9a1bf459-8047-437c-9def-f21e960429cc",
+            "prompt_jinja": "Based on the following passage, {{ question }}? {{ passage }}\n\n|||\n{% if label != -1 %}\n{{ answer_choices[label] }}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.008604460608471412
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "based on the previous passage",
+            "acc": 0.6244648318042814,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "b2b3cb60-d6e3-491c-a09a-8201e13e417e",
+            "prompt_jinja": "{{ passage }}\nBased on the previous passage, {{ question }}? ||| {% if label != -1 %}{{ answer_choices[label] }}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.008469774334938066
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "based on the previous passage",
+            "acc_norm": 0.6217125382262997,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "b2b3cb60-d6e3-491c-a09a-8201e13e417e",
+            "prompt_jinja": "{{ passage }}\nBased on the previous passage, {{ question }}? ||| {% if label != -1 %}{{ answer_choices[label] }}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "could you tell me\u2026",
+            "acc": 0.6241590214067279,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "7d21d974-0624-4d4f-9e8c-644e2d009cb5",
+            "prompt_jinja": "{{ passage }} \n\nHaving read that, could you tell me {{ question }}? ||| {% if label != -1 %}{{ answer_choices[label] }}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.008471147248160109
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "could you tell me\u2026",
+            "acc_norm": 0.6217125382262997,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "7d21d974-0624-4d4f-9e8c-644e2d009cb5",
+            "prompt_jinja": "{{ passage }} \n\nHaving read that, could you tell me {{ question }}? ||| {% if label != -1 %}{{ answer_choices[label] }}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "exam",
+            "acc": 0.6256880733944954,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "922d3e87-ac58-4731-84d1-f0a40e47afb5",
+            "prompt_jinja": "EXAM\n1. Answer by yes or no.\n\nDocument: {{passage}}\nQuestion: {{question}}? ||| \n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.008464246656443238
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "exam",
+            "acc_norm": 0.6217125382262997,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "922d3e87-ac58-4731-84d1-f0a40e47afb5",
+            "prompt_jinja": "EXAM\n1. Answer by yes or no.\n\nDocument: {{passage}}\nQuestion: {{question}}? ||| \n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "exercise",
+            "acc": 0.6217125382262997,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "9f4c6b0a-437b-40c0-b467-db4b7218d38d",
+            "prompt_jinja": "Exercise: read the text and answer the question by True or False.\n\nText: {{passage}}\nQuestion: {{question}}? |||\n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.00848200113393099
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "exercise",
+            "acc_norm": 0.6204892966360857,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "9f4c6b0a-437b-40c0-b467-db4b7218d38d",
+            "prompt_jinja": "Exercise: read the text and answer the question by True or False.\n\nText: {{passage}}\nQuestion: {{question}}? |||\n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00848734197575683
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "valid_binary",
+            "acc": 0.5397553516819572,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "eb78772c-e81e-4b8a-a77b-b75efd1c212a",
+            "prompt_jinja": "{{passage}}\n\nQ: {{question}}? True or False? |||\n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.008717368239786055
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "valid_binary",
+            "acc_norm": 0.38073394495412843,
+            "fixed_answer_choice_list": [
+                "False",
+                "True"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "eb78772c-e81e-4b8a-a77b-b75efd1c212a",
+            "prompt_jinja": "{{passage}}\n\nQ: {{question}}? True or False? |||\n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.008492625561656204
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "yes_no_question",
+            "acc": 0.6155963302752293,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "7cf7acdf-e3a2-459f-a3e8-2e2d27dd6aa5",
+            "prompt_jinja": "Text: {{passage}}\n\nAnswer the following yes/no question: {{question}}? Yes or no? |||\n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.008508133844703938
+        },
+        {
+            "task_name": "boolq",
+            "prompt_name": "yes_no_question",
+            "acc_norm": 0.6217125382262997,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "boolq",
+            "subset": null,
+            "prompt_id": "7cf7acdf-e3a2-459f-a3e8-2e2d27dd6aa5",
+            "prompt_jinja": "Text: {{passage}}\n\nAnswer the following yes/no question: {{question}}? Yes or no? |||\n{% if label != -1 %}\n{{answer_choices[label]}}\n{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "GPT-3 style",
+            "acc": 0.42857142857142855,
+            "fixed_answer_choice_list": [
+                "True",
+                "False",
+                "Neither"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "75db2bc2-3caa-4956-9653-13c7dd6255df",
+            "prompt_jinja": "{{premise}}\nQuestion: {{hypothesis}} True, False, or Neither? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.06672848092813057
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "GPT-3 style",
+            "f1": 0.21956970232832299,
+            "fixed_answer_choice_list": [
+                "True",
+                "False",
+                "Neither"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "75db2bc2-3caa-4956-9653-13c7dd6255df",
+            "prompt_jinja": "{{premise}}\nQuestion: {{hypothesis}} True, False, or Neither? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "MNLI crowdsource",
+            "acc": 0.4107142857142857,
+            "fixed_answer_choice_list": [
+                "Correct",
+                "Incorrect",
+                "Inconclusive"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "bee62bfa-5307-4e1c-97b2-2ad2f7bcb179",
+            "prompt_jinja": "{{premise}} Using only the above description and what you know about the world, \"{{hypothesis}}\" is definitely correct, incorrect, or inconclusive? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.06633634150359538
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "MNLI crowdsource",
+            "f1": 0.1940928270042194,
+            "fixed_answer_choice_list": [
+                "Correct",
+                "Incorrect",
+                "Inconclusive"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "bee62bfa-5307-4e1c-97b2-2ad2f7bcb179",
+            "prompt_jinja": "{{premise}} Using only the above description and what you know about the world, \"{{hypothesis}}\" is definitely correct, incorrect, or inconclusive? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "always/sometimes/never",
+            "acc": 0.08928571428571429,
+            "fixed_answer_choice_list": [
+                "Always",
+                "Never",
+                "Sometimes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "6b0c6191-183d-4731-8050-ab17c909335c",
+            "prompt_jinja": "Suppose it's true that {{premise}} Then, is \"{{hypothesis}}\" {{\"always\"}}, {{\"sometimes\"}}, or {{\"never\"}} true? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.038450387280282494
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "always/sometimes/never",
+            "f1": 0.054644808743169404,
+            "fixed_answer_choice_list": [
+                "Always",
+                "Never",
+                "Sometimes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "6b0c6191-183d-4731-8050-ab17c909335c",
+            "prompt_jinja": "Suppose it's true that {{premise}} Then, is \"{{hypothesis}}\" {{\"always\"}}, {{\"sometimes\"}}, or {{\"never\"}} true? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "based on the previous passage",
+            "acc": 0.30357142857142855,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "358860fd-61ad-45fd-92a6-a72ca9107ebc",
+            "prompt_jinja": "{{premise}} Based on the previous passage, is it true that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.06199938655510754
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "based on the previous passage",
+            "f1": 0.21415004748338085,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "358860fd-61ad-45fd-92a6-a72ca9107ebc",
+            "prompt_jinja": "{{premise}} Based on the previous passage, is it true that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "can we infer",
+            "acc": 0.35714285714285715,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "2e76cd0f-68ca-4f03-83ed-11cf15b25a84",
+            "prompt_jinja": "Suppose {{premise}} Can we infer that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %} ",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0646095738380922
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "can we infer",
+            "f1": 0.2492753623188406,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "2e76cd0f-68ca-4f03-83ed-11cf15b25a84",
+            "prompt_jinja": "Suppose {{premise}} Can we infer that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %} ",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "claim true/false/inconclusive",
+            "acc": 0.44642857142857145,
+            "fixed_answer_choice_list": [
+                "True",
+                "False",
+                "Inconclusive"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "3f43a599-ffdb-490e-8952-c0ce41dd4621",
+            "prompt_jinja": "{{premise}} Based on that information, is the claim: \"{{hypothesis}}\" {{\"true\"}}, {{\"false\"}}, or {{\"inconclusive\"}}? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.06703189227942397
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "claim true/false/inconclusive",
+            "f1": 0.34054054054054056,
+            "fixed_answer_choice_list": [
+                "True",
+                "False",
+                "Inconclusive"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "3f43a599-ffdb-490e-8952-c0ce41dd4621",
+            "prompt_jinja": "{{premise}} Based on that information, is the claim: \"{{hypothesis}}\" {{\"true\"}}, {{\"false\"}}, or {{\"inconclusive\"}}? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "consider always/sometimes/never",
+            "acc": 0.08928571428571429,
+            "fixed_answer_choice_list": [
+                "Always",
+                "Never",
+                "Sometimes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "87237a07-7cce-470a-80ac-3e5e3a5283ba",
+            "prompt_jinja": "{{premise}} \n\nKeeping in mind the above text, consider: {{hypothesis}} Is this {{\"always\"}}, {{\"sometimes\"}}, or {{\"never\"}} correct? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.038450387280282494
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "consider always/sometimes/never",
+            "f1": 0.054644808743169404,
+            "fixed_answer_choice_list": [
+                "Always",
+                "Never",
+                "Sometimes"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "87237a07-7cce-470a-80ac-3e5e3a5283ba",
+            "prompt_jinja": "{{premise}} \n\nKeeping in mind the above text, consider: {{hypothesis}} Is this {{\"always\"}}, {{\"sometimes\"}}, or {{\"never\"}} correct? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "does it follow that",
+            "acc": 0.375,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "404eed25-558a-4d39-9515-7de46d60d4e0",
+            "prompt_jinja": "Given that {{premise}} Does it follow that {{hypothesis}} Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.06527912098338669
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "does it follow that",
+            "f1": 0.25555555555555554,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "404eed25-558a-4d39-9515-7de46d60d4e0",
+            "prompt_jinja": "Given that {{premise}} Does it follow that {{hypothesis}} Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "does this imply",
+            "acc": 0.10714285714285714,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "a485d120-6eef-4ff6-8684-42df1639b101",
+            "prompt_jinja": "{{premise}} \n\nQuestion: Does this imply that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0417053005800816
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "does this imply",
+            "f1": 0.1101658198432392,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "a485d120-6eef-4ff6-8684-42df1639b101",
+            "prompt_jinja": "{{premise}} \n\nQuestion: Does this imply that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{answer_choices[label]}}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "guaranteed true",
+            "acc": 0.3392857142857143,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "8798b8a4-1f59-4c72-9c1b-3e3044a7462a",
+            "prompt_jinja": "Given {{premise}} Is it guaranteed true that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.06384226561930825
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "guaranteed true",
+            "f1": 0.23878787878787877,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "8798b8a4-1f59-4c72-9c1b-3e3044a7462a",
+            "prompt_jinja": "Given {{premise}} Is it guaranteed true that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "guaranteed/possible/impossible",
+            "acc": 0.08928571428571429,
+            "fixed_answer_choice_list": [
+                "Guaranteed",
+                "Impossible",
+                "Possible"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "90ab1002-093c-4e54-b48f-626655e36b65",
+            "prompt_jinja": "Assume it is true that {{premise}} \n\nTherefore, \"{{hypothesis}}\" is {{\"guaranteed\"}}, {{\"possible\"}}, or {{\"impossible\"}}? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.038450387280282494
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "guaranteed/possible/impossible",
+            "f1": 0.054644808743169404,
+            "fixed_answer_choice_list": [
+                "Guaranteed",
+                "Impossible",
+                "Possible"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "90ab1002-093c-4e54-b48f-626655e36b65",
+            "prompt_jinja": "Assume it is true that {{premise}} \n\nTherefore, \"{{hypothesis}}\" is {{\"guaranteed\"}}, {{\"possible\"}}, or {{\"impossible\"}}? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "justified in saying",
+            "acc": 0.26785714285714285,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "5c9b1fa9-93f0-4f82-b9e3-e0967e4d7260",
+            "prompt_jinja": "{{premise}} Are we justified in saying that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05971290310957635
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "justified in saying",
+            "f1": 0.19148400100781057,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "5c9b1fa9-93f0-4f82-b9e3-e0967e4d7260",
+            "prompt_jinja": "{{premise}} Are we justified in saying that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "must be true",
+            "acc": 0.26785714285714285,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "8e3b8d3d-1362-47dc-922a-82c03f965989",
+            "prompt_jinja": "Given that {{premise}} Therefore, it must be true that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05971290310957636
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "must be true",
+            "f1": 0.18658280922431866,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "8e3b8d3d-1362-47dc-922a-82c03f965989",
+            "prompt_jinja": "Given that {{premise}} Therefore, it must be true that \"{{hypothesis}}\"? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "should assume",
+            "acc": 0.23214285714285715,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "e503b148-8e6c-43b5-9ed6-312794c54d9b",
+            "prompt_jinja": "Given {{premise}} Should we assume that \"{{hypothesis}}\" is true? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05692939024000109
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "should assume",
+            "f1": 0.17732884399551066,
+            "fixed_answer_choice_list": [
+                "Yes",
+                "No",
+                "Maybe"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "e503b148-8e6c-43b5-9ed6-312794c54d9b",
+            "prompt_jinja": "Given {{premise}} Should we assume that \"{{hypothesis}}\" is true? Yes, no, or maybe? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "take the following as truth",
+            "acc": 0.4107142857142857,
+            "fixed_answer_choice_list": [
+                "True",
+                "False",
+                "Inconclusive"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "ea56b7f3-6e07-45bc-b619-c527eac4a41b",
+            "prompt_jinja": "Take the following as truth: {{premise}}\nThen the following statement: \"{{hypothesis}}\" is {{\"true\"}}, {{\"false\"}}, or {{\"inconclusive\"}}? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.06633634150359538
+        },
+        {
+            "task_name": "cb",
+            "prompt_name": "take the following as truth",
+            "f1": 0.1940928270042194,
+            "fixed_answer_choice_list": [
+                "True",
+                "False",
+                "Inconclusive"
+            ],
+            "dataset_path": "super_glue",
+            "dataset_name": "cb",
+            "subset": null,
+            "prompt_id": "ea56b7f3-6e07-45bc-b619-c527eac4a41b",
+            "prompt_jinja": "Take the following as truth: {{premise}}\nThen the following statement: \"{{hypothesis}}\" is {{\"true\"}}, {{\"false\"}}, or {{\"inconclusive\"}}? ||| {% if label !=-1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": ""
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "Following sentence acceptable",
+            "acc": 0.610738255033557,
+            "fixed_answer_choice_list": [
+                "unacceptable",
+                "acceptable"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "79b4c04c-c0e2-4add-a600-d5572da192e7",
+            "prompt_jinja": "The following sentence is either \"{{\"acceptable\"}}\", meaning it is grammatically correct and makes sense, or \"{{\"unacceptable\"}}\". Which is it?\n{{sentence}}\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.015104785594702123
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "Following sentence acceptable",
+            "acc_norm": 0.3096836049856184,
+            "fixed_answer_choice_list": [
+                "unacceptable",
+                "acceptable"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "79b4c04c-c0e2-4add-a600-d5572da192e7",
+            "prompt_jinja": "The following sentence is either \"{{\"acceptable\"}}\", meaning it is grammatically correct and makes sense, or \"{{\"unacceptable\"}}\". Which is it?\n{{sentence}}\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014323506235950028
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "Make sense yes no",
+            "acc": 0.34132310642377756,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "1d3f5f15-8128-4445-8de5-92365b7e54a8",
+            "prompt_jinja": "Does the following sentence make sense and use correct English? Please answer {{\"yes\"}} or {{\"no\"}}.\n{{sentence}}\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014688762187200534
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "Make sense yes no",
+            "acc_norm": 0.6922339405560882,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "1d3f5f15-8128-4445-8de5-92365b7e54a8",
+            "prompt_jinja": "Does the following sentence make sense and use correct English? Please answer {{\"yes\"}} or {{\"no\"}}.\n{{sentence}}\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014298910475462598
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "Previous sentence acceptable",
+            "acc": 0.6749760306807286,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "dd33f089-57a1-452b-8bd5-8f1fffd10b60",
+            "prompt_jinja": "{{sentence}}\nI'm worried that sentence didn't make any sense, or was grammatically incorrect. Was it correct?\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014510019990409625
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "Previous sentence acceptable",
+            "acc_norm": 0.6912751677852349,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "dd33f089-57a1-452b-8bd5-8f1fffd10b60",
+            "prompt_jinja": "{{sentence}}\nI'm worried that sentence didn't make any sense, or was grammatically incorrect. Was it correct?\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014311244461311299
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "editing",
+            "acc": 0.3192713326941515,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "6f49b860-9145-4fcb-b632-9faea39e254e",
+            "prompt_jinja": "I'm copy-editing a story for publication. It has the following sentence in it:\n{{sentence}}\nDoes this sentence make sense and is it grammatically correct? Please answer {{\"yes or no\"}}.\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014442192293674112
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "editing",
+            "acc_norm": 0.6912751677852349,
+            "fixed_answer_choice_list": [
+                "no",
+                "yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "6f49b860-9145-4fcb-b632-9faea39e254e",
+            "prompt_jinja": "I'm copy-editing a story for publication. It has the following sentence in it:\n{{sentence}}\nDoes this sentence make sense and is it grammatically correct? Please answer {{\"yes or no\"}}.\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014311244461311299
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "is_this_correct",
+            "acc": 0.6816874400767018,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "39a701ff-bb4b-48ac-8c0a-8c61bf0d4b8d",
+            "prompt_jinja": "{{sentence}}\nIs this example grammatically correct and sensible?\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.014430642717837706
+        },
+        {
+            "task_name": "cola",
+            "prompt_name": "is_this_correct",
+            "acc_norm": 0.6912751677852349,
+            "fixed_answer_choice_list": [
+                "No",
+                "Yes"
+            ],
+            "dataset_path": "glue",
+            "dataset_name": "cola",
+            "subset": null,
+            "prompt_id": "39a701ff-bb4b-48ac-8c0a-8c61bf0d4b8d",
+            "prompt_jinja": "{{sentence}}\nIs this example grammatically correct and sensible?\n|||\n{{ answer_choices[label] }}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.014311244461311299
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "C1 or C2? premise, so/because\u2026",
+            "acc": 0.71,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "744047dc-1298-45a2-8d68-d67e3f834ded",
+            "prompt_jinja": "\"{{ answer_choices[0] }}\" or \"{{ answer_choices[1] }}\"? {{ premise }} {% if question == \"cause\" %} because {% else %} so {% endif %} ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.045604802157206845
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "C1 or C2? premise, so/because\u2026",
+            "acc_norm": 0.61,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "744047dc-1298-45a2-8d68-d67e3f834ded",
+            "prompt_jinja": "\"{{ answer_choices[0] }}\" or \"{{ answer_choices[1] }}\"? {{ premise }} {% if question == \"cause\" %} because {% else %} so {% endif %} ||| {% if label != -1 %}{{ answer_choices[label] }}{% endif %}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.04902071300001975
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "best_option",
+            "acc": 0.55,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "8ce80f8a-239e-4393-892c-f63dbb0d9929",
+            "prompt_jinja": "{{ premise }} \n\nWhat's the best option?\n- {{choice1}}\n- {{choice2}}\n\nWe are looking for {% if question == \"cause\" %} a cause {% else %} an effect {% endif %}\n||| {% if label != -1 %}{{answer_choices[label]}}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.05
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "best_option",
+            "acc_norm": 0.44,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "8ce80f8a-239e-4393-892c-f63dbb0d9929",
+            "prompt_jinja": "{{ premise }} \n\nWhat's the best option?\n- {{choice1}}\n- {{choice2}}\n\nWe are looking for {% if question == \"cause\" %} a cause {% else %} an effect {% endif %}\n||| {% if label != -1 %}{{answer_choices[label]}}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.04988876515698589
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "cause_effect",
+            "acc": 0.65,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "a61d8c21-da25-47bf-b5fe-14a8edd650af",
+            "prompt_jinja": "{{ premise }}\n\nSelect the most plausible {% if question == \"cause\" %} cause: {% else %} effect: {% endif %}\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.0479372485441102
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "cause_effect",
+            "acc_norm": 0.61,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "a61d8c21-da25-47bf-b5fe-14a8edd650af",
+            "prompt_jinja": "{{ premise }}\n\nSelect the most plausible {% if question == \"cause\" %} cause: {% else %} effect: {% endif %}\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.04902071300001975
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "choose",
+            "acc": 0.63,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "f32348cd-d3cb-4619-87b9-e24f99c78567",
+            "prompt_jinja": "{{ premise }} {% if question == \"cause\" %} because... {% else %} so... {% endif %}\nChoose between:\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.048523658709391
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "choose",
+            "acc_norm": 0.52,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "f32348cd-d3cb-4619-87b9-e24f99c78567",
+            "prompt_jinja": "{{ premise }} {% if question == \"cause\" %} because... {% else %} so... {% endif %}\nChoose between:\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.050211673156867795
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "exercise",
+            "acc": 0.58,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "0edd8660-f299-4819-a5ac-633c11177228",
+            "prompt_jinja": "Exercise: choose the most plausible alternative.\n\n{{ premise }} {% if question == \"cause\" %} because... {% else %} so... {% endif %}\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.049604496374885836
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "exercise",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "0edd8660-f299-4819-a5ac-633c11177228",
+            "prompt_jinja": "Exercise: choose the most plausible alternative.\n\n{{ premise }} {% if question == \"cause\" %} because... {% else %} so... {% endif %}\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.050251890762960605
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "i_am_hesitating",
+            "acc": 0.59,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "4d879cbe-2fd7-424a-9d78-3f5200313fba",
+            "prompt_jinja": "{{ premise }} \n\nI am hesitating between two options. Help me choose the more likely {% if question == \"cause\" %} cause: {% else %} effect: {% endif %}\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.04943110704237102
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "i_am_hesitating",
+            "acc_norm": 0.58,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "4d879cbe-2fd7-424a-9d78-3f5200313fba",
+            "prompt_jinja": "{{ premise }} \n\nI am hesitating between two options. Help me choose the more likely {% if question == \"cause\" %} cause: {% else %} effect: {% endif %}\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.049604496374885836
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "more likely",
+            "acc": 0.56,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "a1f9951e-2b6b-4530-9636-9cdf4c1658c5",
+            "prompt_jinja": "Pick the more likely continuation to the following sentence:\n{{ premise }} {% if question == \"cause\" %} as a result of: {% else %} as a consequence: {% endif %}\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.04988876515698589
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "more likely",
+            "acc_norm": 0.5,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "a1f9951e-2b6b-4530-9636-9cdf4c1658c5",
+            "prompt_jinja": "Pick the more likely continuation to the following sentence:\n{{ premise }} {% if question == \"cause\" %} as a result of: {% else %} as a consequence: {% endif %}\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.050251890762960605
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "plausible_alternatives",
+            "acc": 0.64,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "66ea075e-4d03-4a78-b1fa-9a5228cf0c9d",
+            "prompt_jinja": "{{ premise }} {% if question == \"cause\" %} This happened because... {% else %} As a consequence... {% endif %}\nHelp me pick the more plausible option:\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_stderr": 0.048241815132442176
+        },
+        {
+            "task_name": "copa",
+            "prompt_name": "plausible_alternatives",
+            "acc_norm": 0.55,
+            "fixed_answer_choice_list": null,
+            "dataset_path": "super_glue",
+            "dataset_name": "copa",
+            "subset": null,
+            "prompt_id": "66ea075e-4d03-4a78-b1fa-9a5228cf0c9d",
+            "prompt_jinja": "{{ premise }} {% if question == \"cause\" %} This happened because... {% else %} As a consequence... {% endif %}\nHelp me pick the more plausible option:\n- {{choice1}}\n- {{choice2}} ||| {% if label != -1 %}{{ answer_choices[label] }}{%endif%}",
+            "prompt_original_task": true,
+            "comment": "",
+            "acc_norm_stderr": 0.049999999999999996
+        }
+    ],
+    "versions": {
+        "axb+GPT-3 style": 0,
+        "axb+MNLI crowdsource": 0,
+        "axb+based on the previous passage": 0,
+        "axb+can we infer": 0,
+        "axb+does it follow that": 0,
+        "axb+does this imply": 0,
+        "axb+guaranteed true": 0,
+        "axb+justified in saying": 0,
+        "axb+must be true": 0,
+        "axb+should assume": 0,
+        "axg+GPT-3 style": 0,
+        "axg+MNLI crowdsource": 0,
+        "axg+based on the previous passage": 0,
+        "axg+can we infer": 0,
+        "axg+does it follow that": 0,
+        "axg+does this imply": 0,
+        "axg+guaranteed true": 0,
+        "axg+justified in saying": 0,
+        "axg+must be true": 0,
+        "axg+should assume": 0,
+        "boolq+GPT-3 Style": 0,
+        "boolq+I wonder\u2026": 0,
+        "boolq+after_reading": 0,
+        "boolq+based on the following passage": 0,
+        "boolq+based on the previous passage": 0,
+        "boolq+could you tell me\u2026": 0,
+        "boolq+exam": 0,
+        "boolq+exercise": 0,
+        "boolq+valid_binary": 0,
+        "boolq+yes_no_question": 0,
+        "cb+GPT-3 style": 0,
+        "cb+MNLI crowdsource": 0,
+        "cb+always/sometimes/never": 0,
+        "cb+based on the previous passage": 0,
+        "cb+can we infer": 0,
+        "cb+claim true/false/inconclusive": 0,
+        "cb+consider always/sometimes/never": 0,
+        "cb+does it follow that": 0,
+        "cb+does this imply": 0,
+        "cb+guaranteed true": 0,
+        "cb+guaranteed/possible/impossible": 0,
+        "cb+justified in saying": 0,
+        "cb+must be true": 0,
+        "cb+should assume": 0,
+        "cb+take the following as truth": 0,
+        "cola+Following sentence acceptable": 0,
+        "cola+Make sense yes no": 0,
+        "cola+Previous sentence acceptable": 0,
+        "cola+editing": 0,
+        "cola+is_this_correct": 0,
+        "copa+C1 or C2? premise, so/because\u2026": 0,
+        "copa+best_option": 0,
+        "copa+cause_effect": 0,
+        "copa+choose": 0,
+        "copa+exercise": 0,
+        "copa+i_am_hesitating": 0,
+        "copa+more likely": 0,
+        "copa+plausible_alternatives": 0
+    },
+    "table_results": {
+        "axb+GPT-3 style": {
+            "task_name": "axb",
+            "prompt_name": "GPT-3 style",
+            "acc": 0.4528985507246377,
+            "acc_stderr": 0.014988102065111553,
+            "acc_norm": 0.5452898550724637,
+            "acc_norm_stderr": 0.014993163417181939
+        },
+        "axb+MNLI crowdsource": {
+            "task_name": "axb",
+            "prompt_name": "MNLI crowdsource",
+            "acc": 0.4157608695652174,
+            "acc_stderr": 0.014839845193003246,
+            "acc_norm": 0.4166666666666667,
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        "axb+based on the previous passage": {
+            "task_name": "axb",
+            "prompt_name": "based on the previous passage",
+            "acc": 0.4257246376811594,
+            "acc_stderr": 0.014888012621293445,
+            "acc_norm": 0.4166666666666667,
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        "axb+can we infer": {
+            "task_name": "axb",
+            "prompt_name": "can we infer",
+            "acc": 0.4375,
+            "acc_stderr": 0.014936970932375573,
+            "acc_norm": 0.4166666666666667,
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        "axb+does it follow that": {
+            "task_name": "axb",
+            "prompt_name": "does it follow that",
+            "acc": 0.4601449275362319,
+            "acc_stderr": 0.015007147683509253,
+            "acc_norm": 0.4166666666666667,
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        "axb+does this imply": {
+            "task_name": "axb",
+            "prompt_name": "does this imply",
+            "acc": 0.5018115942028986,
+            "acc_stderr": 0.015054952773616312,
+            "acc_norm": 0.4166666666666667,
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        "axb+guaranteed true": {
+            "task_name": "axb",
+            "prompt_name": "guaranteed true",
+            "acc": 0.4384057971014493,
+            "acc_stderr": 0.014940381799440417,
+            "acc_norm": 0.4166666666666667,
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        "axb+justified in saying": {
+            "task_name": "axb",
+            "prompt_name": "justified in saying",
+            "acc": 0.48097826086956524,
+            "acc_stderr": 0.015044153011626225,
+            "acc_norm": 0.4166666666666667,
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        "axb+must be true": {
+            "task_name": "axb",
+            "prompt_name": "must be true",
+            "acc": 0.4483695652173913,
+            "acc_stderr": 0.014974571925618978,
+            "acc_norm": 0.4166666666666667,
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        "axb+should assume": {
+            "task_name": "axb",
+            "prompt_name": "should assume",
+            "acc": 0.4384057971014493,
+            "acc_stderr": 0.01494038179944042,
+            "acc_norm": 0.4166666666666667,
+            "acc_norm_stderr": 0.014844481058991162
+        },
+        "axg+GPT-3 style": {
+            "task_name": "axg",
+            "prompt_name": "GPT-3 style",
+            "parity": 0.9382022471910112,
+            "parity_stderr": 0.01809872339299665,
+            "acc": 0.5308988764044944,
+            "acc_stderr": 0.026486523782404646,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "axg+MNLI crowdsource": {
+            "task_name": "axg",
+            "prompt_name": "MNLI crowdsource",
+            "parity": 1.0,
+            "parity_stderr": 0.0,
+            "acc": 0.5,
+            "acc_stderr": 0.026537244621713762,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "axg+based on the previous passage": {
+            "task_name": "axg",
+            "prompt_name": "based on the previous passage",
+            "parity": 1.0,
+            "parity_stderr": 0.0,
+            "acc": 0.5,
+            "acc_stderr": 0.026537244621713762,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "axg+can we infer": {
+            "task_name": "axg",
+            "prompt_name": "can we infer",
+            "parity": 1.0,
+            "parity_stderr": 0.0,
+            "acc": 0.5,
+            "acc_stderr": 0.026537244621713762,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "axg+does it follow that": {
+            "task_name": "axg",
+            "prompt_name": "does it follow that",
+            "parity": 1.0,
+            "parity_stderr": 0.0,
+            "acc": 0.5,
+            "acc_stderr": 0.026537244621713762,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "axg+does this imply": {
+            "task_name": "axg",
+            "prompt_name": "does this imply",
+            "parity": 0.9325842696629213,
+            "parity_stderr": 0.01884681777754791,
+            "acc": 0.5056179775280899,
+            "acc_stderr": 0.026535569449245976,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "axg+guaranteed true": {
+            "task_name": "axg",
+            "prompt_name": "guaranteed true",
+            "parity": 1.0,
+            "parity_stderr": 0.0,
+            "acc": 0.5,
+            "acc_stderr": 0.026537244621713762,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "axg+justified in saying": {
+            "task_name": "axg",
+            "prompt_name": "justified in saying",
+            "parity": 0.9719101123595506,
+            "parity_stderr": 0.012419422972302344,
+            "acc": 0.5028089887640449,
+            "acc_stderr": 0.026536825838510643,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "axg+must be true": {
+            "task_name": "axg",
+            "prompt_name": "must be true",
+            "parity": 1.0,
+            "parity_stderr": 0.0,
+            "acc": 0.5,
+            "acc_stderr": 0.026537244621713762,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "axg+should assume": {
+            "task_name": "axg",
+            "prompt_name": "should assume",
+            "parity": 1.0,
+            "parity_stderr": 0.0,
+            "acc": 0.5,
+            "acc_stderr": 0.026537244621713762,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.026537244621713762
+        },
+        "boolq+GPT-3 Style": {
+            "task_name": "boolq",
+            "prompt_name": "GPT-3 Style",
+            "acc": 0.5706422018348624,
+            "acc_stderr": 0.008657333755353684,
+            "acc_norm": 0.6256880733944954,
+            "acc_norm_stderr": 0.008464246656443236
+        },
+        "boolq+I wonder\u2026": {
+            "task_name": "boolq",
+            "prompt_name": "I wonder\u2026",
+            "acc": 0.5657492354740061,
+            "acc_stderr": 0.008669116184243039,
+            "acc_norm": 0.6217125382262997,
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        "boolq+after_reading": {
+            "task_name": "boolq",
+            "prompt_name": "after_reading",
+            "acc": 0.6217125382262997,
+            "acc_stderr": 0.00848200113393099,
+            "acc_norm": 0.5403669724770642,
+            "acc_norm_stderr": 0.008716508381476008
+        },
+        "boolq+based on the following passage": {
+            "task_name": "boolq",
+            "prompt_name": "based on the following passage",
+            "acc": 0.37920489296636084,
+            "acc_stderr": 0.00848601213724628,
+            "acc_norm": 0.5892966360856269,
+            "acc_norm_stderr": 0.008604460608471412
+        },
+        "boolq+based on the previous passage": {
+            "task_name": "boolq",
+            "prompt_name": "based on the previous passage",
+            "acc": 0.6244648318042814,
+            "acc_stderr": 0.008469774334938066,
+            "acc_norm": 0.6217125382262997,
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        "boolq+could you tell me\u2026": {
+            "task_name": "boolq",
+            "prompt_name": "could you tell me\u2026",
+            "acc": 0.6241590214067279,
+            "acc_stderr": 0.008471147248160109,
+            "acc_norm": 0.6217125382262997,
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        "boolq+exam": {
+            "task_name": "boolq",
+            "prompt_name": "exam",
+            "acc": 0.6256880733944954,
+            "acc_stderr": 0.008464246656443238,
+            "acc_norm": 0.6217125382262997,
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        "boolq+exercise": {
+            "task_name": "boolq",
+            "prompt_name": "exercise",
+            "acc": 0.6217125382262997,
+            "acc_stderr": 0.00848200113393099,
+            "acc_norm": 0.6204892966360857,
+            "acc_norm_stderr": 0.00848734197575683
+        },
+        "boolq+valid_binary": {
+            "task_name": "boolq",
+            "prompt_name": "valid_binary",
+            "acc": 0.5397553516819572,
+            "acc_stderr": 0.008717368239786055,
+            "acc_norm": 0.38073394495412843,
+            "acc_norm_stderr": 0.008492625561656204
+        },
+        "boolq+yes_no_question": {
+            "task_name": "boolq",
+            "prompt_name": "yes_no_question",
+            "acc": 0.6155963302752293,
+            "acc_stderr": 0.008508133844703938,
+            "acc_norm": 0.6217125382262997,
+            "acc_norm_stderr": 0.00848200113393099
+        },
+        "cb+GPT-3 style": {
+            "task_name": "cb",
+            "prompt_name": "GPT-3 style",
+            "acc": 0.42857142857142855,
+            "acc_stderr": 0.06672848092813057,
+            "f1": 0.21956970232832299
+        },
+        "cb+MNLI crowdsource": {
+            "task_name": "cb",
+            "prompt_name": "MNLI crowdsource",
+            "acc": 0.4107142857142857,
+            "acc_stderr": 0.06633634150359538,
+            "f1": 0.1940928270042194
+        },
+        "cb+always/sometimes/never": {
+            "task_name": "cb",
+            "prompt_name": "always/sometimes/never",
+            "acc": 0.08928571428571429,
+            "acc_stderr": 0.038450387280282494,
+            "f1": 0.054644808743169404
+        },
+        "cb+based on the previous passage": {
+            "task_name": "cb",
+            "prompt_name": "based on the previous passage",
+            "acc": 0.30357142857142855,
+            "acc_stderr": 0.06199938655510754,
+            "f1": 0.21415004748338085
+        },
+        "cb+can we infer": {
+            "task_name": "cb",
+            "prompt_name": "can we infer",
+            "acc": 0.35714285714285715,
+            "acc_stderr": 0.0646095738380922,
+            "f1": 0.2492753623188406
+        },
+        "cb+claim true/false/inconclusive": {
+            "task_name": "cb",
+            "prompt_name": "claim true/false/inconclusive",
+            "acc": 0.44642857142857145,
+            "acc_stderr": 0.06703189227942397,
+            "f1": 0.34054054054054056
+        },
+        "cb+consider always/sometimes/never": {
+            "task_name": "cb",
+            "prompt_name": "consider always/sometimes/never",
+            "acc": 0.08928571428571429,
+            "acc_stderr": 0.038450387280282494,
+            "f1": 0.054644808743169404
+        },
+        "cb+does it follow that": {
+            "task_name": "cb",
+            "prompt_name": "does it follow that",
+            "acc": 0.375,
+            "acc_stderr": 0.06527912098338669,
+            "f1": 0.25555555555555554
+        },
+        "cb+does this imply": {
+            "task_name": "cb",
+            "prompt_name": "does this imply",
+            "acc": 0.10714285714285714,
+            "acc_stderr": 0.0417053005800816,
+            "f1": 0.1101658198432392
+        },
+        "cb+guaranteed true": {
+            "task_name": "cb",
+            "prompt_name": "guaranteed true",
+            "acc": 0.3392857142857143,
+            "acc_stderr": 0.06384226561930825,
+            "f1": 0.23878787878787877
+        },
+        "cb+guaranteed/possible/impossible": {
+            "task_name": "cb",
+            "prompt_name": "guaranteed/possible/impossible",
+            "acc": 0.08928571428571429,
+            "acc_stderr": 0.038450387280282494,
+            "f1": 0.054644808743169404
+        },
+        "cb+justified in saying": {
+            "task_name": "cb",
+            "prompt_name": "justified in saying",
+            "acc": 0.26785714285714285,
+            "acc_stderr": 0.05971290310957635,
+            "f1": 0.19148400100781057
+        },
+        "cb+must be true": {
+            "task_name": "cb",
+            "prompt_name": "must be true",
+            "acc": 0.26785714285714285,
+            "acc_stderr": 0.05971290310957636,
+            "f1": 0.18658280922431866
+        },
+        "cb+should assume": {
+            "task_name": "cb",
+            "prompt_name": "should assume",
+            "acc": 0.23214285714285715,
+            "acc_stderr": 0.05692939024000109,
+            "f1": 0.17732884399551066
+        },
+        "cb+take the following as truth": {
+            "task_name": "cb",
+            "prompt_name": "take the following as truth",
+            "acc": 0.4107142857142857,
+            "acc_stderr": 0.06633634150359538,
+            "f1": 0.1940928270042194
+        },
+        "cola+Following sentence acceptable": {
+            "task_name": "cola",
+            "prompt_name": "Following sentence acceptable",
+            "acc": 0.610738255033557,
+            "acc_stderr": 0.015104785594702123,
+            "acc_norm": 0.3096836049856184,
+            "acc_norm_stderr": 0.014323506235950028
+        },
+        "cola+Make sense yes no": {
+            "task_name": "cola",
+            "prompt_name": "Make sense yes no",
+            "acc": 0.34132310642377756,
+            "acc_stderr": 0.014688762187200534,
+            "acc_norm": 0.6922339405560882,
+            "acc_norm_stderr": 0.014298910475462598
+        },
+        "cola+Previous sentence acceptable": {
+            "task_name": "cola",
+            "prompt_name": "Previous sentence acceptable",
+            "acc": 0.6749760306807286,
+            "acc_stderr": 0.014510019990409625,
+            "acc_norm": 0.6912751677852349,
+            "acc_norm_stderr": 0.014311244461311299
+        },
+        "cola+editing": {
+            "task_name": "cola",
+            "prompt_name": "editing",
+            "acc": 0.3192713326941515,
+            "acc_stderr": 0.014442192293674112,
+            "acc_norm": 0.6912751677852349,
+            "acc_norm_stderr": 0.014311244461311299
+        },
+        "cola+is_this_correct": {
+            "task_name": "cola",
+            "prompt_name": "is_this_correct",
+            "acc": 0.6816874400767018,
+            "acc_stderr": 0.014430642717837706,
+            "acc_norm": 0.6912751677852349,
+            "acc_norm_stderr": 0.014311244461311299
+        },
+        "copa+C1 or C2? premise, so/because\u2026": {
+            "task_name": "copa",
+            "prompt_name": "C1 or C2? premise, so/because\u2026",
+            "acc": 0.71,
+            "acc_stderr": 0.045604802157206845,
+            "acc_norm": 0.61,
+            "acc_norm_stderr": 0.04902071300001975
+        },
+        "copa+best_option": {
+            "task_name": "copa",
+            "prompt_name": "best_option",
+            "acc": 0.55,
+            "acc_stderr": 0.05,
+            "acc_norm": 0.44,
+            "acc_norm_stderr": 0.04988876515698589
+        },
+        "copa+cause_effect": {
+            "task_name": "copa",
+            "prompt_name": "cause_effect",
+            "acc": 0.65,
+            "acc_stderr": 0.0479372485441102,
+            "acc_norm": 0.61,
+            "acc_norm_stderr": 0.04902071300001975
+        },
+        "copa+choose": {
+            "task_name": "copa",
+            "prompt_name": "choose",
+            "acc": 0.63,
+            "acc_stderr": 0.048523658709391,
+            "acc_norm": 0.52,
+            "acc_norm_stderr": 0.050211673156867795
+        },
+        "copa+exercise": {
+            "task_name": "copa",
+            "prompt_name": "exercise",
+            "acc": 0.58,
+            "acc_stderr": 0.049604496374885836,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.050251890762960605
+        },
+        "copa+i_am_hesitating": {
+            "task_name": "copa",
+            "prompt_name": "i_am_hesitating",
+            "acc": 0.59,
+            "acc_stderr": 0.04943110704237102,
+            "acc_norm": 0.58,
+            "acc_norm_stderr": 0.049604496374885836
+        },
+        "copa+more likely": {
+            "task_name": "copa",
+            "prompt_name": "more likely",
+            "acc": 0.56,
+            "acc_stderr": 0.04988876515698589,
+            "acc_norm": 0.5,
+            "acc_norm_stderr": 0.050251890762960605
+        },
+        "copa+plausible_alternatives": {
+            "task_name": "copa",
+            "prompt_name": "plausible_alternatives",
+            "acc": 0.64,
+            "acc_stderr": 0.048241815132442176,
+            "acc_norm": 0.55,
+            "acc_norm_stderr": 0.049999999999999996
+        }
+    },
+    "config": {
+        "adaptive_seq_len": true,
+        "num_fewshot": 0,
+        "bootstrap_iters": 100000
+    }
+}

@@ -107,3 +107,5 @@ ENV/
 
 # WanDB
 wandb
+
+*DS_Store

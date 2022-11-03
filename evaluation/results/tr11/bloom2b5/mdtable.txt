@@ -1,0 +1,143 @@
+| Task | Language | Metric | BLOOM-2B5 |
+|:----|:----|:----|:----:|
+| arc_challenge | eng | acc ↑ | 0.28 |
+| arc_easy | eng | acc ↑ | 0.595 |
+| axb (Median of 10 prompts) | eng | acc ↑ | 0.443 |
+| axg (Median of 10 prompts) | eng | acc ↑ | 0.5 |
+| boolq (Median of 11 prompts) | eng | acc ↑ | 0.617 |
+| cb (Median of 15 prompts) | eng | acc ↑ | 0.304 |
+| cola (Median of 5 prompts) | eng | acc ↑ | 0.611 |
+| copa (Median of 9 prompts) | eng | acc ↑ | 0.63 |
+| crows_pairs_english (Median of 6 prompts) | eng | acc ↑ | 0.497 |
+| crows_pairs_french (Median of 7 prompts) | fra | acc ↑ | 0.503 |
+| diabla (Median of 2 prompts) | eng | acc ↑ | 0.289 |
+| gsarti/flores_101_afr | afr | byte_perplexity ↓ | 6.501 |
+| gsarti/flores_101_amh | amh | byte_perplexity ↓ | 3.973 |
+| gsarti/flores_101_ara | ara | byte_perplexity ↓ | 1.808 |
+| gsarti/flores_101_asm | asm | byte_perplexity ↓ | 5.699 |
+| gsarti/flores_101_ast | ast | byte_perplexity ↓ | 3.925 |
+| gsarti/flores_101_azj | azj | byte_perplexity ↓ | 6.943 |
+| gsarti/flores_101_bel | bel | byte_perplexity ↓ | 3.614 |
+| gsarti/flores_101_ben | ben | byte_perplexity ↓ | 5.121 |
+| gsarti/flores_101_bos | bos | byte_perplexity ↓ | 5.653 |
+| gsarti/flores_101_bul | bul | byte_perplexity ↓ | 2.701 |
+| gsarti/flores_101_cat | cat | byte_perplexity ↓ | 2.305 |
+| gsarti/flores_101_ceb | ceb | byte_perplexity ↓ | 6.291 |
+| gsarti/flores_101_ces | ces | byte_perplexity ↓ | 5.447 |
+| gsarti/flores_101_ckb | ckb | byte_perplexity ↓ | 3.726 |
+| gsarti/flores_101_cym | cym | byte_perplexity ↓ | 12.539 |
+| gsarti/flores_101_dan | dan | byte_perplexity ↓ | 5.183 |
+| gsarti/flores_101_deu | deu | byte_perplexity ↓ | 3.118 |
+| gsarti/flores_101_ell | ell | byte_perplexity ↓ | 2.468 |
+| gsarti/flores_101_eng | eng | byte_perplexity ↓ | 2.019 |
+| gsarti/flores_101_est | est | byte_perplexity ↓ | 9.117 |
+| gsarti/flores_101_fas | fas | byte_perplexity ↓ | 3.058 |
+| gsarti/flores_101_fin | fin | byte_perplexity ↓ | 6.847 |
+| gsarti/flores_101_fra | fra | byte_perplexity ↓ | 1.998 |
+| gsarti/flores_101_ful | ful | byte_perplexity ↓ | 11.466 |
+| gsarti/flores_101_gle | gle | byte_perplexity ↓ | 8.681 |
+| gsarti/flores_101_glg | glg | byte_perplexity ↓ | 3.03 |
+| gsarti/flores_101_guj | guj | byte_perplexity ↓ | 4.955 |
+| gsarti/flores_101_hau | hau | byte_perplexity ↓ | 10.758 |
+| gsarti/flores_101_heb | heb | byte_perplexity ↓ | 3.6 |
+| gsarti/flores_101_hin | hin | byte_perplexity ↓ | 4.713 |
+| gsarti/flores_101_hrv | hrv | byte_perplexity ↓ | 5.822 |
+| gsarti/flores_101_hun | hun | byte_perplexity ↓ | 6.44 |
+| gsarti/flores_101_hye | hye | byte_perplexity ↓ | 3.658 |
+| gsarti/flores_101_ibo | ibo | byte_perplexity ↓ | 5.565 |
+| gsarti/flores_101_ind | ind | byte_perplexity ↓ | 2.16 |
+| gsarti/flores_101_isl | isl | byte_perplexity ↓ | 8.082 |
+| gsarti/flores_101_ita | ita | byte_perplexity ↓ | 2.969 |
+| gsarti/flores_101_jav | jav | byte_perplexity ↓ | 7.057 |
+| gsarti/flores_101_jpn | jpn | byte_perplexity ↓ | 2.776 |
+| gsarti/flores_101_kam | kam | byte_perplexity ↓ | 11.073 |
+| gsarti/flores_101_kan | kan | byte_perplexity ↓ | 5.552 |
+| gsarti/flores_101_kat | kat | byte_perplexity ↓ | 2.523 |
+| gsarti/flores_101_kaz | kaz | byte_perplexity ↓ | 3.39 |
+| gsarti/flores_101_kea | kea | byte_perplexity ↓ | 8.919 |
+| gsarti/flores_101_kir | kir | byte_perplexity ↓ | 3.729 |
+| gsarti/flores_101_kor | kor | byte_perplexity ↓ | 3.933 |
+| gsarti/flores_101_lao | lao | byte_perplexity ↓ | 2.908 |
+| gsarti/flores_101_lav | lav | byte_perplexity ↓ | 7.777 |
+| gsarti/flores_101_lin | lin | byte_perplexity ↓ | 7.525 |
+| gsarti/flores_101_lit | lit | byte_perplexity ↓ | 7.369 |
+| gsarti/flores_101_ltz | ltz | byte_perplexity ↓ | 8.801 |
+| gsarti/flores_101_lug | lug | byte_perplexity ↓ | 8.483 |
+| gsarti/flores_101_luo | luo | byte_perplexity ↓ | 11.976 |
+| gsarti/flores_101_mal | mal | byte_perplexity ↓ | 4.616 |
+| gsarti/flores_101_mar | mar | byte_perplexity ↓ | 5.483 |
+| gsarti/flores_101_mkd | mkd | byte_perplexity ↓ | 2.966 |
+| gsarti/flores_101_mlt | mlt | byte_perplexity ↓ | 15.005 |
+| gsarti/flores_101_mon | mon | byte_perplexity ↓ | 3.411 |
+| gsarti/flores_101_mri | mri | byte_perplexity ↓ | 7.474 |
+| gsarti/flores_101_msa | msa | byte_perplexity ↓ | 2.571 |
+| gsarti/flores_101_mya | mya | byte_perplexity ↓ | 2.414 |
+| gsarti/flores_101_nld | nld | byte_perplexity ↓ | 4.128 |
+| gsarti/flores_101_nob | nob | byte_perplexity ↓ | 5.403 |
+| gsarti/flores_101_npi | npi | byte_perplexity ↓ | 5.199 |
+| gsarti/flores_101_nso | nso | byte_perplexity ↓ | 8.155 |
+| gsarti/flores_101_nya | nya | byte_perplexity ↓ | 8.18 |
+| gsarti/flores_101_oci | oci | byte_perplexity ↓ | 4.862 |
+| gsarti/flores_101_orm | orm | byte_perplexity ↓ | 12.912 |
+| gsarti/flores_101_ory | ory | byte_perplexity ↓ | 5.189 |
+| gsarti/flores_101_pan | pan | byte_perplexity ↓ | 4.698 |
+| gsarti/flores_101_pol | pol | byte_perplexity ↓ | 4.626 |
+| gsarti/flores_101_por | por | byte_perplexity ↓ | 1.975 |
+| gsarti/flores_101_pus | pus | byte_perplexity ↓ | 4.496 |
+| gsarti/flores_101_ron | ron | byte_perplexity ↓ | 4.965 |
+| gsarti/flores_101_rus | rus | byte_perplexity ↓ | 2.05 |
+| gsarti/flores_101_slk | slk | byte_perplexity ↓ | 6.451 |
+| gsarti/flores_101_slv | slv | byte_perplexity ↓ | 6.62 |
+| gsarti/flores_101_sna | sna | byte_perplexity ↓ | 8.462 |
+| gsarti/flores_101_snd | snd | byte_perplexity ↓ | 5.466 |
+| gsarti/flores_101_som | som | byte_perplexity ↓ | 11.959 |
+| gsarti/flores_101_spa | spa | byte_perplexity ↓ | 1.897 |
+| gsarti/flores_101_srp | srp | byte_perplexity ↓ | 2.871 |
+| gsarti/flores_101_swe | swe | byte_perplexity ↓ | 5.055 |
+| gsarti/flores_101_swh | swh | byte_perplexity ↓ | 3.697 |
+| gsarti/flores_101_tam | tam | byte_perplexity ↓ | 4.539 |
+| gsarti/flores_101_tel | tel | byte_perplexity ↓ | 5.807 |
+| gsarti/flores_101_tgk | tgk | byte_perplexity ↓ | 3.599 |
+| gsarti/flores_101_tgl | tgl | byte_perplexity ↓ | 5.667 |
+| gsarti/flores_101_tha | tha | byte_perplexity ↓ | 2.366 |
+| gsarti/flores_101_tur | tur | byte_perplexity ↓ | 4.885 |
+| gsarti/flores_101_ukr | ukr | byte_perplexity ↓ | 2.724 |
+| gsarti/flores_101_umb | umb | byte_perplexity ↓ | 12.767 |
+| gsarti/flores_101_urd | urd | byte_perplexity ↓ | 1.98 |
+| gsarti/flores_101_uzb | uzb | byte_perplexity ↓ | 12.002 |
+| gsarti/flores_101_vie | vie | byte_perplexity ↓ | 1.766 |
+| gsarti/flores_101_wol | wol | byte_perplexity ↓ | 9.144 |
+| gsarti/flores_101_xho | xho | byte_perplexity ↓ | 7.403 |
+| gsarti/flores_101_yor | yor | byte_perplexity ↓ | 5.913 |
+| gsarti/flores_101_zho_simpl | zho_simpl | byte_perplexity ↓ | 2.277 |
+| gsarti/flores_101_zho_trad | zho_trad | byte_perplexity ↓ | 2.518 |
+| gsarti/flores_101_zul | zul | byte_perplexity ↓ | 8.534 |
+| headqa | esp | acc ↑ | 0.264 |
+| hellaswag | eng | acc ↑ | 0.412 |
+| logiqa | eng | acc ↑ | 0.207 |
+| mathqa | eng | acc ↑ | 0.25 |
+| mc_taco | eng | em ↑ | 0.119 |
+| mnli (Median of 15 prompts) | eng | acc ↑ | 0.355 |
+| mnli_mismatched (Median of 15 prompts) | eng | acc ↑ | 0.352 |
+| mrpc | eng | acc ↑ | 0.586 |
+| multirc (Median of 11 prompts) | eng | acc ↑ | 0.538 |
+| openbookqa | eng | acc ↑ | 0.216 |
+| piqa | eng | acc ↑ | 0.708 |
+| prost | eng | acc ↑ | 0.227 |
+| pubmedqa | eng | acc ↑ | 0.616 |
+| qnli | eng | acc ↑ | 0.507 |
+| qqp (Median of 7 prompts) | eng | acc ↑ | 0.384 |
+| race | eng | acc ↑ | 0.352 |
+| rte (Median of 6 prompts) | eng | acc ↑ | 0.477 |
+| sciq | eng | acc ↑ | 0.892 |
+| sst (Median of 6 prompts) | eng | acc ↑ | 0.518 |
+| triviaqa | eng | acc ↑ | 0.042 |
+| tydiqa_primary (Median of 24 prompts) | eng | acc ↑ | 0.301 |
+| webqs | eng | acc ↑ | 0.017 |
+| wic (Median of 11 prompts) | eng | acc ↑ | 0.502 |
+| winogrande | eng | acc ↑ | 0.586 |
+| wnli (Median of 6 prompts) | eng | acc ↑ | 0.472 |
+| wsc (Median of 11 prompts) | eng | acc ↑ | 0.442 |
+| humaneval | python | pass@1 ↑ | 0.155 |
+| humaneval | python | pass@10 ↑ | 0.322 |
+| humaneval | python | pass@100 ↑ | 0.555 |
