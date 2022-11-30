@@ -48,6 +48,7 @@ def run(local_rank):
     mat = torch.rand(N, M, dtype=torch.float32).cuda(local_rank)
 
     for i in range(TRIALS):
+        dist.barrier()
         if global_rank == 0:
             print(f"\n\n\n-----------trial-{i}----------------")
         timed_allreduce(mat, id)
