@@ -1,4 +1,4 @@
-# python -m torch.distributed.launch --nproc_per_node=2 all_reduce_bench.py
+# python -m torch.distributed.run --nproc_per_node=2 all_reduce_bench.py
 
 import argparse
 import fcntl
@@ -59,9 +59,7 @@ def init_processes(local_rank, fn, backend='nccl'):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--local_rank", type=int)
-    args = parser.parse_args()
-    rank = args.local_rank
+    rank = int(os.environ["LOCAL_RANK"])
     printflock("local_rank: %d" % rank)
     init_processes(local_rank=rank, fn=run)
+
