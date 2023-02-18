@@ -1,32 +1,32 @@
 #!/bin/bash
-#SBATCH --job-name=catalogue-jsonl-to-meg-ds # job name
+#SBATCH --job-name=catalogue-gptneo-jsonl-to-meg-ds # job name
 #SBATCH --ntasks=1                   # number of MP tasks
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=40           # number of cores per tasks
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --time=20:00:00             # maximum execution time (HH:MM:SS)
-#SBATCH --output=logs/catalogue-jsonl-to-meg-ds/%x-%j.out          # output file name
+#SBATCH --output=logs/catalogue-gptneo-jsonl-to-meg-ds/%x-%j.out          # output file name
 #SBATCH --account=six@cpu
-#SBATCH --array=0-497
+#SBATCH --array=0-43
 #SBATCH --partition=cpu_p1
 
 set -x -e
 
 source $six_ALL_CCFRWORK/start-prod
-# We need a specific installation of tokenizers so that it works with bytefallback
-conda activate thomas_data_tooling
+# we need transformers on master as of writing this to get the Neo20b tokenizer
+conda activate teven-tests
 
 # ======= Generate meg-ds file ======
 
-DATASET_PATHS=($(ls -d $six_ALL_CCFRWORK/bigscience-training/jsonls/**/**/*.jsonl))
+DATASET_PATHS=($(ls -d $six_ALL_CCFRWORK/bigscience-training/jsonls/jsonl_v2/en/*.jsonl))
 DATASET_PATH=${DATASET_PATHS[$SLURM_ARRAY_TASK_ID]}
 
-TOKENIZER_NAME_OR_PATH=bigscience-catalogue-data-dev/byte-level-bpe-tokenizer-no-norm-250k-whitespace-and-eos-regex-alpha-v3-dedup-lines-articles
+TOKENIZER_NAME_OR_PATH=EleutherAI/gpt-neox-20b
 
 DATASET_NAME_WITH_JSONL=$(basename $DATASET_PATH)
 DATASET_NAME=${DATASET_NAME_WITH_JSONL:0:-6}
 LANG=$(basename $(dirname $DATASET_PATH))
-SAVE_MEG_DS_DATASET=$six_ALL_CCFRSCRATCH/bigscience-datasets/re-tokenizations/$LANG/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"
+SAVE_MEG_DS_DATASET=$six_ALL_CCFRSCRATCH/bigscience-datasets/gptneo-tokenizations/$LANG/"$DATASET_NAME"/meg_ds_"${TOKENIZER_NAME_OR_PATH//\//_}"
 
 mkdir -p $(dirname $SAVE_MEG_DS_DATASET)
 
