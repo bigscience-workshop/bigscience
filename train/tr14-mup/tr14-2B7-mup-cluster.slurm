@@ -10,11 +10,67 @@
 #SBATCH --output=/fsx/teven/mup/tr14-2B7-%j.out
 #SBATCH --exclude=ip-26-0-159-215,ip-26-0-153-238
 
-conda activate tvn_dev
-
-export PATH=/usr/local/cuda-11.4/bin:$PATH
-
 echo "START TIME: $(date)"
+
+mkdir -p $LOGS_PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/admin/home/teven/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/admin/home/teven/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/admin/home/teven/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/admin/home/teven/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# Proper env variables
+conda activate tvn_dev
+export PATH=/usr/local/cuda-11.4/bin:$PATH
+export NCCL_PROTO=simple
+export PATH=/opt/amazon/efa/bin:$PATH
+
+export FI_EFA_FORK_SAFE=1
+export FI_LOG_LEVEL=1
+export FI_EFA_USE_DEVICE_RDMA=1 # use for p4dn
+
+#export NCCL_ALGO=ring
+#export NCCL_DEBUG=info
+#export NCCL_DEBUG_SUBSYS=INIT,ENV,GRAPH,COLL
+
+export PYTHONFAULTHANDLER=1
+
+export CUDA_LAUNCH_BLOCKING=0
+export OMPI_MCA_mtl_base_verbose=1
+export FI_EFA_ENABLE_SHM_TRANSFER=0
+export FI_PROVIDER=efa
+export FI_EFA_TX_MIN_CREDITS=64
+export NCCL_TREE_THRESHOLD=0
+#export TORCH_CPP_LOG_LEVEL=INFO
+#export TORCH_DISTRIBUTED_DEBUG=INFO
+
+export NCCL_ASYNC_ERROR_HANDLING=1
+#export NCCL_P2P_DISABLE=1
+#export NCCL_IBEXT_DISABLE=1
+#export NCCL_SOCKET_IFNAME="eth0,en,eth,em,bond"
+
+# testing for potential faulty nodes
+srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
+
+# so processes know who to talk to
+export MASTER_ADDR=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
+export MASTER_PORT=12802
+
+
+MEGATRON_DEEPSPEED_REPO=/fsx/teven/Megatron-DeepSpeed
+cd $MEGATRON_DEEPSPEED_REPO
+
+TOKENIZER_NAME_OR_PATH=t5-small
 
 variant=main
 
@@ -24,19 +80,6 @@ CHECKPOINT_PATH=$DATA_OUTPUT_PATH/checkpoints/$variant
 REPO_PATH=$DATA_OUTPUT_PATH/tr14-2B7-test-lr$1-init0.1-inpm10-outm10-atnm10-mup
 TENSORBOARD_PATH=$REPO_PATH/tensorboard/$variant
 LOGS_PATH=$REPO_PATH/logs/$variant
-mkdir -p $LOGS_PATH
-
-MEGATRON_DEEPSPEED_REPO=/fsx/teven/Megatron-DeepSpeed
-cd $MEGATRON_DEEPSPEED_REPO
-
-TOKENIZER_NAME_OR_PATH=t5-small
-
-# testing for potential faulty nodes
-# srun --jobid $SLURM_JOBID bash -c 'python -c "import torch, socket; print(socket.gethostname(), torch.cuda.is_available())"'
-
-# so processes know who to talk to
-MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-MASTER_PORT=6000
 
 GPUS_PER_NODE=8
 NNODES=$SLURM_NNODES
