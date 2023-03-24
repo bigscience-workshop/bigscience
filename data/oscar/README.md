@@ -23,6 +23,8 @@ Should something get corrupted there is a backup:
 
 ## How pre-processing was done
 
+Here we used the original OSCAR 2019 release: https://oscar-project.org/post/oscar-2019/
+
 In general the process is to first generate jsonl version of the dataset, while filtering out entries smaller than 1K, and then run that jsonl data through Megatron-LM preprocessing tool.
 
 The rest of this document is the step by step process of accomplishing that in an efficient way.
