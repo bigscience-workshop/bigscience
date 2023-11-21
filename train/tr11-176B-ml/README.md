@@ -1,6 +1,6 @@
-# tr11 176B ML
+# tr11 BLOOM-176B ML
 
-Large multilingual language model training
+BLOOM-176B: Large multilingual language model training 
 
 ## Task
 
