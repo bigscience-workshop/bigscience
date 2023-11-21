@@ -486,7 +486,7 @@ Also note that the model size isn't always the same as the number of layers had 
 
 * Sec/it throughput at iteration 2
 
-As you can see the 80GB is totally unnecessary for MBS=1 as we are bound by compute of each gpu and we barely use half the gpu memory and trying to pack more on each gpu slows the ensemble down. This is of course thanks to ZeRO which shards all fp32 optim+grad+params over all gpus - so the more gpus you use the less memory is needed to accomodate the same model size, regardless of DP/TP/PP topology. (with MBS=1 that is so that the activations don't take too much memory)
+As you can see the 80GB is totally unnecessary for MBS=1 as we are bound by compute of each gpu and we barely use half the gpu memory and trying to pack more on each gpu slows the ensemble down. This is of course thanks to ZeRO which shards all fp32 optim+grad+params over all gpus - so the more gpus you use the less memory is needed to accommodate the same model size, regardless of DP/TP/PP topology. (with MBS=1 that is so that the activations don't take too much memory)
 
 This table doesn't take into account batch size rampup which needs to be divisible by DP as it progressed from 32, 64, ... so really we have an additional constraint of `DP % 4 = 0` and `GBS % 32 = 0`.
 
