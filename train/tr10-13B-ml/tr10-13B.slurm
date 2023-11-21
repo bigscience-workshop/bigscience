@@ -46,9 +46,12 @@ GLOBAL_BATCH_SIZE=2048
 
 NLAYERS=40
 NHIDDEN=5120
-NHEADS=32
+NHEADS=40
 SEQ_LEN=2048
 VOCAB_SIZE=150000
+
+TRAIN_TOKENS=300_000_000_000
+TRAIN_SAMPLES=$(python -c "print($TRAIN_TOKENS // $SEQ_LEN)")
 
 SAVE_INTERVAL=300
 
@@ -57,13 +60,14 @@ OPTIMIZER_ARGS=" \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
-    --lr 6e-5 \
+    --lr 1e-4 \
     --min-lr 6e-6 \
     --lr-decay-style cosine \
-    --lr-decay-samples 126_953_125 \
     --lr-warmup-samples 216_320 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
+    --hidden-dropout 0.0 \
+    --attention-dropout 0.0 \
     "
 
 EXIT_OPTS=" \
@@ -80,7 +84,7 @@ GPT_ARGS=" \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --rampup-batch-size 16 16 6_000_000 \
     --global-batch-size $GLOBAL_BATCH_SIZE \
-    --train-samples 300_000_000 \
+    --train-samples $TRAIN_SAMPLES \
     --tokenizer-type PretrainedFromHF \
     --tokenizer-name-or-path $TOKENIZER_NAME \
     --loss-scale 12 \
@@ -165,7 +169,7 @@ export CMD=" \
     --load $CHECKPOINT_PATH \
     --data-path $DATA_PATH \
     --data-impl mmap \
-    --split 900,100,0 \
+    --split 950,50,0 \
     --distributed-backend nccl \
      $DEEPSPEED_ARGS \
     "
