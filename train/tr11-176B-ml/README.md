@@ -335,7 +335,7 @@ Thus: `sqrt(1/(14336*3)) = 0.00482197968631537`
 
 ### Positional Encoding
 
-We use the added by us AliBi implementation:
+We use the AliBi implementation added by us:
 
 ```
     --position-embedding-type alibi \
@@ -345,7 +345,7 @@ Paper: [Train Short, Test Long: Attention with Linear Biases Enables Input Lengt
 
 ### Embed LayerNorm
 
-We use the added by us embedding layer norm which makes the training more stable at a small training slowdown cost and a tiny additional amount of memory.
+We use the embedding layer norm added by us which makes the training more stable at a small training slowdown cost and a tiny additional amount of memory.
 
 ```
     --embed-layernorm \
