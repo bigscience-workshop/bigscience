@@ -977,3 +977,7 @@ Continued in the 2nd set of experiments [chronicles b](../tr8b-104B-ml/chronicle
 
 
 stopped at Date: 2021-11-07
+
+## All divergences together
+
+![tr8-104B-combined-lm-loss.png](images/tr8-104B-combined-lm-loss.png)
